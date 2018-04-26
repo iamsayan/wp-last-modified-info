@@ -3,8 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.0.3
-Requires PHP: 5.2.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -20,7 +19,7 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 #### What does this plugin do?
 
-Using this plugin, you can enable last modified info of your wordpress posts and pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. you can also enable revision meta tag and last modified header for your pages and posts. With this plugin, you can also set custom styles.
+Using this plugin, you can show last modified info on your wordpress posts and pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. You can also enable revision meta tag and last modified header for your pages and posts. With this plugin, you can also set custom styles.
 
 #### Support
 * Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -88,7 +87,7 @@ Yes, absolutely. This plugin returns last modified info on both post and pages a
 
 = Can I customize 'Last Updated' text? =
 
-Yes, you can. Write custom text in pugins page and save changes.
+Yes, you can. Write custom text in plugins page and save changes.
 
 Use the plugin to test it.
 
@@ -100,6 +99,19 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.0.5 =
+Release Date: April 27, 2018
+
+* Added: 'post-last-modified-td' and 'post-last-modified-td' classes.
+* Bug fixed.
+
+= 1.0.4 =
+Release Date: April 27, 2018
+
+* If else condition change.
+* Last modified headers hook change.
+* Bug fixed.
 
 = 1.0.3 =
 Release Date: April 26, 2018
@@ -117,18 +129,4 @@ Release Date: April 26, 2018
 = 1.0.0 =
 Release Date: April 25, 2018
 
-* Initial release
-
-== Upgrade Notice ==
-
-= 1.0.3 =
-* Added last modified header output.
-* Added user profile last modified info.
-* Bug fixed.
-
-= 1.0.2 =
-* Added revision meta output.
-* Bug fixed.
-
-= 1.0.0 =
 * Initial release

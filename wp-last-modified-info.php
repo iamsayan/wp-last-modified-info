@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.0.3
+Version: 1.0.5
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -72,7 +72,7 @@ function lmt_plug_settings_page() {
     
     add_settings_field("lmt_enable_last_modified_cb", "<label for='post-enable'>Enable Last Modified Info for Posts:</label>", "lmt_enable_last_modified_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_use_as_sc_cb", "<label for='post-sc'>Enable Shortcode for Posts:</label>", "lmt_use_as_sc_cb_display", "lmt_post_option", "lmt_post_option_section");  
-    add_settings_field("lmt_enable_revision_tag_output_cb", "<label for='post-revised'>Enable 'revised' meta tag output for Posts:</label>", "lmt_enable_revision_tag_output_cb_display", "lmt_post_option", "lmt_post_option_section");  
+    add_settings_field("lmt_enable_revision_tag_output_cb", "<label for='post-revised'>Enable 'revised' Meta Tag Output for Posts:</label>", "lmt_enable_revision_tag_output_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_enable_last_modified_time_cb", "<label for='post-enable-time'>Show Last Modified Time:</label>", "lmt_enable_last_modified_time_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_enable_last_modified_date_cb", "<label for='post-enable-date'>Show Last Modified Date:</label>", "lmt_enable_last_modified_date_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_show_last_modified_time_date_post", "<label for='post-show-status'>Show Last Modified Time & Date:</label>", "lmt_show_last_modified_time_date_post_display", "lmt_post_option", "lmt_post_option_section");
@@ -82,7 +82,7 @@ function lmt_plug_settings_page() {
     
     add_settings_field("lmt_enable_last_modified_page_cb", "<label for='page-enable'>Enable Last Modified Info for Pages:</label>", "lmt_enable_last_modified_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_use_as_sc_page_cb", "<label for='page-sc'>Enable Shortcode for Pages:</label>", "lmt_use_as_sc_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
-    add_settings_field("lmt_enable_revision_tag_output_page_cb", "<label for='page-revised'>Enable 'revised' meta tag output for Pages:</label>", "lmt_enable_revision_tag_output_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
+    add_settings_field("lmt_enable_revision_tag_output_page_cb", "<label for='page-revised'>Enable 'revised' Meta Tag Output for Pages:</label>", "lmt_enable_revision_tag_output_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_enable_last_modified_time_page_cb", "<label for='page-enable-time'>Show Last Modified Time:</label>", "lmt_enable_last_modified_time_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_enable_last_modified_date_page_cb", "<label for='page-enable-date'>Show Last Modified Date:</label>", "lmt_enable_last_modified_date_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_show_last_modified_time_date_page", "<label for='page-show-status'>Show Last Modified Time & Date:</label>", "lmt_show_last_modified_time_date_page_display", "lmt_page_option", "lmt_page_option_section");
@@ -183,8 +183,8 @@ function lmt_show_last_modified_time_date_post_display() {
 function lmt_post_custom_text_display() {
     ?>
 
-    <input id="post-custom-text" name="lmt_plugin_global_settings[lmt_post_custom_text]" type="text" size="60" placeholder="Last Updated" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_post_custom_text'])) { echo get_option('lmt_plugin_global_settings')['lmt_post_custom_text']; } ?>" />
-    &nbsp;&nbsp;<span class="tooltip" title="Enter your custom text which will be shown on single posts page. You can aslo set a custom style from 'Custom Style tab' for this. Use 'post-last-modified' as css class."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <input id="post-custom-text" name="lmt_plugin_global_settings[lmt_post_custom_text]" type="text" size="60" placeholder="Last Updated on" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_post_custom_text'])) { echo get_option('lmt_plugin_global_settings')['lmt_post_custom_text']; } ?>" />
+    &nbsp;&nbsp;<span class="tooltip" title="Enter your custom text which will be shown on single posts page. You can aslo set a custom style from 'Custom CSS tab' for this. Use 'post-last-modified' as css class."><span title="" class="dashicons dashicons-editor-help"></span></span>
     
     <?php
 }
@@ -267,8 +267,8 @@ function lmt_show_last_modified_time_date_page_display() {
  function lmt_page_custom_text_display() {
      ?>
  
-     <input id="page-custom-text" name="lmt_plugin_global_settings[lmt_page_custom_text]" type="text" size="60" placeholder="Last Updated" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_page_custom_text'])) { echo get_option('lmt_plugin_global_settings')['lmt_page_custom_text']; } ?>" />
-     &nbsp;&nbsp;<span class="tooltip" title="Enter your custom text which will be shown on single page. You can also set a custom style from 'Custom Style tab' for this. Use 'page-last-modified' as css class."><span title="" class="dashicons dashicons-editor-help"></span></span>
+     <input id="page-custom-text" name="lmt_plugin_global_settings[lmt_page_custom_text]" type="text" size="60" placeholder="Last Updated on" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_page_custom_text'])) { echo get_option('lmt_plugin_global_settings')['lmt_page_custom_text']; } ?>" />
+     &nbsp;&nbsp;<span class="tooltip" title="Enter your custom text which will be shown on single page. You can also set a custom style from 'Custom CSS tab' for this. Use 'page-last-modified' as css class."><span title="" class="dashicons dashicons-editor-help"></span></span>
      
      <?php
  }
@@ -317,7 +317,7 @@ function lmt_enable_lmi_header_cb_display() {
          
          <label class="switch">
          <input type="checkbox" id="enable-header" name="lmt_plugin_global_settings[lmt_enable_lmi_header_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_header_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output."><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output. Some time it returns 304 header response"><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }
@@ -332,7 +332,7 @@ custom style
 
 function lmt_custom_style_box_display() {
     ?>
-    <textarea id="lmt-cus-style" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="90"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
+    <textarea id="lmt-cus-style" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="100"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
     &nbsp;&nbsp;<span class="tooltip" title="Write your custom css. Do not add <style></style> tag, as it is already added."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -377,7 +377,7 @@ if( isset($options['lmt_enable_revision_tag_output_cb']) && ($options['lmt_enabl
 
         $updated_time_post = get_the_modified_time('h:i a');
         $updated_date_post = get_the_modified_time('F jS, Y');
-        if (get_the_modified_time() != get_the_time() && is_single()) {
+        if (get_the_modified_time('U') > get_the_time('U') && is_single()) {
         echo '<meta name="revised" content="' . $updated_date_post . ', ' . $updated_time_post. '">';
         }
     }
@@ -398,7 +398,7 @@ if( isset($options['lmt_enable_revision_tag_output_page_cb']) && ($options['lmt_
 
         $updated_time_pg = get_the_modified_time('h:i a');
         $updated_date_pg = get_the_modified_time('F jS, Y');
-        if (get_the_modified_time() != get_the_time() && is_page()) {
+        if (get_the_modified_time('U') > get_the_time('U') && is_page()) {
         echo '<meta name="revised" content="' . $updated_date_pg . ', ' . $updated_time_pg. '">';
         }
     }
@@ -456,10 +456,12 @@ if( isset($options['lmt_enable_lmi_on_users_cb']) && ($options['lmt_enable_lmi_o
 // last modified headers
 if( isset($options['lmt_enable_lmi_header_cb']) && ($options['lmt_enable_lmi_header_cb'] == 1 ) ) {
     
-    add_action('template_redirect', 'lmt_add_last_modified_header');
-
+    add_action('wp', 'lmt_add_last_modified_header');
+    
     function lmt_add_last_modified_header() {
-	    header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s") . " GMT");
+        
+        header("Last-Modified: " . get_the_modified_time('D, d M Y H:i:s') . " GMT");
+        
     }
 
 }

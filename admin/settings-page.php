@@ -62,10 +62,10 @@
                 <p>Yes, this plugin is compatible with any theme.</p>...<br>
                 
                 <p><strong>What is the CSS class for pages?</strong>
-                <p>CSS Class is 'page-last-modified'. Add your custom style in Custom Style Tab.</p>...<br>
+                <p>CSS Class for prefix is 'page-last-modified' and for date time is 'page-last-modified-td'. Add your custom style in Custom CSS Tab.</p>...<br>
 
                 <p><strong>What is the CSS class for posts?</strong>
-                <p>CSS Class is 'post-last-modified'. Add your custom style in Custom Style Tab.</p>...<br>
+                <p>CSS Class for prefix is 'post-last-modified' and for date time is 'post-last-modified-td'. Add your custom style in Custom CSS Tab.</p>...<br>
 
                 <p><strong>What is the shortcode for posts?</strong>
                 <p>Shortcode is '[lmt-post-modified-info]'. Apply this on any post to show last modified info anywhere.</p>...<br>
