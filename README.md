@@ -4,13 +4,11 @@ Show or hide last update date and time on pages and posts very easily.
 
 ## Description ##
 
-Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere on a WordPress site running 4.4 and beyond.
+Show or hide last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
 
 ## What does this plugin do? ##
 
-All In One WP Solution is a powerful plugin for all wordpress user. Using this plugin, enable, disable or remove the unwanted meta tags, links and features on a WordPress site running 4.4 and beyond. This plugin helpes to customize the wordpress admin area.
-
-This plugin helps to remove and disable WP Generator Meta, RSD Link, XML-RPC Link, Feed Link, Shortlinks and WP Json Rest API from source code and it has many more cool features and options.
+Using this plugin, you can enable last modified info of your wordpress posts aand pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. you can also enable revision meta tag for your pages and posts.
 
 ## Compatibility ##
 
