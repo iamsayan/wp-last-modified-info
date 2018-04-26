@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.5
+Release Date: April 27, 2018
+
+* Added: 'post-last-modified-td' and 'post-last-modified-td' classes.
+* Bug fixed.
+
+## 1.0.4
+Release Date: April 27, 2018
+
+* If else condition change.
+* Last modified headers hook change.
+* Bug fixed.
+
 ## 1.0.3
 Release Date: April 26, 2018
 
