@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.0.2
+Version: 1.0.3
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -42,22 +42,13 @@ function lmt_custom_admin_styles_scripts($hook) {
     if ( strpos($current_screen->base, 'wp-last-modified-info') === false) {
         return;
     } else {
-
     wp_enqueue_style( 'lmt-admin-style', plugins_url( 'css/admin-style.css', __FILE__ ) );
     wp_enqueue_style( 'lmt-cb-style', plugins_url( 'css/style.css', __FILE__ ) );
     wp_enqueue_script( 'lmt-script', plugins_url( 'js/main.js', __FILE__ ) );
-    
     }
-
 }
 
 add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
-
-
-
-
-
-
 
 // add footer text promo
 function lmt_remove_footer_admin () {
@@ -69,7 +60,7 @@ function lmt_remove_footer_admin () {
     if ( strpos($current_screen->base, 'wp-last-modified-info') === false) {
         echo '<span id="footer-thankyou">Thank you for creating with <a href="//wordpress.org" target="_blank"> WordPress</a>.</span>';
     } else {
-    echo 'Thanks for using <strong>WP Last Modified Info v' . $lmtversion . '</strong> | Developed with <span style="color: #e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/plugins/wp-last-modified-info/#reviews" target="_blank" style="font-weight: 500;">Leave a Review</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/" target="_blank" style="font-weight: 500;">Rate it</a> (&#9733;&#9733;&#9733;&#9733;&#9733;).';
+    echo 'Thanks for using <strong>WP Last Modified Info v' . $lmtversion . '</strong> | Developed with <span style="color: #e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/plugins/wp-last-modified-info/#reviews" target="_blank" style="font-weight: 500;">Leave a Review</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/" target="_blank" style="font-weight: 500;">Rate it</a> (&#9733;&#9733;&#9733;&#9733;&#9733;), if you like this plugin.';
     }
 }
 add_filter('admin_footer_text', 'lmt_remove_footer_admin');
@@ -99,12 +90,14 @@ function lmt_plug_settings_page() {
     
     add_settings_section("lmt_dashboard_option_section", "Dashboard Options<hr>", null, "lmt_dashboard_option");
     
-    add_settings_field("lmt_enable_on_page_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Post Column:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
-    add_settings_field("lmt_enable_on_post_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Page Column:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Post Column:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
+    add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Page Column:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Modified Info of Users:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    add_settings_field("lmt_enable_lmi_header_cb", "<label for='enable-header'>Enable Last Modified Header:</label>", "lmt_enable_lmi_header_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+
+    add_settings_section("lmt_cus_style_section", "Custom CSS<hr>", null, "lmt_cus_style_option");
     
-    add_settings_section("lmt_cus_style_section", "Custom Style<hr>", null, "lmt_cus_style_option");
-    
-    add_settings_field("lmt_custom_style_box", "<label for='lmt-cus-style'>Write Your Custom Style Here:</label>", "lmt_custom_style_box_display", "lmt_cus_style_option", "lmt_cus_style_section");  
+    add_settings_field("lmt_custom_style_box", "<label for='lmt-cus-style'>Write Custom CSS Here:</label>", "lmt_custom_style_box_display", "lmt_cus_style_option", "lmt_cus_style_section");  
     
     
     register_setting("lmt_post_page_plugin_section", "lmt_plugin_global_settings");
@@ -309,6 +302,26 @@ function lmt_enable_on_page_cb_display() {
     <?php
 }
 
+function lmt_enable_lmi_on_users_cb_display() {
+    ?>
+         
+         <label class="switch">
+         <input type="checkbox" id="enable-user-info" name="lmt_plugin_global_settings[lmt_enable_lmi_on_users_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_on_users_cb'])); ?> /> 
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on users page(Users > All Users) column."><span title="" class="dashicons dashicons-editor-help"></span></span>
+ 
+    <?php
+}
+
+function lmt_enable_lmi_header_cb_display() {
+    ?>
+         
+         <label class="switch">
+         <input type="checkbox" id="enable-header" name="lmt_plugin_global_settings[lmt_enable_lmi_header_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_header_cb'])); ?> /> 
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output."><span title="" class="dashicons dashicons-editor-help"></span></span>
+ 
+    <?php
+}
+
 /*
 ============
 
@@ -319,18 +332,18 @@ custom style
 
 function lmt_custom_style_box_display() {
     ?>
-    <textarea id="lmt-cus-style" placeholder="Write your custom style here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="100"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
-    &nbsp;&nbsp;<span class="tooltip" title="Write your custom style."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <textarea id="lmt-cus-style" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="90"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
+    &nbsp;&nbsp;<span class="tooltip" title="Write your custom css. Do not add <style></style> tag, as it is already added."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 // add settings page
 add_action("admin_init", "lmt_plug_settings_page");
 
-
+// add custom css
 add_action ('wp_head','lmt_style_hook_inHeader', 10);
 function lmt_style_hook_inHeader() {
-    echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box'];
+    echo '<style type="text/css" id="lmt-custom-css">' . get_option('lmt_plugin_global_settings')['lmt_custom_style_box'] . '</style>';
 }
 
 // page elements
@@ -342,7 +355,7 @@ function lmt_show_page() {
 // add menu options
 function lmt_menu_item_options() {
 
-  add_submenu_page("options-general.php", "WP Last Modified Info", "WP Last Modified Info", "manage_options", "wp-last-modified-info", "lmt_show_page"); 
+  add_submenu_page("options-general.php", "WP Last Modified Info", "Last Modified Info", "manage_options", "wp-last-modified-info", "lmt_show_page"); 
 
 }
 add_action("admin_menu", "lmt_menu_item_options");
@@ -350,10 +363,13 @@ add_action("admin_menu", "lmt_menu_item_options");
 
 $options = get_option('lmt_plugin_global_settings');
 
+
+// lmi output for posts
 if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
 
     include plugin_dir_path( __FILE__ ) . 'inc/class-post-options.php';
 
+    // revison tag output of posts
 if( isset($options['lmt_enable_revision_tag_output_cb']) && ($options['lmt_enable_revision_tag_output_cb'] == 1) ) {
 
     add_action ('wp_head','lmt_post_revised_hook_inHeader', 10);
@@ -369,10 +385,12 @@ if( isset($options['lmt_enable_revision_tag_output_cb']) && ($options['lmt_enabl
 
 }
 
+// enable lmi output for pages
 if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable_last_modified_page_cb'] == 1) ) {
 
     require plugin_dir_path( __FILE__ ) . 'inc/class-page-options.php';
 
+    //revision tag output for pages
 if( isset($options['lmt_enable_revision_tag_output_page_cb']) && ($options['lmt_enable_revision_tag_output_page_cb'] == 1) ) {
 
     add_action ('wp_head','lmt_page_revised_hook_inHeader', 10);
@@ -388,19 +406,64 @@ if( isset($options['lmt_enable_revision_tag_output_page_cb']) && ($options['lmt_
 
 }
 
+
+// last modified info of posts column
 if( isset($options['lmt_enable_on_post_cb']) && ($options['lmt_enable_on_post_cb'] == 1 ) ) {
     
     include plugin_dir_path( __FILE__ ) . 'inc/class-dashboard-post.php';
     
 }
 
- 
 
+// last modified info of pages column
 if( isset($options['lmt_enable_on_page_cb']) && ($options['lmt_enable_on_page_cb'] == 1 ) ) {
     
     include plugin_dir_path( __FILE__ ) . 'inc/class-dashboard-page.php';
 
 }
+
+
+// last modified info of user profiles
+if( isset($options['lmt_enable_lmi_on_users_cb']) && ($options['lmt_enable_lmi_on_users_cb'] == 1 ) ) {
+    
+    function lmt_update_profile_modified( $user_id ) {
+        update_user_meta( $user_id, 'profile_last_modified', current_time( 'mysql' ) );
+    }
+    
+    add_action( 'profile_update', 'lmt_update_profile_modified' );
+    
+    function lmt_add_extra_user_column( $columns ) {
+        return array_merge( $columns,
+        array( 'last-modified' => __( 'Last Modified' ) ) );
+    }
+    
+    add_action( 'manage_users_columns', 'lmt_add_extra_user_column' );
+    
+    function lmt_manage_users_custom_column( $custom_column, $column_name, $user_id ) {
+        if ( 'last-modified' == $column_name ) {
+            $user_info = get_userdata( $user_id );
+            $profile_last_modified = $user_info->profile_last_modified;
+            $custom_column = "\t{$profile_last_modified}\n";
+        }
+        return $custom_column;
+    }
+    
+    add_action( 'manage_users_custom_column', 'lmt_manage_users_custom_column', 10, 3 );
+
+}
+
+
+// last modified headers
+if( isset($options['lmt_enable_lmi_header_cb']) && ($options['lmt_enable_lmi_header_cb'] == 1 ) ) {
+    
+    add_action('template_redirect', 'lmt_add_last_modified_header');
+
+    function lmt_add_last_modified_header() {
+	    header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s") . " GMT");
+    }
+
+}
+
 
 
 // add action links

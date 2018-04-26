@@ -11,7 +11,7 @@
             <a href="#post" class="nav-tab" id="btn1">Post Options</a>
             <a href="#page" class="nav-tab" id="btn2">Page Options</a>
             <a href="#dashboard" class="nav-tab" id="btn3">Dashboard Options</a>
-            <a href="#style" class="nav-tab" id="btn4">Custom Style</a>
+            <a href="#style" class="nav-tab" id="btn4">Custom CSS</a>
             <a href="#help" class="nav-tab" id="btn5">Help</a>
         </h2>
 
@@ -54,7 +54,7 @@
 
             <div style="display:none" id="show-help">
                 <br><div>
-                <b> Do you need help with this plugin? Here are some FAQs for you: </b> <hr>
+                <b> Do you need help with this plugin? Here are some FAQ for you: </b> <hr>
                 <p><strong>How this plugin works?</strong>
                 <p>This plugin hooks into wordpress content area and shows last modified information of posts and pages.</p>...<br>
                 
@@ -73,7 +73,10 @@
                 <p><strong>What is the shortcode for pages?</strong>
                 <p>Shortcode is '[lmt-page-modified-info]'. Apply this on any page to show last modified info anywhere.</p>...<br>
                 
-                <p><strong>What ab out Dashboard Options?</strong>
+                <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
+                <p>No, this tag is not required, as it is already added.</p>...<br>
+                
+                <p><strong>What about Dashboard Options?</strong>
                 <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
                 
                 <br></div>
