@@ -45,7 +45,7 @@ Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.co
 1. Go to "after activation" below.
 
 ### After activation ###
-1. After activation go to 'Settings > WP Last Modified Info'.
+1. After activation go to 'Settings > Last Modified Info'.
 1. Select or deselect your options and save changes.
 
 ### Frequently Asked Questions ###
