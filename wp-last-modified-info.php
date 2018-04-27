@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.0.5
+Version: 1.0.6
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -375,10 +375,9 @@ if( isset($options['lmt_enable_revision_tag_output_cb']) && ($options['lmt_enabl
     add_action ('wp_head','lmt_post_revised_hook_inHeader', 10);
         function lmt_post_revised_hook_inHeader() {
 
-        $updated_time_post = get_the_modified_time('h:i a');
-        $updated_date_post = get_the_modified_time('F jS, Y');
+        $updated_post_info = get_the_modified_time('l, F jS, Y, h:i a');
         if (get_the_modified_time('U') > get_the_time('U') && is_single()) {
-        echo '<meta name="revised" content="' . $updated_date_post . ', ' . $updated_time_post. '">';
+        echo '<meta name="revised" content="' . $updated_post_info . '">';
         }
     }
 }
@@ -396,10 +395,9 @@ if( isset($options['lmt_enable_revision_tag_output_page_cb']) && ($options['lmt_
     add_action ('wp_head','lmt_page_revised_hook_inHeader', 10);
         function lmt_page_revised_hook_inHeader() {
 
-        $updated_time_pg = get_the_modified_time('h:i a');
-        $updated_date_pg = get_the_modified_time('F jS, Y');
+        $updated_pg_info = get_the_modified_time('l, F jS, Y, h:i a');
         if (get_the_modified_time('U') > get_the_time('U') && is_page()) {
-        echo '<meta name="revised" content="' . $updated_date_pg . ', ' . $updated_time_pg. '">';
+        echo '<meta name="revised" content="' . $updated_pg_info . '">';
         }
     }
 }
@@ -478,6 +476,16 @@ function lmt_add_action_links ( $links ) {
 return array_merge( $links, $mylinks );
 }
 
+function my_plugin_links($links, $file) {
+	$plugin = plugin_basename(__FILE__);
 
+	if ($file == $plugin) // only for this plugin
+		return array_merge( $links, 
+			array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __('Support') . '</a>' )
+		);
+	return $links;
+}
+
+add_filter( 'plugin_row_meta', 'my_plugin_links', 10, 2 );
 
 ?>

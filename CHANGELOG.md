@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.6
+Release Date: April 28, 2018
+
+Bug Fix: 
+* Undefined Variable notice shows when debug mode is enabled.
+* Weekday is not showing with revision meta tag output.
+
 ## 1.0.5
 Release Date: April 27, 2018
 

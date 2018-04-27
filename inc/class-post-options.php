@@ -52,13 +52,19 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
         }
         $options = get_option('lmt_plugin_global_settings');
         if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Before Content') ) {
-
+            if(get_the_modified_time('U') > get_the_time('U') && is_single()) {
             $fullcontent = $modified_content . $content;
+            } else {
+                $fullcontent = $content;
+            }
             return $fullcontent;
               
         } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'After Content') ) {
-
+            if(get_the_modified_time('U') > get_the_time('U') && is_single()) {
             $fullcontent = $content . $modified_content;
+            } else {
+                $fullcontent = $content;
+            }
             return $fullcontent;
              
         }

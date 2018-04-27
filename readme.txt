@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -99,6 +99,13 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.0.6 =
+Release Date: April 28, 2018
+
+Bug Fix: 
+* Undefined Variable notice shows when debug mode is enabled.
+* Weekday is not showing with revision meta tag output.
 
 = 1.0.5 =
 Release Date: April 27, 2018
