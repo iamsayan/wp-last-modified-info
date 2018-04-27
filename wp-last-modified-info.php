@@ -317,7 +317,7 @@ function lmt_enable_lmi_header_cb_display() {
          
          <label class="switch">
          <input type="checkbox" id="enable-header" name="lmt_plugin_global_settings[lmt_enable_lmi_header_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_header_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output. Some time it returns 304 header response"><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output. Some time it returns 304 header response."><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }

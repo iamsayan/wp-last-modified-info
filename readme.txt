@@ -11,7 +11,7 @@ Show last update date and time on pages and posts very easily. You can use short
 
 == Description ==
 
-### Wp Last Modified Info: the Ultimate WordPress Last Modified plugin
+### WP Last Modified Info: the Ultimate Last Modified plugin
 
 Most WordPress themes usually show the date when a post was last published. This is fine for most blogs and static websites. However, WordPress is also used by websites where old articles are regularly updated. This last updated date and time is important information for those publications. The most common example is news websites. They often update old stories to show new developments, add corrections, or media files. If they only added the published date, then their users would miss those updates.
 

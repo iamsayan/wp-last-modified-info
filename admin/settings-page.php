@@ -4,7 +4,7 @@
     <h1> WP Last Modified Info Settings </h1>
 
 		<div>
-        Show or hide last update date and time on pages and posts very easily.
+        Show last update date and time on pages and posts very easily.
 		</div><hr>
  
         <h2 class="nav-tab-wrapper">
@@ -75,8 +75,11 @@
                 
                 <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
                 <p>No, this tag is not required, as it is already added.</p>...<br>
+
+                <p><strong>What is 304 response header?</strong>
+                <p>The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources. It is an implicit redirection to a cached resource. This happens when the request method is safe, like a GET or a HEAD request, or when the request is conditional and uses a If-None-Match or a If-Modified-Since header.</p>...<br>
                 
-                <p><strong>What about Dashboard Options?</strong>
+                <p><strong>What is Dashboard Options?</strong>
                 <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
                 
                 <br></div>
