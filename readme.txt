@@ -103,7 +103,7 @@ Use the plugin to test it.
 = 1.0.5 =
 Release Date: April 27, 2018
 
-* Added: 'post-last-modified-td' and 'post-last-modified-td' classes.
+* Added: 'post-last-modified-td' and 'page-last-modified-td' classes.
 * Bug fixed.
 
 = 1.0.4 =
