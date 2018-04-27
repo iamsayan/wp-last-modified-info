@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 //add admin styles and scripts
-function lmt_custom_admin_styles_scripts($hook) {
+function lmt_custom_admin_styles_scripts() {
 
     $current_screen = get_current_screen();
 
