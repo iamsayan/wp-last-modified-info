@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.0.6
+Version: 1.0.8
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -92,9 +92,9 @@ function lmt_plug_settings_page() {
     
     add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Post Column:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
     add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Page Column:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
-    add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Modified Info of Users:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
-    add_settings_field("lmt_enable_lmi_header_cb", "<label for='enable-header'>Enable Last Modified Header:</label>", "lmt_enable_lmi_header_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
-
+    add_settings_field("lmt_enable_on_woo_product_cb", "<label for='page-enable-woo-product'>Show Last Modified Info of WooCommerce Post Types:</label>", "lmt_enable_on_woo_product_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Modified Profile & Last Login Info of Users:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    
     add_settings_section("lmt_cus_style_section", "Custom CSS<hr>", null, "lmt_cus_style_option");
     
     add_settings_field("lmt_custom_style_box", "<label for='lmt-cus-style'>Write Custom CSS Here:</label>", "lmt_custom_style_box_display", "lmt_cus_style_option", "lmt_cus_style_section");  
@@ -302,22 +302,22 @@ function lmt_enable_on_page_cb_display() {
     <?php
 }
 
+function lmt_enable_on_woo_product_cb_display() {
+    ?>
+         
+         <label class="switch">
+         <input type="checkbox" id="page-enable-woo-product" name="lmt_plugin_global_settings[lmt_enable_on_woo_product_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_on_woo_product_cb'])); ?> /> 
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on WooCommerce post types i.e. order, product, coupon. You can sort those post types by last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
+ 
+    <?php
+}
+
 function lmt_enable_lmi_on_users_cb_display() {
     ?>
          
          <label class="switch">
          <input type="checkbox" id="enable-user-info" name="lmt_plugin_global_settings[lmt_enable_lmi_on_users_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_on_users_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on users page(Users > All Users) column."><span title="" class="dashicons dashicons-editor-help"></span></span>
- 
-    <?php
-}
-
-function lmt_enable_lmi_header_cb_display() {
-    ?>
-         
-         <label class="switch">
-         <input type="checkbox" id="enable-header" name="lmt_plugin_global_settings[lmt_enable_lmi_header_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_header_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable 'last modified' header output. Some time it returns 304 header response."><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified profile and login info on users page(Users > All Users) column."><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }
@@ -424,8 +424,10 @@ if( isset($options['lmt_enable_on_page_cb']) && ($options['lmt_enable_on_page_cb
 // last modified info of user profiles
 if( isset($options['lmt_enable_lmi_on_users_cb']) && ($options['lmt_enable_lmi_on_users_cb'] == 1 ) ) {
     
+
+    // profile modified info
     function lmt_update_profile_modified( $user_id ) {
-        update_user_meta( $user_id, 'profile_last_modified', current_time( 'mysql' ) );
+        update_user_meta( $user_id, 'profile_last_modified', current_time( 'D, j/n/Y, g:i a' ) );
     }
     
     add_action( 'profile_update', 'lmt_update_profile_modified' );
@@ -437,33 +439,42 @@ if( isset($options['lmt_enable_lmi_on_users_cb']) && ($options['lmt_enable_lmi_o
     
     add_action( 'manage_users_columns', 'lmt_add_extra_user_column' );
     
-    function lmt_manage_users_custom_column( $custom_column, $column_name, $user_id ) {
-        if ( 'last-modified' == $column_name ) {
+    function lmt_manage_users_custom_column( $profile_update_get_value, $profile_column_name, $user_id ) {
+        if ( 'last-modified' == $profile_column_name ) {
             $user_info = get_userdata( $user_id );
             $profile_last_modified = $user_info->profile_last_modified;
-            $custom_column = "\t{$profile_last_modified}\n";
+            $profile_update_get_value = "\t{$profile_last_modified}\n";
         }
-        return $custom_column;
+        return $profile_update_get_value;
     }
     
     add_action( 'manage_users_custom_column', 'lmt_manage_users_custom_column', 10, 3 );
 
-}
 
-
-// last modified headers
-if( isset($options['lmt_enable_lmi_header_cb']) && ($options['lmt_enable_lmi_header_cb'] == 1 ) ) {
-    
-    add_action('wp', 'lmt_add_last_modified_header');
-    
-    function lmt_add_last_modified_header() {
-        
-        header("Last-Modified: " . get_the_modified_time('D, d M Y H:i:s') . " GMT");
-        
+    // last login info
+    function lmt_user_last_login( $user_login, $user ) {
+        update_user_meta( $user->ID, 'last_login', current_time( 'D, j/n/Y, g:i a' ) );
     }
+    add_action( 'wp_login', 'lmt_user_last_login', 10, 2 );
+    
+    function lmt_add_last_login_user_column( $columns ) {
+       return array_merge( $columns,
+       array( 'last-login' => __( 'Last Login' ) ) );
+       }
+    add_action( 'manage_users_columns', 'lmt_add_last_login_user_column' );
+     
+    function lmt_main_lastlogin($get_login_value, $login_column_name, $user_id) { 
+      if ( 'last-login' == $login_column_name ) {
+        $user_info = get_userdata( $user_id );
+        $last_login_info = $user_info->last_login;
+        $get_login_value = "\t{$last_login_info}\n";
+      }
+        return $get_login_value; 
+    } 
+    
+    add_action( 'manage_users_custom_column', 'lmt_main_lastlogin', 10, 3 );
 
 }
-
 
 
 // add action links
@@ -476,7 +487,7 @@ function lmt_add_action_links ( $links ) {
 return array_merge( $links, $mylinks );
 }
 
-function my_plugin_links($links, $file) {
+function lmt_plugin_meta_links($links, $file) {
 	$plugin = plugin_basename(__FILE__);
 
 	if ($file == $plugin) // only for this plugin
@@ -486,6 +497,6 @@ function my_plugin_links($links, $file) {
 	return $links;
 }
 
-add_filter( 'plugin_row_meta', 'my_plugin_links', 10, 2 );
+add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
 
 ?>

@@ -20,7 +20,7 @@
         <form id="form" method="post" action="options.php">
         <?php
             if ( function_exists('wp_nonce_field') ) 
-	        wp_nonce_field('wp-last-modified-time-date_' . "yep"); 
+	        wp_nonce_field('wp-last-modified-info_' . "yep"); 
         ?>
         <?php settings_fields("lmt_post_page_plugin_section"); ?>
 
@@ -76,9 +76,6 @@
                 <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
                 <p>No, this tag is not required, as it is already added.</p>...<br>
 
-                <p><strong>What is 304 response header?</strong>
-                <p>The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources. It is an implicit redirection to a cached resource. This happens when the request method is safe, like a GET or a HEAD request, or when the request is conditional and uses a If-None-Match or a If-Modified-Since header.</p>...<br>
-                
                 <p><strong>What is Dashboard Options?</strong>
                 <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
                 

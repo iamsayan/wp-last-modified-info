@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.0.6
+Stable tag: 1.0.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -19,7 +19,7 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 #### What does this plugin do?
 
-Using this plugin, you can show last modified info on your wordpress posts and pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. You can also enable revision meta tag and last modified header for your pages and posts. With this plugin, you can also set custom styles.
+Using this plugin, you can show last modified info on your wordpress posts and pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. You can also enable revision meta tag for your pages and posts. With this plugin, you can also set custom styles.
 
 #### Support
 * Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -83,7 +83,11 @@ Yes you can. You can sort posts and pages by ascending or desending order.
 
 = Is this plugin good for SEO? =
 
-Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'last modified' header output and 'revision' meta tag which are good for SEO.
+Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'revision' meta tag which is good for SEO.
+
+= Is this plugin compa with multisite?
+
+Yes, it is fully compatible with multisite.
 
 = Can I customize 'Last Updated' text? =
 
@@ -100,8 +104,17 @@ Use the plugin to test it.
 
 == Changelog ==
 
-= 1.0.6 =
+= 1.0.8 =
 Release Date: April 28, 2018
+
+* Add WooCommerce Support.
+* Multisite compatibility.
+* Last login info added.
+* Remove 304 response header as it is enable by default by many cache plugins.
+* Bug fixed.
+
+= 1.0.6 =
+Release Date: April 27, 2018
 
 Bug Fix: 
 * Undefined Variable notice shows when debug mode is enabled.

@@ -83,4 +83,14 @@ jQuery(document).ready(function(){
         }
     });
     jQuery("#page-enable").trigger('change');
+
+    jQuery("#post-enable-dashboard").change(function(){
+        if (jQuery('#post-enable-dashboard').is(':checked')){ 
+            jQuery('#page-enable-woo-product').prop('disabled', false);
+        }
+        if (!jQuery('#post-enable-dashboard').is(':checked')){
+            jQuery('#page-enable-woo-product').prop('disabled', true);
+        }
+    });
+    jQuery("#post-enable-dashboard").trigger('change');
 });
