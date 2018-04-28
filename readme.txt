@@ -85,7 +85,7 @@ Yes you can. You can sort posts and pages by ascending or desending order.
 
 Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'revision' meta tag which is good for SEO.
 
-= Is this plugin compa with multisite?
+= Is this plugin compatible with multisite?
 
 Yes, it is fully compatible with multisite.
 
