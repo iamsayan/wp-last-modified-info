@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.8
+Release Date: April 28, 2018
+
+* Add WooCommerce Support.
+* Multisite compatibility.
+* Last login info added.
+* Remove 304 response header as it is enable by default by many cache plugins.
+* Bug fixed.
+
 ## 1.0.6
 Release Date: April 28, 2018
 
