@@ -82,6 +82,10 @@ Yes you can. You can sort posts and pages by ascending or desending order.
 
 Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'last modified' header output and 'revision' meta tag which are good for SEO.
 
+#### Is this plugin compatible with multisite? ####
+
+Yes, it is fully compatible with multisite.
+
 #### Can I customize 'Last Updated' text? ####
 
 Yes, you can. Write custom text in pugins page and save changes.
