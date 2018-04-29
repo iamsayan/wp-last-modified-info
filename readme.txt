@@ -36,18 +36,10 @@ Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.co
 
 == Installation ==
 
-=== From within WordPress ===
 1. Visit 'Plugins > Add New'.
-1. Search for 'WP Last Modified Info'.
+1. Search for 'WP Last Modified Info' and install it.
+1. Or you can upload the `wp-last-modified-info` folder to the `/wp-content/plugins/` directory manually.
 1. Activate WP Last Modified Info from your Plugins page.
-1. Go to "after activation" below.
-
-=== Manually ===
-1. Upload the `wp-last-modified-info` folder to the `/wp-content/plugins/` directory.
-1. Activate WP Last Modified Info plugin through the 'Plugins' menu in WordPress.
-1. Go to "after activation" below.
-
-=== After activation ===
 1. After activation go to 'Settings > Last Modified Info'.
 1. Enable options and save changes.
 
