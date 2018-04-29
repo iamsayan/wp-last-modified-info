@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -103,6 +103,14 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.0.9 =
+Release Date: April 28, 2018
+
+* Added: Last updated info now shows on publish meta box.
+* Remove some unwanted conditions.
+* Fix woocommerce admin notice.
+* Bug fixed.
 
 = 1.0.8 =
 Release Date: April 28, 2018

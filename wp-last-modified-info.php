@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.0.8
+Version: 1.0.9
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -70,7 +70,7 @@ function lmt_plug_settings_page() {
 
     add_settings_section("lmt_post_option_section", "Post Options<hr>", null, "lmt_post_option");
     
-    add_settings_field("lmt_enable_last_modified_cb", "<label for='post-enable'>Enable Last Modified Info for Posts:</label>", "lmt_enable_last_modified_cb_display", "lmt_post_option", "lmt_post_option_section");  
+    add_settings_field("lmt_enable_last_modified_cb", "<label for='post-enable'>Enable Last Modified Info for Posts on Frontend:</label>", "lmt_enable_last_modified_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_use_as_sc_cb", "<label for='post-sc'>Enable Shortcode for Posts:</label>", "lmt_use_as_sc_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_enable_revision_tag_output_cb", "<label for='post-revised'>Enable 'revised' Meta Tag Output for Posts:</label>", "lmt_enable_revision_tag_output_cb_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_enable_last_modified_time_cb", "<label for='post-enable-time'>Show Last Modified Time:</label>", "lmt_enable_last_modified_time_cb_display", "lmt_post_option", "lmt_post_option_section");  
@@ -80,7 +80,7 @@ function lmt_plug_settings_page() {
     
     add_settings_section("lmt_page_option_section", "Page Options<hr>", null, "lmt_page_option");
     
-    add_settings_field("lmt_enable_last_modified_page_cb", "<label for='page-enable'>Enable Last Modified Info for Pages:</label>", "lmt_enable_last_modified_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
+    add_settings_field("lmt_enable_last_modified_page_cb", "<label for='page-enable'>Enable Last Modified Info for Pages on Frontend:</label>", "lmt_enable_last_modified_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_use_as_sc_page_cb", "<label for='page-sc'>Enable Shortcode for Pages:</label>", "lmt_use_as_sc_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_enable_revision_tag_output_page_cb", "<label for='page-revised'>Enable 'revised' Meta Tag Output for Pages:</label>", "lmt_enable_revision_tag_output_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_enable_last_modified_time_page_cb", "<label for='page-enable-time'>Show Last Modified Time:</label>", "lmt_enable_last_modified_time_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
@@ -90,8 +90,8 @@ function lmt_plug_settings_page() {
     
     add_settings_section("lmt_dashboard_option_section", "Dashboard Options<hr>", null, "lmt_dashboard_option");
     
-    add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Post Column:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
-    add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Page Column:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+    add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Post Publish Meta & Column:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
+    add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Page Publish Meta & Column:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
     add_settings_field("lmt_enable_on_woo_product_cb", "<label for='page-enable-woo-product'>Show Last Modified Info of WooCommerce Post Types:</label>", "lmt_enable_on_woo_product_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
     add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Modified Profile & Last Login Info of Users:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
     
@@ -287,7 +287,7 @@ function lmt_enable_on_post_cb_display() {
          
          <label class="switch">
          <input type="checkbox" id="post-enable-dashboard" name="lmt_plugin_global_settings[lmt_enable_on_post_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_on_post_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on posts(Posts > All Posts) page. You can sort posts by last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on posts (Posts > All Posts) page. You can sort posts by last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }
@@ -297,7 +297,7 @@ function lmt_enable_on_page_cb_display() {
          
          <label class="switch">
          <input type="checkbox" id="page-enable-dashboard" name="lmt_plugin_global_settings[lmt_enable_on_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_on_page_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages(Pages > All Pages) column. You can sort pages by last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages (Pages > All Pages) column. You can sort pages by last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }
@@ -317,7 +317,7 @@ function lmt_enable_lmi_on_users_cb_display() {
          
          <label class="switch">
          <input type="checkbox" id="enable-user-info" name="lmt_plugin_global_settings[lmt_enable_lmi_on_users_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_lmi_on_users_cb'])); ?> /> 
-         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified profile and login info on users page(Users > All Users) column."><span title="" class="dashicons dashicons-editor-help"></span></span>
+         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified profile and login info on users page (Users > All Users) column. Resave profile and relogin to your wordpress dashboard after activate this option."><span title="" class="dashicons dashicons-editor-help"></span></span>
  
     <?php
 }
@@ -410,6 +410,15 @@ if( isset($options['lmt_enable_on_post_cb']) && ($options['lmt_enable_on_post_cb
     
     include plugin_dir_path( __FILE__ ) . 'inc/class-dashboard-post.php';
     
+    function lmt_custom_post_meta () {
+        
+        $lmt_updated_time = get_the_modified_time('M jS, Y @ H:i');
+        if (get_the_modified_time('U') > get_the_time('U') && (get_post_type() == 'post')) {
+        echo '<div class="misc-pub-section misc-pub-section-last-updated"><span id="timestamp"><span class="dashicons dashicons-calendar"></span>&nbsp;Updated on: <b>' . $lmt_updated_time . '</b></span></div>';
+        }
+    }
+    add_action( 'post_submitbox_misc_actions', 'lmt_custom_post_meta');
+
 }
 
 
@@ -417,6 +426,15 @@ if( isset($options['lmt_enable_on_post_cb']) && ($options['lmt_enable_on_post_cb
 if( isset($options['lmt_enable_on_page_cb']) && ($options['lmt_enable_on_page_cb'] == 1 ) ) {
     
     include plugin_dir_path( __FILE__ ) . 'inc/class-dashboard-page.php';
+
+    function lmt_custom_page_meta () {
+        
+        $lmt_updated_time_page = get_the_modified_time('M jS, Y @ H:i');
+        if (get_the_modified_time('U') > get_the_time('U') && (get_post_type() == 'page')) {
+        echo '<div class="misc-pub-section misc-pub-section-last-updated"><span id="timestamp"><span class="dashicons dashicons-calendar"></span>&nbsp;Updated on: <b>' . $lmt_updated_time_page . '</b></span></div>';
+        }
+    }
+    add_action( 'post_submitbox_misc_actions', 'lmt_custom_page_meta');
 
 }
 

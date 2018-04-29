@@ -44,7 +44,7 @@ if( isset($options['lmt_enable_on_woo_product_cb']) && ($options['lmt_enable_on_
         add_filter ( 'manage_edit-shop_coupon_columns', 'lmt_post_columns_display');
     } else {
         ?><div class="notice notice-warning"> 
-        <p><strong>WP Last Modified Info requires WooCommerce Plugin to be activated as WooCommerce Option is enabled in settings | <a href="http://127.0.0.1/test/wp-admin/options-general.php?page=wp-last-modified-info" target="_blank">disable settings</a>.</strong></p>
+        <p><strong>WP Last Modified Info requires WooCommerce Plugin to be activated as WooCommerce Option is enabled in settings | <a href="options-general.php?page=wp-last-modified-info">disable settings</a>.</strong></p>
     </div> <?php
     }
 }

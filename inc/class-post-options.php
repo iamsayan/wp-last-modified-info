@@ -9,7 +9,6 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
 }
     function lmt_print_last_modified_info_post( $content ) {
 
-        if (get_the_modified_time('U') > get_the_time('U') && is_single()) {
             $updated_time = get_the_modified_time('h:i a');
             $updated_day = get_the_modified_time('F jS, Y');    
             $options = get_option('lmt_plugin_global_settings');
@@ -49,7 +48,6 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
            
             }
 
-        }
         $options = get_option('lmt_plugin_global_settings');
         if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Before Content') ) {
             if(get_the_modified_time('U') > get_the_time('U') && is_single()) {
