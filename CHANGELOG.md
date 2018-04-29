@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.9
+Release Date: April 29, 2018
+
+* Added: Last updated info now shows on publish meta box.
+* Remove some unwanted conditions.
+* Fix woocommerce admin notice.
+* Bug fixed.
+
 ## 1.0.8
 Release Date: April 28, 2018
 
