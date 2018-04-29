@@ -105,7 +105,7 @@ Use the plugin to test it.
 == Changelog ==
 
 = 1.0.9 =
-Release Date: April 28, 2018
+Release Date: April 29, 2018
 
 * Added: Last updated info now shows on publish meta box.
 * Remove some unwanted conditions.
