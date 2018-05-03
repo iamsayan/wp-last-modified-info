@@ -76,6 +76,9 @@
                 <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
                 <p>No, this tag is not required, as it is already added.</p>...<br>
 
+                <p><strong>How to set custome date/time format?</strong>
+                <p>Go to <a href = "https://codex.wordpress.org/Formatting_Date_and_Time" target = "_blank"> WordPress Date/Time sysntax</a> page and read instructions.</p>...<br>
+
                 <p><strong>What is Dashboard Options?</strong>
                 <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
                 

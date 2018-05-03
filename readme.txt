@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.0
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -95,6 +95,12 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.1.2 =
+Release Date: March 3, 2018
+
+* Added: Now you can customize date/time format.
+* Bug Fixed.
 
 = 1.1.0 =
 Release Date: March 3, 2018

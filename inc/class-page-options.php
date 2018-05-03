@@ -7,9 +7,20 @@ if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb
 }
     function lmt_print_last_modified_info_page( $contentp ) {
 
-            $updated_time_page = get_the_modified_time('h:i a');
-            $updated_day_page = get_the_modified_time('F jS, Y');    
-            $options = get_option('lmt_plugin_global_settings');
+        $options = get_option('lmt_plugin_global_settings');
+    
+                if($options['lmt_custom_page_time_format']) {
+                    $updated_time_page = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format']);
+                } else {
+                    $updated_time_page = get_the_modified_time('h:i a');
+                }
+    
+                if($options['lmt_custom_page_date_format']) {
+                    $updated_day_page = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format']);
+                } else {
+                    $updated_day_page = get_the_modified_time('F jS, Y');
+                }
+            
         
             if((isset($options['lmt_page_custom_text'])) == get_option('lmt_plugin_global_settings')['lmt_page_custom_text']) {
 
@@ -48,7 +59,7 @@ if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb
 
         $options = get_option('lmt_plugin_global_settings');
         if( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'Before Content') ) {
-            if(get_the_modified_time('U') > get_the_time('U') && is_page()) {
+            if(get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page)) {
             $fullcontent_page = $modified_content_page . $contentp;
             } else {
                 $fullcontent_page = $contentp;
@@ -56,7 +67,7 @@ if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb
             return $fullcontent_page;
               
         } elseif( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'After Content') ) {
-            if(get_the_modified_time('U') > get_the_time('U') && is_page()) {
+            if(get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page)) {
             $fullcontent_page = $contentp . $modified_content_page;
             } else {
                 $fullcontent_page = $contentp;

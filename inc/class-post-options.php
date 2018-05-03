@@ -7,9 +7,22 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
 }
     function lmt_print_last_modified_info_post( $content ) {
 
-            $updated_time = get_the_modified_time('h:i a');
-            $updated_day = get_the_modified_time('F jS, Y');    
-            $options = get_option('lmt_plugin_global_settings');
+        $options = get_option('lmt_plugin_global_settings');
+
+            if($options['lmt_custom_post_time_format']) {
+                $updated_time = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format']);
+            } else {
+                $updated_time = get_the_modified_time('h:i a');
+            }
+
+
+            if($options['lmt_custom_post_date_format']) {
+                $updated_day = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format']);
+            } else {
+                $updated_day = get_the_modified_time('F jS, Y');
+            }
+        
+            
         
             if((isset($options['lmt_post_custom_text'])) == get_option('lmt_plugin_global_settings')['lmt_post_custom_text']) {
 
@@ -47,8 +60,9 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
             }
 
         $options = get_option('lmt_plugin_global_settings');
+
         if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Before Content') ) {
-            if(get_the_modified_time('U') > get_the_time('U') && is_single()) {
+            if(get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content)) {
             $fullcontent = $modified_content . $content;
             } else {
                 $fullcontent = $content;
@@ -56,7 +70,7 @@ if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) 
             return $fullcontent;
               
         } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'After Content') ) {
-            if(get_the_modified_time('U') > get_the_time('U') && is_single()) {
+            if(get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content)) {
             $fullcontent = $content . $modified_content;
             } else {
                 $fullcontent = $content;

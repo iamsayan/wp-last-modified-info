@@ -49,7 +49,9 @@ jQuery(document).ready(function(){
             jQuery('#post-sc').prop('disabled', false);
             jQuery('#post-revised').prop('disabled', false);
             jQuery('#post-enable-time').prop('disabled', false);
+            jQuery('#custom-post-time-format').prop('disabled', false);
             jQuery('#post-enable-date').prop('disabled', false);
+            jQuery('#custom-post-date-format').prop('disabled', false);
             jQuery('#post-show-status').prop('disabled', false);
             jQuery('#post-custom-text').prop('disabled', false);
         }
@@ -57,19 +59,25 @@ jQuery(document).ready(function(){
             jQuery('#post-sc').prop('disabled', true);
             jQuery('#post-revised').prop('disabled', true);
             jQuery('#post-enable-time').prop('disabled', true);
+            jQuery('#custom-post-time-format').prop('disabled', true);
+            jQuery('#post-date-format').prop('disabled', true);
             jQuery('#post-enable-date').prop('disabled', true);
+            jQuery('#custom-post-date-format').prop('disabled', true);
             jQuery('#post-show-status').prop('disabled', true);
             jQuery('#post-custom-text').prop('disabled', true);
         }
     });
     jQuery("#post-enable").trigger('change');
 
+    
     jQuery("#page-enable").change(function(){
         if (jQuery('#page-enable').is(':checked')){ 
             jQuery('#page-sc').prop('disabled', false);
             jQuery('#page-revised').prop('disabled', false);
             jQuery('#page-enable-time').prop('disabled', false);
+            jQuery('#custom-page-time-format').prop('disabled', false);
             jQuery('#page-enable-date').prop('disabled', false);
+            jQuery('#custom-page-time-format').prop('disabled', false);
             jQuery('#page-show-status').prop('disabled', false);
             jQuery('#page-custom-text').prop('disabled', false);
         }
@@ -77,20 +85,14 @@ jQuery(document).ready(function(){
             jQuery('#page-sc').prop('disabled', true);
             jQuery('#page-revised').prop('disabled', true);
             jQuery('#page-enable-time').prop('disabled', true);
+            jQuery('#custom-page-time-format').prop('disabled', true);
             jQuery('#page-enable-date').prop('disabled', true);
+            jQuery('#custom-page-time-format').prop('disabled', true);
             jQuery('#page-show-status').prop('disabled', true);
             jQuery('#page-custom-text').prop('disabled', true);
         }
     });
     jQuery("#page-enable").trigger('change');
 
-    jQuery("#post-enable-dashboard").change(function(){
-        if (jQuery('#post-enable-dashboard').is(':checked')){ 
-            jQuery('#page-enable-woo-product').prop('disabled', false);
-        }
-        if (!jQuery('#post-enable-dashboard').is(':checked')){
-            jQuery('#page-enable-woo-product').prop('disabled', true);
-        }
-    });
-    jQuery("#post-enable-dashboard").trigger('change');
+    
 });
