@@ -14,6 +14,13 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Meta data to your posts and pages through this plugin, but that is completely optional.
 
+* Allows you to display Last modified information in your posts and pages.
+* Provides you with options to display the last modified / last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
+* Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
+* Allows you to add Revised Meta tags to your WordPress posts and pages.
+* Allows you to display last modified info in all posts types column and publish meta box in dashboard.
+* Allows you to sort posts/pages by last updated/modified info.
+
 ### Compatibility ###
 
 This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any wordpress theme.
@@ -80,21 +87,17 @@ Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
 *CSS Classes:*
 
-`.post-last-modified`: use this class for posts.
+> `.post-last-modified`: use this class for posts.
 
-`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
+> `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
-`.page-last-modified`: use this class for pages.
+> `.page-last-modified`: use this class for pages.
 
-`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+> `.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
 
 #### Can I sort posts and pages by last modified info in dashboard? ####
 
 Yes you can. You can sort posts and pages by ascending or desending order.
-
-#### Is this plugin good for SEO? ####
-
-Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'last modified' header output and 'revision' meta tag which are good for SEO.
 
 #### What is meta ‘revised’ tag? ####
 
@@ -108,11 +111,9 @@ The plugin make use of your WordPress Date, Time and Time zone (Dashboard > Sett
 
 Yes, it is fully compatible with multisite.
 
-#### Can I customize 'Last Updated' text? ####
+#### Can I change 'Last Updated on' text? ####
 
-Yes, you can. Write custom text in pugins page and save changes.
-
-Use the plugin to test it.
+Yes, you can. Write your custom text and save your changes.
 
 ## Changelog ##
 [View Changelog](CHANGELOG.md)
