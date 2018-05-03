@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.2
+Release Date: March 3, 2018
+
+* Added: Now you can customize date/time format.
+* Bug Fixed.
+
 ## 1.1.0
 Release Date: March 3, 2018
 
