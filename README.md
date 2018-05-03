@@ -90,7 +90,7 @@ Yes, this plugin supports all typs of custom posts.
 Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
 *CSS Classes:*
-
+```css
 `.post-last-modified`: use this class for posts.
 
 `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
@@ -98,6 +98,7 @@ Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 `.page-last-modified`: use this class for pages.
 
 `.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+```
 
 #### Can I sort posts and pages by last modified info in dashboard? ####
 
