@@ -83,7 +83,7 @@ Yes, this plugin is compatible with any theme.
 
 #### Does this plugin support all custom post types? ####
 
-Yes, this plugin supports all typs of custom posts.
+Yes, this plugin supports all types of custom posts.
 
 #### How to customize last modified text style? ####
 
