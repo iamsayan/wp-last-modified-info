@@ -14,7 +14,7 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Meta data to your posts and pages through this plugin, but that is completely optional.
 
-* Allows you to display Last modified information in your posts and pages.
+* Allows you to display Last modified information in your posts and pages individually.
 * Provides you with options to display the last modified / last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
 * Allows you to add Revised Meta tags to your WordPress posts and pages.
@@ -77,9 +77,13 @@ This plugin hooks into wordpress content area and displays last modified informa
 
 Not at all. You can show the revised info by just installing this plugin. Use the Plugin Options to customize the date/time according to your need.
 
-#### Is this plugin copmpatible with any themes? ####
+#### Is this plugin compatible with any themes? ####
 
 Yes, this plugin is compatible with any theme.
+
+#### Does this plugin support all custom post types? ####
+
+Yes, this plugin supports all typs of custom posts.
 
 #### How to customize last modified text style? ####
 
@@ -87,13 +91,13 @@ Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
 *CSS Classes:*
 
-> `.post-last-modified`: use this class for posts.
+`.post-last-modified`: use this class for posts.
 
-> `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
+`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
-> `.page-last-modified`: use this class for pages.
+`.page-last-modified`: use this class for pages.
 
-> `.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
 
 #### Can I sort posts and pages by last modified info in dashboard? ####
 
@@ -105,7 +109,7 @@ The 'meta revised tag' is used to tell the last modified date & time of a webpag
 
 #### The Date and Time inserted by this plugin is dependent on what? ####
 
-The plugin make use of your WordPress Date, Time and Time zone (Dashboard > Settings > General). Double check your Date, Time and Time zone before activating this plugin. 
+The plugin make use of your WordPress Date, Time and Time zone (Dashboard > Settings > General) in wordpress dashboaard.
 
 #### Is this plugin compatible with multisite? ####
 
