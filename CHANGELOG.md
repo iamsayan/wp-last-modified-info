@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.0
+Release Date: March 3, 2018
+
+* Added: All Custom Post support including WooCommerece.
+* Now every last modified time in dashboard shows according to wordpress date/time format.
+* Now shortcode will work only when shortcode option is enabled.
+* Tweak: Custom Css Box returns empty style tag, if there is no value.
+* Bug Fixed.
+
 ## 1.0.9
 Release Date: April 29, 2018
 
