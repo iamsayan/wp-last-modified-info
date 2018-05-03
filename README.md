@@ -1,6 +1,6 @@
 # WP Last Modified Info #
 
-Show last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
 
 ## Description ##
 
@@ -12,11 +12,11 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 ### What does this plugin do? ###
 
-Using this plugin, you can enable last modified info of your wordpress posts aand pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. you can also enable revision meta tag for your pages and posts.
+Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Meta data to your posts and pages through this plugin, but that is completely optional.
 
 ### Compatibility ###
 
-This plugin is fully compatible with WordPress Version 4.4 and beyond. It is compatible with any wordpress theme.
+This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any wordpress theme.
 
 ### Support ###
 * Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -46,41 +46,63 @@ Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.co
 
 ### After activation ###
 1. After activation go to 'Settings > Last Modified Info'.
-1. Select or deselect your options and save changes.
+1. Enable/disable options and save changes.
 
 ### Frequently Asked Questions ###
 
+#### Is there any admin interface for this plugin? ####
+
+Yes. You can access this from 'Settings > Last Modified Info'.
+
 #### How to use this plugin? ####
 
-Go to 'Settings > Last Modified Info' and check the options and hit 'save changes'.
+Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
 
-#### Is there an admin interface for this plugin? ####
+#### How to check this plugin is working? ####
 
-Yes. You can access this from 'Settings > Last Modified Info'
-
-#### How to check this is working? ####
-
-Open any page or post and you can see the change.
+After enable/disable Open any page or post and you can see the change.
 
 #### How this plugin works? ####
 
-This plugin hooks into wordpress content area and shows last modified information of posts and pages.
+This plugin hooks into wordpress content area and displays last modified information on posts and pages.
+
+#### Will it requires editing code to show Last Modified date? ####
+
+Not at all. You can show the revised info by just installing this plugin. Use the Plugin Options to customize the date/time according to your need.
 
 #### Is this plugin copmpatible with any themes? ####
 
 Yes, this plugin is compatible with any theme.
 
-#### How to customize last modified text css? ####
+#### How to customize last modified text style? ####
 
-Go to Settings > Last Modified Info > Custom CSS and write your custom css.
+Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
-#### Can I sort posts and pages by last modified info? ####
+*CSS Classes:*
+
+`.post-last-modified`: use this class for posts.
+
+`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
+
+`.page-last-modified`: use this class for pages.
+
+`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+
+#### Can I sort posts and pages by last modified info in dashboard? ####
 
 Yes you can. You can sort posts and pages by ascending or desending order.
 
 #### Is this plugin good for SEO? ####
 
 Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'last modified' header output and 'revision' meta tag which are good for SEO.
+
+#### What is meta ‘revised’ tag? ####
+
+The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
+
+#### The Date and Time inserted by this plugin is dependent on what? ####
+
+The plugin make use of your WordPress Date, Time and Time zone (Dashboard > Settings > General). Double check your Date, Time and Time zone before activating this plugin. 
 
 #### Is this plugin compatible with multisite? ####
 
