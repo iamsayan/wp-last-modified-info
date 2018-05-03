@@ -80,7 +80,7 @@
                 <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
                 
                 <br></div>
-         </div>
+            </div>
     
         </form>
         

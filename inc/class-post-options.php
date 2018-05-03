@@ -1,9 +1,7 @@
 <?php 
 
-add_shortcode('lmt-post-modified-info', 'lmt_print_last_modified_info_post');
-
 if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) ) {
-    return;
+    add_shortcode('lmt-post-modified-info', 'lmt_print_last_modified_info_post');
 } else {
    add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
 }

@@ -1,9 +1,7 @@
 <?php 
 
-add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');
-
 if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb'] == 1 ) ) {
-    return;
+    add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');
 } else {
    add_filter( 'the_content', 'lmt_print_last_modified_info_page' );
 }
