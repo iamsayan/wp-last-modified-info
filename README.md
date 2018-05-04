@@ -105,6 +105,10 @@ Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
 Yes you can. You can sort posts and pages by ascending or desending order.
 
+#### How this plugin helps to optimize SEO? ####
+
+This plugin wraps modified info with ‘dateModified’ schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.)
+
 #### What is meta ‘revised’ tag? ####
 
 The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
