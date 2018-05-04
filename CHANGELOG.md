@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.4
+Release Date: March 4, 2018
+
+* Added: Schama markup.
+* Bug Fixed.
+
 ## 1.1.3
 Release Date: March 4, 2018
 
