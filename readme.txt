@@ -3,11 +3,11 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Show last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
 
 == Description ==
 
@@ -19,7 +19,18 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 #### What does this plugin do?
 
-Using this plugin, you can show last modified info on your wordpress posts and pages. Add short code [lmt-post-modified-info] for posts and [lmt-page-modified-info] for pages. You can also enable revision meta tag for your pages and posts. With this plugin, you can also set custom styles.
+Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Metadata to your posts and pages through this plugin, but that is completely optional.
+
+* Allows you to display Last modified information in your posts and pages individually.
+* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
+* Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
+* Allows you to add Revised Meta tags to your WordPress posts and pages.
+* Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
+* Allows you to sort posts/pages by last updated/modified info.
+
+#### Compatibility
+
+This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -28,7 +39,7 @@ Using this plugin, you can show last modified info on your wordpress posts and p
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
 * Pull requests for documented bugs are highly appreciated.
-* If you think you’ve found a bug (e.g. you’re experiencing unexpected behavior), please post at the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
+* If you think you’ve found a bug (e.g. you’re experiencing unexpected behaviour), please post at the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
 
 #### Bug reports
 
@@ -45,45 +56,67 @@ Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.co
 
 == Frequently Asked Questions ==
 
+= Is there any admin interface for this plugin? =
+
+Yes. You can access this from 'Settings > Last Modified Info'.
+
 = How to use this plugin? =
 
-Go to 'Settings > Last Modified Info' and check the options and hit 'save changes'.
+Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
 
-= Is there an admin interface for this plugin? =
+= How to check this plugin is working? =
 
-Yes. You can access this from 'Settings > Last Modified Info'
-
-= How to check this is working? =
-
-Open any page or post and you can see the change.
+After enabling options in 'Settings > Last Modified Info', open any page or post and you can see the change.
 
 = How this plugin works? =
 
-This plugin hooks into wordpress content area and shows last modified information of posts and pages.
+This plugin hooks into WordPress content area and displays last modified information on posts and pages.
 
-= Is this plugin copmpatible with any themes? =
+= Will it require editing code to show Last Modified date? =
+
+Not at all. You can show the revised info by just installing this plugin. Use the Plugin Options to customize the date/time according to your need.
+
+= Is this plugin compatible with any themes? =
 
 Yes, this plugin is compatible with any theme.
 
-= How to customize last modified text css? =
+= Does this plugin support all custom post types? =
 
-Go to Settings > Last Modified Info > Custom CSS and write your custom css.
+Yes, this plugin supports all types of custom posts.
 
-= Can I sort posts and pages by last modified info? =
+= How to customize last modified text style? =
 
-Yes you can. You can sort posts and pages by ascending or desending order.
+Go to 'Settings > Last Modified Info > Custom CSS' and add your custom CSS.
 
-= Is this plugin good for SEO? =
+CSS Classes:
 
-Yes, absolutely. This plugin returns last modified info on both post and pages and also enable 'revision' meta tag which is good for SEO.
+`.post-last-modified`: use this class for posts.
 
-= Is this plugin compatible with multisite?
+`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
+
+`.page-last-modified`: use this class for pages.
+
+`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+
+= Can I sort posts and pages by last modified info in the dashboard? =
+
+Yes, you can. You can sort posts and pages by ascending or descending order.
+
+= What is meta ‘revised’ tag? =
+
+The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
+
+= The Date and Time inserted by this plugin is dependent on what? =
+
+The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in WordPress dashboard.
+
+= Is this plugin compatible with multisite? =
 
 Yes, it is fully compatible with multisite.
 
-= Can I customize 'Last Updated' text? =
+= Can I change 'Last Updated on' text? =
 
-Yes, you can. Write custom text in plugins page and save changes.
+Yes, you can. Just set your custom text in settings and save your changes.
 
 Use the plugin to test it.
 
@@ -96,6 +129,13 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.1.3 =
+Release Date: March 4, 2018
+
+* Added: Now you can create the exception for both posts and pages.
+* Bug Fixed.
+* Cover photo update. Thanks to @svayam.
+
 = 1.1.2 =
 Release Date: March 3, 2018
 
@@ -106,17 +146,17 @@ Release Date: March 3, 2018
 Release Date: March 3, 2018
 
 * Added: All Custom Post support including WooCommerece.
-* Now every last modified time in dashboard shows according to wordpress date/time format.
+* Now every last modified time in dashboard shows according to WordPress date/time format.
 * Now shortcode will work only when shortcode option is enabled.
-* Tweak: Custom Css Box returns empty style tag, if there is no value.
+* Tweak: Custom CSS Box returns empty style tag if there is no value.
 * Bug Fixed.
 
 = 1.0.9 =
 Release Date: April 29, 2018
 
-* Added: Last updated info now shows on publish meta box.
+* Added: Last updated info now shows on publishing meta box.
 * Remove some unwanted conditions.
-* Fix woocommerce admin notice.
+* Fix WooCommerce admin notice.
 * Bug fixed.
 
 = 1.0.8 =
@@ -125,15 +165,14 @@ Release Date: April 28, 2018
 * Add WooCommerce Support.
 * Multisite compatibility.
 * Last login info added.
-* Remove 304 response header as it is enable by default by many cache plugins.
+* Remove 304 response header as it is enabled by default by many cache plugins.
 * Bug fixed.
 
 = 1.0.6 =
 Release Date: April 27, 2018
 
-Bug Fix: 
-* Undefined Variable notice shows when debug mode is enabled.
-* Weekday is not showing with revision meta tag output.
+* Bug Fix: Undefined Variable notice shows when debug mode is enabled.
+* Bug Fix: Weekday is not showing with revision meta tag output.
 
 = 1.0.5 =
 Release Date: April 27, 2018

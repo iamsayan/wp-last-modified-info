@@ -1,22 +1,40 @@
 <?php 
+/**
+ * Runs on Pages Frontend
+ *
+ * @package   WP Last Modified Info
+ * @author    Sayan Datta
+ * @license   http://www.gnu.org/licenses/gpl.html
+ */
 
 if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb'] == 1 ) ) {
     add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');
 } else {
-   add_filter( 'the_content', 'lmt_print_last_modified_info_page' );
+
+    function lmt_page_exception_id() {
+      
+        $options = get_option('lmt_plugin_global_settings');
+        if ( !is_page ( array_map('trim', explode(',', $options['lmt_page_disable_auto_insert'])) ) ) { 
+            add_filter( 'the_content', 'lmt_print_last_modified_info_page' );
+        }
+    }
+
+add_action( 'wp', 'lmt_page_exception_id' );
+    
 }
+
     function lmt_print_last_modified_info_page( $contentp ) {
 
         $options = get_option('lmt_plugin_global_settings');
     
                 if($options['lmt_custom_page_time_format']) {
-                    $updated_time_page = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format']);
+                    $updated_time_page = get_the_modified_time($options['lmt_custom_page_time_format']);
                 } else {
                     $updated_time_page = get_the_modified_time('h:i a');
                 }
     
                 if($options['lmt_custom_page_date_format']) {
-                    $updated_day_page = get_the_modified_time(get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format']);
+                    $updated_day_page = get_the_modified_time($options['lmt_custom_page_date_format']);
                 } else {
                     $updated_day_page = get_the_modified_time('F jS, Y');
                 }

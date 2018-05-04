@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.1.2
+Version: 1.1.3
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -65,6 +65,7 @@ function lmt_plug_settings_page() {
     add_settings_field("lmt_custom_post_date_format", "<label for='custom-post-date-format'>Custom Date Format:</label>", "lmt_custom_post_date_format_display", "lmt_post_option", "lmt_post_option_section");  
     add_settings_field("lmt_show_last_modified_time_date_post", "<label for='post-show-status'>Show Last Modified Time & Date:</label>", "lmt_show_last_modified_time_date_post_display", "lmt_post_option", "lmt_post_option_section");
     add_settings_field("lmt_post_custom_text", "<label for='post-custom-text'>Your Custom Text for Posts:</label>", "lmt_post_custom_text_display", "lmt_post_option", "lmt_post_option_section"); 
+    add_settings_field("lmt_post_disable_auto_insert", "<label for='post-disable-auto-insert'>Enter Post ID to disable Auto Insert:</label>", "lmt_post_disable_auto_insert_display", "lmt_post_option", "lmt_post_option_section"); 
     
 
     add_settings_section("lmt_page_option_section", "Page Options<hr>", null, "lmt_page_option");
@@ -79,6 +80,7 @@ function lmt_plug_settings_page() {
     add_settings_field("lmt_custom_page_date_format", "<label for='custom-page-date-format'>Custom Date Format:</label>", "lmt_custom_page_date_format_display", "lmt_page_option", "lmt_page_option_section");  
     add_settings_field("lmt_show_last_modified_time_date_page", "<label for='page-show-status'>Show Last Modified Time & Date:</label>", "lmt_show_last_modified_time_date_page_display", "lmt_page_option", "lmt_page_option_section");
     add_settings_field("lmt_page_custom_text", "<label for='page-custom-text'>Your Custom Text for Pages:</label>", "lmt_page_custom_text_display", "lmt_page_option", "lmt_page_option_section"); 
+    add_settings_field("lmt_page_disable_auto_insert", "<label for='page-disable-auto-insert'>Enter Page ID to disable Auto Insert:</label>", "lmt_page_disable_auto_insert_display", "lmt_page_option", "lmt_page_option_section"); 
     
 
     add_settings_section("lmt_dashboard_option_section", "Dashboard Options<hr>", null, "lmt_dashboard_option");
@@ -201,6 +203,15 @@ function lmt_post_custom_text_display() {
     <?php
 }
 
+function lmt_post_disable_auto_insert_display() {
+    ?>
+
+    <input id="post-disable-auto-insert" name="lmt_plugin_global_settings[lmt_post_disable_auto_insert]" type="text" size="60" placeholder="Separated by commas" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_post_disable_auto_insert'])) { echo get_option('lmt_plugin_global_settings')['lmt_post_disable_auto_insert']; } ?>" />
+    &nbsp;&nbsp;<span class="tooltip" title="Enter comma separated list of Post IDs to exclude them from auto insert process."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    
+    <?php
+}
+
 
 /*
 ============
@@ -296,7 +307,7 @@ function lmt_show_last_modified_time_date_page_display() {
     &nbsp;&nbsp;<span class="tooltip" title="Select where you want to show last modified info on a single page."><span title="" class="dashicons dashicons-editor-help"></span></span>
          
     <?php
- }
+}
  
  function lmt_page_custom_text_display() {
      ?>
@@ -305,7 +316,16 @@ function lmt_show_last_modified_time_date_page_display() {
      &nbsp;&nbsp;<span class="tooltip" title="Enter your custom text which will be shown on single page. You can also set a custom style from 'Custom CSS tab' for this. Use 'page-last-modified' as css class."><span title="" class="dashicons dashicons-editor-help"></span></span>
      
      <?php
- }
+}
+
+function lmt_page_disable_auto_insert_display() {
+    ?>
+
+    <input id="page-disable-auto-insert" name="lmt_plugin_global_settings[lmt_page_disable_auto_insert]" type="text" size="60" placeholder="Separated by commas" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_page_disable_auto_insert'])) { echo get_option('lmt_plugin_global_settings')['lmt_page_disable_auto_insert']; } ?>" />
+    &nbsp;&nbsp;<span class="tooltip" title="Enter comma separated list of Page IDs to exclude them from auto insert process."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    
+    <?php
+}
 
 
 /*

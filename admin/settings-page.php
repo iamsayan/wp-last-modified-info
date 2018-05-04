@@ -1,4 +1,12 @@
-<?php ?>
+<?php
+/**
+ * Plugin settings options
+ *
+ * @package   WP Last Modified Info
+ * @author    Sayan Datta
+ * @license   http://www.gnu.org/licenses/gpl.html
+ */
+?>
 
 <div class="wrap">
     <h1> WP Last Modified Info Settings </h1>

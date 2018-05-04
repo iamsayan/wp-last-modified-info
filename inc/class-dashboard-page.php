@@ -1,4 +1,11 @@
 <?php
+/**
+ * Runs on Dashboard
+ *
+ * @package   WP Last Modified Info
+ * @author    Sayan Datta
+ * @license   http://www.gnu.org/licenses/gpl.html
+ */
 
 function lmt_page_admin_actions() {
 

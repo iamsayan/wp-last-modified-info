@@ -54,17 +54,18 @@ jQuery(document).ready(function(){
             jQuery('#custom-post-date-format').prop('disabled', false);
             jQuery('#post-show-status').prop('disabled', false);
             jQuery('#post-custom-text').prop('disabled', false);
+            jQuery('#post-disable-auto-insert').prop('disabled', false);
         }
         if (!jQuery('#post-enable').is(':checked')){
             jQuery('#post-sc').prop('disabled', true);
             jQuery('#post-revised').prop('disabled', true);
             jQuery('#post-enable-time').prop('disabled', true);
             jQuery('#custom-post-time-format').prop('disabled', true);
-            jQuery('#post-date-format').prop('disabled', true);
             jQuery('#post-enable-date').prop('disabled', true);
             jQuery('#custom-post-date-format').prop('disabled', true);
             jQuery('#post-show-status').prop('disabled', true);
             jQuery('#post-custom-text').prop('disabled', true);
+            jQuery('#post-disable-auto-insert').prop('disabled', true);
         }
     });
     jQuery("#post-enable").trigger('change');
@@ -77,9 +78,10 @@ jQuery(document).ready(function(){
             jQuery('#page-enable-time').prop('disabled', false);
             jQuery('#custom-page-time-format').prop('disabled', false);
             jQuery('#page-enable-date').prop('disabled', false);
-            jQuery('#custom-page-time-format').prop('disabled', false);
+            jQuery('#custom-page-date-format').prop('disabled', false);
             jQuery('#page-show-status').prop('disabled', false);
             jQuery('#page-custom-text').prop('disabled', false);
+            jQuery('#page-disable-auto-insert').prop('disabled', false);
         }
         if (!jQuery('#page-enable').is(':checked')){
             jQuery('#page-sc').prop('disabled', true);
@@ -87,9 +89,10 @@ jQuery(document).ready(function(){
             jQuery('#page-enable-time').prop('disabled', true);
             jQuery('#custom-page-time-format').prop('disabled', true);
             jQuery('#page-enable-date').prop('disabled', true);
-            jQuery('#custom-page-time-format').prop('disabled', true);
+            jQuery('#custom-page-date-format').prop('disabled', true);
             jQuery('#page-show-status').prop('disabled', true);
             jQuery('#page-custom-text').prop('disabled', true);
+            jQuery('#page-disable-auto-insert').prop('disabled', true);
         }
     });
     jQuery("#page-enable").trigger('change');
