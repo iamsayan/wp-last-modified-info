@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.3
+Release Date: March 4, 2018
+
+* Added: Now you can create the exception for both posts and pages.
+* Bug Fixed.
+* Cover photo update. Thanks to @svayam.
+
 ## 1.1.2
 Release Date: March 3, 2018
 
