@@ -5,7 +5,9 @@
   height: 24px;
 }
 
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 .slider {
   position: absolute;
@@ -31,21 +33,22 @@
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #3CB371;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #3CB371;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
+
 .slider.round {
   border-radius: 34px;
 }
@@ -54,7 +57,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-
 .switch-pg {
   position: relative;
   display: inline-block;
@@ -62,7 +64,9 @@ input:checked + .slider:before {
   height: 24px;
 }
 
-.switch-pg input {display:none;}
+.switch-pg input {
+  display: none;
+}
 
 .slider-pg {
   position: absolute;
@@ -88,21 +92,22 @@ input:checked + .slider:before {
   transition: .4s;
 }
 
-input:checked + .slider-pg {
+input:checked+.slider-pg {
   background-color: #00A0D2;
 }
 
-input:focus + .slider-pg {
+input:focus+.slider-pg {
   box-shadow: 0 0 1px #00A0D2;
 }
 
-input:checked + .slider-pg:before {
+input:checked+.slider-pg:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
+
 .slider-pg.round-pg {
   border-radius: 34px;
 }
@@ -111,8 +116,6 @@ input:checked + .slider-pg:before {
   border-radius: 50%;
 }
 
-
-
 .switch-db {
   position: relative;
   display: inline-block;
@@ -120,7 +123,9 @@ input:checked + .slider-pg:before {
   height: 24px;
 }
 
-.switch-db input {display:none;}
+.switch-db input {
+  display: none;
+}
 
 .slider-db {
   position: absolute;
@@ -146,21 +151,22 @@ input:checked + .slider-pg:before {
   transition: .4s;
 }
 
-input:checked + .slider-db {
+input:checked+.slider-db {
   background-color: #CCAF0B;
 }
 
-input:focus + .slider-db {
+input:focus+.slider-db {
   box-shadow: 0 0 1px #CCAF0B;
 }
 
-input:checked + .slider-db:before {
+input:checked+.slider-db:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
+
 .slider-db.round-db {
   border-radius: 34px;
 }

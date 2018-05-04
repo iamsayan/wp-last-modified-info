@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -102,6 +102,10 @@ CSS Classes:
 
 Yes, you can. You can sort posts and pages by ascending or descending order.
 
+= How this plugin helps to optimize SEO? =
+
+This plugin wraps modified info with 'dateModified' schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.)
+
 = What is meta ‘revised’ tag? =
 
 The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
@@ -128,6 +132,12 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.1.4 =
+Release Date: March 4, 2018
+
+* Added: Schama markup.
+* Bug Fixed.
 
 = 1.1.3 =
 Release Date: March 4, 2018

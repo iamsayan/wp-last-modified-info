@@ -46,15 +46,15 @@ function lmt_print_last_modified_info_post( $content ) {
         $options_post = get_option('lmt_plugin_global_settings')['lmt_post_custom_text'];
         if( (isset($options['lmt_enable_last_modified_time_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td">' . $updated_time . '</span></p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_time . '</time></span></p>';
         
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td">' . $updated_day . '</span></p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . '</time></span></p>';
 
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) == 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td">' . $updated_day . ' at ' . $updated_time . '</span></p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . ' at ' . $updated_time . '</time></span></p>';
 
         }
 
@@ -62,15 +62,15 @@ function lmt_print_last_modified_info_post( $content ) {
               
         if( (isset($options['lmt_enable_last_modified_time_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td">' . $updated_time . '</span></p>';
+            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_time . '</time></span></p>';
         
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td">' . $updated_day . '</span></p>';
+            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . '</time></span></p>';
 
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) == 1) ) {
 
-            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td">' . $updated_day . ' at ' . $updated_time . '</span></p>';
+            $modified_content = '<p class="post-last-modified">Last Updated on <span class="post-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . ' at ' . $updated_time . '</time></span></p>';
 
         }
            

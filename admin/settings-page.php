@@ -28,7 +28,7 @@
         <form id="form" method="post" action="options.php">
         <?php
             if ( function_exists('wp_nonce_field') ) 
-	        wp_nonce_field('wp-last-modified-info_' . "yep"); 
+	        wp_nonce_field('wp_last_modified_info'); 
         ?>
         <?php settings_fields("lmt_post_page_plugin_section"); ?>
 
