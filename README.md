@@ -1,3 +1,5 @@
+![alt text](https://github.com/iamsayan/wp-last-modified-info/raw/master/WP-Last-Modified-Info_Large.png "Plugin Banner")
+
 # WP Last Modified Info #
 
 Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
