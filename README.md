@@ -1,4 +1,4 @@
-![alt text](https://github.com/iamsayan/wp-last-modified-info/raw/master/WP-Last-Modified-Info_Large.png "Plugin Banner")
+![alt text](https://ps.w.org/wp-last-modified-info/assets/banner-1544x500.png "Plugin Banner")
 
 # WP Last Modified Info #
 
