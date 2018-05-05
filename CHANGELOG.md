@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.5
+Release Date: March 6, 2018
+
+* Improved: Schama markup. [Test with structured data tool](https://search.google.com/structured-data/testing-tool).
+* Removed 'revised' meta tag output as it is no longer required. [Learn more](https://stackoverflow.com/questions/33889445/is-html-meta-name-revised-valid-or-even-used).
+* UI Improvements.
+* Code Cleanup.
+
 ## 1.1.4
 Release Date: March 4, 2018
 
