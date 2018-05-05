@@ -17,10 +17,10 @@ Many popular blogs and websites don’t show any date on their articles. This is
 Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Meta data to your posts and pages through this plugin, but that is completely optional.
 
 * Allows you to display Last modified information in your posts and pages individually.
-* Provides you with options to display the last modified / last updated date above or below your posts and pages. You can also set date / time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
+* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Allows you to add Revised Meta tags to your WordPress posts and pages.
-* Allows you to display last modified info in all posts types column and publish meta box in dashboard.
+* Inserts 'dateModified' schama markup to your WordPress posts and pages automatically.
+* Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
 * Allows you to sort posts/pages by last updated/modified info.
 
 ### Compatibility ###
@@ -108,10 +108,6 @@ Yes you can. You can sort posts and pages by ascending or desending order.
 #### How this plugin helps to optimize SEO? ####
 
 This plugin wraps modified info with ‘dateModified’ schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.)
-
-#### What is meta ‘revised’ tag? ####
-
-The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
 
 #### The Date and Time inserted by this plugin is dependent on what? ####
 
