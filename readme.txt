@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -24,7 +24,7 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 * Allows you to display Last modified information in your posts and pages individually.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Allows you to add Revised Meta tags to your WordPress posts and pages.
+* Inserts 'dateModified' schama markup to your WordPress posts automatically.
 * Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
 * Allows you to sort posts/pages by last updated/modified info.
 
@@ -104,11 +104,7 @@ Yes, you can. You can sort posts and pages by ascending or descending order.
 
 = How this plugin helps to optimize SEO? =
 
-This plugin wraps modified info with 'dateModified' schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.)
-
-= What is meta ‘revised’ tag? =
-
-The 'meta revised tag' is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.).
+This plugin wraps modified info with 'dateModified' schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.). [Test your website with structured data tool](https://search.google.com/structured-data/testing-tool).
 
 = The Date and Time inserted by this plugin is dependent on what? =
 
@@ -133,10 +129,18 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.1.5 =
+Release Date: March 5, 2018
+
+* Improved: Schama markup. [Test your website](https://search.google.com/structured-data/testing-tool).
+* Removed 'revised' meta tag output as it is no longer required. [Learn more](https://stackoverflow.com/questions/33889445/is-html-meta-name-revised-valid-or-even-used).
+* UI Improvements.
+* Code Cleanup.
+
 = 1.1.4 =
 Release Date: March 4, 2018
 
-* Added: Schama markup.
+* Added: last modified schama markup for posts.
 * Bug Fixed.
 
 = 1.1.3 =

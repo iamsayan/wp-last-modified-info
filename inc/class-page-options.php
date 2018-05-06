@@ -45,15 +45,15 @@ add_action( 'wp', 'lmt_page_exception_id' );
                 $options_page = get_option('lmt_plugin_global_settings')['lmt_page_custom_text'];
                 if( (isset($options['lmt_enable_last_modified_time_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_page_cb']) != 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_time_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td">' . $updated_time_page . '</span></p>';
         
                 } elseif( (isset($options['lmt_enable_last_modified_date_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_page_cb']) != 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td">' . $updated_day_page . '</span></p>';
 
                 } elseif( (isset($options['lmt_enable_last_modified_date_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_page_cb']) == 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day_page . ' at ' . $updated_time_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">' . $options_page . ' <span class="page-last-modified-td">' . $updated_day_page . ' at ' . $updated_time_page . '</span></p>';
 
                 }
 
@@ -61,15 +61,15 @@ add_action( 'wp', 'lmt_page_exception_id' );
               
                 if( (isset($options['lmt_enable_last_modified_time_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_page_cb']) != 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_time_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td">' . $updated_time_page . '</span></p>';
         
                 } elseif( (isset($options['lmt_enable_last_modified_date_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_page_cb']) != 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td">' . $updated_day_page . '</span></p>';
 
                 } elseif( (isset($options['lmt_enable_last_modified_date_page_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_page_cb']) == 1) ) {
 
-                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day_page . ' at ' . $updated_time_page . '</time></span></p>';
+                    $modified_content_page = '<p class="page-last-modified">Last Updated on <span class="page-last-modified-td">' . $updated_day_page . ' at ' . $updated_time_page . '</span></p>';
 
                 }
            
