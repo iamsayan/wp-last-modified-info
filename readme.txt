@@ -3,7 +3,8 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.5
+Stable tag: 1.1.6
+Donate link: https://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -129,11 +130,17 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.1.6 =
+Release Date: March 7, 2018
+
+* Improved: Custom Post Type Support.
+* Bug Fixed.
+
 = 1.1.5 =
 Release Date: March 5, 2018
 
-* Improved: Schama markup. [Test your website](https://search.google.com/structured-data/testing-tool).
-* Removed 'revised' meta tag output as it is no longer required. [Learn more](https://stackoverflow.com/questions/33889445/is-html-meta-name-revised-valid-or-even-used).
+* Improved: Schama markup.
+* Removed 'revised' meta tag output as it is no longer required.
 * UI Improvements.
 * Code Cleanup.
 
