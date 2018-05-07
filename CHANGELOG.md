@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.6
+Release Date: March 7, 2018
+
+* Improved: Custom Post Type Support.
+* Bug Fixed.
+
 ## 1.1.5
 Release Date: March 6, 2018
 
