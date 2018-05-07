@@ -14,7 +14,7 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 ### What does this plugin do? ###
 
-Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Meta data to your posts and pages through this plugin, but that is completely optional.
+Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup on WordPress posts autometically.
 
 * Allows you to display Last modified information in your posts and pages individually.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
