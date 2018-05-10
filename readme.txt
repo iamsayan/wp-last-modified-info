@@ -130,7 +130,7 @@ Use the plugin to test it.
 
 == Changelog ==
 
-= 1.1.7 =
+= 1.1.8 =
 Release Date: March 11, 2018
 
 * Added: Dashboard widget to show Last Modified posts.
