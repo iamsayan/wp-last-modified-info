@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP Last Modified Info
-Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
+Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to dispaly last modified info anywhere.
-Version: 1.1.6
+Version: 1.1.8
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -50,6 +50,9 @@ function lmt_custom_admin_styles_scripts() {
 
 add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
 
+// call custom dashboard widget
+include plugin_dir_path( __FILE__ ) . 'inc/class-dashboard-widget.php';
+
 /* ============================================================================================== 
                                            Start functions
 ============================================================================================== */
@@ -65,8 +68,8 @@ function lmt_plug_settings_page() {
         add_settings_field("lmt_enable_last_modified_date_cb", "<label for='post-enable-date'>Show Last Modified Date:</label>", "lmt_enable_last_modified_date_cb_display", "lmt_post_option", "lmt_post_option_section");  
         add_settings_field("lmt_custom_post_date_format", "<label for='custom-post-date-format'>Custom Date Format:</label>", "lmt_custom_post_date_format_display", "lmt_post_option", "lmt_post_option_section");  
         add_settings_field("lmt_show_last_modified_time_date_post", "<label for='post-show-status'>Last Modified Info position:</label>", "lmt_show_last_modified_time_date_post_display", "lmt_post_option", "lmt_post_option_section");
-        add_settings_field("lmt_post_custom_text", "<label for='post-custom-text'>Set Custom Text for Posts:</label>", "lmt_post_custom_text_display", "lmt_post_option", "lmt_post_option_section"); 
-        add_settings_field("lmt_post_disable_auto_insert", "<label for='post-disable-auto-insert'>Enter Post ID to disable Auto Insert:</label>", "lmt_post_disable_auto_insert_display", "lmt_post_option", "lmt_post_option_section"); 
+        add_settings_field("lmt_post_custom_text", "<label for='post-custom-text'>Set Custom Message for Posts:</label>", "lmt_post_custom_text_display", "lmt_post_option", "lmt_post_option_section"); 
+        add_settings_field("lmt_post_disable_auto_insert", "<label for='post-disable-auto-insert'>Disable Auto Insert on Post ID:</label>", "lmt_post_disable_auto_insert_display", "lmt_post_option", "lmt_post_option_section"); 
         add_settings_field("lmt_use_as_sc_cb", "<label for='post-sc'>Use as Shortcode on Posts:</label>", "lmt_use_as_sc_cb_display", "lmt_post_option", "lmt_post_option_section");  
         
     // start page fields
@@ -77,15 +80,15 @@ function lmt_plug_settings_page() {
         add_settings_field("lmt_enable_last_modified_date_page_cb", "<label for='page-enable-date'>Show Last Modified Date:</label>", "lmt_enable_last_modified_date_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
         add_settings_field("lmt_custom_page_date_format", "<label for='custom-page-date-format'>Custom Date Format:</label>", "lmt_custom_page_date_format_display", "lmt_page_option", "lmt_page_option_section");  
         add_settings_field("lmt_show_last_modified_time_date_page", "<label for='page-show-status'>Last Modified Info position:</label>", "lmt_show_last_modified_time_date_page_display", "lmt_page_option", "lmt_page_option_section");
-        add_settings_field("lmt_page_custom_text", "<label for='page-custom-text'>Set Custom Text for Pages:</label>", "lmt_page_custom_text_display", "lmt_page_option", "lmt_page_option_section"); 
-        add_settings_field("lmt_page_disable_auto_insert", "<label for='page-disable-auto-insert'>Enter Page ID to disable Auto Insert:</label>", "lmt_page_disable_auto_insert_display", "lmt_page_option", "lmt_page_option_section"); 
+        add_settings_field("lmt_page_custom_text", "<label for='page-custom-text'>Set Custom Message for Pages:</label>", "lmt_page_custom_text_display", "lmt_page_option", "lmt_page_option_section"); 
+        add_settings_field("lmt_page_disable_auto_insert", "<label for='page-disable-auto-insert'>Disable Auto Insert on Page ID:</label>", "lmt_page_disable_auto_insert_display", "lmt_page_option", "lmt_page_option_section"); 
         add_settings_field("lmt_use_as_sc_page_cb", "<label for='page-sc'>Use as Shortcode for Pages:</label>", "lmt_use_as_sc_page_cb_display", "lmt_page_option", "lmt_page_option_section");  
         
     // start dashboard fields
     add_settings_section("lmt_dashboard_option_section", "Dashboard Options<p><hr></p>", null, "lmt_dashboard_option");
-        add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Posts:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
-        add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Pages:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
-        add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Modified Profile & Last Login Info of Users:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+        add_settings_field("lmt_enable_on_post_cb", "<label for='post-enable-dashboard'>Show Last Modified Info on Posts Column & Publish Box:</label>", "lmt_enable_on_post_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
+        add_settings_field("lmt_enable_on_page_cb", "<label for='page-enable-dashboard'>Show Last Modified Info on Pages Column & Publish Box:</label>", "lmt_enable_on_page_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
+        add_settings_field("lmt_enable_lmi_on_users_cb", "<label for='enable-user-info'>Show Last Updated Profile & Last Login on Users Column:</label>", "lmt_enable_lmi_on_users_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
     
     // start custom css field
     add_settings_section("lmt_cus_style_section", "Custom CSS<p><hr></p>", null, "lmt_cus_style_option");
@@ -302,12 +305,25 @@ function lmt_show_page() {
 
     include plugin_dir_path( __FILE__ ) . 'admin/settings-page.php';
 
-    // fetch plugin version
-    $lmtpluginfo = get_plugin_data(__FILE__);
-    $lmtversion = $lmtpluginfo['Version'];
-    // pring plugin version
-    echo '<p>&nbsp;Thanks for using <strong>WP Last Modified Info v' . $lmtversion . '</strong> | Developed with <span style="color: #e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/" target="_blank" style="font-weight: 500;">Rate it</a> (&#9733;&#9733;&#9733;&#9733;&#9733;), if you like this plugin.</p>';
- 
+    function lmt_remove_footer_admin () {
+
+        // fetch plugin version
+        $lmtpluginfo = get_plugin_data(__FILE__);
+        $lmtversion = $lmtpluginfo['Version'];    
+            // pring plugin version
+            echo 'Thanks for using <strong>WP Last Modified Info v'. $lmtversion .'</strong> | Developed with <span style="color: #e25555;">♥</span> by <a href="https://profiles.wordpress.org/infosatech/" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/" target="_blank" style="font-weight: 500;">Rate it</a> (&#9733;&#9733;&#9733;&#9733;&#9733;), if you like this plugin.';
+    }
+
+    /*function lmt_remove_footer_admin_version () {  
+        
+        $lmtpluginfo = get_plugin_data(__FILE__);
+        $lmtversion = $lmtpluginfo['Version'];  
+            // pring plugin version
+            echo 'Version '. $lmtversion;
+    }*/
+
+    add_filter('admin_footer_text', 'lmt_remove_footer_admin');    
+    //add_filter( 'update_footer', 'lmt_remove_footer_admin_version');
 }
 
 // add menu options
@@ -340,7 +356,7 @@ if( isset($options['lmt_enable_on_post_cb']) && ($options['lmt_enable_on_post_cb
         
         $lmt_updated_time = get_the_modified_time('M j, Y @ H:i');
         if (get_the_modified_time('U') > get_the_time('U') && (get_post_type() != 'page')) {
-            echo '<div class="misc-pub-section misc-pub-section-last-updated"><span id="timestamp"><font color="#82878C"><span class="dashicons dashicons-calendar"></span></font>&nbsp;Updated on: <b>' . $lmt_updated_time . '</b></span></div>';
+            echo '<div class="misc-pub-section curtime misc-pub-last-updated"><span id="timestamp"> Updated on: <b>' . $lmt_updated_time . '</b></span></div>';
         }
     }
     add_action( 'post_submitbox_misc_actions', 'lmt_custom_post_meta');
@@ -357,7 +373,7 @@ if( isset($options['lmt_enable_on_page_cb']) && ($options['lmt_enable_on_page_cb
         
         $lmt_updated_time_page = get_the_modified_time('M j, Y @ H:i');
         if (get_the_modified_time('U') > get_the_time('U') && (get_post_type() == 'page')) {
-            echo '<div class="misc-pub-section misc-pub-section-last-updated"><span id="timestamp"><font color="#82878C"><span class="dashicons dashicons-calendar"></span></font>&nbsp;Updated on: <b>' . $lmt_updated_time_page . '</b></span></div>';
+            echo '<div class="misc-pub-section curtime misc-pub-last-updated"><span id="timestamp"> Updated on: <b>' . $lmt_updated_time_page . '</b></span></div>';
         }
     }
     add_action( 'post_submitbox_misc_actions', 'lmt_custom_page_meta');

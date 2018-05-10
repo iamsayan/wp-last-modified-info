@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.6
+Stable tag: 1.1.8
 Donate link: https://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -20,7 +20,7 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 #### What does this plugin do?
 
-Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. You will also be able to add Revised Metadata to your posts and pages through this plugin, but that is completely optional.
+Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup on WordPress posts automatically.
 
 * Allows you to display Last modified information in your posts and pages individually.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
@@ -129,6 +129,12 @@ Use the plugin to test it.
 4. Custom CSS
 
 == Changelog ==
+
+= 1.1.7 =
+Release Date: March 11, 2018
+
+* Added: Dashboard widget to show Last Modified posts.
+* Improved: Schema Markup.
 
 = 1.1.6 =
 Release Date: March 7, 2018
