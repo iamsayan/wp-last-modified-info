@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.8
+Release Date: March 10, 2018
+
+* Added: Dashboard widget to show Last Modified posts.
+* Improved: Schema Markup.
+
 ## 1.1.6
 Release Date: March 7, 2018
 
