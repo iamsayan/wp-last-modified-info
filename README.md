@@ -22,6 +22,7 @@ Using this plugin, display last modified info of your wordpress posts and pages.
 * Inserts 'dateModified' schama markup to your WordPress posts and pages automatically.
 * Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
 * Allows you to sort posts/pages by last updated/modified info.
+* You can also add template tags to your theme files. Tag: `<?php get_last_modified_info(); ?>`
 
 ### Compatibility ###
 
@@ -120,6 +121,15 @@ Yes, it is fully compatible with multisite.
 #### Can I change 'Last Updated on' text? ####
 
 Yes, you can. Just set your custom text in settings and save your changes.
+
+#### Can I use this as template tag? ####
+
+Yes, You can. In this case, you have to edit your theme's template files i.e. single.php, page.php etc. and add/replace default published date function with this:
+
+`<?php if ( function_exists( 'get_last_modified_info' ) ) {
+		get_last_modified_info();
+		}
+?>`
 
 ## Changelog ##
 [View Changelog](CHANGELOG.md)
