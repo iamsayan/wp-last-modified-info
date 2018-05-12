@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.0.0
+Release Date: March 12, 2018
+
+* Added: Template Tag support.
+* Bug Fix
+
 ## 1.1.8
 Release Date: March 10, 2018
 
