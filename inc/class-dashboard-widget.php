@@ -40,8 +40,8 @@ function lmt_dashboard_widget_function() {
 	if ( $recently_updated_posts->have_posts() ) :
 		while( $recently_updated_posts->have_posts() ) : $recently_updated_posts->the_post(); ?>
                 <li>
-                    <span><?php the_modified_time('M jS,' . get_option( 'time_format' )); ?></span>
-                    <?php edit_post_link(esc_attr( get_the_title() )); ?> &nbsp;<font color="#E3DDE3">|</font>&nbsp; <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank">View Post</a>
+                    <span><?php the_modified_time(get_option( 'date_format' ) . ', ' . get_option( 'time_format' )); ?></span>
+                    <?php edit_post_link(esc_attr( get_the_title() )); ?> &nbsp;<font color="#E3DDE3">|</font>&nbsp; <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank">View</a>
                 </li>
         <?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>

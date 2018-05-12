@@ -19,8 +19,9 @@
             <a href="#post" class="nav-tab" id="btn1">Post Options</a>
             <a href="#page" class="nav-tab" id="btn2">Page Options</a>
             <a href="#dashboard" class="nav-tab" id="btn3">Dashboard Options</a>
-            <a href="#style" class="nav-tab" id="btn4">Custom CSS</a>
-            <a href="#help" class="nav-tab" id="btn5">Help</a>
+            <a href="#template-tags" class="nav-tab" id="btn4">Template Tags</a>
+            <a href="#style" class="nav-tab" id="btn5">Custom CSS</a>
+            <a href="#help" class="nav-tab" id="btn6">Help</a>
         </h2>
 
     <div id="form_area">
@@ -51,6 +52,14 @@
                 do_settings_sections("lmt_dashboard_option");
                 submit_button('Save All Settings');
                
+            ?> </div>
+
+            <div style="display:none" id="show-tt"> <?php
+
+                do_settings_sections("lmt_template_tag_option");
+                ?> <br><b>Note:</b> <i>Always back-up functions.php before making changes, the back-up file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
+                submit_button('Save All Settings');
+
             ?> </div>
 
             <div style="display:none" id="show-style-area"> <?php
@@ -84,11 +93,16 @@
                 <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
                 <p>No, this tag is not required, as it is already added.</p>...<br>
 
-                <p><strong>How to set custome date/time format?</strong>
+                <p><strong>How to set custom date/time format?</strong>
                 <p>Go to <a href = "https://codex.wordpress.org/Formatting_Date_and_Time" target = "_blank"> WordPress Date/Time sysntax</a> page and read instructions.</p>...<br>
 
-                <p><strong>What is Dashboard Options?</strong>
-                <p>This options helps you by showing pages and posts last modified info in admin area (column). You can sort pages and by last modified info.</p>
+                <p><strong>How to use template tag functionality?</strong>
+                <p>In this case, you have to edit your theme's template files i.e. single.php, page.php etc. and add/replace default published date function with this: &nbsp;&nbsp;<p><code>&lt;?php if ( function_exists( 'get_last_modified_info' ) ) {
+				             get_last_modified_info();
+			           } ?&gt;</code></p></p>...<br>
+
+                <p><strong>How to display last modified info on all posts, pages column?</strong>
+                <p>You have to enable all options in Dashboard Tab to display last modified info aand you can also sort posts and pages by last modified info.</p>
                 
                 <br></div>
             </div>

@@ -35,10 +35,10 @@ function lmt_post_admin_actions() {
     }
 
     // hook into all posts
-    add_action ( "manage_post_posts_custom_column", "lmt_post_columns_data");
+    add_action ( "manage_post_posts_custom_column", "lmt_post_columns_data", 10, 2);
 
     // only applicable for posts
-    add_filter ( "manage_edit-post_columns", "lmt_post_columns_display");
+    add_filter ( "manage_edit-post_columns", "lmt_post_columns_display" );
     add_action( "manage_edit-post_sortable_columns", "lmt_post_columns_display", 10, 2 );
     
 
@@ -55,12 +55,12 @@ function lmt_post_admin_actions() {
      
     foreach ( $post_types  as $ptc ) {
 
-        add_filter ( "manage_edit-{$ptc}_columns", "lmt_post_columns_display");
+        add_filter ( "manage_edit-{$ptc}_columns", "lmt_post_columns_display" );
         add_filter( "manage_edit-{$ptc}_sortable_columns", "lmt_post_columns_display", 10, 2 );
-        add_filter ( "manage_{$ptc}_posts_columns", "lmt_post_columns_display");
-        add_filter ( "manage_{$ptc}_sortable_columns", "lmt_post_columns_display");
+        add_filter ( "manage_{$ptc}_posts_columns", "lmt_post_columns_display" );
+        add_filter ( "manage_{$ptc}_sortable_columns", "lmt_post_columns_display", 10, 2);
 
-        add_action ( "manage_{$ptc}_posts_custom_column", "lmt_post_columns_data");
+        add_action ( "manage_{$ptc}_posts_custom_column", "lmt_post_columns_data", 10, 2);
 
     }
 }

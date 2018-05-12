@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
         jQuery("#show-post").show();
         jQuery("#show-page").hide();
         jQuery("#show-dashboard").hide();
+        jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
         jQuery("#show-help").hide();
 
@@ -12,6 +13,7 @@ jQuery(document).ready(function () {
         jQuery("#show-post").hide();
         jQuery("#show-page").show();
         jQuery("#show-dashboard").hide();
+        jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
         jQuery("#show-help").hide();
 
@@ -21,6 +23,7 @@ jQuery(document).ready(function () {
         jQuery("#show-post").hide();
         jQuery("#show-page").hide();
         jQuery("#show-dashboard").show();
+        jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
         jQuery("#show-help").hide();
 
@@ -30,7 +33,8 @@ jQuery(document).ready(function () {
         jQuery("#show-post").hide();
         jQuery("#show-page").hide();
         jQuery("#show-dashboard").hide();
-        jQuery("#show-style-area").show();
+        jQuery("#show-tt").show();
+        jQuery("#show-style-area").hide();
         jQuery("#show-help").hide();
 
     });
@@ -39,6 +43,17 @@ jQuery(document).ready(function () {
         jQuery("#show-post").hide();
         jQuery("#show-page").hide();
         jQuery("#show-dashboard").hide();
+        jQuery("#show-tt").hide();
+        jQuery("#show-style-area").show();
+        jQuery("#show-help").hide();
+
+    });
+
+    jQuery("#btn6").click(function () {
+        jQuery("#show-post").hide();
+        jQuery("#show-page").hide();
+        jQuery("#show-dashboard").hide();
+        jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
         jQuery("#show-help").show();
 
@@ -96,6 +111,18 @@ jQuery(document).ready(function () {
         }
     });
     jQuery("#page-enable").trigger('change');
+
+    jQuery("#lmt-tt").change(function () {
+        if (jQuery('#lmt-tt').is(':checked')) {
+            jQuery('#lmt-tt-format').prop('disabled', false);
+            jQuery('#lmt-tt-class').prop('disabled', false);
+        }
+        if (!jQuery('#lmt-tt').is(':checked')) {
+            jQuery('#lmt-tt-format').prop('disabled', true);
+            jQuery('#lmt-tt-class').prop('disabled', true);
+        }
+    });
+    jQuery("#lmt-tt").trigger('change');
 
 
 });
