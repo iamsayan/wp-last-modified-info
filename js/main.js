@@ -62,10 +62,12 @@ jQuery(document).ready(function () {
     jQuery("#post-enable").change(function () {
         if (jQuery('#post-enable').is(':checked')) {
             jQuery('#post-sc').prop('disabled', false);
+            jQuery('#post-human').prop('disabled', false);
             jQuery('#post-revised').prop('disabled', false);
             jQuery('#post-enable-time').prop('disabled', false);
             jQuery('#custom-post-time-format').prop('disabled', false);
             jQuery('#post-enable-date').prop('disabled', false);
+            jQuery('#post-dt-sep').prop('disabled', false);
             jQuery('#custom-post-date-format').prop('disabled', false);
             jQuery('#post-show-status').prop('disabled', false);
             jQuery('#post-custom-text').prop('disabled', false);
@@ -73,10 +75,12 @@ jQuery(document).ready(function () {
         }
         if (!jQuery('#post-enable').is(':checked')) {
             jQuery('#post-sc').prop('disabled', true);
+            jQuery('#post-human').prop('disabled', true);
             jQuery('#post-revised').prop('disabled', true);
             jQuery('#post-enable-time').prop('disabled', true);
             jQuery('#custom-post-time-format').prop('disabled', true);
             jQuery('#post-enable-date').prop('disabled', true);
+            jQuery('#post-dt-sep').prop('disabled', true);
             jQuery('#custom-post-date-format').prop('disabled', true);
             jQuery('#post-show-status').prop('disabled', true);
             jQuery('#post-custom-text').prop('disabled', true);
@@ -89,10 +93,12 @@ jQuery(document).ready(function () {
     jQuery("#page-enable").change(function () {
         if (jQuery('#page-enable').is(':checked')) {
             jQuery('#page-sc').prop('disabled', false);
+            jQuery('#page-human').prop('disabled', false);
             jQuery('#page-revised').prop('disabled', false);
             jQuery('#page-enable-time').prop('disabled', false);
             jQuery('#custom-page-time-format').prop('disabled', false);
             jQuery('#page-enable-date').prop('disabled', false);
+            jQuery('#page-dt-sep').prop('disabled', false);
             jQuery('#custom-page-date-format').prop('disabled', false);
             jQuery('#page-show-status').prop('disabled', false);
             jQuery('#page-custom-text').prop('disabled', false);
@@ -100,11 +106,13 @@ jQuery(document).ready(function () {
         }
         if (!jQuery('#page-enable').is(':checked')) {
             jQuery('#page-sc').prop('disabled', true);
+            jQuery('#page-human').prop('disabled', true);
             jQuery('#page-revised').prop('disabled', true);
             jQuery('#page-enable-time').prop('disabled', true);
             jQuery('#custom-page-time-format').prop('disabled', true);
             jQuery('#page-enable-date').prop('disabled', true);
             jQuery('#custom-page-date-format').prop('disabled', true);
+            jQuery('#page-dt-sep').prop('disabled', true);
             jQuery('#page-show-status').prop('disabled', true);
             jQuery('#page-custom-text').prop('disabled', true);
             jQuery('#page-disable-auto-insert').prop('disabled', true);
@@ -114,11 +122,15 @@ jQuery(document).ready(function () {
 
     jQuery("#lmt-tt").change(function () {
         if (jQuery('#lmt-tt').is(':checked')) {
+            jQuery('#lmt-tt-human').prop('disabled', false);
             jQuery('#lmt-tt-format').prop('disabled', false);
+            jQuery('#lmt-tt-updated-text').prop('disabled', false);
             jQuery('#lmt-tt-class').prop('disabled', false);
         }
         if (!jQuery('#lmt-tt').is(':checked')) {
+            jQuery('#lmt-tt-human').prop('disabled', true);
             jQuery('#lmt-tt-format').prop('disabled', true);
+            jQuery('#lmt-tt-updated-text').prop('disabled', true);
             jQuery('#lmt-tt-class').prop('disabled', true);
         }
     });

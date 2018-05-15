@@ -57,7 +57,7 @@
             <div style="display:none" id="show-tt"> <?php
 
                 do_settings_sections("lmt_template_tag_option");
-                ?> <br><b>Note:</b> <i>Always back-up functions.php before making changes, the back-up file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
+                ?> <br><b>Note:</b> <i>Always backup .php files before making changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
                 submit_button('Save All Settings');
 
             ?> </div>
@@ -70,40 +70,52 @@
             ?> </div>
 
             <div style="display:none" id="show-help">
-                <br><div>
-                <b> Do you need help with this plugin? Here are some FAQ for you: </b> <hr>
-                <p><strong>How this plugin works?</strong>
-                <p>This plugin hooks into wordpress content area and shows last modified information of posts and pages.</p>...<br>
+                <div>
+                <h3> Do you need help with this plugin? Here are some FAQ for you: </h3><p><hr></p>
+                <p><li><strong>How this plugin works?</strong></li>
+                <p>This plugin hooks into wordpress content area and shows last modified information of posts and pages.</p>
                 
-                <p><strong>Is this plugin copmpatible with any themes?</strong>
-                <p>Yes, this plugin is compatible with any theme.</p>...<br>
+                <p><li><strong>Is this plugin copmpatible with any themes?</strong></li>
+                <p>Yes, this plugin is compatible with any theme.</p>
                 
-                <p><strong>What is the CSS class for pages?</strong>
-                <p>CSS Class for prefix is 'page-last-modified' and for date time is 'page-last-modified-td'. Add your custom style in Custom CSS Tab.</p>...<br>
+                <p><li><strong>What is the CSS class for pages?</strong></li>
+                <p>CSS Class for prefix is <code>.page-last-modified</code> and for date time is <code>.page-last-modified-td</code>. Add your custom style in Custom CSS Tab.</p>
 
-                <p><strong>What is the CSS class for posts?</strong>
-                <p>CSS Class for prefix is 'post-last-modified' and for date time is 'post-last-modified-td'. Add your custom style in Custom CSS Tab.</p>...<br>
+                <p><li><strong>What is the CSS class for posts?</strong></li>
+                <p>CSS Class for prefix is <code>.post-last-modified</code> and for date time is <code>.post-last-modified-td</code>. Add your custom style in Custom CSS Tab.</p>
 
-                <p><strong>What is the shortcode for posts?</strong>
-                <p>Shortcode is '[lmt-post-modified-info]'. Apply this on any post to show last modified info anywhere.</p>...<br>
+                <p><li><strong>What is the shortcode for posts?</strong></li>
+                <p>Shortcode is <code>[lmt-post-modified-info]</code>. Apply this on any post to show last modified info anywhere.</p>
 
-                <p><strong>What is the shortcode for pages?</strong>
-                <p>Shortcode is '[lmt-page-modified-info]'. Apply this on any page to show last modified info anywhere.</p>...<br>
+                <p><li><strong>What is the shortcode for pages?</strong></li>
+                <p>Shortcode is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
                 
-                <p><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong>
-                <p>No, this tag is not required, as it is already added.</p>...<br>
+                <p><li><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong></li>
+                <p>No, this tag is not required, as it is already added.</p>
 
-                <p><strong>How to set custom date/time format?</strong>
-                <p>Go to <a href = "https://codex.wordpress.org/Formatting_Date_and_Time" target = "_blank"> WordPress Date/Time sysntax</a> page and read instructions.</p>...<br>
+                <p><li><strong>How to set custom date/time format?</strong></li>
+                <p>Go to <a href = "https://codex.wordpress.org/Formatting_Date_and_Time" target = "_blank"> WordPress Date/Time sysntax</a> page and read instructions.</p>
 
-                <p><strong>How to use template tag functionality?</strong>
-                <p>In this case, you have to edit your theme's template files i.e. single.php, page.php etc. and add/replace default published date function with this: &nbsp;&nbsp;<p><code>&lt;?php if ( function_exists( 'get_last_modified_info' ) ) {
-				             get_last_modified_info();
-			           } ?&gt;</code></p></p>...<br>
+                <p><li><strong>How to use template tag functionality?</strong></li>
+                <p>Models the function naming convention used by WordPress for the_modified_time / get_the_modified_time and similar functions. In this case, you have to edit your theme's template files i.e. single.php, page.php etc. and add/replace default published date function with this: &nbsp;&nbsp;
+                <p><i>Displays/echos the last modified info:</i> <code>&lt;?php if ( function_exists( 'the_last_modified_info' ) ) {
+                            the_last_modified_info();
+			           } ?&gt;</code></p>       
+                <p><i>Returns the last modified info:</i> <code>&lt;?php if ( function_exists( 'get_the_last_modified_info' ) ) {
+				            get_the_last_modified_info();
+			    } ?&gt;</code></p>
+                </p></p>
 
-                <p><strong>How to display last modified info on all posts, pages column?</strong>
+                <p><li><strong>How to display last modified info on all posts, pages column?</strong></li>
                 <p>You have to enable all options in Dashboard Tab to display last modified info aand you can also sort posts and pages by last modified info.</p>
                 
+                </p><br>
+                
+                <h3> My Other WordPress Plugins </h3><p><hr></p>
+                <p><strong>Like this plugin? Check out my other WordPress plugins:</strong></p>
+                <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">WP Header & Meta Tags</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WordPress Page Extension</a></strong> - Add any page extension like .html, .php to wordpress pages.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/all-in-one-wp-solution/" target = "_blank">All In One WP Solution</a></strong> - All In One Solution / Customization for WordPress.</li>
                 <br></div>
             </div>
     

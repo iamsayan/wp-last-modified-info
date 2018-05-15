@@ -15,7 +15,6 @@ function lmt_page_admin_actions() {
 	    case 'modified':
 		    $m_orig		= get_post_field( 'post_modified', $post_id, 'raw' );
 		    $m_stamp	= strtotime( $m_orig );
-			//$modified	= date('Y/n/j @ g:i a', $m_stamp );
 			$modified	= date(get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ), $m_stamp );
 	       	    $modr_id	= get_post_meta( $post_id, '_edit_last', true );
 	       	    $auth_id	= get_post_field( 'post_author', $post_id, 'raw' );

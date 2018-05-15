@@ -29,14 +29,25 @@ function lmt_dashboard_widget_function() {
             <h3>Recently Modified</h3>
                 <ul>
 <?php
+
+$options = get_option('lmt_plugin_global_settings');
+
+    if(!empty($options['lmt_set_widget_post_num'])) {
+        $num = get_option('lmt_plugin_global_settings')['lmt_set_widget_post_num'];
+    } else {
+        $num = '5';
+    }
+
+if (isset($num)) {
 	// Show recently modified posts
 	$recently_updated_posts = new WP_Query( array(
 		'post_type'      => 'post',
-		'posts_per_page' => 5,
+		'posts_per_page' => $num,
 		'orderby'        => 'modified',
 		'no_found_rows'  => true // speed up query when we don't need pagination
-		//'category_name'  => 'uncategorized' // Only display posts from the category with the slug "news"
+		//'category_name'  => $cat// Only display posts from the category with the slug "news"
 	) );
+}
 	if ( $recently_updated_posts->have_posts() ) :
 		while( $recently_updated_posts->have_posts() ) : $recently_updated_posts->the_post(); ?>
                 <li>
