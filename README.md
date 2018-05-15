@@ -17,12 +17,15 @@ Many popular blogs and websites don’t show any date on their articles. This is
 Using this plugin, display last modified info of your wordpress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup on WordPress posts automatically.
 
 * Allows you to display Last modified information in your posts and pages individually.
-* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
+* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Inserts 'dateModified' schama markup to your WordPress posts and pages automatically.
-* Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
-* Allows you to sort posts/pages by last updated/modified info.
-* You can also add template tags to your theme files. Tag: `<?php get_last_modified_info(); ?>`
+* Inserts 'dateModified' schema markup to your WordPress posts automatically.
+* Allows you to display last modified info on all post types column and publish meta box in the dashboard.
+* Allows you to sort posts/pages of last updated/modified info.
+* Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
+* Allows you to display last modified info of all posts in the WordPress admin bar.
+* You can also add template tags to your theme files. Go to the FAQ section for more information.
+* And you can customize all and everything.
 
 ### Compatibility ###
 
@@ -36,10 +39,6 @@ This plugin is fully compatible with WordPress Version 4.4 and beyond and also c
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
 * Pull requests for documented bugs are highly appreciated.
 * If you think you’ve found a bug (e.g. you’re experiencing unexpected behavior), please post at the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
-
-### Bug reports ###
-
-Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.com/iamsayan/wp-last-modified-info). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
 
 ## Installation ##
 
@@ -124,11 +123,20 @@ Yes, you can. Just set your custom text in settings and save your changes.
 
 #### Can I use this as template tag? ####
 
-Yes, You can. In this case, you have to edit your theme's template files i.e. single.php, page.php etc. and add/replace default published date function with this:
+Yes, you can. In this case, you have to edit your theme's template files i.e. single.php, page.php etc. And add/replace default published date function with this:
 
-`<?php if ( function_exists( 'get_last_modified_info' ) ) {
-		get_last_modified_info();
-		}
+Returns the last modified info:
+
+`<?php if ( function_exists( 'get_the_last_modified_info' ) ) {
+		get_the_last_modified_info();
+	}
+?>`
+
+Displays/echos the last modified info:
+
+`<?php if ( function_exists( 'the_last_modified_info' ) ) {
+		the_last_modified_info();
+	}
 ?>`
 
 ## Changelog ##
