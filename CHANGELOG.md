@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.2
+Release Date: March 15, 2018
+
+* Added: Human Readable Time/Date format.
+* Added: Last modified info on admin bar.
+* Added: Option to set the number of posts to show on dashboard widget.
+* Added: Option to customize default 'at' date/time separator.
+* Tweak: 3 separate option merged into 1 option in dashboard options to simplify plugin settings.
+* Tweak: If a class is not set in the template tags option, then this plugin does not return any class.
+* Improved: Admin UI.
+* Minor bug fixed.
+
+## 1.2.1
+Release Date: March 13, 2018
+
+* Improved: Template Tag support.
+
 ## 2.0.0
 Release Date: March 12, 2018
 
