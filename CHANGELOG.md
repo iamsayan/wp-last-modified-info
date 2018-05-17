@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.3
+Release Date: March 17, 2018
+
+* Added: Author name support.
+* Added: Dashboard column width.
+* Added: Last modified author name in Admin bar.
+* Change last modified dashicons.
+
 ## 1.2.2
 Release Date: March 15, 2018
 
