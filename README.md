@@ -4,6 +4,8 @@
 
 Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
 
+[![WP compatibility](https://plugintests.com/plugins/wp-last-modified-info/wp-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest) [![PHP compatibility](https://plugintests.com/plugins/wp-last-modified-info/php-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest)
+
 ## Description ##
 
 ### WP Last Modified Info: the Ultimate WordPress Last Modified plugin ###
@@ -20,11 +22,12 @@ Using this plugin, display last modified info of your wordpress posts and pages.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
 * Inserts 'dateModified' schema markup to your WordPress posts automatically.
-* Allows you to display last modified info on all post types column and publish meta box in the dashboard.
+* Allows you to display last modified info on all post types column and publish meta box in the dashboard with author name.
 * Allows you to sort posts/pages of last updated/modified info.
 * Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
+* Allows you to display last modified author info in posts, pages.
 * And you can customize all and everything.
 
 ### Compatibility ###
@@ -97,9 +100,13 @@ Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
 
 `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
+`.post-modified-author`: use this class for post author.
+
 `.page-last-modified`: use this class for pages.
 
-`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
+
+`.page-modified-author`: use this class for page author.
 
 #### Can I sort posts and pages by last modified info in dashboard? ####
 
