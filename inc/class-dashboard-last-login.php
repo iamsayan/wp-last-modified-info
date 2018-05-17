@@ -22,7 +22,7 @@ function lmt_main_lastlogin($get_login_value, $login_column_name, $user_id) {
   if ( 'last-login' == $login_column_name ) {
 	$user_info = get_userdata( $user_id );
 	$last_login_info = $user_info->last_login;
-	$get_login_value = "\t{$last_login_info}\n";
+	$get_login_value = $last_login_info;
   }
 	return $get_login_value; 
 } 

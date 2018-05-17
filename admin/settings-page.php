@@ -75,18 +75,15 @@
                 <p><li><strong>How this plugin works?</strong></li>
                 <p>This plugin hooks into wordpress content area and shows last modified information of posts and pages.</p>
                 
-                <p><li><strong>Is this plugin copmpatible with any themes?</strong></li>
+                <p><li><strong>Is this plugin compatible with any themes?</strong></li>
                 <p>Yes, this plugin is compatible with any theme.</p>
                 
-                <p><li><strong>What is the CSS class for pages?</strong></li>
-                <p>CSS Class for prefix is <code>.page-last-modified</code> and for date time is <code>.page-last-modified-td</code>. Add your custom style in Custom CSS Tab.</p>
-
                 <p><li><strong>What is the CSS class for posts?</strong></li>
-                <p>CSS Class for prefix is <code>.post-last-modified</code> and for date time is <code>.post-last-modified-td</code>. Add your custom style in Custom CSS Tab.</p>
+                <p>CSS Class is <code>.post-last-modified</code>, for date time <code>.post-last-modified-td</code> and for author <code>.post-modified-author</code>. Add your custom style in Custom CSS Tab.</p>
 
-                <p><li><strong>What is the shortcode for posts?</strong></li>
-                <p>Shortcode is <code>[lmt-post-modified-info]</code>. Apply this on any post to show last modified info anywhere.</p>
-
+                <p><li><strong>What is the CSS class for pages?</strong></li>
+                <p>CSS Class is <code>.page-last-modified</code>, for date time <code>.page-last-modified-td</code> and for author <code>.page-modified-author</code>. Add your custom style in Custom CSS Tab.</p>
+          
                 <p><li><strong>What is the shortcode for pages?</strong></li>
                 <p>Shortcode is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
                 

@@ -16,16 +16,16 @@ add_action( 'profile_update', 'lmt_update_profile_modified' );
 
 function lmt_add_extra_user_column( $columns ) {
 	return array_merge( $columns,
-	array( 'last-modified' => __( 'Last Updated' ) ) );
+	array( 'last-updated' => __( 'Last Updated' ) ) );
 }
 
 add_action( 'manage_users_columns', 'lmt_add_extra_user_column' );
 
 function lmt_manage_users_custom_column( $profile_update_get_value, $profile_column_name, $user_id ) {
-	if ( 'last-modified' == $profile_column_name ) {
+	if ( 'last-updated' == $profile_column_name ) {
 		$user_info = get_userdata( $user_id );
 		$profile_last_modified = $user_info->profile_last_modified;
-		$profile_update_get_value = "\t{$profile_last_modified}\n";
+		$profile_update_get_value = $profile_last_modified;
 	}
 	return $profile_update_get_value;
 }

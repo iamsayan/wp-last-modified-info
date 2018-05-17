@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Donate link: https://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -26,11 +26,12 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
 * Inserts 'dateModified' schema markup to your WordPress posts automatically.
-* Allows you to display last modified info on all post types column and publish meta box in the dashboard.
+* Allows you to display last modified info on all post types column and publish meta box in the dashboard with author name.
 * Allows you to sort posts/pages of last updated/modified info.
 * Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
+* Allows you to display last modified author info in posts, pages.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -95,9 +96,13 @@ CSS Classes:
 
 `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
+`.post-modified-author`: use this class for post author.
+
 `.page-last-modified`: use this class for pages.
 
 `.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
+
+`.page-modified-author`: use this class for page author.
 
 = Can I sort posts and pages by last modified info in the dashboard? =
 
@@ -148,6 +153,14 @@ Use the plugin to test it.
 5. Custom CSS
 
 == Changelog ==
+
+= 1.2.3 =
+Release Date: March 17, 2018
+
+* Added: Author name support.
+* Added: Dashboard column width.
+* Added: Last modified author name in Admin bar.
+* Change last modified dashicons.
 
 = 1.2.2 =
 Release Date: March 15, 2018

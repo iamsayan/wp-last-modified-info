@@ -71,6 +71,7 @@ jQuery(document).ready(function () {
             jQuery('#custom-post-date-format').prop('disabled', false);
             jQuery('#post-show-status').prop('disabled', false);
             jQuery('#post-custom-text').prop('disabled', false);
+            jQuery('#post-sa').prop('disabled', false);
             jQuery('#post-disable-auto-insert').prop('disabled', false);
         }
         if (!jQuery('#post-enable').is(':checked')) {
@@ -84,6 +85,7 @@ jQuery(document).ready(function () {
             jQuery('#custom-post-date-format').prop('disabled', true);
             jQuery('#post-show-status').prop('disabled', true);
             jQuery('#post-custom-text').prop('disabled', true);
+            jQuery('#post-sa').prop('disabled', true);
             jQuery('#post-disable-auto-insert').prop('disabled', true);
         }
     });
@@ -102,6 +104,7 @@ jQuery(document).ready(function () {
             jQuery('#custom-page-date-format').prop('disabled', false);
             jQuery('#page-show-status').prop('disabled', false);
             jQuery('#page-custom-text').prop('disabled', false);
+            jQuery('#page-sa').prop('disabled', false);
             jQuery('#page-disable-auto-insert').prop('disabled', false);
         }
         if (!jQuery('#page-enable').is(':checked')) {
@@ -115,6 +118,7 @@ jQuery(document).ready(function () {
             jQuery('#page-dt-sep').prop('disabled', true);
             jQuery('#page-show-status').prop('disabled', true);
             jQuery('#page-custom-text').prop('disabled', true);
+            jQuery('#page-sa').prop('disabled', true);
             jQuery('#page-disable-auto-insert').prop('disabled', true);
         }
     });
@@ -125,12 +129,14 @@ jQuery(document).ready(function () {
             jQuery('#lmt-tt-human').prop('disabled', false);
             jQuery('#lmt-tt-format').prop('disabled', false);
             jQuery('#lmt-tt-updated-text').prop('disabled', false);
+            jQuery('#lmt-tt-sa').prop('disabled', false);
             jQuery('#lmt-tt-class').prop('disabled', false);
         }
         if (!jQuery('#lmt-tt').is(':checked')) {
             jQuery('#lmt-tt-human').prop('disabled', true);
             jQuery('#lmt-tt-format').prop('disabled', true);
             jQuery('#lmt-tt-updated-text').prop('disabled', true);
+            jQuery('#lmt-tt-sa').prop('disabled', true);
             jQuery('#lmt-tt-class').prop('disabled', true);
         }
     });

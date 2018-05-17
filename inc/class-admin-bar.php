@@ -11,17 +11,17 @@
 // add a link to the WP Toolbar
 function lmt_custom_toolbar_link( $wp_admin_bar ) {
 
-    if (is_singular() && is_user_logged_in()) {
+    if (is_singular() && is_user_logged_in() && (get_the_modified_time('U') > get_the_time('U'))) {
 
         global $post;
 
     $args = array(
-        'id' => 'update',
+        'id' => 'lmt-update',
         'title' => '<span class="ab-icon"></span>Updated ' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago',
-        //'href' => get_edit_post_link(), 
+        //'href' => get_admin_url() . 'edit.php?post_type=' . $post->post_type, 
         'meta' => array(
             //'class' => 'lmt-ab-icon',
-            'title' => 'This ' . $post->post_type . ' was last updated on ' . get_the_modified_time( get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) )
+            'title' => 'This ' . $post->post_type . ' was last updated on ' . get_the_modified_time( get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) . ' by ' . get_the_modified_author()
             )
     );
     
@@ -35,8 +35,8 @@ add_action('admin_bar_menu', 'lmt_custom_toolbar_link', 999);
 function lmt_add_admin_bar_object() { ?>
   <style type="text/css">
 
-  #wpadminbar #wp-admin-bar-update .ab-icon:before {
-    content: '\f463';
+  #wpadminbar #wp-admin-bar-lmt-update .ab-icon:before {
+    content: '\f469';
     top: 2px;
    }
 
