@@ -28,25 +28,25 @@ function lmt_print_last_modified_info_post( $content ) {
     $options = get_option('lmt_plugin_global_settings');
 
     if(!empty($options['lmt_custom_post_time_format'])) {
-        $updated_time = get_the_modified_time($options['lmt_custom_post_time_format']);
+        $updated_time = get_the_modified_time(esc_html($options['lmt_custom_post_time_format']));
     } else {
         $updated_time = get_the_modified_time('h:i a');
     }
 
     if(!empty($options['lmt_custom_post_date_format'])) {
-        $updated_day = get_the_modified_time($options['lmt_custom_post_date_format']);
+        $updated_day = get_the_modified_time(esc_html($options['lmt_custom_post_date_format']));
     } else {
         $updated_day = get_the_modified_time('F jS, Y');
     }
 
     if(!empty($options['lmt_post_custom_text'])) {
-        $options_post = get_option('lmt_plugin_global_settings')['lmt_post_custom_text'];
+        $options_post = esc_html(get_option('lmt_plugin_global_settings')['lmt_post_custom_text']);
     } else {
         $options_post = 'Last Updated on ';
     }
 
     if(!empty($options['lmt_post_date_time_sep'])) {
-        $options_post_sep = get_option('lmt_plugin_global_settings')['lmt_post_date_time_sep'];
+        $options_post_sep = esc_html(get_option('lmt_plugin_global_settings')['lmt_post_date_time_sep']);
     } else {
         $options_post_sep = 'at';
     }
@@ -62,38 +62,30 @@ if( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 
         if ($id = get_post_meta($post->ID, '_edit_last', true)) {
             $lmt_post_uca = ' <span class="post-modified-author">by <a href="' . get_author_posts_url($id) . '" rel="author">' . get_the_modified_author() . '</a></span>';
         }
-}
-
-
-if( isset($options['lmt_enable_human_format_cb']) && ($options['lmt_enable_human_format_cb'] == 1 ) ) {
-
-    $lmt_post_ut = human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago';
-    $lmt_post_ud = '';
-    $lmt_post_us = '';
-
-} else {
-
-    $lmt_post_ut = $updated_time;
-    $lmt_post_ud = $updated_day;
-    $lmt_post_us = ' '.$options_post_sep.' ';
-
-}       
+}  
         
-    if(isset($options_post) && (isset($lmt_post_ud) || isset($lmt_post_ut) || isset($lmt_post_us) || isset($lmt_post_uca))) {
+    if(isset($options_post) && (isset($updated_time) || isset($updated_day) || isset($lmt_post_uca) || isset($options_post_sep))) {
+
+        if( isset($options['lmt_enable_human_format_cb']) && ($options['lmt_enable_human_format_cb'] == 1 ) ) {
+
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago' . '</time>' . $lmt_post_uca . '</p>';
+        
+        } else {
 
         if( (isset($options['lmt_enable_last_modified_time_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $lmt_post_ut . '</time>' . $lmt_post_uca . '</p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
         
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) != 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $lmt_post_ud . '</time>' . $lmt_post_uca . '</p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . '</time>' . $lmt_post_uca . '</p>';
 
         } elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) == 1) ) {
 
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $lmt_post_ud . $lmt_post_us . $lmt_post_ut . '</time>' . $lmt_post_uca . '</p>';
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $updated_day . ' ' . $options_post_sep . ' ' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
 
         }
+    }
 
     }
 

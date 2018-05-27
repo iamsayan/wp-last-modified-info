@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.2.3
+Stable tag: 1.2.5
 Donate link: https://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -53,22 +53,22 @@ This plugin is fully compatible with WordPress Version 4.4 and beyond and also c
 1. Search for 'WP Last Modified Info' and install it.
 1. Or you can upload the `wp-last-modified-info` folder to the `/wp-content/plugins/` directory manually.
 1. Activate WP Last Modified Info from your Plugins page.
-1. After activation go to 'Settings > Last Modified Info'.
+1. After activation go to 'WPLMI > Last Modified Info'.
 1. Enable options and save changes.
 
 == Frequently Asked Questions ==
 
 = Is there any admin interface for this plugin? =
 
-Yes. You can access this from 'Settings > Last Modified Info'.
+Yes. You can access this from 'WP LMI > Last Modified Info'.
 
 = How to use this plugin? =
 
-Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
+Go to 'WP LMI > Last Modified Info', enable/disable options as per your need and save your changes.
 
 = How to check this plugin is working? =
 
-After enabling options in 'Settings > Last Modified Info', open any page or post and you can see the change.
+After enabling options in 'WP LMI > Last Modified Info', open any page or post and you can see the change.
 
 = How this plugin works? =
 
@@ -88,7 +88,7 @@ Yes, this plugin supports all types of custom posts.
 
 = How to customize last modified text style? =
 
-Go to 'Settings > Last Modified Info > Custom CSS' and add your custom CSS.
+Go to 'WP LMI > Last Modified Info > Custom CSS' and add your custom CSS.
 
 CSS Classes:
 
@@ -154,8 +154,26 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.2.5 =
+Release Date: May 27, 2018
+
+* Added: Ajax loading at the time of form submission.
+* Bug Fix.
+
+IMPORTANT!
+
+* Please delete all caches and press CTRL+F5 on website front-end after updating this plugin if there are some css problem.
+
+= 1.2.4 =
+Release Date: May 25, 2018
+
+* Added: Tools page - Import/Export/Reset Plugin Settings.
+* Improvement: Now it indicates which tab is active.
+* Improvement: Admin UI.
+* Bug Fix.
+
 = 1.2.3 =
-Release Date: March 17, 2018
+Release Date: May 17, 2018
 
 * Added: Author name support.
 * Added: Dashboard column width.
@@ -163,7 +181,7 @@ Release Date: March 17, 2018
 * Change last modified dashicons.
 
 = 1.2.2 =
-Release Date: March 15, 2018
+Release Date: May 15, 2018
 
 * Added: Human Readable Time/Date format.
 * Added: Last modified info on admin bar.
@@ -175,36 +193,36 @@ Release Date: March 15, 2018
 * Minor bug fixed.
 
 = 1.2.1 =
-Release Date: March 13, 2018
+Release Date: May 13, 2018
 
 * Improved: Template Tag support.
 
 = 1.2.0 =
-Release Date: March 12, 2018
+Release Date: May 12, 2018
 
 * Added: Template Tag support.
 * Minor Improvements.
 
 = 1.1.9 =
-Release Date: March 10, 2018
+Release Date: May 10, 2018
 
 * UI Improvement.
 * Bug Fix.
 
 = 1.1.8 =
-Release Date: March 10, 2018
+Release Date: May 10, 2018
 
 * Added: Dashboard widget to show Last Modified posts.
 * Improved: Schema Markup.
 
 = 1.1.6 =
-Release Date: March 7, 2018
+Release Date: May 7, 2018
 
 * Improved: Custom Post Type Support.
 * Bug Fixed.
 
 = 1.1.5 =
-Release Date: March 5, 2018
+Release Date: May 5, 2018
 
 * Improved: Schama markup.
 * Removed 'revised' meta tag output as it is no longer required.
@@ -212,26 +230,26 @@ Release Date: March 5, 2018
 * Code Cleanup.
 
 = 1.1.4 =
-Release Date: March 4, 2018
+Release Date: May 4, 2018
 
 * Added: last modified schema markup for posts.
 * Bug Fixed.
 
 = 1.1.3 =
-Release Date: March 4, 2018
+Release Date: May 4, 2018
 
 * Added: Now you can create the exception for both posts and pages.
 * Bug Fixed.
 * Cover photo update. Thanks to @svayam.
 
 = 1.1.2 =
-Release Date: March 3, 2018
+Release Date: May 3, 2018
 
 * Added: Now you can customize date/time format.
 * Bug Fixed.
 
 = 1.1.0 =
-Release Date: March 3, 2018
+Release Date: May 3, 2018
 
 * Added: All Custom Post support, including WooCommerece.
 * Now every last modified time in the dashboard shows, according to WordPress date/time format.

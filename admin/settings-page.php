@@ -15,18 +15,29 @@
         Show last update date and time on pages and posts very easily.
 		</div><hr>
  
-        <h2 class="nav-tab-wrapper">
-            <a href="#post" class="nav-tab" id="btn1">Post Options</a>
+        <h2 id="nav-container" class="nav-tab-wrapper">
+            <a href="#post" class="nav-tab active" id="btn1">Post Options</a>
             <a href="#page" class="nav-tab" id="btn2">Page Options</a>
             <a href="#dashboard" class="nav-tab" id="btn3">Dashboard Options</a>
             <a href="#template-tags" class="nav-tab" id="btn4">Template Tags</a>
             <a href="#style" class="nav-tab" id="btn5">Custom CSS</a>
             <a href="#help" class="nav-tab" id="btn6">Help</a>
         </h2>
+            <script>
+                var header = document.getElementById("nav-container");
+                var btns = header.getElementsByClassName("nav-tab");
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].addEventListener("click", function() {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                    });
+                }
+            </script>
 
     <div id="form_area">
 
-        <form id="form" method="post" action="options.php">
+        <form id="main-form" method="post" action="options.php">
         <?php
             if ( function_exists('wp_nonce_field') ) 
 	        wp_nonce_field('wp_last_modified_info'); 
@@ -68,7 +79,7 @@
                 submit_button('Save All Settings');
 
             ?> </div>
-
+            <div id="progress" style="display:none;">Please wait...</div>
             <div style="display:none" id="show-help">
                 <div>
                 <h3> Do you need help with this plugin? Here are some FAQ for you: </h3><p><hr></p>
@@ -117,7 +128,23 @@
             </div>
     
         </form>
-        
+        <div id="saveResult"></div>
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        jQuery('#main-form').submit(function() {
+                            jQuery('#progress').show().delay(3000).fadeOut();
+                            jQuery(this).ajaxSubmit({
+                                success: function() {
+                                    jQuery('#saveResult').html("<div id='saveMessage' class='successModal'></div>");
+                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wp'),ENT_QUOTES); ?></p>").show();
+                                },
+                                timeout: 4000
+                            });
+                            setTimeout("jQuery('#saveMessage').hide();", 4000);
+                            return false;
+                        });
+                    });
+                </script>
     </div>
 
 </div>

@@ -10,3 +10,6 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit; // Exit if accessed directly
 }
+
+$plugin_option = 'lmt_plugin_global_settings';
+delete_option( $plugin_option );

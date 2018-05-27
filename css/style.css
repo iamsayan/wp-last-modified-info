@@ -216,7 +216,7 @@ input:checked+.slider-tt {
 }
 
 input:focus+.slider-tt {
-  box-shadow: 0 0 1px #CCAF0B;
+  box-shadow: 0 0 1px #009a7f;
 }
 
 input:checked+.slider-tt:before {
