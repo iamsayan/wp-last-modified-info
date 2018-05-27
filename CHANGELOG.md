@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.5
+Release Date: May 27, 2018
+
+* Added: Ajax loading at the time of form submission.
+* Bug Fix.
+
+## 1.2.4
+Release Date: May 25, 2018
+
+* Added: Tools page - Import/Export/Reset Plugin Settings.
+* Improvement: Now it indicates which tab is active.
+* Improvement: Admin UI.
+* Bug Fix.
+
 ## 1.2.3
 Release Date: March 17, 2018
 
