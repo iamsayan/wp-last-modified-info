@@ -57,22 +57,22 @@ This plugin is fully compatible with WordPress Version 4.4 and beyond and also c
 1. Go to "after activation" below.
 
 ### After activation ###
-1. After activation go to 'WP LMI > Last Modified Info'.
+1. After activation go to 'Settings > Last Modified Info'.
 1. Enable/disable options and save changes.
 
 ### Frequently Asked Questions ###
 
 #### Is there any admin interface for this plugin? ####
 
-Yes. You can access this from 'WP LMI > Last Modified Info'.
+Yes. You can access this from 'Settings > Last Modified Info'.
 
 #### How to use this plugin? ####
 
-Go to 'WP LMI > Last Modified Info', enable/disable options as per your need and save your changes.
+Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
 
 #### How to check this plugin is working? ####
 
-After enable options in 'WP LMI > Last Modified Info', open any page or post and you can see the change.
+After enable options in 'Settings > Last Modified Info', open any page or post and you can see the change.
 
 #### How this plugin works? ####
 
