@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.6
+Release Date: June 9, 2018
+
+* Added: Option to enable/disable auto last modified info suport for custom post types.
+* Added: Support to add last modified info in custom fields after post/page update.
+* Tweak: Tools is now merged with plugins settings page.
+* Bug Fix.
+
 ## 1.2.5
 Release Date: May 27, 2018
 
