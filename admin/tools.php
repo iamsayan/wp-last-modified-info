@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * Plugin tools options
+ *
+ * @package   WP Last Modified Info
+ * @author    Sayan Datta
+ * @license   http://www.gnu.org/licenses/gpl.html
+ */
+
+/**
  * Process a settings export that generates a .json file of the shop settings
  */
 function lmt_process_settings_export() {
@@ -43,7 +51,7 @@ function lmt_process_settings_import() {
 	// Retrieve the settings from the file and convert the json object to an array.
 	$settings = (array) json_decode( file_get_contents( $import_file ) );
     update_option( 'lmt_plugin_global_settings', $settings );
-    //wp_safe_redirect( admin_url( 'admin.php?page=wp-last-modified-info' ) ); exit;
+    //wp_safe_redirect( admin_url( 'options-general.php?page=wp-last-modified-info' ) ); exit;
     function lmt_import_success_notice(){
         echo '<div class="notice notice-success is-dismissible">
                  <p><strong>Success! Plugin Settings has been imported successfully.</strong></p>
@@ -74,4 +82,6 @@ function lmt_remove_plugin_settings() {
     add_action('admin_notices', 'lmt_settings_reset_success_notice'); 
 }
 add_action( 'admin_init', 'lmt_remove_plugin_settings' );
+
+
 ?>

@@ -7,8 +7,10 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-if( isset($options['lmt_use_as_sc_page_cb']) && ($options['lmt_use_as_sc_page_cb'] == 1 ) ) {
-    add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');
+add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');
+
+if( isset($options['lmt_use_as_sc_page_cb']) && ( $options['lmt_use_as_sc_page_cb'] == 1 ) ) {
+    return;
 } else {
 
     function lmt_page_exception_id() {
@@ -62,6 +64,8 @@ if( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_pag
     global $post;
         if ($id = get_post_meta($post->ID, '_edit_last', true)) {
             $lmt_page_uca = ' <span class="page-modified-author">by <a href="' . get_author_posts_url($id) . '" rel="author">' . get_the_modified_author() . '</a></span>';
+        } else {
+            $lmt_page_uca = '';
         }
 }       
         

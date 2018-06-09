@@ -7,15 +7,24 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-if( isset($options['lmt_use_as_sc_cb']) && ($options['lmt_use_as_sc_cb'] == 1 ) ) {
-    add_shortcode('lmt-post-modified-info', 'lmt_print_last_modified_info_post');
+add_shortcode('lmt-post-modified-info', 'lmt_print_last_modified_info_post');
+
+if( isset($options['lmt_use_as_sc_cb']) && ( $options['lmt_use_as_sc_cb'] == 1 ) ) {
+    return;
 } else {
 
     function lmt_post_exception_id() {
       
         $options = get_option('lmt_plugin_global_settings');
-        if ( !is_single ( array_map('trim', explode(',', $options['lmt_post_disable_auto_insert'])) ) ) { 
-            add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
+
+        if( isset($options['lmt_enable_custom_post_types']) && ($options['lmt_enable_custom_post_types'] == 'Yes' ) ) {
+            if ( !is_single ( array_map('trim', explode(',', $options['lmt_post_disable_auto_insert'])) ) ) { 
+                add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
+            }
+        } else {
+            if ( is_singular( 'post' ) && !is_single ( array_map('trim', explode(',', $options['lmt_post_disable_auto_insert'])) )) { 
+                add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
+            }
         }
     }
 
@@ -61,6 +70,8 @@ if( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 
     global $post;
         if ($id = get_post_meta($post->ID, '_edit_last', true)) {
             $lmt_post_uca = ' <span class="post-modified-author">by <a href="' . get_author_posts_url($id) . '" rel="author">' . get_the_modified_author() . '</a></span>';
+        } else {
+            $lmt_post_uca = '';
         }
 }  
         

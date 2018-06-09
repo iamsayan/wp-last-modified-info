@@ -61,6 +61,8 @@ function get_the_last_modified_info () {
     //returns the last modified info
     if (get_the_modified_time('U') > get_the_time('U')) {    
         return $lmt_template_tag;
+    } else {
+        return;
     }
 }
 

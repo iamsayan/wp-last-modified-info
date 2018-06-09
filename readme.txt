@@ -1,14 +1,14 @@
 === WP Last Modified Info ===
 Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
-Requires at least: 4.4
+Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.2.5
-Donate link: https://bit.ly/2I0Gj60
+Stable tag: 1.2.6
+Donate link: https://www.paypal.me/iamsayan
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.5 and beyond.
 
 == Description ==
 
@@ -36,7 +36,7 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 
 #### Compatibility
 
-This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any WordPress theme.
+This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums at wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -53,22 +53,22 @@ This plugin is fully compatible with WordPress Version 4.4 and beyond and also c
 1. Search for 'WP Last Modified Info' and install it.
 1. Or you can upload the `wp-last-modified-info` folder to the `/wp-content/plugins/` directory manually.
 1. Activate WP Last Modified Info from your Plugins page.
-1. After activation go to 'WPLMI > Last Modified Info'.
+1. After activation go to 'Settings > Last Modified Info'.
 1. Enable options and save changes.
 
 == Frequently Asked Questions ==
 
 = Is there any admin interface for this plugin? =
 
-Yes. You can access this from 'WP LMI > Last Modified Info'.
+Yes. You can access this from 'Settings > Last Modified Info'.
 
 = How to use this plugin? =
 
-Go to 'WP LMI > Last Modified Info', enable/disable options as per your need and save your changes.
+Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
 
 = How to check this plugin is working? =
 
-After enabling options in 'WP LMI > Last Modified Info', open any page or post and you can see the change.
+After enabling options in 'Settings > Last Modified Info', open any page or post and you can see the change.
 
 = How this plugin works? =
 
@@ -88,7 +88,7 @@ Yes, this plugin supports all types of custom posts.
 
 = How to customize last modified text style? =
 
-Go to 'WP LMI > Last Modified Info > Custom CSS' and add your custom CSS.
+Go to 'Settings > Last Modified Info > Custom CSS' and add your custom CSS.
 
 CSS Classes:
 
@@ -154,15 +154,23 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.2.6 =
+Release Date: June 9, 2018
+
+* Added: Option to enable/disable auto last modified info suport for custom post types.
+* Added: Support to add last modified info in custom fields after post/page update.
+* Tweak: Tools is now merged with plugins settings page.
+* Bug Fix.
+
+IMPORTANT!
+
+* Please delete all caches and press CTRL+F5 on website front-end/back-end after updating this plugin if there are some css problem.
+
 = 1.2.5 =
 Release Date: May 27, 2018
 
 * Added: Ajax loading at the time of form submission.
 * Bug Fix.
-
-IMPORTANT!
-
-* Please delete all caches and press CTRL+F5 on website front-end after updating this plugin if there are some css problem.
 
 = 1.2.4 =
 Release Date: May 25, 2018

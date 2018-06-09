@@ -5,6 +5,7 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").hide();
         jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").hide();
 
     });
@@ -15,6 +16,7 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").hide();
         jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").hide();
 
     });
@@ -25,6 +27,7 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").show();
         jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").hide();
 
     });
@@ -35,6 +38,7 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").hide();
         jQuery("#show-tt").show();
         jQuery("#show-style-area").hide();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").hide();
 
     });
@@ -45,6 +49,7 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").hide();
         jQuery("#show-tt").hide();
         jQuery("#show-style-area").show();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").hide();
 
     });
@@ -55,6 +60,18 @@ jQuery(document).ready(function () {
         jQuery("#show-dashboard").hide();
         jQuery("#show-tt").hide();
         jQuery("#show-style-area").hide();
+        jQuery("#show-tools").show();
+        jQuery("#show-help").hide();
+
+    });
+
+    jQuery("#btn7").click(function () {
+        jQuery("#show-post").hide();
+        jQuery("#show-page").hide();
+        jQuery("#show-dashboard").hide();
+        jQuery("#show-tt").hide();
+        jQuery("#show-style-area").hide();
+        jQuery("#show-tools").hide();
         jQuery("#show-help").show();
 
     });

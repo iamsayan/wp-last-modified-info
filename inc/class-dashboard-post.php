@@ -13,17 +13,17 @@ function lmt_post_admin_actions() {
         
         switch ( $column ) {
         case 'modified':
-            $m_orig		= get_post_field( 'post_modified', $post_id, 'raw' );
-            $m_stamp	= strtotime( $m_orig );
-            $modified	= date(get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ), $m_stamp );
+            $m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
+            $m_stamp = strtotime( $m_orig );
+            $modified = date(get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ), $m_stamp );
                    $modr_id	= get_post_meta( $post_id, '_edit_last', true );
                    $auth_id	= get_post_field( 'post_author', $post_id, 'raw' );
                    $user_id	= !empty( $modr_id ) ? $modr_id : $auth_id;
-                   $user_info	= get_userdata( $user_id );
+                   $user_info = get_userdata( $user_id );
         
                    echo '<p class="lmt-mod-date">';
-                   echo ''.$modified.'<br />';
-                   echo 'by <strong>'.$user_info->display_name.'<strong>';
+                   echo '' . $modified . '<br>';
+                   echo 'by <strong>' . $user_info->display_name . '<strong>';
                    echo '</p>';
             break;
         // end all case breaks
