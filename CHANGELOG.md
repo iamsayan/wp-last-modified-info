@@ -1,12 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.7
+Release Date: June 20, 2018
+
+* Added: Now Last updated info now shows as post updated message.
+* Improved: Dropdown loading using Select2.
+* Improved: Custom Post Types Support. Now it is possible to select custom post types individually.
+* Tweak: Now it is possible to disable auto insert for particular post/page from edit screen.
+* Tweak: Remove 'Disable auto insert' fields to simplify plugin settings.
+* Tweak: Active tab is now depends on url parameter also.
+* Tweak: Last modified value will automatically be added into custom fields if 'Show Last Modified Info on Dashboard' option is on.
+* Bug Fix.
+
 ## 1.2.6
 Release Date: June 9, 2018
 
 * Added: Option to enable/disable auto last modified info suport for custom post types.
 * Added: Support to add last modified info in custom fields after post/page update.
 * Tweak: Tools is now merged with plugins settings page.
+* Fixed a typo in plugin description. Thanks to @buzztone.
 * Bug Fix.
 
 ## 1.2.5
