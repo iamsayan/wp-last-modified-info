@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.8
+Release Date: June 20, 2018
+
+* Fix: Error notice after plugin update.
+* Fix: Shortcode does not work properly if 'Using Shortcode' method is enabled.
+
 ## 1.2.7
 Release Date: June 20, 2018
 
