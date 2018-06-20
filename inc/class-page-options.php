@@ -31,7 +31,7 @@ if( isset($options['lmt_show_last_modified_time_date_page']) && ( $options['lmt_
         if( !is_object($post) ) 
         return;
 
-        if ( !get_post_meta( $post->ID, '_lmt_disable', true ) == 'yes' ) { 
+        if ( is_page() && !get_post_meta( $post->ID, '_lmt_disable', true ) == 'yes' ) { 
             add_filter( 'the_content', 'lmt_print_last_modified_info_page' );
         }
     }
@@ -94,33 +94,24 @@ function lmt_print_last_modified_info_page( $content ) {
         }
     }
 
-    if( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'Before Content') ) {
-        
-        if(get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page)) {
-            $fullcontent_page = $modified_content_page . $content;
-        } else {
-            $fullcontent_page = $content;
-        }
-        return $fullcontent_page;
-              
-    } elseif( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'After Content') ) {
-        
-        if(get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page)) {
-            $fullcontent_page = $content . $modified_content_page;
-        } else {
-            $fullcontent_page = $content;
-        }
-        return $fullcontent_page;  
+    if( get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page) ) {
 
-    } elseif( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'Do not show') ) {
+        if( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'Before Content') ) {
         
-        if(get_the_modified_time('U') > get_the_time('U') && is_page() && isset($modified_content_page)) {
+            $fullcontent_page = $modified_content_page . $content;
+
+        } elseif( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'After Content') ) {
+        
+            $fullcontent_page = $content . $modified_content_page;
+            
+        } elseif( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'Using Shortcode') ) {
+        
             $fullcontent_page = $modified_content_page;
-        } else {
-            $fullcontent_page = $content;
-        }
-        return $fullcontent_page; 
+        } 
+    } else {
+        $fullcontent_page = $content;
     }
+    return $fullcontent_page; 
 }
 
 add_shortcode('lmt-page-modified-info', 'lmt_print_last_modified_info_page');

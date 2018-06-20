@@ -101,11 +101,11 @@ function lmt_show_author_cb_display() {
     <?php
 }
 
-function lmt_enable_custom_post_types_display() {
+function lmt_custom_post_types_list_display() {
     $options = get_option('lmt_plugin_global_settings');
     
-    if(!isset($options['lmt_enable_custom_post_types'])){
-        $options['lmt_enable_custom_post_types'][] = '';
+    if(!isset($options['lmt_custom_post_types_list'])){
+        $options['lmt_custom_post_types_list'][] = '';
     }
 
     $post_types = get_post_types(array(
@@ -113,14 +113,14 @@ function lmt_enable_custom_post_types_display() {
         '_builtin' => false
     ), 'names'); 
 
-    echo "<select id='cpt' name='lmt_plugin_global_settings[lmt_enable_custom_post_types][]' multiple='multiple' style='width:60%;'>";
+    echo "<select id='cpt' name='lmt_plugin_global_settings[lmt_custom_post_types_list][]' multiple='multiple' style='width:60%;'>";
     foreach($post_types as $item) {
-        $selected = in_array( $item, $options['lmt_enable_custom_post_types'] ) ? ' selected="selected" ' : '';
+        $selected = in_array( $item, $options['lmt_custom_post_types_list'] ) ? ' selected="selected" ' : '';
         echo "<option value='$item' $selected>$item</option>";
     }
     echo "</select>";
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="Select custom post types to show last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="Select custom post types to show last modified info on selected post types only."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

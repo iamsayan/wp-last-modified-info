@@ -33,17 +33,12 @@ if( isset($options['lmt_show_last_modified_time_date_post']) && ( $options['lmt_
         if( !is_object($post) ) 
         return;
 
-       /* if( isset($options['lmt_enable_custom_post_types']) && ($options['lmt_enable_custom_post_types'] == 'Enable' ) ) {
-            if ( !get_post_meta( $post->ID, '_lmt_disable', true ) == 'yes' ) { 
-                add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
-            }
-        } */
         if ( is_singular( 'post' ) && !get_post_meta( $post->ID, '_lmt_disable', true ) == 'yes' ) { 
             add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
         }
         
-        if( isset($options['lmt_enable_custom_post_types']) ) {
-            $post_types = $options['lmt_enable_custom_post_types'];
+        if( isset($options['lmt_custom_post_types_list']) ) {
+            $post_types = $options['lmt_custom_post_types_list'];
             foreach($post_types as $item) {
                 if ( is_singular( $item ) && !get_post_meta( $post->ID, '_lmt_disable', true ) == 'yes' ) { 
                     add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
@@ -110,33 +105,24 @@ function lmt_print_last_modified_info_post( $content ) {
         }
     }
 
-    if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Before Content') ) {
-        
-        if(get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content)) {
-            $fullcontent = $modified_content . $content;
-        } else {
-            $fullcontent = $content;
-        }
-        return $fullcontent;
-              
-    } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'After Content') ) {
-        
-        if(get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content)) {
-            $fullcontent = $content . $modified_content;
-        } else {
-            $fullcontent = $content;
-        }
-        return $fullcontent;
+    if( get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content) ) {
 
-    } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Do not show') ) {
+        if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Before Content') ) {
         
-        if(get_the_modified_time('U') > get_the_time('U') && is_single() && isset($modified_content)) {
+            $fullcontent = $modified_content . $content; 
+
+        } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'After Content') ) {
+
+            $fullcontent = $content . $modified_content;
+            
+        } elseif( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'Using Shortcode') ) {
+        
             $fullcontent = $modified_content;
-        } else {
-            $fullcontent = $content;
         }
-        return $fullcontent;   
+    } else {
+        $fullcontent = $content;
     }
+    return $fullcontent;
 }
 
 add_shortcode('lmt-post-modified-info', 'lmt_print_last_modified_info_post');

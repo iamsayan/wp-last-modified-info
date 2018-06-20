@@ -3,7 +3,7 @@
 Plugin Name: WP Last Modified Info
 Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
 Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere.
-Version: 1.2.7
+Version: 1.2.8
 Author: Sayan Datta
 Author URI: https://profiles.wordpress.org/infosatech/
 License: GPLv3
@@ -222,13 +222,14 @@ function lmt_post_updated_messages( $messages ) {
 
     global $post, $post_id;
     $obj = get_post_type_object( get_post_type( $post ) );
-
-    $post_types = get_post_types(array(
-        'public'   => true
-    ), 'names'); 
     
+    $args = array(
+        'public'   => true,
+        //'_builtin' => false
+    );
+    $post_types = get_post_types( $args, 'names'); 
     foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( ucfirst( $obj->capability_type ) ) . ' updated on <strong>' . get_the_modified_time( get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) . '</strong>. ' . sprintf( __('<a href="%s">View ' . $obj->capability_type . '</a>'), esc_url( get_permalink( $post_id ) ) );
+        $messages[$screen][1] = esc_html( $obj->labels->singular_name ) . ' updated on <strong>' . get_the_modified_time( get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) . '</strong>. ' . sprintf( __('<a href="%s">View ' . $obj->capability_type . '</a>'), esc_url( get_permalink( $post_id ) ) );
     }
     return $messages;
 

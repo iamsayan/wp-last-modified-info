@@ -1,9 +1,9 @@
 === WP Last Modified Info ===
 Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
-Requires at least: 3.5.0
+Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 Donate link: https://www.paypal.me/iamsayan
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -148,16 +148,22 @@ Use the plugin to test it.
 == Screenshots ==
 
 1. Show last modified info on frontend
-2. Post / Page / Custom post types admin column: Last Modified column with author name.
-3. Added last modified/updated info on post/page publish box and in post updated message.
-4. Auto generate last modified info in custom fields after post/page save.
-5. Last modified posts widgets in dashboard.
-6. Post Options
-7. Page Options
-8. Dashboard Options
+2. Google Structured data result
+3. Post / Page / Custom post types admin column: Last Modified column with author name.
+4. Added last modified/updated info on post/page publish box and in post updated message.
+5. Auto generate last modified info in custom fields after post/page save.
+6. Last modified posts widgets in dashboard.
+7. Post Options
+8. Page Options
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.2.8 =
+Release Date: June 20, 2018
+
+* Fix: Error notice after plugin update.
+* Fix: Shortcode does not work properly if 'Using Shortcode' method is enabled.
 
 = 1.2.7 =
 Release Date: June 20, 2018

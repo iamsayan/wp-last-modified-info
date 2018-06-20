@@ -36,8 +36,8 @@ if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last
     
     add_action( 'add_meta_boxes_post', 'lmt_add_post_meta_boxes' );
 
-    if( isset($options['lmt_enable_custom_post_types']) ) {
-        $post_types = $options['lmt_enable_custom_post_types'];
+    if( isset($options['lmt_custom_post_types_list']) ) {
+        $post_types = $options['lmt_custom_post_types_list'];
         foreach($post_types as $item) {
             add_action( "add_meta_boxes_{$item}", "lmt_add_meta_boxes" );
         }

@@ -23,7 +23,7 @@ function lmt_plug_settings_page() {
         add_settings_field("lmt_show_last_modified_time_date_post", "<label for='post-show-status'>Last Modified Info Display Method:</label>", "lmt_show_last_modified_time_date_post_display", "lmt_post_option", "lmt_post_option_section");
         add_settings_field("lmt_post_custom_text", "<label for='post-custom-text'>Custom Message to Display on Posts:</label>", "lmt_post_custom_text_display", "lmt_post_option", "lmt_post_option_section"); 
         add_settings_field("lmt_show_author_cb", "<label for='post-sa'>Display Last Modified Author Name:</label>", "lmt_show_author_cb_display", "lmt_post_option", "lmt_post_option_section");  
-        add_settings_field("lmt_enable_custom_post_types", "<label for='cpt'>Select Custom Post Types (if any):</label>", "lmt_enable_custom_post_types_display", "lmt_post_option", "lmt_post_option_section");  
+        add_settings_field("lmt_custom_post_types_list", "<label for='cpt'>Select Custom Post Types (if any):</label>", "lmt_custom_post_types_list_display", "lmt_post_option", "lmt_post_option_section");  
         
     // start page fields
     add_settings_section("lmt_page_option_section", "Page Options<p><hr></p>", null, "lmt_page_option");    
@@ -40,7 +40,7 @@ function lmt_plug_settings_page() {
         
     // start dashboard fields
     add_settings_section("lmt_dashboard_option_section", "Dashboard Options<p><hr></p>", null, "lmt_dashboard_option");
-        add_settings_field("lmt_enable_on_dashboard_cb", "<label for='dashboard-display'>Display Last Modified Info on Dashboard:</label>", "lmt_enable_on_dashboard_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
+        add_settings_field("lmt_enable_on_dashboard_cb", "<label for='dashboard-display'>Show Last Modified Info on Dashboard:</label>", "lmt_enable_on_dashboard_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");  
         add_settings_field("lmt_enable_on_admin_bar_cb", "<label for='admin-bar-display'>Show Last Modified Info on Admin Bar:</label>", "lmt_enable_on_admin_bar_cb_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
         add_settings_field("lmt_set_widget_post_num", "<label for='widget-post-no'>Posts to Show on Dashboard Widget:</label>", "lmt_set_widget_post_num_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
         add_settings_field("lmt_custom_field_format", "<label for='custom-dtf'>Date/Time Format on Custom Field:</label>", "lmt_custom_field_format_display", "lmt_dashboard_option", "lmt_dashboard_option_section");
