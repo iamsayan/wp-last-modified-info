@@ -15,8 +15,7 @@ function lmt_update_profile_modified( $user_id ) {
 add_action( 'profile_update', 'lmt_update_profile_modified' );
 
 function lmt_add_extra_user_column( $columns ) {
-	return array_merge( $columns,
-	array( 'last-updated' => __( 'Last Updated' ) ) );
+	return array_merge( $columns, array( 'last-updated' => __( 'Last Updated' ) ) );
 }
 
 add_action( 'manage_users_columns', 'lmt_add_extra_user_column' );

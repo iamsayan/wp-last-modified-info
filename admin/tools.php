@@ -42,11 +42,11 @@ function lmt_process_settings_import() {
     $extension = explode( '.', $_FILES['import_file']['name'] );
     $file_extension = end($extension);
 	if( $file_extension != 'json' ) {
-		wp_die( __( 'Please upload a valid .json file' ) );
+		wp_die( __( 'Please upload a valid .json file to import settings in this website.' ) );
 	}
 	$import_file = $_FILES['import_file']['tmp_name'];
 	if( empty( $import_file ) ) {
-		wp_die( __( 'Please upload a file to import' ) );
+		wp_die( __( 'Please upload a file to import.' ) );
 	}
 	// Retrieve the settings from the file and convert the json object to an array.
 	$settings = (array) json_decode( file_get_contents( $import_file ) );

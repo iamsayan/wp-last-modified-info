@@ -1,4 +1,11 @@
 <?php
+/**
+ * Load settings fields
+ *
+ * @package   WP Last Modified Info
+ * @author    Sayan Datta
+ * @license   http://www.gnu.org/licenses/gpl.html
+ */
 
 /* ============================================================================================== 
                                            post options
@@ -9,25 +16,6 @@ function lmt_enable_last_modified_cb_display() {
         <input type="checkbox" id="post-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_cb'])); ?> /> 
         <div class="slider round"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
-}
-
-function lmt_enable_custom_post_types_display() {
-    $options = get_option('lmt_plugin_global_settings');
-    
-    if(!isset($options['lmt_enable_custom_post_types'])){
-        $options['lmt_enable_custom_post_types'] = 'Yes';
-    }
-
-    $items = array("Yes", "No");
-    echo "<select id='cpt' name='lmt_plugin_global_settings[lmt_enable_custom_post_types]'>";
-    foreach($items as $item) {
-        $selected = ($options['lmt_enable_custom_post_types'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
-    }
-    echo "</select>";
-    ?>
-    &nbsp;&nbsp;<span class="tooltip" title="Enable/Disable support for custom post types to show last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
 }
 
 function lmt_enable_human_format_cb_display() {
@@ -76,15 +64,15 @@ function lmt_show_last_modified_time_date_post_display() {
         $options['lmt_show_last_modified_time_date_post'] = 'Before Content';
     }
 
-    $items = array("Before Content", "After Content");
-    echo "<select id='post-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]'>";
+    $items = array("Before Content", "After Content", "Using Shortcode");
+    echo "<select id='post-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]' style='width:18%;'>";
     foreach($items as $item) {
         $selected = ($options['lmt_show_last_modified_time_date_post'] == $item) ? 'selected="selected"' : '';
         echo "<option value='$item' $selected>$item</option>";
     }
     echo "</select>";
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="Select where you want to show last modified info on a single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i>Shortcode: <code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -102,7 +90,7 @@ function lmt_show_author_cb_display() {
     }
 
     $items = array("Do not show", "Show only", "Show with Link");
-    echo "<select id='post-sa' name='lmt_plugin_global_settings[lmt_show_author_cb]'>";
+    echo "<select id='post-sa' name='lmt_plugin_global_settings[lmt_show_author_cb]' style='width:16%;'>";
     foreach($items as $item) {
         $selected = ($options['lmt_show_author_cb'] == $item) ? 'selected="selected"' : '';
         echo "<option value='$item' $selected>$item</option>";
@@ -113,16 +101,26 @@ function lmt_show_author_cb_display() {
     <?php
 }
 
-function lmt_use_as_sc_cb_display() {
-    ?>  <label class="switch">
-        <input type="checkbox" id="post-sc" name="lmt_plugin_global_settings[lmt_use_as_sc_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_use_as_sc_cb'])); ?> /> 
-        <div class="slider round"></div></label>&nbsp;&nbsp;Shortcode: <code>[lmt-post-modified-info]</code>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on posts using only shortcode. It will disable auto insert process."><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
+function lmt_enable_custom_post_types_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if(!isset($options['lmt_enable_custom_post_types'])){
+        $options['lmt_enable_custom_post_types'][] = '';
+    }
 
-function lmt_post_disable_auto_insert_display() {
-    ?>  <textarea id="post-disable-auto-insert" placeholder="Enter comma separated list of Post IDs to exclude them from auto insert process." name="lmt_plugin_global_settings[lmt_post_disable_auto_insert]" rows="3" cols="60" style="width:60%"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_post_disable_auto_insert'])) { echo get_option('lmt_plugin_global_settings')['lmt_post_disable_auto_insert']; } ?></textarea>
-        &nbsp;&nbsp;<span class="tooltip" title="Enter comma separated list of Post IDs to exclude them from auto insert process."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    $post_types = get_post_types(array(
+        'public'   => true,
+        '_builtin' => false
+    ), 'names'); 
+
+    echo "<select id='cpt' name='lmt_plugin_global_settings[lmt_enable_custom_post_types][]' multiple='multiple' style='width:60%;'>";
+    foreach($post_types as $item) {
+        $selected = in_array( $item, $options['lmt_enable_custom_post_types'] ) ? ' selected="selected" ' : '';
+        echo "<option value='$item' $selected>$item</option>";
+    }
+    echo "</select>";
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="Select custom post types to show last modified info."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -183,15 +181,15 @@ function lmt_show_last_modified_time_date_page_display() {
         $options['lmt_show_last_modified_time_date_page'] = 'Before Content';
     }
 
-    $items = array("Before Content", "After Content");
-    echo "<select id='page-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]'>";
+    $items = array("Before Content", "After Content", "Using Shortcode");
+    echo "<select id='page-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]' style='width:18%;'>";
     foreach($items as $item) {
         $selected = ($options['lmt_show_last_modified_time_date_page'] == $item) ? 'selected="selected"' : '';
         echo "<option value='$item' $selected>$item</option>";
     }
     echo "</select>";
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="Select where you want to show last modified info on a single page."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i>Shortcode: <code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
  
@@ -209,7 +207,7 @@ function lmt_show_author_page_cb_display() {
     }
 
     $items = array("Do not show", "Show only", "Show with Link");
-    echo "<select id='page-sa' name='lmt_plugin_global_settings[lmt_show_author_page_cb]'>";
+    echo "<select id='page-sa' name='lmt_plugin_global_settings[lmt_show_author_page_cb]' style='width:16%;'>";
     foreach($items as $item) {
         $selected = ($options['lmt_show_author_page_cb'] == $item) ? 'selected="selected"' : '';
         echo "<option value='$item' $selected>$item</option>";
@@ -220,19 +218,6 @@ function lmt_show_author_page_cb_display() {
     <?php
 }
 
-function lmt_use_as_sc_page_cb_display() {
-    ?>  <label class="switch-pg">
-        <input type="checkbox" id="page-sc" name="lmt_plugin_global_settings[lmt_use_as_sc_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_use_as_sc_page_cb'])); ?> /> 
-        <div class="slider-pg round-pg"></div></label>&nbsp;&nbsp;Shortcode: <code>[lmt-page-modified-info]</code>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages using shortcode. It will disable auto insert function."><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
-function lmt_page_disable_auto_insert_display() {
-    ?>  <textarea id="page-disable-auto-insert" placeholder="Enter comma separated list of Page IDs to exclude them from auto insert process." name="lmt_plugin_global_settings[lmt_page_disable_auto_insert]" rows="3" cols="60" style="width:60%"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_page_disable_auto_insert'])) { echo get_option('lmt_plugin_global_settings')['lmt_page_disable_auto_insert']; } ?></textarea>
-        &nbsp;&nbsp;<span class="tooltip" title="Enter comma separated list of Post IDs to exclude them from auto insert process."><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
 /* ============================================================================================== 
                                            dashboard options
 ============================================================================================== */
@@ -240,7 +225,7 @@ function lmt_page_disable_auto_insert_display() {
 function lmt_enable_on_dashboard_cb_display() {
     ?>  <label class="switch-db">
         <input type="checkbox" id="dashboard-display" name="lmt_plugin_global_settings[lmt_enable_on_dashboard_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_on_dashboard_cb'])); ?> /> 
-        <div class="slider-db round-db"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to display last modified info on all posts, pages admin column, publish meta box and on the dashboard widget."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <div class="slider-db round-db"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to display last modified info on all posts, pages admin column, publish meta box, on the dashboard widget and save last modified info in custom field of every posts/pages."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -252,20 +237,13 @@ function lmt_enable_on_admin_bar_cb_display() {
 }
 
 function lmt_set_widget_post_num_display() {
-    ?>  <input id="widget-post-no" name="lmt_plugin_global_settings[lmt_set_widget_post_num]" type="number" size="8" style="width:8%;" placeholder="5" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_set_widget_post_num'])) { echo get_option('lmt_plugin_global_settings')['lmt_set_widget_post_num']; } ?>" />
+    ?>  <input id="widget-post-no" name="lmt_plugin_global_settings[lmt_set_widget_post_num]" type="number" size="6" style="width:6%;" placeholder="5" min="3" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_set_widget_post_num'])) { echo get_option('lmt_plugin_global_settings')['lmt_set_widget_post_num']; } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="Set the number of posts you want to display on dashboard widget."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
-function lmt_enable_custom_field_cb_display() {
-    ?>  <label class="switch-db">
-        <input type="checkbox" id="custom-field" name="lmt_plugin_global_settings[lmt_enable_custom_field_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_custom_field_cb'])); ?> /> 
-        <div class="slider-db round-db"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to use last modified date/time dynamically using custom fields. After enabling this, update/create any post and it will automatically create a custom field containg last modified date/time."><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
 function lmt_custom_field_format_display() {
-    ?>  <input id="custom-dtf" name="lmt_plugin_global_settings[lmt_custom_field_format]" type="text" size="14" style="width:14%;" placeholder="F jS, Y @ h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_field_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_field_format']; } ?>" />
+    ?>  <input id="custom-dtf" name="lmt_plugin_global_settings[lmt_custom_field_format]" type="text" size="12" style="width:12%;" placeholder="F jS, Y @ h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_field_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_field_format']; } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="You can set custom date/time format to show last modified info in a custom field."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -308,7 +286,7 @@ function lmt_show_author_tt_cb_display() {
     }
 
     $items = array("Do not show", "Show only", "Show with Link");
-    echo "<select id='lmt-tt-sa' name='lmt_plugin_global_settings[lmt_show_author_tt_cb]'>";
+    echo "<select id='lmt-tt-sa' name='lmt_plugin_global_settings[lmt_show_author_tt_cb]' style='width:16%;'>";
     foreach($items as $item) {
         $selected = ($options['lmt_show_author_tt_cb'] == $item) ? 'selected="selected"' : '';
         echo "<option value='$item' $selected>$item</option>";
@@ -331,7 +309,7 @@ function lmt_tt_class_box_display() {
 function lmt_custom_style_box_display() {
     ?>
     <textarea id="lmt-cus-style" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
-    <?php
+    <br><small>Do not add <strong>'&lt;style&gt; &lt;/style&gt;'</strong> tag. This tag is not required, as it is already added.</small><?php
 }
 
 

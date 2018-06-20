@@ -1,14 +1,14 @@
 === WP Last Modified Info ===
 Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
-Requires at least: 3.5
+Requires at least: 3.5.0
 Tested up to: 4.9
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 Donate link: https://www.paypal.me/iamsayan
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.5 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.2 and beyond.
 
 == Description ==
 
@@ -32,11 +32,12 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Allows you to display last modified author info in posts, pages.
+* Allows you to add last modified timestamp in post/page's custom field.
 * And you can customize all and everything.
 
 #### Compatibility
 
-This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+This plugin is fully compatible with WordPress Version 3.2 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums at wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -146,13 +147,33 @@ Use the plugin to test it.
 
 == Screenshots ==
 
-1. Post Options
-2. Page Options
-3. Dashboard Options
-4. Template Tag Options
-5. Custom CSS
+1. Show last modified info on frontend
+2. Post / Page / Custom post types admin column: Last Modified column with author name.
+3. Added last modified/updated info on post/page publish box and in post updated message.
+4. Auto generate last modified info in custom fields after post/page save.
+5. Last modified posts widgets in dashboard.
+6. Post Options
+7. Page Options
+8. Dashboard Options
+9. Template Tag Options
 
 == Changelog ==
+
+= 1.2.7 =
+Release Date: June 20, 2018
+
+* Added: Now Last updated info now shows as post updated message.
+* Improved: Dropdown loading using Select2.
+* Improved: Custom Post Types Support. Now it is possible to select custom post types individually.
+* Tweak: Now it is possible to disable auto insert for particular post/page from edit screen.
+* Tweak: Remove 'Disable auto insert' fields to simplify plugin settings.
+* Tweak: Active tab is now depends on url parameter also.
+* Tweak: Last modified value will automatically be added into custom fields if 'Show Last Modified Info on Dashboard' option is on.
+* Bug Fix.
+
+IMPORTANT!
+
+* Please delete all caches and press CTRL+F5 on website front-end/back-end after updating this plugin if there is any css/js problem.
 
 = 1.2.6 =
 Release Date: June 9, 2018
@@ -160,11 +181,8 @@ Release Date: June 9, 2018
 * Added: Option to enable/disable auto last modified info suport for custom post types.
 * Added: Support to add last modified info in custom fields after post/page update.
 * Tweak: Tools is now merged with plugins settings page.
+* Fixed a typo in plugin description. Thanks to @buzztone.
 * Bug Fix.
-
-IMPORTANT!
-
-* Please delete all caches and press CTRL+F5 on website front-end/back-end after updating this plugin if there are some css problem.
 
 = 1.2.5 =
 Release Date: May 27, 2018

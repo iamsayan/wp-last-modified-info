@@ -10,21 +10,16 @@
 
 <div class="wrap">
     <h1> WP Last Modified Info Settings </h1>
-
-		<div>
-        Show last update date and time on pages and posts very easily.
-		</div><hr>
- 
-        <p id="nav-container" class="nav-tab-wrapper">
-            <a href="#post" class="nav-tab active" id="btn1">Post Options</a>
-            <a href="#page" class="nav-tab" id="btn2">Page Options</a>
-            <a href="#dashboard" class="nav-tab" id="btn3">Dashboard Options</a>
-            <a href="#template-tags" class="nav-tab" id="btn4">Template Tags</a>
-            <a href="#style" class="nav-tab" id="btn5">Custom CSS</a>
-            <a href="#tools" class="nav-tab" id="btn6">Tools</a>
-            <a href="#help" class="nav-tab" id="btn7">Help</a>
-
-        </p>
+		<div> Show last update date and time on pages and posts very easily. </div><hr>
+            <div id="nav-container" class="nav-tab-wrapper">
+                <a href="#post" class="nav-tab active" id="btn1">Post Options</a>
+                <a href="#page" class="nav-tab" id="btn2">Page Options</a>
+                <a href="#dashboard" class="nav-tab" id="btn3">Dashboard Options</a>
+                <a href="#template-tags" class="nav-tab" id="btn4">Template Tags</a>
+                <a href="#style" class="nav-tab" id="btn5">Custom CSS</a>
+                <a href="#tools" class="nav-tab" id="btn6">Tools</a>
+                <a href="#help" class="nav-tab" id="btn7">Help</a>
+            </div>
             <script>
                 var header = document.getElementById("nav-container");
                 var btns = header.getElementsByClassName("nav-tab");
@@ -38,15 +33,13 @@
             </script>
 
     <div id="form_area">
-
         <div id="main-form">
-
         <form id="form-container" method="post" action="options.php">
         <?php
             if ( function_exists('wp_nonce_field') ) 
 	        wp_nonce_field('wp_last_modified_info'); 
-        ?>
-        <?php settings_fields("lmt_post_page_plugin_section"); ?>
+           
+            settings_fields("lmt_post_page_plugin_section"); ?>
 
             <div id="show-post"> <?php
             
@@ -72,7 +65,7 @@
             <div style="display:none" id="show-tt"> <?php
 
                 do_settings_sections("lmt_template_tag_option");
-                ?> <br><b>Note:</b> <i>Always backup .php files before making changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
+                ?> <br><b>Note:</b> <i>Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
                 submit_button('Save Settings');
 
             ?> </div>
@@ -100,7 +93,7 @@
                 <p>CSS Class is <code>.page-last-modified</code>, for date time <code>.page-last-modified-td</code> and for author <code>.page-modified-author</code>. Add your custom style in Custom CSS Tab.</p>
           
                 <p><li><strong>What is the shortcode for pages?</strong></li>
-                <p>Shortcode is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
+                <p>Shortcode for post is <code>[lmt-post-modified-info]</code> and for page is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
                 
                 <p><li><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong></li>
                 <p>No, this tag is not required, as it is already added.</p>
@@ -133,7 +126,7 @@
             </div>
     
         </form>
-        <div id="saveResult"></div>
+            <div id="saveResult"></div>
                 <script type="text/javascript">
                     jQuery(document).ready(function() {
                         jQuery('#form-container').submit(function() {

@@ -53,7 +53,7 @@ function lmt_post_admin_actions() {
      
     $post_types = get_post_types( $args, $output ); 
      
-    foreach ( $post_types  as $ptc ) {
+    foreach ( $post_types as $ptc ) {
 
         add_filter ( "manage_edit-{$ptc}_columns", "lmt_post_columns_display" );
         add_filter( "manage_edit-{$ptc}_sortable_columns", "lmt_post_columns_display", 10, 2 );

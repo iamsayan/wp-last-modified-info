@@ -152,11 +152,11 @@ input:checked+.slider-pg:before {
 }
 
 input:checked+.slider-db {
-  background-color: #CCAF0B;
+  background-color: #BA55D3;
 }
 
 input:focus+.slider-db {
-  box-shadow: 0 0 1px #CCAF0B;
+  box-shadow: 0 0 1px #BA55D3;
 }
 
 input:checked+.slider-db:before {
