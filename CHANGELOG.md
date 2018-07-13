@@ -1,6 +1,72 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.8
+Release Date: June 20, 2018
+
+* Fix: Error notice after plugin update.
+* Fix: Shortcode does not work properly if 'Using Shortcode' method is enabled.
+
+## 1.2.7
+Release Date: June 20, 2018
+
+* Added: Now Last updated info now shows as post updated message.
+* Improved: Dropdown loading using Select2.
+* Improved: Custom Post Types Support. Now it is possible to select custom post types individually.
+* Tweak: Now it is possible to disable auto insert for particular post/page from edit screen.
+* Tweak: Remove 'Disable auto insert' fields to simplify plugin settings.
+* Tweak: Active tab is now depends on url parameter also.
+* Tweak: Last modified value will automatically be added into custom fields if 'Show Last Modified Info on Dashboard' option is on.
+* Bug Fix.
+
+## 1.2.6
+Release Date: June 9, 2018
+
+* Added: Option to enable/disable auto last modified info suport for custom post types.
+* Added: Support to add last modified info in custom fields after post/page update.
+* Tweak: Tools is now merged with plugins settings page.
+* Fixed a typo in plugin description. Thanks to @buzztone.
+* Bug Fix.
+
+## 1.2.5
+Release Date: May 27, 2018
+
+* Added: Ajax loading at the time of form submission.
+* Bug Fix.
+
+## 1.2.4
+Release Date: May 25, 2018
+
+* Added: Tools page - Import/Export/Reset Plugin Settings.
+* Improvement: Now it indicates which tab is active.
+* Improvement: Admin UI.
+* Bug Fix.
+
+## 1.2.3
+Release Date: March 17, 2018
+
+* Added: Author name support.
+* Added: Dashboard column width.
+* Added: Last modified author name in Admin bar.
+* Change last modified dashicons.
+
+## 1.2.2
+Release Date: March 15, 2018
+
+* Added: Human Readable Time/Date format.
+* Added: Last modified info on admin bar.
+* Added: Option to set the number of posts to show on dashboard widget.
+* Added: Option to customize default 'at' date/time separator.
+* Tweak: 3 separate option merged into 1 option in dashboard options to simplify plugin settings.
+* Tweak: If a class is not set in the template tags option, then this plugin does not return any class.
+* Improved: Admin UI.
+* Minor bug fixed.
+
+## 1.2.1
+Release Date: March 13, 2018
+
+* Improved: Template Tag support.
+
 ## 2.0.0
 Release Date: March 12, 2018
 
