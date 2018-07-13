@@ -1,14 +1,14 @@
 === WP Last Modified Info ===
 Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
-Requires at least: 4.4
+Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.1.8
-Donate link: https://bit.ly/2I0Gj60
+Stable tag: 1.2.10
+Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.4 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.2 and beyond.
 
 == Description ==
 
@@ -20,31 +20,33 @@ Many popular blogs and websites don’t show any date on their articles. This is
 
 #### What does this plugin do?
 
-Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup on WordPress posts automatically.
+Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup in WordPress posts automatically.
 
 * Allows you to display Last modified information in your posts and pages individually.
-* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after content.
+* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Inserts 'dateModified' schama markup to your WordPress posts automatically.
-* Allows you to display last modified info in all posts types column and publish meta box in the dashboard.
-* Allows you to sort posts/pages by last updated/modified info.
+* Inserts 'dateModified' schema markup to your WordPress posts automatically.
+* Allows you to display last modified info on all post types column and publish meta box in the dashboard with author name.
+* Allows you to sort posts/pages of last updated/modified info.
+* Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
+* Allows you to display last modified info of all posts in the WordPress admin bar.
+* You can also add template tags to your theme files. Go to the FAQ section for more information.
+* Allows you to display last modified author info in posts, pages.
+* Allows you to add last modified timestamp in post/page's custom field.
+* And you can customize all and everything.
 
 #### Compatibility
 
-This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any WordPress theme.
+This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
-* Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
-* We don’t handle support via e-mail, Twitter, GitHub issues etc.
+* Community support via the [support forums at wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
+* We don’t handle support via email, Twitter, GitHub issues etc.
 
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
-* Pull requests for documented bugs are highly appreciated.
-* If you think you’ve found a bug (e.g. you’re experiencing unexpected behaviour), please post at the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
-
-#### Bug reports
-
-Bug reports for WP Last Modified Info are [welcomed on GitHub](https://github.com/iamsayan/wp-last-modified-info). Please note GitHub is not a support forum, and issues that arenâ€™t properly qualified as bugs will be closed.
+* Pull requests for documenting bugs are highly appreciated.
+* If you think you’ve found a bug (e.g. You’re experiencing unexpected behaviour), please post on the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
 
 == Installation ==
 
@@ -71,7 +73,7 @@ After enabling options in 'Settings > Last Modified Info', open any page or post
 
 = How this plugin works? =
 
-This plugin hooks into WordPress content area and displays last modified information on posts and pages.
+This plugin hooks into the WordPress content area and displays the last modified information on posts and pages.
 
 = Will it require editing code to show Last Modified date? =
 
@@ -95,9 +97,13 @@ CSS Classes:
 
 `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
+`.post-modified-author`: use this class for post author.
+
 `.page-last-modified`: use this class for pages.
 
-`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on pages.
+`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
+
+`.page-modified-author`: use this class for page author.
 
 = Can I sort posts and pages by last modified info in the dashboard? =
 
@@ -105,11 +111,11 @@ Yes, you can. You can sort posts and pages by ascending or descending order.
 
 = How this plugin helps to optimize SEO? =
 
-This plugin wraps modified info with 'dateModified' schema markup which is used to tell the last modified date & time of a webpage to various web crawlers (Google, Bing etc.). [Test your website with structured data tool](https://search.google.com/structured-data/testing-tool).
+This plugin wraps modified info with 'dateModified' schema markup which is used to tell the last modified date & time of a web page to various web crawlers (Google, Bing etc.). [Test your website with structured data tool](https://search.google.com/structured-data/testing-tool).
 
 = The Date and Time inserted by this plugin is dependent on what? =
 
-The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in WordPress dashboard.
+The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in the WordPress dashboard.
 
 = Is this plugin compatible with multisite? =
 
@@ -119,115 +125,86 @@ Yes, it is fully compatible with multisite.
 
 Yes, you can. Just set your custom text in settings and save your changes.
 
+= Can I use this as template tag? =
+
+Yes, you can. In this case, you have to edit your theme's template files i.e. single.php, page.php etc. And add/replace default published date function with this:
+
+Returns the last modified info:
+
+`<?php if ( function_exists( 'get_the_last_modified_info' ) ) {
+		get_the_last_modified_info();
+	}
+?>`
+
+Displays/echos the last modified info:
+
+`<?php if ( function_exists( 'the_last_modified_info' ) ) {
+		the_last_modified_info();
+	}
+?>`
+
 Use the plugin to test it.
 
 == Screenshots ==
 
-1. Post Options
-2. Page Options
-3. Dashboard Options
-4. Custom CSS
+1. Show last modified info on the frontend
+2. Google Structured data result
+3. Post / Page / Custom post types admin column: Last Modified column with author name.
+4. Added last modified/updated info on post/page publish box and in post updated message.
+5. Auto-generate last modified info in custom fields after post/page save.
+6. Last modified posts widgets in the dashboard.
+7. Post Options
+8. Page Options
+9. Template Tag Options
 
 == Changelog ==
 
-= 1.1.8 =
-Release Date: March 11, 2018
+= 1.2.10 =
+Release Date: July 13, 2018
 
-* Added: Dashboard widget to show Last Modified posts.
-* Improved: Schema Markup.
+* Added: Option to set custom modified author name.
+* Added: `lmt_custom_field_date_time_format` filter to set custom date/time format on custom fields. 
+* Fix: Last Modified post display issue on dashboard widget with user roles except for administrator.
+* Remove some plugin options to simplify plugin settings.
+* Improved: Admin UI.
 
-= 1.1.6 =
-Release Date: March 7, 2018
+IMPORTANT!
 
-* Improved: Custom Post Type Support.
-* Bug Fixed.
+* Please delete all caches and press CTRL+F5 on website front-end/back-end after updating this plugin if there is any CSS/js problem.
 
-= 1.1.5 =
-Release Date: March 5, 2018
+= 1.2.9 =
+Release Date: June 23, 2018
 
-* Improved: Schama markup.
-* Removed 'revised' meta tag output as it is no longer required.
-* UI Improvements.
-* Code Cleanup.
+* Added: You can now disable modified info update every time after the post is saved.
+* Typo Fix.
 
-= 1.1.4 =
-Release Date: March 4, 2018
+= 1.2.8 =
+Release Date: June 20, 2018
 
-* Added: last modified schama markup for posts.
-* Bug Fixed.
+* Fix: Error notice after plugin update.
+* Fix: Shortcode does not work properly if 'Using Shortcode' method is enabled.
 
-= 1.1.3 =
-Release Date: March 4, 2018
+= 1.2.7 =
+Release Date: June 20, 2018
 
-* Added: Now you can create the exception for both posts and pages.
-* Bug Fixed.
-* Cover photo update. Thanks to @svayam.
+* Added: Now Last updated info now shows as post updated message.
+* Improved: Dropdown loading using Select2.
+* Improved: Custom Post Types Support. Now it is possible to select custom post types individually.
+* Tweak: Now it is possible to disable auto insert for particular post/page from the edit screen.
+* Tweak: Remove 'Disable auto insert' fields to simplify plugin settings.
+* Tweak: Active tab now depends on URL parameter also.
+* Tweak: Last modified value will automatically be added into custom fields if 'Show Last Modified Info on Dashboard' option is on.
+* Bug Fix.
 
-= 1.1.2 =
-Release Date: March 3, 2018
+= 1.2.6 =
+Release Date: June 9, 2018
 
-* Added: Now you can customize date/time format.
-* Bug Fixed.
+* Added: Option to enable/disable auto last modified info support for custom post types.
+* Added: Support to add last modified info in custom fields after post/page update.
+* Tweak: Tools is now merged with plugins settings page.
+* Fixed a typo in the plugin description. Thanks to @buzztone.
+* Bug Fix.
 
-= 1.1.0 =
-Release Date: March 3, 2018
+= Other Versions =
 
-* Added: All Custom Post support including WooCommerece.
-* Now every last modified time in dashboard shows according to WordPress date/time format.
-* Now shortcode will work only when shortcode option is enabled.
-* Tweak: Custom CSS Box returns empty style tag if there is no value.
-* Bug Fixed.
-
-= 1.0.9 =
-Release Date: April 29, 2018
-
-* Added: Last updated info now shows on publishing meta box.
-* Remove some unwanted conditions.
-* Fix WooCommerce admin notice.
-* Bug fixed.
-
-= 1.0.8 =
-Release Date: April 28, 2018
-
-* Add WooCommerce Support.
-* Multisite compatibility.
-* Last login info added.
-* Remove 304 response header as it is enabled by default by many cache plugins.
-* Bug fixed.
-
-= 1.0.6 =
-Release Date: April 27, 2018
-
-* Bug Fix: Undefined Variable notice shows when debug mode is enabled.
-* Bug Fix: Weekday is not showing with revision meta tag output.
-
-= 1.0.5 =
-Release Date: April 27, 2018
-
-* Added: 'post-last-modified-td' and 'page-last-modified-td' classes.
-* Bug fixed.
-
-= 1.0.4 =
-Release Date: April 27, 2018
-
-* If else condition change.
-* Last modified headers hook change.
-* Bug fixed.
-
-= 1.0.3 =
-Release Date: April 26, 2018
-
-* Added last modified header output.
-* Added user profile last modified info.
-* Bug fixed.
-
-= 1.0.2 =
-Release Date: April 26, 2018
-
-* Added revision meta output.
-* Bug fixed.
-
-= 1.0.0 =
-Release Date: April 25, 2018
-
-* Initial release
+* View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
