@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.2.11
+Stable tag: 1.3.0
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -158,6 +158,12 @@ Use the plugin to test it.
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.3.0 =
+Release Date: July 16, 2018
+
+* Added: I18n support.
+* Fix: Shortcode does not output modified info on pages. 
 
 = 1.2.11 =
 Release Date: July 15, 2018

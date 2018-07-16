@@ -62,7 +62,7 @@ function lmt_meta_box_callback( $post ) {
         if ( $pt != 'page' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
-		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> Disable auto insert on this <?php echo $post_types->capability_type ?>
+		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this post', 'wp-lmi' ); ?>
 	            </label>
             </p> <?php 
         }
@@ -72,7 +72,7 @@ function lmt_meta_box_callback( $post ) {
         if ( $pt == 'page' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
-		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> Disable auto insert on this <?php echo $post_types->capability_type ?>
+		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this page', 'wp-lmi' ); ?>
 	            </label>
             </p> <?php 
         }
@@ -80,7 +80,7 @@ function lmt_meta_box_callback( $post ) {
         
     <p id="lmt-disable" class="meta-options">
         <label for="lmt_disable" class="selectit" title="You will need this, if you found typo and don’t want to tell your readers that something changed on this <?php echo $post_types->capability_type ?>">
-		    <input id="lmt_disable" type="checkbox" name="disableupdate" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disableupdate'] ) ) checked( $checkboxMeta['_lmt_disableupdate'][0], 'yes' ); ?> /> Don't update modified info anymore
+		    <input id="lmt_disable" type="checkbox" name="disableupdate" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disableupdate'] ) ) checked( $checkboxMeta['_lmt_disableupdate'][0], 'yes' ); ?> /> <?php _e( 'Don&#39;t update modified info anymore', 'wp-lmi' ); ?>
 	    </label>
     </p>
 

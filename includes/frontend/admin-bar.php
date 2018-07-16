@@ -11,15 +11,11 @@
 function lmt_get_post_revision_status() {
 
     global $post, $post_id;
-
-    // If post is not a revision, then get out
-    //if ( !wp_is_post_revision( $post_id ) ) return;
-    
     $revision = wp_get_post_revisions( $post_id );
 
-    $latest_revision = current( $revision );
+    $latest_revision = array_shift( $revision );
 
-	if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
+    if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
         $get_revision = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
     } else {
         $get_revision = '';
@@ -44,12 +40,12 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     $args = array(
         'id' => 'lmt-update',
         'parent' => 'top-secondary',
-        'title'  => 'Updated ' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago',
+        'title'  => sprintf(__( 'Updated %s ago', 'wp-lmi' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' ))),
         'href'   => lmt_get_post_revision_status(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
-            'title'  => 'This ' . $post->post_type . ' was last updated on ' . get_the_modified_date( get_option( 'date_format' ) ) . ' at ' . get_the_modified_time( get_option( 'time_format' ) ) . ' by ' . get_the_modified_author(),
-            'target' => __('_blank')
+            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-lmi' ), $post->post_type, get_the_modified_date( get_option( 'date_format' ) ), get_the_modified_time( get_option( 'time_format' ) ), get_the_modified_author() ),
+            'target' => '_blank',
         )
     );
     $wp_admin_bar->add_node($args);

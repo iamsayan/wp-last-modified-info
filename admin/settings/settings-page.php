@@ -9,15 +9,15 @@
 ?>
 
 <div class="wrap">
-    <h1> WP Last Modified Info <span style="font-size:12px;">Ver <?php echo lmt_remove_footer_admin(); ?></span></h1>
-		<div> Show last update date and time on pages and posts very easily. </div><hr>
+    <h1> <?php _e( 'WP Last Modified Info', 'wp-lmi' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-lmi' ); ?> <?php echo lmt_remove_footer_admin(); ?></span></h1>
+		<div> <?php _e( 'Show last update date and time on pages and posts very easily.', 'wp-lmi' ); ?> </div><hr>
             <div id="nav-container" class="nav-tab-wrapper">
-                <a href="#post" class="nav-tab active" id="btn1">Post Options</a>
-                <a href="#page" class="nav-tab" id="btn2">Page Options</a>
-                <a href="#template-tags" class="nav-tab" id="btn3">Template Tags</a>
-                <a href="#misc" class="nav-tab" id="btn4">Misc. Options</a>
-                <a href="#tools" class="nav-tab" id="btn5">Tools</a>
-                <a href="#help" class="nav-tab" id="btn6">Help</a>
+                <a href="#post" class="nav-tab active" id="btn1"><?php _e( 'Post Options', 'wp-lmi' ); ?></a>
+                <a href="#page" class="nav-tab" id="btn2"><?php _e( 'Page Options', 'wp-lmi' ); ?></a>
+                <a href="#template-tags" class="nav-tab" id="btn3"><?php _e( 'Template Tags', 'wp-lmi' ); ?></a>
+                <a href="#misc" class="nav-tab" id="btn4"><?php _e( 'Misc. Options', 'wp-lmi' ); ?></a>
+                <a href="#tools" class="nav-tab" id="btn5"><?php _e( 'Tools', 'wp-lmi' ); ?></a>
+                <a href="#help" class="nav-tab" id="btn6"><?php _e( 'Help', 'wp-lmi' ); ?></a>
             </div>
             <script>
                 var header = document.getElementById("nav-container");
@@ -38,34 +38,34 @@
             if ( function_exists('wp_nonce_field') ) 
 	        wp_nonce_field('wp_last_modified_info'); 
            
-            settings_fields("lmt_post_page_plugin_section"); ?>
+            settings_fields('lmt_post_page_plugin_section'); ?>
 
             <div id="show-post"> <?php
             
-                do_settings_sections("lmt_post_option");
-                submit_button('Save Settings');
+                do_settings_sections('lmt_post_option');
+                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
             
             ?> </div>
 
             <div style="display:none" id="show-page"> <?php
                  
-                do_settings_sections("lmt_page_option");
-                submit_button('Save Settings');
+                do_settings_sections('lmt_page_option');
+                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
 
             ?> </div>
 
             <div style="display:none" id="show-tt"> <?php
 
-                do_settings_sections("lmt_template_tag_option");
-                ?> <br><b>Note:</b> <i>Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.</i><?php
-                submit_button('Save Settings');
+                do_settings_sections('lmt_template_tag_option');
+                ?> <br><b><?php _e( 'Note:', 'wp-lmi' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-lmi' ); ?></i><?php
+                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
 
             ?> </div>
 
             <div style="display:none" id="show-misc"> <?php
 
-                do_settings_sections("lmt_misc_option");
-                submit_button('Save Settings');
+                do_settings_sections('lmt_misc_option');
+                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
 
             ?> </div>
             <div id="progress" style="display:none;">Please wait...</div>
@@ -137,35 +137,35 @@
                 </script>
             
             <div id="show-tools" style="display:none;">
-                <h3> Plugin Tools </h3><p><hr></p>
-                    <span><strong><?php _e( 'Export Settings' ); ?></strong></span>
-					<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.' ); ?></p>
+                <h3> <?php _e( 'Plugin Tools', 'wp-lmi' ); ?> </h3><p><hr></p>
+                    <span><strong><?php _e( 'Export Settings', 'wp-lmi' ); ?></strong></span>
+					<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-lmi' ); ?></p>
 					<form method="post">
 						<p><input type="hidden" name="lmt_export_action" value="lmt_export_settings" /></p>
 						<p>
 							<?php wp_nonce_field( 'lmt_export_nonce', 'lmt_export_nonce' ); ?>
-							<?php submit_button( __( 'Export Settings' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Export Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
 						</p>
 					</form>
                 <p><hr></p>
-                    <span><strong><?php _e( 'Import Settings' ); ?></strong></span>
-					<p><?php _e( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.' ); ?></p>
+                    <span><strong><?php _e( 'Import Settings', 'wp-lmi' ); ?></strong></span>
+					<p><?php _e( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp-lmi' ); ?></p>
 					<form method="post" enctype="multipart/form-data">
 						<p><input type="file" name="import_file" accept=".json"/></p>
 						<p>
 							<input type="hidden" name="lmt_import_action" value="lmt_import_settings" />
 							<?php wp_nonce_field( 'lmt_import_nonce', 'lmt_import_nonce' ); ?>
-							<?php submit_button( __( 'Import Settings' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Import Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
 						</p>
 					</form>
                 <p><hr></p>
-                    <span><strong><?php _e( 'Reset Settings' ); ?></strong></span>
-					<p style="color:red"><strong>WARNING: </strong><?php _e( 'Delete all options related to this plugin in your database.' ); ?></p>
+                    <span><strong><?php _e( 'Reset Settings', 'wp-lmi' ); ?></strong></span>
+					<p style="color:red"><strong>WARNING: </strong><?php _e( 'Delete all options related to this plugin in your database.', 'wp-lmi' ); ?></p>
 					<form method="post">
 						<p><input type="hidden" name="lmt_reset_action" value="lmt_reset_settings" /></p>
 	                    <p>
 							<?php wp_nonce_field( 'lmt_reset_nonce', 'lmt_reset_nonce' ); ?>
-							<?php submit_button( __( 'Reset Settings' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Reset Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
 					    </p>
 					</form>
                 <br>

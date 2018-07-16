@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere.
- * Version: 1.2.11
+ * Version: 1.3.0
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -35,15 +35,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // todo
-//add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
+add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
 /**
  * Load plugin textdomain.
  * 
  * @since 1.2.11
  */
-/*function lmt_plugin_load_textdomain() {
-    load_plugin_textdomain( 'wp-lmi', false, plugin_dir_path( __FILE__ ) . '/languages' ); 
-}*/
+function lmt_plugin_load_textdomain() {
+    load_plugin_textdomain( 'wp-lmi', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+}
 
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {

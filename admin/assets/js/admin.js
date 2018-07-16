@@ -92,6 +92,19 @@ jQuery(document).ready(function ($) {
     });
     $("#post-enable").trigger('change');
 
+    $("#post-human").change(function () {
+        if ($('#post-human').is(':checked')) {
+            $('.post-time').hide();
+            $('.post-date').hide();
+            $('.post-sep').hide();
+        }
+        if (!$('#post-human').is(':checked')) {
+            $('.post-time').show();
+            $('.post-date').show();
+            $('.post-sep').show();
+        }
+    });
+    $("#post-human").trigger('change');
 
     $("#page-enable").change(function () {
         if ($('#page-enable').is(':checked')) {
@@ -123,6 +136,20 @@ jQuery(document).ready(function ($) {
     });
     $("#page-enable").trigger('change');
 
+    $("#page-human").change(function () {
+        if ($('#page-human').is(':checked')) {
+            $('.page-time').hide();
+            $('.page-date').hide();
+            $('.page-sep').hide();
+        }
+        if (!$('#page-human').is(':checked')) {
+            $('.page-time').show();
+            $('.page-date').show();
+            $('.page-sep').show();
+        }
+    });
+    $("#page-human").trigger('change');
+
     $("#lmt-tt").change(function () {
         if ($('#lmt-tt').is(':checked')) {
             $('#lmt-tt-human').prop('disabled', false);
@@ -144,6 +171,16 @@ jQuery(document).ready(function ($) {
         }
     });
     $("#lmt-tt").trigger('change');
+
+    $("#lmt-tt-human").change(function () {
+        if ($('#lmt-tt-human').is(':checked')) {
+            $('.lmt-tt-format').hide();
+        }
+        if (!$('#lmt-tt-human').is(':checked')) {
+            $('.lmt-tt-format').show();
+        }
+    });
+    $("#lmt-tt-human").trigger('change');
 
     $('select#cpt').select2({
         placeholder: 'Select custom post types',

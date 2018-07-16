@@ -15,7 +15,7 @@ function lmt_add_dashboard_widgets() {
     global $wp_meta_boxes;
 	wp_add_dashboard_widget(
                  'last_modified_posts_widget', // Widget slug.
-                 'Last Updated Posts', // Title.
+                 __('Last Updated Posts', 'wp-lmi' ), // Title.
                  'lmt_dashboard_widget_box_callback', // callback.
                  'lmt_dashboard_widget_control_callback' // control callback.
         );	
@@ -32,7 +32,7 @@ function lmt_dashboard_widget_control_callback() {
         update_option( 'lmt_dashboard_widget_options', $_POST['lmt_widget_value'] );
     } ?>
     <p>
-        <label for="widget-post-no"><strong><?php _e('No. of Posts to Display on this Widget: ', 'wp-last-modified-info'); ?></strong></label>
+        <label for="widget-post-no"><strong><?php _e('No. of Posts to Display on this Widget: ', 'wp-lmi'); ?></strong></label>
         &nbsp;&nbsp;&nbsp;<input class="widefat" id="widget-post-no" name="lmt_widget_value[number]" type="number" size="15" style="width:15%;" placeholder="5" min="3" value="<?php echo $value; ?>" />
     </p>
     <input name="lmt_widget_post" type="hidden" value="1" />
@@ -45,8 +45,8 @@ function lmt_dashboard_widget_control_callback() {
 function lmt_dashboard_widget_box_callback($widget_id) {
     ?><div id="activity-widget" style="margin-top:-10px;margin-bottom:-14px;">
         <div id="published-posts" class="activity-block">
-            <h3>Recently Updated</h3>
-                <ul class="subsubsub1"> <?php
+            <h3><?php _e( 'Recently Updated', 'wp-lmi' ); ?></h3>
+                <ul> <?php
 
     global $post, $post_id, $current_user;
     //wp_get_current_user();
