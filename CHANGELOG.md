@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.11
+Release Date: July 15, 2018
+
+* Added: Now it is possible to view last revision by clicking the admin bar item. 
+* Fix: Redirection to edit.php page after login for some users. Thanks to @svayam.
+
 ## 1.2.10
 Release Date: July 13, 2018
 
