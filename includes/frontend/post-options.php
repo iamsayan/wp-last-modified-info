@@ -11,7 +11,7 @@ add_filter( 'the_content', 'lmt_print_last_modified_info_post' );
 
 function lmt_print_last_modified_info_post( $content ) {
 
-    include 'post.php';
+    include plugin_dir_path( __FILE__ ) . 'post.php';
 
     if( isset($options['lmt_show_last_modified_time_date_post']) && ( $options['lmt_show_last_modified_time_date_post'] == 'Manual' ) ) {    
         return $content;

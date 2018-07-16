@@ -11,7 +11,7 @@ add_filter( 'the_content', 'lmt_print_last_modified_info_page' );
 
 function lmt_print_last_modified_info_page( $content ) {
 
-    include 'page.php';
+    include plugin_dir_path( __FILE__ ) . 'page.php';
 
     if( isset($options['lmt_show_last_modified_time_date_page']) && ( $options['lmt_show_last_modified_time_date_page'] == 'Manual' ) ) {
         return $content;

@@ -12,10 +12,11 @@
  * @link https://codex.wordpress.org/Plugin_API/Action_Reference/add_meta_boxes
  */
 
+// get plugin settings
+$options = get_option('lmt_plugin_global_settings');
+
 function lmt_add_meta_boxes( $post ) {
-    if( current_user_can('edit_posts') ) {
-       add_meta_box( 'lmt_meta_box', __( 'WP Last Modified Info', LMT_DOMAIN ), 'lmt_meta_box_callback', '', 'side', 'default' );
-    }
+    add_meta_box( 'lmt_meta_box', __( 'WP Last Modified Info', 'wp-lmi' ), 'lmt_meta_box_callback', '', 'side', 'default' );
 }
 
 if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
@@ -142,16 +143,6 @@ function lmt_save_meta_boxes_data( $post_id ) {
 
 add_action( 'save_post', 'lmt_save_meta_boxes_data', 10, 2 );
 
-function lmt_load_sc_admin_scripts( $hook ) {
-
-    global $post;
-    // check if post edit screen
-    if ( $hook == 'post-new.php' || $hook == 'post.php' ) { 
-        wp_enqueue_style( 'lmt-shortcode', LMT_DIR_URL . 'admin/assets/css/shortcode.min.css' );    
-        wp_enqueue_script( 'lmt-shortcode-script', LMT_DIR_URL . 'admin/assets/js/shortcode.min.js' );
-    }
-}
-add_action( 'admin_enqueue_scripts', 'lmt_load_sc_admin_scripts', 10, 1 );
 
 function lmt_disable_update_date($data, $postarr) {
 

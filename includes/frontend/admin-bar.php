@@ -8,29 +8,59 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
+function lmt_get_post_revision_status() {
+
+    global $post, $post_id;
+
+    // If post is not a revision, then get out
+    //if ( !wp_is_post_revision( $post_id ) ) return;
+    
+    $revision = wp_get_post_revisions( $post_id );
+
+    $latest_revision = current( $revision );
+
+	if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
+        $get_revision = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
+    } else {
+        $get_revision = '';
+    }
+    return $get_revision;
+
+}
+
 // add a link to the WP Toolbar
 function lmt_custom_toolbar_item( $wp_admin_bar ) {
 
-    if (is_singular() && is_user_logged_in() && !is_admin() && (get_the_modified_time('U') > get_the_time('U'))) {
+    // If it's admin page, then get out!
+    if ( is_admin() ) return;
+    
+    // If user can't publish posts, then get out
+    if ( ! current_user_can( 'publish_posts' ) ) return;
+    
+    // if modified time is equal to published time, do not show admin bar item
+    if ( get_the_modified_time('U') == get_the_time('U') ) return;
 
-        global $post;
-        $args = array(
-            'id' => 'lmt-update',
-            'parent' => 'top-secondary',
-            'title' => 'Updated ' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago',
-            'href' => get_admin_url() . 'edit.php?post_type=' . $post->post_type . '&orderby=Last+Modified&order=desc', 
-            'meta' => array(
-                'class'  => 'lmt-ab-icon',
-                'title'  => 'This ' . $post->post_type . ' was last updated on ' . get_the_modified_time( get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) . ' by ' . get_the_modified_author(),
-                'target' => __('_blank')
-            )
-        );
-        $wp_admin_bar->add_node($args);
-    }
+    global $post;
+    $args = array(
+        'id' => 'lmt-update',
+        'parent' => 'top-secondary',
+        'title'  => 'Updated ' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago',
+        'href'   => lmt_get_post_revision_status(),
+        'meta' => array(
+            //'class'  => 'lmt-ab-icon',
+            'title'  => 'This ' . $post->post_type . ' was last updated on ' . get_the_modified_date( get_option( 'date_format' ) ) . ' at ' . get_the_modified_time( get_option( 'time_format' ) ) . ' by ' . get_the_modified_author(),
+            'target' => __('_blank')
+        )
+    );
+    $wp_admin_bar->add_node($args);
+
 }
 add_action('admin_bar_menu', 'lmt_custom_toolbar_item', 999);
 
-function lmt_add_admin_bar_object() { ?>
+function lmt_add_admin_bar_object() { 
+    
+    if ( ! is_admin_bar_showing() ) return; ?>
+
     <style type="text/css">
         #wpadminbar #wp-admin-bar-lmt-update .ab-icon:before {
             content: '\f469'; 

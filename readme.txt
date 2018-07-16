@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.2.10
+Stable tag: 1.2.11
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -89,7 +89,7 @@ Yes, this plugin supports all types of custom posts.
 
 = How to customize last modified text style? =
 
-Go to 'Settings > Last Modified Info > Custom CSS' and add your custom CSS.
+Go to 'Settings > Last Modified Info > Misc. Options > Custom CSS' and add your custom CSS.
 
 CSS Classes:
 
@@ -159,6 +159,12 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.2.11 =
+Release Date: July 15, 2018
+
+* Added: Now it is possible to view last revision by clicking the admin bar item. 
+* Fix: Redirection to edit.php page after login for some users. Thanks to <a href="https://profiles.wordpress.org/svayam" target="_blank">@svayam</a>.
+
 = 1.2.10 =
 Release Date: July 13, 2018
 
@@ -167,10 +173,6 @@ Release Date: July 13, 2018
 * Fix: Last Modified post display issue on dashboard widget with user roles except for administrator.
 * Remove some plugin options to simplify plugin settings.
 * Improved: Admin UI.
-
-IMPORTANT!
-
-* Please delete all caches and press CTRL+F5 on website front-end/back-end after updating this plugin if there is any CSS/js problem.
 
 = 1.2.9 =
 Release Date: June 23, 2018

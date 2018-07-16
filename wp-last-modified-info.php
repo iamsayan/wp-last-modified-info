@@ -3,11 +3,11 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere.
- * Version: 1.2.10
+ * Version: 1.2.11
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
- * Text Domain: wp-last-modified-info
+ * Text Domain: wp-lmi
  * 
  * WP Last Modified Info is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,44 +34,92 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// todo
+//add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
 /**
- * Setup plugin constants.
- *
- * We need a few constants in our plugin.
- * These values should be constant and con't
- * be altered later.
- *
- * @since  1.2.10
- * @return void
+ * Load plugin textdomain.
+ * 
+ * @since 1.2.11
  */
-function lmt_set_constants() {
+/*function lmt_plugin_load_textdomain() {
+    load_plugin_textdomain( 'wp-lmi', false, plugin_dir_path( __FILE__ ) . '/languages' ); 
+}*/
 
-	$constants = array(
-		'LMT_NAME'       => 'WP Last Modified Info',
-		'LMT_DOMAIN'     => 'wp-last-modified-info',
-		'LMT_DIR_PATH'   => plugin_dir_path( __FILE__ ),
-		'LMT_DIR_URL'    => plugin_dir_url( __FILE__ ),
-		'LMT_BASE_NAME'  => plugin_basename(__FILE__),
-		'LMT_BASE_FILE'  => __FILE__,
-		'LMT_VERSION'    => '1.2.10',
-		// Set who all can access plugin settings.
-		// You can change this if you want to give others access.
-		'LMT_ACCESS'     => 'manage_options',
-	);
+//add admin styles and scripts
+function lmt_custom_admin_styles_scripts() {
 
-	foreach ( $constants as $constant => $value ) {
-		if ( ! defined( $constant ) ) {
-			define( $constant, $value );
-		}
+    // get current screen
+    $current_screen = get_current_screen();
+    if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
+        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin-style.min.css', __FILE__ ) );
+        wp_enqueue_style( 'lmt-cb', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ) );
+        wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ) );
+
+        wp_enqueue_style( 'lmt-select2', plugins_url( 'admin/assets/lib/select2/css/select2.min.css', __FILE__ ) ); 
+        wp_enqueue_script( 'lmt-select2-script', plugins_url( 'admin/assets/lib/select2/js/select2.min.js', __FILE__ ) );
     }
 }
-// Set constants.    
-lmt_set_constants();
+
+function lmt_shortcode_admin_styles_scripts( $hook ) {
+
+    global $post;
+    // check if post edit screen
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) { 
+        wp_enqueue_style( 'lmt-shortcode', plugins_url( 'admin/assets/css/shortcode.min.css', __FILE__ ) );    
+        wp_enqueue_script( 'lmt-shortcode-script', plugins_url( 'admin/assets/js/shortcode.min.js', __FILE__ ) );
+    }
+}
+
+function lmt_ajax_save_admin_scripts() {
+    if ( is_admin() ) { 
+        // Embed the Script on our Plugin's Option Page Only
+        if ( isset($_GET['page']) && $_GET['page'] == 'wp-last-modified-info' ) {
+            wp_enqueue_script('jquery');
+            wp_enqueue_script( 'jquery-form' );
+        }
+    }
+}
+
+add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
+add_action( 'admin_enqueue_scripts', 'lmt_shortcode_admin_styles_scripts' );
+add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
+
 
 /**
- * File that contains main plugin data.
+ * File that triggers main plugin data.
  */
-require_once LMT_DIR_PATH . 'includes/autoload.php';
-require_once LMT_DIR_PATH . 'admin/loader.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/loader.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
+
+function lmt_remove_footer_admin() {
+
+    // fetch plugin version
+    $lmtpluginfo = get_plugin_data(__FILE__);
+    $lmtversion = $lmtpluginfo['Version'];    
+	return $lmtversion;
+}
+
+// add action links
+function lmt_add_action_links ( $links ) {
+    $lmtlinks = array(
+        '<a href="' . admin_url( 'options-general.php?page=wp-last-modified-info' ) . '">Settings</a>',
+    );
+    return array_merge( $lmtlinks, $links );
+}
+
+function lmt_plugin_meta_links($links, $file) {
+	$plugin = plugin_basename(__FILE__);
+	if ($file == $plugin) // only for this plugin
+		return array_merge( $links, 
+            array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __('Support') . '</a>' ),
+            array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __('Donate') . '</a>' )
+		);
+	return $links;
+}
+
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );
+add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
+
 
 ?>

@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 1.2.10 =
+Release Date: July 13, 2018
+
+* Added: Option to set custom modified author name.
+* Added: `lmt_custom_field_date_time_format` filter to set custom date/time format on custom fields. 
+* Fix: Last Modified post display issue on dashboard widget with user roles except for administrator.
+* Remove some plugin options to simplify plugin settings.
+* Improved: Admin UI.
+
 = 1.2.9 =
 Release Date: June 23, 2018
 

@@ -12,17 +12,17 @@ $options = get_option('lmt_plugin_global_settings');
 
 // lmi output for posts
 if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
-    require LMT_DIR_PATH . 'includes/frontend/post-options.php';
+    require plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
 }
 
 // enable lmi output for pages
 if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable_last_modified_page_cb'] == 1) ) {
-    require LMT_DIR_PATH . 'includes/frontend/page-options.php';
+    require plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
 }
 
 // enable template tags functionality
 if( isset($options['lmt_tt_enable_cb']) && ($options['lmt_tt_enable_cb'] == 1) ) {
-    require LMT_DIR_PATH . 'includes/frontend/template-tags.php';
+    require plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
 }
 
 // prrint custom css in  wp head
@@ -34,12 +34,12 @@ function lmt_style_hook_in_header() {
 
 // show on admin bar
 if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_admin_bar_cb'] == 1) ) {
-    require LMT_DIR_PATH . 'includes/frontend/admin-bar.php';
+    require plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';
 }
 
-require LMT_DIR_PATH . 'includes/backend/dashboard-column.php';
-require LMT_DIR_PATH . 'includes/backend/dashboard-users.php';
-require LMT_DIR_PATH . 'includes/backend/dashboard-widget.php';
+require plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
+require plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
+require plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
 
 function lmt_show_on_dashboard () {
     // get modified time with a particular format
@@ -106,7 +106,7 @@ add_action( 'wp_head','lmt_style_hook_in_header', 10 );
 add_action( 'post_submitbox_misc_actions', 'lmt_show_on_dashboard');
 // add css to post edit page
 add_action( 'admin_print_styles-post.php', 'lmt_print_admin_meta_box_css' ); 
-add_action( 'admin_print_styles-post-new.php', 'lmt_print_admin_meta_box_css' );
+//add_action( 'admin_print_styles-post-new.php', 'lmt_print_admin_meta_box_css' );
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' ); 
 // add last modified timestamp in custom field

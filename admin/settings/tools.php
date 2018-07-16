@@ -19,10 +19,14 @@ function lmt_process_settings_export() {
 	if( ! current_user_can( 'manage_options' ) )
 		return;
 	$settings = get_option( 'lmt_plugin_global_settings' );
+	$url = get_site_url();
+    $find = array( 'http://', 'https://' );
+    $replace = '';
+    $output = str_replace( $find, $replace, $url );
 	ignore_user_abort( true );
 	nocache_headers();
 	header( 'Content-Type: application/json; charset=utf-8' );
-	header( 'Content-Disposition: attachment; filename=lmt-settings-export-' . date( 'm-d-Y' ) . '.json' );
+	header( 'Content-Disposition: attachment; filename=' . $output . '-wplmi-export-' . date( 'm-d-Y' ) . '.json' );
 	header( "Expires: 0" );
 	echo json_encode( $settings );
 	exit;

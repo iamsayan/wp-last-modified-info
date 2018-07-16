@@ -9,7 +9,7 @@
 ?>
 
 <div class="wrap">
-    <h1> WP Last Modified Info <span style="font-size:12px;">Ver <?php echo LMT_VERSION ?></span></h1>
+    <h1> WP Last Modified Info <span style="font-size:12px;">Ver <?php echo lmt_remove_footer_admin(); ?></span></h1>
 		<div> Show last update date and time on pages and posts very easily. </div><hr>
             <div id="nav-container" class="nav-tab-wrapper">
                 <a href="#post" class="nav-tab active" id="btn1">Post Options</a>
@@ -18,7 +18,6 @@
                 <a href="#misc" class="nav-tab" id="btn4">Misc. Options</a>
                 <a href="#tools" class="nav-tab" id="btn5">Tools</a>
                 <a href="#help" class="nav-tab" id="btn6">Help</a>
-                <a href="http://bit.ly/2I0Gj60" target="_blank" class="nav-tab donate" id="btn7"><span class="dashicons dashicons-smiley"></span> Donate this plugin</a>
             </div>
             <script>
                 var header = document.getElementById("nav-container");
@@ -80,10 +79,10 @@
                 <p>Yes, this plugin is compatible with any theme.</p>
                 
                 <p><li><strong>What is the CSS class for posts?</strong></li>
-                <p>CSS Class is <code>.post-last-modified</code>, for date time <code>.post-last-modified-td</code> and for author <code>.post-modified-author</code>. Add your custom style in Custom CSS Tab.</p>
+                <p>CSS Class is <code>.post-last-modified</code>, for date time <code>.post-last-modified-td</code> and for author <code>.post-modified-author</code>. Add your custom style in Custom CSS field.</p>
 
                 <p><li><strong>What is the CSS class for pages?</strong></li>
-                <p>CSS Class is <code>.page-last-modified</code>, for date time <code>.page-last-modified-td</code> and for author <code>.page-modified-author</code>. Add your custom style in Custom CSS Tab.</p>
+                <p>CSS Class is <code>.page-last-modified</code>, for date time <code>.page-last-modified-td</code> and for author <code>.page-modified-author</code>. Add your custom style in Custom CSS field.</p>
           
                 <p><li><strong>What is the shortcode for pages?</strong></li>
                 <p>Shortcode for post is <code>[lmt-post-modified-info]</code> and for page is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
@@ -127,7 +126,7 @@
                             jQuery(this).ajaxSubmit({
                                 success: function() {
                                     jQuery('#saveResult').html("<div id='saveMessage' class='successModal'></div>");
-                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wplmi'),ENT_QUOTES); ?></p>").show();
+                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wp-lmi'),ENT_QUOTES); ?></p>").show();
                                 },
                                 timeout: 5000
                             });
