@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.0
+Release Date: July 16, 2018
+
+* Added: I18n support.
+* Fix: Shortcode does not output modified info on pages. 
+
 ## 1.2.11
 Release Date: July 15, 2018
 
