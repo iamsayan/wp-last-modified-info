@@ -16,7 +16,7 @@
 $options = get_option('lmt_plugin_global_settings');
 
 function lmt_add_meta_boxes( $post ) {
-    add_meta_box( 'lmt_meta_box', __( 'WP Last Modified Info', 'wp-lmi' ), 'lmt_meta_box_callback', '', 'side', 'default' );
+    add_meta_box( 'lmt_meta_box', __( 'WP Last Modified Info', 'wp-last-modified-info' ), 'lmt_meta_box_callback', '', 'side', 'default' );
 }
 
 if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
@@ -62,7 +62,7 @@ function lmt_meta_box_callback( $post ) {
         if ( $pt != 'page' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
-		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this post', 'wp-lmi' ); ?>
+		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
 	            </label>
             </p> <?php 
         }
@@ -72,7 +72,7 @@ function lmt_meta_box_callback( $post ) {
         if ( $pt == 'page' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
-		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this page', 'wp-lmi' ); ?>
+		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this page', 'wp-last-modified-info' ); ?>
 	            </label>
             </p> <?php 
         }
@@ -80,7 +80,7 @@ function lmt_meta_box_callback( $post ) {
         
     <p id="lmt-disable" class="meta-options">
         <label for="lmt_disable" class="selectit" title="You will need this, if you found typo and don’t want to tell your readers that something changed on this <?php echo $post_types->capability_type ?>">
-		    <input id="lmt_disable" type="checkbox" name="disableupdate" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disableupdate'] ) ) checked( $checkboxMeta['_lmt_disableupdate'][0], 'yes' ); ?> /> <?php _e( 'Don&#39;t update modified info anymore', 'wp-lmi' ); ?>
+		    <input id="lmt_disable" type="checkbox" name="disableupdate" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disableupdate'] ) ) checked( $checkboxMeta['_lmt_disableupdate'][0], 'yes' ); ?> /> <?php _e( 'Don&#39;t update modified info anymore', 'wp-last-modified-info' ); ?>
 	    </label>
     </p>
 

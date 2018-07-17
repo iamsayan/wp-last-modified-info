@@ -23,14 +23,14 @@ function lmt_post_admin_actions() {
         
                    echo '<p class="lmt-mod-date">';
                    echo '' . $modified . '<br>';
-                   echo __( 'by', 'wp-lmi' ) . ' <strong>' . $user_info->display_name . '<strong>';
+                   echo __( 'by', 'wp-last-modified-info' ) . ' <strong>' . $user_info->display_name . '<strong>';
                    echo '</p>';
             break;
         // end all case breaks
         }
     }
     function lmt_post_columns_display( $columns ) {
-        $columns['modified'] = __( 'Last Modified', 'wp-lmi' );
+        $columns['modified'] = __( 'Last Modified', 'wp-last-modified-info' );
         return $columns;
     }
 

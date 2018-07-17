@@ -45,7 +45,7 @@ function lmt_show_on_dashboard () {
     // get modified time with a particular format
     $lmt_updated_time = get_the_modified_time('M j, Y @ H:i');
     if ( get_the_modified_time('U') > get_the_time('U') ) {
-        echo '<div class="misc-pub-section curtime misc-pub-last-updated"><span id="lmt-timestamp">' . __( 'Updated on:', 'wp-lmi' ) . ' <b>' . $lmt_updated_time . '</b></span></div>';
+        echo '<div class="misc-pub-section curtime misc-pub-last-updated"><span id="lmt-timestamp">' . __( 'Updated on:', 'wp-last-modified-info' ) . ' <b>' . $lmt_updated_time . '</b></span></div>';
     }
 }
 
@@ -95,7 +95,7 @@ function lmt_post_updated_messages( $messages ) {
     );
     $post_types = get_post_types( $args, 'names');
     foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-lmi' ), get_the_modified_time( apply_filters('post_updated_date_time_format', get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) ), esc_url( get_permalink( $post_ID ) ), lcfirst($object->labels->singular_name) );
+        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters('post_updated_date_time_format', get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) ), esc_url( get_permalink( $post_ID ) ), lcfirst($object->labels->singular_name) );
     }
     return $messages;
 }

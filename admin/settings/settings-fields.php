@@ -29,7 +29,7 @@ function lmt_enable_last_modified_time_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-time" name="lmt_plugin_global_settings[lmt_enable_last_modified_time_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_time_cb'])); ?> /> 
         <div class="slider round"></div></label>
-        <span id="post-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format']; } ?>" />
+        <span id="post-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified time on posts. You can also customize default (h:i a) time format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -38,7 +38,7 @@ function lmt_enable_last_modified_date_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-date" name="lmt_plugin_global_settings[lmt_enable_last_modified_date_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_date_cb'])); ?> /> 
         <div class="slider round"></div></label>
-        <span id="post-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format']; } ?>" />
+        <span id="post-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified date on posts. You can also customize default (F jS, Y) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -64,7 +64,7 @@ function lmt_show_last_modified_time_date_post_display() {
     }
     echo "</select>";
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-lmi' ); ?><code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a single posts. If you select 'Before Content or After Content', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a single posts. If you select 'Before Content or After Content', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -90,7 +90,7 @@ function lmt_show_author_cb_display() {
     echo "</select>";
 
     ?>
-    <span id="post-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    <span id="post-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php
 
     if(!isset($options['lmt_show_author_list'])){
@@ -105,7 +105,7 @@ function lmt_show_author_cb_display() {
     }
     echo "</select>";
     ?>
-    </span><span id="post-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="post-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    </span><span id="post-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="post-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_author_hyperlink'])); ?> /> 
         <div class="slider round"></div>
@@ -159,7 +159,7 @@ function lmt_enable_last_modified_time_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-time" name="lmt_plugin_global_settings[lmt_enable_last_modified_time_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_time_page_cb'])); ?> /> 
         <div class="slider-pg round-pg"></div></label>
-        <span id="page-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-time-format" name="lmt_plugin_global_settings[lmt_custom_page_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format']; } ?>" />
+        <span id="page-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-time-format" name="lmt_plugin_global_settings[lmt_custom_page_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified time on pages. You can also customize default (h:i a) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -168,7 +168,7 @@ function lmt_enable_last_modified_date_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-date" name="lmt_plugin_global_settings[lmt_enable_last_modified_date_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_date_page_cb'])); ?> /> 
         <div class="slider-pg round-pg"></div></label>
-        <span id="page-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-date-format" name="lmt_plugin_global_settings[lmt_custom_page_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format']; } ?>" />
+        <span id="page-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-date-format" name="lmt_plugin_global_settings[lmt_custom_page_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified date on pages. You can also customize default (F jS, Y) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -194,7 +194,7 @@ function lmt_show_last_modified_time_date_page_display() {
     }
     echo "</select>";
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-lmi' ); ?><code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a page. If you select 'Before Content or After Content', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="Select where you want to show last modified info on a page. If you select 'Before Content or After Content', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
  
@@ -219,7 +219,7 @@ function lmt_show_author_page_cb_display() {
     }
     echo "</select>";
     ?>
-    <span id="page-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    <span id="page-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php
 
     if(!isset($options['lmt_show_author_list_page'])){
@@ -234,7 +234,7 @@ function lmt_show_author_page_cb_display() {
     }
     echo "</select>";
     ?>
-    </span><span id="page-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="page-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    </span><span id="page-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="page-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_page_author_hyperlink'])); ?> /> 
         <div class="slider-pg round-pg"></div>
@@ -311,7 +311,7 @@ function lmt_show_author_tt_cb_display() {
     }
     echo "</select>";
     ?>
-    <span id="tt-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="lmt-custom-tt-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    <span id="tt-custom-author" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="lmt-custom-tt-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php
 
     if(!isset($options['lmt_show_author_list_tt'])){
@@ -326,7 +326,7 @@ function lmt_show_author_tt_cb_display() {
     }
     echo "</select>";
     ?>
-    </span><span id="tt-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="lmt-tt-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-lmi' ); ?></strong></label>&nbsp;&nbsp;
+    </span><span id="tt-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="lmt-tt-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_tt_author_hyperlink'])); ?> /> 
         <div class="slider-tt round-tt"></div>
@@ -354,7 +354,7 @@ function lmt_enable_on_admin_bar_cb_display() {
 function lmt_custom_style_box_display() {
     ?>
     <textarea id="lmt-cus-style" class="my-code-area1" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_style_box'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_style_box']; } ?></textarea>
-    <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-lmi' ), '<strong>&#39;&lt;style&gt; &lt;/style&gt;&#39;</strong>'); ?></small>
+    <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<strong>&#39;&lt;style&gt; &lt;/style&gt;&#39;</strong>'); ?></small>
     <?php
 }
 

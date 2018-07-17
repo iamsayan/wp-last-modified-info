@@ -28,7 +28,7 @@ function lmt_show_page() {
 
 // add menu options
 function lmt_menu_item_options() {
-    add_submenu_page('options-general.php', __( 'WP Last Modified Info', 'wp-lmi' ), __( 'Last Modified Info', 'wp-lmi' ), 'manage_options', 'wp-last-modified-info', 'lmt_show_page'); 
+    add_submenu_page('options-general.php', __( 'WP Last Modified Info', 'wp-last-modified-info' ), __( 'Last Modified Info', 'wp-last-modified-info' ), 'manage_options', 'wp-last-modified-info', 'lmt_show_page'); 
 }
 
 if( !is_network_admin() ) {

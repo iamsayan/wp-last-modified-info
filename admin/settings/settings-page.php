@@ -9,15 +9,15 @@
 ?>
 
 <div class="wrap">
-    <h1> <?php _e( 'WP Last Modified Info', 'wp-lmi' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-lmi' ); ?> <?php echo lmt_remove_footer_admin(); ?></span></h1>
-		<div> <?php _e( 'Show last update date and time on pages and posts very easily.', 'wp-lmi' ); ?> </div><hr>
+    <h1> <?php _e( 'WP Last Modified Info', 'wp-last-modified-info' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-last-modified-info' ); ?> <?php echo lmt_remove_footer_admin(); ?></span></h1>
+		<div> <?php _e( 'Show last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?> </div><hr>
             <div id="nav-container" class="nav-tab-wrapper">
-                <a href="#post" class="nav-tab active" id="btn1"><?php _e( 'Post Options', 'wp-lmi' ); ?></a>
-                <a href="#page" class="nav-tab" id="btn2"><?php _e( 'Page Options', 'wp-lmi' ); ?></a>
-                <a href="#template-tags" class="nav-tab" id="btn3"><?php _e( 'Template Tags', 'wp-lmi' ); ?></a>
-                <a href="#misc" class="nav-tab" id="btn4"><?php _e( 'Misc. Options', 'wp-lmi' ); ?></a>
-                <a href="#tools" class="nav-tab" id="btn5"><?php _e( 'Tools', 'wp-lmi' ); ?></a>
-                <a href="#help" class="nav-tab" id="btn6"><?php _e( 'Help', 'wp-lmi' ); ?></a>
+                <a href="#post" class="nav-tab active" id="btn1"><?php _e( 'Post Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#page" class="nav-tab" id="btn2"><?php _e( 'Page Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#template-tags" class="nav-tab" id="btn3"><?php _e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
+                <a href="#misc" class="nav-tab" id="btn4"><?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#tools" class="nav-tab" id="btn5"><?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
+                <a href="#help" class="nav-tab" id="btn6"><?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
             </div>
             <script>
                 var header = document.getElementById("nav-container");
@@ -43,29 +43,29 @@
             <div id="show-post"> <?php
             
                 do_settings_sections('lmt_post_option');
-                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
             
             ?> </div>
 
             <div style="display:none" id="show-page"> <?php
                  
                 do_settings_sections('lmt_page_option');
-                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
 
             ?> </div>
 
             <div style="display:none" id="show-tt"> <?php
 
                 do_settings_sections('lmt_template_tag_option');
-                ?> <br><b><?php _e( 'Note:', 'wp-lmi' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-lmi' ); ?></i><?php
-                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
+                ?> <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-last-modified-info' ); ?></i><?php
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
 
             ?> </div>
 
             <div style="display:none" id="show-misc"> <?php
 
                 do_settings_sections('lmt_misc_option');
-                submit_button( __( 'Save Settings', 'wp-lmi' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
 
             ?> </div>
             <div id="progress" style="display:none;">Please wait...</div>
@@ -126,7 +126,7 @@
                             jQuery(this).ajaxSubmit({
                                 success: function() {
                                     jQuery('#saveResult').html("<div id='saveMessage' class='successModal'></div>");
-                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wp-lmi'),ENT_QUOTES); ?></p>").show();
+                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wp-last-modified-info'),ENT_QUOTES); ?></p>").show();
                                 },
                                 timeout: 5000
                             });
@@ -137,35 +137,35 @@
                 </script>
             
             <div id="show-tools" style="display:none;">
-                <h3> <?php _e( 'Plugin Tools', 'wp-lmi' ); ?> </h3><p><hr></p>
-                    <span><strong><?php _e( 'Export Settings', 'wp-lmi' ); ?></strong></span>
-					<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-lmi' ); ?></p>
+                <h3> <?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?> </h3><p><hr></p>
+                    <span><strong><?php _e( 'Export Settings', 'wp-last-modified-info' ); ?></strong></span>
+					<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-last-modified-info' ); ?></p>
 					<form method="post">
 						<p><input type="hidden" name="lmt_export_action" value="lmt_export_settings" /></p>
 						<p>
 							<?php wp_nonce_field( 'lmt_export_nonce', 'lmt_export_nonce' ); ?>
-							<?php submit_button( __( 'Export Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Export Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
 						</p>
 					</form>
                 <p><hr></p>
-                    <span><strong><?php _e( 'Import Settings', 'wp-lmi' ); ?></strong></span>
-					<p><?php _e( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp-lmi' ); ?></p>
+                    <span><strong><?php _e( 'Import Settings', 'wp-last-modified-info' ); ?></strong></span>
+					<p><?php _e( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp-last-modified-info' ); ?></p>
 					<form method="post" enctype="multipart/form-data">
 						<p><input type="file" name="import_file" accept=".json"/></p>
 						<p>
 							<input type="hidden" name="lmt_import_action" value="lmt_import_settings" />
 							<?php wp_nonce_field( 'lmt_import_nonce', 'lmt_import_nonce' ); ?>
-							<?php submit_button( __( 'Import Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Import Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
 						</p>
 					</form>
                 <p><hr></p>
-                    <span><strong><?php _e( 'Reset Settings', 'wp-lmi' ); ?></strong></span>
-					<p style="color:red"><strong>WARNING: </strong><?php _e( 'Delete all options related to this plugin in your database.', 'wp-lmi' ); ?></p>
+                    <span><strong><?php _e( 'Reset Settings', 'wp-last-modified-info' ); ?></strong></span>
+					<p style="color:red"><strong>WARNING: </strong><?php _e( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-last-modified-info' ); ?></p>
 					<form method="post">
 						<p><input type="hidden" name="lmt_reset_action" value="lmt_reset_settings" /></p>
 	                    <p>
 							<?php wp_nonce_field( 'lmt_reset_nonce', 'lmt_reset_nonce' ); ?>
-							<?php submit_button( __( 'Reset Settings', 'wp-lmi' ), 'secondary', 'submit', false ); ?>
+							<?php submit_button( __( 'Reset Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
 					    </p>
 					</form>
                 <br>

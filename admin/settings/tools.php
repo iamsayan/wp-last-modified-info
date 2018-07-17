@@ -46,11 +46,11 @@ function lmt_process_settings_import() {
     $extension = explode( '.', $_FILES['import_file']['name'] );
     $file_extension = end($extension);
 	if( $file_extension != 'json' ) {
-		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.' ) );
+		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-last-modified-info' ) );
 	}
 	$import_file = $_FILES['import_file']['tmp_name'];
 	if( empty( $import_file ) ) {
-		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.' ) );
+		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-last-modified-info' ) );
 	}
 	// Retrieve the settings from the file and convert the json object to an array.
 	$settings = (array) json_decode( file_get_contents( $import_file ) );
@@ -58,7 +58,7 @@ function lmt_process_settings_import() {
     //wp_safe_redirect( admin_url( 'options-general.php?page=wp-last-modified-info' ) ); exit;
     function lmt_import_success_notice(){
         echo '<div class="notice notice-success is-dismissible">
-                 <p><strong>Success! Plugin Settings has been imported successfully.</strong></p>
+                 <p><strong>' . __( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ) . '</strong></p>
              </div>';
     }
     add_action('admin_notices', 'lmt_import_success_notice'); 
@@ -80,7 +80,7 @@ function lmt_remove_plugin_settings() {
 
     function lmt_settings_reset_success_notice(){
         echo '<div class="notice notice-success is-dismissible">
-                 <p><strong>Success! Plugin Settings reset successfully.</strong></p>
+                 <p><strong>' . __( 'Success! Plugin Settings reset successfully.', 'wp-last-modified-info' ) . '</strong></p>
              </div>';
     }
     add_action('admin_notices', 'lmt_settings_reset_success_notice'); 

@@ -40,11 +40,11 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     $args = array(
         'id' => 'lmt-update',
         'parent' => 'top-secondary',
-        'title'  => sprintf(__( 'Updated %s ago', 'wp-lmi' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' ))),
+        'title'  => sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' ))),
         'href'   => lmt_get_post_revision_status(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
-            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-lmi' ), $post->post_type, get_the_modified_date( get_option( 'date_format' ) ), get_the_modified_time( get_option( 'time_format' ) ), get_the_modified_author() ),
+            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), $post->post_type, get_the_modified_date( get_option( 'date_format' ) ), get_the_modified_time( get_option( 'time_format' ) ), get_the_modified_author() ),
             'target' => '_blank',
         )
     );

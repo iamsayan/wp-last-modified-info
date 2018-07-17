@@ -7,7 +7,8 @@
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
- * Text Domain: wp-lmi
+ * Text Domain: wp-last-modified-info
+ * Domain Path: /languages
  * 
  * WP Last Modified Info is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// todo
+// Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
 /**
  * Load plugin textdomain.
@@ -42,7 +43,7 @@ add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
  * @since 1.2.11
  */
 function lmt_plugin_load_textdomain() {
-    load_plugin_textdomain( 'wp-lmi', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+    load_plugin_textdomain( 'wp-last-modified-info', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
 //add admin styles and scripts
