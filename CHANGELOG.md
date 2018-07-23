@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.1
+Release Date: July 21, 2018
+
+* Added: It is now possible to edit modified date and time.
+* Improved: Made uninstall cleanup optional through a plugin setting and improved uninstall mechanism.
+* Fixed: Admin bar returns revision link even if that post/page is not a revision.
+* Fixed: Permission for custom post meta box.
+* Fixed: Incorrectly translated strings.
+
 ## 1.3.0
 Release Date: July 16, 2018
 
