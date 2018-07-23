@@ -8,20 +8,32 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-function lmt_get_post_revision_status() {
+function lmt_get_post_revision() {
 
     global $post, $post_id;
+
+    // If user can't edit post, then don't show
+    if( ! current_user_can('edit_post', $post_id) ) return;
+
     $revision = wp_get_post_revisions( $post_id );
 
     $latest_revision = array_shift( $revision );
 
     if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
-        $get_revision = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
-    } else {
-        $get_revision = '';
+        return get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
     }
-    return $get_revision;
+    return;
+}
 
+function lmt_adminbar_info() {
+
+    $cur_time = current_time('U');
+    $mod_time = get_the_modified_time( 'U' );
+
+    if ( $mod_time > $cur_time ) {
+        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M g' ), get_the_modified_time( get_option( 'time_format' ) ));
+    }
+    return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )));
 }
 
 // add a link to the WP Toolbar
@@ -37,11 +49,12 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     if ( get_the_modified_time('U') == get_the_time('U') ) return;
 
     global $post;
+    $object = get_post_type_object( get_post_type( $post ) );
     $args = array(
         'id' => 'lmt-update',
         'parent' => 'top-secondary',
-        'title'  => sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' ))),
-        'href'   => lmt_get_post_revision_status(),
+        'title'  => lmt_adminbar_info(),
+        'href'   => lmt_get_post_revision(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
             'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), $post->post_type, get_the_modified_date( get_option( 'date_format' ) ), get_the_modified_time( get_option( 'time_format' ) ), get_the_modified_author() ),

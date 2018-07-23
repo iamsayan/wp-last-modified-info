@@ -40,14 +40,7 @@ if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_ad
 require plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
 require plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
 require plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
-
-function lmt_show_on_dashboard () {
-    // get modified time with a particular format
-    $lmt_updated_time = get_the_modified_time('M j, Y @ H:i');
-    if ( get_the_modified_time('U') > get_the_time('U') ) {
-        echo '<div class="misc-pub-section curtime misc-pub-last-updated"><span id="lmt-timestamp">' . __( 'Updated on:', 'wp-last-modified-info' ) . ' <b>' . $lmt_updated_time . '</b></span></div>';
-    }
-}
+require plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
 
 function lmt_print_admin_post_css() {
     echo '<style type="text/css"> .fixed .column-modified { width:18%; } </style>'."\n";
@@ -55,22 +48,6 @@ function lmt_print_admin_post_css() {
 
 function lmt_print_admin_users_css() {
     echo '<style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style>'."\n";
-}
-
-function lmt_print_admin_meta_box_css() {
-    echo '<style type="text/css">
-            .curtime #lmt-timestamp:before {
-                content:"\f469";
-                font: 400 20px/1 dashicons;
-                speak: none;
-                display: inline-block;
-                margin-left: -1px;
-                padding-right: 3px;
-                vertical-align: top;
-                -webkit-font-smoothing: antialiased;
-                color: #82878c;
-            }
-        </style>'."\n";
 }
 
 function lmt_add_custom_field_lmi( $post_id ) {
@@ -95,18 +72,14 @@ function lmt_post_updated_messages( $messages ) {
     );
     $post_types = get_post_types( $args, 'names');
     foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters('post_updated_date_time_format', get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) ), esc_url( get_permalink( $post_ID ) ), lcfirst($object->labels->singular_name) );
+        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters('post_updated_date_time_format', get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ) ) ), esc_url( get_permalink( $post_ID ) ), $object->capability_type );
     }
     return $messages;
 }
 
 // add custom css
 add_action( 'wp_head','lmt_style_hook_in_header', 10 );
-// add post publish box item
-add_action( 'post_submitbox_misc_actions', 'lmt_show_on_dashboard');
-// add css to post edit page
-add_action( 'admin_print_styles-post.php', 'lmt_print_admin_meta_box_css' ); 
-//add_action( 'admin_print_styles-post-new.php', 'lmt_print_admin_meta_box_css' );
+// add css to admin page
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' ); 
 // add last modified timestamp in custom field

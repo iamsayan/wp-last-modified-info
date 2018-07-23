@@ -46,8 +46,9 @@ function lmt_plug_settings_page() {
     // start custom css field
     add_settings_section('lmt_misc_section', __( 'Miscellaneous Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_misc_option');
         add_settings_field('lmt_enable_on_admin_bar_cb', __( 'Show Modified Info on Admin Bar:', 'wp-last-modified-info' ), 'lmt_enable_on_admin_bar_cb_display', 'lmt_misc_option', 'lmt_misc_section', array( 'label_for' => 'admin-bar-display' ));
-        add_settings_field('lmt_custom_style_box', __( 'Write Custom CSS Here:', 'wp-last-modified-info' ), 'lmt_custom_style_box_display', 'lmt_misc_option', 'lmt_misc_section', array( 'label_for' => 'lmt-cus-style' ));  
-    
+        add_settings_field('lmt_custom_style_box', __( 'Custom CSS Properties:', 'wp-last-modified-info' ), 'lmt_custom_style_box_display', 'lmt_misc_option', 'lmt_misc_section', array( 'label_for' => 'lmt-cus-style' ));  
+        add_settings_field('lmt_del_plugin_data_cb', __( 'Delete Plugin Data upon Uninstallation:', 'wp-last-modified-info' ), 'lmt_del_plugin_data_cb_display', 'lmt_misc_option', 'lmt_misc_section', array( 'label_for' => 'del-data' ));
+        
     // register settings
     register_setting('lmt_post_page_plugin_section', 'lmt_plugin_global_settings');
 

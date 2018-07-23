@@ -14,21 +14,21 @@
 function lmt_enable_last_modified_cb_display() {
    ?>   <label class="switch">
         <input type="checkbox" id="post-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_cb'])); ?> /> 
-        <div class="slider round"></div></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on single posts page."><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
 function lmt_enable_human_format_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="post-human" name="lmt_plugin_global_settings[lmt_enable_human_format_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_human_format_cb'])); ?> /> 
-        <div class="slider round"></div></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on posts as human readable format i.e. days / weeks / years ago. It will override next three options."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on posts as human readable format i.e. days / weeks / years ago."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_enable_last_modified_time_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-time" name="lmt_plugin_global_settings[lmt_enable_last_modified_time_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_time_cb'])); ?> /> 
-        <div class="slider round"></div></label>
+        <span class="slider round"></span></label>
         <span id="post-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_time_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified time on posts. You can also customize default (h:i a) time format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -37,7 +37,7 @@ function lmt_enable_last_modified_time_cb_display() {
 function lmt_enable_last_modified_date_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-date" name="lmt_plugin_global_settings[lmt_enable_last_modified_date_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_date_cb'])); ?> /> 
-        <div class="slider round"></div></label>
+        <span class="slider round"></span></label>
         <span id="post-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-post-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_post_date_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified date on posts. You can also customize default (F jS, Y) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -108,7 +108,7 @@ function lmt_show_author_cb_display() {
     </span><span id="post-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="post-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_author_hyperlink'])); ?> /> 
-        <div class="slider round"></div>
+        <span class="slider round"></span>
     </label></span>
     &nbsp;&nbsp;<span class="tooltip" title="Set how you want to display last modified author name on posts."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -144,21 +144,21 @@ function lmt_custom_post_types_list_display() {
 function lmt_enable_last_modified_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_page_cb'])); ?> /> 
-        <div class="slider-pg round-pg"></div></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-pg round-pg"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_enable_human_format_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-human" name="lmt_plugin_global_settings[lmt_enable_human_format_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_human_format_page_cb'])); ?> /> 
-        <div class="slider-pg round-pg"></div></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages as human readable format i.e. days / weeks / years ago. It will override next three options."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-pg round-pg"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on pages as human readable format i.e. days / weeks / years ago."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_enable_last_modified_time_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-time" name="lmt_plugin_global_settings[lmt_enable_last_modified_time_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_time_page_cb'])); ?> /> 
-        <div class="slider-pg round-pg"></div></label>
+        <span class="slider-pg round-pg"></span></label>
         <span id="page-tmcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-time-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-time-format" name="lmt_plugin_global_settings[lmt_custom_page_time_format]" type="text" size="10" style="width:10%;" placeholder="h:i a" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_time_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified time on pages. You can also customize default (h:i a) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -167,7 +167,7 @@ function lmt_enable_last_modified_time_page_cb_display() {
 function lmt_enable_last_modified_date_page_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-date" name="lmt_plugin_global_settings[lmt_enable_last_modified_date_page_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_last_modified_date_page_cb'])); ?> /> 
-        <div class="slider-pg round-pg"></div></label>
+        <span class="slider-pg round-pg"></span></label>
         <span id="page-dtcf" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="custom-page-date-format" style="font-size:13px;"><strong><?php _e( 'Custom Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;<input id="custom-page-date-format" name="lmt_plugin_global_settings[lmt_custom_page_date_format]" type="text" size="10" style="width:10%;" placeholder="F jS, Y" value="<?php if (isset(get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format'])) { echo get_option('lmt_plugin_global_settings')['lmt_custom_page_date_format']; } ?>" />
         </span>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified date on pages. You can also customize default (F jS, Y) date format. Go to help tab for more."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -237,7 +237,7 @@ function lmt_show_author_page_cb_display() {
     </span><span id="page-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="page-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_page_author_hyperlink'])); ?> /> 
-        <div class="slider-pg round-pg"></div>
+        <span class="slider-pg round-pg"></span>
     </label></span>
     &nbsp;&nbsp;<span class="tooltip" title="Set how you want to display last modified author name on pages."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -273,14 +273,14 @@ function lmt_show_author_page_cb_display() {
 function lmt_tt_enable_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="lmt-tt" name="lmt_plugin_global_settings[lmt_tt_enable_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_tt_enable_cb'])); ?> /> 
-        <div class="slider-tt round-tt"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to use template tag functionality. Go to Help tab for more info."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-tt round-tt"></span></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to use template tag functionality. Go to Help tab for more info."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_enable_human_format_tt_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="lmt-tt-human" name="lmt_plugin_global_settings[lmt_enable_human_format_tt_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_human_format_tt_cb'])); ?> /> 
-        <div class="slider-tt round-tt"></div></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info as human readable format i.e. days/weeks/years ago using template tags."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-tt round-tt"></span></label>&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info as human readable format i.e. days/weeks/years ago using template tags."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -329,7 +329,7 @@ function lmt_show_author_tt_cb_display() {
     </span><span id="tt-author-link" style="display:none;">&nbsp;&nbsp;&nbsp;<label for="lmt-tt-authorlink" style="font-size:13px;"><strong><?php _e( 'Link:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_tt_author_hyperlink'])); ?> /> 
-        <div class="slider-tt round-tt"></div>
+        <span class="slider-tt round-tt"></span>
     </label></span>
     &nbsp;&nbsp;<span class="tooltip" title="Set how you want to display last modified author name using template tags."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
@@ -347,7 +347,7 @@ function lmt_tt_class_box_display() {
 function lmt_enable_on_admin_bar_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="admin-bar-display" name="lmt_plugin_global_settings[lmt_enable_on_admin_bar_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_enable_on_admin_bar_cb'])); ?> /> 
-        <div class="slider-misc round-misc"></div></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on wordpress admin bar."><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to show last modified info on wordpress admin bar."><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -358,5 +358,11 @@ function lmt_custom_style_box_display() {
     <?php
 }
 
+function lmt_del_plugin_data_cb_display() {
+    ?>  <label class="switch">
+        <input type="checkbox" id="del-data" name="lmt_plugin_global_settings[lmt_del_plugin_data_cb]" value="1" <?php checked(1 == isset(get_option('lmt_plugin_global_settings')['lmt_del_plugin_data_cb'])); ?> /> 
+        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="Enable this if you want to delete plugin data at the time of uninstallation."><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
 
 ?>

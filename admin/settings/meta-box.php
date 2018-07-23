@@ -16,6 +16,10 @@
 $options = get_option('lmt_plugin_global_settings');
 
 function lmt_add_meta_boxes( $post ) {
+
+    // If user can't publish posts, then get out
+    if ( ! current_user_can( 'publish_posts' ) ) return;
+    
     add_meta_box( 'lmt_meta_box', __( 'WP Last Modified Info', 'wp-last-modified-info' ), 'lmt_meta_box_callback', '', 'side', 'default' );
 }
 
@@ -78,12 +82,6 @@ function lmt_meta_box_callback( $post ) {
         }
     } ?>
         
-    <p id="lmt-disable" class="meta-options">
-        <label for="lmt_disable" class="selectit" title="You will need this, if you found typo and don’t want to tell your readers that something changed on this <?php echo $post_types->capability_type ?>">
-		    <input id="lmt_disable" type="checkbox" name="disableupdate" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disableupdate'] ) ) checked( $checkboxMeta['_lmt_disableupdate'][0], 'yes' ); ?> /> <?php _e( 'Don&#39;t update modified info anymore', 'wp-last-modified-info' ); ?>
-	    </label>
-    </p>
-
     <p id="major-publishing-actions" style="font-size:12px;line-height:1.9;border-top:none !important;">
 
         <?php
@@ -127,12 +125,6 @@ function lmt_save_meta_boxes_data( $post_id ) {
 	}
 	// store custom fields values
 	// disableautoinsert string
-    if( isset( $_POST[ 'disableupdate' ] ) ) {
-        update_post_meta( $post_id, '_lmt_disableupdate', 'yes' );
-    } else {
-        delete_post_meta( $post_id, '_lmt_disableupdate' );
-    } 
-
     if( isset( $_POST[ 'disableautoinsert' ] ) ) {
         update_post_meta( $post_id, '_lmt_disable', 'yes' );
     } else {
@@ -142,16 +134,5 @@ function lmt_save_meta_boxes_data( $post_id ) {
 }
 
 add_action( 'save_post', 'lmt_save_meta_boxes_data', 10, 2 );
-
-
-function lmt_disable_update_date($data, $postarr) {
-
-	if( isset( $_POST[ 'disableupdate' ] ) && isset( $postarr['post_modified'] ) && isset( $postarr['post_modified_gmt'] ) ) {
-		$data['post_modified'] = $postarr['post_modified'];
-		$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
-	}
-	return $data;
-}
-add_filter('wp_insert_post_data', 'lmt_disable_update_date', 99, 2);
 
 ?>

@@ -15,10 +15,11 @@ function lmt_user_last_login( $user_login, $user ) {
 add_action( 'wp_login', 'lmt_user_last_login', 10, 2 );
 
 function lmt_add_last_login_user_column( $columns ) {
-    return array_merge( $columns, array( 'last-login' => __( 'Last Login' ) ) );
+    return array_merge( $columns, array( 'last-login' => __( 'Last Login', 'wp-last-modified-info' ) ) );
 }
 
 add_action( 'manage_users_columns', 'lmt_add_last_login_user_column' );
+//add_filter( 'manage_users_sortable_columns', 'lmt_add_last_login_user_column' );
  
 function lmt_main_lastlogin($get_login_value, $login_column_name, $user_id) { 
 
@@ -39,11 +40,12 @@ function lmt_update_profile_modified( $user_id ) {
 
 add_action( 'profile_update', 'lmt_update_profile_modified' );
 
-function lmt_add_extra_user_column( $columns ) {
-	return array_merge( $columns, array( 'last-updated' => __( 'Last Updated' ) ) );
+function lmt_profile_update_user_column( $columns ) {
+	return array_merge( $columns, array( 'last-updated' => __( 'Last Updated', 'wp-last-modified-info' ) ) );
 }
 
-add_action( 'manage_users_columns', 'lmt_add_extra_user_column' );
+add_action( 'manage_users_columns', 'lmt_profile_update_user_column' );
+//add_filter( 'manage_users_sortable_columns', 'lmt_profile_update_user_column' );
 
 function lmt_manage_users_custom_column( $profile_update_get_value, $profile_column_name, $user_id ) {
 	if ( 'last-updated' == $profile_column_name ) {

@@ -3,7 +3,7 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -33,6 +33,7 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Allows you to display last modified author info in posts, pages.
 * Allows you to add last modified timestamp in post/page's custom field.
+* Allows you to customize last modified date and time.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -158,6 +159,16 @@ Use the plugin to test it.
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.3.1 =
+Release Date: July 21, 2018
+
+* Added: It is now possible to edit modified date and time.
+* Improved: Made uninstall cleanup optional through a plugin setting and improved uninstall mechanism.
+* Fixed: Admin bar returns revision link even if that post/page is not a revision.
+* Fixed: Permission for custom post meta box.
+* Fixed: Permission to view last revision.
+* Fixed: Incorrectly translated strings.
 
 = 1.3.0 =
 Release Date: July 16, 2018

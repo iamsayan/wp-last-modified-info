@@ -40,5 +40,4 @@ function lmt_page_modified_info_shortcode() {
     return $modified_content;
 }
 
-
 ?>
