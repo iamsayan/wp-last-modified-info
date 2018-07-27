@@ -27,18 +27,25 @@ function lmt_get_post_revision() {
 
 function lmt_adminbar_info() {
 
+    // retrive date time formats
     $cur_time = current_time('U');
     $mod_time = get_the_modified_time( 'U' );
+    $get_df = get_option( 'date_format' );
+    $get_tf = get_option( 'time_format' );
 
     if ( $mod_time > $cur_time ) {
-        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M g' ), get_the_modified_time( get_option( 'time_format' ) ));
+        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M g' ), get_the_modified_time( $get_tf ));
     }
-    return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )));
+    return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), $cur_time));
 }
 
 // add a link to the WP Toolbar
 function lmt_custom_toolbar_item( $wp_admin_bar ) {
 
+    // get wp date time formats
+    $get_df = get_option( 'date_format' );
+    $get_tf = get_option( 'time_format' );
+    
     // If it's admin page, then get out!
     if ( is_admin() ) return;
     
@@ -57,7 +64,7 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
         'href'   => lmt_get_post_revision(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
-            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), $post->post_type, get_the_modified_date( get_option( 'date_format' ) ), get_the_modified_time( get_option( 'time_format' ) ), get_the_modified_author() ),
+            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), $post->post_type, get_the_modified_date( $get_df ), get_the_modified_time( $get_tf ), get_the_modified_author() ),
             'target' => '_blank',
         )
     );
@@ -86,7 +93,7 @@ function lmt_add_admin_bar_object() {
 
 function lmt_remove_toolbar_node( $wp_admin_bar ) {
 	
-	// replace 'updraft_admin_node' with your node id
+	// remove node
 	$wp_admin_bar->remove_node('lmt-update');
 
 }

@@ -60,7 +60,8 @@ td {
     color:#fff;
 }
 
-#progress, .successModal {
+.progressModal,
+.successModal {
     display: block;
     position: fixed;
     top: 50%;

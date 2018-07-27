@@ -3,7 +3,8 @@ Contributors: Infosatech
 Tags: last modified info, shortcode, short by column, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.3.1
+Stable tag: 1.3.2
+Requires PHP: 5.3
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -17,6 +18,8 @@ Display last modified date and time on pages and posts very easily. You can use 
 Most WordPress themes usually show the date when a post was last published. This is fine for most blogs and static websites. However, WordPress is also used by websites where old articles are regularly updated. This last updated date and time is important information for those publications. The most common example is news websites. They often update old stories to show new developments, add corrections, or media files. If they only added the published date, then their users would miss those updates.
 
 Many popular blogs and websites don’t show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
+
+Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
 
 #### What does this plugin do?
 
@@ -160,14 +163,22 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.3.2 =
+Release Date: July 27, 2018
+
+* Added: Disable modified info update from Quick Edit.
+* Added: A lock icon now indicates last modified info update disble status.
+* Tweak: Now Dashboard Widget shows only published posts.
+* Fixed: PHP 5.3 Compatibility issue.
+* Fixed: Column sorting is not working properly.
+
 = 1.3.1 =
-Release Date: July 21, 2018
+Release Date: July 22, 2018
 
 * Added: It is now possible to edit modified date and time.
 * Improved: Made uninstall cleanup optional through a plugin setting and improved uninstall mechanism.
 * Fixed: Admin bar returns revision link even if that post/page is not a revision.
 * Fixed: Permission for custom post meta box.
-* Fixed: Permission to view last revision.
 * Fixed: Incorrectly translated strings.
 
 = 1.3.0 =

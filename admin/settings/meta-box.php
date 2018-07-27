@@ -88,14 +88,14 @@ function lmt_meta_box_callback( $post ) {
         // check if not page edit screen
         if ( $pt != 'page' ) { ?>
             <span id="show-shortcode-post" class="tooltipsc" onclick="doCopyPost(); return false;" onmouseout="dooutFuncPost(); return false;">
-                <strong>Shortcode:</strong><input type="text" style="font-size:12px;box-shadow:none !important;border:none;cursor:pointer;background:transparent;padding-left:0;" value="[lmt-post-modified-info]" id="postSC">
+                <strong>Shortcode:</strong><input type="text" id="postSC" autocomplete="off" value="[lmt-post-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
                 <span class="tooltiptext" id="scTooltipPost">Copy to clipboard</span>
             </span> <?php
         }
         // check if page edit screen
         if ( $pt == 'page' ) { ?>
             <span id="show-shortcode-page" class="tooltipsc" onclick="doCopyPage(); return false;" onmouseout="dooutFuncPage(); return false;">
-                <strong>Shortcode:</strong><input type="text" style="font-size:12px;box-shadow:none !important;border:none;cursor:pointer;background:transparent;padding-left:0;" value="[lmt-page-modified-info]" id="pageSC">
+                <strong>Shortcode:</strong><input type="text" id="pageSC" autocomplete="off" value="[lmt-page-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
                 <span class="tooltiptext" id="scTooltipPage">Copy to clipboard</span>
             </span> <?php
         } ?>

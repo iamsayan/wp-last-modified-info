@@ -68,7 +68,10 @@
                 submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
 
             ?> </div>
-            <div id="progress" style="display:none;">Please wait...</div>
+
+            <div id="progressMessage" class="progressModal" style="display:none;">Please wait...</div>
+            <div id="saveMessage" class="successModal" style="display:none;"><p><?php echo htmlentities(__('Settings Saved Successfully!','wp-last-modified-info'), ENT_QUOTES); ?></p></div>
+           
             <div style="display:none;" id="show-help">
                 <div>
                 <h3> Do you need help with this plugin? Here are some FAQ for you: </h3><p><hr></p>
@@ -118,19 +121,17 @@
             </div>
     
         </form>
+
             <div id="saveResult"></div>
                 <script type="text/javascript">
-                    jQuery(document).ready(function() {
-                        jQuery('#form-container').submit(function() {
-                            jQuery('#progress').show().delay(3000).fadeOut();
-                            jQuery(this).ajaxSubmit({
+                    jQuery(document).ready(function($) {
+                        $('#form-container').submit(function() {
+                            $('#progressMessage').show().delay(3000).fadeOut();
+                            $(this).ajaxSubmit({
                                 success: function() {
-                                    jQuery('#saveResult').html("<div id='saveMessage' class='successModal'></div>");
-                                    jQuery('#saveMessage').append("<p><?php echo htmlentities(__('Settings Saved Successfully!','wp-last-modified-info'),ENT_QUOTES); ?></p>").show();
-                                },
-                                timeout: 5000
+                                    $('#saveMessage').show().delay(4000).fadeOut();
+                                }
                             });
-                            setTimeout("jQuery('#saveMessage').hide();", 4000);
                             return false;
                         });
                     });

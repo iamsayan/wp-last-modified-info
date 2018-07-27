@@ -7,6 +7,7 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
+// get plugin options
 $options = get_option('lmt_plugin_global_settings');
 
 if(!empty($options['lmt_custom_page_time_format'])) {
@@ -24,14 +25,14 @@ else {
 }
 
 if(!empty($options['lmt_page_custom_text'])) {
-    $options_page = esc_html(get_option('lmt_plugin_global_settings')['lmt_page_custom_text']);
+    $options_page = esc_html($options['lmt_page_custom_text']);
 }
 else {
     $options_page = 'Last Updated on ';
 }
 
 if(!empty($options['lmt_page_date_time_sep'])) {
-    $options_page_sep = esc_html(get_option('lmt_plugin_global_settings')['lmt_page_date_time_sep']);
+    $options_page_sep = esc_html($options['lmt_page_date_time_sep']);
 }
 else {
     $options_page_sep = 'at';

@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Show or hide last update date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere.
- * Version: 1.3.1
+ * Version: 1.3.2
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -46,6 +46,13 @@ function lmt_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-last-modified-info', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
+function lmt_remove_footer_admin() {
+    // fetch plugin version
+    $lmtpluginfo = get_plugin_data(__FILE__);
+    $lmtversion = $lmtpluginfo['Version'];    
+	return $lmtversion;
+}
+
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {
 
@@ -64,10 +71,15 @@ function lmt_custom_admin_styles_scripts() {
 function lmt_shortcode_admin_styles_scripts( $hook ) {
 
     global $post;
+
     // check if post edit screen
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ) );   
         wp_enqueue_script( 'lmt-post-script', plugins_url( 'admin/assets/js/post.min.js', __FILE__ ) );
+    }
+
+    if ( $hook == 'edit.php' ) {
+        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), lmt_remove_footer_admin(), true );
     }
 }
 
@@ -84,7 +96,10 @@ function lmt_ajax_save_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
 add_action( 'admin_enqueue_scripts', 'lmt_shortcode_admin_styles_scripts' );
 add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
-
+// check php version
+if( version_compare( PHP_VERSION, '5.3', '<' ) ) {
+    add_action( 'admin_notices', 'lmt_below_php_version_notice' );
+}
 
 /**
  * File that triggers main plugin data.
@@ -93,12 +108,8 @@ require_once plugin_dir_path( __FILE__ ) . 'admin/loader.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
 
-function lmt_remove_footer_admin() {
-
-    // fetch plugin version
-    $lmtpluginfo = get_plugin_data(__FILE__);
-    $lmtversion = $lmtpluginfo['Version'];    
-	return $lmtversion;
+function lmt_below_php_version_notice() {
+    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.3 or later.', 'wp-last-modified-info' ) . '</p></div>';
 }
 
 // add action links
@@ -119,7 +130,10 @@ function lmt_plugin_meta_links($links, $file) {
 	return $links;
 }
 
+// plugin action links
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );
+
+// plugin row elements
 add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
 
 

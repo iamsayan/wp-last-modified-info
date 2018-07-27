@@ -10,6 +10,7 @@
 
 function get_the_last_modified_info () {
 
+    // get plugin options
     $options = get_option('lmt_plugin_global_settings');
     
     if(!empty($options['lmt_tt_set_format_box'])) {
@@ -61,7 +62,7 @@ function get_the_last_modified_info () {
         
     if(!empty($options['lmt_tt_class_box'])) {
 
-        $get_custom_class = esc_html(get_option('lmt_plugin_global_settings')['lmt_tt_class_box']);              
+        $get_custom_class = esc_html($options['lmt_tt_class_box']);              
         
         $lmt_template_tag = '<span class="'. $get_custom_class .'"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $last_modified_text . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
 

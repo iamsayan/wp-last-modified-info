@@ -50,30 +50,39 @@ function lmt_dashboard_widget_box_callback($widget_id) {
 
     global $post, $post_id, $current_user;
     //wp_get_current_user();
-    $options = get_option('lmt_plugin_global_settings');
-    $widget_options = get_option( 'lmt_dashboard_widget_options' );
 
+    // get plugin options
+    $options = get_option('lmt_plugin_global_settings');
+    // get widget options
+    $widget_options = get_option( 'lmt_dashboard_widget_options' );
+    // get wordpress date time format
+    $get_df = get_option( 'date_format' );
+    $get_tf = get_option( 'time_format' );
+
+    // check if widget option has a value
     if(!empty($widget_options['number'])) {
         $num = $widget_options['number'];
     } else {
         $num = '5';
     }
 
-if ( isset($num) ) {
+    if ( isset($num) ) {
 	// Show recently modified posts
-	$recently_updated_posts = new WP_Query( array(
-		'post_type'      => 'post',
-		'posts_per_page' => $num,
-		'orderby'        => 'modified',
-        'no_found_rows'  => true, // speed up query when we don't need pagination
-        //'author' => $current_user->ID
-		//'category_name'  => $cat// Only display posts from the category with the slug "news"
-    ) );
-}
+	    $recently_updated_posts = new WP_Query( array(
+		    'post_type'      => 'post',
+		    'post_status'    => 'publish',
+		    'posts_per_page' => $num,
+		    'orderby'        => 'modified',
+            'no_found_rows'  => true, // speed up query when we don't need pagination
+            //'author' => $current_user->ID
+		    //'category_name'  => $cat// Only display posts from the category with the slug "news"
+        ) );
+    }
+
 	if ( $recently_updated_posts->have_posts() ) :
 		while( $recently_updated_posts->have_posts() ) : $recently_updated_posts->the_post(); ?>
                 <li>
-                    <span><?php the_modified_time('M jS, ' . get_option( 'time_format' )); ?></span>
+                    <span><?php the_modified_time('M jS, ' . $get_tf); ?></span>
                     <?php if( current_user_can('edit_post', $post_id) ) {
                             edit_post_link(esc_attr( get_the_title() ));
                         } else {
