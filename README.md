@@ -28,11 +28,13 @@ Using this plugin, display last modified info of your wordpress posts and pages.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Allows you to display last modified author info in posts, pages.
+* Allows you to add last modified timestamp in post/page's custom field.
+* Allows you to customize last modified date and time.
 * And you can customize all and everything.
 
 ### Compatibility ###
 
-This plugin is fully compatible with WordPress Version 4.4 and beyond and also compatible with any wordpress theme.
+This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any wordpress theme.
 
 ### Support ###
 * Community support via the [support forums on wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
@@ -92,7 +94,7 @@ Yes, this plugin supports all types of custom posts.
 
 #### How to customize last modified text style? ####
 
-Go to 'Settings > Last Modified Info > Custom CSS' and add your custom css.
+Go to 'Settings > Last Modified Info > Misc. Options > Custom CSS' and add your custom css.
 
 ##### CSS Classes: #####
 
