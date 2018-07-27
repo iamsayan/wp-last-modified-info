@@ -1,8 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.2
+Release Date: July 27, 2018
+
+* Added: Disable modified info update from Quick Edit.
+* Added: A lock icon now indicates last modified info update disble status.
+* Tweak: Now Dashboard Widget shows only published posts.
+* Fixed: PHP 5.3 Compatibility issue.
+* Fixed: Column sorting is not working properly.
+
 ## 1.3.1
-Release Date: July 21, 2018
+Release Date: July 22, 2018
 
 * Added: It is now possible to edit modified date and time.
 * Improved: Made uninstall cleanup optional through a plugin setting and improved uninstall mechanism.
