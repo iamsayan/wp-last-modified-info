@@ -1,0 +1,19 @@
+{
+    "name": "iamsayan/wp-last-modified-info",
+    "description": "A WordPress plugin for making the last modified date/time more accessible.",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=5.3",
+        "composer/installers": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Sayan Datta",
+            "email": "sdcreativity12@gmail.com"
+        }
+    ]
+}
