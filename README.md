@@ -159,10 +159,12 @@ Use `wplmi_date_time_diff_post` for posts and `wplmi_date_time_diff_page` for pa
 Example
 
 `function override_time_diff() {
-    return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need
-}
-add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts
-add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages`
+       return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need
+}`
+
+`add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts`
+
+`add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages`
 
 #### The plugin isn't working or have a bug? ####
 
