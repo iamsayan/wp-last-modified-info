@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.3
+Release Date: August 5, 2018
+
+* Added: Filters to set time difference between post published time and modified time.
+* Fixed: a bug where page builder plugins overwrite the disable state of last modified info.
+* Fixed: Disable modified info update checkbox shows in Bulk edit mode. Now it has been fixed.
+* Improved: Last modified info output.
+
 ## 1.3.2
 Release Date: July 27, 2018
 
