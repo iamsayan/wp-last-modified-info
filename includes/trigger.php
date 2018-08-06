@@ -61,7 +61,7 @@ function lmt_add_custom_field_lmi( $post_id ) {
     // get post meta data
     $m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
     $m_stamp = strtotime( $m_orig );
-    $modified = date(apply_filters('custom_field_date_time_format', $get_df . ' @ ' . $get_tf), $m_stamp );
+    $modified = date( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
     
     // check post meta if not exists
     if ( !add_post_meta( $post_id, 'wp_last_modified_info', $modified, true ) ) {
@@ -105,7 +105,6 @@ add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 2 );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
 
-
 function lmt_custom_field_date_time_format() {
 
     // You can change this if you want to set custom format.
@@ -114,4 +113,5 @@ function lmt_custom_field_date_time_format() {
 }
 
 //add_filter( 'custom_field_date_time_format', 'lmt_custom_field_date_time_format' );
+
 ?>

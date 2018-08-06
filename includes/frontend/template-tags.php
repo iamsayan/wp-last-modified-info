@@ -51,11 +51,8 @@ function get_the_last_modified_info () {
     }
 
     if( isset($options['lmt_enable_human_format_tt_cb']) && ($options['lmt_enable_human_format_tt_cb'] == 1 ) ) {
-
         $lmt_tt_ud = human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago';
-
     } else {
-
         $lmt_tt_ud = $last_modified_tt;
     }
                    
@@ -64,11 +61,11 @@ function get_the_last_modified_info () {
 
         $get_custom_class = esc_html($options['lmt_tt_class_box']);              
         
-        $lmt_template_tag = '<span class="'. $get_custom_class .'"><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $last_modified_text . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
+        $lmt_template_tag = '<span class="'. $get_custom_class .'">' . $last_modified_text . '<time itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
 
     } else {
 
-        $lmt_template_tag = '<span><time itemprop="dateModified" datetime="'. get_post_modified_time('c') .'">' . $last_modified_text . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
+        $lmt_template_tag = '<span>' . $last_modified_text . '<time itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
 
     }
 

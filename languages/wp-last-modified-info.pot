@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2018-07-27 14:33+0530\n"
-"PO-Revision-Date: 2018-07-27 14:33+0530\n"
+"POT-Creation-Date: 2018-08-05 16:25+0530\n"
+"PO-Revision-Date: 2018-08-05 16:25+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wp-last-modified-info.php\n"
@@ -276,7 +276,7 @@ msgid "Last Modified"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:40
-#: includes/backend/dashboard-edit-screen.php:130
+#: includes/backend/dashboard-edit-screen.php:131
 msgid "Updated on:"
 msgstr ""
 
@@ -293,53 +293,53 @@ msgid "Last modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:48
-#: includes/backend/dashboard-edit-screen.php:230
+#: includes/backend/dashboard-edit-screen.php:235
 msgid "Month"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:56
-#: includes/backend/dashboard-edit-screen.php:238
+#: includes/backend/dashboard-edit-screen.php:243
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:62
-#: includes/backend/dashboard-edit-screen.php:244
+#: includes/backend/dashboard-edit-screen.php:249
 msgid "Day"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:67
-#: includes/backend/dashboard-edit-screen.php:249
+#: includes/backend/dashboard-edit-screen.php:254
 msgid "Year"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:69
-#: includes/backend/dashboard-edit-screen.php:251
+#: includes/backend/dashboard-edit-screen.php:256
 msgid "@"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:72
-#: includes/backend/dashboard-edit-screen.php:254
+#: includes/backend/dashboard-edit-screen.php:259
 msgid "Hour"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:74
-#: includes/backend/dashboard-edit-screen.php:256
+#: includes/backend/dashboard-edit-screen.php:261
 msgid ":"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:77
-#: includes/backend/dashboard-edit-screen.php:259
+#: includes/backend/dashboard-edit-screen.php:264
 msgid "Minute"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:110
-#: includes/backend/dashboard-edit-screen.php:263
+#: includes/backend/dashboard-edit-screen.php:268
 msgid "OK"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:110
-#: includes/backend/dashboard-edit-screen.php:264
+#: includes/backend/dashboard-edit-screen.php:269
 msgid "Cancel"
 msgstr ""
 
@@ -347,8 +347,12 @@ msgstr ""
 msgid "Don&#39;t update modified info anymore"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:221
-msgid "Don't update modified info anymore"
+#: includes/backend/dashboard-edit-screen.php:232
+msgid "Modified"
+msgstr ""
+
+#: includes/backend/dashboard-edit-screen.php:273
+msgid "Lock it"
 msgstr ""
 
 #: includes/backend/dashboard-users.php:14
@@ -389,7 +393,7 @@ msgstr ""
 #: includes/trigger.php:93
 #, php-format
 msgid ""
-"updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
+" updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
 "%3$s<a/>"
 msgstr ""
 
@@ -414,8 +418,10 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Show or hide last update date and time on pages and posts very easily. You "
-"can use shortcode also to display last modified info anywhere."
+"Ultimate Last Modified Solution for WordPress. Adds last modified date and "
+"time automatically on pages and posts very easily. It is possible to use "
+"shortcodes to display last modified info anywhere on a WordPress site "
+"running 3.5 and beyond."
 msgstr ""
 
 #. Author of the plugin/theme

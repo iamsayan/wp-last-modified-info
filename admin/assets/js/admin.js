@@ -232,6 +232,11 @@ jQuery(document).ready(function ($) {
         minimumResultsForSearch: Infinity
     });
 
+    $('select#lmt-time-diff').select2({
+        placeholder: '-- Select --',
+        minimumResultsForSearch: Infinity
+    });
+
     $("#post-show-status").change(function() {
         if ($('#post-show-status').val() == 'Manual') {
             $('#show-shortcode').show();

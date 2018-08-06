@@ -111,13 +111,14 @@ function lmt_show_on_dashboard( $post ) {
 
             <p id="lmt-disable" class="meta-options">
                 <label for="lmt_disable" class="selectit" title="Keep this checked, if you do not want to change modified date and time on this <?php echo $post_types->capability_type ?>">
-		            <input type="checkbox" id="lmt_disable" name="disableupdate" value="yes" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?> > <?php _e( 'Don&#39;t update modified info anymore', 'wp-last-modified-info' ); ?>
-                </label>
+		            <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>> <?php _e( 'Don&#39;t update modified info anymore', 'wp-last-modified-info' ); ?>
+					<input type="hidden" id="lmt-disable-hidden" name="disableupdatehidden" value="0">
+				</label>
 			</p>
 			
 		</fieldset>
 
-        <script>
+        <script type="text/javascript">
 
 		jQuery(document).ready(function($) {
 
@@ -177,6 +178,16 @@ function lmt_show_on_dashboard( $post ) {
 				event.preventDefault();
 			});
 
+			$('#lmt_disable').change(function() {
+                if ($('#lmt_disable').is(':checked')) {
+                    $('#lmt-disable-hidden').val('1');
+                }
+                if (!$('#lmt_disable').is(':checked')) {
+                    $('#lmt-disable-hidden').val('0');
+                }
+			});
+			$('#lmt_disable').trigger('change');
+			
 		});
 
 	</script>
@@ -212,19 +223,12 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 
 	if ( did_action( 'quick_edit_custom_box' ) > 1 ) {
 		return;
-	} ?>
+	} 
 
-    <div id="inline-edit-col-disable">
-        <div class="inline-edit-group">
-            <label for="lmt_disable" class="alignleft" title="Keep this checked, if you do not want to change modified date and time on this <?php echo $post_types->capability_type ?>">
-				<input type="checkbox" id="lmt_disable" name="disableupdate" value="yes" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?> >
-			    <span class="checkbox-title"><?php _e( 'Don\'t update modified info anymore', 'wp-last-modified-info' ); ?></span>
-            </label>
-	    </div>
-	</div>
+	?>
 
 	<div id="inline-edit-col-modified-date">
-        <legend><span class="title">Modified</span></legend>
+        <legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
 			<div class="timestamp-wrap">
 				<label  class="inline-edit-group">
 					<span class="screen-reader-text"><?php _e('Month', 'wp-last-modified-info'); ?></span>
@@ -261,7 +265,13 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 				</label>
 
 				<span id="mod-date" class="button"><?php _e('OK', 'wp-last-modified-info'); ?></span>
-				<a href="#" id="mod-date-cancel" class="button-cancel" style="display:none;" onclick="return false;"><?php _e('Cancel', 'wp-last-modified-info'); ?></a>
+				<a href="#" id="mod-date-cancel" class="button-cancel" style="display:none;" onclick="return false;"><?php _e('Cancel', 'wp-last-modified-info'); ?></a>&nbsp;
+				
+                <label for="lmt_disable" title="Keep this checked, if you do not want to change modified date and time on this <?php echo $post_types->capability_type ?>.">
+			        <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>>
+			        <span class="checkbox-title"><?php _e( 'Lock it', 'wp-last-modified-info' ); ?></span>
+			        <input type="hidden" id="lmt-disable-hidden" name="disableupdatehidden" value="0">
+                </label>
 
             </div>
             
@@ -270,36 +280,47 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 		
 		</div>
 		
-	    <script>
+	    <script type="text/javascript">
+
             jQuery(document).ready(function($){
-			    $("#inline-edit-col-disable").appendTo(".inline-edit-col-right .inline-edit-col");
-                $("#inline-edit-col-modified-date").appendTo(".inline-edit-col-left .inline-edit-col .inline-edit-date");
-                $("#mod-date").click(function(){
+                $('#inline-edit-col-modified-date').appendTo('.inline-edit-col-left .inline-edit-col .inline-edit-date');
+                $('#mod-date').click(function() {
                     $('#change-modified').val('yes');
 					$('#mod-date').hide();
 					$('#mod-date-cancel').show();
                 });
-				$("#mod-date-cancel").click(function(){
+				$('#mod-date-cancel').click(function() {
                     $('#change-modified').val('no');
 					$('#mod-date').show();
 					$('#mod-date-cancel').hide();
-                });
-            });
+				});
+				$('#lmt_disable').change(function() {
+                    if ($('#lmt_disable').is(':checked')) {
+                        $('#lmt-disable-hidden').val('1');
+                    }
+                    if (!$('#lmt_disable').is(':checked')) {
+                        $('#lmt-disable-hidden').val('0');
+                    }
+				});
+				$('#lmt_disable').trigger('change');
+			});
+
         </script>
-    
+
 	<?php
 }
 
 function lmt_disable_update_date( $data, $postarr ) {
 
-    if( isset($postarr['disableupdate'] ) && $postarr['disableupdate'] == 'yes' ) {
+	if( isset($postarr['disableupdatehidden'] ) && $postarr['disableupdatehidden'] == 1 ) {
         update_post_meta( $postarr['ID'], '_lmt_disableupdate', 'yes' );
-    } else {
+	}
+	elseif( isset($postarr['disableupdatehidden'] ) && $postarr['disableupdatehidden'] == 0 ) {
         update_post_meta( $postarr['ID'], '_lmt_disableupdate', 'no' );
-    }
+	}
 
     $stop_update = get_post_meta( $postarr['ID'], '_lmt_disableupdate', true );
-
+	
     if( isset($postarr['changemodified']) && $postarr['changemodified'] == 'yes' ) {
 
         $mm = sanitize_text_field($_POST['mmm']);

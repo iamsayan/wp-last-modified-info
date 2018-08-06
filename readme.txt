@@ -1,15 +1,15 @@
 === WP Last Modified Info ===
-Contributors: Infosatech
-Tags: last modified info, shortcode, short by column, time, date 
+Contributors: infosatech
+Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Requires PHP: 5.3
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.2 and beyond.
+Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
 
 == Description ==
 
@@ -17,26 +17,28 @@ Display last modified date and time on pages and posts very easily. You can use 
 
 Most WordPress themes usually show the date when a post was last published. This is fine for most blogs and static websites. However, WordPress is also used by websites where old articles are regularly updated. This last updated date and time is important information for those publications. The most common example is news websites. They often update old stories to show new developments, add corrections, or media files. If they only added the published date, then their users would miss those updates.
 
-Many popular blogs and websites don’t show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
+Many popular blogs and websites don't show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
+
+So now it is possible to add last modified / updated info on your wordpress posts and pages. Just install and activate this and configuaration is very easy
 
 Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
 
 #### What does this plugin do?
 
-Using this plugin, display last modified info on your WordPress posts and pages. Use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages. This plugin also adds 'dateModified' schema markup in WordPress posts automatically.
+This plugin automatically inserts last modified or updated info on your WordPress posts (including custom post types) and pages. It is possible to use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages for manual insert. This plugin also adds 'dateModified' schema markup in WordPress posts automatically and it is used to tell the last modified date & time of a post or a page to various search engines like Google, Bing etc.
 
 * Allows you to display Last modified information in your posts and pages individually.
 * Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
 * Inserts 'dateModified' schema markup to your WordPress posts automatically.
 * Allows you to display last modified info on all post types column and publish meta box in the dashboard with author name.
-* Allows you to sort posts/pages of last updated/modified info.
+* Allows you to sort posts/pages in last updated/modified date time order.
 * Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
-* You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Allows you to display last modified author info in posts, pages.
 * Allows you to add last modified timestamp in post/page's custom field.
-* Allows you to customize last modified date and time.
+* Allows you to edit last modified date and time from post edit screen and quict edit screen also.
+* You can also add template tags to your theme files. Go to the FAQ section for more information.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -44,13 +46,11 @@ Using this plugin, display last modified info on your WordPress posts and pages.
 This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
-* Community support via the [support forums at wordpress.org](https://wordpress.org/support/plugin/wp-last-modified-info)
-* We don’t handle support via email, Twitter, GitHub issues etc.
+* Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at wordpress.org.
 
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
-* Pull requests for documenting bugs are highly appreciated.
-* If you think you’ve found a bug (e.g. You’re experiencing unexpected behaviour), please post on the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) first.
+* Feel free to [fork the project on GitHub](https://github.com/iamsayan/wp-last-modified-info) and submit your contributions via pull request.
 
 == Installation ==
 
@@ -81,11 +81,11 @@ This plugin hooks into the WordPress content area and displays the last modified
 
 = Will it require editing code to show Last Modified date? =
 
-Not at all. You can show the revised info by just installing this plugin. Use the Plugin Options to customize the date/time according to your need.
+Not at all. You can show the revised info by just installing this plugin. Use the Plugin Settings to customize the date/time format according to your need.
 
 = Is this plugin compatible with any themes? =
 
-Yes, this plugin is compatible with any theme.
+Yes, this plugin is compatible with any theme. Also compaatible with Genesis, Divi themes.
 
 = Does this plugin support all custom post types? =
 
@@ -119,7 +119,7 @@ This plugin wraps modified info with 'dateModified' schema markup which is used 
 
 = The Date and Time inserted by this plugin is dependent on what? =
 
-The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in the WordPress dashboard.
+The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in the WordPress dashboard. It is also cutomizable via plugin settings.
 
 = Is this plugin compatible with multisite? =
 
@@ -147,7 +147,23 @@ Displays/echos the last modified info:
 	}
 ?>`
 
-Use the plugin to test it.
+= Published date is equal to modified date. Solution? =
+
+Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
+
+Use `wplmi_date_time_diff_post` for posts and `wplmi_date_time_diff_page` for pages.
+
+Example
+
+`function override_time_diff() {
+    return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need
+}
+add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts
+add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages`
+
+= The plugin isn't working or have a bug? =
+
+Post detailed information about the issue in the [support forum](https://wordpress.org/support/plugin/wp-last-modified-info) and I will work to fix it.
 
 == Screenshots ==
 
@@ -163,14 +179,23 @@ Use the plugin to test it.
 
 == Changelog ==
 
+= 1.3.3 =
+Release Date: August 5, 2018
+
+* Added: Filters to set time difference between post published time and modified time.
+* Fixed: a bug where page builder plugins overwrite the disable state of last modified info.
+* Fixed: Disable modified info update checkbox shows in Bulk edit mode. Now it has been fixed.
+* Improved: Last modified info output.
+
 = 1.3.2 =
 Release Date: July 27, 2018
 
 * Added: Disable modified info update from Quick Edit.
-* Added: A lock icon now indicates last modified info update disble status.
+* Added: A lock icon now indicates last modified info update disable status.
 * Tweak: Now Dashboard Widget shows only published posts.
-* Fixed: PHP 5.3 Compatibility issue.
+* Fixed: Closing HTML Tag.
 * Fixed: Column sorting is not working properly.
+* Fixed: PHP 5.3 Compatibility issue.
 
 = 1.3.1 =
 Release Date: July 22, 2018
@@ -185,56 +210,16 @@ Release Date: July 22, 2018
 Release Date: July 16, 2018
 
 * Added: I18n support.
-* Fix: Shortcode does not output modified info on pages. 
-
-= 1.2.11 =
-Release Date: July 15, 2018
-
-* Added: Now it is possible to view last revision by clicking the admin bar item. 
-* Fix: Redirection to edit.php page after login for some users. Thanks to <a href="https://profiles.wordpress.org/svayam" target="_blank">@svayam</a>.
-
-= 1.2.10 =
-Release Date: July 13, 2018
-
-* Added: Option to set custom modified author name.
-* Added: `lmt_custom_field_date_time_format` filter to set custom date/time format on custom fields. 
-* Fix: Last Modified post display issue on dashboard widget with user roles except for administrator.
-* Remove some plugin options to simplify plugin settings.
-* Improved: Admin UI.
-
-= 1.2.9 =
-Release Date: June 23, 2018
-
-* Added: You can now disable modified info update every time after the post is saved.
-* Typo Fix.
-
-= 1.2.8 =
-Release Date: June 20, 2018
-
-* Fix: Error notice after plugin update.
-* Fix: Shortcode does not work properly if 'Using Shortcode' method is enabled.
-
-= 1.2.7 =
-Release Date: June 20, 2018
-
-* Added: Now Last updated info now shows as post updated message.
-* Improved: Dropdown loading using Select2.
-* Improved: Custom Post Types Support. Now it is possible to select custom post types individually.
-* Tweak: Now it is possible to disable auto insert for particular post/page from the edit screen.
-* Tweak: Remove 'Disable auto insert' fields to simplify plugin settings.
-* Tweak: Active tab now depends on URL parameter also.
-* Tweak: Last modified value will automatically be added into custom fields if 'Show Last Modified Info on Dashboard' option is on.
-* Bug Fix.
-
-= 1.2.6 =
-Release Date: June 9, 2018
-
-* Added: Option to enable/disable auto last modified info support for custom post types.
-* Added: Support to add last modified info in custom fields after post/page update.
-* Tweak: Tools is now merged with plugins settings page.
-* Fixed a typo in the plugin description. Thanks to @buzztone.
-* Bug Fix.
+* Fix: Shortcode does not output modified info on pages.
 
 = Other Versions =
 
 * View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
+
+== Upgrade Notice ==
+
+= 1.3.3 =
+In this release, several bug fixes and enhancements has been introduced. Please update the plugin on your website now to get these fixes and enhancements.
+
+= 1.3.2 =
+In this release, several bug fixes and enhancements has been introduced. Please update the plugin on your website now to get these fixes and enhancements.

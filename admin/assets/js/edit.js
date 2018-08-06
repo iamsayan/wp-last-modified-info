@@ -28,6 +28,7 @@
             var $hhm = $date.substr(6, 2);
             var $mnm = $date.substr(8, 2);
             var $lmt_disable_update = !! $( '.column-modified .lmt-lock', $post_row ).size();
+            var $lmt_switch_update = $( '.column-modified .lmt-lock', $post_row ).size();
 
             // Populate the data.
             $( ':input[name="mmm"]', $edit_row ).find("[data-text='" + $mmm + "']").attr('selected', 'selected' );
@@ -36,6 +37,7 @@
             $( ':input[name="hhm"]', $edit_row ).val( $hhm );
             $( ':input[name="mnm"]', $edit_row ).val( $mnm );
             $( ':input[name="disableupdate"]', $edit_row ).prop('checked', $lmt_disable_update );
+            $( ':input[name="disableupdatehidden"]', $edit_row ).val( $lmt_switch_update );
         }
     };
 

@@ -53,7 +53,7 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     if ( ! current_user_can( 'publish_posts' ) ) return;
     
     // if modified time is equal to published time, do not show admin bar item
-    if ( get_the_modified_time('U') == get_the_time('U') ) return;
+    if ( get_the_modified_time('U') <= get_the_time('U') ) return;
 
     global $post;
     $object = get_post_type_object( get_post_type( $post ) );

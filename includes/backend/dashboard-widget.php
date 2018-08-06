@@ -42,7 +42,7 @@ function lmt_dashboard_widget_control_callback() {
 /**
  * Create the function to output the contents of  Dashboard Widget.
  */
-function lmt_dashboard_widget_box_callback($widget_id) {
+function lmt_dashboard_widget_box_callback( $widget_id ) {
     ?><div id="activity-widget" style="margin-top:-10px;margin-bottom:-14px;">
         <div id="published-posts" class="activity-block">
             <h3><?php _e( 'Recently Updated', 'wp-last-modified-info' ); ?></h3>

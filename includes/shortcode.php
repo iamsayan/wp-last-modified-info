@@ -26,7 +26,7 @@ function lmt_post_modified_info_shortcode() {
     if ( ! isset($modified_content) ) return;
     
     // if modified time is equal to published time, do not show
-    if ( $mod_time == $pub_time ) return;
+    if ( $mod_time <= $pub_time+apply_filters( 'wplmi_date_time_diff_post', '0' ) ) return;
     
     return $modified_content;
 }
@@ -46,7 +46,7 @@ function lmt_page_modified_info_shortcode() {
     if ( ! isset($modified_content) ) return;
     
     // if modified time is equal to published time, do not show
-    if ( $mod_time == $pub_time ) return;
+    if ( $mod_time <= $pub_time+apply_filters( 'wplmi_date_time_diff_page', '0' ) ) return;
     
     return $modified_content;
 }

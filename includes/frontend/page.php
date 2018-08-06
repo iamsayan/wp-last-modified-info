@@ -44,6 +44,7 @@ if( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_pag
 elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'Default' ) ) {
         
     $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
+    
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 1 ) ) {
         $lmt_page_uca = ' by <span class="page-modified-author"><a href="' . get_author_posts_url($author_id) . '" target="_blank" rel="author">' . get_the_modified_author() . '</a></span>';
     }
@@ -55,6 +56,7 @@ elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author
     
     $get_author = $options['lmt_show_author_list_page'];
     $theauthor = get_user_by( 'id', $get_author );
+
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 1 ) ) {
         $lmt_page_uca = ' by <span class="page-modified-author"><a href="' . get_author_posts_url($get_author) . '" target="_blank" rel="author">' . $theauthor->display_name . '</a></span>';
     }

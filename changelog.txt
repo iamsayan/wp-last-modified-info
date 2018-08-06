@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 1.2.11 =
+Release Date: July 15, 2018
+
+* Added: Now it is possible to view last revision by clicking the admin bar item. 
+* Fix: Redirection to edit.php page after login for some users. Thanks to <a href="https://profiles.wordpress.org/svayam" target="_blank">@svayam</a>.
+
 = 1.2.10 =
 Release Date: July 13, 2018
 

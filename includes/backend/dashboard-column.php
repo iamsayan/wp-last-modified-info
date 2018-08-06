@@ -13,11 +13,11 @@ function lmt_last_modified_info_on_column( $column, $post_id ) {
     case 'modified':
         $get_df = get_option( 'date_format' );
         $get_tf = get_option( 'time_format' );
-        $mod_format = get_the_modified_time('M d, Y H:i');
+        $mod_format = get_the_modified_time( 'M d, Y H:i' );
         $m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
         $p_meta = get_post_meta( get_the_ID(), '_lmt_disableupdate', true );
         $m_stamp = strtotime( $m_orig );
-        $modified = date($get_df . ' @ ' . $get_tf, $m_stamp );
+        $modified = date( apply_filters( 'wplmi_admin_column_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
                 $modr_id	= get_post_meta( $post_id, '_edit_last', true );
                 $auth_id	= get_post_field( 'post_author', $post_id, 'raw' );
                 $user_id	= !empty( $modr_id ) ? $modr_id : $auth_id;
