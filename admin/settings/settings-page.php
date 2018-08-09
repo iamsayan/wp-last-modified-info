@@ -69,8 +69,8 @@
 
             ?> </div>
 
-            <div id="progressMessage" class="progressModal" style="display:none;">Please wait...</div>
-            <div id="saveMessage" class="successModal" style="display:none;"><p><?php echo htmlentities(__('Settings Saved Successfully!','wp-last-modified-info'), ENT_QUOTES); ?></p></div>
+            <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
+            <div id="saveMessage" class="successModal" style="display:none;"><p><?php _e( 'Settings Saved Successfully!', 'wp-last-modified-info' ); ?></p></div>
            
             <div style="display:none;" id="show-help">
                 <div>
@@ -106,14 +106,17 @@
 			    } ?&gt;</code></p>
                 </p></p>
 
-                <p><li><strong>How to display last modified info on all posts, pages column?</strong></li>
-                <p>You have to enable all options in Dashboard Tab to display last modified info aand you can also sort posts and pages by last modified info.</p>
-                
+                <p><li><strong>Published date is equal to modified date. What is the solution?</strong></li>
+                <p>Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.</p>
+                <p><i>Create function:</i> <code>function override_time_diff() { return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need }</code></p>       
+                <p><i>Add filter for posts:</i> <code>add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts</code></p>
+                <p><i>Add filter for pages:</i> <code>add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages</code></p>
+
                 </p><br>
                 
                 <h3> My Other WordPress Plugins </h3><p><hr></p>
                 <p><strong>Like this plugin? Check out my other WordPress plugins:</strong></p>
-                <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">WP Header & Meta Tags</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">Ultimate WP Header Footer</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Facebook Comments</a></strong> - Ultimate Facebook Comment Solution for Any WordPress Website.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - Add any page extension like .html, .php to wordpress pages.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/all-in-one-wp-solution/" target = "_blank">All In One WP Solution</a></strong> - All In One Solution / Customization for WordPress.</li>
@@ -122,20 +125,19 @@
     
         </form>
 
-            <div id="saveResult"></div>
-                <script type="text/javascript">
-                    jQuery(document).ready(function($) {
-                        $('#form-container').submit(function() {
-                            $('#progressMessage').show().delay(3000).fadeOut();
-                            $(this).ajaxSubmit({
-                                success: function() {
-                                    $('#saveMessage').show().delay(4000).fadeOut();
-                                }
-                            });
-                            return false;
+            <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $('#form-container').submit(function() {
+                        $('#progressMessage').show().delay(3000).fadeOut();
+                        $(this).ajaxSubmit({
+                            success: function() {
+                                $('#saveMessage').show().delay(4000).fadeOut();
+                            }
                         });
+                        return false;
                     });
-                </script>
+                });
+            </script>
             
             <div id="show-tools" style="display:none;">
                 <h3> <?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?> </h3><p><hr></p>

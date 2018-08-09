@@ -32,7 +32,7 @@ function lmt_dashboard_widget_control_callback() {
         update_option( 'lmt_dashboard_widget_options', $_POST['lmt_widget_value'] );
     } ?>
     <p>
-        <label for="widget-post-no"><strong><?php _e('No. of Posts to Display on this Widget: ', 'wp-last-modified-info'); ?></strong></label>
+        <label for="widget-post-no"><strong><?php _e('No. of Posts to Display on this Widget:', 'wp-last-modified-info'); ?></strong> </label>
         &nbsp;&nbsp;&nbsp;<input class="widefat" id="widget-post-no" name="lmt_widget_value[number]" type="number" size="15" style="width:15%;" placeholder="5" min="3" value="<?php echo $value; ?>" />
     </p>
     <input name="lmt_widget_post" type="hidden" value="1" />

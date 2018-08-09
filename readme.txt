@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 Requires PHP: 5.3
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -28,16 +28,17 @@ Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wo
 This plugin automatically inserts last modified or updated info on your WordPress posts (including custom post types) and pages. It is possible to use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages for manual insert. This plugin also adds 'dateModified' schema markup in WordPress posts automatically and it is used to tell the last modified date & time of a post or a page to various search engines like Google, Bing etc.
 
 * Allows you to display Last modified information in your posts and pages individually.
-* Provides you with options to display the last modified/last updated date above or below your posts and pages. You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
+* Provides you with options to display the last modified/last updated date above or below your posts and pages.
+* You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Inserts 'dateModified' schema markup to your WordPress posts automatically.
-* Allows you to display last modified info on all post types column and publish meta box in the dashboard with author name.
+* Inserts ‘dateModified’ schema markup to your WordPress posts automatically.
+* Allows you to display last modified info on all post types column and publish meta box in the dashboard with the author name.
 * Allows you to sort posts/pages in last updated/modified date time order.
-* Allows you to display last modified info on your post as human readable format i.e. Days/weeks/months/years ago.
+* Allows you to display last modified info on your post as human readable format, i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * Allows you to display last modified author info in posts, pages.
 * Allows you to add last modified timestamp in post/page's custom field.
-* Allows you to edit last modified date and time from post edit screen and quict edit screen also.
+* Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * And you can customize all and everything.
 
@@ -179,6 +180,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.3.4 =
+Release Date: August 8, 2018
+
+* Fixed: Some incorrectly translated strings.
+* Code cleanup.
+
 = 1.3.3 =
 Release Date: August 5, 2018
 
@@ -217,6 +224,9 @@ Release Date: July 16, 2018
 * View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
 
 == Upgrade Notice ==
+
+= 1.3.4 =
+In this release, some incorrectly translated strings has been fixed.
 
 = 1.3.3 =
 In this release, several bug fixes and enhancements has been introduced. Please update the plugin on your website now to get these fixes and enhancements.

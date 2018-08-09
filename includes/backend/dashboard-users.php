@@ -75,21 +75,4 @@ function lmt_manage_users_custom_column( $value, $column_name, $user_id ) {
 // add custom columns value
 add_action( 'manage_users_custom_column', 'lmt_manage_users_custom_column', 10, 3 );
 
-/**
- * uncomment this if you want to disable user columns
- */
-//add_filter( 'manage_users_columns','lmt_remove_users_columns', 10, 3 );
-
-function lmt_remove_users_columns( $column_headers ) {
-	
-	// last updated column
-	// unset($column_headers['last-updated']);
-	// last login column
-	//unset($column_headers['last-login']);
-	
-    //return $column_headers;
-}
-
-
-
 ?>

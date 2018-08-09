@@ -223,9 +223,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 
 	if ( did_action( 'quick_edit_custom_box' ) > 1 ) {
 		return;
-	} 
-
-	?>
+	} ?>
 
 	<div id="inline-edit-col-modified-date">
         <legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
@@ -353,6 +351,7 @@ function lmt_disable_update_date( $data, $postarr ) {
     return $data;
 }
 
+// insert data upon post save
 add_filter('wp_insert_post_data', 'lmt_disable_update_date', 99, 2);
 
 ?>

@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.3.3
+ * Version: 1.3.4
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -59,7 +59,7 @@ function lmt_custom_admin_styles_scripts() {
     // get current screen
     $current_screen = get_current_screen();
     if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
-        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin-style.min.css', __FILE__ ), array(), lmt_get_version() );
+        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), lmt_get_version() );
         wp_enqueue_style( 'lmt-cb', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), lmt_get_version() );
         wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), lmt_get_version() );
 
@@ -115,17 +115,17 @@ function lmt_below_php_version_notice() {
 // add action links
 function lmt_add_action_links ( $links ) {
     $lmtlinks = array(
-        '<a href="' . admin_url( 'options-general.php?page=wp-last-modified-info' ) . '">Settings</a>',
+        '<a href="' . admin_url( 'options-general.php?page=wp-last-modified-info' ) . '">' . __( 'Settings', 'wp-last-modified-info' ) . '</a>',
     );
     return array_merge( $lmtlinks, $links );
 }
 
-function lmt_plugin_meta_links($links, $file) {
+function lmt_plugin_meta_links( $links, $file ) {
 	$plugin = plugin_basename(__FILE__);
 	if ($file == $plugin) // only for this plugin
 		return array_merge( $links, 
-            array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __('Support') . '</a>' ),
-            array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __('Donate') . '</a>' )
+            array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __( 'Support', 'wp-last-modified-info' ) . '</a>' ),
+            array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __( 'Donate', 'wp-last-modified-info' ) . '</a>' )
 		);
 	return $links;
 }

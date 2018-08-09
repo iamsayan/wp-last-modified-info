@@ -36,14 +36,14 @@ function lmt_last_modified_info_on_column( $column, $post_id ) {
     }
 }
 
-function lmt_post_columns_display( $columns ) {
-    $columns['modified'] = __( 'Last Modified', 'wp-last-modified-info' );
-    return $columns;
+function lmt_post_columns_display( $column ) {
+    $column['modified'] = __( 'Last Modified', 'wp-last-modified-info' );
+    return $column;
 }
 
-function lmt_make_column_sortable( $columns ) {
-	$columns['modified'] = 'modified';
-	return $columns;
+function lmt_make_column_sortable( $column ) {
+	$column['modified'] = 'modified';
+	return $column;
 }
 
 function lmt_post_admin_actions() {

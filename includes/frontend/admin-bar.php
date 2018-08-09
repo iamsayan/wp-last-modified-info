@@ -91,16 +91,4 @@ function lmt_add_admin_bar_object() {
  */
 //add_action('wp_head', 'lmt_add_admin_bar_object', 10);
 
-function lmt_remove_toolbar_node( $wp_admin_bar ) {
-	
-	// remove node
-	$wp_admin_bar->remove_node('lmt-update');
-
-}
-
-/**
- * uncomment this if you want to hide admin bar item
- */
-// add_action('admin_bar_menu', 'lmt_remove_toolbar_node', 999);
-
 ?>
