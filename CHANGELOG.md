@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.4
+Release Date: August 8, 2018
+
+* Fixed: Some incorrectly translated strings.
+* Code cleanup.
+
 ## 1.3.3
 Release Date: August 5, 2018
 
