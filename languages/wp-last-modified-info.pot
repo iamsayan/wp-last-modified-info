@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2018-08-08 12:14+0530\n"
-"PO-Revision-Date: 2018-08-08 12:14+0530\n"
+"POT-Creation-Date: 2018-08-31 22:56+0530\n"
+"PO-Revision-Date: 2018-08-31 22:56+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -160,7 +160,7 @@ msgid "Show Modified Info on Admin Bar:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:49
-msgid "Custom CSS Properties:"
+msgid "Custom CSS Code:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:50
@@ -191,58 +191,67 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: admin/settings/settings-page.php:46 admin/settings/settings-page.php:53
-#: admin/settings/settings-page.php:61 admin/settings/settings-page.php:68
+#: admin/settings/settings-page.php:21
+msgid "Donate this plugin"
+msgstr ""
+
+#: admin/settings/settings-page.php:47 admin/settings/settings-page.php:54
+#: admin/settings/settings-page.php:62 admin/settings/settings-page.php:69
+#: admin/settings/settings-page.php:139
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:60
+#: admin/settings/settings-page.php:61
 msgid "Note:"
 msgstr ""
 
-#: admin/settings/settings-page.php:60
+#: admin/settings/settings-page.php:61
 msgid ""
 "Always backup .php files before making any changes, the backup file comes in "
 "handy for restoring the default file in case WordPress goes crazy."
 msgstr ""
 
-#: admin/settings/settings-page.php:72
+#: admin/settings/settings-page.php:73
 msgid "Please wait..."
 msgstr ""
 
-#: admin/settings/settings-page.php:73
+#: admin/settings/settings-page.php:74
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: admin/settings/settings-page.php:143
+#: admin/settings/settings-page.php:134
+msgid "Saving..."
+msgstr ""
+
+#: admin/settings/settings-page.php:148
 msgid "Plugin Tools"
 msgstr ""
 
-#: admin/settings/settings-page.php:144 admin/settings/settings-page.php:150
+#: admin/settings/settings-page.php:149 admin/settings/settings-page.php:155
 msgid "Export Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:145
+#: admin/settings/settings-page.php:150
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: admin/settings/settings-page.php:154 admin/settings/settings-page.php:161
+#: admin/settings/settings-page.php:159 admin/settings/settings-page.php:166
 msgid "Import Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:155
+#: admin/settings/settings-page.php:160
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: admin/settings/settings-page.php:165 admin/settings/settings-page.php:171
+#: admin/settings/settings-page.php:170 admin/settings/settings-page.php:176
 msgid "Reset Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:166
+#: admin/settings/settings-page.php:171
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."

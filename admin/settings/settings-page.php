@@ -9,15 +9,16 @@
 ?>
 
 <div class="wrap">
-    <h1> <?php _e( 'WP Last Modified Info', 'wp-last-modified-info' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-last-modified-info' ); ?> <?php echo lmt_get_version(); ?></span></h1>
+    <h1><?php _e( 'WP Last Modified Info', 'wp-last-modified-info' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-last-modified-info' ); ?> <?php echo lmt_get_version(); ?></span></h1>
 		<div> <?php _e( 'Show last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?> </div><hr>
             <div id="nav-container" class="nav-tab-wrapper">
-                <a href="#post" class="nav-tab active" id="btn1"><?php _e( 'Post Options', 'wp-last-modified-info' ); ?></a>
-                <a href="#page" class="nav-tab" id="btn2"><?php _e( 'Page Options', 'wp-last-modified-info' ); ?></a>
-                <a href="#template-tags" class="nav-tab" id="btn3"><?php _e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
-                <a href="#misc" class="nav-tab" id="btn4"><?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
-                <a href="#tools" class="nav-tab" id="btn5"><?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
-                <a href="#help" class="nav-tab" id="btn6"><?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
+                <a href="#post" class="nav-tab active" id="btn1"><span class="dashicons dashicons-admin-post" style="padding-top: 2px;"></span> <?php _e( 'Post Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#page" class="nav-tab" id="btn2"><span class="dashicons dashicons-admin-page" style="padding-top: 2px;"></span> <?php _e( 'Page Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#template-tags" class="nav-tab" id="btn3"><span class="dashicons dashicons-tag" style="padding-top: 2px;"></span> <?php _e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
+                <a href="#misc" class="nav-tab" id="btn4"><span class="dashicons dashicons-screenoptions" style="padding-top: 2px;"></span> <?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
+                <a href="#tools" class="nav-tab" id="btn5"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
+                <a href="#help" class="nav-tab" id="btn6"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
+                <button class="nav-tab donate" style="cursor: pointer;" onclick="window.open('http://bit.ly/2I0Gj60', '_blank'); return false;"><span class="dashicons dashicons-smiley" style="padding-top: 2px;"></span> <?php _e( 'Donate this plugin', 'wp-last-modified-info' ); ?></button>
             </div>
             <script>
                 var header = document.getElementById("nav-container");
@@ -43,14 +44,14 @@
             <div id="show-post"> <?php
             
                 do_settings_sections('lmt_post_option');
-                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' );
             
             ?> </div>
 
             <div style="display:none" id="show-page"> <?php
                  
                 do_settings_sections('lmt_page_option');
-                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' );
 
             ?> </div>
 
@@ -58,14 +59,14 @@
 
                 do_settings_sections('lmt_template_tag_option');
                 ?> <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-last-modified-info' ); ?></i><?php
-                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' );
 
             ?> </div>
 
             <div style="display:none" id="show-misc"> <?php
 
                 do_settings_sections('lmt_misc_option');
-                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary' );
+                submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' );
 
             ?> </div>
 
@@ -116,9 +117,9 @@
                 
                 <h3> My Other WordPress Plugins </h3><p><hr></p>
                 <p><strong>Like this plugin? Check out my other WordPress plugins:</strong></p>
-                <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">Ultimate WP Header Footer</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Facebook Comments</a></strong> - Ultimate Facebook Comment Solution for Any WordPress Website.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - Add any page extension like .html, .php to wordpress pages.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">Ultimate WP Header Footer</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
                 <li><strong><a href = "https://wordpress.org/plugins/all-in-one-wp-solution/" target = "_blank">All In One WP Solution</a></strong> - All In One Solution / Customization for WordPress.</li>
                 <br></div>
             </div>
@@ -129,9 +130,13 @@
                 jQuery(document).ready(function($) {
                     $('#form-container').submit(function() {
                         $('#progressMessage').show().delay(3000).fadeOut();
+                        $(".save-settings").addClass("disabled");
+                        $(".save-settings").val("<?php _e( 'Saving...', 'wp-last-modified-info' ); ?>");
                         $(this).ajaxSubmit({
                             success: function() {
                                 $('#saveMessage').show().delay(4000).fadeOut();
+                                $(".save-settings").removeClass("disabled");
+                                $(".save-settings").val("<?php _e( 'Save Settings', 'wp-last-modified-info' ); ?>");
                             }
                         });
                         return false;

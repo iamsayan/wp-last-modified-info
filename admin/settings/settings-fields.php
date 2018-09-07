@@ -62,10 +62,10 @@ function lmt_show_last_modified_time_date_post_display() {
     }
 
     $items = array("Before Content", "After Content", "Manual");
-    echo "<select id='post-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]' style='width:16%;'>";
+    echo '<select id="post-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]" style="width:16%;">';
     foreach($items as $item) {
-        $selected = ($options['lmt_show_last_modified_time_date_post'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = ($options['lmt_show_last_modified_time_date_post'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
     ?>
@@ -88,10 +88,10 @@ function lmt_show_author_cb_display() {
     }
 
     $items = array("Do not show", "Default", "Custom");
-    echo "<select id='post-sa' name='lmt_plugin_global_settings[lmt_show_author_cb]' style='width:14%;'>";
+    echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:14%;">';
     foreach($items as $item) {
-        $selected = ($options['lmt_show_author_cb'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = ($options['lmt_show_author_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
 
@@ -104,10 +104,10 @@ function lmt_show_author_cb_display() {
     }
 
     $users = get_users();
-    echo "<select id='custom-post-author' name='lmt_plugin_global_settings[lmt_show_author_list]' style='width:20%;'>";
+    echo '<select id="custom-post-author" name="lmt_plugin_global_settings[lmt_show_author_list]" style="width:20%;">';
     foreach($users as $user) {
-        $selected = ($options['lmt_show_author_list'] == $user->ID) ? 'selected="selected"' : '';
-        echo "<option value='$user->ID' $selected>$user->display_name</option>";
+        $selected = ($options['lmt_show_author_list'] == $user->ID) ? ' selected="selected"' : '';
+        echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
     }
     echo "</select>";
     ?>
@@ -132,10 +132,10 @@ function lmt_custom_post_types_list_display() {
         '_builtin' => false
     ), 'names'); 
 
-    echo "<select id='cpt' name='lmt_plugin_global_settings[lmt_custom_post_types_list][]' multiple='multiple' style='width:70%;'>";
+    echo '<select id="cpt" name="lmt_plugin_global_settings[lmt_custom_post_types_list][]" multiple="multiple" style="width:70%;">';
     foreach($post_types as $item) {
-        $selected = in_array( $item, $options['lmt_custom_post_types_list'] ) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = in_array( $item, $options['lmt_custom_post_types_list'] ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
     ?>
@@ -198,10 +198,10 @@ function lmt_show_last_modified_time_date_page_display() {
     }
 
     $items = array("Before Content", "After Content", "Manual");
-    echo "<select id='page-show-status' name='lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]' style='width:16%;'>";
+    echo '<select id="page-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]" style="width:16%;">';
     foreach($items as $item) {
-        $selected = ($options['lmt_show_last_modified_time_date_page'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = ($options['lmt_show_last_modified_time_date_page'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
     ?>
@@ -224,10 +224,10 @@ function lmt_show_author_page_cb_display() {
     }
 
     $items = array("Do not show", "Default", "Custom");
-    echo "<select id='page-sa' name='lmt_plugin_global_settings[lmt_show_author_page_cb]' style='width:14%;'>";
+    echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:14%;">';
     foreach($items as $item) {
-        $selected = ($options['lmt_show_author_page_cb'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = ($options['lmt_show_author_page_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
     ?>
@@ -239,10 +239,10 @@ function lmt_show_author_page_cb_display() {
     }
 
     $users = get_users();
-    echo "<select id='custom-page-author' name='lmt_plugin_global_settings[lmt_show_author_list_page]' style='width:20%;'>";
+    echo '<select id="custom-page-author" name="lmt_plugin_global_settings[lmt_show_author_list_page]" style="width:20%;">';
     foreach($users as $user) {
-        $selected = ($options['lmt_show_author_list_page'] == $user->ID) ? 'selected="selected"' : '';
-        echo "<option value='$user->ID' $selected>$user->display_name</option>";
+        $selected = ($options['lmt_show_author_list_page'] == $user->ID) ? ' selected="selected"' : '';
+        echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
     }
     echo "</select>";
     ?>
@@ -297,10 +297,10 @@ function lmt_show_author_tt_cb_display() {
     }
 
     $items = array("Do not show", "Default", "Custom");
-    echo "<select id='lmt-tt-sa' name='lmt_plugin_global_settings[lmt_show_author_tt_cb]' style='width:14%;'>";
+    echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:14%;">';
     foreach($items as $item) {
-        $selected = ($options['lmt_show_author_tt_cb'] == $item) ? 'selected="selected"' : '';
-        echo "<option value='$item' $selected>$item</option>";
+        $selected = ($options['lmt_show_author_tt_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
     }
     echo "</select>";
     ?>
@@ -312,10 +312,10 @@ function lmt_show_author_tt_cb_display() {
     }
 
     $users = get_users();
-    echo "<select id='lmt-custom-tt-author' name='lmt_plugin_global_settings[lmt_show_author_list_tt]' style='width:20%;'>";
+    echo '<select id="lmt-custom-tt-author" name="lmt_plugin_global_settings[lmt_show_author_list_tt]" style="width:20%;">';
     foreach($users as $user) {
-        $selected = ($options['lmt_show_author_list_tt'] == $user->ID) ? 'selected="selected"' : '';
-        echo "<option value='$user->ID' $selected>$user->display_name</option>";
+        $selected = ($options['lmt_show_author_list_tt'] == $user->ID) ? ' selected="selected"' : '';
+        echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
     }
     echo "</select>";
     ?>
@@ -349,7 +349,7 @@ function lmt_enable_on_admin_bar_cb_display() {
 function lmt_custom_style_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>
-    <textarea id="lmt-cus-style" placeholder="Write your custom css here." name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
+    <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
     <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<strong>&#39;&lt;style&gt; &lt;/style&gt;&#39;</strong>'); ?></small>
     <?php
 }

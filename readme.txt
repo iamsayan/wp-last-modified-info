@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 Requires PHP: 5.3
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -180,6 +180,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.3.5 =
+Release Date: September 1, 2018
+
+* Admin UI Improved.
+* Code cleanup.
+
 = 1.3.4 =
 Release Date: August 8, 2018
 
@@ -224,6 +230,9 @@ Release Date: July 16, 2018
 * View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
 
 == Upgrade Notice ==
+
+= 1.3.5 =
+In this release, admin UI has been improved.
 
 = 1.3.4 =
 In this release, some incorrectly translated strings has been fixed.
