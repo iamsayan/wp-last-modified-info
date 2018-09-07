@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.5
+Release Date: September 1, 2018
+
+* Admin UI Improved.
+* Code cleanup.
+
 ## 1.3.4
 Release Date: August 8, 2018
 
