@@ -1,6 +1,40 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.3.9
+Release Date: December 2, 2018
+
+* Added: Option to enable/disable schema output.
+* Added: Option to link author email.
+* Improved: Template Tag mechanism.
+* Improved: Admin UI.
+* Fixed: Some minor bugs.
+* Fixed: Some incorrectly translated strings.
+* Tested upto WordPress Version 5.0.
+
+Note: Please configure schema output from plugin settings after plugin update.
+
+## 1.3.8
+Release Date: October 14, 2018
+
+* Fixed: Multiple output of last modified info on frontend if the post is not inside loop.
+* Tweak: Now this plugin automatically detects modified info change if any change will be done from quick edit.
+* Tweak: Sometimes modified fields are showing multiple times in quick edit mode. Now it has been fixed.
+
+## 1.3.7
+Release Date: October 4, 2018
+
+* Added: A new filter `wplmi_disable_schema_output` to disable schema output.
+* Tweak: Meta Box UI.
+* Fixed: Plugin deactivation permission.
+
+## 1.3.6
+Release Date: September 24, 2018
+
+* Added: Admin notice.
+* Added: new filters `wplmi_display_priority_post` and `wplmi_display_priority_page` to set display priority.
+* Code cleanup.
+
 ## 1.3.5
 Release Date: September 1, 2018
 
