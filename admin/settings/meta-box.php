@@ -62,46 +62,39 @@ function lmt_meta_box_callback( $post ) {
     // make sure the form request comes from WordPress
     wp_nonce_field( 'lmt_meta_box_build_nonce', 'lmt_meta_box_nonce' );
     
-    if( isset($options['lmt_show_last_modified_time_date_post']) && ( $options['lmt_show_last_modified_time_date_post'] != 'Manual' ) ) {
-        if ( $pt != 'page' ) { ?>
+    if ( $pt != 'page' ) {
+        if( $options['lmt_show_last_modified_time_date_post'] != 'manual' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
 		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
 	            </label>
             </p> <?php 
+        } else { ?>
+            <p id="major-publishing-actions" style="font-size:12px;line-height:1.9;border-top:none !important;">
+                <span id="show-shortcode-post" class="tooltipsc" onclick="doCopyPost(); return false;" onmouseout="dooutFuncPost(); return false;">
+                    <strong><?php _e( 'Shortcode:', 'wp-last-modified-info' ); ?></strong><input type="text" id="postSC" autocomplete="off" value="[lmt-post-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
+                    <span class="tooltiptext" id="scTooltipPost"><?php _e( 'Copy to clipboard', 'wp-last-modified-info' ); ?></span>
+                </span>
+            </p><?php
         }
     }
 
-    if( isset($options['lmt_show_last_modified_time_date_page']) && ( $options['lmt_show_last_modified_time_date_page'] != 'Manual' ) ) {
-        if ( $pt == 'page' ) { ?>
+    if ( $pt == 'page' ) { 
+        if( $options['lmt_show_last_modified_time_date_page'] != 'manual' ) { ?>
             <p id="lmt-status" class="meta-options">
                 <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
 		            <input id="lmt_status" type="checkbox" name="disableautoinsert" value="yes" <?php if ( isset ( $checkboxMeta['_lmt_disable'] ) ) checked( $checkboxMeta['_lmt_disable'][0], 'yes' ); ?> /> <?php _e( 'Disable auto insert on this page', 'wp-last-modified-info' ); ?>
 	            </label>
             </p> <?php 
+        } else { ?>
+            <p id="major-publishing-actions" style="font-size:12px;line-height:1.9;border-top:none !important;">
+                <span id="show-shortcode-page" class="tooltipsc" onclick="doCopyPage(); return false;" onmouseout="dooutFuncPage(); return false;">
+                    <strong><?php _e( 'Shortcode:', 'wp-last-modified-info' ); ?></strong><input type="text" id="pageSC" autocomplete="off" value="[lmt-page-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
+                    <span class="tooltiptext" id="scTooltipPage"><?php _e( 'Copy to clipboard', 'wp-last-modified-info' ); ?></span>
+                </span>
+            </p><?php
         }
-    } ?>
-        
-    <p id="major-publishing-actions" style="font-size:12px;line-height:1.9;border-top:none !important;">
-
-        <?php
-        // check if not page edit screen
-        if ( $pt != 'page' ) { ?>
-            <span id="show-shortcode-post" class="tooltipsc" onclick="doCopyPost(); return false;" onmouseout="dooutFuncPost(); return false;">
-                <strong>Shortcode:</strong><input type="text" id="postSC" autocomplete="off" value="[lmt-post-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
-                <span class="tooltiptext" id="scTooltipPost">Copy to clipboard</span>
-            </span> <?php
-        }
-        // check if page edit screen
-        if ( $pt == 'page' ) { ?>
-            <span id="show-shortcode-page" class="tooltipsc" onclick="doCopyPage(); return false;" onmouseout="dooutFuncPage(); return false;">
-                <strong>Shortcode:</strong><input type="text" id="pageSC" autocomplete="off" value="[lmt-page-modified-info]" style="font-size:12px; box-shadow:none !important; border:none; cursor:pointer; background:transparent; padding-left:0; outline:none;">
-                <span class="tooltiptext" id="scTooltipPage">Copy to clipboard</span>
-            </span> <?php
-        } ?>
-    </p>
-<?php
-
+    } 
 }
 
 /**

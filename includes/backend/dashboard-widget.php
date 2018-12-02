@@ -59,11 +59,10 @@ function lmt_dashboard_widget_box_callback( $widget_id ) {
     $get_df = get_option( 'date_format' );
     $get_tf = get_option( 'time_format' );
 
+    $num = '5';
     // check if widget option has a value
     if(!empty($widget_options['number'])) {
         $num = $widget_options['number'];
-    } else {
-        $num = '5';
     }
 
     if ( isset($num) ) {

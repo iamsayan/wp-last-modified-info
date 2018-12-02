@@ -12,73 +12,89 @@ $options = get_option('lmt_plugin_global_settings');
 
 if(!empty($options['lmt_custom_post_time_format'])) {
     $updated_time = get_the_modified_time(esc_html($options['lmt_custom_post_time_format']));
-}
-else {
+} else {
     $updated_time = get_the_modified_time('h:i a');
 }
 
 if(!empty($options['lmt_custom_post_date_format'])) {
     $updated_day = get_the_modified_time(esc_html($options['lmt_custom_post_date_format']));
-}
-else {
+} else {
     $updated_day = get_the_modified_time('F jS, Y');
 }
 
 if(!empty($options['lmt_post_custom_text'])) {
     $options_post = esc_html($options['lmt_post_custom_text']);
-}
-else {
+} else {
     $options_post = 'Last Updated on ';
 }
 
 if(!empty($options['lmt_post_date_time_sep'])) {
     $options_post_sep = esc_html($options['lmt_post_date_time_sep']);
-}
-else {
+} else {
     $options_post_sep = 'at';
 }
+
+if(!empty($options['lmt_replace_ago_text_with'])) {
+    $replace_ago = esc_html($options['lmt_replace_ago_text_with']);
+} else {
+    $replace_ago = ' ago';
+}
+
+if(!empty($options['lmt_post_author_sep'])) {
+    $author_sep = esc_html($options['lmt_post_author_sep']);
+} else {
+    $author_sep = ' by';
+}
    
-if( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'Do not show' ) ) {
+if( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'do_not_show' ) ) {
     $lmt_post_uca = '';
 }
-elseif( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'Default' ) ) {
+elseif( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'default' ) ) {
         
     $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
 
-    if( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 1 ) ) {
-        $lmt_post_uca = ' by <span class="post-modified-author"><a href="' . get_author_posts_url($author_id) . '" target="_blank" rel="author">' . get_the_modified_author() . '</a></span>';
-    }
-    else {
-        $lmt_post_uca = ' by <span class="post-modified-author">' . get_the_modified_author() . '</span>';
+    if( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'author_page' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url($author_id) . '" target="_blank" rel="author">' . get_the_modified_author() . '</a></span>';
+    } elseif( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'author_email' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="mailto:' . get_the_author_meta('user_email') . '" rel="author">' . get_the_modified_author() . '</a></span>';
+    } elseif( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'none' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author">' . get_the_modified_author() . '</span>';
     }
 } 
-elseif( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'Custom' ) ) {
+elseif( isset($options['lmt_show_author_cb']) && ($options['lmt_show_author_cb'] == 'custom' ) ) {
         
     $get_author = $options['lmt_show_author_list'];
-    $theauthor = get_user_by( 'id', $get_author );
 
-    if( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 1 ) ) {
-        $lmt_post_uca = ' by <span class="post-modified-author"><a href="' . get_author_posts_url($get_author) . '" target="_blank" rel="author">' . $theauthor->display_name . '</a></span>';
-    }
-    else {
-        $lmt_post_uca = ' by <span class="post-modified-author">' . $theauthor->display_name . '</span>';
+    if( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'author_page' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+    }elseif( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'author_email' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="mailto:' . get_the_author_meta('user_email', $get_author) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+    } elseif( isset($options['lmt_enable_author_hyperlink']) && ($options['lmt_enable_author_hyperlink'] == 'none' ) ) {
+        $lmt_post_uca = $author_sep . ' <span class="post-modified-author">' . get_the_author_meta( 'display_name', $get_author ) . '</span>';
     }
 }
-        
-if(isset($options_post) && (isset($updated_time) || isset($updated_day) || isset($lmt_post_uca) || isset($options_post_sep))) {
 
-    if( isset($options['lmt_enable_human_format_cb']) && ($options['lmt_enable_human_format_cb'] == 1 ) ) {
-        $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . ' ago' . '</time>' . $lmt_post_uca . '</p>';        
+if( isset( $options_post ) && ( isset( $updated_time ) || isset( $updated_day ) || isset( $lmt_post_uca ) || isset( $options_post_sep ) ) ) {
+   
+    if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 1 ) ) {
+        $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'"';
+    } else {
+        $schema_post = '';
     }
-    else {
-        if( (isset($options['lmt_enable_last_modified_time_cb']) == 1) && (isset($options['lmt_enable_last_modified_date_cb']) != 1) ) {
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
+    
+
+    if( isset($options['lmt_last_modified_format_post']) && ($options['lmt_last_modified_format_post'] == 'human_readable' ) ) {
+        $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td"'. $schema_post .'>' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago . '</time>' . $lmt_post_uca . '</p>';        
+    }
+    elseif( isset($options['lmt_last_modified_format_post']) && ($options['lmt_last_modified_format_post'] == 'default' ) ) {
+        if( isset($options['lmt_last_modified_default_format_post']) && ($options['lmt_last_modified_default_format_post'] == 'only_time' ) ) {
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td"'. $schema_post .'>' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
         }
-        elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) != 1) ) {
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . $updated_day . '</time>' . $lmt_post_uca . '</p>';
+        elseif( isset($options['lmt_last_modified_default_format_post']) && ($options['lmt_last_modified_default_format_post'] == 'only_date' ) ) {
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td"'. $schema_post .'>' . $updated_day . '</time>' . $lmt_post_uca . '</p>';
         }
-        elseif( (isset($options['lmt_enable_last_modified_date_cb']) == 1) && (isset($options['lmt_enable_last_modified_time_cb']) == 1) ) {
-            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td" itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'">' . $updated_day . ' ' . $options_post_sep . ' ' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
+        elseif( isset($options['lmt_last_modified_default_format_post']) && ($options['lmt_last_modified_default_format_post'] == 'show_both' ) ) {
+            $modified_content = '<p class="post-last-modified">' . $options_post . ' <time class="post-last-modified-td"'. $schema_post .'>' . $updated_day . ' ' . $options_post_sep . ' ' . $updated_time . '</time>' . $lmt_post_uca . '</p>';
         }
     }
 }

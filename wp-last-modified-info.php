@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.3.5
+ * Version: 1.3.9
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -71,7 +71,6 @@ function lmt_custom_admin_styles_scripts() {
 function lmt_shortcode_admin_styles_scripts( $hook ) {
 
     global $post;
-
     // check if post edit screen
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), lmt_get_version() );   
@@ -96,21 +95,14 @@ function lmt_ajax_save_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
 add_action( 'admin_enqueue_scripts', 'lmt_shortcode_admin_styles_scripts' );
 add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
-// check php version
-if( version_compare( PHP_VERSION, '5.3', '<' ) ) {
-    add_action( 'admin_notices', 'lmt_below_php_version_notice' );
-}
 
 /**
  * File that contains main plugin data.
  */
 require_once plugin_dir_path( __FILE__ ) . 'admin/loader.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin/notice.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
-
-function lmt_below_php_version_notice() {
-    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.3 or later.', 'wp-last-modified-info' ) . '</p></div>';
-}
 
 // add action links
 function lmt_add_action_links ( $links ) {
@@ -122,7 +114,7 @@ function lmt_add_action_links ( $links ) {
 
 function lmt_plugin_meta_links( $links, $file ) {
 	$plugin = plugin_basename(__FILE__);
-	if ($file == $plugin) // only for this plugin
+	if ( $file == $plugin ) // only for this plugin
 		return array_merge( $links, 
             array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __( 'Support', 'wp-last-modified-info' ) . '</a>' ),
             array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __( 'Donate', 'wp-last-modified-info' ) . '</a>' )
@@ -135,6 +127,20 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_
 
 // plugin row elements
 add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
+
+// delete all plugin notice option upon plugin deactivation
+register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
+
+function lmt_plugin_run_on_deactivation() {
+
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    
+    delete_option( 'lmt_plugin_dismiss_rating_notice' );
+    delete_option( 'lmt_plugin_no_thanks_rating_notice' );
+    delete_option( 'lmt_plugin_installed_time' );
+}
 
 
 ?>

@@ -129,11 +129,12 @@
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $('#form-container').submit(function() {
-                        $('#progressMessage').show().delay(3000).fadeOut();
+                        $('#progressMessage').show();
                         $(".save-settings").addClass("disabled");
                         $(".save-settings").val("<?php _e( 'Saving...', 'wp-last-modified-info' ); ?>");
                         $(this).ajaxSubmit({
                             success: function() {
+                                $('#progressMessage').fadeOut();
                                 $('#saveMessage').show().delay(4000).fadeOut();
                                 $(".save-settings").removeClass("disabled");
                                 $(".save-settings").val("<?php _e( 'Save Settings', 'wp-last-modified-info' ); ?>");

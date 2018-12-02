@@ -12,18 +12,16 @@ $options = get_option('lmt_plugin_global_settings');
 
 // lmi output for posts
 if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
-    require plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
+    require_once plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
 }
 
 // enable lmi output for pages
 if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable_last_modified_page_cb'] == 1) ) {
-    require plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
+    require_once plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
 }
 
 // enable template tags functionality
-if( isset($options['lmt_tt_enable_cb']) && ($options['lmt_tt_enable_cb'] == 1) ) {
-    require plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
-}
+require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
 
 // prrint custom css in  wp head
 function lmt_style_hook_in_header() {
@@ -35,14 +33,14 @@ function lmt_style_hook_in_header() {
 
 // show on admin bar
 if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_admin_bar_cb'] == 1) ) {
-    require plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';
+    require_once plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';
 }
 
 // require plugin files
-require plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
-require plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
-require plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
-require plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
 
 function lmt_print_admin_post_css() {
     echo '<style type="text/css"> .fixed .column-modified { width:18%; } </style>'."\n";
@@ -104,14 +102,5 @@ add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
 add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 2 );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
-
-function lmt_custom_field_date_time_format() {
-
-    // You can change this if you want to set custom format.
-    $format = 'F jS Y @ h:i a';
-    return $format;
-}
-
-//add_filter( 'custom_field_date_time_format', 'lmt_custom_field_date_time_format' );
 
 ?>

@@ -60,296 +60,163 @@ jQuery(document).ready(function ($) {
 
     });
 
-    $("#post-enable").change(function () {
-        if ($('#post-enable').is(':checked')) {
-            $('#post-human').prop('disabled', false);
-            $('#post-enable-time').prop('disabled', false);
-            $('#custom-post-time-format').prop('disabled', false);
-            $('#post-enable-date').prop('disabled', false);
-            $('#custom-post-date-format').prop('disabled', false);
-            $('#post-dt-sep').prop('disabled', false);
-            $('#post-show-status').prop('disabled', false);
-            $('#post-custom-text').prop('disabled', false);
-            $('#post-sa').prop('disabled', false);
-            $('#custom-post-author').prop('disabled', false);
-            $('#post-authorlink').prop('disabled', false);
-            $('#cpt').prop('disabled', false);
-        }
-        if (!$('#post-enable').is(':checked')) {
-            $('#post-human').prop('disabled', true);
-            $('#post-enable-time').prop('disabled', true);
-            $('#custom-post-time-format').prop('disabled', true);
-            $('#post-enable-date').prop('disabled', true);
-            $('#custom-post-date-format').prop('disabled', true);
-            $('#post-dt-sep').prop('disabled', true);
-            $('#post-show-status').prop('disabled', true);
-            $('#post-custom-text').prop('disabled', true);
-            $('#post-sa').prop('disabled', true);
-            $('#custom-post-author').prop('disabled', true);
-            $('#post-authorlink').prop('disabled', true);
-            $('#cpt').prop('disabled', true);
-        }
-    });
-    $("#post-enable").trigger('change');
-
-    $("#post-human").change(function () {
-        if ($('#post-human').is(':checked')) {
-            $('.post-time').hide();
-            $('.post-date').hide();
-            $('.post-sep').hide();
-        }
-        if (!$('#post-human').is(':checked')) {
-            $('.post-time').show();
-            $('.post-date').show();
-            $('.post-sep').show();
-        }
-    });
-    $("#post-human").trigger('change');
-
-    $("#page-enable").change(function () {
-        if ($('#page-enable').is(':checked')) {
-            $('#page-human').prop('disabled', false);
-            $('#page-enable-time').prop('disabled', false);
-            $('#custom-page-time-format').prop('disabled', false);
-            $('#page-enable-date').prop('disabled', false);
-            $('#custom-page-date-format').prop('disabled', false);
-            $('#page-dt-sep').prop('disabled', false);
-            $('#page-show-status').prop('disabled', false);
-            $('#page-custom-text').prop('disabled', false);
-            $('#page-sa').prop('disabled', false);
-            $('#custom-page-author').prop('disabled', false);
-            $('#page-authorlink').prop('disabled', false);
-        }
-        if (!$('#page-enable').is(':checked')) {
-            $('#page-human').prop('disabled', true);
-            $('#page-enable-time').prop('disabled', true);
-            $('#custom-page-time-format').prop('disabled', true);
-            $('#page-enable-date').prop('disabled', true);
-            $('#custom-page-date-format').prop('disabled', true);
-            $('#page-dt-sep').prop('disabled', true);
-            $('#page-show-status').prop('disabled', true);
-            $('#page-custom-text').prop('disabled', true);
-            $('#page-sa').prop('disabled', true);
-            $('#custom-page-author').prop('disabled', true);
-            $('#page-authorlink').prop('disabled', true);
-        }
-    });
-    $("#page-enable").trigger('change');
-
-    $("#page-human").change(function () {
-        if ($('#page-human').is(':checked')) {
-            $('.page-time').hide();
-            $('.page-date').hide();
-            $('.page-sep').hide();
-        }
-        if (!$('#page-human').is(':checked')) {
-            $('.page-time').show();
-            $('.page-date').show();
-            $('.page-sep').show();
-        }
-    });
-    $("#page-human").trigger('change');
-
-    $("#lmt-tt").change(function () {
-        if ($('#lmt-tt').is(':checked')) {
-            $('#lmt-tt-human').prop('disabled', false);
-            $('#lmt-tt-format').prop('disabled', false);
-            $('#lmt-tt-updated-text').prop('disabled', false);
-            $('#lmt-tt-sa').prop('disabled', false);
-            $('#lmt-custom-tt-author').prop('disabled', false);
-            $('#lmt-tt-authorlink').prop('disabled', false);
-            $('#lmt-tt-class').prop('disabled', false);
-        }
-        if (!$('#lmt-tt').is(':checked')) {
-            $('#lmt-tt-human').prop('disabled', true);
-            $('#lmt-tt-format').prop('disabled', true);
-            $('#lmt-tt-updated-text').prop('disabled', true);
-            $('#lmt-tt-sa').prop('disabled', true);
-            $('#lmt-custom-tt-author').prop('disabled', true);
-            $('#lmt-tt-authorlink').prop('disabled', true);
-            $('#lmt-tt-class').prop('disabled', true);
-        }
-    });
-    $("#lmt-tt").trigger('change');
-
-    $("#lmt-tt-human").change(function () {
-        if ($('#lmt-tt-human').is(':checked')) {
-            $('.lmt-tt-format').hide();
-        }
-        if (!$('#lmt-tt-human').is(':checked')) {
-            $('.lmt-tt-format').show();
-        }
-    });
-    $("#lmt-tt-human").trigger('change');
-
-    $('select#cpt').select2({
-        placeholder: 'Select custom post types',
-        allowClear: true
-    });
-
-    $('select#disable-update').select2({
-        placeholder: 'Select user roles',
-        allowClear: true
-    });
-
-    $('select#post-show-status').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#post-sa').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#custom-post-author').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#page-sa').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#custom-page-author').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#page-show-status').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#lmt-tt-sa').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#lmt-custom-tt-author').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
-    $('select#lmt-time-diff').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });
-
     $("#post-show-status").change(function() {
-        if ($('#post-show-status').val() == 'Manual') {
+        if ($('#post-show-status').val() == 'manual') {
             $('#show-shortcode').show();
         }
-        if ($('#post-show-status').val() != 'Manual') {
+        if ($('#post-show-status').val() != 'manual') {
             $('#show-shortcode').hide();
         }
     });
     $("#post-show-status").trigger('change');
 
+    $("#post-format").change(function() {
+        if ($('#post-format').val() == 'human_readable') {
+            $('#post-human-end-with').show();
+            $('.post-default-format').hide();
+        }
+        if ($('#post-format').val() != 'human_readable') {
+            $('#post-human-end-with').hide();
+            $('.post-default-format').show();
+        }
+    });
+    $("#post-format").trigger('change');
+
+    $("#post-default-format").change(function() {
+        if ($('#post-default-format').val() == 'only_date') {
+            $('#post-dtcf').show();
+            $('#post-tmcf').hide();
+            $('#post-dtsep').hide();
+        }
+        if ($('#post-default-format').val() == 'only_time') {
+            $('#post-dtcf').hide();
+            $('#post-tmcf').show();
+            $('#post-dtsep').hide();
+        }
+        if ($('#post-default-format').val() == 'show_both') {
+            $('#post-dtcf').show();
+            $('#post-tmcf').show();
+            $('#post-dtsep').show();
+        }
+    });
+    $("#post-default-format").trigger('change');
+
+    $("#post-sa").change(function() {
+        if ($('#post-sa').val() == 'custom') {
+            $('#post-custom-author').show();
+        }
+        if ($('#post-sa').val() != 'custom') {
+            $('#post-custom-author').hide();
+        }
+        if ($('#post-sa').val() == 'do_not_show') {
+            $('#post-author-link').hide();
+            $('#post-custom-author-sep').hide();
+        }
+        if ($('#post-sa').val() != 'do_not_show') {
+            $('#post-author-link').show();
+            $('#post-custom-author-sep').show();
+        }
+    });
+    $("#post-sa").trigger('change');
+
     $("#page-show-status").change(function() {
-        if ($('#page-show-status').val() == 'Manual') {
+        if ($('#page-show-status').val() == 'manual') {
             $('#show-shortcode-page').show();
         }
-        if ($('#page-show-status').val() != 'Manual') {
+        if ($('#page-show-status').val() != 'manual') {
             $('#show-shortcode-page').hide();
         }
     });
     $("#page-show-status").trigger('change');
 
-    $("#post-sa").change(function() {
-        if ($('#post-sa').val() == 'Custom') {
-            $('#post-custom-author').show();
-            $('#custom-post-author').attr('required', 'required');
+    $("#page-format").change(function() {
+        if ($('#page-format').val() == 'human_readable') {
+            $('#page-human-end-with').show();
+            $('.page-default-format').hide();
         }
-        if ($('#post-sa').val() != 'Custom') {
-            $('#post-custom-author').hide();
-            $('#custom-post-author').removeAttr("required");
-        }
-        if ($('#post-sa').val() == 'Do not show') {
-            $('#post-author-link').hide();
-        }
-        if ($('#post-sa').val() != 'Do not show') {
-            $('#post-author-link').show();
+        if ($('#page-format').val() != 'human_readable') {
+            $('#page-human-end-with').hide();
+            $('.page-default-format').show();
         }
     });
-    $("#post-sa").trigger('change');
+    $("#page-format").trigger('change');
+
+    $("#page-default-format").change(function() {
+        if ($('#page-default-format').val() == 'only_date') {
+            $('#page-dtcf').show();
+            $('#page-tmcf').hide();
+            $('#page-dtsep').hide();
+        }
+        if ($('#page-default-format').val() == 'only_time') {
+            $('#page-dtcf').hide();
+            $('#page-tmcf').show();
+            $('#page-dtsep').hide();
+        }
+        if ($('#page-default-format').val() == 'show_both') {
+            $('#page-dtcf').show();
+            $('#page-tmcf').show();
+            $('#page-dtsep').show();
+        }
+    });
+    $("#page-default-format").trigger('change');
 
     $("#page-sa").change(function() {
-        if ($('#page-sa').val() == 'Custom') {
+        if ($('#page-sa').val() == 'custom') {
             $('#page-custom-author').show();
-            $('#custom-page-author').attr('required', 'required');
         }
-        if ($('#page-sa').val() != 'Custom') {
+        if ($('#page-sa').val() != 'custom') {
             $('#page-custom-author').hide();
-            $('#custom-page-author').removeAttr("required");
         }
-        if ($('#page-sa').val() == 'Do not show') {
+        if ($('#page-sa').val() == 'do_not_show') {
             $('#page-author-link').hide();
+            $('#page-custom-author-sep').hide();
         }
-        if ($('#page-sa').val() != 'Do not show') {
+        if ($('#page-sa').val() != 'do_not_show') {
             $('#page-author-link').show();
+            $('#page-custom-author-sep').show();
         }
     });
     $("#page-sa").trigger('change');
 
+    $("#tt-format").change(function() {
+        if ($('#tt-format').val() == 'human_readable') {
+            $('#tt-human-end-with').show();
+            $('#tt-format-output').hide();
+        }
+        if ($('#tt-format').val() != 'human_readable') {
+            $('#tt-human-end-with').hide();
+            $('#tt-format-output').show();
+        }
+    });
+    $("#tt-format").trigger('change');
+
     $("#lmt-tt-sa").change(function() {
-        if ($('#lmt-tt-sa').val() == 'Custom') {
+        if ($('#lmt-tt-sa').val() == 'custom') {
             $('#tt-custom-author').show();
-            $('#custom-tt-author').attr('required', 'required');
         }
-        if ($('#lmt-tt-sa').val() != 'Custom') {
+        if ($('#lmt-tt-sa').val() != 'custom') {
             $('#tt-custom-author').hide();
-            $('#custom-tt-author').removeAttr("required");
         }
-        if ($('#lmt-tt-sa').val() == 'Do not show') {
+        if ($('#lmt-tt-sa').val() == 'do_not_show') {
             $('#tt-author-link').hide();
+            $('#tt-custom-author-sep').hide();
         }
-        if ($('#lmt-tt-sa').val() != 'Do not show') {
+        if ($('#lmt-tt-sa').val() != 'do_not_show') {
             $('#tt-author-link').show();
+            $('#tt-custom-author-sep').show();
         }
     });
     $("#lmt-tt-sa").trigger('change');
 
-    $("#post-enable-time").change(function () {
-        if ($('#post-enable-time').is(':checked')) {
-            $('#post-tmcf').show();
-        }
-        if (!$('#post-enable-time').is(':checked')) {
-            $('#post-tmcf').hide();
-        }
+    $('select').select2({
+        placeholder: '-- Select --',
+        minimumResultsForSearch: Infinity
     });
-    $("#post-enable-time").trigger('change');
 
-    $("#post-enable-date").change(function () {
-        if ($('#post-enable-date').is(':checked')) {
-            $('#post-dtcf').show();
-        }
-        if (!$('#post-enable-date').is(':checked')) {
-            $('#post-dtcf').hide();
-        }
+    $('select#cpt').select2({
+        placeholder: 'Select custom post types',
+        allowClear: true
     });
-    $("#post-enable-date").trigger('change');
-
-    $("#page-enable-time").change(function () {
-        if ($('#page-enable-time').is(':checked')) {
-            $('#page-tmcf').show();
-        }
-        if (!$('#page-enable-time').is(':checked')) {
-            $('#page-tmcf').hide();
-        }
-    });
-    $("#page-enable-time").trigger('change');
-
-    $("#page-enable-date").change(function () {
-        if ($('#page-enable-date').is(':checked')) {
-            $('#page-dtcf').show();
-        }
-        if (!$('#page-enable-date').is(':checked')) {
-            $('#page-dtcf').hide();
-        }
-    });
-    $("#page-enable-date").trigger('change');
 
     if ( location.href.match(/page\=wp-last-modified-info#post/ig) ) {
 

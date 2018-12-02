@@ -30,10 +30,11 @@ function lmt_adminbar_info() {
     // retrive date time formats
     $cur_time = current_time('U');
     $mod_time = get_the_modified_time( 'U' );
+    $org_time = get_the_time('U');
     $get_df = get_option( 'date_format' );
     $get_tf = get_option( 'time_format' );
 
-    if ( $mod_time > $cur_time ) {
+    if ( $mod_time > $cur_time || $org_time > $mod_time ) {
         return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M g' ), get_the_modified_time( $get_tf ));
     }
     return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), $cur_time));
@@ -53,9 +54,14 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     if ( ! current_user_can( 'publish_posts' ) ) return;
     
     // if modified time is equal to published time, do not show admin bar item
-    if ( get_the_modified_time('U') <= get_the_time('U') ) return;
+    //if ( get_the_modified_time('U') <= get_the_time('U') ) return;
 
     global $post;
+
+    if( $post->post_status == 'auto-draft' ) {
+		return;
+    }
+    
     $object = get_post_type_object( get_post_type( $post ) );
     $args = array(
         'id' => 'lmt-update',
@@ -68,7 +74,7 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
             'target' => '_blank',
         )
     );
-    $wp_admin_bar->add_node($args);
+    $wp_admin_bar->add_node( $args );
 
 }
 add_action('admin_bar_menu', 'lmt_custom_toolbar_item', 999);
