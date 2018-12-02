@@ -151,7 +151,7 @@ Displays/echos the last modified info:
 	}
 ?>`
 
-#### Published date is equal to modified date. Solution? ####
+#### Published date is equal to modified date. What is the solution? ####
 
 Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
 
