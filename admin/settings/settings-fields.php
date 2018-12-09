@@ -45,7 +45,7 @@ function lmt_show_last_modified_time_date_post_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -55,7 +55,23 @@ function lmt_post_custom_text_display() {
         $options['lmt_post_custom_text'] = 'Last Updated on';
     }
     ?>  <input id="post-custom-text" name="lmt_plugin_global_settings[lmt_post_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_post_custom_text'])) { echo $options['lmt_post_custom_text']; } ?>" />
-        &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single posts page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'post-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    
+    &nbsp;&nbsp;<label for="post-html-tag" style="font-size:13px;"><strong><?php _e( 'HTML Tag:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    <?php if(!isset($options['lmt_html_tag_post'])){
+        $options['lmt_html_tag_post'] = 'p';
+    }
+    $items = array(
+        'p'     => '&lt;p&gt;',
+        'span'  => '&lt;span&gt;'
+    );
+    echo '<select id="post-html-tag" name="lmt_plugin_global_settings[lmt_html_tag_post]" style="width:12%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_html_tag_post'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single posts page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'post-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -251,7 +267,7 @@ function lmt_show_last_modified_time_date_page_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box and apply shortcode on that particular page, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -261,7 +277,23 @@ function lmt_page_custom_text_display() {
         $options['lmt_page_custom_text'] = 'Last Updated on';
     }
     ?> <input id="page-custom-text" name="lmt_plugin_global_settings[lmt_page_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_page_custom_text'])) { echo $options['lmt_page_custom_text']; } ?>" />
-        &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'page-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+       
+    &nbsp;&nbsp;<label for="page-html-tag" style="font-size:13px;"><strong><?php _e( 'HTML Tag:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    <?php if(!isset($options['lmt_html_tag_page'])){
+        $options['lmt_html_tag_page'] = 'p';
+    }
+    $items = array(
+        'p'     => '&lt;p&gt;',
+        'span'  => '&lt;span&gt;'
+    );
+    echo '<select id="page-html-tag" name="lmt_plugin_global_settings[lmt_html_tag_page]" style="width:12%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_html_tag_page'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'page-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -503,7 +535,7 @@ function lmt_show_author_tt_cb_display() {
 
 function lmt_tt_class_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:40%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
+    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:50%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
     &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schaam-tt"><strong><?php _e( 'Enable Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="enable-schaam-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
@@ -527,7 +559,7 @@ function lmt_custom_style_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>
     <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
-    <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<strong>&#39;&lt;style&gt; &lt;/style&gt;&#39;</strong>'); ?></small>
+    <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>'); ?></small>
     <?php
 }
 

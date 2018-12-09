@@ -9,7 +9,7 @@
 ?>
 
 <div class="wrap">
-    <h1><?php _e( 'WP Last Modified Info', 'wp-last-modified-info' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-last-modified-info' ); ?> <?php echo lmt_get_version(); ?></span></h1>
+    <h1><?php _e( 'WP Last Modified Info', 'wp-last-modified-info' ); ?> <span style="font-size:12px;"><?php _e( 'Ver', 'wp-last-modified-info' ); ?> <?php echo LMT_PLUGIN_VERSION; ?></span></h1>
 		<div> <?php _e( 'Show last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?> </div><hr>
             <div id="nav-container" class="nav-tab-wrapper">
                 <a href="#post" class="nav-tab active" id="btn1"><span class="dashicons dashicons-admin-post" style="padding-top: 2px;"></span> <?php _e( 'Post Options', 'wp-last-modified-info' ); ?></a>
@@ -91,7 +91,10 @@
                 <p><li><strong>What is the shortcode for pages?</strong></li>
                 <p>Shortcode for post is <code>[lmt-post-modified-info]</code> and for page is <code>[lmt-page-modified-info]</code>. Apply this on any page to show last modified info anywhere.</p>
                 
-                <p><li><strong>Do I need to add '&lt;style&gt; &lt;/style&gt;' tag?</strong></li>
+                <p><li><strong>I want to disable <code>&lt;p&gt; &lt;/p&gt;</code> tag output on posts or pages using shortcode/manual method. How can I do that?</strong></li>
+                <p>Just select <code>&lt;span&gt;</code> tag from plugin settings and save changes. If you have select <code>&lt;p&gt;</code> tag from plugins settings then you can use <code>raw="1"</code> attribute to disable <code>&lt;p&gt; &lt;/p&gt;</code> tag output particularly on shortcodes. Example: <code>[lmt-post-modified-info raw="1"]</code> or <code>[lmt-page-modified-info raw="1"]</code></p>
+
+                <p><li><strong>Do I need to add <code>&lt;style&gt; &lt;/style&gt;</code> tag?</strong></li>
                 <p>No, this tag is not required, as it is already added.</p>
 
                 <p><li><strong>How to set custom date/time format?</strong></li>
@@ -107,6 +110,9 @@
 			    } ?&gt;</code></p>
                 </p></p>
 
+                <p><li><strong>Is it possible to use shortcodes as template tags?</strong></li>
+                <p>Yes, it is absolutely possible. Example of using the shortcode as template tags with PHP: <code>&lt;?php echo do_shortcode('[lmt-post-modified-info]'); ?&gt;</code> or <code>&lt;?php echo do_shortcode('[lmt-page-modified-info]'); ?&gt;</code>.
+                
                 <p><li><strong>Published date is equal to modified date. What is the solution?</strong></li>
                 <p>Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.</p>
                 <p><i>Create function:</i> <code>function override_time_diff() { return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need }</code></p>       
@@ -117,10 +123,9 @@
                 
                 <h3> My Other WordPress Plugins </h3><p><hr></p>
                 <p><strong>Like this plugin? Check out my other WordPress plugins:</strong></p>
-                <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Facebook Comments</a></strong> - Ultimate Facebook Comment Solution for Any WordPress Website.</li>
-                <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - Add any page extension like .html, .php to wordpress pages.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Facebook Comments</a></strong> - Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.</li>
+                <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).</li>
                 <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">Ultimate WP Header Footer</a></strong> - Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.</li>
-                <li><strong><a href = "https://wordpress.org/plugins/all-in-one-wp-solution/" target = "_blank">All In One WP Solution</a></strong> - All In One Solution / Customization for WordPress.</li>
                 <br></div>
             </div>
     

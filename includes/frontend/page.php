@@ -46,6 +46,18 @@ if(!empty($options['lmt_page_author_sep'])) {
     $author_sep_page = ' by';
 }
 
+if( isset($options['lmt_enable_schema_on_page_cb']) && ($options['lmt_enable_schema_on_page_cb'] == 1 ) ) {
+    $schema_page = ' itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_page_schema_format', 'c' ) ) .'"';
+} else {
+    $schema_page = '';
+}
+
+if( isset( $options['lmt_html_tag_page'] ) ) {
+    $html_tag = $options['lmt_html_tag_page'];
+} else {
+    $html_tag = 'p';
+}
+
 if( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'do_not_show' ) ) {
     $lmt_page_uca = '';
 }
@@ -76,24 +88,18 @@ elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author
         
 if( isset( $options_page ) && ( isset( $updated_time_page ) || isset( $updated_day_page ) || isset( $lmt_page_us ) || isset( $lmt_page_uca ) ) ) {
 
-    if( isset($options['lmt_enable_schema_on_page_cb']) && ($options['lmt_enable_schema_on_page_cb'] == 1 ) ) {
-        $schema_page = ' itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_page_schema_format', 'c' ) ) .'"';
-    } else {
-        $schema_page = '';
-    }
-
     if( isset($options['lmt_last_modified_format_page']) && ($options['lmt_last_modified_format_page'] == 'human_readable' ) ) {
-        $modified_content = '<p class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago_page . '</time>' . $lmt_page_uca . '</p>';
+        $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
     }
     elseif( isset($options['lmt_last_modified_format_page']) && ($options['lmt_last_modified_format_page'] == 'default' ) ) {
         if( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'only_time' ) ) {
-            $modified_content = '<p class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_time_page . '</time>' . $lmt_page_uca . '</p>';
+            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_time_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
         }
         elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'only_date' ) ) {
-            $modified_content = '<p class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . '</time>' . $lmt_page_uca . '</p>';
+            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
         }
         elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'show_both' ) ) {
-            $modified_content = '<p class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . ' ' . $options_page_sep . ' ' . $updated_time_page . '</time>' . $lmt_page_uca . '</p>';
+            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . ' ' . $options_page_sep . ' ' . $updated_time_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
         }
     }
 }

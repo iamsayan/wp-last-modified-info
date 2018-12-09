@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.3.9
+Stable tag: 1.3.10
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -179,6 +179,14 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.3.10 =
+Release Date: December 9, 2018
+
+* Added: Option to replace paragraph tag with span tag.
+* Added: Shortcode parameters to escape paragraph tag if required.
+* Fixed: Some minor bugs.
+* Fixed: Some incorrectly translated strings.
 
 = 1.3.9 =
 Release Date: December 2, 2018

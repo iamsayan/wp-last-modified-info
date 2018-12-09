@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.3.9
+ * Version: 1.3.10
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -35,6 +35,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'LMT_PLUGIN_VERSION', '1.3.10' );
+define( 'LMT_PLUGIN_DIR', plugin_dir_path(__FILE__) );
+
 // Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
 /**
@@ -46,22 +49,15 @@ function lmt_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-last-modified-info', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
-function lmt_get_version() {
-    // fetch plugin version
-    $lmtpluginfo = get_plugin_data(__FILE__);
-    $lmtversion = $lmtpluginfo['Version'];    
-	return $lmtversion;
-}
-
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {
 
     // get current screen
     $current_screen = get_current_screen();
     if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
-        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), lmt_get_version() );
-        wp_enqueue_style( 'lmt-cb', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), lmt_get_version() );
-        wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), lmt_get_version() );
+        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
+        wp_enqueue_style( 'lmt-cb', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
+        wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), LMT_PLUGIN_VERSION );
 
         wp_enqueue_style( 'lmt-select2', plugins_url( 'admin/assets/lib/select2/css/select2.min.css', __FILE__ ), array(), '4.0.6' ); 
         wp_enqueue_script( 'lmt-select2-script', plugins_url( 'admin/assets/lib/select2/js/select2.min.js', __FILE__ ), array(), '4.0.6' );
@@ -73,12 +69,11 @@ function lmt_shortcode_admin_styles_scripts( $hook ) {
     global $post;
     // check if post edit screen
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), lmt_get_version() );   
-        wp_enqueue_script( 'lmt-post-script', plugins_url( 'admin/assets/js/post.min.js', __FILE__ ), array(), lmt_get_version() );
+        wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );   
     }
 
     if ( $hook == 'edit.php' ) {
-        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), lmt_get_version(), true );
+        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), LMT_PLUGIN_VERSION, true );
     }
 }
 
@@ -141,6 +136,5 @@ function lmt_plugin_run_on_deactivation() {
     delete_option( 'lmt_plugin_no_thanks_rating_notice' );
     delete_option( 'lmt_plugin_installed_time' );
 }
-
 
 ?>

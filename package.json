@@ -1,0 +1,30 @@
+{
+  "name": "wp-last-modified-info",
+  "version": "1.0.0",
+  "description": "None",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env BABEL_ENV=default webpack --watch",
+    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sayan Datta",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^2.2.5",
+    "npm-watch": "^0.5.0"
+  }
+}

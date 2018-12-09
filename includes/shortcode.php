@@ -20,7 +20,7 @@ if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable
     add_shortcode('lmt-page-modified-info', 'lmt_page_modified_info_shortcode');
 }
 
-function lmt_post_modified_info_shortcode() {
+function lmt_post_modified_info_shortcode( $atts ) {
 
     require plugin_dir_path( __FILE__ ) . 'frontend/post.php';
 
@@ -32,15 +32,24 @@ function lmt_post_modified_info_shortcode() {
     if ( !is_single() ) return;
     
     // If modified_content is not set, then get out
-    if ( ! isset($modified_content) ) return;
+    if ( ! isset( $modified_content ) ) return;
     
     // if modified time is equal to published time, do not show
     if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_post', '0' ) ) return;
+
+    $html_output = 0;
+    $atts = shortcode_atts(
+		array(
+			'raw' => $html_output,
+		), $atts, 'lmt-post-modified-info' );
     
+    if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
+        return strip_tags( $modified_content, '<span><time><a>' );
+    }
     return $modified_content;
 }
 
-function lmt_page_modified_info_shortcode() {
+function lmt_page_modified_info_shortcode( $atts ) {
 
     require plugin_dir_path( __FILE__ ) . 'frontend/page.php';
 
@@ -52,11 +61,20 @@ function lmt_page_modified_info_shortcode() {
     if ( !is_page() ) return;
     
     // If modified_content is not set, then get out
-    if ( ! isset($modified_content) ) return;
+    if ( ! isset( $modified_content ) ) return;
     
     // if modified time is equal to published time, do not show
     if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_page', '0' ) ) return;
     
+    $html_output = 0;
+    $atts = shortcode_atts(
+		array(
+			'raw' => $html_output,
+		), $atts, 'lmt-page-modified-info' );
+    
+    if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
+        return strip_tags( $modified_content, '<span><time><a>' );
+    }
     return $modified_content;
 }
 

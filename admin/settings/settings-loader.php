@@ -20,7 +20,7 @@ function lmt_plug_settings_page() {
         add_settings_field('lmt_last_modified_format_post',  __( 'Last Modified Info Format for Posts:', 'wp-last-modified-info' ), 'lmt_last_modified_format_post_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-format' ));  
         add_settings_field('lmt_last_modified_default_format_post',  __( 'Date and Time Visibility on Posts:', 'wp-last-modified-info' ), 'lmt_last_modified_default_format_post_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-default-format', 'class' => 'post-default-format' ));  
         add_settings_field('lmt_show_author_cb',  __( 'Display Last Modified Author Name:', 'wp-last-modified-info' ), 'lmt_show_author_cb_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-sa' ));  
-        add_settings_field('lmt_custom_post_types_list',  __( 'Include Custom Post Types (if required):', 'wp-last-modified-info' ), 'lmt_custom_post_types_list_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'cpt' ));  
+        add_settings_field('lmt_custom_post_types_list',  __( 'Include Custom Post Types (if required):', 'wp-last-modified-info' ), 'lmt_custom_post_types_list_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'cpt', 'class' => 'cpt' ));  
         
     // start page fields
     add_settings_section('lmt_page_option_section', __( 'Page Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_page_option');    

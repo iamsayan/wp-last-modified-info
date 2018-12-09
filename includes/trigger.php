@@ -93,14 +93,36 @@ function lmt_post_updated_messages( $messages ) {
     return $messages;
 }
 
+function lmt_add_shortcode_to_custom_field() {
+
+    if( apply_filters( 'wplmi_shortcode_on_cf_raw', false ) ) {
+        $parameter = ' raw="1"';
+    } else {
+        $parameter = '';
+    }
+    if( is_page() ) {
+        $shortcode = '[lmt-page-modified-info' . $parameter . ']';
+    } elseif( !is_page() ) {
+        $shortcode = '[lmt-post-modified-info' . $parameter . ']';
+    }
+    // check post meta if not exists
+    if ( !add_post_meta( get_the_ID(), 'wplmi_shortcode', $shortcode, true ) ) {
+        // update post meta
+        update_post_meta( get_the_ID(), 'wplmi_shortcode', $shortcode );
+    }
+}
+
 // add custom css
 add_action( 'wp_head','lmt_style_hook_in_header', 10 );
 // add css to admin page
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' ); 
-// add last modified timestamp in custom field
-add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 2 );
+// add last modified timestamp/shortcode in custom field
+add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
+add_action( 'pre_get_posts', 'lmt_add_shortcode_to_custom_field' );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
 
+// debug
+//add_filter( 'wplmi_shortcode_on_cf_raw', '__return_true' );
 ?>
