@@ -6,9 +6,8 @@ module.exports = {
     entry: './index.js', // Where to find our main js
     output: {
         // where we want our built file to go to and be named
-        // I name it index.build.js so I keep index files separate
         filename: 'sidebar.js',
-        // we're going to put our built file in a './build/' folder
+        // we're going to put our built file in a './assets/' folder
         path: path.resolve(__dirname, 'admin/assets/js')
     }, 
     watch: true,
@@ -24,6 +23,6 @@ module.exports = {
             }
         ]
     },
-    // Webpack yells at you if you don't choose a mode...
+    // Webpack yells at you if I don't choose a mode...
     mode: 'development'
 }
