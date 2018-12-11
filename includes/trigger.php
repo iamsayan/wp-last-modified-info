@@ -61,17 +61,33 @@ function lmt_add_custom_field_lmi( $post_id ) {
     $m_stamp = strtotime( $m_orig );
     $modified = date( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
     
+    $parameter = '';
+    if( apply_filters( 'wplmi_shortcode_on_cf_raw', false ) ) {
+        $parameter = ' raw="1"';
+    }
+
+    $shortcode = '[lmt-post-modified-info' . $parameter . ']';
+    if( is_page() ) {
+        $shortcode = '[lmt-page-modified-info' . $parameter . ']';
+    }
+
     // check post meta if not exists
     if ( !add_post_meta( $post_id, 'wp_last_modified_info', $modified, true ) ) {
         // update post meta
         update_post_meta( $post_id, 'wp_last_modified_info', $modified );
+    }
+
+    // check post meta if not exists
+    if ( !add_post_meta( $post_id, 'wplmi_shortcode', $shortcode, true ) ) {
+        // update post meta
+        update_post_meta( $post_id, 'wplmi_shortcode', $shortcode );
     }
 }
 
 function lmt_post_updated_messages( $messages ) {
     
     // define globally
-    global $post, $post_ID;
+    global $post;
 
     // get plugin options
     $options = get_option('lmt_plugin_global_settings');
@@ -88,28 +104,9 @@ function lmt_post_updated_messages( $messages ) {
     );
     $post_types = get_post_types( $args, 'names');
     foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters( 'post_updated_date_time_format', $get_df . ' @ ' . $get_tf ) ), esc_url( get_permalink( $post_ID ) ), $object->capability_type );
+        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters( 'post_updated_date_time_format', $get_df . ' @ ' . $get_tf ) ), esc_url( get_permalink( $post->ID ) ), $object->capability_type );
     }
     return $messages;
-}
-
-function lmt_add_shortcode_to_custom_field() {
-
-    if( apply_filters( 'wplmi_shortcode_on_cf_raw', false ) ) {
-        $parameter = ' raw="1"';
-    } else {
-        $parameter = '';
-    }
-    if( is_page() ) {
-        $shortcode = '[lmt-page-modified-info' . $parameter . ']';
-    } elseif( !is_page() ) {
-        $shortcode = '[lmt-post-modified-info' . $parameter . ']';
-    }
-    // check post meta if not exists
-    if ( !add_post_meta( get_the_ID(), 'wplmi_shortcode', $shortcode, true ) ) {
-        // update post meta
-        update_post_meta( get_the_ID(), 'wplmi_shortcode', $shortcode );
-    }
 }
 
 // add custom css
@@ -119,7 +116,6 @@ add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' );
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' ); 
 // add last modified timestamp/shortcode in custom field
 add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
-add_action( 'pre_get_posts', 'lmt_add_shortcode_to_custom_field' );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
 

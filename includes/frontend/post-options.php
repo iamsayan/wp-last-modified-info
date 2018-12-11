@@ -34,8 +34,6 @@ function lmt_print_last_modified_info_post( $content ) {
         return $content;
     }
 
-    
-
     if( isset( $modified_content ) ) {
 
         if( isset($options['lmt_show_last_modified_time_date_post']) && ($options['lmt_show_last_modified_time_date_post'] == 'before_content') ) {

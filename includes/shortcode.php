@@ -30,7 +30,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
 
     // If it's not post page, then get out!
     if ( !is_single() ) return;
-    
+
     // If modified_content is not set, then get out
     if ( ! isset( $modified_content ) ) return;
     

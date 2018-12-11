@@ -191,7 +191,8 @@ function lmt_show_author_cb_display() {
         }
         $items = array(
             'none'            => 'None',
-            'author_page'     => 'Author Page',
+            'author_page'     => 'Author Archive',
+            'author_website'  => 'Author Website',
             'author_email'    => 'Author Email'
         );
         echo '<select id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" style="width:16%;">';
@@ -413,7 +414,8 @@ function lmt_show_author_page_cb_display() {
         }
         $items = array(
             'none'            => 'None',
-            'author_page'     => 'Author Page',
+            'author_page'     => 'Author Archive',
+            'author_website'  => 'Author Website',
             'author_email'    => 'Author Email'
         );
         echo '<select id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" style="width:16%;">';
@@ -494,7 +496,7 @@ function lmt_show_author_tt_cb_display() {
     <?php if(empty($options['lmt_tt_author_sep'])){
         $options['lmt_tt_author_sep'] = ' by';
     } ?>
-    <input id="custom-tt-author-sep" name="lmt_plugin_global_settings[lmt_tt_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_tt_author_sep'])) { echo $options['lmt_tt_author_sep']; } ?>" />
+    <input id="custom-tt-author-sep" name="lmt_plugin_global_settings[lmt_tt_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_tt_author_sep'])) { echo htmlentities($options['lmt_tt_author_sep']); } ?>" />
     </span>
 
     <span id="tt-custom-author" style="display:none;">&nbsp;&nbsp;<label for="lmt-custom-tt-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
@@ -518,7 +520,8 @@ function lmt_show_author_tt_cb_display() {
         }
         $items = array(
             'none'            => 'None',
-            'author_page'     => 'Author Page',
+            'author_page'     => 'Author Archive',
+            'author_website'  => 'Author Website',
             'author_email'    => 'Author Email'
         );
         echo '<select id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" style="width:16%;">';

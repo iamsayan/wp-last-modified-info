@@ -25,8 +25,8 @@ function get_the_last_modified_info () {
         $last_modified_text = '';
     }
 
-    if(!empty($options['lmt_post_author_sep'])) {
-        $author_sep_tt = esc_html($options['lmt_post_author_sep']);
+    if(!empty($options['lmt_tt_author_sep'])) {
+        $author_sep_tt = html_entity_decode($options['lmt_tt_author_sep']);
     } else {
         $author_sep_tt = ' by';
     }
@@ -45,11 +45,13 @@ function get_the_last_modified_info () {
         $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
 
         if( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_page' ) ) {
-            $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_author_posts_url($author_id) . '" target="_blank" rel="author">' . get_the_modified_author() . '</a>';
+            $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_author_posts_url( $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
+        } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_website' ) ) {
+            $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_the_author_meta( 'url', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_email' ) ) {
-            $lmt_tt_uca = $author_sep_tt . ' <a href="mailto:' . get_the_author_meta('user_email') . '" rel="author">' . get_the_modified_author() . '</a>';
+            $lmt_tt_uca = $author_sep_tt . ' <a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'none' ) ) {
-            $lmt_tt_uca = $author_sep_tt . ' ' . get_the_modified_author();
+            $lmt_tt_uca = $author_sep_tt . ' ' . get_the_author_meta( 'display_name', $author_id );
         }
     
     } elseif( isset($options['lmt_show_author_tt_cb']) && ($options['lmt_show_author_tt_cb'] == 'custom' ) ) {
@@ -58,7 +60,9 @@ function get_the_last_modified_info () {
         
         if( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_page' ) ) {
             $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
-        }elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_email' ) ) {
+        } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_website' ) ) {
+            $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_the_author_meta( 'url', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
+        } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_email' ) ) {
             $lmt_tt_uca = $author_sep_tt . ' <a href="mailto:' . get_the_author_meta('user_email', $get_author) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'none' ) ) {
             $lmt_tt_uca = $author_sep_tt . ' ' . get_the_author_meta( 'display_name', $get_author );

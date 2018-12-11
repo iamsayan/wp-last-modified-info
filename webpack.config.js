@@ -5,9 +5,9 @@ const path = require('path');
 module.exports = {
     entry: './index.js', // Where to find our main js
     output: {
-        // where we want our built file to go to and be named
+        // where our built file to go to and be named
         filename: 'sidebar.js',
-        // we're going to put our built file in a './assets/' folder
+        // we're going to put our built file in a './admin/assets/js/' folder
         path: path.resolve(__dirname, 'admin/assets/js')
     }, 
     watch: true,
@@ -23,6 +23,6 @@ module.exports = {
             }
         ]
     },
-    // Webpack yells at you if I don't choose a mode...
+    // Webpack yells at you if you don't choose a mode...
     mode: 'development'
 }

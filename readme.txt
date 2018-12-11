@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.3.10
+Stable tag: 1.4.0
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -40,6 +40,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Allows you to add last modified timestamp in post/page's custom field.
 * Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
+* Elementor Dynamic Tags support with 'dateModified' schema markup.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -180,92 +181,13 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
-= 1.3.10 =
-Release Date: December 9, 2018
+= 1.4.0 =
+Release Date: December 11, 2018
 
-* Added: Option to replace paragraph tag with span tag.
-* Added: Shortcode parameters to escape paragraph tag if required.
-* Fixed: Some minor bugs.
+* NEW: Elementor Dynamic Tags Support with schema markup.
+* Added: Option to link author name with their Website.
+* Fixed: A bug where link to author email always returns original post author's email instead of last modified author's email.
 * Fixed: Some incorrectly translated strings.
-
-= 1.3.9 =
-Release Date: December 2, 2018
-
-* Added: Option to enable/disable schema output.
-* Added: Option to link author email.
-* Improved: Template Tag mechanism.
-* Improved: Admin UI.
-* Fixed: Some minor bugs.
-* Fixed: Some incorrectly translated strings.
-* Tested upto WordPress Version 5.0.
-
-Note: Please configure schema output from plugin settings after plugin update.
-
-= 1.3.8 =
-Release Date: October 14, 2018
-
-* Fixed: Multiple output of last modified info on frontend if the post is not inside loop.
-* Tweak: Now this plugin automatically detects modified info change if any change will be done from quick edit.
-* Tweak: Sometimes modified fields are showing multiple times in quick edit mode. Now it has been fixed.
-
-= 1.3.7 =
-Release Date: October 4, 2018
-
-* Added: A new filter `wplmi_disable_schema_output` to disable schema output.
-* Tweak: Meta Box UI.
-* Fixed: Plugin deactivation permission.
-
-= 1.3.6 =
-Release Date: September 24, 2018
-
-* Added: Admin notice.
-* Added: new filters `wplmi_display_priority_post` and `wplmi_display_priority_page` to set display priority.
-* Code cleanup.
-
-= 1.3.5 =
-Release Date: September 1, 2018
-
-* Admin UI Improved.
-* Code cleanup.
-
-= 1.3.4 =
-Release Date: August 8, 2018
-
-* Fixed: Some incorrectly translated strings.
-* Code cleanup.
-
-= 1.3.3 =
-Release Date: August 5, 2018
-
-* Added: Filters to set time difference between post published time and modified time.
-* Fixed: a bug where page builder plugins overwrite the disable state of last modified info.
-* Fixed: Disable modified info update checkbox shows in Bulk edit mode. Now it has been fixed.
-* Improved: Last modified info output.
-
-= 1.3.2 =
-Release Date: July 27, 2018
-
-* Added: Disable modified info update from Quick Edit.
-* Added: A lock icon now indicates last modified info update disable status.
-* Tweak: Now Dashboard Widget shows only published posts.
-* Fixed: Closing HTML Tag.
-* Fixed: Column sorting is not working properly.
-* Fixed: PHP 5.3 Compatibility issue.
-
-= 1.3.1 =
-Release Date: July 22, 2018
-
-* Added: It is now possible to edit modified date and time.
-* Improved: Made uninstall cleanup optional through a plugin setting and improved uninstall mechanism.
-* Fixed: Admin bar returns revision link even if that post/page is not a revision.
-* Fixed: Permission for custom post meta box.
-* Fixed: Incorrectly translated strings.
-
-= 1.3.0 =
-Release Date: July 16, 2018
-
-* Added: I18n support.
-* Fix: Shortcode does not output modified info on pages.
 
 = Other Versions =
 

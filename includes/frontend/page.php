@@ -66,11 +66,13 @@ elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author
     $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
     
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_page' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_author_posts_url($author_id) . '" target="_blank" rel="author">' . get_the_modified_author() . '</a></span>';
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+    } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_website' ) ) {
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_email' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta('user_email') . '" rel="author">' . get_the_modified_author() . '</a></span>';
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'none' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author">' . get_the_modified_author() . '</span>';
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author">' . get_the_author_meta( 'display_name', $author_id ) . '</span>';
     }
 }
 elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'custom' ) ) {
@@ -79,8 +81,10 @@ elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author
 
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_page' ) ) {
         $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+    } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_website' ) ) {
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_email' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta('user_email', $get_author) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'none' ) ) {
         $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author">' . get_the_author_meta( 'display_name', $get_author ) . '</span>';
     }

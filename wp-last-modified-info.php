@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.3.10
+ * Version: 1.4.0
  * Author: Sayan Datta
  * Author URI: https://profiles.wordpress.org/infosatech/
  * License: GPLv3
@@ -35,8 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.3.10' );
-define( 'LMT_PLUGIN_DIR', plugin_dir_path(__FILE__) );
+define( 'LMT_PLUGIN_VERSION', '1.4.0' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );

@@ -8,10 +8,11 @@
  */
 
 // require required files
-require plugin_dir_path( __FILE__ ) . 'settings/tools.php';
-require plugin_dir_path( __FILE__ ) . 'settings/settings-loader.php';
-require plugin_dir_path( __FILE__ ) . 'settings/settings-fields.php';
-require plugin_dir_path( __FILE__ ) . 'settings/meta-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'settings/tools.php';
+require_once plugin_dir_path( __FILE__ ) . 'settings/settings-loader.php';
+require_once plugin_dir_path( __FILE__ ) . 'settings/settings-fields.php';
+require_once plugin_dir_path( __FILE__ ) . 'settings/meta-box.php';
+require_once plugin_dir_path( __FILE__ ) . 'elementor/module.php';
 
 // add settings page
 add_action( 'admin_init', 'lmt_plug_settings_page' );
@@ -22,7 +23,7 @@ function lmt_remove_footer_admin_text() {
 
 // page elements
 function lmt_show_page() {
-    require plugin_dir_path( __FILE__ ) . 'settings/settings-page.php';
+    require_once plugin_dir_path( __FILE__ ) . 'settings/settings-page.php';
     add_filter( 'admin_footer_text', 'lmt_remove_footer_admin_text' );    
 }
 
