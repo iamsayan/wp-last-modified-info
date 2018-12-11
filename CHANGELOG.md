@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.0
+Release Date: December 11, 2018
+
+* NEW: Elementor Dynamic Tags Support with schema markup.
+* Added: Option to link author name with their Website.
+* Fixed: A bug where link to author email always returns original post author's email instead of last modified author's email.
+* Fixed: Some incorrectly translated strings.
+
+## 1.3.10
+Release Date: December 10, 2018
+
+* Added: Option to replace paragraph tag with span tag.
+* Added: Shortcode parameters to escape paragraph tag if required.
+* Fixed: A bug where custom author seperator for template tags not working properly.
+* Fixed: Some minor bugs.
+* Fixed: Some incorrectly translated strings.
+* New icon added.
+
 ## 1.3.9
 Release Date: December 2, 2018
 
