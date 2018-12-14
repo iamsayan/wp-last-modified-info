@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2018-12-11 15:17+0530\n"
-"PO-Revision-Date: 2018-12-11 15:16+0530\n"
+"POT-Creation-Date: 2018-12-14 18:33+0530\n"
+"PO-Revision-Date: 2018-12-14 18:33+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,19 +25,19 @@ msgstr ""
 msgid "Last Modified Author URL"
 msgstr ""
 
-#: admin/elementor/class/modified-author-url.php:56
+#: admin/elementor/class/modified-author-url.php:55
 msgid "URL"
 msgstr ""
 
-#: admin/elementor/class/modified-author-url.php:60
+#: admin/elementor/class/modified-author-url.php:59
 msgid "Author Archive"
 msgstr ""
 
-#: admin/elementor/class/modified-author-url.php:61
+#: admin/elementor/class/modified-author-url.php:60
 msgid "Author Website"
 msgstr ""
 
-#: admin/elementor/class/modified-author-url.php:62
+#: admin/elementor/class/modified-author-url.php:61
 msgid "Author Email"
 msgstr ""
 
@@ -518,82 +518,96 @@ msgstr ""
 msgid "Last Modified"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:44
-#: includes/backend/dashboard-edit-screen.php:124
+#: includes/backend/dashboard-edit-screen.php:43
+#: includes/backend/dashboard-edit-screen.php:123
+#: includes/backend/gutenburg-edit-screen.php:149
 msgid "Updated on:"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:46
+#: includes/backend/dashboard-edit-screen.php:45
 msgid "Edit"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:46
+#: includes/backend/dashboard-edit-screen.php:45
+#: includes/backend/gutenburg-edit-screen.php:66
 msgid "Edit modified date and time"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:49
+#: includes/backend/dashboard-edit-screen.php:48
+#: includes/backend/gutenburg-edit-screen.php:73
 msgid "Last modified date and time"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:52
-#: includes/backend/dashboard-edit-screen.php:222
+#: includes/backend/dashboard-edit-screen.php:51
+#: includes/backend/dashboard-edit-screen.php:221
+#: includes/backend/gutenburg-edit-screen.php:76
 msgid "Month"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:58
-#: includes/backend/dashboard-edit-screen.php:228
+#: includes/backend/dashboard-edit-screen.php:57
+#: includes/backend/dashboard-edit-screen.php:227
+#: includes/backend/gutenburg-edit-screen.php:82
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:64
-#: includes/backend/dashboard-edit-screen.php:234
+#: includes/backend/dashboard-edit-screen.php:63
+#: includes/backend/dashboard-edit-screen.php:233
+#: includes/backend/gutenburg-edit-screen.php:88
 msgid "Day"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:68
-#: includes/backend/dashboard-edit-screen.php:238
+#: includes/backend/dashboard-edit-screen.php:67
+#: includes/backend/dashboard-edit-screen.php:237
+#: includes/backend/gutenburg-edit-screen.php:92
 msgid "Year"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:70
-#: includes/backend/dashboard-edit-screen.php:240
+#: includes/backend/dashboard-edit-screen.php:69
+#: includes/backend/dashboard-edit-screen.php:239
+#: includes/backend/gutenburg-edit-screen.php:94
 msgid "@"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:72
-#: includes/backend/dashboard-edit-screen.php:242
+#: includes/backend/dashboard-edit-screen.php:71
+#: includes/backend/dashboard-edit-screen.php:241
+#: includes/backend/gutenburg-edit-screen.php:96
 msgid "Hour"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:74
-#: includes/backend/dashboard-edit-screen.php:244
+#: includes/backend/dashboard-edit-screen.php:73
+#: includes/backend/dashboard-edit-screen.php:243
+#: includes/backend/gutenburg-edit-screen.php:98
 msgid ":"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:76
-#: includes/backend/dashboard-edit-screen.php:246
+#: includes/backend/dashboard-edit-screen.php:75
+#: includes/backend/dashboard-edit-screen.php:245
+#: includes/backend/gutenburg-edit-screen.php:100
 msgid "Minute"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
+#: includes/backend/gutenburg-edit-screen.php:131
 msgid "OK"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
+#: includes/backend/gutenburg-edit-screen.php:131
 msgid "Cancel"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:107
-#: includes/backend/dashboard-edit-screen.php:251
+#: includes/backend/dashboard-edit-screen.php:250
+#: includes/backend/gutenburg-edit-screen.php:133
 msgid "Disable update"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:219
+#: includes/backend/dashboard-edit-screen.php:218
 msgid "Modified"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:249
+#: includes/backend/dashboard-edit-screen.php:248
 msgid ""
 "Keep this checked, if you do not want to change modified date and time on "
 "this "
@@ -619,6 +633,14 @@ msgstr ""
 msgid "Recently Updated"
 msgstr ""
 
+#: includes/backend/gutenburg-edit-screen.php:21
+msgid "Edit Last Updated Info"
+msgstr ""
+
+#: includes/backend/gutenburg-edit-screen.php:59
+msgid "Updated on"
+msgstr ""
+
 #: includes/frontend/admin-bar.php:38
 #, php-format
 msgid "Updated on %1$s at %2$s"
@@ -634,7 +656,7 @@ msgstr ""
 msgid "This %1$s was last updated on %2$s at %3$s by %4$s"
 msgstr ""
 
-#: includes/trigger.php:107
+#: includes/trigger.php:108
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "

@@ -63,9 +63,11 @@ jQuery(document).ready(function ($) {
     $("#post-show-status").change(function() {
         if ($('#post-show-status').val() == 'manual') {
             $('#show-shortcode').show();
+            $('.cpt').hide();
         }
         if ($('#post-show-status').val() != 'manual') {
             $('#show-shortcode').hide();
+            $('.cpt').show();
         }
     });
     $("#post-show-status").trigger('change');

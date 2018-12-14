@@ -8,9 +8,25 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-add_action( 'post_submitbox_misc_actions', 'lmt_show_on_dashboard' );
+function lmt_add_meta_box_to_gutenburg( $post ) {
 
-function lmt_show_on_dashboard( $post ) {
+	// check clasic editor plugin settings
+    if ( isset( $_GET['classic-editor'] ) ) return;
+
+    // If user can't publish posts, then get out
+    if ( ! current_user_can( 'publish_posts' ) ) return;
+	
+	$current_screen = get_current_screen();
+	if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) { 
+        add_meta_box( 'lmt_meta_box_gutenburg', __( 'Edit Last Updated Info', 'wp-last-modified-info' ), 'lmt_show_on_gutenburg_edit_screen', '', 'side', 'high', array(
+            '__back_compat_meta_box' => false,
+	    ) );
+	}
+}
+
+add_action( 'add_meta_boxes', 'lmt_add_meta_box_to_gutenburg' );
+
+function lmt_show_on_gutenburg_edit_screen( $post ) {
 
     global $wp_locale;
 
@@ -38,18 +54,27 @@ function lmt_show_on_dashboard( $post ) {
     $orig_time = get_the_time('U');
     $mod_time = get_the_modified_time('U'); ?>
     
-    <div class="misc-pub-section curtime misc-pub-last-updated">
-    
-        <span id="lmt-timestamp"> <?php _e( 'Updated on:', 'wp-last-modified-info' ) ?> <strong><?php echo $lmt_updated_time ?></strong></span>
+    <div class="misc-pub-section-gutenburg curtime misc-pub-last-updated" style="padding-top:5px;">
 
-        <a href="#edit_timestampmodified" class="edit-timestampmodified hide-if-no-js" role="button"><span aria-hidden="true"><?php _e('Edit', 'wp-last-modified-info'); ?></span> <span class="screen-reader-text"><?php _e('Edit modified date and time', 'wp-last-modified-info'); ?></span></a>
+	<span id="lmt-timestamp-text"><?php _e( 'Updated on', 'wp-last-modified-info' ) ?></span>
+
+    <a href="#edit_timestampmodified" class="edit-timestampmodified hide-if-no-js" role="button">
+		<span aria-hidden="true">
+		    <span class="dashicons dashicons-edit" style="font-size: 15px;padding-top: 2px;"></span>
+		</span>
+		<span class="screen-reader-text">
+		    <?php _e('Edit modified date and time', 'wp-last-modified-info'); ?>
+		</span>
+	</a>
+
+	<span id="lmt-timestamp-gutenburg" style="float: right;"><strong><?php echo $lmt_updated_time ?></strong></span>
 
         <fieldset id="timestampmodifieddiv" class="hide-if-js">
 			<legend class="screen-reader-text"><?php _e('Last modified date and time', 'wp-last-modified-info'); ?></legend>
 			<div class="timestamp-wrap">
 				<label>
 					<span class="screen-reader-text"><?php _e('Month', 'wp-last-modified-info'); ?></span>
-					<select id="mmm" name="mmm">
+					<select id="mmm" name="mmm" style="margin-top: 3px;">
 						<?php
 						for ($i = 1; $i < 13; $i++) {
 							$monthnum = zeroise($i, 2);
@@ -61,7 +86,7 @@ function lmt_show_on_dashboard( $post ) {
 				</label>
 				<label>
 					<span class="screen-reader-text"><?php _e('Day', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;" />
+					<input type="text" id="jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;width: 2.2em;" />
 				</label>,
 				<label>
 					<span class="screen-reader-text"><?php _e('Year', 'wp-last-modified-info'); ?></span>
@@ -69,11 +94,11 @@ function lmt_show_on_dashboard( $post ) {
 				</label> <?php _e('@', 'wp-last-modified-info'); ?>
 				<label>
 					<span class="screen-reader-text"><?php _e('Hour', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;" />
+					<input type="text" id="hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;width: 2.2em;" />
 				</label><?php _e(':', 'wp-last-modified-info'); ?>
 				<label>
 					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="margin-left:-3px;" />
+					<input type="text" id="mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="margin-left:-3px;width: 2.2em;" />
 				</label>
 			</div>
 			<?php
@@ -98,13 +123,14 @@ function lmt_show_on_dashboard( $post ) {
 			} ?>
 
 			<input type="hidden" id="ssm" name="ssm" value="<?php echo $ss; ?>">
-			<input type="hidden" id="change-modified" name="changemodified" value="no">
-			<input type="hidden" id="lmt-disable-hidden" name="disableupdatehidden" value="0">
-
-			<p id="lmt-meta" class="lmt-meta-options">
-			    <a href="#edit_timestampmodified" class="save-timestamp hide-if-no-js button"><?php _e('OK', 'wp-last-modified-info'); ?></a> <a href="#edit_timestampmodified" class="cancel-timestamp hide-if-no-js button-cancel"><?php _e('Cancel', 'wp-last-modified-info'); ?></a>&nbsp;&nbsp;&nbsp;
+            <input type="hidden" id="change-modified" name="changemodifiedgutenburg" value="no">
+            <input type="hidden" id="lmt-disable-hidden" name="disableupdategutenburghidden" value="no">
+			<input type="hidden" id="lmt-last-modified" name="lastmodifiedhidden" value="<?php echo get_the_modified_time( 'Y-m-d H:i:s' ); ?>">
+				
+			<p id="lmt-meta" class="meta-options">
+			    <a href="#edit_timestampmodified" class="save-timestamp hide-if-no-js button"><?php _e('OK', 'wp-last-modified-info'); ?></a> <a href="#edit_timestampmodified" class="cancel-timestamp hide-if-no-js button-cancel"><?php _e('Cancel', 'wp-last-modified-info'); ?></a>&nbsp;&nbsp;
                 <label for="lmt_disable" class="selectit" title="Keep this checked, if you do not want to change modified date and time on this <?php echo $post_types->capability_type ?>">
-		            <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>><?php _e( 'Disable update', 'wp-last-modified-info' ); ?>
+		            <input type="checkbox" id="lmt_disable" name="disableupdategutenburg" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>><?php _e( 'Disable update', 'wp-last-modified-info' ); ?>
 				</label>
 			</p>
 			
@@ -122,8 +148,8 @@ function lmt_show_on_dashboard( $post ) {
 		    		var aam = $('#aam').val(), mmm = $('#mmm').val(), jjm = $('#jjm').val(), hhm = $('#hhm').val(), mnm = $('#mnm').val();
 		    		var textModifiedOn = "<?php _e('Updated on:', 'wp-last-modified-info'); ?>";
     
-		    		$('#lmt-timestamp').html(
-		    			'\n ' + textModifiedOn + ' <strong>' +
+		    		$('#lmt-timestamp-gutenburg').html(
+		    			'\n ' + ' <strong>' +
 		    			dateFormat
 		    				.replace( '%1$s', $( 'option[value="' + mmm + '"]', '#mmm' ).attr( 'data-text' ) )
 		    				.replace( '%2$s', parseInt( jjm, 10 ) )
@@ -172,10 +198,10 @@ function lmt_show_on_dashboard( $post ) {
     
 		    	$('#lmt_disable').change(function() {
                     if ($('#lmt_disable').is(':checked')) {
-                        $('#lmt-disable-hidden').val('1');
+                        $('#lmt-disable-hidden').val('yes');
                     }
                     if (!$('#lmt_disable').is(':checked')) {
-                        $('#lmt-disable-hidden').val('0');
+                        $('#lmt-disable-hidden').val('no');
                     }
 		    	});
 		    	$('#lmt_disable').trigger('change');
@@ -187,108 +213,20 @@ function lmt_show_on_dashboard( $post ) {
     </div><?php
 }
 
-add_action( 'quick_edit_custom_box', 'lmt_add_item_to_quick_edit', 10, 2 );
+function lmt_disable_update_date_gutenburg( $data, $postarr ) {
 
-function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
-
-	global $post, $wp_locale;
-
-	if( $post->post_status == 'auto-draft' ) {
-		return;
-    }
-
-    $datemodified = $post->post_modified;
-    
-	$jj = mysql2date('d', $datemodified, false);
-	$mm = mysql2date('m', $datemodified, false);
-	$aa = mysql2date('Y', $datemodified, false);
-	$hh = mysql2date('H', $datemodified, false);
-    $mn = mysql2date('i', $datemodified, false);
-	$ss = mysql2date('s', $datemodified, false);
-	
-    // get required data
-	$post_types = get_post_type_object( get_post_type( $post ) );
-	$stop_update = get_post_meta( $post->ID, '_lmt_disableupdate', true );
-
-	if ( did_action( 'quick_edit_custom_box' ) > 1 ) {
-		return;
-	} ?>
-
-	<div id="inline-edit-col-modified-date">
-        <legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
-			<div class="timestamp-wrap">
-				<label  class="inline-edit-group">
-					<span class="screen-reader-text"><?php _e('Month', 'wp-last-modified-info'); ?></span>
-					<select id="mmm" class="time-modified" name="mmm">
-						<?php
-						for ($i = 1; $i < 13; $i++) {
-							$monthnum = zeroise($i, 2);
-							$monthtext = $wp_locale->get_month_abbrev($wp_locale->get_month($i));
-							echo '<option value="'.$monthnum.'" data-text="'.$monthtext.'" '.selected($monthnum, $mm, false).'>'.sprintf(__( '%1$s-%2$s' ), $monthnum, $monthtext).'</option>';
-						}
-						?>
-					</select>
-				</label>
-				<label  class="inline-edit-group">
-					<span class="screen-reader-text"><?php _e('Day', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="jjm" class="time-modified" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.3em;" />
-				</label>,
-				<label>
-					<span class="screen-reader-text"><?php _e('Year', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="aam" class="time-modified" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" style="font-size:12px;width:3.5em;" />
-				</label> <?php _e('@', 'wp-last-modified-info'); ?>
-				<label>
-					<span class="screen-reader-text"><?php _e('Hour', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="hhm" class="time-modified" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.3em;" />
-				</label><?php _e(':', 'wp-last-modified-info'); ?>
-				<label>
-					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="mnm" class="time-modified" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.35em;margin-left:-3px;" />
-				</label>
-                <label for="lmt_disable" title="<?php _e( 'Keep this checked, if you do not want to change modified date and time on this ' . $post_types->capability_type . '.', 'wp-last-modified-info' ); ?>">
-			        <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>>
-			        <span class="checkbox-title"><?php _e( 'Disable update', 'wp-last-modified-info' ); ?></span>
-			    </label>
-            </div>
-			<input type="hidden" id="ssm" name="ssm" value="<?php echo $ss; ?>">
-			<input type="hidden" id="change-modified" name="changemodified" value="no">
-			<input type="hidden" id="lmt-disable-hidden" name="disableupdatehidden" value="0">
-                
-		</div>
-	    <script type="text/javascript">
-            jQuery(document).ready(function($){
-				$('#inline-edit-col-modified-date').appendTo('.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date');
-				$(".time-modified").change(function() {
-					$('#change-modified').val('yes');
-                });
-				$('#lmt_disable').change(function() {
-                    if ($('#lmt_disable').is(':checked')) {
-                        $('#lmt-disable-hidden').val('1');
-                    }
-                    if (!$('#lmt_disable').is(':checked')) {
-                        $('#lmt-disable-hidden').val('0');
-                    }
-				});
-				$('#lmt_disable').trigger('change');
-			});
-        </script>
-	<?php
-}
-
-function lmt_disable_update_date( $data, $postarr ) {
-
-	if( isset($postarr['disableupdatehidden'] ) && $postarr['disableupdatehidden'] == 1 ) {		
+	if( isset($postarr['disableupdategutenburghidden'] ) && $postarr['disableupdategutenburghidden'] == 'yes' ) {		
 		update_post_meta( $postarr['ID'], '_lmt_disableupdate', 'yes' );
 
-		if ( !empty($postarr['post_modified']) && !empty($postarr['post_modified_gmt']) ) {
-		    $data['post_modified'] = $postarr['post_modified'];
-			$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
+		if ( !empty($postarr['lastmodifiedhidden']) ) {
+		    $data['post_modified'] = $postarr['lastmodifiedhidden'];
+			$data['post_modified_gmt'] = get_gmt_from_date( $postarr['lastmodifiedhidden'] );
 		}
 	}
-	elseif( isset($postarr['disableupdatehidden'] ) && $postarr['disableupdatehidden'] == 0 ) {
+	elseif( isset($postarr['disableupdategutenburghidden'] ) && $postarr['disableupdategutenburghidden'] == 'no' ) {
 		update_post_meta( $postarr['ID'], '_lmt_disableupdate', 'no' );
 		
-		if( isset($postarr['changemodified']) && $postarr['changemodified'] == 'yes' ) {
+		if( isset($postarr['changemodifiedgutenburg']) && $postarr['changemodifiedgutenburg'] == 'yes' ) {
 			$mm = sanitize_text_field($postarr['mmm']);
 			$jj = sanitize_text_field($postarr['jjm']);
 			$aa = sanitize_text_field($postarr['aam']);
@@ -315,6 +253,6 @@ function lmt_disable_update_date( $data, $postarr ) {
 }
 
 // insert data upon post save
-add_filter('wp_insert_post_data', 'lmt_disable_update_date', 99, 2);
+add_filter('wp_insert_post_data', 'lmt_disable_update_date_gutenburg', 99, 2);
 
 ?>

@@ -5,7 +5,7 @@
  *
  * @package   WP Last Modified Info
  * @author    Sayan Datta
- * @since     v1.2.0
+ * @since     v1.4.0
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
@@ -36,16 +36,15 @@ Class WPLMI_Elementor_Register_Dynamic_Author_URL_Tag extends \Elementor\Core\Dy
         $value = '';
         $author_id = get_post_meta( get_the_ID(), '_edit_last', true );
 
-		if ( 'archive' === $this->get_settings( 'url' ) ) {
-			if ( $author_id ) {
-				$value = get_author_posts_url( $author_id );
-			}
-		} elseif ( 'website' === $this->get_settings( 'url' ) ) {
-			$value = get_the_author_meta( 'url', $author_id );
-		} else {
-            $value = 'mailto:' . get_the_author_meta( 'user_email', $author_id );
-        }
-
+		if ( $author_id ) {
+		    if ( 'archive' === $this->get_settings( 'url' ) ) {
+		    	$value = get_author_posts_url( $author_id );
+		    } elseif ( 'website' === $this->get_settings( 'url' ) ) {
+		    	$value = get_the_author_meta( 'url', $author_id );
+		    } else {
+                $value = 'mailto:' . get_the_author_meta( 'user_email', $author_id );
+		    }
+	    }
 		return $value;
 	}
 

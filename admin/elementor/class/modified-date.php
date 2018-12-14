@@ -5,7 +5,7 @@
  *
  * @package   WP Last Modified Info
  * @author    Sayan Datta
- * @since     v1.2.0
+ * @since     v1.4.0
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 

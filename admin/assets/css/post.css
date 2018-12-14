@@ -29,10 +29,10 @@
     font-size: 12px;
 }
 
-#timestampmodifieddiv input {
+/*#timestampmodifieddiv input {
     border-width: 1px;
     border-style: solid;
-}
+}*/
 
 #hhm, #jjm, #mnm {
     width: 2em;

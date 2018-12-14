@@ -41,6 +41,7 @@ require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
 require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
 require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
 require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg-edit-screen.php';
 
 function lmt_print_admin_post_css() {
     echo '<style type="text/css"> .fixed .column-modified { width:18%; } </style>'."\n";

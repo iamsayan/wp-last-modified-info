@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -180,6 +180,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.4.1 =
+Release Date: December 14, 2018
+
+* Tweak: Now it is possible to edit last modified info from gutenburg edit screen.
+* Fixed: Some minor bug fixed.
 
 = 1.4.0 =
 Release Date: December 11, 2018
