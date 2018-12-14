@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.1
+Release Date: December 14, 2018
+
+* Tweak: Now it is possible to edit last modified info from gutenburg edit screen.
+* Fixed: Some minor bug fixed.
+
 ## 1.4.0
 Release Date: December 11, 2018
 
