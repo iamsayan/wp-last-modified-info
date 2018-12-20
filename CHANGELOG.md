@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.2
+Release Date: December 20, 2018
+
+* Tweak: Now all date format show as the date in localized format.
+* Fixed: A bug where dateModified schema always returns in local time format instead of GMT.
+
 ## 1.4.1
 Release Date: December 14, 2018
 
