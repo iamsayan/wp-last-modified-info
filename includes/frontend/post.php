@@ -47,7 +47,7 @@ if(!empty($options['lmt_post_author_sep'])) {
 }
 
 if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 1 ) ) {
-    $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_post_schema_format', 'c' ) ) .'"';
+    $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
 } else {
     $schema_post = '';
 }

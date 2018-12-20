@@ -53,9 +53,9 @@ Class WPLMI_Elementor_Register_Dynamic_Time_Tag extends \Elementor\Core\DynamicT
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
                     'default' => __( 'Default', 'wp-last-modified-info' ),
-                    'g:i a' => date( 'g:i a' ),
-                    'g:i A' => date( 'g:i A' ),
-                    'H:i' => date( 'H:i' ),
+                    'g:i a' => date_i18n( 'g:i a' ),
+                    'g:i A' => date_i18n( 'g:i A' ),
+                    'H:i' => date_i18n( 'H:i' ),
                     'human' => __( 'Human Readable', 'wp-last-modified-info' ),
                     'custom' => __( 'Custom', 'wp-last-modified-info' ),
                 ],
@@ -99,7 +99,7 @@ Class WPLMI_Elementor_Register_Dynamic_Time_Tag extends \Elementor\Core\DynamicT
         }
     
         if ( 'yes' === $schema ) {
-            $output = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'c' ) .'/">' . wp_kses_post( $value ) . '<//time>';
+            $output = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'/">' . wp_kses_post( $value ) . '<//time>';
         } else {
             $output = wp_kses_post( $value );
         }

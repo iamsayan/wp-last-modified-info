@@ -10,9 +10,6 @@
 
 function lmt_add_meta_box_to_gutenburg( $post ) {
 
-	// check clasic editor plugin settings
-    if ( isset( $_GET['classic-editor'] ) ) return;
-
     // If user can't publish posts, then get out
     if ( ! current_user_can( 'publish_posts' ) ) return;
 	

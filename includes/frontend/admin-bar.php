@@ -35,7 +35,7 @@ function lmt_adminbar_info() {
     $get_tf = get_option( 'time_format' );
 
     if ( $mod_time > $cur_time || $org_time > $mod_time ) {
-        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M g' ), get_the_modified_time( $get_tf ));
+        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time( $get_tf ));
     }
     return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), $cur_time));
 }
@@ -53,9 +53,6 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     // If user can't publish posts, then get out
     if ( ! current_user_can( 'publish_posts' ) ) return;
     
-    // if modified time is equal to published time, do not show admin bar item
-    //if ( get_the_modified_time('U') <= get_the_time('U') ) return;
-
     global $post;
 
     if( $post->post_status == 'auto-draft' ) {

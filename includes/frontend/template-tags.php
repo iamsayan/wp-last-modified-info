@@ -12,7 +12,13 @@ function get_the_last_modified_info () {
 
     // get plugin options
     $options = get_option('lmt_plugin_global_settings');
-    
+    // retrive date time formats
+    $cur_time = current_time('U');
+    $mod_time = get_the_modified_time( 'U' );
+    $org_time = get_the_time('U');
+    $get_df = get_option( 'date_format' );
+    $get_tf = get_option( 'time_format' );
+
     if(!empty($options['lmt_tt_set_format_box'])) {
         $last_modified_tt = get_the_modified_time(esc_html($options['lmt_tt_set_format_box']));
     } else {
@@ -70,7 +76,7 @@ function get_the_last_modified_info () {
     }
 
     if( isset($options['lmt_tt_enable_schema_cb']) && ($options['lmt_tt_enable_schema_cb'] == 1 ) ) {
-        $schema_tt = ' itemprop="dateModified" datetime="'. get_post_modified_time( apply_filters( 'wplmi_template_tags_schema_format', 'c' ) ) .'"';
+        $schema_tt = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
     } else {
         $schema_tt = '';
     }
@@ -88,6 +94,10 @@ function get_the_last_modified_info () {
 
     } else {
         $lmt_template_tag = '<span>' . $last_modified_text . '<time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
+    }
+
+    if ( get_post_status() == 'future' ) {
+        return get_the_modified_time( $get_df ) . __( ' (Scheduled)', 'wp-last-modified-info' );
     }
     return $lmt_template_tag;
 }

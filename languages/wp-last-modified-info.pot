@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2018-12-14 18:33+0530\n"
-"PO-Revision-Date: 2018-12-14 18:33+0530\n"
+"POT-Creation-Date: 2018-12-20 09:20+0530\n"
+"PO-Revision-Date: 2018-12-20 09:19+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,27 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/donate.php:28
+msgid ""
+"Hey, I noticed you've been using WP Last Modified Info for more than 2 week "
+"– that’s awesome! If you like WP Last Modified Info and you are satisfied "
+"with the plugin, isn’t that worth a coffee or two? Please consider donating. "
+"Any amount is appreciated. Donations help me to continue support and "
+"development of this free software! Thank you very much!"
+msgstr ""
+
+#: admin/donate.php:29
+msgid "Donate Now"
+msgstr ""
+
+#: admin/donate.php:30
+msgid "I already donated"
+msgstr ""
+
+#: admin/donate.php:31 admin/notice.php:31
+msgid "Nope&#44; maybe later"
+msgstr ""
 
 #: admin/elementor/class/modified-author-url.php:23
 msgid "Last Modified Author URL"
@@ -130,10 +151,6 @@ msgstr ""
 
 #: admin/notice.php:30
 msgid "I already did"
-msgstr ""
-
-#: admin/notice.php:31
-msgid "Nope&#44; maybe later"
 msgstr ""
 
 #: admin/settings/meta-box.php:72
@@ -425,63 +442,63 @@ msgstr ""
 msgid "Donate this plugin"
 msgstr ""
 
-#: admin/settings/settings-page.php:47 admin/settings/settings-page.php:54
-#: admin/settings/settings-page.php:62 admin/settings/settings-page.php:69
-#: admin/settings/settings-page.php:145
+#: admin/settings/settings-page.php:41 admin/settings/settings-page.php:45
+#: admin/settings/settings-page.php:50 admin/settings/settings-page.php:54
+#: admin/settings/settings-page.php:124
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:61
+#: admin/settings/settings-page.php:49
 msgid "Note:"
 msgstr ""
 
-#: admin/settings/settings-page.php:61
+#: admin/settings/settings-page.php:49
 msgid ""
 "Always backup .php files before making any changes, the backup file comes in "
 "handy for restoring the default file in case WordPress goes crazy."
 msgstr ""
 
-#: admin/settings/settings-page.php:73
+#: admin/settings/settings-page.php:56
 msgid "Please wait..."
 msgstr ""
 
-#: admin/settings/settings-page.php:74
+#: admin/settings/settings-page.php:57
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: admin/settings/settings-page.php:139
+#: admin/settings/settings-page.php:118
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings/settings-page.php:154
+#: admin/settings/settings-page.php:132
 msgid "Plugin Tools"
 msgstr ""
 
-#: admin/settings/settings-page.php:155 admin/settings/settings-page.php:161
+#: admin/settings/settings-page.php:133 admin/settings/settings-page.php:139
 msgid "Export Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:156
+#: admin/settings/settings-page.php:134
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: admin/settings/settings-page.php:165 admin/settings/settings-page.php:172
+#: admin/settings/settings-page.php:143 admin/settings/settings-page.php:150
 msgid "Import Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:166
+#: admin/settings/settings-page.php:144
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: admin/settings/settings-page.php:176 admin/settings/settings-page.php:182
+#: admin/settings/settings-page.php:154 admin/settings/settings-page.php:160
 msgid "Reset Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:177
+#: admin/settings/settings-page.php:155
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
@@ -520,7 +537,7 @@ msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:43
 #: includes/backend/dashboard-edit-screen.php:123
-#: includes/backend/gutenburg-edit-screen.php:149
+#: includes/backend/gutenburg-edit-screen.php:146
 msgid "Updated on:"
 msgstr ""
 
@@ -529,77 +546,77 @@ msgid "Edit"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:45
-#: includes/backend/gutenburg-edit-screen.php:66
+#: includes/backend/gutenburg-edit-screen.php:63
 msgid "Edit modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:48
-#: includes/backend/gutenburg-edit-screen.php:73
+#: includes/backend/gutenburg-edit-screen.php:70
 msgid "Last modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:51
 #: includes/backend/dashboard-edit-screen.php:221
-#: includes/backend/gutenburg-edit-screen.php:76
+#: includes/backend/gutenburg-edit-screen.php:73
 msgid "Month"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:57
 #: includes/backend/dashboard-edit-screen.php:227
-#: includes/backend/gutenburg-edit-screen.php:82
+#: includes/backend/gutenburg-edit-screen.php:79
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:63
 #: includes/backend/dashboard-edit-screen.php:233
-#: includes/backend/gutenburg-edit-screen.php:88
+#: includes/backend/gutenburg-edit-screen.php:85
 msgid "Day"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:67
 #: includes/backend/dashboard-edit-screen.php:237
-#: includes/backend/gutenburg-edit-screen.php:92
+#: includes/backend/gutenburg-edit-screen.php:89
 msgid "Year"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:69
 #: includes/backend/dashboard-edit-screen.php:239
-#: includes/backend/gutenburg-edit-screen.php:94
+#: includes/backend/gutenburg-edit-screen.php:91
 msgid "@"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:71
 #: includes/backend/dashboard-edit-screen.php:241
-#: includes/backend/gutenburg-edit-screen.php:96
+#: includes/backend/gutenburg-edit-screen.php:93
 msgid "Hour"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:73
 #: includes/backend/dashboard-edit-screen.php:243
-#: includes/backend/gutenburg-edit-screen.php:98
+#: includes/backend/gutenburg-edit-screen.php:95
 msgid ":"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:75
 #: includes/backend/dashboard-edit-screen.php:245
-#: includes/backend/gutenburg-edit-screen.php:100
+#: includes/backend/gutenburg-edit-screen.php:97
 msgid "Minute"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
-#: includes/backend/gutenburg-edit-screen.php:131
+#: includes/backend/gutenburg-edit-screen.php:128
 msgid "OK"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
-#: includes/backend/gutenburg-edit-screen.php:131
+#: includes/backend/gutenburg-edit-screen.php:128
 msgid "Cancel"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:107
 #: includes/backend/dashboard-edit-screen.php:250
-#: includes/backend/gutenburg-edit-screen.php:133
+#: includes/backend/gutenburg-edit-screen.php:130
 msgid "Disable update"
 msgstr ""
 
@@ -633,11 +650,11 @@ msgstr ""
 msgid "Recently Updated"
 msgstr ""
 
-#: includes/backend/gutenburg-edit-screen.php:21
+#: includes/backend/gutenburg-edit-screen.php:18
 msgid "Edit Last Updated Info"
 msgstr ""
 
-#: includes/backend/gutenburg-edit-screen.php:59
+#: includes/backend/gutenburg-edit-screen.php:56
 msgid "Updated on"
 msgstr ""
 
@@ -651,27 +668,31 @@ msgstr ""
 msgid "Updated %s ago"
 msgstr ""
 
-#: includes/frontend/admin-bar.php:73
+#: includes/frontend/admin-bar.php:70
 #, php-format
 msgid "This %1$s was last updated on %2$s at %3$s by %4$s"
 msgstr ""
 
-#: includes/trigger.php:108
+#: includes/frontend/template-tags.php:100
+msgid " (Scheduled)"
+msgstr ""
+
+#: includes/trigger.php:112
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
 "%3$s<a/>"
 msgstr ""
 
-#: wp-last-modified-info.php:104
+#: wp-last-modified-info.php:105
 msgid "Settings"
 msgstr ""
 
-#: wp-last-modified-info.php:113
+#: wp-last-modified-info.php:114
 msgid "Support"
 msgstr ""
 
-#: wp-last-modified-info.php:114
+#: wp-last-modified-info.php:115
 msgid "Donate"
 msgstr ""
 

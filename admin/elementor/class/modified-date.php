@@ -53,10 +53,10 @@ Class WPLMI_Elementor_Register_Dynamic_Date_Tag extends \Elementor\Core\DynamicT
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
                     'default' => __( 'Default', 'wp-last-modified-info' ),
-                    'F j, Y' => date( 'F j, Y' ),
-                    'Y-m-d' => date( 'Y-m-d' ),
-                    'm/d/Y' => date( 'm/d/Y' ),
-                    'd/m/Y' => date( 'd/m/Y' ),
+                    'F j, Y' => date_i18n( 'F j, Y' ),
+                    'Y-m-d' => date_i18n( 'Y-m-d' ),
+                    'm/d/Y' => date_i18n( 'm/d/Y' ),
+                    'd/m/Y' => date_i18n( 'd/m/Y' ),
                     'custom' => __( 'Custom', 'wp-last-modified-info' ),
                 ],
                 'default' => 'default',
@@ -94,7 +94,7 @@ Class WPLMI_Elementor_Register_Dynamic_Date_Tag extends \Elementor\Core\DynamicT
         $value = get_the_modified_date( $date_format );
         
         if ( 'yes' === $schema ) {
-            $output = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'c' ) .'/">' . wp_kses_post( $value ) . '<//time>';
+            $output = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'/">' . wp_kses_post( $value ) . '<//time>';
         } else {
             $output = wp_kses_post( $value );
         }

@@ -39,7 +39,7 @@ if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VER
 
 function lmt_disable_schema_markup_conversion_unicode( $content ) {
 
-    $before_raw = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'c' ) .'/">';
+    $before_raw = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'/">';
     $after_raw = '<//time>';
 
     $before = htmlentities( $before_raw );

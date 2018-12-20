@@ -30,7 +30,7 @@ function lmt_print_last_modified_info_page( $content ) {
         return $content;
     }
 
-    if( isset($options['lmt_show_last_modified_time_date_page']) && ( $options['lmt_show_last_modified_time_date_page'] == 'manual' ) ) {
+    if( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'manual') ) {
         return $content;
     }
 
@@ -44,7 +44,7 @@ function lmt_print_last_modified_info_page( $content ) {
         }
     }
 
-    if ( isset($fullcontent) && is_page() && is_main_query() && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
+    if ( isset($fullcontent) && is_page() && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
         return $fullcontent;
     }
     return $content;

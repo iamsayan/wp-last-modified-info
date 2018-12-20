@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -19,7 +19,7 @@ Most WordPress themes usually show the date when a post was last published. This
 
 Many popular blogs and websites don't show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
 
-So now it is possible to add last modified / updated info on your wordpress posts and pages. Just install and activate this and configuaration is very easy
+So now it is possible to add last modified / updated info on your WordPress posts and pages. Just install and activate this and configuration is very easy
 
 Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
 
@@ -38,7 +38,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * Allows you to display last modified author info in posts, pages.
 * Allows you to add last modified timestamp in post/page's custom field.
-* Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
+* Allows you to edit last modified date and time from the post edit screen and quick edit screen as well.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Elementor Dynamic Tags support with 'dateModified' schema markup.
 * And you can customize all and everything.
@@ -48,7 +48,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
-* Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at wordpress.org.
+* Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at WordPress.org.
 
 #### Contribute
 * Active development of this plugin is handled [on GitHub](https://github.com/iamsayan/wp-last-modified-info).
@@ -87,7 +87,7 @@ Not at all. You can show the revised info by just installing this plugin. Use th
 
 = Is this plugin compatible with any themes? =
 
-Yes, this plugin is compatible with any theme. Also compaatible with Genesis, Divi themes.
+Yes, this plugin is compatible with any theme. Also, compatible with Genesis, Divi themes.
 
 = Does this plugin support all custom post types? =
 
@@ -121,7 +121,7 @@ This plugin wraps modified info with 'dateModified' schema markup which is used 
 
 = The Date and Time inserted by this plugin is dependent on what? =
 
-The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in the WordPress dashboard. It is also cutomizable via plugin settings.
+The plugin makes use of your WordPress Date, Time and Timezone (Dashboard > Settings > General) in the WordPress dashboard. It is also customizable via plugin settings.
 
 = Is this plugin compatible with multisite? =
 
@@ -151,7 +151,7 @@ Displays/echos the last modified info:
 
 = Published date is equal to modified date. What is the solution? =
 
-Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
+Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
 
 Use `wplmi_date_time_diff_post` for posts and `wplmi_date_time_diff_page` for pages.
 
@@ -169,7 +169,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Screenshots ==
 
-1. Show last modified info on the frontend
+1. Show last modified info on the front end
 2. Google Structured data result
 3. Post / Page / Custom post types admin column: Last Modified column with author name.
 4. Added last modified/updated info on post/page publish box and in post updated message.
@@ -181,10 +181,16 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.4.2 =
+Release Date: December 20, 2018
+
+* Tweak: Now all date format show as the date in localized format.
+* Fixed: A bug where dateModified schema always returns in local time format instead of GMT.
+
 = 1.4.1 =
 Release Date: December 14, 2018
 
-* Tweak: Now it is possible to edit last modified info from gutenburg edit screen.
+* Tweak: Now it is possible to edit last modified info from Gutenberg edit screen.
 * Fixed: Some minor bug fixed.
 
 = 1.4.0 =

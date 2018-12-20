@@ -60,7 +60,7 @@ function lmt_add_custom_field_lmi( $post_id ) {
     // get post meta data
     $m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
     $m_stamp = strtotime( $m_orig );
-    $modified = date( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
+    $modified = date_i18n( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
     
     $parameter = '';
     if( apply_filters( 'wplmi_shortcode_on_cf_raw', false ) ) {
@@ -97,6 +97,10 @@ function lmt_post_updated_messages( $messages ) {
     $get_df = get_option( 'date_format' );
     $get_tf = get_option( 'time_format' );
 
+    $m_orig	= get_post_field( 'post_modified', $post->ID, 'raw' );
+    $m_stamp = strtotime( $m_orig );
+    $modified = date_i18n( apply_filters( 'wplmi_post_updated_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
+
     // get post types returns object
     $object = get_post_type_object( get_post_type( $post ) );
     $args = array(
@@ -105,7 +109,7 @@ function lmt_post_updated_messages( $messages ) {
     );
     $post_types = get_post_types( $args, 'names');
     foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), get_the_modified_time( apply_filters( 'post_updated_date_time_format', $get_df . ' @ ' . $get_tf ) ), esc_url( get_permalink( $post->ID ) ), $object->capability_type );
+        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), $modified, esc_url( get_permalink( $post->ID ) ), $object->capability_type );
     }
     return $messages;
 }
