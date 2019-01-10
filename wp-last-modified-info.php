@@ -3,9 +3,9 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Sayan Datta
- * Author URI: https://profiles.wordpress.org/infosatech/
+ * Author URI: https://www.sayandatta.com
  * License: GPLv3
  * Text Domain: wp-last-modified-info
  * Domain Path: /languages
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.4.2' );
+define( 'LMT_PLUGIN_VERSION', '1.4.3' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
@@ -46,6 +46,20 @@ add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
  */
 function lmt_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-last-modified-info', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
+}
+
+// delete all plugin notice option upon plugin deactivation
+register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
+
+function lmt_plugin_run_on_deactivation() {
+
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    
+    delete_option( 'lmt_plugin_dismiss_rating_notice' );
+    delete_option( 'lmt_plugin_no_thanks_rating_notice' );
+    delete_option( 'lmt_plugin_installed_time' );
 }
 
 //add admin styles and scripts
@@ -99,8 +113,19 @@ require_once plugin_dir_path( __FILE__ ) . 'admin/donate.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
 
+/**
+ * Show a warning to sites running PHP < 5.4
+ *
+ * @since 1.4.3
+*/
+function lmt_below_php_version_notice() {
+    if( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+	    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'wp-last-modified-info' ) . '</p></div>';
+    }
+}
+
 // add action links
-function lmt_add_action_links ( $links ) {
+function lmt_add_action_links( $links ) {
     $lmtlinks = array(
         '<a href="' . admin_url( 'options-general.php?page=wp-last-modified-info' ) . '">' . __( 'Settings', 'wp-last-modified-info' ) . '</a>',
     );
@@ -117,24 +142,13 @@ function lmt_plugin_meta_links( $links, $file ) {
 	return $links;
 }
 
+// add notice
+add_action( 'admin_notices', 'lmt_below_php_version_notice' );
+
 // plugin action links
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );
 
 // plugin row elements
 add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
-
-// delete all plugin notice option upon plugin deactivation
-register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
-
-function lmt_plugin_run_on_deactivation() {
-
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-        return;
-    }
-    
-    delete_option( 'lmt_plugin_dismiss_rating_notice' );
-    delete_option( 'lmt_plugin_no_thanks_rating_notice' );
-    delete_option( 'lmt_plugin_installed_time' );
-}
 
 ?>

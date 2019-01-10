@@ -15,7 +15,7 @@ function lmt_add_meta_box_to_gutenburg( $post ) {
 	
 	$current_screen = get_current_screen();
 	if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) { 
-        add_meta_box( 'lmt_meta_box_gutenburg', __( 'Edit Last Updated Info', 'wp-last-modified-info' ), 'lmt_show_on_gutenburg_edit_screen', '', 'side', 'high', array(
+        add_meta_box( 'lmt_meta_box_gutenburg', __( 'Last Updated', 'wp-last-modified-info' ), 'lmt_show_on_gutenburg_edit_screen', '', 'side', 'high', array(
             '__back_compat_meta_box' => false,
 	    ) );
 	}

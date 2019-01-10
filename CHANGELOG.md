@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.3
+Release Date: January 11, 2019
+
+* Fixed: A problem with Soliloque and Envira Gallery last modified column.
+* Fixed: All incorrectly translated strings.
+
 ## 1.4.2
 Release Date: December 20, 2018
 

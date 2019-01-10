@@ -210,15 +210,21 @@ jQuery(document).ready(function ($) {
     });
     $("#lmt-tt-sa").trigger('change');
 
-    $('select').select2({
+    /*$('select').not('select.coffee-amt').select2({
         placeholder: '-- Select --',
         minimumResultsForSearch: Infinity
-    });
+    });*/
 
     $('select#cpt').select2({
         placeholder: 'Select custom post types',
         allowClear: true
     });
+
+    $(".coffee-amt").change(function() {
+        var btn = $('.buy-coffee-btn');
+        btn.attr('href', btn.data('link') + $(this).val());
+    });
+    $(".coffee-amt").trigger('change');
 
     if ( location.href.match(/page\=wp-last-modified-info#post/ig) ) {
 

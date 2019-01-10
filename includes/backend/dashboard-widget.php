@@ -42,55 +42,53 @@ function lmt_dashboard_widget_control_callback() {
 /**
  * Create the function to output the contents of  Dashboard Widget.
  */
-function lmt_dashboard_widget_box_callback( $widget_id ) {
-    ?><div id="activity-widget" style="margin-top:-10px;margin-bottom:-14px;">
-        <div id="published-posts" class="activity-block">
-            <h3><?php _e( 'Recently Updated', 'wp-last-modified-info' ); ?></h3>
-                <ul> <?php
-
-    global $post, $post_id, $current_user;
-    //wp_get_current_user();
-
-    // get plugin options
-    $options = get_option('lmt_plugin_global_settings');
-    // get widget options
-    $widget_options = get_option( 'lmt_dashboard_widget_options' );
-    // get wordpress date time format
-    $get_df = get_option( 'date_format' );
-    $get_tf = get_option( 'time_format' );
-
-    $num = '5';
-    // check if widget option has a value
-    if(!empty($widget_options['number'])) {
-        $num = $widget_options['number'];
-    }
-
-    if ( isset($num) ) {
-	// Show recently modified posts
-	    $recently_updated_posts = new WP_Query( array(
-		    'post_type'      => 'post',
-		    'post_status'    => 'publish',
-		    'posts_per_page' => $num,
-		    'orderby'        => 'modified',
-            'no_found_rows'  => true, // speed up query when we don't need pagination
-            //'author' => $current_user->ID
-		    //'category_name'  => $cat// Only display posts from the category with the slug "news"
-        ) );
-    }
-
-	if ( $recently_updated_posts->have_posts() ) :
-		while( $recently_updated_posts->have_posts() ) : $recently_updated_posts->the_post(); ?>
-                <li>
-                    <span><?php the_modified_time('M jS, ' . $get_tf); ?></span>
-                    <?php if( current_user_can('edit_post', $post_id) ) {
-                            edit_post_link(esc_attr( get_the_title() ));
-                        } else {
-                            echo '<a href="' . get_the_permalink() . '" target="_blank" title="' . get_the_title() . '">' . get_the_title() . '</a>';
-                        } ?> &nbsp;<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank"><span class="dashicons dashicons-external" style="font-size:16px;margin-left:0px;min-width:0px;"></span></a>
-                </li>
-        <?php endwhile;
-        wp_reset_postdata();
-    endif; ?>
+function lmt_dashboard_widget_box_callback( $widget_id ) { ?>
+<div id="activity-widget" style="margin-top:-10px;margin-bottom:-14px;">
+    <div id="published-posts" class="activity-block">
+        <h3><?php _e( 'Recently Updated', 'wp-last-modified-info' ); ?></h3>
+            <ul> <?php global $post, $post_id, $current_user;
+                //wp_get_current_user();
+            
+                // get plugin options
+                $options = get_option('lmt_plugin_global_settings');
+                // get widget options
+                $widget_options = get_option( 'lmt_dashboard_widget_options' );
+                // get wordpress date time format
+                $get_df = get_option( 'date_format' );
+                $get_tf = get_option( 'time_format' );
+            
+                $num = '5';
+                // check if widget option has a value
+                if(!empty($widget_options['number'])) {
+                    $num = $widget_options['number'];
+                }
+            
+                if ( isset($num) ) {
+	            // Show recently modified posts
+	                $recently_updated_posts = new WP_Query( array(
+	            	    'post_type'      => 'post',
+	            	    'post_status'    => 'publish',
+	            	    'posts_per_page' => $num,
+	            	    'orderby'        => 'modified',
+                        'no_found_rows'  => true, // speed up query when we don't need pagination
+                        //'author' => $current_user->ID
+	            	    //'category_name'  => $cat// Only display posts from the category with the slug "news"
+                    ) );
+                }
+            
+	            if ( $recently_updated_posts->have_posts() ) :
+	            	while( $recently_updated_posts->have_posts() ) : $recently_updated_posts->the_post(); ?>
+                            <li>
+                                <span><?php the_modified_time('M jS, ' . $get_tf); ?></span>
+                                <?php if( current_user_can('edit_post', $post_id) ) {
+                                        edit_post_link(esc_attr( get_the_title() ));
+                                    } else {
+                                        echo '<a href="' . get_the_permalink() . '" target="_blank" title="' . get_the_title() . '">' . get_the_title() . '</a>';
+                                    } ?> &nbsp;<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank"><span class="dashicons dashicons-external" style="font-size:16px;margin-left:0px;min-width:0px;"></span></a>
+                            </li>
+                    <?php endwhile;
+                    wp_reset_postdata();
+                endif; ?>
             </ul>
         </div>
     </div>

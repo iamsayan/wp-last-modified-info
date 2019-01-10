@@ -62,14 +62,14 @@ This plugin is fully compatible with WordPress Version 3.5 and beyond and also c
 1. Go to "after activation" below.
 
 ### After activation ###
-1. After activation go to 'Settings > Last Modified Info'.
+1. After activation go to 'Settings > WP Last Modified Info'.
 1. Enable/disable options and save changes.
 
 ### Frequently Asked Questions ###
 
 #### Is there any admin interface for this plugin? ####
 
-Yes. You can access this from 'Settings > Last Modified Info'.
+Yes. You can access this from 'Settings > WP Last Modified Info'.
 
 #### How to use this plugin? ####
 
@@ -77,7 +77,7 @@ Go to 'Settings > Last Modified Info', enable/disable options as per your need a
 
 #### How to check this plugin is working? ####
 
-After enable options in 'Settings > Last Modified Info', open any page or post and you can see the change.
+After enable options in 'Settings > WP Last Modified Info', open any page or post and you can see the change.
 
 #### How this plugin works? ####
 
@@ -97,7 +97,7 @@ Yes, this plugin supports all types of custom posts.
 
 #### How to customize last modified text style? ####
 
-Go to 'Settings > Last Modified Info > Misc. Options > Custom CSS' and add your custom css.
+Go to 'Settings > WP Last Modified Info > Misc. Options > Custom CSS' and add your custom css.
 
 ##### CSS Classes: #####
 

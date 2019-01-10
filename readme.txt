@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -60,22 +60,22 @@ This plugin is fully compatible with WordPress Version 3.5 and beyond and also c
 1. Search for 'WP Last Modified Info' and install it.
 1. Or you can upload the `wp-last-modified-info` folder to the `/wp-content/plugins/` directory manually.
 1. Activate WP Last Modified Info from your Plugins page.
-1. After activation go to 'Settings > Last Modified Info'.
+1. After activation go to 'Settings > WP Last Modified Info'.
 1. Enable options and save changes.
 
 == Frequently Asked Questions ==
 
 = Is there any admin interface for this plugin? =
 
-Yes. You can access this from 'Settings > Last Modified Info'.
+Yes. You can access this from 'Settings > WP Last Modified Info'.
 
 = How to use this plugin? =
 
-Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
+Go to 'Settings > WP Last Modified Info', enable/disable options as per your need and save your changes.
 
 = How to check this plugin is working? =
 
-After enabling options in 'Settings > Last Modified Info', open any page or post and you can see the change.
+After enabling options in 'Settings > WP Last Modified Info', open any page or post and you can see the change.
 
 = How this plugin works? =
 
@@ -180,6 +180,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.4.3 =
+Release Date: January 11, 2019
+
+* Fixed: A problem with Soliloque and Envira Gallery last modified column.
+* Fixed: All incorrectly translated strings.
 
 = 1.4.2 =
 Release Date: December 20, 2018

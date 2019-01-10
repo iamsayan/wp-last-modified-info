@@ -13,7 +13,7 @@ function lmt_get_post_revision() {
     global $post, $post_id;
 
     // If user can't edit post, then don't show
-    if( ! current_user_can('edit_post', $post_id) ) return;
+    if( ! current_user_can( 'edit_post', $post_id ) ) return;
 
     $revision = wp_get_post_revisions( $post_id );
 

@@ -34,9 +34,9 @@ function lmt_show_last_modified_time_date_post_display() {
         $options['lmt_show_last_modified_time_date_post'] = 'before_content';
     }
     $items = array(
-        'before_content' => 'Before Content',
-        'after_content'  => 'After Content',
-        'manual'         => 'Manual'
+        'before_content' => __( 'Before Content', 'wp-last-modified-info' ),
+        'after_content'  => __( 'After Content', 'wp-last-modified-info' ),
+        'manual'         => __( 'Manual', 'wp-last-modified-info' )
     );
     echo '<select id="post-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]" style="width:16%;">';
     foreach( $items as $item => $label ) {
@@ -82,8 +82,8 @@ function lmt_last_modified_format_post_display() {
         $options['lmt_last_modified_format_post'] = 'default';
     }
     $items = array(
-        'default'         => 'Default Format',
-        'human_readable'  => 'Human Readable Format'
+        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="post-format" name="lmt_plugin_global_settings[lmt_last_modified_format_post]" style="width:25%;">';
     foreach( $items as $item => $label ) {
@@ -109,9 +109,9 @@ function lmt_last_modified_default_format_post_display() {
         $options['lmt_last_modified_default_format_post'] = 'only_date';
     }
     $items = array(
-        'only_date'    => 'Only Date',
-        'only_time'    => 'Only Time',
-        'show_both'    => 'Show Both'
+        'only_date'    => __( 'Only Date', 'wp-last-modified-info' ),
+        'only_time'    => __( 'Only Time', 'wp-last-modified-info' ),
+        'show_both'    => __( 'Show Both', 'wp-last-modified-info' )
     );
     echo '<select id="post-default-format" name="lmt_plugin_global_settings[lmt_last_modified_default_format_post]" style="width:13%;">';
     foreach( $items as $item => $label ) {
@@ -153,9 +153,9 @@ function lmt_show_author_cb_display() {
         $options['lmt_show_author_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => 'Do not show',
-        'default'     => 'Default',
-        'custom'      => 'Custom'
+        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'default'     => __( 'Default', 'wp-last-modified-info' ),
+        'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
     echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:14%;">';
     foreach( $items as $item => $label ) {
@@ -190,10 +190,10 @@ function lmt_show_author_cb_display() {
             $options['lmt_enable_author_hyperlink'] = 'none';
         }
         $items = array(
-            'none'            => 'None',
-            'author_page'     => 'Author Archive',
-            'author_website'  => 'Author Website',
-            'author_email'    => 'Author Email'
+            'none'            => __( 'None', 'wp-last-modified-info' ),
+            'author_page'     => __( 'Author Archive', 'wp-last-modified-info' ),
+            'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
+            'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
         echo '<select id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" style="width:16%;">';
         foreach( $items as $item => $label ) {
@@ -257,9 +257,9 @@ function lmt_show_last_modified_time_date_page_display() {
         $options['lmt_show_last_modified_time_date_page'] = 'before_content';
     }
     $items = array(
-        'before_content' => 'Before Content',
-        'after_content'  => 'After Content',
-        'manual'         => 'Manual'
+        'before_content' => __( 'Before Content', 'wp-last-modified-info' ),
+        'after_content'  => __( 'After Content', 'wp-last-modified-info' ),
+        'manual'         => __( 'Manual', 'wp-last-modified-info' )
     );
     echo '<select id="page-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]" style="width:16%;">';
     foreach( $items as $item => $label ) {
@@ -305,8 +305,8 @@ function lmt_last_modified_format_page_display() {
         $options['lmt_last_modified_format_page'] = 'default';
     }
     $items = array(
-        'default'         => 'Default Format',
-        'human_readable'  => 'Human Readable Format'
+        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="page-format" name="lmt_plugin_global_settings[lmt_last_modified_format_page]" style="width:25%;">';
     foreach( $items as $item => $label ) {
@@ -332,9 +332,9 @@ function lmt_last_modified_default_format_page_display() {
         $options['lmt_last_modified_default_format_page'] = 'only_date';
     }
     $items = array(
-        'only_date'    => 'Only Date',
-        'only_time'    => 'Only Time',
-        'show_both'    => 'Show Both'
+        'only_date'    => __( 'Only Date', 'wp-last-modified-info' ),
+        'only_time'    => __( 'Only Time', 'wp-last-modified-info' ),
+        'show_both'    => __( 'Show Both', 'wp-last-modified-info' )
     );
     echo '<select id="page-default-format" name="lmt_plugin_global_settings[lmt_last_modified_default_format_page]" style="width:13%;">';
     foreach( $items as $item => $label ) {
@@ -376,9 +376,9 @@ function lmt_show_author_page_cb_display() {
         $options['lmt_show_author_page_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => 'Do not show',
-        'default'     => 'Default',
-        'custom'      => 'Custom'
+        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'default'     => __( 'Default', 'wp-last-modified-info' ),
+        'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
     echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:14%;">';
     foreach( $items as $item => $label ) {
@@ -413,10 +413,10 @@ function lmt_show_author_page_cb_display() {
             $options['lmt_enable_page_author_hyperlink'] = 'none';
         }
         $items = array(
-            'none'            => 'None',
-            'author_page'     => 'Author Archive',
-            'author_website'  => 'Author Website',
-            'author_email'    => 'Author Email'
+            'none'            => __( 'None', 'wp-last-modified-info' ),
+            'author_page'     => __( 'Author Archive', 'wp-last-modified-info' ),
+            'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
+            'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
         echo '<select id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" style="width:16%;">';
         foreach( $items as $item => $label ) {
@@ -448,8 +448,8 @@ function lmt_last_modified_format_tt_display() {
         $options['lmt_last_modified_format_tt'] = 'default';
     }
     $items = array(
-        'default'         => 'Default Format',
-        'human_readable'  => 'Human Readable Format'
+        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="tt-format" name="lmt_plugin_global_settings[lmt_last_modified_format_tt]" style="width:25%;">';
     foreach( $items as $item => $label ) {
@@ -481,9 +481,9 @@ function lmt_show_author_tt_cb_display() {
         $options['lmt_show_author_tt_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => 'Do not show',
-        'default'     => 'Default',
-        'custom'      => 'Custom'
+        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'default'     => __( 'Default', 'wp-last-modified-info' ),
+        'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
     echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:14%;">';
     foreach( $items as $item => $label ) {
@@ -519,10 +519,10 @@ function lmt_show_author_tt_cb_display() {
             $options['lmt_enable_tt_author_hyperlink'] = 'none';
         }
         $items = array(
-            'none'            => 'None',
-            'author_page'     => 'Author Archive',
-            'author_website'  => 'Author Website',
-            'author_email'    => 'Author Email'
+            'none'            => __( 'None', 'wp-last-modified-info' ),
+            'author_page'     => __( 'Author Archive', 'wp-last-modified-info' ),
+            'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
+            'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
         echo '<select id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" style="width:16%;">';
         foreach( $items as $item => $label ) {
@@ -560,8 +560,7 @@ function lmt_enable_on_admin_bar_cb_display() {
 
 function lmt_custom_style_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?>
-    <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="12" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
+    ?>   <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
     <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>'); ?></small>
     <?php
 }

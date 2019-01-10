@@ -27,7 +27,7 @@ require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
 function lmt_style_hook_in_header() {
     $options = get_option('lmt_plugin_global_settings');
     if( !empty( $options['lmt_custom_style_box']) ) {
-        echo '<style type="text/css" id="lmt-custom-css">'."\n". $options['lmt_custom_style_box'] ."\n".'</style>'."\n";
+        echo '<style type="text/css">'."\n". $options['lmt_custom_style_box'] ."\n".'</style>'."\n";
     }
 }
 
@@ -44,7 +44,7 @@ require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
 require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg-edit-screen.php';
 
 function lmt_print_admin_post_css() {
-    echo '<style type="text/css"> .fixed .column-modified { width:18%; } </style>'."\n";
+    echo '<style type="text/css"> .fixed .column-last-modified { width:18%; } </style>'."\n";
 }
 
 function lmt_print_admin_users_css() { ?>

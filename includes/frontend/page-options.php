@@ -12,9 +12,8 @@ add_action( 'init', 'lmt_plugin_init_page' );
 function lmt_plugin_init_page() {
 
     $priority = 10;
-    if ( has_filter('wplmi_display_priority_page') ) {
-    	$priority = apply_filters( 'wplmi_display_priority_page', $priority );
-    }
+    $priority = apply_filters( 'wplmi_display_priority_page', $priority );
+    
     add_filter( 'the_content', 'lmt_print_last_modified_info_page', $priority );
 }
 
