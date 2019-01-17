@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.4.3
+ * Version: 1.4.5
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.com
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.4.3' );
+define( 'LMT_PLUGIN_VERSION', '1.4.5' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
@@ -60,6 +60,7 @@ function lmt_plugin_run_on_deactivation() {
     delete_option( 'lmt_plugin_dismiss_rating_notice' );
     delete_option( 'lmt_plugin_no_thanks_rating_notice' );
     delete_option( 'lmt_plugin_installed_time' );
+    delete_option( 'lmt_plugin_installed_time_donate' );
 }
 
 //add admin styles and scripts
@@ -69,11 +70,11 @@ function lmt_custom_admin_styles_scripts() {
     $current_screen = get_current_screen();
     if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
         wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
-        wp_enqueue_style( 'lmt-cb', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
+        wp_enqueue_style( 'lmt-style', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
         wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), LMT_PLUGIN_VERSION );
 
-        wp_enqueue_style( 'lmt-select2', plugins_url( 'admin/assets/lib/select2/css/select2.min.css', __FILE__ ), array(), '4.0.6' ); 
-        wp_enqueue_script( 'lmt-select2-script', plugins_url( 'admin/assets/lib/select2/js/select2.min.js', __FILE__ ), array(), '4.0.6' );
+        wp_enqueue_style( 'lmt-selectize', plugins_url( 'admin/assets/lib/selectize/css/selectize.min.css', __FILE__ ), array(), '0.12.6' ); 
+        wp_enqueue_script( 'lmt-selectize-js', plugins_url( 'admin/assets/lib/selectize/js/selectize.min.js', __FILE__ ), array(), '0.12.6' );
     }
 }
 

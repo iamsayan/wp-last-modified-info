@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 3.5
 Tested up to: 5.0
-Stable tag: 1.4.3
+Stable tag: 1.4.5
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -19,7 +19,7 @@ Most WordPress themes usually show the date when a post was last published. This
 
 Many popular blogs and websites don't show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
 
-So now it is possible to add last modified / updated info on your WordPress posts and pages. Just install and activate this and configuration is very easy
+So now it is possible to add last modified / updated info on your WordPress posts and pages. Just install and activate this and configuration is very easy.
 
 Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
 
@@ -45,7 +45,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 
 #### Compatibility
 
-This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at WordPress.org.
@@ -95,7 +95,7 @@ Yes, this plugin supports all types of custom posts.
 
 = How to customize last modified text style? =
 
-Go to 'Settings > Last Modified Info > Misc. Options > Custom CSS' and add your custom CSS.
+Go to 'Settings > WP Last Modified Info > Misc. Options > Custom CSS' and add your custom CSS.
 
 CSS Classes:
 
@@ -181,8 +181,24 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.4.5 =
+Release Date: January 17, 2019
+
+* Tweak: Escape all shortcodes in JSON-LD schema markup Description.
+* Fixed: Schema markup conditions on archive pages.
+* Fixed: Language attributes filters.
+
+= 1.4.4 =
+Release Date: January 16, 2019
+
+* Added: Option to set JSON-LD Schema Markup.
+* Added: An option to show last modified info on all archives if your theme supports it.
+* Fixed: A problem with unsupported schema themes.
+* Fixed: Last Modified column displays nothing for some users.
+* Fixed: Name change of menu item.
+
 = 1.4.3 =
-Release Date: January 11, 2019
+Release Date: January 10, 2019
 
 * Fixed: A problem with Soliloque and Envira Gallery last modified column.
 * Fixed: All incorrectly translated strings.

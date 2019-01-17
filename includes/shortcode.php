@@ -28,12 +28,6 @@ function lmt_post_modified_info_shortcode( $atts ) {
     $pub_time = get_the_time('U');
     $mod_time = get_the_modified_time( 'U' );
 
-    // If it's not post page, then get out!
-    if ( !is_single() ) return;
-
-    // If modified_content is not set, then get out
-    if ( ! isset( $modified_content ) ) return;
-    
     // if modified time is equal to published time, do not show
     if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_post', '0' ) ) return;
 
@@ -41,12 +35,23 @@ function lmt_post_modified_info_shortcode( $atts ) {
     $atts = shortcode_atts(
 		array(
 			'raw' => $html_output,
-		), $atts, 'lmt-post-modified-info' );
-    
-    if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
-        return strip_tags( $modified_content, '<span><time><a>' );
+        ), $atts, 'lmt-post-modified-info' );
+        
+    if ( isset( $modified_content ) && is_single() ) {
+        if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
+            return strip_tags( $modified_content, '<span><time><a>' );
+        }
+        return $modified_content;
     }
-    return $modified_content;
+
+    if( isset($options['lmt_show_on_homepage']) && ($options['lmt_show_on_homepage'] == 'yes') ) {
+        if ( isset( $modified_content ) && ( is_home() || is_author() || is_category() || is_tag() ) ) { 
+            if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
+                return strip_tags( $modified_content, '<span><time><a>' );
+            }
+            return $modified_content;
+        }
+    }
 }
 
 function lmt_page_modified_info_shortcode( $atts ) {
@@ -57,12 +62,6 @@ function lmt_page_modified_info_shortcode( $atts ) {
     $pub_time = get_the_time('U');
     $mod_time = get_the_modified_time( 'U' );
 
-    // If it's not page, then get out!
-    if ( !is_page() ) return;
-    
-    // If modified_content is not set, then get out
-    if ( ! isset( $modified_content ) ) return;
-    
     // if modified time is equal to published time, do not show
     if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_page', '0' ) ) return;
     
@@ -72,10 +71,12 @@ function lmt_page_modified_info_shortcode( $atts ) {
 			'raw' => $html_output,
 		), $atts, 'lmt-page-modified-info' );
     
-    if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
-        return strip_tags( $modified_content, '<span><time><a>' );
+    if ( isset( $modified_content ) && is_page() ) {
+        if( isset( $atts['raw'] ) && $atts['raw'] == '1' ) {
+            return strip_tags( $modified_content, '<span><time><a>' );
+        }
+        return $modified_content;
     }
-    return $modified_content;
 }
 
 ?>

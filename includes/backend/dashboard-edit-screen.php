@@ -315,6 +315,6 @@ function lmt_disable_update_date( $data, $postarr ) {
 }
 
 // insert data upon post save
-add_filter('wp_insert_post_data', 'lmt_disable_update_date', 99, 2);
+add_filter( 'wp_insert_post_data', 'lmt_disable_update_date', 99, 2 );
 
 ?>

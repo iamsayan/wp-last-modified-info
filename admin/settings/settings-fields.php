@@ -21,10 +21,24 @@ function lmt_enable_last_modified_cb_display() {
 
 function lmt_enable_schema_on_post_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?>  <label class="switch">
-        <input type="checkbox" id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_post_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-   <?php
+    
+    if(!isset($options['lmt_enable_schema_on_post_cb'])){
+        $options['lmt_enable_schema_on_post_cb'] = 'inline';
+    }
+    $items = array(
+        'no_markup'   => __( 'No Markup', 'wp-last-modified-info' ),
+        'jsonld'      => __( 'JSON-LD Markup', 'wp-last-modified-info' ),
+        'inline'      => __( 'Inline Markup (Microdata)', 'wp-last-modified-info' )
+    );
+    echo '<select id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" style="width:25%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_enable_schema_on_post_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select the dateModfied schema markup type for single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
 }
 
 function lmt_show_last_modified_time_date_post_display() {
@@ -36,16 +50,31 @@ function lmt_show_last_modified_time_date_post_display() {
     $items = array(
         'before_content' => __( 'Before Content', 'wp-last-modified-info' ),
         'after_content'  => __( 'After Content', 'wp-last-modified-info' ),
-        'manual'         => __( 'Manual', 'wp-last-modified-info' )
+        'manual'         => __( 'Manual (use shortcode)', 'wp-last-modified-info' )
     );
-    echo '<select id="post-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]" style="width:16%;">';
+    echo '<select id="post-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_post]" style="width:23%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_last_modified_time_date_post'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-post-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <span id="show-post-homepage" style="display:nohne;">&nbsp;&nbsp;<label for="post-homepage" style="font-size:13px;"><strong><?php _e( 'Show on Archives:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    <?php if(!isset($options['lmt_show_on_homepage'])){
+        $options['lmt_show_on_homepage'] = 'no';
+    }
+    $items = array(
+        'yes' => __( 'Yes', 'wp-last-modified-info' ),
+        'no'  => __( 'No', 'wp-last-modified-info' )
+    );
+    echo '<select id="post-homepage" name="lmt_plugin_global_settings[lmt_show_on_homepage]" style="width:10%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_show_on_homepage'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to. \'Show on Homepage\' option is applicable for posts only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -244,10 +273,24 @@ function lmt_enable_last_modified_page_cb_display() {
 
 function lmt_enable_schema_on_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?>  <label class="switch">
-        <input type="checkbox" id="page-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_page_cb']), 1); ?> /> 
-        <span class="slider-pg round-pg"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable schema markup on pages (not recommended).', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-   <?php
+    
+    if(!isset($options['lmt_enable_schema_on_page_cb'])){
+        $options['lmt_enable_schema_on_page_cb'] = 'inline';
+    }
+    $items = array(
+        'no_markup'   => __( 'No Markup', 'wp-last-modified-info' ),
+        'jsonld'      => __( 'JSON-LD Markup', 'wp-last-modified-info' ),
+        'inline'      => __( 'Inline Markup (Microdata)', 'wp-last-modified-info' )
+    );
+    echo '<select id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" style="width:25%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_enable_schema_on_page_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select the dateModfied schema markup type for pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
 }
 
 function lmt_show_last_modified_time_date_page_display() {
@@ -259,16 +302,16 @@ function lmt_show_last_modified_time_date_page_display() {
     $items = array(
         'before_content' => __( 'Before Content', 'wp-last-modified-info' ),
         'after_content'  => __( 'After Content', 'wp-last-modified-info' ),
-        'manual'         => __( 'Manual', 'wp-last-modified-info' )
+        'manual'         => __( 'Manual (use shortcode)', 'wp-last-modified-info' )
     );
-    echo '<select id="page-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]" style="width:16%;">';
+    echo '<select id="page-show-status" name="lmt_plugin_global_settings[lmt_show_last_modified_time_date_page]" style="width:23%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_last_modified_time_date_page'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span id="show-shortcode-page" style="display:none;"><i><?php _e( 'Shortcode: ', 'wp-last-modified-info' ); ?><code>[lmt-page-modified-info]</code></i>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box and apply shortcode on that particular page, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box and apply shortcode on that particular page, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -538,8 +581,8 @@ function lmt_show_author_tt_cb_display() {
 
 function lmt_tt_class_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:50%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
-    &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schaam-tt"><strong><?php _e( 'Enable Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="40" style="width:40%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
+    &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schaam-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="enable-schaam-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
         <span class="slider-tt round-tt"></span>
@@ -555,6 +598,14 @@ function lmt_enable_on_admin_bar_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="admin-bar-display" name="lmt_plugin_global_settings[lmt_enable_on_admin_bar_cb]" value="1" <?php checked(isset($options['lmt_enable_on_admin_bar_cb']), 1); ?> /> 
         <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function lmt_enable_schema_support_cb_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    ?>  <label class="switch">
+        <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
+        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

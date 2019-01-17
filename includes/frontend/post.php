@@ -46,10 +46,12 @@ if(!empty($options['lmt_post_author_sep'])) {
     $author_sep = ' by';
 }
 
-if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 1 ) ) {
+$schema_post = '';
+if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 'inline') ) {
     $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
-} else {
-    $schema_post = '';
+    if( is_home() || is_author() || is_category() || is_tag() ) {
+        $schema_post = '';
+    }
 }
 
 if( isset( $options['lmt_html_tag_post'] ) ) {

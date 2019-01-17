@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.5
+Release Date: January 17, 2019
+
+* Tweak: Escape all shortcodes in JSON-LD schema markup Description.
+* Fixed: Schema markup conditions on archive pages.
+* Fixed: Language attributes filters.
+
+## 1.4.4
+Release Date: January 16, 2019
+
+* Added: Option to set JSON-LD Schema Markup.
+* Added: An option to show last modified info on all archives if your theme supports it.
+* Fixed: A problem with unsupported schema themes.
+* Fixed: Last Modified column displays nothing for some users.
+* Fixed: Name change of menu item.
+
 ## 1.4.3
 Release Date: January 11, 2019
 

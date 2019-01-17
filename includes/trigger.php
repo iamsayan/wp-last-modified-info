@@ -22,6 +22,7 @@ if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable
 
 // enable template tags functionality
 require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/schema.php';
 
 // prrint custom css in  wp head
 function lmt_style_hook_in_header() {
@@ -44,7 +45,7 @@ require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
 require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg-edit-screen.php';
 
 function lmt_print_admin_post_css() {
-    echo '<style type="text/css"> .fixed .column-last-modified { width:18%; } </style>'."\n";
+    echo '<style type="text/css"> .fixed .column-lastmodified { width:18%; } </style>'."\n";
 }
 
 function lmt_print_admin_users_css() { ?>
@@ -126,4 +127,6 @@ add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
 
 // debug
 //add_filter( 'wplmi_shortcode_on_cf_raw', '__return_true' );
+//add_filter( 'wplmi_disable_post_output', '__return_true' );
+
 ?>

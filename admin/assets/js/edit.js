@@ -20,15 +20,15 @@
             var $post_row = $( '#post-' + $post_id );
 
             // Get the data
-            var $month = $( '.column-last-modified .hidden-df', $post_row ).text().replace(/\d/g, '');
+            var $month = $( '.column-lastmodified .hidden-df', $post_row ).text().replace(/\d/g, '');
             var $mmm = $month.substr(0, 3);
-            var $date = $( '.column-last-modified .hidden-df', $post_row ).text().replace(/[^0-9]/gi, '');
+            var $date = $( '.column-lastmodified .hidden-df', $post_row ).text().replace(/[^0-9]/gi, '');
             var $jjm = $date.substr(0, 2);
             var $aam = $date.substr(2, 4);
             var $hhm = $date.substr(6, 2);
             var $mnm = $date.substr(8, 2);
-            var $lmt_disable_update = !! $( '.column-last-modified .lmt-lock', $post_row ).size();
-            var $lmt_switch_update = $( '.column-last-modified .lmt-lock', $post_row ).size();
+            var $lmt_disable_update = !! $( '.column-lastmodified .lmt-lock', $post_row ).size();
+            var $lmt_switch_update = $( '.column-lastmodified .lmt-lock', $post_row ).size();
 
             // Populate the data.
             $( ':input[name="mmm"]', $edit_row ).find("[data-text='" + $mmm + "']").attr('selected', 'selected' );

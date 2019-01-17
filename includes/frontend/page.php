@@ -46,7 +46,7 @@ if(!empty($options['lmt_page_author_sep'])) {
     $author_sep_page = ' by';
 }
 
-if( isset($options['lmt_enable_schema_on_page_cb']) && ($options['lmt_enable_schema_on_page_cb'] == 1 ) ) {
+if( isset($options['lmt_enable_schema_on_page_cb']) && ($options['lmt_enable_schema_on_page_cb'] == 'inline') ) {
     $schema_page = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
 } else {
     $schema_page = '';

@@ -74,7 +74,7 @@
                     <p><li><strong><?php _e( 'What is the CSS class for pages?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php printf( __( 'CSS Class is %1$s, for date time %2$s and for author %3$s. Add your custom style in Custom CSS field.', 'wp-last-modified-info' ), '<code>.page-last-modified</code>', '<code>.page-last-modified-td</code>', '<code>.page-modified-author</code>' ); ?></p>
                     
-                    <p><li><strong><?php _e( 'What is the shortcode for pages?', 'wp-last-modified-info' ); ?></strong></li></p>
+                    <p><li><strong><?php _e( 'What are the shortcodes for posts and pages?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php printf( __( 'Shortcode for post is %1$s and for page is %2$s. Apply this on any page to show last modified info anywhere.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>[lmt-page-modified-info]</code>' ); ?></p>
                     
                     <p><li><strong><?php printf( __( 'I want to disable %s tag output on posts or pages using shortcode/manual method. How can I do that?', 'wp-last-modified-info' ), '<code>&lt;p&gt; &lt;/p&gt;</code>' ); ?></strong></li></p>
@@ -98,6 +98,9 @@
     
                     <p><li><strong><?php _e( 'Is it possible to use shortcodes as template tags?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php _e( 'Yes, it is absolutely possible. Example of using the shortcode as template tags with PHP:', 'wp-last-modified-info' ); ?> <code>&lt;?php echo do_shortcode('[lmt-post-modified-info]'); ?&gt;</code> or <code>&lt;?php echo do_shortcode('[lmt-page-modified-info]'); ?&gt;</code>.</p>
+                    
+                    <p><li><strong><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></strong></li></p>
+                    <p><?php _e( 'Yes, it is possible. Set "Last Modified Schema Markup Type:" to "JSON-LD Markup" and "Last Modified Info Display Method:" to "Manual".', 'wp-last-modified-info' ); ?></p>
                     
                     <p><li><strong><?php _e( 'Published date is equal to modified date. What is the solution?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php _e( 'Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.', 'wp-last-modified-info' ); ?></p>

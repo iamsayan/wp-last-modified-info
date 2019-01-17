@@ -35,11 +35,12 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Allows you to add last modified timestamp in post/page's custom field.
 * Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
+* Elementor Dynamic Tags support with 'dateModified' schema markup.
 * And you can customize all and everything.
 
 ### Compatibility ###
 
-This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
 
 ### Support ###
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at wordpress.org.
@@ -73,7 +74,7 @@ Yes. You can access this from 'Settings > WP Last Modified Info'.
 
 #### How to use this plugin? ####
 
-Go to 'Settings > Last Modified Info', enable/disable options as per your need and save your changes.
+Go to 'Settings > WP Last Modified Info', enable/disable options as per your need and save your changes.
 
 #### How to check this plugin is working? ####
 

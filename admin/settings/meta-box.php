@@ -30,8 +30,8 @@ if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last
 
         if( isset($options['lmt_custom_post_types_list']) ) {
             $post_types = $options['lmt_custom_post_types_list'];
-            foreach($post_types as $item) {
-                add_action( "add_meta_boxes_{$item}", "lmt_add_meta_boxes" );
+            foreach( $post_types as $post_type ) {
+                add_action( "add_meta_boxes_{$post_type}", "lmt_add_meta_boxes" );
             }
         }
     }
@@ -68,13 +68,13 @@ function lmt_meta_box_callback( $post ) {
     
     if ( $pt != 'page' ) { ?>
         <p id="lmt-status" class="meta-options">
-            <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
+            <label for="lmt_status" class="selectit" title="<?php _e( 'You can disable auto insertation of last modified info on this', 'wp-last-modified-info' ); ?> <?php echo $post_types->capability_type ?>">
 		        <input id="lmt_status" type="checkbox" name="disableautoinsert" <?php if( $chkMeta == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
 	        </label>
         </p> <?php 
     } elseif ( $pt == 'page' ) { ?>
         <p id="lmt-status" class="meta-options">
-            <label for="lmt_status" class="selectit" title="You can disable auto insertation of last modified info on this <?php echo $post_types->capability_type ?>">
+            <label for="lmt_status" class="selectit" title="<?php _e( 'You can disable auto insertation of last modified info on this', 'wp-last-modified-info' ); ?> <?php echo $post_types->capability_type ?>">
 		        <input id="lmt_status" type="checkbox" name="disableautoinsert" <?php if( $chkMeta == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this page', 'wp-last-modified-info' ); ?>
 	        </label>
         </p> <?php 

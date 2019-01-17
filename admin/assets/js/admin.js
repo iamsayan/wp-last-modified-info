@@ -62,11 +62,9 @@ jQuery(document).ready(function ($) {
 
     $("#post-show-status").change(function() {
         if ($('#post-show-status').val() == 'manual') {
-            $('#show-shortcode').show();
             $('.cpt').hide();
         }
         if ($('#post-show-status').val() != 'manual') {
-            $('#show-shortcode').hide();
             $('.cpt').show();
         }
     });
@@ -120,16 +118,6 @@ jQuery(document).ready(function ($) {
         }
     });
     $("#post-sa").trigger('change');
-
-    $("#page-show-status").change(function() {
-        if ($('#page-show-status').val() == 'manual') {
-            $('#show-shortcode-page').show();
-        }
-        if ($('#page-show-status').val() != 'manual') {
-            $('#show-shortcode-page').hide();
-        }
-    });
-    $("#page-show-status").trigger('change');
 
     $("#page-format").change(function() {
         if ($('#page-format').val() == 'human_readable') {
@@ -210,16 +198,14 @@ jQuery(document).ready(function ($) {
     });
     $("#lmt-tt-sa").trigger('change');
 
-    /*$('select').not('select.coffee-amt').select2({
-        placeholder: '-- Select --',
-        minimumResultsForSearch: Infinity
-    });*/
-
-    $('select#cpt').select2({
+    $('select#cpt').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
         placeholder: 'Select custom post types',
-        allowClear: true
+        persist: false,
+        create: false
     });
-
+    
     $(".coffee-amt").change(function() {
         var btn = $('.buy-coffee-btn');
         btn.attr('href', btn.data('link') + $(this).val());
