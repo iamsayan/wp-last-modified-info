@@ -2,8 +2,8 @@
 /**
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
- * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
- * Version: 1.4.5
+ * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
+ * Version: 1.4.6
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.com
  * License: GPLv3
@@ -35,7 +35,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.4.5' );
+define( 'LMT_PLUGIN_VERSION', '1.4.6' );
+
+// debug scripts
+//define ( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
 
 // Internationalization
 add_action( 'plugins_loaded', 'lmt_plugin_load_textdomain' );
@@ -48,8 +51,18 @@ function lmt_plugin_load_textdomain() {
     load_plugin_textdomain( 'wp-last-modified-info', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 }
 
-// delete all plugin notice option upon plugin deactivation
+// register activation hook
+register_activation_hook( __FILE__, 'lmt_plugin_run_on_activation' );
+// register deactivation hook
 register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
+
+function lmt_plugin_run_on_activation() {
+    
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    set_transient( 'lmt-admin-notice-on-activation', true, 5 );
+}
 
 function lmt_plugin_run_on_deactivation() {
 
@@ -63,15 +76,31 @@ function lmt_plugin_run_on_deactivation() {
     delete_option( 'lmt_plugin_installed_time_donate' );
 }
 
+function lmt_plugin_install_notice() { 
+
+    if( get_transient( 'lmt-admin-notice-on-activation' ) ) { ?>
+        <div class="notice notice-success">
+            <p><strong><?php printf( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ), 'WP Last Modified Info', LMT_PLUGIN_VERSION, admin_url( 'options-general.php?page=wp-last-modified-info' ) ); ?></strong></p>
+        </div> <?php
+        delete_transient( 'lmt-admin-notice-on-activation' );
+    }
+}
+
+add_action( 'admin_notices', 'lmt_plugin_install_notice' ); 
+
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {
 
+    $ver = LMT_PLUGIN_VERSION;
+    if( defined( 'LMT_PLUGIN_ENABLE_DEBUG' ) ) {
+        $ver = time();
+    }
     // get current screen
     $current_screen = get_current_screen();
     if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
-        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
-        wp_enqueue_style( 'lmt-style', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );
-        wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), LMT_PLUGIN_VERSION );
+        wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), $ver );
+        wp_enqueue_style( 'lmt-style', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), $ver );
+        wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), $ver );
 
         wp_enqueue_style( 'lmt-selectize', plugins_url( 'admin/assets/lib/selectize/css/selectize.min.css', __FILE__ ), array(), '0.12.6' ); 
         wp_enqueue_script( 'lmt-selectize-js', plugins_url( 'admin/assets/lib/selectize/js/selectize.min.js', __FILE__ ), array(), '0.12.6' );
@@ -80,14 +109,18 @@ function lmt_custom_admin_styles_scripts() {
 
 function lmt_shortcode_admin_styles_scripts( $hook ) {
 
-    global $post;
+    $ver = LMT_PLUGIN_VERSION;
+    if( defined( 'LMT_PLUGIN_ENABLE_DEBUG' ) ) {
+        $ver = time();
+    }
+
     // check if post edit screen
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), LMT_PLUGIN_VERSION );   
+        wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), $ver );   
     }
 
     if ( $hook == 'edit.php' ) {
-        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), LMT_PLUGIN_VERSION, true );
+        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), $ver, true );
     }
 }
 
@@ -111,8 +144,12 @@ add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
 require_once plugin_dir_path( __FILE__ ) . 'admin/loader.php';
 require_once plugin_dir_path( __FILE__ ) . 'admin/notice.php';
 require_once plugin_dir_path( __FILE__ ) . 'admin/donate.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/replace.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/schema-remove.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/theme-support.php';
 
 /**
  * Show a warning to sites running PHP < 5.4

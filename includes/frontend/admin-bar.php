@@ -48,18 +48,19 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
     $get_tf = get_option( 'time_format' );
     
     // If it's admin page, then get out!
-    if ( is_admin() ) return;
+    if( is_admin() ) return;
+
+    // If it's archive pages, then get out!
+    if( is_home() || is_author() || is_category() || is_tag() || is_404() ) return;
     
     // If user can't publish posts, then get out
-    if ( ! current_user_can( 'publish_posts' ) ) return;
-    
-    global $post;
+    if( ! current_user_can( 'publish_posts' ) ) return;
 
-    if( $post->post_status == 'auto-draft' ) {
+    if( get_post_status( get_the_ID() ) == 'auto-draft' ) {
 		return;
     }
     
-    $object = get_post_type_object( get_post_type( $post ) );
+    $object = get_post_type_object( get_post_type( get_the_ID() ) );
     $args = array(
         'id' => 'lmt-update',
         'parent' => 'top-secondary',
@@ -67,7 +68,7 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
         'href'   => lmt_get_post_revision(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
-            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), $post->post_type, get_the_modified_date( $get_df ), get_the_modified_time( $get_tf ), get_the_modified_author() ),
+            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date( $get_df ), get_the_modified_time( $get_tf ), get_the_modified_author() ),
             'target' => '_blank',
         )
     );

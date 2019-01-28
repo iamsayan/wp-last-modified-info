@@ -11,6 +11,11 @@
 // add settings page
 function lmt_plug_settings_page() {
     
+    $post_types = get_post_types(array(
+        'public'   => true,
+        '_builtin' => false
+    ), 'names');
+
     // start post fields
     add_settings_section('lmt_post_option_section', __( 'Post Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_post_option');
         add_settings_field('lmt_enable_last_modified_cb',  __( 'Enable for Posts on Frontend:', 'wp-last-modified-info' ), 'lmt_enable_last_modified_cb_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-enable' ));  
@@ -20,8 +25,9 @@ function lmt_plug_settings_page() {
         add_settings_field('lmt_last_modified_format_post',  __( 'Last Modified Info Format for Posts:', 'wp-last-modified-info' ), 'lmt_last_modified_format_post_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-format' ));  
         add_settings_field('lmt_last_modified_default_format_post',  __( 'Date and Time Visibility on Posts:', 'wp-last-modified-info' ), 'lmt_last_modified_default_format_post_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-default-format', 'class' => 'post-default-format' ));  
         add_settings_field('lmt_show_author_cb',  __( 'Display Last Modified Author Name:', 'wp-last-modified-info' ), 'lmt_show_author_cb_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'post-sa' ));  
-        add_settings_field('lmt_custom_post_types_list',  __( 'Include Custom Post Types (if required):', 'wp-last-modified-info' ), 'lmt_custom_post_types_list_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'cpt', 'class' => 'cpt' ));  
-        
+        if( count( $post_types ) >= 1 ) {
+            add_settings_field('lmt_custom_post_types_list',  __( 'Enable Custom Post Types Support:', 'wp-last-modified-info' ), 'lmt_custom_post_types_list_display', 'lmt_post_option', 'lmt_post_option_section', array( 'label_for' => 'cpt', 'class' => 'cpt' ));  
+        }
     // start page fields
     add_settings_section('lmt_page_option_section', __( 'Page Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_page_option');    
         add_settings_field('lmt_enable_last_modified_page_cb', __( 'Enable for Pages on Frontend:', 'wp-last-modified-info' ), 'lmt_enable_last_modified_page_cb_display', 'lmt_page_option', 'lmt_page_option_section', array( 'label_for' => 'page-enable' ));  
@@ -34,10 +40,17 @@ function lmt_plug_settings_page() {
         
     // start template tags
     add_settings_section('lmt_template_tag_section', __( 'Template Tags Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_template_tag_option');
-        add_settings_field('lmt_tt_updated_text_box', __( 'Custom Message before Modified Info:', 'wp-last-modified-info' ), 'lmt_tt_updated_text_box_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-updated-text' ));  
+        if( defined( 'GENERATE_VERSION' ) ) {
+            add_settings_field('lmt_tt_generatepress_theme_mod', __( 'Enable GeneratePress Theme Support:', 'wp-last-modified-info' ), 'lmt_tt_generatepress_theme_mod_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-gpmod' ));  
+        }
+        if( defined( 'ASTRA_THEME_VERSION' ) ) {
+            add_settings_field('lmt_tt_astra_theme_mod', __( 'Enable Astra Theme Support:', 'wp-last-modified-info' ), 'lmt_tt_astra_theme_mod_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-astramod' ));  
+        }
+        add_settings_field('lmt_tt_updated_text_box', __( 'Text before Last Modified Info:', 'wp-last-modified-info' ), 'lmt_tt_updated_text_box_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-updated-text' ));  
         add_settings_field('lmt_last_modified_format_tt',  __( 'Last Modified Info Format:', 'wp-last-modified-info' ), 'lmt_last_modified_format_tt_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'tt-format' ));  
         add_settings_field('lmt_show_author_tt_cb', __( 'Display Last Modified Author Name:', 'wp-last-modified-info' ), 'lmt_show_author_tt_cb_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-sa' ));  
         add_settings_field('lmt_tt_class_box', __( 'Set Custom CSS Class (if applicable):', 'wp-last-modified-info' ), 'lmt_tt_class_box_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-class' ));  
+        add_settings_field('lmt_tt_replace_published_date', __( 'Enter text or HTML to Replace:', 'wp-last-modified-info' ), 'lmt_tt_replace_published_date_display', 'lmt_template_tag_option', 'lmt_template_tag_section', array( 'label_for' => 'lmt-tt-replace' ));  
         
     // start custom css field
     add_settings_section('lmt_misc_section', __( 'Miscellaneous Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_misc_option');

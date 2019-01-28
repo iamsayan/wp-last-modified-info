@@ -16,8 +16,6 @@ function get_the_last_modified_info () {
     $cur_time = current_time('U');
     $mod_time = get_the_modified_time( 'U' );
     $org_time = get_the_time('U');
-    $get_df = get_option( 'date_format' );
-    $get_tf = get_option( 'time_format' );
 
     if(!empty($options['lmt_tt_set_format_box'])) {
         $last_modified_tt = get_the_modified_time(esc_html($options['lmt_tt_set_format_box']));
@@ -43,10 +41,9 @@ function get_the_last_modified_info () {
         $replace_ago_tt = ' ago';
     }
 
-    if( isset($options['lmt_show_author_tt_cb']) && ($options['lmt_show_author_tt_cb'] == 'do_not_show' ) ) {
-        $lmt_tt_uca = '';
-    
-    } elseif( isset($options['lmt_show_author_tt_cb']) && ($options['lmt_show_author_tt_cb'] == 'default' ) ) {
+    $lmt_tt_uca = '';
+
+    if( isset($options['lmt_show_author_tt_cb']) && ($options['lmt_show_author_tt_cb'] == 'default' ) ) {
 
         $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
 
@@ -97,16 +94,14 @@ function get_the_last_modified_info () {
     }
 
     if ( get_post_status() == 'future' ) {
-        return get_the_modified_time( $get_df ) . __( ' (Scheduled)', 'wp-last-modified-info' );
+        return get_the_modified_time() . __( ' (Scheduled)', 'wp-last-modified-info' );
     }
     return $lmt_template_tag;
 }
 
-function the_last_modified_info () {
+function the_last_modified_info() {
     //displays/echos the last modified info.
     echo get_the_last_modified_info();
 }
-
-
 
 ?>

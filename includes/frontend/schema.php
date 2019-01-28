@@ -11,8 +11,11 @@ add_action( 'wp_head', 'lmt_json_ld_schema_markup' );
 
 function lmt_json_ld_schema_markup() { 
     
-    global $post;
     $options = get_option('lmt_plugin_global_settings');
+
+    if( !is_singular() ) return;
+
+    global $post;
     $author_id = get_post_meta( $post->ID, '_edit_last', true ); 
 
     if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {

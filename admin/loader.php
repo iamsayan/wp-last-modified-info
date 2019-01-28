@@ -12,6 +12,7 @@ require_once plugin_dir_path( __FILE__ ) . 'settings/tools.php';
 require_once plugin_dir_path( __FILE__ ) . 'settings/settings-loader.php';
 require_once plugin_dir_path( __FILE__ ) . 'settings/settings-fields.php';
 require_once plugin_dir_path( __FILE__ ) . 'settings/meta-box.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'elementor/module.php';
 
 // add settings page

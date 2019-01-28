@@ -1,15 +1,15 @@
 === WP Last Modified Info ===
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
-Requires at least: 3.5
+Requires at least: 4.0
 Tested up to: 5.0
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 3.5 and beyond.
+Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
 
 == Description ==
 
@@ -45,7 +45,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 
 #### Compatibility
 
-* This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at WordPress.org.
@@ -180,6 +180,19 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.4.6 =
+Release Date: January 27, 2019
+
+* NEW: GeneratePress Theme Support.
+* NEW: Astra Theme Support.
+* NEW: Added shortcodes attributes.
+* NEW: Added an option to replace post published date with post modified date without any theme file editing.
+* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" is in use.
+* Improved: Genesis Theme Schema Support.
+* Tweak: Now this plugin uses wordpress date/time format by default. 
+* Fixed: Error Notice in 404 page.
+* Fixed: Some Typo.
 
 = 1.4.5 =
 Release Date: January 17, 2019

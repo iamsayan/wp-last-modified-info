@@ -61,7 +61,7 @@
                 <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
                 <div id="saveMessage" class="successModal" style="display:none;"><p><?php _e( 'Settings Saved Successfully!', 'wp-last-modified-info' ); ?></p></div>
                 <div style="display:none;" id="show-help">
-                    <h3><?php _e( 'Do you need help with this plugin? Here are some FAQ for you:', 'wp-last-modified-info' ); ?></h3><p><hr></p>
+                    <h2><?php _e( 'Do you need help with this plugin? Here are some FAQ for you:', 'wp-last-modified-info' ); ?></h2><p><hr></p>
                     <p><li><strong><?php _e( 'How this plugin works?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php _e( 'This plugin hooks into wordpress content area and shows last modified information of posts and pages.', 'wp-last-modified-info' ); ?></p>
                     
@@ -73,12 +73,6 @@
                     
                     <p><li><strong><?php _e( 'What is the CSS class for pages?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php printf( __( 'CSS Class is %1$s, for date time %2$s and for author %3$s. Add your custom style in Custom CSS field.', 'wp-last-modified-info' ), '<code>.page-last-modified</code>', '<code>.page-last-modified-td</code>', '<code>.page-modified-author</code>' ); ?></p>
-                    
-                    <p><li><strong><?php _e( 'What are the shortcodes for posts and pages?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php printf( __( 'Shortcode for post is %1$s and for page is %2$s. Apply this on any page to show last modified info anywhere.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>[lmt-page-modified-info]</code>' ); ?></p>
-                    
-                    <p><li><strong><?php printf( __( 'I want to disable %s tag output on posts or pages using shortcode/manual method. How can I do that?', 'wp-last-modified-info' ), '<code>&lt;p&gt; &lt;/p&gt;</code>' ); ?></strong></li></p>
-                    <p><?php printf( __( 'Just select %1$s tag from plugin settings and save changes. If you have select %2$s tag from plugins settings then you can use %3$s attribute to disable %4$s tag output particularly on shortcodes. Example: %5$s or %6$s', 'wp-last-modified-info' ), '<code>&lt;span&gt;</code>', '<code>&lt;p&gt;</code>', '<code>raw="1"</code>', '<code>&lt;p&gt; &lt;/p&gt;</code>', '<code>[lmt-post-modified-info raw="1"]</code>', '<code>[lmt-page-modified-info raw="1"]</code>' ); ?></p>
                     
                     <p><li><strong><?php printf( __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></strong></li></p>
                     <p><?php _e( 'No, this tag is not required, as it is already added.', 'wp-last-modified-info' ); ?></p>
@@ -96,9 +90,6 @@
 		    	    } ?&gt;</code></p>
                     </p>
     
-                    <p><li><strong><?php _e( 'Is it possible to use shortcodes as template tags?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Yes, it is absolutely possible. Example of using the shortcode as template tags with PHP:', 'wp-last-modified-info' ); ?> <code>&lt;?php echo do_shortcode('[lmt-post-modified-info]'); ?&gt;</code> or <code>&lt;?php echo do_shortcode('[lmt-page-modified-info]'); ?&gt;</code>.</p>
-                    
                     <p><li><strong><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php _e( 'Yes, it is possible. Set "Last Modified Schema Markup Type:" to "JSON-LD Markup" and "Last Modified Info Display Method:" to "Manual".', 'wp-last-modified-info' ); ?></p>
                     
@@ -110,12 +101,13 @@
     
                     <br>
                     
-                    <h3><?php _e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h3><p><hr></p>
+                    <h2><?php _e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2><p><hr></p>
                     <p><strong><?php _e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
-                    <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Facebook Comments</a></strong> - <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
-                    <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - <?php _e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comm1ents/" target = "_blank">Ultimate Facebook Comments</a></strong> - <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/wp-auto-republish/" target = "_blank">WP Auto Republish</a></strong> - <?php _e( 'Automatically republish you old evergreen content to grab better SEO.', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - <?php _e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/simple-posts-ticker/" target = "_blank">Simple Posts Ticker</a></strong> - <?php _e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/fb-account-kit-login/" target = "_blank">Facebook Account Kit Login</a></strong> - <?php _e( 'This plugin helps to easily login or register to wordpress by using SMS or Email Verification without any password.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/remove-wp-meta-tags/" target = "_blank">Easy Header Footer</a></strong> - <?php _e( 'Customize WP header, add custom code and enable, disable or remove the unwanted meta tags, links from the source code and many more.', 'wp-last-modified-info' ); ?></li>
                     <br>
                 </div>
@@ -124,6 +116,7 @@
                 jQuery(document).ready(function($) {
                     $('#form-container').submit(function() {
                         $('#progressMessage').show();
+                        $('#saveMessage').fadeOut();
                         $(".save-settings").addClass("disabled");
                         $(".save-settings").val("<?php _e( 'Saving...', 'wp-last-modified-info' ); ?>");
                         $(this).ajaxSubmit({
@@ -177,23 +170,23 @@
     <div class="coffee-box">
         <div class="coffee-amt-wrap">
             <p><select class="coffee-amt">
-                <option value="2usd">$2</option>
-                <option value="3usd">$3</option>
-                <option value="4usd">$4</option>
-                <option value="5usd" selected="selected">$5</option>
+                <option value="5usd">$5</option>
                 <option value="6usd">$6</option>
                 <option value="7usd">$7</option>
                 <option value="8usd">$8</option>
                 <option value="9usd">$9</option>
-                <option value="10usd">$10</option>
+                <option value="10usd" selected="selected">$10</option>
                 <option value="11usd">$11</option>
                 <option value="12usd">$12</option>
+                <option value="13usd">$13</option>
+                <option value="14usd">$14</option>
+                <option value="15usd">$15</option>
                 <option value=""><?php _e( 'Custom', 'wp-last-modified-info' ); ?></option>
             </select></p>
-            <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/5usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
+            <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
         </div>
         <span class="coffee-heading"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
         <p style="text-align: justify;"><?php printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . LMT_PLUGIN_VERSION . '</strong>' ); ?></strong></p>
-        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
     </div>
 </div>

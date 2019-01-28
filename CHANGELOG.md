@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.6
+Release Date: January 27, 2019
+
+* NEW: GeneratePress Theme Support.
+* NEW: Astra Theme Support.
+* NEW: Added shortcodes attributes.
+* NEW: Added an option to replace post published date with post modified date without any theme file editing.
+* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" is in use.
+* Improved: Genesis Theme Schema Support.
+* Tweak: Now this plugin uses wordpress date/time format by default. 
+* Fixed: Error Notice in 404 page.
+* Fixed: Some Typo.
+
 ## 1.4.5
 Release Date: January 17, 2019
 

@@ -2,7 +2,7 @@
 
 # WP Last Modified Info #
 
-Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 3.5 and beyond.
+Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.0 and beyond.
 
 [![WP compatibility](https://plugintests.com/plugins/wp-last-modified-info/wp-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest) [![PHP compatibility](https://plugintests.com/plugins/wp-last-modified-info/php-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest)
 
@@ -40,7 +40,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 
 ### Compatibility ###
 
-* This plugin is fully compatible with WordPress Version 3.5 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
 
 ### Support ###
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at wordpress.org.

@@ -63,14 +63,9 @@ function lmt_add_custom_field_lmi( $post_id ) {
     $m_stamp = strtotime( $m_orig );
     $modified = date_i18n( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
     
-    $parameter = '';
-    if( apply_filters( 'wplmi_shortcode_on_cf_raw', false ) ) {
-        $parameter = ' raw="1"';
-    }
-
-    $shortcode = '[lmt-post-modified-info' . $parameter . ']';
+    $shortcode = '[lmt-post-modified-info]';
     if( is_page() ) {
-        $shortcode = '[lmt-page-modified-info' . $parameter . ']';
+        $shortcode = '[lmt-page-modified-info]';
     }
 
     // check post meta if not exists
@@ -124,9 +119,5 @@ add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
 add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
-
-// debug
-//add_filter( 'wplmi_shortcode_on_cf_raw', '__return_true' );
-//add_filter( 'wplmi_disable_post_output', '__return_true' );
 
 ?>

@@ -111,7 +111,7 @@ function lmt_last_modified_format_post_display() {
         $options['lmt_last_modified_format_post'] = 'default';
     }
     $items = array(
-        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'default'         => __( 'Traditional Format', 'wp-last-modified-info' ),
         'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="post-format" name="lmt_plugin_global_settings[lmt_last_modified_format_post]" style="width:25%;">';
@@ -152,7 +152,7 @@ function lmt_last_modified_default_format_post_display() {
 
     <span id="post-dtcf" style="display:none;">&nbsp;&nbsp;<label for="custom-post-date-format" style="font-size:13px;"><strong><?php _e( 'Date Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_custom_post_date_format'])){
-            $options['lmt_custom_post_date_format'] = 'F jS, Y';
+            $options['lmt_custom_post_date_format'] = get_option( 'date_format' );
         } ?>
         <input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="8" style="width:8%;" required placeholder="F jS, Y" value="<?php if (isset($options['lmt_custom_post_date_format'])) { echo $options['lmt_custom_post_date_format']; } ?>" />
     </span>
@@ -166,12 +166,12 @@ function lmt_last_modified_default_format_post_display() {
 
     <span id="post-tmcf" style="display:none;">&nbsp;&nbsp;<label for="custom-post-time-format" style="font-size:13px;"><strong><?php _e( 'Time Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_custom_post_time_format'])){
-            $options['lmt_custom_post_time_format'] = 'h:i a';
+            $options['lmt_custom_post_time_format'] = get_option( 'time_format' );
         } ?>
         <input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_post_time_format'])) { echo $options['lmt_custom_post_time_format']; } ?>" />
     </span>
 
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a single post if default format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a single post if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -275,7 +275,7 @@ function lmt_enable_schema_on_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     
     if(!isset($options['lmt_enable_schema_on_page_cb'])){
-        $options['lmt_enable_schema_on_page_cb'] = 'inline';
+        $options['lmt_enable_schema_on_page_cb'] = 'no_markup';
     }
     $items = array(
         'no_markup'   => __( 'No Markup', 'wp-last-modified-info' ),
@@ -348,7 +348,7 @@ function lmt_last_modified_format_page_display() {
         $options['lmt_last_modified_format_page'] = 'default';
     }
     $items = array(
-        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'default'         => __( 'Traditional Format', 'wp-last-modified-info' ),
         'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="page-format" name="lmt_plugin_global_settings[lmt_last_modified_format_page]" style="width:25%;">';
@@ -389,7 +389,7 @@ function lmt_last_modified_default_format_page_display() {
 
     <span id="page-dtcf" style="display:none;">&nbsp;&nbsp;<label for="custom-page-date-format" style="font-size:13px;"><strong><?php _e( 'Date Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_custom_page_date_format'])){
-            $options['lmt_custom_page_date_format'] = 'F jS, Y';
+            $options['lmt_custom_page_date_format'] = get_option( 'date_format' );
         } ?>
         <input id="custom-page-date-format" name="lmt_plugin_global_settings[lmt_custom_page_date_format]" type="text" size="8" style="width:8%;" required placeholder="F jS, Y" value="<?php if (isset($options['lmt_custom_page_date_format'])) { echo $options['lmt_custom_page_date_format']; } ?>" />
     </span>
@@ -403,12 +403,12 @@ function lmt_last_modified_default_format_page_display() {
 
     <span id="page-tmcf" style="display:none;">&nbsp;&nbsp;<label for="custom-page-time-format" style="font-size:13px;"><strong><?php _e( 'Time Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_custom_page_time_format'])){
-            $options['lmt_custom_page_time_format'] = 'h:i a';
+            $options['lmt_custom_page_time_format'] = get_option( 'time_format' );
         } ?>
         <input id="custom-page-time-format" name="lmt_plugin_global_settings[lmt_custom_page_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_page_time_format'])) { echo $options['lmt_custom_page_time_format']; } ?>" />
     </span>
 
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a page if default format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a page if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -477,9 +477,51 @@ function lmt_show_author_page_cb_display() {
                                          template tags options
 ============================================================================================== */
 
+function lmt_tt_generatepress_theme_mod_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if(!isset($options['lmt_tt_generatepress_theme_mod'])) {
+        $options['lmt_tt_generatepress_theme_mod'] = 'none';
+    }
+    $items = array(
+        'replace'   => __( 'Replace Post Meta', 'wp-last-modified-info' ),
+        'none'      => __( 'Do Nothing', 'wp-last-modified-info' )
+    );
+    echo '<select id="lmt-tt-gpmod" name="lmt_plugin_global_settings[lmt_tt_generatepress_theme_mod]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_tt_generatepress_theme_mod'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the GeneratePress Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function lmt_tt_astra_theme_mod_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if(!isset($options['lmt_tt_astra_theme_mod'])) {
+        $options['lmt_tt_astra_theme_mod'] = 'none';
+    }
+    $items = array(
+        'replace'   => __( 'Replace Post Meta', 'wp-last-modified-info' ),
+        'none'      => __( 'Do Nothing', 'wp-last-modified-info' )
+    );
+    echo '<select id="lmt-tt-gpmod" name="lmt_plugin_global_settings[lmt_tt_astra_theme_mod]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_tt_astra_theme_mod'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the Astra Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
 function lmt_tt_updated_text_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?> <input id="lmt-tt-updated-text" name="lmt_plugin_global_settings[lmt_tt_updated_text_box]" type="text" size="30" style="width:30%;" placeholder="Updated on" value="<?php if (isset($options['lmt_tt_updated_text_box'])) { echo $options['lmt_tt_updated_text_box']; } ?>" />
+    ?> <input id="lmt-tt-updated-text" name="lmt_plugin_global_settings[lmt_tt_updated_text_box]" type="text" size="40" style="width:40%;" placeholder="Updated on" value="<?php if (isset($options['lmt_tt_updated_text_box'])) { echo htmlentities( $options['lmt_tt_updated_text_box'] ); } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'If you want to display any message before last modified date/time, set here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -491,7 +533,7 @@ function lmt_last_modified_format_tt_display() {
         $options['lmt_last_modified_format_tt'] = 'default';
     }
     $items = array(
-        'default'         => __( 'Default Format', 'wp-last-modified-info' ),
+        'default'         => __( 'Traditional Format', 'wp-last-modified-info' ),
         'human_readable'  => __( 'Human Readable Format', 'wp-last-modified-info' )
     );
     echo '<select id="tt-format" name="lmt_plugin_global_settings[lmt_last_modified_format_tt]" style="width:25%;">';
@@ -503,7 +545,7 @@ function lmt_last_modified_format_tt_display() {
     ?>
     <span id="tt-format-output" style="display:none;">&nbsp;&nbsp;<label for="lmt-tt-format" style="font-size:13px;"><strong><?php _e( 'Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_tt_set_format_box'])){
-            $options['lmt_tt_set_format_box'] = 'F jS, Y @ h:i a';
+            $options['lmt_tt_set_format_box'] = get_option( 'date_format' );
         } ?>
         <input id="lmt-tt-format" name="lmt_plugin_global_settings[lmt_tt_set_format_box]" type="text" size="20" style="width:20%;" required placeholder="F jS, Y @ h:i a" value="<?php if (isset($options['lmt_tt_set_format_box'])) { echo $options['lmt_tt_set_format_box']; } ?>" />
        </span>
@@ -581,7 +623,7 @@ function lmt_show_author_tt_cb_display() {
 
 function lmt_tt_class_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="40" style="width:40%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
+    ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:50%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
     &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schaam-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="enable-schaam-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
@@ -589,6 +631,14 @@ function lmt_tt_class_box_display() {
     </label>
     <?php
 }
+
+function lmt_tt_replace_published_date_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    ?>   <textarea id="lmt-tt-replace" placeholder="&lt;i class=&#34;icon-clock&#34;&gt;&lt;/i&gt;%%published_date%%" name="lmt_plugin_global_settings[lmt_tt_replace_published_date]" rows="5" cols="90" style="width:90%;"><?php if (isset($options['lmt_tt_replace_published_date'])) { echo $options['lmt_tt_replace_published_date']; } ?></textarea>
+    <br><span style="float: left;width: 90%;font-size: smaller;line-height: 1.9;"><?php printf(__( 'If you do not want to edit any theme files, you can replace your post published date with the post modified info by using this option. Use %1$s for published date and %2$s for modified date.', 'wp-last-modified-info' ), '<code>%%published_date%%</code>', '<code>%%modified_date%%</code>' ); ?></span>
+    <?php
+}
+
 /* ============================================================================================== 
                                             misc options
 ============================================================================================== */
@@ -605,13 +655,13 @@ function lmt_enable_schema_support_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
-        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_custom_style_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?>   <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="10" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
+    ?>   <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="8" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
     <br><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>'); ?></small>
     <?php
 }
