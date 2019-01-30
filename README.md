@@ -29,6 +29,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Inserts ‘dateModified’ schema markup to your WordPress posts automatically.
 * Allows you to display last modified info on all post types column and publish meta box in the dashboard with the author name.
 * Allows you to sort posts/pages in last updated/modified date time order.
+* Allows you to replace post published date with post modified info.
 * Allows you to display last modified info on your post as human readable format, i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * Allows you to display last modified author info in posts, pages.

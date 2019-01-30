@@ -26,7 +26,7 @@ function lmt_json_ld_schema_markup() {
                 	"@type": "CreativeWork",
                 	"dateModified": "<?php echo get_post_modified_time( 'Y-m-d\TH:i:sP', true ); ?>",
                 	"headline": "<?php echo get_the_title(); ?>",
-                	"text": "<?php echo preg_replace( '/\r|\n/', '', strip_tags( strip_shortcodes( $post->post_content ) ) ); ?>",
+                	"text": "<?php echo preg_replace( '/\r|\n/', '', strip_tags( strip_shortcodes( wptexturize( $post->post_content ) ) ) ); ?>",
                     "author": {
                        "@type": "Person",
                        "name": "<?php echo get_the_author_meta( 'display_name', $author_id ); ?>",
@@ -47,7 +47,7 @@ function lmt_json_ld_schema_markup() {
                 	"@type": "WebPage",
                 	"dateModified": "<?php echo get_post_modified_time( 'Y-m-d\TH:i:sP', true ); ?>",
                 	"headline": "<?php echo get_the_title(); ?>",
-                	"text": "<?php echo preg_replace( '/\r|\n/', '', strip_tags( strip_shortcodes( $post->post_content ) ) ); ?>"
+                	"text": "<?php echo preg_replace( '/\r|\n/', '', strip_tags( strip_shortcodes( wptexturize( $post->post_content ) ) ) ); ?>"
                 }
             </script>
         <?php

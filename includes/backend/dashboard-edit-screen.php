@@ -191,8 +191,17 @@ add_action( 'quick_edit_custom_box', 'lmt_add_item_to_quick_edit', 10, 2 );
 
 function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 
+	if ( 'lastmodified' !== $column_name ) {
+		return;
+	}
+
 	global $post, $wp_locale;
 
+	//check if post is object otherwise you're not in singular post
+    if( !is_object( $post ) ) {
+		return;
+	}
+	
 	if( $post->post_status == 'auto-draft' ) {
 		return;
     }
@@ -207,7 +216,6 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 	$ss = mysql2date('s', $datemodified, false);
 	
     // get required data
-	$post_types = get_post_type_object( get_post_type( $post ) );
 	$stop_update = get_post_meta( $post->ID, '_lmt_disableupdate', true );
 
 	if ( did_action( 'quick_edit_custom_box' ) > 1 ) {
@@ -245,7 +253,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
 					<input type="text" id="mnm" class="time-modified" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.35em;margin-left:-3px;" />
 				</label>
-                <label for="lmt_disable" title="<?php _e( 'Keep this checked, if you do not want to change modified date and time on this ' . $post_types->capability_type . '.', 'wp-last-modified-info' ); ?>">
+                <label for="lmt_disable">
 			        <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>>
 			        <span class="checkbox-title"><?php _e( 'Disable update', 'wp-last-modified-info' ); ?></span>
 			    </label>

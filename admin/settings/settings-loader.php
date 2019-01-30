@@ -11,10 +11,10 @@
 // add settings page
 function lmt_plug_settings_page() {
     
-    $post_types = get_post_types(array(
+    $post_types = get_post_types( array(
         'public'   => true,
         '_builtin' => false
-    ), 'names');
+    ), 'names' );
 
     // start post fields
     add_settings_section('lmt_post_option_section', __( 'Post Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_post_option');

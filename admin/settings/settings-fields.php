@@ -634,7 +634,7 @@ function lmt_tt_class_box_display() {
 
 function lmt_tt_replace_published_date_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?>   <textarea id="lmt-tt-replace" placeholder="&lt;i class=&#34;icon-clock&#34;&gt;&lt;/i&gt;%%published_date%%" name="lmt_plugin_global_settings[lmt_tt_replace_published_date]" rows="5" cols="90" style="width:90%;"><?php if (isset($options['lmt_tt_replace_published_date'])) { echo $options['lmt_tt_replace_published_date']; } ?></textarea>
+    ?> <textarea id="lmt-tt-replace" placeholder="&lt;i class=&#34;icon-clock&#34;&gt;&lt;/i&gt;%%published_date%%" name="lmt_plugin_global_settings[lmt_tt_replace_published_date]" rows="5" cols="90" style="width:90%;"><?php if (isset($options['lmt_tt_replace_published_date'])) { echo $options['lmt_tt_replace_published_date']; } ?></textarea>
     <br><span style="float: left;width: 90%;font-size: smaller;line-height: 1.9;"><?php printf(__( 'If you do not want to edit any theme files, you can replace your post published date with the post modified info by using this option. Use %1$s for published date and %2$s for modified date.', 'wp-last-modified-info' ), '<code>%%published_date%%</code>', '<code>%%modified_date%%</code>' ); ?></span>
     <?php
 }

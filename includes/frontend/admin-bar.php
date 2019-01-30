@@ -31,11 +31,9 @@ function lmt_adminbar_info() {
     $cur_time = current_time('U');
     $mod_time = get_the_modified_time( 'U' );
     $org_time = get_the_time('U');
-    $get_df = get_option( 'date_format' );
-    $get_tf = get_option( 'time_format' );
 
     if ( $mod_time > $cur_time || $org_time > $mod_time ) {
-        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time( $get_tf ));
+        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time());
     }
     return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), $cur_time));
 }
@@ -43,10 +41,6 @@ function lmt_adminbar_info() {
 // add a link to the WP Toolbar
 function lmt_custom_toolbar_item( $wp_admin_bar ) {
 
-    // get wp date time formats
-    $get_df = get_option( 'date_format' );
-    $get_tf = get_option( 'time_format' );
-    
     // If it's admin page, then get out!
     if( is_admin() ) return;
 
@@ -68,7 +62,7 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
         'href'   => lmt_get_post_revision(),
         'meta' => array(
             //'class'  => 'lmt-ab-icon',
-            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date( $get_df ), get_the_modified_time( $get_tf ), get_the_modified_author() ),
+            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date(), get_the_modified_time(), get_the_modified_author() ),
             'target' => '_blank',
         )
     );
@@ -76,23 +70,5 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
 
 }
 add_action('admin_bar_menu', 'lmt_custom_toolbar_item', 999);
-
-function lmt_add_admin_bar_object() { 
-    
-    if ( ! is_admin_bar_showing() ) return; ?>
-
-    <style type="text/css">
-        #wpadminbar #wp-admin-bar-lmt-update .ab-icon:before {
-            content: '\f469'; 
-            top: 2px;
-        }
-    </style>
-<?php
-}
-
-/**
- * use this if you want to add some dashicons before admin bar item
- */
-//add_action('wp_head', 'lmt_add_admin_bar_object', 10);
 
 ?>

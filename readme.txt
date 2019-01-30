@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
 Tested up to: 5.0
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -34,6 +34,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Inserts ‘dateModified’ schema markup to your WordPress posts automatically.
 * Allows you to display last modified info on all post types column and publish meta box in the dashboard with the author name.
 * Allows you to sort posts/pages in last updated/modified date time order.
+* Allows you to replace post published date with post modified info.
 * Allows you to display last modified info on your post as human readable format, i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * Allows you to display last modified author info in posts, pages.
@@ -181,6 +182,13 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.4.7 =
+Release Date: January 30, 2019
+
+* Tweak: Using wptexturize to fix the quoted post content in schema markup description. Props to Dirk L.
+* Fixed: 'Trying to get property of non-object error' notice was showing for some users.
+* Fixed: Placeholder shows wrong template tags variable i.e. `%%pub_date%%` instead of `%%published_date%%`. Now it has been fixed.
+
 = 1.4.6 =
 Release Date: January 27, 2019
 
@@ -188,7 +196,7 @@ Release Date: January 27, 2019
 * NEW: Astra Theme Support.
 * NEW: Added shortcodes attributes.
 * NEW: Added an option to replace post published date with post modified date without any theme file editing.
-* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" is in use.
+* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" in use.
 * Improved: Genesis Theme Schema Support.
 * Tweak: Now this plugin uses wordpress date/time format by default. 
 * Fixed: Error Notice in 404 page.
