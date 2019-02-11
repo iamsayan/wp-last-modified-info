@@ -61,7 +61,6 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
         'title'  => lmt_adminbar_info(),
         'href'   => lmt_get_post_revision(),
         'meta' => array(
-            //'class'  => 'lmt-ab-icon',
             'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date(), get_the_modified_time(), get_the_modified_author() ),
             'target' => '_blank',
         )

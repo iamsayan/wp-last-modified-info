@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
 Tested up to: 5.0
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 Requires PHP: 5.4
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -182,12 +182,21 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Changelog ==
 
+= 1.4.8 =
+Release Date: February 11, 2019
+
+* Added: Option to set gap between post published date and modified date.
+* Added: WPML Compatibility.
+* Fixed: Multisite Broken Login.
+
 = 1.4.7 =
-Release Date: January 30, 2019
+Release Date: January 31, 2019
 
 * Tweak: Using wptexturize to fix the quoted post content in schema markup description. Props to Dirk L.
 * Fixed: 'Trying to get property of non-object error' notice was showing for some users.
 * Fixed: Placeholder shows wrong template tags variable i.e. `%%pub_date%%` instead of `%%published_date%%`. Now it has been fixed.
+* Fixed: An undefined variable notice in template tags.
+* Fixed: Author Meta is not showing for some GeneratePress Theme users on Author Archive Page if Replace Post Meta option is enabled.
 
 = 1.4.6 =
 Release Date: January 27, 2019

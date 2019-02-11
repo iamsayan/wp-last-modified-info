@@ -21,11 +21,17 @@ function lmt_print_last_modified_info_page( $content ) {
 
     include( plugin_dir_path( __FILE__ ) . 'page.php' );
 
+    $gap = 0;
+    if( isset($options['lmt_gap_on_page']) ) {
+        $gap = $options['lmt_gap_on_page'];
+    }
+    $gap = apply_filters( 'wplmi_date_time_diff_page', $gap );
+
     if ( ! in_the_loop() ) {
         return $content;
     }
 
-    if( get_the_modified_time('U') < get_the_time('U')+apply_filters( 'wplmi_date_time_diff_page', '0' ) ) {
+    if( get_the_modified_time('U') < ( get_the_time('U') + $gap ) ) {
         return $content;
     }
 

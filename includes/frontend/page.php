@@ -23,25 +23,25 @@ if(!empty($options['lmt_custom_page_date_format'])) {
 }
 
 if(!empty($options['lmt_page_custom_text'])) {
-    $options_page = esc_html($options['lmt_page_custom_text']);
+    $options_page = html_entity_decode($options['lmt_page_custom_text']);
 } else {
-    $options_page = 'Last Updated on ';
+    $options_page = 'Last Updated on';
 }
 
 if(!empty($options['lmt_page_date_time_sep'])) {
-    $options_page_sep = esc_html($options['lmt_page_date_time_sep']);
+    $options_page_sep = html_entity_decode($options['lmt_page_date_time_sep']);
 } else {
     $options_page_sep = 'at';
 }
 
 if(!empty($options['lmt_replace_ago_text_with_page'])) {
-    $replace_ago_page = esc_html($options['lmt_replace_ago_text_with_page']);
+    $replace_ago_page = ' ' . html_entity_decode($options['lmt_replace_ago_text_with_page']);
 } else {
     $replace_ago_page = ' ago';
 }
 
 if(!empty($options['lmt_page_author_sep'])) {
-    $author_sep_page = esc_html($options['lmt_page_author_sep']);
+    $author_sep_page = ' ' . html_entity_decode($options['lmt_page_author_sep']);
 } else {
     $author_sep_page = ' by';
 }

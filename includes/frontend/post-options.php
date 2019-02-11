@@ -21,11 +21,17 @@ function lmt_print_last_modified_info_post( $content ) {
 
     include( plugin_dir_path( __FILE__ ) . 'post.php' );
 
+    $gap = 0;
+    if( isset($options['lmt_gap_on_post']) ) {
+        $gap = $options['lmt_gap_on_post'];
+    }
+    $gap = apply_filters( 'wplmi_date_time_diff_post', $gap );
+
     if ( ! in_the_loop() ) {
         return $content;
     }
 
-    if( get_the_modified_time('U') < get_the_time('U')+apply_filters( 'wplmi_date_time_diff_post', '0' ) ) {
+    if( get_the_modified_time('U') < ( get_the_time('U') + $gap ) ) {
         return $content;
     }
 
@@ -50,7 +56,7 @@ function lmt_print_last_modified_info_post( $content ) {
     }
 
     if( isset($options['lmt_show_on_homepage']) && ($options['lmt_show_on_homepage'] == 'yes') ) {
-        if ( isset( $fullcontent ) && ( is_home() || is_author() || is_category() || is_tag() ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
+        if ( isset( $fullcontent ) && ( is_home() && apply_filters( 'wplmi_enable_home_page', true ) || is_author() && apply_filters( 'wplmi_enable_author_archive', true ) || is_category() && apply_filters( 'wplmi_enable_category_archive', true ) || is_tag() && apply_filters( 'wplmi_enable_tag_archive', true ) ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
             return $fullcontent;
         }
     }

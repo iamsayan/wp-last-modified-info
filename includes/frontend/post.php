@@ -23,25 +23,25 @@ if(!empty($options['lmt_custom_post_date_format'])) {
 }
 
 if(!empty($options['lmt_post_custom_text'])) {
-    $options_post = esc_html($options['lmt_post_custom_text']);
+    $options_post = html_entity_decode($options['lmt_post_custom_text']);
 } else {
-    $options_post = 'Last Updated on ';
+    $options_post = 'Last Updated on';
 }
 
 if(!empty($options['lmt_post_date_time_sep'])) {
-    $options_post_sep = esc_html($options['lmt_post_date_time_sep']);
+    $options_post_sep = html_entity_decode($options['lmt_post_date_time_sep']);
 } else {
     $options_post_sep = 'at';
 }
 
 if(!empty($options['lmt_replace_ago_text_with'])) {
-    $replace_ago = esc_html($options['lmt_replace_ago_text_with']);
+    $replace_ago = ' ' . html_entity_decode($options['lmt_replace_ago_text_with']);
 } else {
     $replace_ago = ' ago';
 }
 
 if(!empty($options['lmt_post_author_sep'])) {
-    $author_sep = esc_html($options['lmt_post_author_sep']);
+    $author_sep = ' ' . html_entity_decode($options['lmt_post_author_sep']);
 } else {
     $author_sep = ' by';
 }

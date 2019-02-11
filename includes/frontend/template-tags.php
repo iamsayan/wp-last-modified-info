@@ -24,19 +24,19 @@ function get_the_last_modified_info () {
     }
 
     if(!empty($options['lmt_tt_updated_text_box'])) {
-        $last_modified_text = esc_html($options['lmt_tt_updated_text_box']);
+        $last_modified_text = html_entity_decode($options['lmt_tt_updated_text_box']);
     } else {
         $last_modified_text = '';
     }
 
     if(!empty($options['lmt_tt_author_sep'])) {
-        $author_sep_tt = html_entity_decode($options['lmt_tt_author_sep']);
+        $author_sep_tt = ' ' . html_entity_decode($options['lmt_tt_author_sep']);
     } else {
         $author_sep_tt = ' by';
     }
 
     if(!empty($options['lmt_replace_ago_text_with_tt'])) {
-        $replace_ago_tt = esc_html($options['lmt_replace_ago_text_with_tt']);
+        $replace_ago_tt = ' ' . html_entity_decode($options['lmt_replace_ago_text_with_tt']);
     } else {
         $replace_ago_tt = ' ago';
     }
@@ -87,10 +87,10 @@ function get_the_last_modified_info () {
     if(!empty($options['lmt_tt_class_box'])) {
 
         $get_custom_class = esc_html($options['lmt_tt_class_box']);              
-        $lmt_template_tag = '<span class="'. $get_custom_class .'">' . $last_modified_text . '<time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
+        $lmt_template_tag = '<span class="'. $get_custom_class .'">' . $last_modified_text . ' <time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
 
     } else {
-        $lmt_template_tag = '<span>' . $last_modified_text . '<time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
+        $lmt_template_tag = '<span>' . $last_modified_text . ' <time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
     }
 
     if ( get_post_status() == 'future' ) {

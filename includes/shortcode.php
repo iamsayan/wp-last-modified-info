@@ -24,10 +24,10 @@ function lmt_post_modified_info_shortcode( $atts ) {
     
     $tf = !empty($options['lmt_custom_post_time_format']) ? esc_html($options['lmt_custom_post_time_format']) : 'h:i a';
     $df = !empty($options['lmt_custom_post_date_format']) ? esc_html($options['lmt_custom_post_date_format']) : 'F jS, Y';
-    $text = !empty($options['lmt_post_custom_text']) ? esc_html($options['lmt_post_custom_text']) : 'Last Updated on ';
-    $sep = !empty($options['lmt_post_date_time_sep']) ? esc_html($options['lmt_post_date_time_sep']) : 'at';
-    $ago = !empty($options['lmt_replace_ago_text_with']) ? esc_html($options['lmt_replace_ago_text_with']) : ' ago';
-    $a_sep = !empty($options['lmt_post_author_sep']) ? esc_html($options['lmt_post_author_sep']) : ' by';
+    $text = !empty($options['lmt_post_custom_text']) ? html_entity_decode($options['lmt_post_custom_text']) : 'Last Updated on';
+    $sep = !empty($options['lmt_post_date_time_sep']) ? html_entity_decode($options['lmt_post_date_time_sep']) : 'at';
+    $ago = !empty($options['lmt_replace_ago_text_with']) ? html_entity_decode($options['lmt_replace_ago_text_with']) : ' ago';
+    $a_sep = !empty($options['lmt_post_author_sep']) ? html_entity_decode($options['lmt_post_author_sep']) : ' by';
     $htmltag = isset($options['lmt_html_tag_post']) ? $options['lmt_html_tag_post'] : 'p';
     $schema = isset($options['lmt_enable_schema_on_post_cb']) ? $options['lmt_enable_schema_on_post_cb'] : 'inline';
     $show_author = isset($options['lmt_show_author_cb']) ? $options['lmt_show_author_cb'] : 'do_not_show';
@@ -36,6 +36,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
     $archive = isset($options['lmt_show_on_homepage']) ? $options['lmt_show_on_homepage'] : 'no';
     $format = isset($options['lmt_last_modified_format_post']) ? $options['lmt_last_modified_format_post'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_post']) ? $options['lmt_last_modified_default_format_post'] : 'only_date';
+    $gap = isset($options['lmt_gap_on_post']) ? $options['lmt_gap_on_post'] : '0';
     
     $atts = shortcode_atts(
 		array(
@@ -60,6 +61,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
             'display'      => $display,
             'filter'       => 'no',
             'filter_id'    => array(),
+            'gap'          => $gap,
         ), $atts, 'lmt-post-modified-info' );
 
     $updated_time = get_the_modified_time( $atts['time_format'], $atts['id'] );
@@ -67,16 +69,21 @@ function lmt_post_modified_info_shortcode( $atts ) {
     
     $options_post = $atts['text'];
     $options_post_sep = $atts['sep'];
-    $replace_ago = $atts['ago'];
-    $author_sep = $atts['author_sep'];
+    $replace_ago = ' ' . $atts['ago'];
+    $author_sep = ' ' . $atts['author_sep'];
     $html_tag = $atts['html_tag'];
 
     // get date time formats
     $pub_time = get_the_time( 'U', $atts['id'] );
     $mod_time = get_the_modified_time( 'U', $atts['id'] );
 
+    $gap = 0;
+    if( isset($atts['gap']) ) {
+        $gap = $atts['gap'];
+    }
+    $gap = apply_filters( 'wplmi_date_time_diff_post', $gap );
     // if modified time is equal to published time, do not show
-    if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_post', '0' ) ) return;
+    if ( $mod_time < ( $pub_time + $gap ) ) return;
 
     $schema_post = '';
     if( isset($atts['schema']) && ($atts['schema'] == 'inline') ) {
@@ -160,10 +167,10 @@ function lmt_page_modified_info_shortcode( $atts ) {
     
     $tf = !empty($options['lmt_custom_page_time_format']) ? esc_html($options['lmt_custom_page_time_format']) : 'h:i a';
     $df = !empty($options['lmt_custom_page_date_format']) ? esc_html($options['lmt_custom_page_date_format']) : 'F jS, Y';
-    $text = !empty($options['lmt_page_custom_text']) ? esc_html($options['lmt_page_custom_text']) : 'Last Updated on ';
-    $sep = !empty($options['lmt_page_date_time_sep']) ? esc_html($options['lmt_page_date_time_sep']) : 'at';
-    $ago = !empty($options['lmt_replace_ago_text_with_page']) ? esc_html($options['lmt_replace_ago_text_with_page']) : ' ago';
-    $a_sep = !empty($options['lmt_page_author_sep']) ? esc_html($options['lmt_page_author_sep']) : ' by';
+    $text = !empty($options['lmt_page_custom_text']) ? html_entity_decode($options['lmt_page_custom_text']) : 'Last Updated on';
+    $sep = !empty($options['lmt_page_date_time_sep']) ? html_entity_decode($options['lmt_page_date_time_sep']) : 'at';
+    $ago = !empty($options['lmt_replace_ago_text_with_page']) ? html_entity_decode($options['lmt_replace_ago_text_with_page']) : ' ago';
+    $a_sep = !empty($options['lmt_page_author_sep']) ? html_entity_decode($options['lmt_page_author_sep']) : ' by';
     $htmltag = isset($options['lmt_html_tag_page']) ? $options['lmt_html_tag_page'] : 'p';
     $schema = isset($options['lmt_enable_schema_on_page_cb']) ? $options['lmt_enable_schema_on_page_cb'] : 'no_markup';
     $show_author = isset($options['lmt_show_author_page_cb']) ? $options['lmt_show_author_page_cb'] : 'do_not_show';
@@ -171,7 +178,8 @@ function lmt_page_modified_info_shortcode( $atts ) {
     $author_id = isset($options['lmt_show_author_list_page']) ? $options['lmt_show_author_list_page'] : '1';
     $format = isset($options['lmt_last_modified_format_page']) ? $options['lmt_last_modified_format_page'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_page']) ? $options['lmt_last_modified_default_format_page'] : 'only_date';
-
+    $gap = isset($options['lmt_gap_on_page']) ? $options['lmt_gap_on_page'] : '0';
+    
     $atts = shortcode_atts(
 		array(
             'id'           => get_the_ID(),
@@ -190,6 +198,7 @@ function lmt_page_modified_info_shortcode( $atts ) {
             'display'      => $display,
             'filter'       => 'no',
             'filter_id'    => array(),
+            'gap'          => $gap,
         ), $atts, 'lmt-page-modified-info' );
 
     $updated_time = get_the_modified_time( $atts['time_format'], $atts['id'] );
@@ -197,16 +206,21 @@ function lmt_page_modified_info_shortcode( $atts ) {
     
     $options_page = $atts['text'];
     $options_page_sep = $atts['sep'];
-    $replace_ago = $atts['ago'];
-    $author_sep = $atts['author_sep'];
+    $replace_ago = ' ' . $atts['ago'];
+    $author_sep = ' ' . $atts['author_sep'];
     $html_tag = $atts['html_tag'];
 
     // get date time formats
     $pub_time = get_the_time( 'U', $atts['id'] );
     $mod_time = get_the_modified_time( 'U', $atts['id'] );
 
+    $gap = 0;
+    if( isset($atts['gap']) ) {
+        $gap = $atts['gap'];
+    }
+    $gap = apply_filters( 'wplmi_date_time_diff_page', $gap );
     // if modified time is equal to published time, do not show
-    if ( $mod_time < $pub_time+apply_filters( 'wplmi_date_time_diff_page', '0' ) ) return;
+    if ( $mod_time < ( $pub_time + $gap ) ) return;
 
     $schema_page = '';
     if( isset($atts['schema']) && ($atts['schema'] == 'inline') ) {

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.8
+Release Date: February 11, 2019
+
+* Added: Option to set gap between post published date and modified date.
+* Added: WPML Compatibility.
+* Fixed: Multisite Broken Login.
+
 ## 1.4.7
 Release Date: January 30, 2019
 

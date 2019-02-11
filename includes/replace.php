@@ -25,6 +25,15 @@ function lmt_html_replace_ob_callback( $buffer ) {
     $find = str_replace( '%%published_date%%', get_the_date( $format ), $find );
     $find = str_replace( '%%modified_date%%', get_the_modified_date( $format ), $find );
 
+    //$find = explode( "\n", $find );
+
     $buffer = str_replace( $find, html_entity_decode( get_the_last_modified_info() ), $buffer );
     return $buffer;
+
+    /*if ( is_array( $find ) ) {
+		foreach ( $find as &$value ) {
+			$buffer = str_replace( $value, html_entity_decode( get_the_last_modified_info() ), $buffer );
+		}
+	}
+	return $buffer;*/
 }

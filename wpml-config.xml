@@ -1,0 +1,22 @@
+<wpml-config>
+    <admin-texts>
+        <key name="lmt_plugin_global_settings">
+            <key name="lmt_post_custom_text" />
+            <key name="lmt_custom_post_date_format" />
+            <key name="lmt_custom_post_time_format" />
+            <key name="lmt_post_date_time_sep" />
+            <key name="lmt_post_author_sep" />
+            <key name="lmt_replace_ago_text_with" />
+            <key name="lmt_page_custom_text" />
+            <key name="lmt_custom_page_date_format" />
+            <key name="lmt_custom_page_time_format" />
+            <key name="lmt_page_date_time_sep" />
+            <key name="lmt_page_author_sep" />
+            <key name="lmt_replace_ago_text_with_page" />
+            <key name="lmt_tt_updated_text_box" />
+            <key name="lmt_tt_set_format_box" />
+            <key name="lmt_tt_author_sep" />
+            <key name="lmt_replace_ago_text_with_tt" />
+        </key>
+    </admin-texts>   
+</wpml-config>
