@@ -21,9 +21,10 @@
         <a href="#post" class="nav-tab active" id="btn1"><span class="dashicons dashicons-admin-post" style="padding-top: 2px;"></span> <?php _e( 'Post Options', 'wp-last-modified-info' ); ?></a>
         <a href="#page" class="nav-tab" id="btn2"><span class="dashicons dashicons-admin-page" style="padding-top: 2px;"></span> <?php _e( 'Page Options', 'wp-last-modified-info' ); ?></a>
         <a href="#template-tags" class="nav-tab" id="btn3"><span class="dashicons dashicons-tag" style="padding-top: 2px;"></span> <?php _e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
-        <a href="#misc" class="nav-tab" id="btn4"><span class="dashicons dashicons-screenoptions" style="padding-top: 2px;"></span> <?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
-        <a href="#tools" class="nav-tab" id="btn5"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
-        <a href="#help" class="nav-tab" id="btn6"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
+        <a href="#schema" class="nav-tab" id="btn4"><span class="dashicons dashicons-editor-code" style="padding-top: 2px;"></span> <?php _e( 'Schema', 'wp-last-modified-info' ); ?></a>
+        <a href="#misc" class="nav-tab" id="btn5"><span class="dashicons dashicons-screenoptions" style="padding-top: 2px;"></span> <?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
+        <a href="#tools" class="nav-tab" id="btn6"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
+        <a href="#help" class="nav-tab" id="btn7"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
     </div>
     <script>
         var header = document.getElementById("nav-container");
@@ -43,20 +44,24 @@
                 <?php settings_fields('lmt_post_page_plugin_section'); ?>
                 <div id="show-post">
                     <?php do_settings_sections('lmt_post_option'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save' ); ?>
                 </div>
                 <div style="display:none" id="show-page">
                     <?php do_settings_sections('lmt_page_option'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-page' ); ?>
                 </div>
                 <div style="display:none" id="show-tt">
                     <?php do_settings_sections('lmt_template_tag_option'); ?>
                     <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-last-modified-info' ); ?></i>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-tt' ); ?>
+                </div>
+                <div style="display:none" id="show-schema">
+                    <?php do_settings_sections('lmt_schema_option'); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-schema' ); ?>
                 </div>
                 <div style="display:none" id="show-misc">
                     <?php do_settings_sections('lmt_misc_option'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-misc' ); ?>
                 </div>
                 <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
                 <div id="saveMessage" class="successModal" style="display:none;"><p><?php _e( 'Settings Saved Successfully!', 'wp-last-modified-info' ); ?></p></div>
@@ -91,14 +96,8 @@
                     </p>
     
                     <p><li><strong><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Yes, it is possible. Set "Last Modified Schema Markup Type:" to "JSON-LD Markup" and "Last Modified Info Display Method:" to "Manual".', 'wp-last-modified-info' ); ?></p>
+                    <p><?php _e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
                     
-                    <p><li><strong><?php _e( 'Published date is equal to modified date. What is the solution?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.', 'wp-last-modified-info' ); ?></p>
-                    <p><i><?php _e( 'Create function:', 'wp-last-modified-info' ); ?></i> <code>function override_time_diff() { return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need }</code></p>       
-                    <p><i><?php _e( 'Add filter for posts:', 'wp-last-modified-info' ); ?></i> <code>add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // <?php _e( 'for posts', 'wp-last-modified-info' ); ?></code></p>
-                    <p><i><?php _e( 'Add filter for pages:', 'wp-last-modified-info' ); ?></i> <code>add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // <?php _e( 'for pages', 'wp-last-modified-info' ); ?></code></p>
-    
                     <br>
                     
                     <h2><?php _e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2><p><hr></p>

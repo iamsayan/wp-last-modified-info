@@ -3,9 +3,9 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
- * Version: 1.4.8
+ * Version: 1.4.9
  * Author: Sayan Datta
- * Author URI: https://www.sayandatta.com
+ * Author URI: https://sayandatta.com
  * License: GPLv3
  * Text Domain: wp-last-modified-info
  * Domain Path: /languages
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.4.8' );
+define( 'LMT_PLUGIN_VERSION', '1.4.9' );
 
 // debug scripts
 //define ( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
@@ -152,12 +152,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/schema-remove.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/theme-support.php';
 
 /**
- * Show a warning to sites running PHP < 5.4
+ * Show a warning to sites running PHP < 5.6
  *
  * @since 1.4.3
 */
 function lmt_below_php_version_notice() {
-    if( version_compare( PHP_VERSION, '5.4', '<' ) ) {
+    if( version_compare( PHP_VERSION, '5.6', '<' ) ) {
 	    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'wp-last-modified-info' ) . '</p></div>';
     }
 }

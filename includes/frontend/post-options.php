@@ -63,11 +63,11 @@ function lmt_print_last_modified_info_post( $content ) {
 
     if( isset($options['lmt_custom_post_types_list']) ) {
         $post_types = $options['lmt_custom_post_types_list'];
-        foreach( $post_types as $post_type ) {
-            if ( isset( $fullcontent ) && is_singular( $post_type ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
+        //foreach( $post_types as $post_type ) {
+            if ( isset( $fullcontent ) && is_singular( $post_types ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
                 return $fullcontent;
             }
-        }
+        //}
     }
     return $content;
 }

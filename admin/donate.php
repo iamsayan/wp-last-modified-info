@@ -21,11 +21,11 @@ function lmt_donate_admin_notice() {
         return;
     }
 
-    $dismiss = wp_nonce_url( add_query_arg( 'lmt_donate_notice_action', 'dismiss_donate_true' ), 'dismiss_donate_true' ); 
-    $no_thanks = wp_nonce_url( add_query_arg( 'lmt_donate_notice_action', 'no_thanks_donate_true' ), 'no_thanks_donate_true' ); ?>
+    $dismiss = wp_nonce_url( add_query_arg( 'lmt_donate_notice_action', 'lmt_dismiss_donate_true' ), 'lmt_dismiss_donate_true' ); 
+    $no_thanks = wp_nonce_url( add_query_arg( 'lmt_donate_notice_action', 'lmt_no_thanks_donate_true' ), 'lmt_no_thanks_donate_true' ); ?>
     
     <div class="notice notice-success">
-        <p><?php _e( 'Hey, I noticed you\'ve been using WP Last Modified Info for more than 2 week – that’s awesome! If you like WP Last Modified Info and you are satisfied with the plugin, isn’t that worth a coffee or two? Please consider donating. Any amount is appreciated. Donations help me to continue support and development of this free software! Thank you very much!', 'wp-last-modified-info' ); ?><p>
+        <p><?php _e( 'Hey, I noticed you\'ve been using WP Last Modified Info for more than 2 week – that’s awesome! If you like WP Last Modified Info and you are satisfied with the plugin, isn’t that worth a coffee or two? Please consider donating. Donations help me to continue support and development of this free plugin! Thank you very much!', 'wp-last-modified-info' ); ?><p>
         <a href="https://www.paypal.me/iamsayan" target="_blank" class="button button-secondary"><?php _e( 'Donate Now', 'wp-last-modified-info' ); ?></a>&nbsp;
         <a href="<?php echo $dismiss; ?>" class="already-did"><strong><?php _e( 'I already donated', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
         <a href="<?php echo $no_thanks; ?>" class="later"><strong><?php _e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></strong></a>
@@ -47,13 +47,13 @@ function lmt_dismiss_donate_admin_notice() {
         return;
     }
 
-    if ( 'dismiss_donate_true' === $_GET['lmt_donate_notice_action'] ) {
-        check_admin_referer( 'dismiss_donate_true' );
+    if ( 'lmt_dismiss_donate_true' === $_GET['lmt_donate_notice_action'] ) {
+        check_admin_referer( 'lmt_dismiss_donate_true' );
         update_option( 'lmt_plugin_dismiss_donate_notice', '1' );
     }
 
-    if ( 'no_thanks_donate_true' === $_GET['lmt_donate_notice_action'] ) {
-        check_admin_referer( 'no_thanks_donate_true' );
+    if ( 'lmt_no_thanks_donate_true' === $_GET['lmt_donate_notice_action'] ) {
+        check_admin_referer( 'lmt_no_thanks_donate_true' );
         update_option( 'lmt_plugin_no_thanks_donate_notice', '1' );
         update_option( 'lmt_plugin_dismiss_donate_notice', '1' );
         update_option( 'lmt_plugin_dismissed_time_donate', time() );

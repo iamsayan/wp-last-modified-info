@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-02-11 13:43+0530\n"
-"PO-Revision-Date: 2019-02-11 13:43+0530\n"
+"POT-Creation-Date: 2019-03-17 23:02+0530\n"
+"PO-Revision-Date: 2019-03-17 23:02+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wp-last-modified-info.php\n"
@@ -26,8 +26,8 @@ msgid ""
 "Hey, I noticed you've been using WP Last Modified Info for more than 2 week "
 "– that’s awesome! If you like WP Last Modified Info and you are satisfied "
 "with the plugin, isn’t that worth a coffee or two? Please consider donating. "
-"Any amount is appreciated. Donations help me to continue support and "
-"development of this free software! Thank you very much!"
+"Donations help me to continue support and development of this free plugin! "
+"Thank you very much!"
 msgstr ""
 
 #: admin/donate.php:29
@@ -51,23 +51,23 @@ msgid "URL"
 msgstr ""
 
 #: admin/elementor/class/modified-author-url.php:59
-#: admin/settings/settings-fields.php:223
+#: admin/settings/settings-fields.php:237
 #: admin/settings/settings-fields.php:488
-#: admin/settings/settings-fields.php:664
+#: admin/settings/settings-fields.php:636
 msgid "Author Archive"
 msgstr ""
 
 #: admin/elementor/class/modified-author-url.php:60
-#: admin/settings/settings-fields.php:224
+#: admin/settings/settings-fields.php:238
 #: admin/settings/settings-fields.php:489
-#: admin/settings/settings-fields.php:665
+#: admin/settings/settings-fields.php:637
 msgid "Author Website"
 msgstr ""
 
 #: admin/elementor/class/modified-author-url.php:61
-#: admin/settings/settings-fields.php:225
+#: admin/settings/settings-fields.php:239
 #: admin/settings/settings-fields.php:490
-#: admin/settings/settings-fields.php:666
+#: admin/settings/settings-fields.php:638
 msgid "Author Email"
 msgstr ""
 
@@ -86,13 +86,13 @@ msgstr ""
 
 #: admin/elementor/class/modified-date.php:42
 #: admin/elementor/class/modified-time.php:42
-#: admin/settings/settings-fields.php:67
+#: admin/settings/settings-fields.php:53
 msgid "Yes"
 msgstr ""
 
 #: admin/elementor/class/modified-date.php:43
 #: admin/elementor/class/modified-time.php:43
-#: admin/settings/settings-fields.php:68
+#: admin/settings/settings-fields.php:54
 msgid "No"
 msgstr ""
 
@@ -102,17 +102,17 @@ msgstr ""
 
 #: admin/elementor/class/modified-date.php:55
 #: admin/elementor/class/modified-time.php:55
-#: admin/settings/settings-fields.php:186
+#: admin/settings/settings-fields.php:200
 #: admin/settings/settings-fields.php:451
-#: admin/settings/settings-fields.php:626
+#: admin/settings/settings-fields.php:598
 msgid "Default"
 msgstr ""
 
 #: admin/elementor/class/modified-date.php:60
 #: admin/elementor/class/modified-time.php:60
-#: admin/settings/settings-fields.php:187
+#: admin/settings/settings-fields.php:201
 #: admin/settings/settings-fields.php:452
-#: admin/settings/settings-fields.php:627 admin/settings/settings-page.php:184
+#: admin/settings/settings-fields.php:599 admin/settings/settings-page.php:183
 msgid "Custom"
 msgstr ""
 
@@ -183,39 +183,29 @@ msgid ""
 "Enable this if you want to show last modified info on single posts page."
 msgstr ""
 
-#: admin/settings/settings-fields.php:29 admin/settings/settings-fields.php:309
-msgid "No Markup"
+#: admin/settings/settings-fields.php:26
+msgid ""
+"Enable this if you want to enable inline dateModified microdata schema "
+"markup on single posts page."
 msgstr ""
 
-#: admin/settings/settings-fields.php:30 admin/settings/settings-fields.php:310
-msgid "JSON-LD Markup"
-msgstr ""
-
-#: admin/settings/settings-fields.php:31 admin/settings/settings-fields.php:311
-msgid "Inline Markup (Microdata)"
-msgstr ""
-
-#: admin/settings/settings-fields.php:40
-msgid "Select the dateModfied schema markup type for single posts page."
-msgstr ""
-
-#: admin/settings/settings-fields.php:51 admin/settings/settings-fields.php:331
+#: admin/settings/settings-fields.php:37 admin/settings/settings-fields.php:303
 msgid "Before Content"
 msgstr ""
 
-#: admin/settings/settings-fields.php:52 admin/settings/settings-fields.php:332
+#: admin/settings/settings-fields.php:38 admin/settings/settings-fields.php:304
 msgid "After Content"
 msgstr ""
 
-#: admin/settings/settings-fields.php:53 admin/settings/settings-fields.php:333
+#: admin/settings/settings-fields.php:39 admin/settings/settings-fields.php:305
 msgid "Manual (use shortcode)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:62
+#: admin/settings/settings-fields.php:48
 msgid "Show on Archives:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:77
+#: admin/settings/settings-fields.php:63
 msgid ""
 "Select where you want to show last modified info on a single posts. If you "
 "select 'Before Content or After Content', you can disable auto insert on "
@@ -224,175 +214,177 @@ msgid ""
 "option is applicable for posts only."
 msgstr ""
 
-#: admin/settings/settings-fields.php:86 admin/settings/settings-fields.php:351
+#: admin/settings/settings-fields.php:72 admin/settings/settings-fields.php:323
 msgid "Last Updated on"
 msgstr ""
 
-#: admin/settings/settings-fields.php:88 admin/settings/settings-fields.php:353
+#: admin/settings/settings-fields.php:74 admin/settings/settings-fields.php:325
 msgid "HTML Tag:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:103
+#: admin/settings/settings-fields.php:89
 msgid ""
 "Enter your custom text which will be shown on single posts page. You can "
 "also set a custom style from 'Custom CSS tab' for this. Use 'post-last-"
 "modified' as css class."
 msgstr ""
 
-#: admin/settings/settings-fields.php:114
-#: admin/settings/settings-fields.php:379
-#: admin/settings/settings-fields.php:592
+#: admin/settings/settings-fields.php:100
+#: admin/settings/settings-fields.php:351
+#: admin/settings/settings-fields.php:564
 msgid "Traditional Format"
 msgstr ""
 
-#: admin/settings/settings-fields.php:115
-#: admin/settings/settings-fields.php:380
-#: admin/settings/settings-fields.php:593
+#: admin/settings/settings-fields.php:101
+#: admin/settings/settings-fields.php:352
+#: admin/settings/settings-fields.php:565
 msgid "Human Readable Format"
 msgstr ""
 
-#: admin/settings/settings-fields.php:124
-#: admin/settings/settings-fields.php:389
-#: admin/settings/settings-fields.php:608
+#: admin/settings/settings-fields.php:110
+#: admin/settings/settings-fields.php:361
+#: admin/settings/settings-fields.php:580
 msgid "End with:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:130
-#: admin/settings/settings-fields.php:395
-#: admin/settings/settings-fields.php:614
+#: admin/settings/settings-fields.php:116
+#: admin/settings/settings-fields.php:367
+#: admin/settings/settings-fields.php:586
 msgid "Select last modified info format from here."
 msgstr ""
 
-#: admin/settings/settings-fields.php:141
-#: admin/settings/settings-fields.php:406
+#: admin/settings/settings-fields.php:127
+#: admin/settings/settings-fields.php:378
 msgid "Only Date"
 msgstr ""
 
-#: admin/settings/settings-fields.php:142
-#: admin/settings/settings-fields.php:407
+#: admin/settings/settings-fields.php:128
+#: admin/settings/settings-fields.php:379
 msgid "Only Time"
 msgstr ""
 
-#: admin/settings/settings-fields.php:143
-#: admin/settings/settings-fields.php:408
+#: admin/settings/settings-fields.php:129
+#: admin/settings/settings-fields.php:380
 msgid "Show Both"
 msgstr ""
 
-#: admin/settings/settings-fields.php:153
-#: admin/settings/settings-fields.php:418
+#: admin/settings/settings-fields.php:139
+#: admin/settings/settings-fields.php:390
 msgid "Date Format:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:160
-#: admin/settings/settings-fields.php:196
-#: admin/settings/settings-fields.php:425
+#: admin/settings/settings-fields.php:146
+#: admin/settings/settings-fields.php:210
+#: admin/settings/settings-fields.php:397
 #: admin/settings/settings-fields.php:461
-#: admin/settings/settings-fields.php:636
+#: admin/settings/settings-fields.php:608
 msgid "Separator:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:167
-#: admin/settings/settings-fields.php:432
+#: admin/settings/settings-fields.php:153
+#: admin/settings/settings-fields.php:404
 msgid "Time Format:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:174
+#: admin/settings/settings-fields.php:160
 msgid ""
 "Select how you want to show last modified info on a single post if "
 "Traditional Format is active."
 msgstr ""
 
-#: admin/settings/settings-fields.php:185
-#: admin/settings/settings-fields.php:450
-#: admin/settings/settings-fields.php:625
-msgid "Do not show"
-msgstr ""
-
-#: admin/settings/settings-fields.php:202
-#: admin/settings/settings-fields.php:467
-#: admin/settings/settings-fields.php:643
-msgid "Select:"
-msgstr ""
-
-#: admin/settings/settings-fields.php:216
-#: admin/settings/settings-fields.php:481
-#: admin/settings/settings-fields.php:657
-msgid "Link to:"
-msgstr ""
-
-#: admin/settings/settings-fields.php:222
-#: admin/settings/settings-fields.php:487
-#: admin/settings/settings-fields.php:663
-msgid "None"
-msgstr ""
-
-#: admin/settings/settings-fields.php:235
-msgid "Select how you want to display last modified author name on posts."
-msgstr ""
-
-#: admin/settings/settings-fields.php:258
-msgid ""
-"Select custom post types to show last modified info on selected post types "
-"only."
-msgstr ""
-
-#: admin/settings/settings-fields.php:269
-#: admin/settings/settings-fields.php:511
+#: admin/settings/settings-fields.php:171
+#: admin/settings/settings-fields.php:422
 msgid "No Gap"
 msgstr ""
 
-#: admin/settings/settings-fields.php:270
-#: admin/settings/settings-fields.php:512
+#: admin/settings/settings-fields.php:172
+#: admin/settings/settings-fields.php:423
 msgid "1 day (24 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:271
-#: admin/settings/settings-fields.php:513
+#: admin/settings/settings-fields.php:173
+#: admin/settings/settings-fields.php:424
 msgid "2 days (48 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:272
-#: admin/settings/settings-fields.php:514
+#: admin/settings/settings-fields.php:174
+#: admin/settings/settings-fields.php:425
 msgid "3 days (72 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:273
-#: admin/settings/settings-fields.php:515
+#: admin/settings/settings-fields.php:175
+#: admin/settings/settings-fields.php:426
 msgid "5 days (120 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:274
-#: admin/settings/settings-fields.php:516
+#: admin/settings/settings-fields.php:176
+#: admin/settings/settings-fields.php:427
 msgid "7 days (168 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:275
-#: admin/settings/settings-fields.php:517
+#: admin/settings/settings-fields.php:177
+#: admin/settings/settings-fields.php:428
 msgid "15 days (360 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:276
-#: admin/settings/settings-fields.php:518
+#: admin/settings/settings-fields.php:178
+#: admin/settings/settings-fields.php:429
 msgid "30 days (720 hours)"
 msgstr ""
 
-#: admin/settings/settings-fields.php:286
-#: admin/settings/settings-fields.php:528
+#: admin/settings/settings-fields.php:188
+#: admin/settings/settings-fields.php:439
 msgid ""
 "Select the gap between published time and modified time. If modified time is "
 "greater than published time + gap, then it shows last modified info on "
 "frontend."
 msgstr ""
 
-#: admin/settings/settings-fields.php:298
+#: admin/settings/settings-fields.php:199
+#: admin/settings/settings-fields.php:450
+#: admin/settings/settings-fields.php:597
+msgid "Do not show"
+msgstr ""
+
+#: admin/settings/settings-fields.php:216
+#: admin/settings/settings-fields.php:467
+#: admin/settings/settings-fields.php:615
+msgid "Select:"
+msgstr ""
+
+#: admin/settings/settings-fields.php:230
+#: admin/settings/settings-fields.php:481
+#: admin/settings/settings-fields.php:629
+msgid "Link to:"
+msgstr ""
+
+#: admin/settings/settings-fields.php:236
+#: admin/settings/settings-fields.php:487
+#: admin/settings/settings-fields.php:635
+msgid "None"
+msgstr ""
+
+#: admin/settings/settings-fields.php:249
+msgid "Select how you want to display last modified author name on posts."
+msgstr ""
+
+#: admin/settings/settings-fields.php:272
+msgid ""
+"Select custom post types to show last modified info on selected post types "
+"only."
+msgstr ""
+
+#: admin/settings/settings-fields.php:284
 msgid "Enable this if you want to show last modified info on pages."
 msgstr ""
 
-#: admin/settings/settings-fields.php:320
-msgid "Select the dateModfied schema markup type for pages."
+#: admin/settings/settings-fields.php:292
+msgid ""
+"Enable this if you want to enable inline dateModified microdata schema "
+"markup on pages."
 msgstr ""
 
-#: admin/settings/settings-fields.php:342
+#: admin/settings/settings-fields.php:314
 msgid ""
 "Select where you want to show last modified info on a page. If you select "
 "'Before Content or After Content', you can disable auto insert on particular "
@@ -400,14 +392,14 @@ msgid ""
 "shortcode on that particular page, if you want to."
 msgstr ""
 
-#: admin/settings/settings-fields.php:368
+#: admin/settings/settings-fields.php:340
 msgid ""
 "Enter your custom text which will be shown on single page. You can also set "
 "a custom style from 'Custom CSS tab' for this. Use 'page-last-modified' as "
 "css class."
 msgstr ""
 
-#: admin/settings/settings-fields.php:439
+#: admin/settings/settings-fields.php:411
 msgid ""
 "Select how you want to show last modified info on a page if Traditional "
 "Format is active."
@@ -417,47 +409,47 @@ msgstr ""
 msgid "Select how you want to display last modified author name on pages."
 msgstr ""
 
-#: admin/settings/settings-fields.php:543
-#: admin/settings/settings-fields.php:564
+#: admin/settings/settings-fields.php:515
+#: admin/settings/settings-fields.php:536
 msgid "Replace Post Meta"
 msgstr ""
 
-#: admin/settings/settings-fields.php:544
-#: admin/settings/settings-fields.php:565
+#: admin/settings/settings-fields.php:516
+#: admin/settings/settings-fields.php:537
 msgid "Do Nothing"
 msgstr ""
 
-#: admin/settings/settings-fields.php:553
+#: admin/settings/settings-fields.php:525
 msgid ""
 "Enable the GeneratePress Theme Support form here. It will replace the post "
 "meta published date with post modified date."
 msgstr ""
 
-#: admin/settings/settings-fields.php:574
+#: admin/settings/settings-fields.php:546
 msgid ""
 "Enable the Astra Theme Support form here. It will replace the post meta "
 "published date with post modified date."
 msgstr ""
 
-#: admin/settings/settings-fields.php:581
+#: admin/settings/settings-fields.php:553
 msgid ""
 "If you want to display any message before last modified date/time, set here."
 msgstr ""
 
-#: admin/settings/settings-fields.php:602
+#: admin/settings/settings-fields.php:574
 msgid "Format:"
 msgstr ""
 
-#: admin/settings/settings-fields.php:676
+#: admin/settings/settings-fields.php:648
 msgid ""
 "Select how you want to display last modified author name using template tags."
 msgstr ""
 
-#: admin/settings/settings-fields.php:683
+#: admin/settings/settings-fields.php:655
 msgid "Enable Inline Schema Markup?"
 msgstr ""
 
-#: admin/settings/settings-fields.php:694
+#: admin/settings/settings-fields.php:666
 #, php-format
 msgid ""
 "If you do not want to edit any theme files, you can replace your post "
@@ -465,12 +457,24 @@ msgid ""
 "for published date and %2$s for modified date."
 msgstr ""
 
-#: admin/settings/settings-fields.php:706
-msgid ""
-"Enable this if you want to show last modified info on wordpress admin bar."
+#: admin/settings/settings-fields.php:681
+msgid "Enable JSON-LD Markup"
 msgstr ""
 
-#: admin/settings/settings-fields.php:714
+#: admin/settings/settings-fields.php:682
+msgid "Disable Markup"
+msgstr ""
+
+#: admin/settings/settings-fields.php:691
+msgid ""
+"Enable JSON-LD Markup if you want to show JSON type markup to search engines."
+msgstr ""
+
+#: admin/settings/settings-fields.php:713
+msgid "Select on which post types you want to enable JSON-LD Markup."
+msgstr ""
+
+#: admin/settings/settings-fields.php:721
 msgid ""
 "Enable this if your theme does not support schema markup. This will add "
 "WebPage type schema support to the html tag. Please check Schema Markup "
@@ -478,12 +482,17 @@ msgid ""
 "already detects schema markup, you don't need to enable it anymore."
 msgstr ""
 
-#: admin/settings/settings-fields.php:721
+#: admin/settings/settings-fields.php:733
+msgid ""
+"Enable this if you want to show last modified info on wordpress admin bar."
+msgstr ""
+
+#: admin/settings/settings-fields.php:740
 #, php-format
 msgid "Do not add %s tag. This tag is not required, as it is already added."
 msgstr ""
 
-#: admin/settings/settings-fields.php:729
+#: admin/settings/settings-fields.php:748
 msgid ""
 "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
@@ -496,8 +505,8 @@ msgstr ""
 msgid "Enable for Posts on Frontend:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:22 admin/settings/settings-loader.php:36
-msgid "Last Modified Schema Markup Type:"
+#: admin/settings/settings-loader.php:22
+msgid "Enable Inline Schema Markup:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:23 admin/settings/settings-loader.php:37
@@ -517,16 +526,16 @@ msgid "Date and Time Visibility on Posts:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:27 admin/settings/settings-loader.php:41
+msgid "Published Time & Modified Time Gap:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:28 admin/settings/settings-loader.php:42
 #: admin/settings/settings-loader.php:54
 msgid "Display Last Modified Author Name:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:29
-msgid "Enable Custom Post Types Support:"
-msgstr ""
-
-#: admin/settings/settings-loader.php:31 admin/settings/settings-loader.php:42
-msgid "Published Time & Modified Time Gap:"
+#: admin/settings/settings-loader.php:30
+msgid "Enable on This Custom Post Types:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:34 admin/settings/settings-page.php:22
@@ -535,6 +544,10 @@ msgstr ""
 
 #: admin/settings/settings-loader.php:35
 msgid "Enable for Pages on Frontend:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:36
+msgid "Last Modified Schema Markup Type:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:38
@@ -577,23 +590,35 @@ msgstr ""
 msgid "Enter text or HTML to Replace:"
 msgstr ""
 
+#: admin/settings/settings-loader.php:58
+msgid "Schema Options"
+msgstr ""
+
 #: admin/settings/settings-loader.php:59
-msgid "Miscellaneous Options"
+msgid "Enable JSON-LD Schema Markup:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:60
-msgid "Show Modified Info on Admin Bar:"
+msgid "Select Post Types for JSON-LD Markup:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:61
 msgid "Enable Enhanced Schema Support:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:62
+#: admin/settings/settings-loader.php:64
+msgid "Miscellaneous Options"
+msgstr ""
+
+#: admin/settings/settings-loader.php:65
+msgid "Show Modified Info on Admin Bar:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:66
 msgid "Custom CSS Code:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:63
+#: admin/settings/settings-loader.php:67
 msgid "Delete Plugin Data upon Uninstallation:"
 msgstr ""
 
@@ -620,101 +645,105 @@ msgid "Template Tags"
 msgstr ""
 
 #: admin/settings/settings-page.php:24
-msgid "Misc. Options"
+msgid "Schema"
 msgstr ""
 
 #: admin/settings/settings-page.php:25
-msgid "Tools"
+msgid "Misc. Options"
 msgstr ""
 
 #: admin/settings/settings-page.php:26
+msgid "Tools"
+msgstr ""
+
+#: admin/settings/settings-page.php:27
 msgid "Help"
 msgstr ""
 
-#: admin/settings/settings-page.php:46 admin/settings/settings-page.php:50
-#: admin/settings/settings-page.php:55 admin/settings/settings-page.php:59
-#: admin/settings/settings-page.php:127
+#: admin/settings/settings-page.php:47 admin/settings/settings-page.php:51
+#: admin/settings/settings-page.php:56 admin/settings/settings-page.php:60
+#: admin/settings/settings-page.php:64 admin/settings/settings-page.php:126
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:54
+#: admin/settings/settings-page.php:55
 msgid "Note:"
 msgstr ""
 
-#: admin/settings/settings-page.php:54
+#: admin/settings/settings-page.php:55
 msgid ""
 "Always backup .php files before making any changes, the backup file comes in "
 "handy for restoring the default file in case WordPress goes crazy."
 msgstr ""
 
-#: admin/settings/settings-page.php:61
+#: admin/settings/settings-page.php:66
 msgid "Please wait..."
 msgstr ""
 
-#: admin/settings/settings-page.php:62
+#: admin/settings/settings-page.php:67
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: admin/settings/settings-page.php:64
+#: admin/settings/settings-page.php:69
 msgid "Do you need help with this plugin? Here are some FAQ for you:"
 msgstr ""
 
-#: admin/settings/settings-page.php:65
+#: admin/settings/settings-page.php:70
 msgid "How this plugin works?"
 msgstr ""
 
-#: admin/settings/settings-page.php:66
+#: admin/settings/settings-page.php:71
 msgid ""
 "This plugin hooks into wordpress content area and shows last modified "
 "information of posts and pages."
 msgstr ""
 
-#: admin/settings/settings-page.php:68
+#: admin/settings/settings-page.php:73
 msgid "Is this plugin compatible with any themes?"
 msgstr ""
 
-#: admin/settings/settings-page.php:69
+#: admin/settings/settings-page.php:74
 msgid "Yes, this plugin is compatible with any theme."
 msgstr ""
 
-#: admin/settings/settings-page.php:71
+#: admin/settings/settings-page.php:76
 msgid "What is the CSS class for posts?"
 msgstr ""
 
-#: admin/settings/settings-page.php:72 admin/settings/settings-page.php:75
+#: admin/settings/settings-page.php:77 admin/settings/settings-page.php:80
 #, php-format
 msgid ""
 "CSS Class is %1$s, for date time %2$s and for author %3$s. Add your custom "
 "style in Custom CSS field."
 msgstr ""
 
-#: admin/settings/settings-page.php:74
+#: admin/settings/settings-page.php:79
 msgid "What is the CSS class for pages?"
 msgstr ""
 
-#: admin/settings/settings-page.php:77
+#: admin/settings/settings-page.php:82
 #, php-format
 msgid "Do I need to add %s tag?"
 msgstr ""
 
-#: admin/settings/settings-page.php:78
+#: admin/settings/settings-page.php:83
 msgid "No, this tag is not required, as it is already added."
 msgstr ""
 
-#: admin/settings/settings-page.php:80
+#: admin/settings/settings-page.php:85
 msgid "How to set custom date/time format?"
 msgstr ""
 
-#: admin/settings/settings-page.php:81
+#: admin/settings/settings-page.php:86
 #, php-format
 msgid "Go to %1$s WordPress Date/Time Syntax %2$s page and read instructions."
 msgstr ""
 
-#: admin/settings/settings-page.php:83
+#: admin/settings/settings-page.php:88
 msgid "How to use template tag functionality?"
 msgstr ""
 
-#: admin/settings/settings-page.php:84
+#: admin/settings/settings-page.php:89
 msgid ""
 "Models the function naming convention used by WordPress for "
 "the_modified_time / get_the_modified_time and similar functions. In this "
@@ -722,148 +751,115 @@ msgid ""
 "etc. and add/replace default published date function with this:"
 msgstr ""
 
-#: admin/settings/settings-page.php:85
+#: admin/settings/settings-page.php:90
 msgid "Displays/echos the last modified info:"
 msgstr ""
 
-#: admin/settings/settings-page.php:88
+#: admin/settings/settings-page.php:93
 msgid "Returns the last modified info:"
 msgstr ""
 
-#: admin/settings/settings-page.php:93
+#: admin/settings/settings-page.php:98
 msgid ""
 "Is it possible to show last modified info to Search Engines and keep hidden "
 "form visitors?"
 msgstr ""
 
-#: admin/settings/settings-page.php:94
-msgid ""
-"Yes, it is possible. Set \"Last Modified Schema Markup Type:\" to \"JSON-LD "
-"Markup\" and \"Last Modified Info Display Method:\" to \"Manual\"."
-msgstr ""
-
-#: admin/settings/settings-page.php:96
-msgid "Published date is equal to modified date. What is the solution?"
-msgstr ""
-
-#: admin/settings/settings-page.php:97
-msgid ""
-"Sometimes you may want to show last modified date only. For that reason, "
-"post published date and modified date would be same and the last modified "
-"date will still appear on post/pages even if it’s the same as the publish "
-"date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) "
-"between post published date and modified date via custom filters."
-msgstr ""
-
-#: admin/settings/settings-page.php:98
-msgid "Create function:"
-msgstr ""
-
 #: admin/settings/settings-page.php:99
-msgid "Add filter for posts:"
+msgid ""
+"Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and "
+"save settings."
 msgstr ""
 
-#: admin/settings/settings-page.php:99
-msgid "for posts"
-msgstr ""
-
-#: admin/settings/settings-page.php:100
-msgid "Add filter for pages:"
-msgstr ""
-
-#: admin/settings/settings-page.php:100
-msgid "for pages"
-msgstr ""
-
-#: admin/settings/settings-page.php:104
+#: admin/settings/settings-page.php:103
 msgid "My Other WordPress Plugins"
 msgstr ""
 
-#: admin/settings/settings-page.php:105
+#: admin/settings/settings-page.php:104
 msgid "Like this plugin? Check out my other WordPress plugins:"
 msgstr ""
 
-#: admin/settings/settings-page.php:106
+#: admin/settings/settings-page.php:105
 msgid ""
 "Ultimate Facebook Comment Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: admin/settings/settings-page.php:107
+#: admin/settings/settings-page.php:106
 msgid "Automatically republish you old evergreen content to grab better SEO."
 msgstr ""
 
-#: admin/settings/settings-page.php:108
+#: admin/settings/settings-page.php:107
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO)."
 msgstr ""
 
-#: admin/settings/settings-page.php:109
+#: admin/settings/settings-page.php:108
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: admin/settings/settings-page.php:110
+#: admin/settings/settings-page.php:109
 msgid ""
 "This plugin helps to easily login or register to wordpress by using SMS or "
 "Email Verification without any password."
 msgstr ""
 
-#: admin/settings/settings-page.php:111
+#: admin/settings/settings-page.php:110
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
 msgstr ""
 
-#: admin/settings/settings-page.php:121
+#: admin/settings/settings-page.php:120
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings/settings-page.php:135
+#: admin/settings/settings-page.php:134
 msgid "Plugin Tools"
 msgstr ""
 
-#: admin/settings/settings-page.php:136 admin/settings/settings-page.php:142
+#: admin/settings/settings-page.php:135 admin/settings/settings-page.php:141
 msgid "Export Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:137
+#: admin/settings/settings-page.php:136
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: admin/settings/settings-page.php:146 admin/settings/settings-page.php:153
+#: admin/settings/settings-page.php:145 admin/settings/settings-page.php:152
 msgid "Import Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:147
+#: admin/settings/settings-page.php:146
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: admin/settings/settings-page.php:157 admin/settings/settings-page.php:163
+#: admin/settings/settings-page.php:156 admin/settings/settings-page.php:162
 msgid "Reset Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:158
+#: admin/settings/settings-page.php:157
 msgid "WARNING:"
 msgstr ""
 
-#: admin/settings/settings-page.php:158
+#: admin/settings/settings-page.php:157
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: admin/settings/settings-page.php:186 admin/settings/settings-page.php:188
+#: admin/settings/settings-page.php:185 admin/settings/settings-page.php:187
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: admin/settings/settings-page.php:189
+#: admin/settings/settings-page.php:188
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
@@ -890,15 +886,15 @@ msgstr ""
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
-#: includes/backend/dashboard-column.php:27
+#: includes/backend/dashboard-column.php:24
 msgid "by"
 msgstr ""
 
-#: includes/backend/dashboard-column.php:29
+#: includes/backend/dashboard-column.php:27
 msgid "Modified date time update is disabled."
 msgstr ""
 
-#: includes/backend/dashboard-column.php:38
+#: includes/backend/dashboard-column.php:36
 msgid "Last Modified"
 msgstr ""
 
@@ -923,50 +919,50 @@ msgid "Last modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:51
-#: includes/backend/dashboard-edit-screen.php:229
+#: includes/backend/dashboard-edit-screen.php:225
 #: includes/backend/gutenburg-edit-screen.php:73
 msgid "Month"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:57
-#: includes/backend/dashboard-edit-screen.php:235
+#: includes/backend/dashboard-edit-screen.php:231
 #: includes/backend/gutenburg-edit-screen.php:79
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:63
-#: includes/backend/dashboard-edit-screen.php:241
+#: includes/backend/dashboard-edit-screen.php:237
 #: includes/backend/gutenburg-edit-screen.php:85
 msgid "Day"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:67
-#: includes/backend/dashboard-edit-screen.php:245
+#: includes/backend/dashboard-edit-screen.php:241
 #: includes/backend/gutenburg-edit-screen.php:89
 msgid "Year"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:69
-#: includes/backend/dashboard-edit-screen.php:247
+#: includes/backend/dashboard-edit-screen.php:243
 #: includes/backend/gutenburg-edit-screen.php:91
 msgid "@"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:71
-#: includes/backend/dashboard-edit-screen.php:249
+#: includes/backend/dashboard-edit-screen.php:245
 #: includes/backend/gutenburg-edit-screen.php:93
 msgid "Hour"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:73
-#: includes/backend/dashboard-edit-screen.php:251
+#: includes/backend/dashboard-edit-screen.php:247
 #: includes/backend/gutenburg-edit-screen.php:95
 msgid ":"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:75
-#: includes/backend/dashboard-edit-screen.php:253
+#: includes/backend/dashboard-edit-screen.php:249
 #: includes/backend/gutenburg-edit-screen.php:97
 msgid "Minute"
 msgstr ""
@@ -982,12 +978,12 @@ msgid "Cancel"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:107
-#: includes/backend/dashboard-edit-screen.php:258
+#: includes/backend/dashboard-edit-screen.php:254
 #: includes/backend/gutenburg-edit-screen.php:130
 msgid "Disable update"
 msgstr ""
 
-#: includes/backend/dashboard-edit-screen.php:226
+#: includes/backend/dashboard-edit-screen.php:222
 msgid "Modified"
 msgstr ""
 
@@ -1031,7 +1027,7 @@ msgstr ""
 msgid " (Scheduled)"
 msgstr ""
 
-#: includes/trigger.php:108
+#: includes/trigger.php:80
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
@@ -1081,5 +1077,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://www.sayandatta.com"
+msgid "https://sayandatta.com"
 msgstr ""

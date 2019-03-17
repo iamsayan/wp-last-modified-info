@@ -2,9 +2,9 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
-Tested up to: 5.0
-Stable tag: 1.4.8
-Requires PHP: 5.4
+Tested up to: 5.1
+Stable tag: 1.4.9
+Requires PHP: 5.6
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -152,17 +152,7 @@ Displays/echos the last modified info:
 
 = Published date is equal to modified date. What is the solution? =
 
-Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
-
-Use `wplmi_date_time_diff_post` for posts and `wplmi_date_time_diff_page` for pages.
-
-Example
-
-`function override_time_diff() {
-    return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need
-}
-add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts
-add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages`
+Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via plugin settings gap option.
 
 = The plugin isn't working or have a bug? =
 
@@ -181,6 +171,16 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Template Tag Options
 
 == Changelog ==
+
+= 1.4.9 =
+Release Date: March 17, 2019
+
+* Added: A new tab to Enable JSON-LD Schema Markup seperately.
+* Improved: Schema Markup Mechanism.
+* Fixed: Wrong Last Modified User was showing for WooCommerce Products.
+* Fixed: Quick Edit option was hidden for some users.
+* Fixed: Some Typo.
+* Fixed: Code Clenup.
 
 = 1.4.8 =
 Release Date: February 11, 2019

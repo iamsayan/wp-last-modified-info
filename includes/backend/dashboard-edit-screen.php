@@ -198,7 +198,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 	global $post, $wp_locale;
 
 	//check if post is object otherwise you're not in singular post
-    if( !is_object( $post ) ) {
+    if( ! is_object( $post ) ) {
 		return;
 	}
 	
@@ -216,11 +216,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 	$ss = mysql2date('s', $datemodified, false);
 	
     // get required data
-	$stop_update = get_post_meta( $post->ID, '_lmt_disableupdate', true );
-
-	if ( did_action( 'quick_edit_custom_box' ) > 1 ) {
-		return;
-	} ?>
+	$stop_update = get_post_meta( $post->ID, '_lmt_disableupdate', true ); ?>
 
 	<div id="inline-edit-col-modified-date">
         <legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>

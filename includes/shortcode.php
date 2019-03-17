@@ -19,7 +19,6 @@ add_shortcode('lmt-post-modified-info', 'lmt_post_modified_info_shortcode');
 add_shortcode('lmt-page-modified-info', 'lmt_page_modified_info_shortcode');
 
 function lmt_post_modified_info_shortcode( $atts ) {
-
     $options = get_option('lmt_plugin_global_settings');
     
     $tf = !empty($options['lmt_custom_post_time_format']) ? esc_html($options['lmt_custom_post_time_format']) : 'h:i a';
@@ -29,14 +28,14 @@ function lmt_post_modified_info_shortcode( $atts ) {
     $ago = !empty($options['lmt_replace_ago_text_with']) ? html_entity_decode($options['lmt_replace_ago_text_with']) : ' ago';
     $a_sep = !empty($options['lmt_post_author_sep']) ? html_entity_decode($options['lmt_post_author_sep']) : ' by';
     $htmltag = isset($options['lmt_html_tag_post']) ? $options['lmt_html_tag_post'] : 'p';
-    $schema = isset($options['lmt_enable_schema_on_post_cb']) ? $options['lmt_enable_schema_on_post_cb'] : 'inline';
+    $schema = isset($options['lmt_enable_schema_on_post_cb']) ? $options['lmt_enable_schema_on_post_cb'] : '';
     $show_author = isset($options['lmt_show_author_cb']) ? $options['lmt_show_author_cb'] : 'do_not_show';
     $author_href = isset($options['lmt_enable_author_hyperlink']) ? $options['lmt_enable_author_hyperlink'] : 'none';
-    $author_id = isset($options['lmt_show_author_list']) ? $options['lmt_show_author_list'] : '1';
+    $author_id = isset($options['lmt_show_author_list']) ? $options['lmt_show_author_list'] : 1;
     $archive = isset($options['lmt_show_on_homepage']) ? $options['lmt_show_on_homepage'] : 'no';
     $format = isset($options['lmt_last_modified_format_post']) ? $options['lmt_last_modified_format_post'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_post']) ? $options['lmt_last_modified_default_format_post'] : 'only_date';
-    $gap = isset($options['lmt_gap_on_post']) ? $options['lmt_gap_on_post'] : '0';
+    $gap = isset($options['lmt_gap_on_post']) ? $options['lmt_gap_on_post'] : 0;
     
     $atts = shortcode_atts(
 		array(
@@ -86,9 +85,9 @@ function lmt_post_modified_info_shortcode( $atts ) {
     if ( $mod_time < ( $pub_time + $gap ) ) return;
 
     $schema_post = '';
-    if( isset($atts['schema']) && ($atts['schema'] == 'inline') ) {
+    if( isset($atts['schema']) && ($atts['schema'] == 1) ) {
         $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true, $atts['id'] ) .'"';
-        if ( is_home() || is_author() || is_category() || is_tag() ) {
+        if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) {
             $schema_post = '';
         }
     }
@@ -162,7 +161,6 @@ function lmt_post_modified_info_shortcode( $atts ) {
 }
 
 function lmt_page_modified_info_shortcode( $atts ) {
-
     $options = get_option('lmt_plugin_global_settings');
     
     $tf = !empty($options['lmt_custom_page_time_format']) ? esc_html($options['lmt_custom_page_time_format']) : 'h:i a';
@@ -172,10 +170,10 @@ function lmt_page_modified_info_shortcode( $atts ) {
     $ago = !empty($options['lmt_replace_ago_text_with_page']) ? html_entity_decode($options['lmt_replace_ago_text_with_page']) : ' ago';
     $a_sep = !empty($options['lmt_page_author_sep']) ? html_entity_decode($options['lmt_page_author_sep']) : ' by';
     $htmltag = isset($options['lmt_html_tag_page']) ? $options['lmt_html_tag_page'] : 'p';
-    $schema = isset($options['lmt_enable_schema_on_page_cb']) ? $options['lmt_enable_schema_on_page_cb'] : 'no_markup';
+    $schema = isset($options['lmt_enable_schema_on_page_cb']) ? $options['lmt_enable_schema_on_page_cb'] : '';
     $show_author = isset($options['lmt_show_author_page_cb']) ? $options['lmt_show_author_page_cb'] : 'do_not_show';
     $author_href = isset($options['lmt_enable_page_author_hyperlink']) ? $options['lmt_enable_page_author_hyperlink'] : 'none';
-    $author_id = isset($options['lmt_show_author_list_page']) ? $options['lmt_show_author_list_page'] : '1';
+    $author_id = isset($options['lmt_show_author_list_page']) ? $options['lmt_show_author_list_page'] : 1;
     $format = isset($options['lmt_last_modified_format_page']) ? $options['lmt_last_modified_format_page'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_page']) ? $options['lmt_last_modified_default_format_page'] : 'only_date';
     $gap = isset($options['lmt_gap_on_page']) ? $options['lmt_gap_on_page'] : '0';
@@ -223,7 +221,7 @@ function lmt_page_modified_info_shortcode( $atts ) {
     if ( $mod_time < ( $pub_time + $gap ) ) return;
 
     $schema_page = '';
-    if( isset($atts['schema']) && ($atts['schema'] == 'inline') ) {
+    if( isset($atts['schema']) && ($atts['schema'] == 1) ) {
         $schema_page = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true, $atts['id'] ) .'"';
     }
    

@@ -53,34 +53,6 @@ function lmt_print_admin_users_css() { ?>
     <?php
 }
 
-function lmt_add_custom_field_lmi( $post_id ) {
-
-    // get wordpress date time format
-    $get_df = get_option( 'date_format' );
-    $get_tf = get_option( 'time_format' );
-    // get post meta data
-    $m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
-    $m_stamp = strtotime( $m_orig );
-    $modified = date_i18n( apply_filters( 'wplmi_custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
-    
-    $shortcode = '[lmt-post-modified-info]';
-    if( is_page() ) {
-        $shortcode = '[lmt-page-modified-info]';
-    }
-
-    // check post meta if not exists
-    if ( !add_post_meta( $post_id, 'wp_last_modified_info', $modified, true ) ) {
-        // update post meta
-        update_post_meta( $post_id, 'wp_last_modified_info', $modified );
-    }
-
-    // check post meta if not exists
-    if ( !add_post_meta( $post_id, 'wplmi_shortcode', $shortcode, true ) ) {
-        // update post meta
-        update_post_meta( $post_id, 'wplmi_shortcode', $shortcode );
-    }
-}
-
 function lmt_post_updated_messages( $messages ) {
     
     // define globally
@@ -114,9 +86,7 @@ function lmt_post_updated_messages( $messages ) {
 add_action( 'wp_head','lmt_style_hook_in_header', 10 );
 // add css to admin page
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
-add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' ); 
-// add last modified timestamp/shortcode in custom field
-add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
+add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
 // add last modified timestamp on post/page updated message
 add_filter( 'post_updated_messages', 'lmt_post_updated_messages' );
 

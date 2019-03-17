@@ -21,24 +21,10 @@ function lmt_enable_last_modified_cb_display() {
 
 function lmt_enable_schema_on_post_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
-    
-    if(!isset($options['lmt_enable_schema_on_post_cb'])){
-        $options['lmt_enable_schema_on_post_cb'] = 'inline';
-    }
-    $items = array(
-        'no_markup'   => __( 'No Markup', 'wp-last-modified-info' ),
-        'jsonld'      => __( 'JSON-LD Markup', 'wp-last-modified-info' ),
-        'inline'      => __( 'Inline Markup (Microdata)', 'wp-last-modified-info' )
-    );
-    echo '<select id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" style="width:25%;">';
-    foreach( $items as $item => $label ) {
-        $selected = ($options['lmt_enable_schema_on_post_cb'] == $item) ? ' selected="selected"' : '';
-        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
-    }
-    echo '</select>';
-    ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select the dateModfied schema markup type for single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
+    ?>  <label class="switch">
+        <input type="checkbox" id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_post_cb']), 1); ?> /> 
+        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+   <?php
 }
 
 function lmt_show_last_modified_time_date_post_display() {
@@ -175,6 +161,34 @@ function lmt_last_modified_default_format_post_display() {
     <?php
 }
 
+function lmt_gap_on_post_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if( !isset($options['lmt_gap_on_post']) ) {
+        $options['lmt_gap_on_post'] = 0;
+    }
+    $items = array(
+        '0'        => __( 'No Gap', 'wp-last-modified-info' ),
+        '86400'    => __( '1 day (24 hours)', 'wp-last-modified-info' ),
+        '172800'   => __( '2 days (48 hours)', 'wp-last-modified-info' ),
+        '259200'   => __( '3 days (72 hours)', 'wp-last-modified-info' ),
+        '432000'   => __( '5 days (120 hours)', 'wp-last-modified-info' ),
+        '604800'   => __( '7 days (168 hours)', 'wp-last-modified-info' ),
+        '1296000'  => __( '15 days (360 hours)', 'wp-last-modified-info' ),
+        '2592000'  => __( '30 days (720 hours)', 'wp-last-modified-info' )
+    );
+    $items = apply_filters( 'wplmi_add_custom_gap_items', $items );
+    echo '<select id="post-gap" name="lmt_plugin_global_settings[lmt_gap_on_post]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ( $options['lmt_gap_on_post'] == $item ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
 function lmt_show_author_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     
@@ -259,34 +273,6 @@ function lmt_custom_post_types_list_display() {
     <?php
 }
 
-function lmt_gap_on_post_display() {
-    $options = get_option('lmt_plugin_global_settings');
-    
-    if( !isset($options['lmt_gap_on_post']) ) {
-        $options['lmt_gap_on_post'] = 0;
-    }
-    $items = array(
-        '0'        => __( 'No Gap', 'wp-last-modified-info' ),
-        '86400'    => __( '1 day (24 hours)', 'wp-last-modified-info' ),
-        '172800'   => __( '2 days (48 hours)', 'wp-last-modified-info' ),
-        '259200'   => __( '3 days (72 hours)', 'wp-last-modified-info' ),
-        '432000'   => __( '5 days (120 hours)', 'wp-last-modified-info' ),
-        '604800'   => __( '7 days (168 hours)', 'wp-last-modified-info' ),
-        '1296000'  => __( '15 days (360 hours)', 'wp-last-modified-info' ),
-        '2592000'  => __( '30 days (720 hours)', 'wp-last-modified-info' )
-    );
-    $items = apply_filters( 'wplmi_add_custom_gap_items', $items );
-    echo '<select id="post-gap" name="lmt_plugin_global_settings[lmt_gap_on_post]" style="width:20%;">';
-    foreach( $items as $item => $label ) {
-        $selected = ( $options['lmt_gap_on_post'] == $item ) ? ' selected="selected"' : '';
-        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
-    }
-    echo '</select>';
-    ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
 /* ============================================================================================== 
                                            page options
 ============================================================================================== */
@@ -301,24 +287,10 @@ function lmt_enable_last_modified_page_cb_display() {
 
 function lmt_enable_schema_on_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
-    
-    if(!isset($options['lmt_enable_schema_on_page_cb'])){
-        $options['lmt_enable_schema_on_page_cb'] = 'no_markup';
-    }
-    $items = array(
-        'no_markup'   => __( 'No Markup', 'wp-last-modified-info' ),
-        'jsonld'      => __( 'JSON-LD Markup', 'wp-last-modified-info' ),
-        'inline'      => __( 'Inline Markup (Microdata)', 'wp-last-modified-info' )
-    );
-    echo '<select id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" style="width:25%;">';
-    foreach( $items as $item => $label ) {
-        $selected = ($options['lmt_enable_schema_on_page_cb'] == $item) ? ' selected="selected"' : '';
-        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
-    }
-    echo '</select>';
-    ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select the dateModfied schema markup type for pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
+    ?>  <label class="switch">
+        <input type="checkbox" id="page-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_page_cb']), 1); ?> /> 
+        <span class="slider-pg round-pg"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+   <?php
 }
 
 function lmt_show_last_modified_time_date_page_display() {
@@ -440,6 +412,34 @@ function lmt_last_modified_default_format_page_display() {
     <?php
 }
 
+function lmt_gap_on_page_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if( !isset($options['lmt_gap_on_page']) ) {
+        $options['lmt_gap_on_page'] = 0;
+    }
+    $items = array(
+        '0'        => __( 'No Gap', 'wp-last-modified-info' ),
+        '86400'    => __( '1 day (24 hours)', 'wp-last-modified-info' ),
+        '172800'   => __( '2 days (48 hours)', 'wp-last-modified-info' ),
+        '259200'   => __( '3 days (72 hours)', 'wp-last-modified-info' ),
+        '432000'   => __( '5 days (120 hours)', 'wp-last-modified-info' ),
+        '604800'   => __( '7 days (168 hours)', 'wp-last-modified-info' ),
+        '1296000'  => __( '15 days (360 hours)', 'wp-last-modified-info' ),
+        '2592000'  => __( '30 days (720 hours)', 'wp-last-modified-info' )
+    );
+    $items = apply_filters( 'wplmi_add_custom_gap_items', $items );
+    echo '<select id="page-gap" name="lmt_plugin_global_settings[lmt_gap_on_page]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ( $options['lmt_gap_on_page'] == $item ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
 function lmt_show_author_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     
@@ -498,34 +498,6 @@ function lmt_show_author_page_cb_display() {
         ?>
     </span>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
-function lmt_gap_on_page_display() {
-    $options = get_option('lmt_plugin_global_settings');
-    
-    if( !isset($options['lmt_gap_on_page']) ) {
-        $options['lmt_gap_on_page'] = 0;
-    }
-    $items = array(
-        '0'        => __( 'No Gap', 'wp-last-modified-info' ),
-        '86400'    => __( '1 day (24 hours)', 'wp-last-modified-info' ),
-        '172800'   => __( '2 days (48 hours)', 'wp-last-modified-info' ),
-        '259200'   => __( '3 days (72 hours)', 'wp-last-modified-info' ),
-        '432000'   => __( '5 days (120 hours)', 'wp-last-modified-info' ),
-        '604800'   => __( '7 days (168 hours)', 'wp-last-modified-info' ),
-        '1296000'  => __( '15 days (360 hours)', 'wp-last-modified-info' ),
-        '2592000'  => __( '30 days (720 hours)', 'wp-last-modified-info' )
-    );
-    $items = apply_filters( 'wplmi_add_custom_gap_items', $items );
-    echo '<select id="page-gap" name="lmt_plugin_global_settings[lmt_gap_on_page]" style="width:20%;">';
-    foreach( $items as $item => $label ) {
-        $selected = ( $options['lmt_gap_on_page'] == $item ) ? ' selected="selected"' : '';
-        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
-    }
-    echo '</select>';
-    ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -680,9 +652,9 @@ function lmt_show_author_tt_cb_display() {
 function lmt_tt_class_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:50%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
-    &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schaam-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schema-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
-        <input type="checkbox" id="enable-schaam-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
+        <input type="checkbox" id="enable-schema-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
         <span class="slider-tt round-tt"></span>
     </label>
     <?php
@@ -696,6 +668,61 @@ function lmt_tt_replace_published_date_display() {
 }
 
 /* ============================================================================================== 
+                                            schema options
+============================================================================================== */
+
+function lmt_enable_jsonld_markup_cb_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if(!isset($options['lmt_enable_jsonld_markup_cb'])){
+        $options['lmt_enable_jsonld_markup_cb'] = 'disable';
+    }
+    $items = array(
+        'enable'   => __( 'Enable JSON-LD Markup', 'wp-last-modified-info' ),
+        'disable'  => __( 'Disable Markup', 'wp-last-modified-info' )
+    );
+    echo '<select id="schema-jsonld" name="lmt_plugin_global_settings[lmt_enable_jsonld_markup_cb]" style="width:25%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ($options['lmt_enable_jsonld_markup_cb'] == $item) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable JSON-LD Markup if you want to show JSON type markup to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function lmt_enable_jsonld_markup_post_types_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if(!isset($options['lmt_enable_jsonld_markup_post_types'])){
+        $options['lmt_enable_jsonld_markup_post_types'][] = '';
+    }
+
+    $post_types = get_post_types(array(
+        'public'   => true,
+    ), 'names'); 
+
+    echo '<select id="schema-jsonld-pt" name="lmt_plugin_global_settings[lmt_enable_jsonld_markup_post_types][]" multiple="multiple" style="width:80%;">';
+    foreach( $post_types as $item ) {
+        $selected = in_array( $item, $options['lmt_enable_jsonld_markup_post_types'] ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $item . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select on which post types you want to enable JSON-LD Markup.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function lmt_enable_schema_support_cb_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    ?>  <label class="switch">
+        <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
+        <span class="slider-schema round-schema"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+/* ============================================================================================== 
                                             misc options
 ============================================================================================== */
 
@@ -704,14 +731,6 @@ function lmt_enable_on_admin_bar_cb_display() {
     ?>  <label class="switch">
         <input type="checkbox" id="admin-bar-display" name="lmt_plugin_global_settings[lmt_enable_on_admin_bar_cb]" value="1" <?php checked(isset($options['lmt_enable_on_admin_bar_cb']), 1); ?> /> 
         <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <?php
-}
-
-function lmt_enable_schema_support_cb_display() {
-    $options = get_option('lmt_plugin_global_settings');
-    ?>  <label class="switch">
-        <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
-        <span class="slider-misc round-misc"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

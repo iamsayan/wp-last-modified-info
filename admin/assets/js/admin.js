@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
         $("#show-post").fadeIn("slow");
         $("#show-page").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -14,6 +15,7 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").fadeIn("slow");
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -24,6 +26,7 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").fadeIn("slow");
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -34,7 +37,8 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
-        $("#show-misc").fadeIn("slow");
+        $("#show-schema").fadeIn("slow");
+        $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
 
@@ -44,8 +48,9 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
-        $("#show-misc").hide();
-        $("#show-tools").fadeIn("slow");
+        $("#show-schema").hide();
+        $("#show-misc").fadeIn("slow");
+        $("#show-tools").hide();
         $("#show-help").hide();
 
     });
@@ -54,6 +59,18 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
+        $("#show-misc").hide();
+        $("#show-tools").fadeIn("slow");
+        $("#show-help").hide();
+
+    });
+
+    $("#btn7").click(function () {
+        $("#show-post").hide();
+        $("#show-page").hide();
+        $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").fadeIn("slow");
@@ -198,6 +215,16 @@ jQuery(document).ready(function ($) {
     });
     $("#lmt-tt-sa").trigger('change');
 
+    $("#schema-jsonld").change(function() {
+        if ($('#schema-jsonld').val() == 'enable') {
+            $('.schema-jsonld-pt').show();
+        }
+        if ($('#schema-jsonld').val() != 'enable') {
+            $('.schema-jsonld-pt').hide();
+        }
+    });
+    $("#schema-jsonld").trigger('change');
+
     $('select#cpt').selectize({
         plugins: ['remove_button'],
         delimiter: ',',
@@ -206,6 +233,14 @@ jQuery(document).ready(function ($) {
         create: false
     });
     
+    $('select#schema-jsonld-pt').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: 'Select post types',
+        persist: false,
+        create: false
+    });
+
     $(".coffee-amt").change(function() {
         var btn = $('.buy-coffee-btn');
         btn.attr('href', btn.data('link') + $(this).val());
@@ -217,6 +252,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-dashboard").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -228,6 +264,7 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").show();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -239,6 +276,19 @@ jQuery(document).ready(function ($) {
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").show();
+        $("#show-schema").hide();
+        $("#show-misc").hide();
+        $("#show-tools").hide();
+        $("#show-help").hide();
+
+    } else if( location.href.match(/page\=wp-last-modified-info#schema/ig) ) {
+
+        $("#btn1").removeClass("active");
+        $("#btn4").addClass("active");
+        $("#show-post").hide();
+        $("#show-page").hide();
+        $("#show-tt").hide();
+        $("#show-schema").show();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -246,10 +296,11 @@ jQuery(document).ready(function ($) {
     } else if( location.href.match(/page\=wp-last-modified-info#misc/ig) ) {
 
         $("#btn1").removeClass("active");
-        $("#btn4").addClass("active");
+        $("#btn5").addClass("active");
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").show();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -257,10 +308,11 @@ jQuery(document).ready(function ($) {
     } else if( location.href.match(/page\=wp-last-modified-info#tools/ig) ) {
 
         $("#btn1").removeClass("active");
-        $("#btn5").addClass("active");
+        $("#btn6").addClass("active");
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").show();
         $("#show-help").hide();
@@ -268,10 +320,11 @@ jQuery(document).ready(function ($) {
     } else if( location.href.match(/page\=wp-last-modified-info#help/ig) ) {
 
         $("#btn1").removeClass("active");
-        $("#btn6").addClass("active");
+        $("#btn7").addClass("active");
         $("#show-post").hide();
         $("#show-page").hide();
         $("#show-tt").hide();
+        $("#show-schema").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").show();

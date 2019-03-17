@@ -47,9 +47,9 @@ if(!empty($options['lmt_post_author_sep'])) {
 }
 
 $schema_post = '';
-if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 'inline') ) {
+if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 1) ) {
     $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
-    if( is_home() || is_author() || is_category() || is_tag() ) {
+    if( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) {
         $schema_post = '';
     }
 }

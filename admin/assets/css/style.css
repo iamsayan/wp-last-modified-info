@@ -12,6 +12,7 @@
 .slider,
 .slider-pg,
 .slider-tt,
+.slider-schema,
 .slider-misc {
   position: absolute;
   cursor: pointer;
@@ -27,6 +28,7 @@
 .slider:before,
 .slider-pg:before,
 .slider-tt:before,
+.slider-schema:before,
 .slider-misc:before {
   position: absolute;
   content: "";
@@ -63,6 +65,14 @@ input:focus+.slider-tt {
   box-shadow: 0 0 1px #009a7f;
 }
 
+input:checked+.slider-schema {
+  background-color: rgb(223, 193, 23);
+}
+
+input:focus+.slider-schema {
+  box-shadow: 0 0 1px rgb(223, 193, 23);
+}
+
 input:checked+.slider-misc {
   background-color: #80C000;
 }
@@ -74,6 +84,7 @@ input:focus+.slider-misc {
 input:checked+.slider:before,
 input:checked+.slider-pg:before,
 input:checked+.slider-tt:before,
+input:checked+.slider-schema:before,
 input:checked+.slider-misc:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
@@ -85,6 +96,7 @@ input:checked+.slider-misc:before {
 .slider.round,
 .slider-pg.round-pg,
 .slider-tt.round-tt,
+.slider-schema.round-schema,
 .slider-misc.round-misc {
   border-radius: 34px;
 }
@@ -92,6 +104,7 @@ input:checked+.slider-misc:before {
 .slider.round:before,
 .slider-pg.round-pg:before,
 .slider-tt.round-tt:before,
+.slider-schema.round-schema:before,
 .slider-misc.round-misc:before {
   border-radius: 50%;
 }
