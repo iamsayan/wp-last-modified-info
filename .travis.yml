@@ -5,9 +5,29 @@ language: php
 sudo: false
  
 php:
+  - 5.6
   - 7.0
   - 7.1
  
 script:
   # Run your tests here.
   - echo 'Tested'
+
+before_deploy:
+  - mkdir build
+  - cp readme.txt build
+  - cp wp-last-modified-info.php build
+ 
+deploy:
+  - provider: wordpress-plugin
+    edge:
+      source: TypistTech/dpl
+      branch: add-wordpress-plugin-deployment
+    on:
+      php: 7.1
+      tags: true
+      repo: TangRufus/tutsplus-dpl-demo
+    slug: wp-last-modified-info
+    username: infosatech
+    password: $WP_ORG_PASSWORD
+    build_dir: build 
