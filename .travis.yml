@@ -1,33 +1,29 @@
 # .travis.yml
  
 language: php
- 
-sudo: false
- 
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
 php:
   - 5.6
   - 7.0
   - 7.1
- 
-script:
-  # Run your tests here.
-  - echo 'Tested'
+  - hhvm
 
-before_deploy:
-  - mkdir build
-  - cp readme.txt build
-  - cp wp-last-modified-info.php build
- 
-deploy:
-  - provider: wordpress-plugin
-    edge:
-      source: TypistTech/dpl
-      branch: add-wordpress-plugin-deployment
-    on:
-      php: 7.1
-      tags: true
-      repo: TangRufus/tutsplus-dpl-demo
-    slug: wp-last-modified-info
-    username: infosatech
-    password: $WP_ORG_PASSWORD
-    build_dir: build 
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+
+matrix:
+  include:
+    - php: 7.0
+      env: WP_VERSION=latest WP_MULTISITE=1
+
+install: composer install
+
+before_script:
+  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+
+script: vendor/bin/phpunit
