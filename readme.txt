@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
 Tested up to: 5.1
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 Requires PHP: 5.6
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -172,6 +172,11 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Email Notification
 
 == Changelog ==
+
+= 1.5.1 =
+Release Date: March 26, 2019
+
+* Fixed: Some Error Notices.
 
 = 1.5.0 =
 Release Date: March 26, 2019
