@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.0
+Release Date: March 26, 2019
+
+* Added: Email Notification feature if someone made any change to any post which supports revision.
+* Fixed: Wrong Settings Label.
+* Fixed: Post Updated Message not showing last modified time.
+* Fixed: Some Typo.
+* Removed: Some unused CSS files.
+
+## 1.4.9
+Release Date: March 17, 2019
+
+* Added: A new tab to Enable JSON-LD Schema Markup seperately.
+* Improved: Schema Markup Mechanism.
+* Fixed: Wrong Last Modified User was showing for WooCommerce Products.
+* Fixed: Quick Edit option was hidden for some users.
+* Fixed: Some Typo.
+* Fixed: Code Clenup.
+
 ## 1.4.8
 Release Date: February 11, 2019
 
