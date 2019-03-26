@@ -22,9 +22,10 @@
         <a href="#page" class="nav-tab" id="btn2"><span class="dashicons dashicons-admin-page" style="padding-top: 2px;"></span> <?php _e( 'Page Options', 'wp-last-modified-info' ); ?></a>
         <a href="#template-tags" class="nav-tab" id="btn3"><span class="dashicons dashicons-tag" style="padding-top: 2px;"></span> <?php _e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
         <a href="#schema" class="nav-tab" id="btn4"><span class="dashicons dashicons-editor-code" style="padding-top: 2px;"></span> <?php _e( 'Schema', 'wp-last-modified-info' ); ?></a>
-        <a href="#misc" class="nav-tab" id="btn5"><span class="dashicons dashicons-screenoptions" style="padding-top: 2px;"></span> <?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
-        <a href="#tools" class="nav-tab" id="btn6"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
-        <a href="#help" class="nav-tab" id="btn7"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
+        <a href="#notification" class="nav-tab" id="btn5"><span class="dashicons dashicons-email" style="padding-top: 2px;"></span> <?php _e( 'Notification', 'wp-last-modified-info' ); ?></a>
+        <a href="#misc" class="nav-tab" id="btn6"><span class="dashicons dashicons-screenoptions" style="padding-top: 2px;"></span> <?php _e( 'Misc. Options', 'wp-last-modified-info' ); ?></a>
+        <a href="#tools" class="nav-tab" id="btn7"><span class="dashicons dashicons-admin-tools" style="padding-top: 2px;"></span> <?php _e( 'Tools', 'wp-last-modified-info' ); ?></a>
+        <a href="#help" class="nav-tab" id="btn8"><span class="dashicons dashicons-editor-help" style="padding-top: 2px;"></span> <?php _e( 'Help', 'wp-last-modified-info' ); ?></a>
     </div>
     <script>
         var header = document.getElementById("nav-container");
@@ -43,24 +44,29 @@
                 <?php if ( function_exists('wp_nonce_field') ) { wp_nonce_field('wp_last_modified_info'); } ?>
                 <?php settings_fields('lmt_post_page_plugin_section'); ?>
                 <div id="show-post">
-                    <?php do_settings_sections('lmt_post_option'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save' ); ?>
+                    <?php do_settings_sections('lmt_post_section'); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-posts' ); ?>
                 </div>
                 <div style="display:none" id="show-page">
-                    <?php do_settings_sections('lmt_page_option'); ?>
+                    <?php do_settings_sections('lmt_page_section'); ?>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-page' ); ?>
                 </div>
                 <div style="display:none" id="show-tt">
-                    <?php do_settings_sections('lmt_template_tag_option'); ?>
+                    <?php do_settings_sections('lmt_template_tag_section'); ?>
                     <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-last-modified-info' ); ?></i>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-tt' ); ?>
                 </div>
                 <div style="display:none" id="show-schema">
-                    <?php do_settings_sections('lmt_schema_option'); ?>
+                    <?php do_settings_sections('lmt_schema_section'); ?>
+                    <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Enable "Enable Enhanced Schema Support" if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore. Otherwise it can show invalid markup.', 'wp-last-modified-info' ); ?></i>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-schema' ); ?>
                 </div>
+                <div style="display:none" id="show-noti">
+                    <?php do_settings_sections('lmt_notification_section'); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-notification' ); ?>
+                </div>
                 <div style="display:none" id="show-misc">
-                    <?php do_settings_sections('lmt_misc_option'); ?>
+                    <?php do_settings_sections('lmt_misc_section'); ?>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-misc' ); ?>
                 </div>
                 <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
@@ -186,6 +192,6 @@
         </div>
         <span class="coffee-heading"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
         <p style="text-align: justify;"><?php printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . LMT_PLUGIN_VERSION . '</strong>' ); ?></strong></p>
-        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.com" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
     </div>
 </div>

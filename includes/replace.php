@@ -22,8 +22,8 @@ function lmt_html_replace_ob_callback( $buffer ) {
 
     $find = !empty($options['lmt_tt_replace_published_date']) ? $options['lmt_tt_replace_published_date'] : '';
     $find = str_replace( "\r", "", $find );
-    $find = str_replace( '%%published_date%%', get_the_date( $format ), $find );
-    $find = str_replace( '%%modified_date%%', get_the_modified_date( $format ), $find );
+    $find = str_replace( '%published_date%', get_the_date( $format ), $find );
+    $find = str_replace( '%modified_date%', get_the_modified_date( $format ), $find );
 
     $buffer = str_replace( $find, html_entity_decode( get_the_last_modified_info() ), $buffer );
     return $buffer;

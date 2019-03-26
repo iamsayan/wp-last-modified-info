@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
 Tested up to: 5.1
-Stable tag: 1.4.9
+Stable tag: 1.5.0
 Requires PHP: 5.6
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
@@ -33,15 +33,16 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
 * Inserts ‘dateModified’ schema markup to your WordPress posts automatically.
 * Allows you to display last modified info on all post types column and publish meta box in the dashboard with the author name.
-* Allows you to sort posts/pages in last updated/modified date time order.
+* Allows you to sort posts/pages in last updated/modified date-time order.
 * Allows you to replace post published date with post modified info.
-* Allows you to display last modified info on your post as human readable format, i.e. Days/weeks/months/years ago.
+* Allows you to display last modified info on your post as human-readable format, i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
 * Allows you to display last modified author info in posts, pages.
 * Allows you to add last modified timestamp in post/page's custom field.
 * Allows you to edit last modified date and time from the post edit screen and quick edit screen as well.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Elementor Dynamic Tags support with 'dateModified' schema markup.
+* Send Email Notification when anyone makes changes to any post of your website.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -82,7 +83,7 @@ After enabling options in 'Settings > WP Last Modified Info', open any page or p
 
 This plugin hooks into the WordPress content area and displays the last modified information on posts and pages.
 
-= Will it require editing code to show Last Modified date? =
+= Will it requires editing code to show Last Modified date? =
 
 Not at all. You can show the revised info by just installing this plugin. Use the Plugin Settings to customize the date/time format according to your need.
 
@@ -150,9 +151,9 @@ Displays/echos the last modified info:
 	}
 ?>`
 
-= Published date is equal to modified date. What is the solution? =
+= Published date is equal to the modified date. What is the solution? =
 
-Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via plugin settings gap option.
+Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be the same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via plugin settings gap option.
 
 = The plugin isn't working or have a bug? =
 
@@ -164,94 +165,22 @@ Post detailed information about the issue in the [support forum](https://wordpre
 2. Google Structured data result
 3. Post / Page / Custom post types admin column: Last Modified column with author name.
 4. Added last modified/updated info on post/page publish box and in post updated message.
-5. Auto-generate last modified info in custom fields after post/page save.
-6. Last modified posts widgets in the dashboard.
-7. Post Options
-8. Page Options
-9. Template Tag Options
+5. Last modified posts widgets in the dashboard.
+6. Post Options
+7. Page Options
+8. Template Tag Options
+9. Email Notification
 
 == Changelog ==
 
-= 1.4.9 =
-Release Date: March 17, 2019
+= 1.5.0 =
+Release Date: March 26, 2019
 
-* Added: A new tab to Enable JSON-LD Schema Markup seperately.
-* Improved: Schema Markup Mechanism.
-* Fixed: Wrong Last Modified User was showing for WooCommerce Products.
-* Fixed: Quick Edit option was hidden for some users.
+* Added: Email Notification feature if someone made any change to any post which supports revision.
+* Fixed: Wrong Settings Label.
+* Fixed: Post Updated Message not showing last modified time.
 * Fixed: Some Typo.
-* Fixed: Code Clenup.
-
-= 1.4.8 =
-Release Date: February 11, 2019
-
-* Added: Option to set gap between post published date and modified date.
-* Added: WPML Compatibility.
-* Fixed: Multisite Broken Login.
-
-= 1.4.7 =
-Release Date: January 31, 2019
-
-* Tweak: Using wptexturize to fix the quoted post content in schema markup description. Props to Dirk L.
-* Fixed: 'Trying to get property of non-object error' notice was showing for some users.
-* Fixed: Placeholder shows wrong template tags variable i.e. `%%pub_date%%` instead of `%%published_date%%`. Now it has been fixed.
-* Fixed: An undefined variable notice in template tags.
-* Fixed: Author Meta is not showing for some GeneratePress Theme users on Author Archive Page if Replace Post Meta option is enabled.
-
-= 1.4.6 =
-Release Date: January 27, 2019
-
-* NEW: GeneratePress Theme Support.
-* NEW: Astra Theme Support.
-* NEW: Added shortcodes attributes.
-* NEW: Added an option to replace post published date with post modified date without any theme file editing.
-* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" in use.
-* Improved: Genesis Theme Schema Support.
-* Tweak: Now this plugin uses wordpress date/time format by default. 
-* Fixed: Error Notice in 404 page.
-* Fixed: Some Typo.
-
-= 1.4.5 =
-Release Date: January 17, 2019
-
-* Tweak: Escape all shortcodes in JSON-LD schema markup Description.
-* Fixed: Schema markup conditions on archive pages.
-* Fixed: Language attributes filters.
-
-= 1.4.4 =
-Release Date: January 16, 2019
-
-* Added: Option to set JSON-LD Schema Markup.
-* Added: An option to show last modified info on all archives if your theme supports it.
-* Fixed: A problem with unsupported schema themes.
-* Fixed: Last Modified column displays nothing for some users.
-* Fixed: Name change of menu item.
-
-= 1.4.3 =
-Release Date: January 10, 2019
-
-* Fixed: A problem with Soliloque and Envira Gallery last modified column.
-* Fixed: All incorrectly translated strings.
-
-= 1.4.2 =
-Release Date: December 20, 2018
-
-* Tweak: Now all date format show as the date in localized format.
-* Fixed: A bug where dateModified schema always returns in local time format instead of GMT.
-
-= 1.4.1 =
-Release Date: December 14, 2018
-
-* Tweak: Now it is possible to edit last modified info from Gutenberg edit screen.
-* Fixed: Some minor bug fixed.
-
-= 1.4.0 =
-Release Date: December 11, 2018
-
-* NEW: Elementor Dynamic Tags Support with schema markup.
-* Added: Option to link author name with their Website.
-* Fixed: A bug where link to author email always returns original post author's email instead of last modified author's email.
-* Fixed: Some incorrectly translated strings.
+* Removed: Some unused CSS files.
 
 = Other Versions =
 
@@ -259,14 +188,5 @@ Release Date: December 11, 2018
 
 == Upgrade Notice ==
 
-= 1.3.5 =
-In this release, admin UI has been improved.
-
-= 1.3.4 =
-In this release, some incorrectly translated strings has been fixed.
-
-= 1.3.3 =
-In this release, several bug fixes and enhancements has been introduced. Please update the plugin on your website now to get these fixes and enhancements.
-
-= 1.3.2 =
-In this release, several bug fixes and enhancements has been introduced. Please update the plugin on your website now to get these fixes and enhancements.
+= 1.5.0 =
+In this release, Notification Feature has been added.

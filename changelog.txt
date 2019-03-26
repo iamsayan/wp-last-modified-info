@@ -1,5 +1,86 @@
 == Changelog ==
 
+= 1.4.9 =
+Release Date: March 17, 2019
+
+* Added: A new tab to Enable JSON-LD Schema Markup seperately.
+* Improved: Schema Markup Mechanism.
+* Fixed: Wrong Last Modified User was showing for WooCommerce Products.
+* Fixed: Quick Edit option was hidden for some users.
+* Fixed: Some Typo.
+* Fixed: Code Clenup.
+
+= 1.4.8 =
+Release Date: February 11, 2019
+
+* Added: Option to set gap between post published date and modified date.
+* Added: WPML Compatibility.
+* Fixed: Multisite Broken Login.
+
+= 1.4.7 =
+Release Date: January 31, 2019
+
+* Tweak: Using wptexturize to fix the quoted post content in schema markup description. Props to Dirk L.
+* Fixed: 'Trying to get property of non-object error' notice was showing for some users.
+* Fixed: Placeholder shows wrong template tags variable i.e. `%%pub_date%%` instead of `%%published_date%%`. Now it has been fixed.
+* Fixed: An undefined variable notice in template tags.
+* Fixed: Author Meta is not showing for some GeneratePress Theme users on Author Archive Page if Replace Post Meta option is enabled.
+
+= 1.4.6 =
+Release Date: January 27, 2019
+
+* NEW: GeneratePress Theme Support.
+* NEW: Astra Theme Support.
+* NEW: Added shortcodes attributes.
+* NEW: Added an option to replace post published date with post modified date without any theme file editing.
+* NEW: Added filters to change post published date format if the option "Enter text or HTML to Replace" in use.
+* Improved: Genesis Theme Schema Support.
+* Tweak: Now this plugin uses wordpress date/time format by default. 
+* Fixed: Error Notice in 404 page.
+* Fixed: Some Typo.
+
+= 1.4.5 =
+Release Date: January 17, 2019
+
+* Tweak: Escape all shortcodes in JSON-LD schema markup Description.
+* Fixed: Schema markup conditions on archive pages.
+* Fixed: Language attributes filters.
+
+= 1.4.4 =
+Release Date: January 16, 2019
+
+* Added: Option to set JSON-LD Schema Markup.
+* Added: An option to show last modified info on all archives if your theme supports it.
+* Fixed: A problem with unsupported schema themes.
+* Fixed: Last Modified column displays nothing for some users.
+* Fixed: Name change of menu item.
+
+= 1.4.3 =
+Release Date: January 10, 2019
+
+* Fixed: A problem with Soliloque and Envira Gallery last modified column.
+* Fixed: All incorrectly translated strings.
+
+= 1.4.2 =
+Release Date: December 20, 2018
+
+* Tweak: Now all date format show as the date in localized format.
+* Fixed: A bug where dateModified schema always returns in local time format instead of GMT.
+
+= 1.4.1 =
+Release Date: December 14, 2018
+
+* Tweak: Now it is possible to edit last modified info from Gutenberg edit screen.
+* Fixed: Some minor bug fixed.
+
+= 1.4.0 =
+Release Date: December 11, 2018
+
+* NEW: Elementor Dynamic Tags Support with schema markup.
+* Added: Option to link author name with their Website.
+* Fixed: A bug where link to author email always returns original post author's email instead of last modified author's email.
+* Fixed: Some incorrectly translated strings.
+
 = 1.3.10 =
 Release Date: December 10, 2018
 

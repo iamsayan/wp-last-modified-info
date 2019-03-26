@@ -17,6 +17,8 @@
             <key name="lmt_tt_set_format_box" />
             <key name="lmt_tt_author_sep" />
             <key name="lmt_replace_ago_text_with_tt" />
+            <key name="lmt_email_subject" />
+            <key name="lmt_email_message" />
         </key>
     </admin-texts>   
 </wpml-config>

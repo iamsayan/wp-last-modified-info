@@ -5,6 +5,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -16,6 +17,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").fadeIn("slow");
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -27,6 +29,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").fadeIn("slow");
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -38,6 +41,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").fadeIn("slow");
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -49,7 +53,8 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
-        $("#show-misc").fadeIn("slow");
+        $("#show-noti").fadeIn("slow");
+        $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
 
@@ -60,8 +65,9 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
-        $("#show-misc").hide();
-        $("#show-tools").fadeIn("slow");
+        $("#show-noti").hide();
+        $("#show-misc").fadeIn("slow");
+        $("#show-tools").hide();
         $("#show-help").hide();
 
     });
@@ -71,6 +77,19 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
+        $("#show-misc").hide();
+        $("#show-tools").fadeIn("slow");
+        $("#show-help").hide();
+
+    });
+
+    $("#btn8").click(function () {
+        $("#show-post").hide();
+        $("#show-page").hide();
+        $("#show-tt").hide();
+        $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").fadeIn("slow");
@@ -241,6 +260,22 @@ jQuery(document).ready(function ($) {
         create: false
     });
 
+    $('input#noti-email-receive').selectize({
+        plugins: ['remove_button', 'restore_on_backspace'],
+        persist: false,
+        create: true,
+        createOnBlur: true,
+        delimiter: ',',
+    });
+
+    $('select#noti-pt').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        placeholder: 'Select post types',
+        persist: false,
+        create: false
+    });
+
     $(".coffee-amt").change(function() {
         var btn = $('.buy-coffee-btn');
         btn.attr('href', btn.data('link') + $(this).val());
@@ -253,6 +288,7 @@ jQuery(document).ready(function ($) {
         $("#show-dashboard").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -265,6 +301,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").show();
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -277,6 +314,7 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").show();
         $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
@@ -289,11 +327,12 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").show();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
 
-    } else if( location.href.match(/page\=wp-last-modified-info#misc/ig) ) {
+    } else if( location.href.match(/page\=wp-last-modified-info#notification/ig) ) {
 
         $("#btn1").removeClass("active");
         $("#btn5").addClass("active");
@@ -301,11 +340,12 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
-        $("#show-misc").show();
+        $("#show-noti").show();
+        $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").hide();
 
-    } else if( location.href.match(/page\=wp-last-modified-info#tools/ig) ) {
+    } else if( location.href.match(/page\=wp-last-modified-info#misc/ig) ) {
 
         $("#btn1").removeClass("active");
         $("#btn6").addClass("active");
@@ -313,11 +353,12 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
-        $("#show-misc").hide();
-        $("#show-tools").show();
+        $("#show-noti").hide();
+        $("#show-misc").show();
+        $("#show-tools").hide();
         $("#show-help").hide();
 
-    } else if( location.href.match(/page\=wp-last-modified-info#help/ig) ) {
+    } else if( location.href.match(/page\=wp-last-modified-info#tools/ig) ) {
 
         $("#btn1").removeClass("active");
         $("#btn7").addClass("active");
@@ -325,6 +366,20 @@ jQuery(document).ready(function ($) {
         $("#show-page").hide();
         $("#show-tt").hide();
         $("#show-schema").hide();
+        $("#show-noti").hide();
+        $("#show-misc").hide();
+        $("#show-tools").show();
+        $("#show-help").hide();
+
+    } else if( location.href.match(/page\=wp-last-modified-info#help/ig) ) {
+
+        $("#btn1").removeClass("active");
+        $("#btn8").addClass("active");
+        $("#show-post").hide();
+        $("#show-page").hide();
+        $("#show-tt").hide();
+        $("#show-schema").hide();
+        $("#show-noti").hide();
         $("#show-misc").hide();
         $("#show-tools").hide();
         $("#show-help").show();

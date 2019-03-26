@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
- * Version: 1.4.9
+ * Version: 1.5.0
  * Author: Sayan Datta
  * Author URI: https://sayandatta.com
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.4.9' );
+define( 'LMT_PLUGIN_VERSION', '1.5.0' );
 
 // debug scripts
 //define ( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
@@ -99,7 +99,6 @@ function lmt_custom_admin_styles_scripts() {
     $current_screen = get_current_screen();
     if ( strpos($current_screen->base, 'wp-last-modified-info') !== false ) {
         wp_enqueue_style( 'lmt-admin', plugins_url( 'admin/assets/css/admin.min.css', __FILE__ ), array(), $ver );
-        wp_enqueue_style( 'lmt-style', plugins_url( 'admin/assets/css/style.min.css', __FILE__ ), array(), $ver );
         wp_enqueue_script( 'lmt-admin-script', plugins_url( 'admin/assets/js/admin.min.js', __FILE__ ), array(), $ver );
 
         wp_enqueue_style( 'lmt-selectize', plugins_url( 'admin/assets/lib/selectize/css/selectize.min.css', __FILE__ ), array(), '0.12.6' ); 
@@ -158,7 +157,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/theme-support.php';
 */
 function lmt_below_php_version_notice() {
     if( version_compare( PHP_VERSION, '5.6', '<' ) ) {
-	    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'wp-last-modified-info' ) . '</p></div>';
+	    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.6 or later.', 'wp-last-modified-info' ) . '</p></div>';
     }
 }
 

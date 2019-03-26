@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-03-17 23:02+0530\n"
-"PO-Revision-Date: 2019-03-17 23:02+0530\n"
+"POT-Creation-Date: 2019-03-26 08:57+0530\n"
+"PO-Revision-Date: 2019-03-26 08:56+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr ""
 #: admin/elementor/class/modified-time.php:60
 #: admin/settings/settings-fields.php:201
 #: admin/settings/settings-fields.php:452
-#: admin/settings/settings-fields.php:599 admin/settings/settings-page.php:183
+#: admin/settings/settings-fields.php:599 admin/settings/settings-page.php:189
 msgid "Custom"
 msgstr ""
 
@@ -484,15 +484,52 @@ msgstr ""
 
 #: admin/settings/settings-fields.php:733
 msgid ""
+"Enable this if you want to receive email notification if anyone makes "
+"changes to any post of your blog."
+msgstr ""
+
+#: admin/settings/settings-fields.php:741
+msgid "Enable this if you want to send notification to the post author."
+msgstr ""
+
+#: admin/settings/settings-fields.php:749
+msgid ""
+"Enable this if you want to enable notification when anyone makes changes to "
+"any draft post."
+msgstr ""
+
+#: admin/settings/settings-fields.php:786
+msgid ""
+"[%site_name%] A %post_type% of %author_name% has been modified on your blog."
+msgstr ""
+
+#: admin/settings/settings-fields.php:792
+msgid "Use these tags into email subject - "
+msgstr ""
+
+#: admin/settings/settings-fields.php:800
+msgid "The following changes are made on a %post_type% of your blog by "
+msgstr ""
+
+#: admin/settings/settings-fields.php:814
+msgid "Use these tags into email body - "
+msgstr ""
+
+#: admin/settings/settings-fields.php:814
+msgid "Email body supports HTML."
+msgstr ""
+
+#: admin/settings/settings-fields.php:826
+msgid ""
 "Enable this if you want to show last modified info on wordpress admin bar."
 msgstr ""
 
-#: admin/settings/settings-fields.php:740
+#: admin/settings/settings-fields.php:833
 #, php-format
 msgid "Do not add %s tag. This tag is not required, as it is already added."
 msgstr ""
 
-#: admin/settings/settings-fields.php:748
+#: admin/settings/settings-fields.php:841
 msgid ""
 "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
@@ -505,7 +542,7 @@ msgstr ""
 msgid "Enable for Posts on Frontend:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:22
+#: admin/settings/settings-loader.php:22 admin/settings/settings-loader.php:36
 msgid "Enable Inline Schema Markup:"
 msgstr ""
 
@@ -535,7 +572,7 @@ msgid "Display Last Modified Author Name:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:30
-msgid "Enable on This Custom Post Types:"
+msgid "Enable on this Custom Post Types:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:34 admin/settings/settings-page.php:22
@@ -544,10 +581,6 @@ msgstr ""
 
 #: admin/settings/settings-loader.php:35
 msgid "Enable for Pages on Frontend:"
-msgstr ""
-
-#: admin/settings/settings-loader.php:36
-msgid "Last Modified Schema Markup Type:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:38
@@ -583,42 +616,74 @@ msgid "Last Modified Info Format:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:55
-msgid "Set Custom CSS Class (if applicable):"
+msgid "Set Custom CSS Class (if required):"
 msgstr ""
 
 #: admin/settings/settings-loader.php:56
 msgid "Enter text or HTML to Replace:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:58
+#: admin/settings/settings-loader.php:59
 msgid "Schema Options"
 msgstr ""
 
-#: admin/settings/settings-loader.php:59
+#: admin/settings/settings-loader.php:60
 msgid "Enable JSON-LD Schema Markup:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:60
+#: admin/settings/settings-loader.php:61
 msgid "Select Post Types for JSON-LD Markup:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:61
+#: admin/settings/settings-loader.php:62
 msgid "Enable Enhanced Schema Support:"
 msgstr ""
 
-#: admin/settings/settings-loader.php:64
-msgid "Miscellaneous Options"
-msgstr ""
-
 #: admin/settings/settings-loader.php:65
-msgid "Show Modified Info on Admin Bar:"
+msgid "Email Notification"
 msgstr ""
 
 #: admin/settings/settings-loader.php:66
-msgid "Custom CSS Code:"
+msgid "Enable Notification on Post Update?"
 msgstr ""
 
 #: admin/settings/settings-loader.php:67
+msgid "Send Notification to Post Author?"
+msgstr ""
+
+#: admin/settings/settings-loader.php:68
+msgid "Send Notification when Draft Changes?"
+msgstr ""
+
+#: admin/settings/settings-loader.php:69
+msgid "Send Email to these Email Recipient(s):"
+msgstr ""
+
+#: admin/settings/settings-loader.php:70
+msgid "Select Posts Types for Diff Detection:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:71
+msgid "Notification Email Subject:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:72
+msgid "Notification Email Message Body:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:75
+msgid "Miscellaneous Options"
+msgstr ""
+
+#: admin/settings/settings-loader.php:76
+msgid "Show Modified Info on Admin Bar:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:77
+msgid "Custom CSS Code:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:78
 msgid "Delete Plugin Data upon Uninstallation:"
 msgstr ""
 
@@ -649,101 +714,115 @@ msgid "Schema"
 msgstr ""
 
 #: admin/settings/settings-page.php:25
-msgid "Misc. Options"
+msgid "Notification"
 msgstr ""
 
 #: admin/settings/settings-page.php:26
-msgid "Tools"
+msgid "Misc. Options"
 msgstr ""
 
 #: admin/settings/settings-page.php:27
+msgid "Tools"
+msgstr ""
+
+#: admin/settings/settings-page.php:28
 msgid "Help"
 msgstr ""
 
-#: admin/settings/settings-page.php:47 admin/settings/settings-page.php:51
-#: admin/settings/settings-page.php:56 admin/settings/settings-page.php:60
-#: admin/settings/settings-page.php:64 admin/settings/settings-page.php:126
+#: admin/settings/settings-page.php:48 admin/settings/settings-page.php:52
+#: admin/settings/settings-page.php:57 admin/settings/settings-page.php:62
+#: admin/settings/settings-page.php:66 admin/settings/settings-page.php:70
+#: admin/settings/settings-page.php:132
 msgid "Save Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:55
+#: admin/settings/settings-page.php:56 admin/settings/settings-page.php:61
 msgid "Note:"
 msgstr ""
 
-#: admin/settings/settings-page.php:55
+#: admin/settings/settings-page.php:56
 msgid ""
 "Always backup .php files before making any changes, the backup file comes in "
 "handy for restoring the default file in case WordPress goes crazy."
 msgstr ""
 
-#: admin/settings/settings-page.php:66
+#: admin/settings/settings-page.php:61
+msgid ""
+"Enable \"Enable Enhanced Schema Support\" if your theme does not support "
+"schema markup. This will add WebPage type schema support to the html tag. "
+"Please check Schema Markup before activate this option using Google "
+"Structured Data Tool. If Google already detects schema markup, you don't "
+"need to enable it anymore. Otherwise it can show invalid markup."
+msgstr ""
+
+#: admin/settings/settings-page.php:72
 msgid "Please wait..."
 msgstr ""
 
-#: admin/settings/settings-page.php:67
+#: admin/settings/settings-page.php:73
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: admin/settings/settings-page.php:69
+#: admin/settings/settings-page.php:75
 msgid "Do you need help with this plugin? Here are some FAQ for you:"
 msgstr ""
 
-#: admin/settings/settings-page.php:70
+#: admin/settings/settings-page.php:76
 msgid "How this plugin works?"
 msgstr ""
 
-#: admin/settings/settings-page.php:71
+#: admin/settings/settings-page.php:77
 msgid ""
 "This plugin hooks into wordpress content area and shows last modified "
 "information of posts and pages."
 msgstr ""
 
-#: admin/settings/settings-page.php:73
+#: admin/settings/settings-page.php:79
 msgid "Is this plugin compatible with any themes?"
 msgstr ""
 
-#: admin/settings/settings-page.php:74
+#: admin/settings/settings-page.php:80
 msgid "Yes, this plugin is compatible with any theme."
 msgstr ""
 
-#: admin/settings/settings-page.php:76
+#: admin/settings/settings-page.php:82
 msgid "What is the CSS class for posts?"
 msgstr ""
 
-#: admin/settings/settings-page.php:77 admin/settings/settings-page.php:80
+#: admin/settings/settings-page.php:83 admin/settings/settings-page.php:86
 #, php-format
 msgid ""
 "CSS Class is %1$s, for date time %2$s and for author %3$s. Add your custom "
 "style in Custom CSS field."
 msgstr ""
 
-#: admin/settings/settings-page.php:79
+#: admin/settings/settings-page.php:85
 msgid "What is the CSS class for pages?"
 msgstr ""
 
-#: admin/settings/settings-page.php:82
+#: admin/settings/settings-page.php:88
 #, php-format
 msgid "Do I need to add %s tag?"
 msgstr ""
 
-#: admin/settings/settings-page.php:83
+#: admin/settings/settings-page.php:89
 msgid "No, this tag is not required, as it is already added."
 msgstr ""
 
-#: admin/settings/settings-page.php:85
+#: admin/settings/settings-page.php:91
 msgid "How to set custom date/time format?"
 msgstr ""
 
-#: admin/settings/settings-page.php:86
+#: admin/settings/settings-page.php:92
 #, php-format
 msgid "Go to %1$s WordPress Date/Time Syntax %2$s page and read instructions."
 msgstr ""
 
-#: admin/settings/settings-page.php:88
+#: admin/settings/settings-page.php:94
 msgid "How to use template tag functionality?"
 msgstr ""
 
-#: admin/settings/settings-page.php:89
+#: admin/settings/settings-page.php:95
 msgid ""
 "Models the function naming convention used by WordPress for "
 "the_modified_time / get_the_modified_time and similar functions. In this "
@@ -751,115 +830,115 @@ msgid ""
 "etc. and add/replace default published date function with this:"
 msgstr ""
 
-#: admin/settings/settings-page.php:90
+#: admin/settings/settings-page.php:96
 msgid "Displays/echos the last modified info:"
 msgstr ""
 
-#: admin/settings/settings-page.php:93
+#: admin/settings/settings-page.php:99
 msgid "Returns the last modified info:"
 msgstr ""
 
-#: admin/settings/settings-page.php:98
+#: admin/settings/settings-page.php:104
 msgid ""
 "Is it possible to show last modified info to Search Engines and keep hidden "
 "form visitors?"
 msgstr ""
 
-#: admin/settings/settings-page.php:99
+#: admin/settings/settings-page.php:105
 msgid ""
 "Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and "
 "save settings."
 msgstr ""
 
-#: admin/settings/settings-page.php:103
+#: admin/settings/settings-page.php:109
 msgid "My Other WordPress Plugins"
 msgstr ""
 
-#: admin/settings/settings-page.php:104
+#: admin/settings/settings-page.php:110
 msgid "Like this plugin? Check out my other WordPress plugins:"
 msgstr ""
 
-#: admin/settings/settings-page.php:105
+#: admin/settings/settings-page.php:111
 msgid ""
 "Ultimate Facebook Comment Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: admin/settings/settings-page.php:106
+#: admin/settings/settings-page.php:112
 msgid "Automatically republish you old evergreen content to grab better SEO."
 msgstr ""
 
-#: admin/settings/settings-page.php:107
+#: admin/settings/settings-page.php:113
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO)."
 msgstr ""
 
-#: admin/settings/settings-page.php:108
+#: admin/settings/settings-page.php:114
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: admin/settings/settings-page.php:109
+#: admin/settings/settings-page.php:115
 msgid ""
 "This plugin helps to easily login or register to wordpress by using SMS or "
 "Email Verification without any password."
 msgstr ""
 
-#: admin/settings/settings-page.php:110
+#: admin/settings/settings-page.php:116
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
 msgstr ""
 
-#: admin/settings/settings-page.php:120
+#: admin/settings/settings-page.php:126
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings/settings-page.php:134
+#: admin/settings/settings-page.php:140
 msgid "Plugin Tools"
 msgstr ""
 
-#: admin/settings/settings-page.php:135 admin/settings/settings-page.php:141
+#: admin/settings/settings-page.php:141 admin/settings/settings-page.php:147
 msgid "Export Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:136
+#: admin/settings/settings-page.php:142
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: admin/settings/settings-page.php:145 admin/settings/settings-page.php:152
+#: admin/settings/settings-page.php:151 admin/settings/settings-page.php:158
 msgid "Import Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:146
+#: admin/settings/settings-page.php:152
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: admin/settings/settings-page.php:156 admin/settings/settings-page.php:162
+#: admin/settings/settings-page.php:162 admin/settings/settings-page.php:168
 msgid "Reset Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:157
+#: admin/settings/settings-page.php:163
 msgid "WARNING:"
 msgstr ""
 
-#: admin/settings/settings-page.php:157
+#: admin/settings/settings-page.php:163
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: admin/settings/settings-page.php:185 admin/settings/settings-page.php:187
+#: admin/settings/settings-page.php:191 admin/settings/settings-page.php:193
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: admin/settings/settings-page.php:188
+#: admin/settings/settings-page.php:194
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
@@ -900,7 +979,7 @@ msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:43
 #: includes/backend/dashboard-edit-screen.php:123
-#: includes/backend/gutenburg-edit-screen.php:146
+#: includes/backend/dashboard-gutenburg.php:146
 msgid "Updated on:"
 msgstr ""
 
@@ -909,77 +988,77 @@ msgid "Edit"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:45
-#: includes/backend/gutenburg-edit-screen.php:63
+#: includes/backend/dashboard-gutenburg.php:63
 msgid "Edit modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:48
-#: includes/backend/gutenburg-edit-screen.php:70
+#: includes/backend/dashboard-gutenburg.php:70
 msgid "Last modified date and time"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:51
 #: includes/backend/dashboard-edit-screen.php:225
-#: includes/backend/gutenburg-edit-screen.php:73
+#: includes/backend/dashboard-gutenburg.php:73
 msgid "Month"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:57
 #: includes/backend/dashboard-edit-screen.php:231
-#: includes/backend/gutenburg-edit-screen.php:79
+#: includes/backend/dashboard-gutenburg.php:79
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:63
 #: includes/backend/dashboard-edit-screen.php:237
-#: includes/backend/gutenburg-edit-screen.php:85
+#: includes/backend/dashboard-gutenburg.php:85
 msgid "Day"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:67
 #: includes/backend/dashboard-edit-screen.php:241
-#: includes/backend/gutenburg-edit-screen.php:89
+#: includes/backend/dashboard-gutenburg.php:89
 msgid "Year"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:69
 #: includes/backend/dashboard-edit-screen.php:243
-#: includes/backend/gutenburg-edit-screen.php:91
+#: includes/backend/dashboard-gutenburg.php:91
 msgid "@"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:71
 #: includes/backend/dashboard-edit-screen.php:245
-#: includes/backend/gutenburg-edit-screen.php:93
+#: includes/backend/dashboard-gutenburg.php:93
 msgid "Hour"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:73
 #: includes/backend/dashboard-edit-screen.php:247
-#: includes/backend/gutenburg-edit-screen.php:95
+#: includes/backend/dashboard-gutenburg.php:95
 msgid ":"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:75
 #: includes/backend/dashboard-edit-screen.php:249
-#: includes/backend/gutenburg-edit-screen.php:97
+#: includes/backend/dashboard-gutenburg.php:97
 msgid "Minute"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
-#: includes/backend/gutenburg-edit-screen.php:128
+#: includes/backend/dashboard-gutenburg.php:128
 msgid "OK"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:105
-#: includes/backend/gutenburg-edit-screen.php:128
+#: includes/backend/dashboard-gutenburg.php:128
 msgid "Cancel"
 msgstr ""
 
 #: includes/backend/dashboard-edit-screen.php:107
 #: includes/backend/dashboard-edit-screen.php:254
-#: includes/backend/gutenburg-edit-screen.php:130
+#: includes/backend/dashboard-gutenburg.php:130
 msgid "Disable update"
 msgstr ""
 
@@ -987,9 +1066,69 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
+#: includes/backend/dashboard-gutenburg.php:18
 #: includes/backend/dashboard-users.php:14
-#: includes/backend/gutenburg-edit-screen.php:18
 msgid "Last Updated"
+msgstr ""
+
+#: includes/backend/dashboard-gutenburg.php:56
+msgid "Updated on"
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:51
+msgid "<strong>Old Title:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:52
+msgid "<strong>New Title:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:56
+msgid "<strong>Old Post Content:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:57
+msgid "<strong>New Post Content:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:61
+msgid "<strong>Old Excerpt:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:62
+msgid "<strong>New Excerpt:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:66
+msgid "<strong>Old Author:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:67
+msgid "<strong>New Author:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:71
+msgid "<strong>Old Link:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:72
+msgid "<strong>New Link:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:76
+msgid "<strong>Old Comment Status:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:77
+msgid "<strong>New Comment Status:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:81
+msgid "<strong>Old Ping Status:</strong> "
+msgstr ""
+
+#: includes/backend/dashboard-notification.php:82
+msgid "<strong>New Ping Status:</strong> "
 msgstr ""
 
 #: includes/backend/dashboard-widget.php:18
@@ -1002,10 +1141,6 @@ msgstr ""
 
 #: includes/backend/dashboard-widget.php:48
 msgid "Recently Updated"
-msgstr ""
-
-#: includes/backend/gutenburg-edit-screen.php:56
-msgid "Updated on"
 msgstr ""
 
 #: includes/frontend/admin-bar.php:36
@@ -1027,7 +1162,7 @@ msgstr ""
 msgid " (Scheduled)"
 msgstr ""
 
-#: includes/trigger.php:80
+#: includes/trigger.php:81
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
@@ -1041,22 +1176,22 @@ msgid ""
 "configure plugin settings."
 msgstr ""
 
-#: wp-last-modified-info.php:161
+#: wp-last-modified-info.php:160
 msgid ""
 "Your version of PHP is below the minimum version of PHP required by WP Last "
 "Modified Info plugin. Please contact your host and request that your version "
-"be upgraded to 5.4 or later."
+"be upgraded to 5.6 or later."
 msgstr ""
 
-#: wp-last-modified-info.php:168
+#: wp-last-modified-info.php:167
 msgid "Settings"
 msgstr ""
 
-#: wp-last-modified-info.php:177
+#: wp-last-modified-info.php:176
 msgid "Support"
 msgstr ""
 
-#: wp-last-modified-info.php:178
+#: wp-last-modified-info.php:177
 msgid "Donate"
 msgstr ""
 
