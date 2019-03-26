@@ -37,6 +37,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Elementor Dynamic Tags support with 'dateModified' schema markup.
+* Send Email Notification when anyone makes changes to any post of your website.
 * And you can customize all and everything.
 
 ### Compatibility ###
