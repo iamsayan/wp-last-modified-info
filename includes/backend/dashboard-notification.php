@@ -14,13 +14,17 @@ add_action( 'post_updated', 'lmt_trigger_post_updated_action', 10, 3 );
 function lmt_trigger_post_updated_action( $post_id, $post_after, $post_before ) {
     $options = get_option('lmt_plugin_global_settings');
 
+    if( !( isset($options['lmt_enable_notification_cb']) && ($options['lmt_enable_notification_cb'] == 1) ) ) {
+        return;
+    }
+
     // Transitioning from an Auto Draft to Published shouldn't result in a notification.
     if ( $post_before->post_status === 'auto-draft' && $post_after->post_status === 'publish' ) {
         return;
     }
 
     // If we're purely saving a draft, and don't have the draft option enabled, skip. If we're transitioning one way or the other, send a notification.
-    if ( 0 == $options['lmt_enable_draft_noti_cb'] && in_array( $post_before->post_status, array( 'draft', 'auto-draft' ) ) && 'draft' == $post_after->post_status ) {
+    if ( !( isset( $options['lmt_enable_draft_noti_cb'] ) && 1 == $options['lmt_enable_draft_noti_cb'] ) && in_array( $post_before->post_status, array( 'draft', 'auto-draft' ) ) && 'draft' == $post_after->post_status ) {
         return;
     }
 
@@ -28,7 +32,7 @@ function lmt_trigger_post_updated_action( $post_id, $post_after, $post_before ) 
         return;
     }
 
-    if ( ! in_array( $post_before->post_type, $options['lmt_enable_noti_post_types'] ) ) {
+    if ( isset( $options['lmt_enable_noti_post_types'] ) && !in_array( $post_before->post_type, $options['lmt_enable_noti_post_types'] ) ) {
         return;
     }
 
@@ -128,11 +132,9 @@ function lmt_trigger_post_updated_action( $post_id, $post_after, $post_before ) 
     $headers = array( 'Content-Type: text/html; charset=UTF-8' );
     $headers = apply_filters( 'wplmi_custom_email_headers', $headers );
 
-    if( isset($options['lmt_enable_notification_cb']) && ($options['lmt_enable_notification_cb'] == 1) ) {
-        if( !empty( $text ) ) {
-            wp_mail( $recipient, $subject, $body, $headers );
-            //error_log( $subject . $body );
-        }
+    if( !empty( $text ) ) {
+        wp_mail( $recipient, $subject, $body, $headers );
+        //error_log( $subject . $body );
     }
 }
 
