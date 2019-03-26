@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.1
+Release Date: March 26, 2019
+
+* Fixed: Some Error Notices
+
 ## 1.5.0
 Release Date: March 26, 2019
 
