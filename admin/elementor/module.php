@@ -35,6 +35,11 @@ if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VER
         
     } );
 
+    add_action( 'elementor_pro/posts/query/wplmi_elementor_widget_query_filter', function( $query ) {
+	    // ordered by post modified date
+	    $query->set( 'orderby', 'modified' );
+    } );
+
 }
 
 function lmt_disable_schema_markup_conversion_unicode( $content ) {

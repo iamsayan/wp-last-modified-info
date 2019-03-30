@@ -3,13 +3,13 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.0
 Tested up to: 5.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Requires PHP: 5.6
 Donate link: http://bit.ly/2I0Gj60
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
+🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
 
 == Description ==
 
@@ -172,6 +172,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Email Notification
 
 == Changelog ==
+
+= 1.5.2 =
+Release Date: March 29, 2019
+
+* Added: A filter `wplmi_elementor_widget_query_filter` to sort Elementor Pro Posts and Portfolio widgets by last modified date.
+* Added: A filter `wplmi_custom_author_list_selection` to set the custom author role for plugin settings.
 
 = 1.5.1 =
 Release Date: March 26, 2019

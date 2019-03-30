@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-03-26 08:57+0530\n"
-"PO-Revision-Date: 2019-03-26 08:56+0530\n"
+"POT-Creation-Date: 2019-03-29 15:38+0530\n"
+"PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1075,59 +1075,59 @@ msgstr ""
 msgid "Updated on"
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:51
+#: includes/backend/dashboard-notification.php:55
 msgid "<strong>Old Title:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:52
+#: includes/backend/dashboard-notification.php:56
 msgid "<strong>New Title:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:56
+#: includes/backend/dashboard-notification.php:60
 msgid "<strong>Old Post Content:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:57
+#: includes/backend/dashboard-notification.php:61
 msgid "<strong>New Post Content:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:61
+#: includes/backend/dashboard-notification.php:65
 msgid "<strong>Old Excerpt:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:62
+#: includes/backend/dashboard-notification.php:66
 msgid "<strong>New Excerpt:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:66
+#: includes/backend/dashboard-notification.php:70
 msgid "<strong>Old Author:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:67
+#: includes/backend/dashboard-notification.php:71
 msgid "<strong>New Author:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:71
+#: includes/backend/dashboard-notification.php:75
 msgid "<strong>Old Link:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:72
+#: includes/backend/dashboard-notification.php:76
 msgid "<strong>New Link:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:76
+#: includes/backend/dashboard-notification.php:80
 msgid "<strong>Old Comment Status:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:77
+#: includes/backend/dashboard-notification.php:81
 msgid "<strong>New Comment Status:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:81
+#: includes/backend/dashboard-notification.php:85
 msgid "<strong>Old Ping Status:</strong> "
 msgstr ""
 
-#: includes/backend/dashboard-notification.php:82
+#: includes/backend/dashboard-notification.php:86
 msgid "<strong>New Ping Status:</strong> "
 msgstr ""
 
@@ -1201,7 +1201,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Ultimate Last Modified Solution for WordPress. Adds last modified date and "
+"🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and "
 "time automatically on pages and posts very easily. It is possible to use "
 "shortcodes to display last modified info anywhere on a WordPress site "
 "running 4.0 and beyond."
