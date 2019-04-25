@@ -15,7 +15,7 @@ function lmt_enable_last_modified_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked(isset($options['lmt_enable_last_modified_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -23,7 +23,7 @@ function lmt_enable_schema_on_post_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_post_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -281,7 +281,7 @@ function lmt_enable_last_modified_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_page_cb]" value="1" <?php checked(isset($options['lmt_enable_last_modified_page_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -289,7 +289,7 @@ function lmt_enable_schema_on_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_page_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -655,7 +655,7 @@ function lmt_tt_class_box_display() {
     &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schema-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="enable-schema-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
-        <span class="slider round"></span>
+        <span class="cb-slider round"></span>
     </label>
     <?php
 }
@@ -718,7 +718,7 @@ function lmt_enable_schema_support_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -730,7 +730,7 @@ function lmt_enable_notification_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-enable" name="lmt_plugin_global_settings[lmt_enable_notification_cb]" value="1" <?php checked(isset($options['lmt_enable_notification_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to receive email notification if anyone makes changes to any post of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to receive email notification if anyone makes changes to any post of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -738,7 +738,7 @@ function lmt_enable_author_noti_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-author" name="lmt_plugin_global_settings[lmt_enable_author_noti_cb]" value="1" <?php checked(isset($options['lmt_enable_author_noti_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to send notification to the post author.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to send notification to the post author.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -746,7 +746,7 @@ function lmt_enable_draft_noti_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-draft" name="lmt_plugin_global_settings[lmt_enable_draft_noti_cb]" value="1" <?php checked(isset($options['lmt_enable_draft_noti_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable notification when anyone makes changes to any draft post.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable notification when anyone makes changes to any draft post.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -823,7 +823,7 @@ function lmt_enable_on_admin_bar_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="admin-bar-display" name="lmt_plugin_global_settings[lmt_enable_on_admin_bar_cb]" value="1" <?php checked(isset($options['lmt_enable_on_admin_bar_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -838,7 +838,7 @@ function lmt_del_plugin_data_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="del-data" name="lmt_plugin_global_settings[lmt_del_plugin_data_cb]" value="1" <?php checked(isset($options['lmt_del_plugin_data_cb']), 1); ?> /> 
-        <span class="slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to delete plugin data at the time of uninstallation.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to delete plugin data at the time of uninstallation.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

@@ -35,7 +35,7 @@ if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VER
         
     } );
 
-    add_action( 'elementor_pro/posts/query/wplmi_elementor_widget_query_filter', function( $query ) {
+    add_action( 'elementor/query/wplmi_elementor_widget_query_filter', function( $query ) {
 	    // ordered by post modified date
 	    $query->set( 'orderby', 'modified' );
     } );
@@ -43,7 +43,6 @@ if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VER
 }
 
 function lmt_disable_schema_markup_conversion_unicode( $content ) {
-
     $before_raw = '</time itemprop=/"dateModified/" datetime=/"'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'/">';
     $after_raw = '<//time>';
 

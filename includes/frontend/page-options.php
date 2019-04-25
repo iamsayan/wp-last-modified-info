@@ -10,9 +10,7 @@
 add_action( 'init', 'lmt_plugin_init_page' );
 
 function lmt_plugin_init_page() {
-
-    $priority = 10;
-    $priority = apply_filters( 'wplmi_display_priority_page', $priority );
+    $priority = apply_filters( 'wplmi_display_priority_page', 10 );
     
     add_filter( 'the_content', 'lmt_print_last_modified_info_page', $priority );
 }
@@ -40,7 +38,6 @@ function lmt_print_last_modified_info_page( $content ) {
     }
 
     if( isset( $modified_content ) ) {
-
         if( isset($options['lmt_show_last_modified_time_date_page']) && ($options['lmt_show_last_modified_time_date_page'] == 'before_content') ) {
             $fullcontent = $modified_content . $content;
         }
@@ -52,6 +49,7 @@ function lmt_print_last_modified_info_page( $content ) {
     if ( isset($fullcontent) && is_page() && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
         return $fullcontent;
     }
+
     return $content;
 }
 

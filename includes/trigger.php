@@ -24,7 +24,7 @@ if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable
 require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'frontend/schema.php';
 
-// prrint custom css in  wp head
+// prrint custom css in wp head
 function lmt_style_hook_in_header() {
     $options = get_option('lmt_plugin_global_settings');
     if( !empty( $options['lmt_custom_style_box']) ) {
@@ -38,24 +38,22 @@ if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_ad
 }
 
 // require plugin files
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-column.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-users.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-widget.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-edit-screen.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-gutenburg.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/dashboard-notification.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/column.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/users.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/widget.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/edit-screen.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/notification.php';
 
 function lmt_print_admin_post_css() {
     echo '<style type="text/css"> .fixed .column-lastmodified { width:18%; } </style>'."\n";
 }
 
 function lmt_print_admin_users_css() { ?>
-    <style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style>
-    <?php
+    <style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style> <?php
 }
 
 function lmt_post_updated_messages( $messages ) {
-    
     // define globally
     global $post;
 
@@ -84,7 +82,6 @@ function lmt_post_updated_messages( $messages ) {
 }
 
 function lmt_add_custom_field_lmi( $post_id ) {
-
     // get wordpress date time format
     $get_df = get_option( 'date_format' );
     $get_tf = get_option( 'time_format' );

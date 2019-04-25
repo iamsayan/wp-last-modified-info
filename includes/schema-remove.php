@@ -15,14 +15,12 @@ add_filter( 'genesis_attr_entry-time', 'lmt_genesis_schema_attributes_removal', 
 add_filter( 'genesis_attr_entry-modified-time',	'lmt_genesis_schema_attributes_removal', 20 );
 
 function lmt_genesis_schema_attributes_removal( $attributes ) {
- 	
     $attributes['role']	= '';
     $attributes['itemprop']	= '';
     $attributes['itemscope'] = '';
     $attributes['itemtype'] = ''; 
         
     return $attributes;
-    
 }
 
 /**

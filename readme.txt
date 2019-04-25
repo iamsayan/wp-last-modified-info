@@ -1,15 +1,15 @@
 === WP Last Modified Info ===
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
-Requires at least: 4.0
+Requires at least: 4.6
 Tested up to: 5.1
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires PHP: 5.6
-Donate link: http://bit.ly/2I0Gj60
+Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
+🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.6 and beyond.
 
 == Description ==
 
@@ -47,7 +47,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 
 #### Compatibility
 
-* This plugin is fully compatible with WordPress Version 4.0 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 4.6 and beyond and also compatible with any WordPress theme.
 
 #### Support
 * Community support via the [support forums](https://wordpress.org/support/plugin/wp-last-modified-info) at WordPress.org.
@@ -172,6 +172,16 @@ Post detailed information about the issue in the [support forum](https://wordpre
 9. Email Notification
 
 == Changelog ==
+
+= 1.5.3 =
+Release Date: April 25, 2019
+
+* Added: Post Modified by field in Rest API Output.
+* Fixed: Elementor Deprecated Hooks.
+* Fixed: Conflict with Bootstrap CSS Class.
+* Fixed: Check Box Slider CSS issue.
+* Fixed: Plugin version number.
+* Fixed: Unclosed HTML Tags in Admin Notices.
 
 = 1.5.2 =
 Release Date: March 29, 2019

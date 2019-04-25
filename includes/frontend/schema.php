@@ -49,15 +49,13 @@ function lmt_json_ld_schema_markup() {
         ],
     ];
 
-    $json = apply_filters( 'wplmi_edit_schema_item', $json );
-
     if( is_page() ) {
         // change schema type for pages
         $json['@type'] = 'WebPage';
         unset( $json['mainEntityOfPage'] );
     }
 
-    do_action( 'wplmi_schema_item_action', $json );
+    $json = apply_filters( 'wplmi_edit_schema_item', $json );
 
     $output = '';
     if( ! empty( $json ) ) {

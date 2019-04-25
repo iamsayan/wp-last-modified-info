@@ -31,6 +31,7 @@ function lmt_process_settings_export() {
 	echo json_encode( $settings );
 	exit;
 }
+
 add_action( 'admin_init', 'lmt_process_settings_export' );
 
 /**
@@ -55,7 +56,6 @@ function lmt_process_settings_import() {
 	// Retrieve the settings from the file and convert the json object to an array.
 	$settings = (array) json_decode( file_get_contents( $import_file ) );
     update_option( 'lmt_plugin_global_settings', $settings );
-    //wp_safe_redirect( admin_url( 'options-general.php?page=wp-last-modified-info' ) ); exit;
     function lmt_import_success_notice(){
         echo '<div class="notice notice-success is-dismissible">
                  <p><strong>' . __( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ) . '</strong></p>
@@ -63,6 +63,7 @@ function lmt_process_settings_import() {
     }
     add_action('admin_notices', 'lmt_import_success_notice'); 
 }
+
 add_action( 'admin_init', 'lmt_process_settings_import' );
 
 /**
@@ -85,7 +86,7 @@ function lmt_remove_plugin_settings() {
     }
     add_action('admin_notices', 'lmt_settings_reset_success_notice'); 
 }
-add_action( 'admin_init', 'lmt_remove_plugin_settings' );
 
+add_action( 'admin_init', 'lmt_remove_plugin_settings' );
 
 ?>

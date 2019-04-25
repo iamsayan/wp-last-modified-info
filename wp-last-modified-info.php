@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: 🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
- * Version: 1.5.2
+ * Version: 1.5.3
  * Author: Sayan Datta
  * Author URI: https://sayandatta.com
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.5.2' );
+define( 'LMT_PLUGIN_VERSION', '1.5.3' );
 
 // debug scripts
 //define ( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
@@ -57,7 +57,6 @@ register_activation_hook( __FILE__, 'lmt_plugin_run_on_activation' );
 register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
 
 function lmt_plugin_run_on_activation() {
-    
     if ( ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
@@ -65,32 +64,17 @@ function lmt_plugin_run_on_activation() {
 }
 
 function lmt_plugin_run_on_deactivation() {
-
     if ( ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
-    
     delete_option( 'lmt_plugin_dismiss_rating_notice' );
     delete_option( 'lmt_plugin_no_thanks_rating_notice' );
     delete_option( 'lmt_plugin_installed_time' );
     delete_option( 'lmt_plugin_installed_time_donate' );
 }
 
-function lmt_plugin_install_notice() { 
-
-    if( get_transient( 'lmt-admin-notice-on-activation' ) ) { ?>
-        <div class="notice notice-success">
-            <p><strong><?php printf( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ), 'WP Last Modified Info', LMT_PLUGIN_VERSION, admin_url( 'options-general.php?page=wp-last-modified-info' ) ); ?></strong></p>
-        </div> <?php
-        delete_transient( 'lmt-admin-notice-on-activation' );
-    }
-}
-
-add_action( 'admin_notices', 'lmt_plugin_install_notice' ); 
-
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {
-
     $ver = LMT_PLUGIN_VERSION;
     if( defined( 'LMT_PLUGIN_ENABLE_DEBUG' ) ) {
         $ver = time();
@@ -107,7 +91,6 @@ function lmt_custom_admin_styles_scripts() {
 }
 
 function lmt_shortcode_admin_styles_scripts( $hook ) {
-
     $ver = LMT_PLUGIN_VERSION;
     if( defined( 'LMT_PLUGIN_ENABLE_DEBUG' ) ) {
         $ver = time();
@@ -145,21 +128,12 @@ require_once plugin_dir_path( __FILE__ ) . 'admin/notice.php';
 require_once plugin_dir_path( __FILE__ ) . 'admin/donate.php';
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/trigger.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/rest-api.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/replace.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/schema-remove.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/theme-support.php';
-
-/**
- * Show a warning to sites running PHP < 5.6
- *
- * @since 1.4.3
-*/
-function lmt_below_php_version_notice() {
-    if( version_compare( PHP_VERSION, '5.6', '<' ) ) {
-	    echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by WP Last Modified Info plugin. Please contact your host and request that your version be upgraded to 5.6 or later.', 'wp-last-modified-info' ) . '</p></div>';
-    }
-}
 
 // add action links
 function lmt_add_action_links( $links ) {
@@ -174,13 +148,10 @@ function lmt_plugin_meta_links( $links, $file ) {
 	if ( $file == $plugin ) // only for this plugin
 		return array_merge( $links, 
             array( '<a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank">' . __( 'Support', 'wp-last-modified-info' ) . '</a>' ),
-            array( '<a href="http://bit.ly/2I0Gj60" target="_blank">' . __( 'Donate', 'wp-last-modified-info' ) . '</a>' )
+            array( '<a href="https://www.paypal.me/iamsayan/" target="_blank">' . __( 'Donate', 'wp-last-modified-info' ) . '</a>' )
 		);
 	return $links;
 }
-
-// add notice
-add_action( 'admin_notices', 'lmt_below_php_version_notice' );
 
 // plugin action links
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );

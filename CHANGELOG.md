@@ -1,5 +1,21 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+All notable changes t
+
+## 1.5.3
+Release Date: April 25, 2019
+
+* Added: Post Modified by field in Rest API Output.
+* Fixed: Elementor Deprecated Hooks.
+* Fixed: Conflict with Bootstrap CSS Class.
+* Fixed: Check Box Slider CSS issue.
+* Fixed: Plugin version number.
+* Fixed: Unclosed HTML Tags in Admin Notices.
+
+## 1.5.2
+Release Date: March 29, 2019
+
+* Added: A filter `wplmi_elementor_widget_query_filter` to sort Elementor Pro Posts and Portfolio widgets by last modified date.
+* Added: A filter `wplmi_custom_author_list_selection` to set the custom author role for plugin settings.
 
 ## 1.5.1
 Release Date: March 26, 2019
