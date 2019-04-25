@@ -1,5 +1,5 @@
 # Changelog
-All notable changes t
+All notable changes to this project will be documented in this file.
 
 ## 1.5.3
 Release Date: April 25, 2019
