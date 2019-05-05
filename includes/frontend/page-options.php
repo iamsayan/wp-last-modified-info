@@ -10,9 +10,12 @@
 add_action( 'init', 'lmt_plugin_init_page' );
 
 function lmt_plugin_init_page() {
+    $options = get_option('lmt_plugin_global_settings');
     $priority = apply_filters( 'wplmi_display_priority_page', 10 );
-    
-    add_filter( 'the_content', 'lmt_print_last_modified_info_page', $priority );
+
+    if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable_last_modified_page_cb'] == 1) ) {
+        add_filter( 'the_content', 'lmt_print_last_modified_info_page', $priority );
+    }
 }
 
 function lmt_print_last_modified_info_page( $content ) {

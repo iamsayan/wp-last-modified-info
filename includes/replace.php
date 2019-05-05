@@ -11,7 +11,6 @@
 add_action( 'template_redirect', 'lmt_html_replace_ob' );
 
 function lmt_html_replace_ob() {
-    ob_start();
     ob_start( 'lmt_html_replace_ob_callback' );
 }
 
@@ -26,5 +25,6 @@ function lmt_html_replace_ob_callback( $buffer ) {
     $find = str_replace( '%modified_date%', get_the_modified_date( $format ), $find );
 
     $buffer = str_replace( $find, html_entity_decode( get_the_last_modified_info() ), $buffer );
+    
     return $buffer;
 }

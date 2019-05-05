@@ -137,7 +137,17 @@
                 });
             </script>
             <div id="show-tools" style="display:none;">
-                <h3> <?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?> </h3><p><hr></p>
+                <h3><?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?></h3><p><hr></p>
+                    <span><strong><?php _e( 'Enable <i>Disable Update</i> Option', 'wp-last-modified-info' ); ?></strong></span>
+		    		<p><?php _e( 'This will enable Disable Update option for all posts, pages and CPTs automatically.', 'wp-last-modified-info' ); ?></p>
+		    		<form method="post">
+		    			<p><input type="hidden" name="lmt_check_disable_update_action" value="lmt_check_disable_update" /></p>
+	                    <p>
+		    				<?php wp_nonce_field( 'lmt_check_nonce', 'lmt_check_nonce' ); ?>
+		    				<?php submit_button( __( 'Enable Option', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
+		    		    </p>
+                    </form>
+                <p><hr></p>
                     <span><strong><?php _e( 'Export Settings', 'wp-last-modified-info' ); ?></strong></span>
 		    		<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-last-modified-info' ); ?></p>
 		    		<form method="post">

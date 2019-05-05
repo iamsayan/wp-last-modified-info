@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: 🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
- * Version: 1.5.3
+ * Version: 1.5.5
  * Author: Sayan Datta
  * Author URI: https://sayandatta.com
  * License: GPLv3
@@ -25,7 +25,7 @@
  *
  * @category Core
  * @package  WP Last Modified Info
- * @author   Sayan Datta
+ * @author   Sayan Datta <hello@sayandatta.com>
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://iamsayan.github.io/wp-last-modified-info/
  */
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.5.3' );
+define( 'LMT_PLUGIN_VERSION', '1.5.5' );
 
 // debug scripts
 //define ( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
@@ -99,6 +99,10 @@ function lmt_shortcode_admin_styles_scripts( $hook ) {
     // check if post edit screen
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         wp_enqueue_style( 'lmt-post', plugins_url( 'admin/assets/css/post.min.css', __FILE__ ), array(), $ver );   
+    }
+
+    if ( $hook == 'post-new.php' && apply_filters( 'wplmi_post_edit_default_check', false ) ) {
+        wp_enqueue_script( 'lmt-post-edit', plugins_url( 'admin/assets/js/edit.min.js', __FILE__ ), array( 'jquery' ), $ver, true );
     }
 
     if ( $hook == 'edit.php' ) {

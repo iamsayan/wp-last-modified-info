@@ -9,10 +9,13 @@
 
 add_action( 'init', 'lmt_plugin_init_post' );
 
-function lmt_plugin_init_post() {
+function lmt_plugin_init_post() {// get plugin options
+    $options = get_option('lmt_plugin_global_settings');
     $priority = apply_filters( 'wplmi_display_priority_post', 10 );
-    
-    add_filter( 'the_content', 'lmt_print_last_modified_info_post', $priority );
+
+    if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
+        add_filter( 'the_content', 'lmt_print_last_modified_info_post', $priority );
+    }
 }
 
 function lmt_print_last_modified_info_post( $content ) {

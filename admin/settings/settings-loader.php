@@ -44,7 +44,7 @@ function lmt_plug_settings_page() {
     // add template tags section
     add_settings_section('lmt_template_tag_option', __( 'Template Tags Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_template_tag_section');
         if( defined( 'GENERATE_VERSION' ) ) {
-            add_settings_field('lmt_tt_generatepress_theme_mod', __( 'Enable GeneratePress Theme Support:', 'wp-last-modified-info' ), 'lmt_tt_generatepress_theme_mod_display', 'lmt_template_tag_section', 'lmt_template_tag', array( 'label_for' => 'lmt-tt-gpmod' ));  
+            add_settings_field('lmt_tt_generatepress_theme_mod', __( 'Enable GeneratePress Theme Support:', 'wp-last-modified-info' ), 'lmt_tt_generatepress_theme_mod_display', 'lmt_template_tag_section', 'lmt_template_tag_option', array( 'label_for' => 'lmt-tt-gpmod' ));  
         }
         if( defined( 'ASTRA_THEME_VERSION' ) ) {
             add_settings_field('lmt_tt_astra_theme_mod', __( 'Enable Astra Theme Support:', 'wp-last-modified-info' ), 'lmt_tt_astra_theme_mod_display', 'lmt_template_tag_section', 'lmt_template_tag_option', array( 'label_for' => 'lmt-tt-astramod' ));  
@@ -74,6 +74,7 @@ function lmt_plug_settings_page() {
     // start custom css field
     add_settings_section('lmt_misc_option', __( 'Miscellaneous Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_misc_section');
         add_settings_field('lmt_enable_on_admin_bar_cb', __( 'Show Modified Info on Admin Bar:', 'wp-last-modified-info' ), 'lmt_enable_on_admin_bar_cb_display', 'lmt_misc_section', 'lmt_misc_option', array( 'label_for' => 'admin-bar-display' ));
+        add_settings_field('lmt_admin_default_sort_order', __( 'Default Admin Post Sorting Order:', 'wp-last-modified-info' ), 'lmt_admin_default_sort_order_display', 'lmt_misc_section', 'lmt_misc_option', array( 'label_for' => 'lmt-order' ));  
         add_settings_field('lmt_custom_style_box', __( 'Custom CSS Code:', 'wp-last-modified-info' ), 'lmt_custom_style_box_display', 'lmt_misc_section', 'lmt_misc_option', array( 'label_for' => 'lmt-cus-style' ));  
         add_settings_field('lmt_del_plugin_data_cb', __( 'Delete Plugin Data upon Uninstallation:', 'wp-last-modified-info' ), 'lmt_del_plugin_data_cb_display', 'lmt_misc_section', 'lmt_misc_option', array( 'label_for' => 'del-data' ));
         

@@ -41,4 +41,7 @@
         }
     };
 
+    // default check the last modified on/off checkbox
+    $('#lmt_status').prop('checked', true);
+
 })(jQuery);

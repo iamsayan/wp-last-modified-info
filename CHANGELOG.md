@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.5
+Release Date: May 4, 2019
+
+* Added: Option to sort posts by post modified date on edit.php page.
+* Added: A filter `wplmi_post_edit_default_check` to auto check Disable Update Option in Post meta box when creating a new post.
+* Added: A Option in Tools tab to auto check Disable Update Option.
+
+## 1.5.4
+Release Date: May 2, 2019
+
+* Fixed: Missing Generatepress Option.
+
 ## 1.5.3
 Release Date: April 25, 2019
 

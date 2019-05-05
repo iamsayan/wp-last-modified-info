@@ -29,8 +29,9 @@ function lmt_generatepress_theme_replace_author_meta() {
 add_action( 'template_redirect', 'lmt_remove_hentry_support_generatepress' );
 
 function lmt_remove_hentry_support_generatepress() {
-    ob_start();
-    ob_start( 'lmt_remove_hentry_support_generatepress_ob_callback' );
+    if( defined( 'GENERATE_VERSION' ) ) {
+        ob_start( 'lmt_remove_hentry_support_generatepress_ob_callback' );
+    }
 }
 
 function lmt_remove_hentry_support_generatepress_ob_callback( $buffer ) {

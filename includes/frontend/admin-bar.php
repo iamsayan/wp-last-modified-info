@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Admin Bar
  *
@@ -8,8 +9,17 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-function lmt_get_post_revision() {
+add_action( 'init', 'lmt_plugin_init_admin_bar_display' );
 
+function lmt_plugin_init_admin_bar_display() {
+    $options = get_option('lmt_plugin_global_settings');
+
+    if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_admin_bar_cb'] == 1) ) {
+        add_action( 'admin_bar_menu', 'lmt_custom_toolbar_item', 999 );
+    }
+}
+
+function lmt_get_post_revision() {
     global $post, $post_id;
 
     // If user can't edit post, then don't show
@@ -22,11 +32,11 @@ function lmt_get_post_revision() {
     if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
         return get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
     }
+
     return;
 }
 
 function lmt_adminbar_info() {
-
     // retrive date time formats
     $cur_time = current_time('U');
     $mod_time = get_the_modified_time( 'U' );
@@ -40,7 +50,6 @@ function lmt_adminbar_info() {
 
 // add a link to the WP Toolbar
 function lmt_custom_toolbar_item( $wp_admin_bar ) {
-
     // If it's admin page, then get out!
     if( is_admin() ) return;
 
@@ -61,13 +70,12 @@ function lmt_custom_toolbar_item( $wp_admin_bar ) {
         'title'  => lmt_adminbar_info(),
         'href'   => lmt_get_post_revision(),
         'meta' => array(
-            'title'  => sprintf(__('This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date(), get_the_modified_time(), get_the_modified_author() ),
+            'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type( get_the_ID() ), get_the_modified_date(), get_the_modified_time(), get_the_modified_author() ),
             'target' => '_blank',
         )
     );
-    $wp_admin_bar->add_node( $args );
 
+    $wp_admin_bar->add_node( $args );
 }
-add_action('admin_bar_menu', 'lmt_custom_toolbar_item', 999);
 
 ?>

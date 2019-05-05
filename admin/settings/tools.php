@@ -8,6 +8,37 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
+ /**
+ * Process auto meta update settings
+ */
+function lmt_check_disable_update_settings() {
+	if( empty( $_POST['lmt_check_disable_update_action'] ) || 'lmt_check_disable_update' != $_POST['lmt_check_disable_update_action'] )
+		return;
+	if( ! wp_verify_nonce( $_POST['lmt_check_nonce'], 'lmt_check_nonce' ) )
+		return;
+	if( ! current_user_can( 'manage_options' ) )
+		return;
+	
+	$args = array(
+		'numberposts'   => -1,
+		'post_type'     => 'any'
+	);
+
+	$posts = get_posts( $args );
+	foreach( $posts as $post ) {
+		update_post_meta( $post->ID, '_lmt_disableupdate', 'yes' );
+	}
+
+    function lmt_check_disable_update_notice() {
+        echo '<div class="notice notice-success is-dismissible">
+                 <p><strong>' . __( 'Success! All Checkboxes are checked successfully.', 'wp-last-modified-info' ) . '</strong></p>
+             </div>';
+    }
+    add_action('admin_notices', 'lmt_check_disable_update_notice'); 
+}
+
+add_action( 'admin_init', 'lmt_check_disable_update_settings' );
+
 /**
  * Process a settings export that generates a .json file of the shop settings
  */
@@ -56,7 +87,7 @@ function lmt_process_settings_import() {
 	// Retrieve the settings from the file and convert the json object to an array.
 	$settings = (array) json_decode( file_get_contents( $import_file ) );
     update_option( 'lmt_plugin_global_settings', $settings );
-    function lmt_import_success_notice(){
+    function lmt_import_success_notice() {
         echo '<div class="notice notice-success is-dismissible">
                  <p><strong>' . __( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ) . '</strong></p>
              </div>';
@@ -79,7 +110,7 @@ function lmt_remove_plugin_settings() {
     $plugin_settings = 'lmt_plugin_global_settings';
     delete_option( $plugin_settings );
 
-    function lmt_settings_reset_success_notice(){
+    function lmt_settings_reset_success_notice() {
         echo '<div class="notice notice-success is-dismissible">
                  <p><strong>' . __( 'Success! Plugin Settings reset successfully.', 'wp-last-modified-info' ) . '</strong></p>
              </div>';

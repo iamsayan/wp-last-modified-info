@@ -7,22 +7,21 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-// get plugin options
-$options = get_option('lmt_plugin_global_settings');
+// add custom css
+add_action( 'wp_head','lmt_style_hook_in_header', 10 );
+// add css to admin page
+add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
+add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
+add_action( 'admin_init', 'lmt_post_do_admin_actions' );
+// create action in pre_get_posts hook
+add_action( 'pre_get_posts', 'lmt_post_default_sorting_order_to_modified' );
 
-// lmi output for posts
-if( isset($options['lmt_enable_last_modified_cb']) && ($options['lmt_enable_last_modified_cb'] == 1) ) {
-    require_once plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
+function lmt_post_do_admin_actions() {
+    // add last modified timestamp/shortcode in custom field
+    add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
+    // add last modified timestamp on post/page updated message
+    add_filter( 'post_updated_messages', 'lmt_post_updated_messages', 10, 1 );
 }
-
-// enable lmi output for pages
-if( isset($options['lmt_enable_last_modified_page_cb']) && ($options['lmt_enable_last_modified_page_cb'] == 1) ) {
-    require_once plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
-}
-
-// enable template tags functionality
-require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
-require_once plugin_dir_path( __FILE__ ) . 'frontend/schema.php';
 
 // prrint custom css in wp head
 function lmt_style_hook_in_header() {
@@ -32,25 +31,12 @@ function lmt_style_hook_in_header() {
     }
 }
 
-// show on admin bar
-if( isset($options['lmt_enable_on_admin_bar_cb']) && ($options['lmt_enable_on_admin_bar_cb'] == 1) ) {
-    require_once plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';
-}
-
-// require plugin files
-require_once plugin_dir_path( __FILE__ ) . 'backend/column.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/users.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/widget.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/edit-screen.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg.php';
-require_once plugin_dir_path( __FILE__ ) . 'backend/notification.php';
-
 function lmt_print_admin_post_css() {
     echo '<style type="text/css"> .fixed .column-lastmodified { width:18%; } </style>'."\n";
 }
 
-function lmt_print_admin_users_css() { ?>
-    <style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style> <?php
+function lmt_print_admin_users_css() {
+    echo '<style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style>'."\n";
 }
 
 function lmt_post_updated_messages( $messages ) {
@@ -74,10 +60,12 @@ function lmt_post_updated_messages( $messages ) {
         'public'   => true,
         //'_builtin' => true
     );
+
     $post_types = get_post_types( $args, 'names' );
     foreach ( $post_types as $screen ) {
         $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), $modified, esc_url( get_permalink( $post->ID ) ), $object->capability_type );
     }
+
     return $messages;
 }
 
@@ -108,18 +96,32 @@ function lmt_add_custom_field_lmi( $post_id ) {
     }
 }
 
-function lmt_post_do_admin_actions() {
-    // add last modified timestamp/shortcode in custom field
-    add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
-    // add last modified timestamp on post/page updated message
-    add_filter( 'post_updated_messages', 'lmt_post_updated_messages', 10, 1 );
+function lmt_post_default_sorting_order_to_modified( $query ) {
+    // get plugin options
+    $options = get_option('lmt_plugin_global_settings');
+
+    $order = 'desc';
+    if( isset($options['lmt_admin_default_sort_order']) && ($options['lmt_admin_default_sort_order'] == 'published') ) {
+        $order = 'asc';
+    }
+
+    if( ( isset($options['lmt_admin_default_sort_order']) && ($options['lmt_admin_default_sort_order'] != 'default') ) && is_admin() ) {
+	    $query->set( 'orderby', 'modified' );
+        $query->set( 'order', $order );
+    }
 }
 
-// add custom css
-add_action( 'wp_head','lmt_style_hook_in_header', 10 );
-// add css to admin page
-add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
-add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
-add_action( 'admin_init', 'lmt_post_do_admin_actions' );
+// require plugin files
+require_once plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/schema.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/column.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/users.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/widget.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/edit-screen.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/gutenburg.php';
+require_once plugin_dir_path( __FILE__ ) . 'backend/notification.php';
 
 ?>

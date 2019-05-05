@@ -21,7 +21,7 @@ td {
     cursor: help;
 }
 		
-.tooltip:hover:after{
+.tooltip:hover:after {
     background: #333;
     background: rgba(0,0,0,.8);
     border-radius: 5px;
@@ -37,7 +37,7 @@ td {
     line-height: 1.6;
 }
 	
-.tooltip:hover:before{
+.tooltip:hover:before {
     border: solid;
     border-color: #333 transparent;
     border-width: 6px 6px 0 6px;
@@ -157,12 +157,14 @@ input:checked+.cb-slider:before {
     margin: 30px 0 15px 0;
     background-size: 84px;
 }
+
 .coffee-box .coffee-amt {
     width: 120px;
     padding: 5px;
     height: auto;
     font-size: 1.5em;
 }
+
 .coffee-amt-wrap{
     float: right;
     margin: 0 30px;
@@ -240,11 +242,9 @@ h1.title .title-count {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  
     .coffee-box, .top-sharebar {
         display: none;
     }
-    
 }
 
 input, select, textarea {

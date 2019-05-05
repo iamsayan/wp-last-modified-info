@@ -827,6 +827,28 @@ function lmt_enable_on_admin_bar_cb_display() {
     <?php
 }
 
+function lmt_admin_default_sort_order_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if( !isset($options['lmt_admin_default_sort_order']) ) {
+        $options['lmt_admin_default_sort_order'] = 'default';
+    }
+    $items = array(
+        'default'     => __( 'Default Order', 'wp-last-modified-info' ),
+        'modified'    => __( 'Modified Post First', 'wp-last-modified-info' ),
+        'published'   => __( 'Modified Post Last', 'wp-last-modified-info' )
+    );
+    echo '<select id="lmt-order" name="lmt_plugin_global_settings[lmt_admin_default_sort_order]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ( $options['lmt_admin_default_sort_order'] == $item ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Backend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
 function lmt_custom_style_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>   <textarea id="lmt-cus-style" placeholder=".post-last-modified, .page-last-modified { color: #000000; font-weight: bold; }" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="8" cols="100" style="width:90%;"><?php if (isset($options['lmt_custom_style_box'])) { echo $options['lmt_custom_style_box']; } ?></textarea>
