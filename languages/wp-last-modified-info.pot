@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-05-04 23:44+0530\n"
+"POT-Creation-Date: 2019-05-08 10:22+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -40,6 +40,10 @@ msgstr ""
 
 #: admin/donate.php:31 admin/notice.php:31
 msgid "Nope&#44; maybe later"
+msgstr ""
+
+#: admin/donate.php:32 admin/notice.php:32
+msgid "Hide this notice"
 msgstr ""
 
 #: admin/elementor/class/modified-author-url.php:23

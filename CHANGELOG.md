@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.6
+Release Date: May 8, 2019
+
+* Added: A link to hide the notice permanently.
+
 ## 1.5.5
 Release Date: May 4, 2019
 

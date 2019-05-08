@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -174,6 +174,11 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.5.6 =
+Release Date: May 8, 2019
+
+* Added: A link to hide the notice permanently.
 
 = 1.5.5 =
 Release Date: May 4, 2019
