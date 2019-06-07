@@ -58,7 +58,6 @@
                 </div>
                 <div style="display:none" id="show-schema">
                     <?php do_settings_sections('lmt_schema_section'); ?>
-                    <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Enable "Enable Enhanced Schema Support" if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore. Otherwise it can show invalid markup.', 'wp-last-modified-info' ); ?></i>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-schema' ); ?>
                 </div>
                 <div style="display:none" id="show-noti">

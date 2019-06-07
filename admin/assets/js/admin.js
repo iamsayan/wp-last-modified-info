@@ -237,9 +237,47 @@ jQuery(document).ready(function ($) {
     $("#schema-jsonld").change(function() {
         if ($('#schema-jsonld').val() == 'enable') {
             $('.schema-jsonld-pt').show();
+            $('.post-enable-schema').hide();
+            $('.page-enable-schema').hide();
+            $('.tt-enable-schema').hide();
+            $('.schema-support').hide();
+            $('.schema-text').hide();
+            $('#post-enable-schema').prop('checked', false);
+            $('#page-enable-schema').prop('checked', false);
+            $('#enable-schema-tt').prop('checked', false);
         }
-        if ($('#schema-jsonld').val() != 'enable') {
+        if ($('#schema-jsonld').val() == 'inline') {
+            $('.post-enable-schema').show();
+            $('.page-enable-schema').show();
+            $('.tt-enable-schema').show();
+            $('.schema-support').show();
             $('.schema-jsonld-pt').hide();
+            $('.schema-text').hide();
+            $('#post-enable-schema').prop('checked', true);
+            $('#page-enable-schema').prop('checked', true);
+            $('#enable-schema-tt').prop('checked', true);
+        }
+        if ($('#schema-jsonld').val() == 'comp_mode') {
+            $('.schema-text').show();
+            $('.post-enable-schema').hide();
+            $('.page-enable-schema').hide();
+            $('.tt-enable-schema').hide();
+            $('.schema-support').hide();
+            $('.schema-jsonld-pt').hide();
+            $('#post-enable-schema').prop('checked', false);
+            $('#page-enable-schema').prop('checked', false);
+            $('#enable-schema-tt').prop('checked', false);
+        }
+        if ($('#schema-jsonld').val() == 'disable') {
+            $('.schema-jsonld-pt').hide();
+            $('.post-enable-schema').hide();
+            $('.page-enable-schema').hide();
+            $('.tt-enable-schema').hide();
+            $('.schema-support').hide();
+            $('.schema-text').hide();
+            $('#post-enable-schema').prop('checked', false);
+            $('#page-enable-schema').prop('checked', false);
+            $('#enable-schema-tt').prop('checked', false);
         }
     });
     $("#schema-jsonld").trigger('change');

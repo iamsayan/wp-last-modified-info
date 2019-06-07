@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -43,6 +43,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Elementor Dynamic Tags support with 'dateModified' schema markup.
 * Send Email Notification when anyone makes changes to any post of your website.
+* Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.
 * And you can customize all and everything.
 
 #### Compatibility
@@ -174,6 +175,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.5.7 =
+Release Date: June 7, 2019
+
+* NEW: Schema Markup Compatibility with other SEO and Schema Plugins. Please resave schema option in plugin settings after upgrading your plugin.
+* Fixed: `ob_start` warning.
 
 = 1.5.6 =
 Release Date: May 8, 2019

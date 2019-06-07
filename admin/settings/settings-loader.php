@@ -19,7 +19,7 @@ function lmt_plug_settings_page() {
     // add post section
     add_settings_section('lmt_post_option', __( 'Post Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_post_section');
         add_settings_field('lmt_enable_last_modified_cb',  __( 'Enable for Posts on Frontend:', 'wp-last-modified-info' ), 'lmt_enable_last_modified_cb_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-enable' ));  
-        add_settings_field('lmt_enable_schema_on_post_cb',  __( 'Enable Inline Schema Markup:', 'wp-last-modified-info' ), 'lmt_enable_schema_on_post_cb_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-enable-schema' ));  
+        add_settings_field('lmt_enable_schema_on_post_cb',  __( 'Enable Inline Schema Markup:', 'wp-last-modified-info' ), 'lmt_enable_schema_on_post_cb_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-enable-schema', 'class' => 'post-enable-schema' ));  
         add_settings_field('lmt_show_last_modified_time_date_post',  __( 'Last Modified Info Display Method:', 'wp-last-modified-info' ), 'lmt_show_last_modified_time_date_post_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-show-status' ));
         add_settings_field('lmt_post_custom_text',  __( 'Custom Message to Display on Posts:', 'wp-last-modified-info' ), 'lmt_post_custom_text_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-custom-text' )); 
         add_settings_field('lmt_last_modified_format_post',  __( 'Last Modified Info Format for Posts:', 'wp-last-modified-info' ), 'lmt_last_modified_format_post_display', 'lmt_post_section', 'lmt_post_option', array( 'label_for' => 'post-format' ));  
@@ -33,7 +33,7 @@ function lmt_plug_settings_page() {
     // add page section
     add_settings_section('lmt_page_option', __( 'Page Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_page_section');    
         add_settings_field('lmt_enable_last_modified_page_cb', __( 'Enable for Pages on Frontend:', 'wp-last-modified-info' ), 'lmt_enable_last_modified_page_cb_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-enable' ));  
-        add_settings_field('lmt_enable_schema_on_page_cb',  __( 'Enable Inline Schema Markup:', 'wp-last-modified-info' ), 'lmt_enable_schema_on_page_cb_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-enable-schema' ));  
+        add_settings_field('lmt_enable_schema_on_page_cb',  __( 'Enable Inline Schema Markup:', 'wp-last-modified-info' ), 'lmt_enable_schema_on_page_cb_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-enable-schema', 'class' => 'page-enable-schema' ));  
         add_settings_field('lmt_show_last_modified_time_date_page', __( 'Last Modified Info Display Method:', 'wp-last-modified-info' ), 'lmt_show_last_modified_time_date_page_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-show-status' ));
         add_settings_field('lmt_page_custom_text', __( 'Custom Message to Display on Pages:', 'wp-last-modified-info' ), 'lmt_page_custom_text_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-custom-text' )); 
         add_settings_field('lmt_last_modified_format_page',  __( 'Last Modified Info Format for Pages:', 'wp-last-modified-info' ), 'lmt_last_modified_format_page_display', 'lmt_page_section', 'lmt_page_option', array( 'label_for' => 'page-format' ));  
@@ -57,9 +57,9 @@ function lmt_plug_settings_page() {
         
     // add schema section
     add_settings_section('lmt_schema_option', __( 'Schema Options', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_schema_section');
-        add_settings_field('lmt_enable_jsonld_markup_cb', __( 'Enable JSON-LD Schema Markup:', 'wp-last-modified-info' ), 'lmt_enable_jsonld_markup_cb_display', 'lmt_schema_section', 'lmt_schema_option', array( 'label_for' => 'schema-jsonld' ));
+        add_settings_field('lmt_enable_jsonld_markup_cb', __( 'JSON-LD Schema Markup Mode:', 'wp-last-modified-info' ), 'lmt_enable_jsonld_markup_cb_display', 'lmt_schema_section', 'lmt_schema_option', array( 'label_for' => 'schema-jsonld' ));
         add_settings_field('lmt_enable_jsonld_markup_post_types', __( 'Select Post Types for JSON-LD Markup:', 'wp-last-modified-info' ), 'lmt_enable_jsonld_markup_post_types_display', 'lmt_schema_section', 'lmt_schema_option', array( 'label_for' => 'schema-jsonld-pt', 'class' => 'schema-jsonld-pt' ));
-        add_settings_field('lmt_enable_schema_support_cb', __( 'Enable Enhanced Schema Support:', 'wp-last-modified-info' ), 'lmt_enable_schema_support_cb_display', 'lmt_schema_section', 'lmt_schema_option', array( 'label_for' => 'schema-support' ));
+        add_settings_field('lmt_enable_schema_support_cb', __( 'Enable Enhanced Schema Support:', 'wp-last-modified-info' ), 'lmt_enable_schema_support_cb_display', 'lmt_schema_section', 'lmt_schema_option', array( 'label_for' => 'schema-support', 'class' => 'schema-support' ));
         
     // add notification section
     add_settings_section('lmt_notification_option', __( 'Email Notification', 'wp-last-modified-info' ) . '<p><hr></p>', null, 'lmt_notification_section');

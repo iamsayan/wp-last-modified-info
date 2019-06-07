@@ -8,7 +8,8 @@
  */
 
 // Handles find and replace on frontend
-add_action( 'template_redirect', 'lmt_html_replace_ob' );
+add_action( 'init', 'lmt_html_replace_ob', 1 );
+add_action( 'init', 'lmt_replace_published_date_with_mod_date', 1 );
 
 function lmt_html_replace_ob() {
     ob_start( 'lmt_html_replace_ob_callback' );
@@ -25,6 +26,20 @@ function lmt_html_replace_ob_callback( $buffer ) {
     $find = str_replace( '%modified_date%', get_the_modified_date( $format ), $find );
 
     $buffer = str_replace( $find, html_entity_decode( get_the_last_modified_info() ), $buffer );
+    
+    return $buffer;
+}
+
+function lmt_replace_published_date_with_mod_date() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if( isset($options['lmt_enable_jsonld_markup_cb']) && ($options['lmt_enable_jsonld_markup_cb'] == 'comp_mode') ) {
+        ob_start( 'lmt_replace_published_date_with_mod_date_ob_callback' );
+    }
+}
+
+function lmt_replace_published_date_with_mod_date_ob_callback( $buffer ) {
+    $buffer = str_replace( array( get_post_time( 'Y-m-d\TH:i:sP', true ), get_the_time('c') ), get_post_modified_time( 'Y-m-d\TH:i:sP', true ), $buffer );
     
     return $buffer;
 }

@@ -652,11 +652,11 @@ function lmt_show_author_tt_cb_display() {
 function lmt_tt_class_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?> <input id="lmt-tt-class" name="lmt_plugin_global_settings[lmt_tt_class_box]" type="text" size="50" style="width:50%;" placeholder="e.g. entry-time" value="<?php if (isset($options['lmt_tt_class_box'])) { echo $options['lmt_tt_class_box']; } ?>" />
-    &nbsp;&nbsp;&nbsp;&nbsp;<label for="enable-schema-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tt-enable-schema"><label for="enable-schema-tt"><strong><?php _e( 'Enable Inline Schema Markup?', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <label class="switch">
         <input type="checkbox" id="enable-schema-tt" name="lmt_plugin_global_settings[lmt_tt_enable_schema_cb]" value="1" <?php checked(isset($options['lmt_tt_enable_schema_cb']), 1); ?> /> 
         <span class="cb-slider round"></span>
-    </label>
+    </label></span>
     <?php
 }
 
@@ -678,17 +678,20 @@ function lmt_enable_jsonld_markup_cb_display() {
         $options['lmt_enable_jsonld_markup_cb'] = 'disable';
     }
     $items = array(
-        'enable'   => __( 'Enable JSON-LD Markup', 'wp-last-modified-info' ),
-        'disable'  => __( 'Disable Markup', 'wp-last-modified-info' )
+        'enable'     => __( 'Default Mode (CreativeWork)', 'wp-last-modified-info' ),
+        'inline'     => __( 'Inline Mode (MicroData)', 'wp-last-modified-info' ),
+        'comp_mode'  => __( 'Compatibilty Mode (Advanced)', 'wp-last-modified-info' ),
+        'disable'    => __( 'Disable Schema Markup', 'wp-last-modified-info' )
     );
-    echo '<select id="schema-jsonld" name="lmt_plugin_global_settings[lmt_enable_jsonld_markup_cb]" style="width:25%;">';
+    echo '<select id="schema-jsonld" name="lmt_plugin_global_settings[lmt_enable_jsonld_markup_cb]" style="width:32%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_enable_jsonld_markup_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable JSON-LD Markup if you want to show JSON type markup to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Set the JSON-LD Markup mode if you want to show last modified info to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    <div class="schema-text" style="font-size: 12px;margin-top: 5px;"><i><?php _e( 'If your site already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></i></div>
     <?php
 }
 

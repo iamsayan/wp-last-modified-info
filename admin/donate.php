@@ -29,7 +29,7 @@ function lmt_donate_admin_notice() {
         <p><a href="https://www.paypal.me/iamsayan" target="_blank" class="button button-secondary"><?php _e( 'Donate Now', 'wp-last-modified-info' ); ?></a>&nbsp;
         <a href="<?php echo $dismiss; ?>" class="already-did"><strong><?php _e( 'I already donated', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
         <a href="<?php echo $no_thanks; ?>" class="later"><strong><?php _e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></a>&nbsp;<strong>|</strong>
-        <a href="<?php echo $dismiss; ?>" class="hide"><strong><?php _e( 'Hide this notice', 'wp-last-modified-info' ); ?></strong></a></p>
+        <a href="<?php echo $dismiss; ?>" class="hide"><strong><?php _e( 'I don\'t want to donate', 'wp-last-modified-info' ); ?></strong></a></p>
     </div>
 <?php
 }
