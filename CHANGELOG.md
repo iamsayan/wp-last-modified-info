@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.7
+Release Date: June 7, 2019
+
+* NEW: Schema Markup Compatibility with other SEO and Schema Plugins. Please resave schema option in plugin settings after upgrading your plugin.
+* Fixed: `ob_start` warning.
+
 ## 1.5.6
 Release Date: May 8, 2019
 
