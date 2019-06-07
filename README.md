@@ -38,6 +38,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 * You can also add template tags to your theme files. Go to the FAQ section for more information.
 * Elementor Dynamic Tags support with 'dateModified' schema markup.
 * Send Email Notification when anyone makes changes to any post of your website.
+* Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.
 * And you can customize all and everything.
 
 ### Compatibility ###
