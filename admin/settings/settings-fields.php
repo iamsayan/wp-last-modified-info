@@ -691,7 +691,7 @@ function lmt_enable_jsonld_markup_cb_display() {
     echo '</select>';
     ?>
     &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Set the JSON-LD Markup mode if you want to show last modified info to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
-    <div class="schema-text" style="font-size: 12px;margin-top: 5px;"><i><?php _e( 'If your site already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></i></div>
+    <div class="schema-text" style="font-size: 12px;margin-top: 5px;"><i><?php _e( 'If you already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></i></div>
     <?php
 }
 
