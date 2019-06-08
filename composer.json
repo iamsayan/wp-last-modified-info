@@ -1,0 +1,19 @@
+{
+    "name": "iamsayan/wp-last-modified-info",
+    "description": "Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site.",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=5.3",
+        "composer/installers": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Sayan Datta",
+            "email": "hello@sayandatta.com"
+        }
+    ]
+}
