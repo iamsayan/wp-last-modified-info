@@ -24,21 +24,12 @@ function lmt_genesis_schema_attributes_removal( $attributes ) {
 }
 
 /**
- * Remove GeneratePress schema markups
+ * Remove GeneratePress and Astra schema markups
  */
 
-add_filter( 'generate_post_date_output', 'lmt_generatepress_theme_schema_fix' );
+add_filter( 'generate_post_date_output', 'lmt_generatepress_astra_theme_schema_fix' );
+add_filter( 'astra_post_date', 'lmt_generatepress_astra_theme_schema_fix' );
 
-function lmt_generatepress_theme_schema_fix( $time_string ) {
+function lmt_generatepress_astra_theme_schema_fix( $time_string ) {
     return str_replace( array( ' itemprop="datePublished"', ' itemprop="dateModified"' ), '', $time_string );
-}
-
-/**
- * Remove Astra schema markups
- */
-
-add_filter( 'astra_post_date', 'lmt_astra_theme_schema_fix' );
-
-function lmt_astra_theme_schema_fix( $output ) { 
-    return str_replace( array( ' itemprop="datePublished"', ' itemprop="dateModified"' ), '', $output );
 }

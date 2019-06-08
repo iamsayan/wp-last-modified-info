@@ -12,7 +12,9 @@ add_action( 'init', 'lmt_html_replace_ob', 1 );
 add_action( 'init', 'lmt_replace_published_date_with_mod_date', 1 );
 
 function lmt_html_replace_ob() {
-    ob_start( 'lmt_html_replace_ob_callback' );
+    if( ! is_admin() ) {
+        ob_start( 'lmt_html_replace_ob_callback' );
+    }
 }
 
 function lmt_html_replace_ob_callback( $buffer ) {
@@ -33,7 +35,7 @@ function lmt_html_replace_ob_callback( $buffer ) {
 function lmt_replace_published_date_with_mod_date() {
     $options = get_option('lmt_plugin_global_settings');
     
-    if( isset($options['lmt_enable_jsonld_markup_cb']) && ($options['lmt_enable_jsonld_markup_cb'] == 'comp_mode') ) {
+    if( isset($options['lmt_enable_jsonld_markup_cb']) && ($options['lmt_enable_jsonld_markup_cb'] == 'comp_mode') && !is_admin() ) {
         ob_start( 'lmt_replace_published_date_with_mod_date_ob_callback' );
     }
 }

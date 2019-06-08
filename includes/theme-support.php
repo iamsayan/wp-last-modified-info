@@ -29,15 +29,14 @@ function lmt_generatepress_theme_replace_author_meta() {
 add_action( 'init', 'lmt_remove_hentry_support_generatepress', 1 );
 
 function lmt_remove_hentry_support_generatepress() {
-    if( defined( 'GENERATE_VERSION' ) ) {
+    if( defined( 'GENERATE_VERSION' ) && !is_admin() ) {
         ob_start( 'lmt_remove_hentry_support_generatepress_ob_callback' );
     }
 }
 
 function lmt_remove_hentry_support_generatepress_ob_callback( $buffer ) {
-    if( defined( 'GENERATE_VERSION' ) ) {
-        $buffer = str_replace( array( 'hfeed ', 'hentry ' ), '', $buffer );
-    }
+    $buffer = str_replace( array( 'hfeed ', 'hentry ' ), '', $buffer );
+    
     return $buffer;
 }
 
