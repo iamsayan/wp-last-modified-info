@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.5.9
+Release Date: June 8, 2019
+
+* Fixed: GeneratePress missing function error.
+
+## 1.5.8
+Release Date: June 8, 2019
+
+* Improved: Output Buffering Mechanism.
+* Fixed: Some Typo.
+* Removed: Some duplicate codes.
+
 ## 1.5.7
 Release Date: June 7, 2019
 
