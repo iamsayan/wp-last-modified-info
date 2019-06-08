@@ -22,23 +22,23 @@ Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wo
 
 This plugin automatically inserts last modified or updated info on your WordPress posts (including custom post types) and pages. It is possible to use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages for manual insert. This plugin also adds 'dateModified' schema markup in WordPress posts automatically and it is used to tell the last modified date & time of a post or a page to various search engines like Google, Bing etc.
 
-* Allows you to display Last modified information in your posts and pages individually.
-* Provides you with options to display the last modified/last updated date above or below your posts and pages.
+* Allows you to display **Last modified** information in your **posts and pages individually**.
+* Provides you with options to display the **last modified/last updated date above or below your posts and pages**.
 * You can also set date/time formats and the position of the timestamp in WordPress Posts and Pages which can be either before content or after the content.
-* Allows you to customize the text which is to be displayed alongside the last modified date (default: Last updated on).
-* Inserts ‘dateModified’ schema markup to your WordPress posts automatically.
-* Allows you to display last modified info on all post types column and publish meta box in the dashboard with the author name.
-* Allows you to sort posts/pages in last updated/modified date time order.
-* Allows you to replace post published date with post modified info.
-* Allows you to display last modified info on your post as human readable format, i.e. Days/weeks/months/years ago.
+* Allows you to **customize the text which is to be displayed alongside the last modified date** (default: Last updated on).
+* **Inserts ‘dateModified’ schema markup to your WordPress posts automatically**.
+* **Displays last modified info on all post types column and publish meta box in the dashboard with the author name.**
+* Allows you to **sort posts/pages in last updated/modified date-time order**.
+* Allows you to **replace post published date with post modified info**.
+* Allows you to **display last modified info** on your post as **human-readable format**, i.e. Days/weeks/months/years ago.
 * Allows you to display last modified info of all posts in the WordPress admin bar.
-* Allows you to display last modified author info in posts, pages.
-* Allows you to add last modified timestamp in post/page's custom field.
-* Allows you to edit last modified date and time from the post edit screen and quick edit screen also.
-* You can also add template tags to your theme files. Go to the FAQ section for more information.
-* Elementor Dynamic Tags support with 'dateModified' schema markup.
-* Send Email Notification when anyone makes changes to any post of your website.
-* Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.
+* Allows you to **display last modified author info in posts, pages**.
+* Allows you to **add last modified timestamp in post/page's custom field**.
+* **Allows you to edit last modified date and time from the post edit screen and quick edit screen as well**.
+* You can also add **template tags** to your theme files. Go to the FAQ section for more information.
+* **Elementor Dynamic Tags** support with **'dateModified' schema markup**.
+* Send **Email Notification when anyone makes changes to any post** of your website.
+* **Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema** and many other plugins.
 * And you can customize all and everything.
 
 ### Compatibility ###
