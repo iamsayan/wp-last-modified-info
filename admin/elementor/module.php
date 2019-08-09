@@ -9,7 +9,7 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+if( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
 
     add_action( 'elementor/frontend/the_content', 'lmt_disable_schema_markup_conversion_unicode' );
 

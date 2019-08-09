@@ -57,7 +57,7 @@ function lmt_print_last_modified_info_post( $content ) {
     }
 
     if( isset($options['lmt_show_on_homepage']) && ($options['lmt_show_on_homepage'] == 'yes') ) {
-        if ( isset( $fullcontent ) && ( is_home() && apply_filters( 'wplmi_enable_home_page', true ) || is_author() && apply_filters( 'wplmi_enable_author_archive', true ) || is_category() && apply_filters( 'wplmi_enable_category_archive', true ) || is_tag() && apply_filters( 'wplmi_enable_tag_archive', true ) ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
+        if ( isset( $fullcontent ) && ( ( is_home() && apply_filters( 'wplmi_enable_home_page', true ) ) || ( is_author() && apply_filters( 'wplmi_enable_author_archive', true ) ) || ( is_category() && apply_filters( 'wplmi_enable_category_archive', true ) ) || ( is_tag() && apply_filters( 'wplmi_enable_tag_archive', true ) ) || ( is_search() && apply_filters( 'wplmi_enable_on_search_page', true ) ) ) && !get_post_meta( get_the_ID(), '_lmt_disable', true ) == 'yes' ) { 
             return $fullcontent;
         }
     }

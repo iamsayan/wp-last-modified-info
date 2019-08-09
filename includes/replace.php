@@ -8,8 +8,14 @@
  */
 
 // Handles find and replace on frontend
-add_action( 'init', 'lmt_html_replace_ob', 1 );
-add_action( 'init', 'lmt_replace_published_date_with_mod_date', 1 );
+if( apply_filters( 'wplmi_switch_global_replace_hook', false ) ) {
+    // add into init action hook
+    add_action( 'init', 'lmt_html_replace_ob', 1 );
+    add_action( 'init', 'lmt_replace_published_date_with_mod_date', 1 );
+} else {
+    add_action( 'template_redirect', 'lmt_html_replace_ob' );
+    add_action( 'template_redirect', 'lmt_replace_published_date_with_mod_date' );
+}
 
 function lmt_html_replace_ob() {
     if( ! is_admin() ) {
@@ -41,7 +47,7 @@ function lmt_replace_published_date_with_mod_date() {
 }
 
 function lmt_replace_published_date_with_mod_date_ob_callback( $buffer ) {
-    $buffer = str_replace( array( get_post_time( 'Y-m-d\TH:i:sP', true ), get_the_time('c') ), get_post_modified_time( 'Y-m-d\TH:i:sP', true ), $buffer );
+    $buffer = str_replace( apply_filters( 'wplmi_custom_schema_post_date_fotmat', array( get_post_time( 'Y-m-d\TH:i:sP', true ), get_the_time('c'), date( DATE_W3C, get_the_time('U') ) ) ), get_post_modified_time( 'Y-m-d\TH:i:sP', true ), $buffer );
     
     return $buffer;
 }

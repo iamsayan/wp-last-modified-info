@@ -55,6 +55,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
             'is_author'    => 1,
             'is_category'  => 1,
             'is_tag'       => 1,
+            'is_search'    => 1,
             'archive'      => $archive,
             'format'       => $format,
             'display'      => $display,
@@ -153,7 +154,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
         }
     
         if( isset($atts['archive']) && ($atts['archive'] == 'yes') ) {
-            if ( isset( $html_content ) && ( ( $atts['is_home'] == 1 && is_home() ) || ( $atts['is_author'] == 1 && is_author() ) || ( $atts['is_category'] == 1 && is_category() ) || ( $atts['is_tag'] == 1 && is_tag() ) ) ) { 
+            if ( isset( $html_content ) && ( ( $atts['is_home'] == 1 && is_home() ) || ( $atts['is_author'] == 1 && is_author() ) || ( $atts['is_category'] == 1 && is_category() ) || ( $atts['is_tag'] == 1 && is_tag() ) || ( $atts['is_search'] == 1 && is_search() ) ) ) { 
                 return $html_content;
             }
         }

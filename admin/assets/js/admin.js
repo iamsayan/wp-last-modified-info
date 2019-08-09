@@ -110,32 +110,45 @@ jQuery(document).ready(function ($) {
         if ($('#post-format').val() == 'human_readable') {
             $('#post-human-end-with').show();
             $('.post-default-format').hide();
+            $('#post-ago-replace').prop('required',true);
+            $('#custom-post-date-format').removeAttr('required');
+            $('#custom-post-dtsep').removeAttr('required');
+            $('#custom-post-time-format').removeAttr('required');
         }
         if ($('#post-format').val() != 'human_readable') {
             $('#post-human-end-with').hide();
             $('.post-default-format').show();
+            $('#post-ago-replace').removeAttr('required');
+            $("#post-default-format").change(function() {
+                if ($('#post-default-format').val() == 'only_date') {
+                    $('#post-dtcf').show();
+                    $('#post-tmcf').hide();
+                    $('#post-dtsep').hide();
+                    $('#custom-post-date-format').prop('required',true);
+                    $('#custom-post-dtsep').removeAttr('required');
+                    $('#custom-post-time-format').removeAttr('required');
+                }
+                if ($('#post-default-format').val() == 'only_time') {
+                    $('#post-dtcf').hide();
+                    $('#post-tmcf').show();
+                    $('#post-dtsep').hide();
+                    $('#custom-post-date-format').removeAttr('required');
+                    $('#custom-post-dtsep').removeAttr('required');
+                    $('#custom-post-time-format').prop('required',true);
+                }
+                if ($('#post-default-format').val() == 'show_both') {
+                    $('#post-dtcf').show();
+                    $('#post-tmcf').show();
+                    $('#post-dtsep').show();
+                    $('#custom-post-date-format').prop('required',true);
+                    $('#custom-post-dtsep').prop('required',true);
+                    $('#custom-post-time-format').prop('required',true);
+                }
+            });
+            $("#post-default-format").trigger('change');
         }
     });
     $("#post-format").trigger('change');
-
-    $("#post-default-format").change(function() {
-        if ($('#post-default-format').val() == 'only_date') {
-            $('#post-dtcf').show();
-            $('#post-tmcf').hide();
-            $('#post-dtsep').hide();
-        }
-        if ($('#post-default-format').val() == 'only_time') {
-            $('#post-dtcf').hide();
-            $('#post-tmcf').show();
-            $('#post-dtsep').hide();
-        }
-        if ($('#post-default-format').val() == 'show_both') {
-            $('#post-dtcf').show();
-            $('#post-tmcf').show();
-            $('#post-dtsep').show();
-        }
-    });
-    $("#post-default-format").trigger('change');
 
     $("#post-sa").change(function() {
         if ($('#post-sa').val() == 'custom') {
@@ -147,10 +160,12 @@ jQuery(document).ready(function ($) {
         if ($('#post-sa').val() == 'do_not_show') {
             $('#post-author-link').hide();
             $('#post-custom-author-sep').hide();
+            $('#custom-post-author-sep').removeAttr('required');
         }
         if ($('#post-sa').val() != 'do_not_show') {
             $('#post-author-link').show();
             $('#post-custom-author-sep').show();
+            $('#custom-post-author-sep').prop('required',true);
         }
     });
     $("#post-sa").trigger('change');
@@ -159,32 +174,45 @@ jQuery(document).ready(function ($) {
         if ($('#page-format').val() == 'human_readable') {
             $('#page-human-end-with').show();
             $('.page-default-format').hide();
+            $('#page-ago-replace').prop('required',true);
+            $('#custom-page-date-format').removeAttr('required');
+            $('#custom-page-dtsep').removeAttr('required');
+            $('#custom-page-time-format').removeAttr('required');
         }
         if ($('#page-format').val() != 'human_readable') {
             $('#page-human-end-with').hide();
             $('.page-default-format').show();
+            $('#page-ago-replace').removeAttr('required');
+            $("#page-default-format").change(function() {
+                if ($('#page-default-format').val() == 'only_date') {
+                    $('#page-dtcf').show();
+                    $('#page-tmcf').hide();
+                    $('#page-dtsep').hide();
+                    $('#custom-page-date-format').prop('required',true);
+                    $('#custom-page-dtsep').removeAttr('required');
+                    $('#custom-page-time-format').removeAttr('required');
+                }
+                if ($('#page-default-format').val() == 'only_time') {
+                    $('#page-dtcf').hide();
+                    $('#page-tmcf').show();
+                    $('#page-dtsep').hide();
+                    $('#custom-page-date-format').removeAttr('required');
+                    $('#custom-page-dtsep').removeAttr('required');
+                    $('#custom-page-time-format').prop('required',true);
+                }
+                if ($('#page-default-format').val() == 'show_both') {
+                    $('#page-dtcf').show();
+                    $('#page-tmcf').show();
+                    $('#page-dtsep').show();
+                    $('#custom-page-date-format').prop('required',true);
+                    $('#custom-page-dtsep').prop('required',true);
+                    $('#custom-page-time-format').prop('required',true);
+                }
+            });
+            $("#page-default-format").trigger('change');
         }
     });
     $("#page-format").trigger('change');
-
-    $("#page-default-format").change(function() {
-        if ($('#page-default-format').val() == 'only_date') {
-            $('#page-dtcf').show();
-            $('#page-tmcf').hide();
-            $('#page-dtsep').hide();
-        }
-        if ($('#page-default-format').val() == 'only_time') {
-            $('#page-dtcf').hide();
-            $('#page-tmcf').show();
-            $('#page-dtsep').hide();
-        }
-        if ($('#page-default-format').val() == 'show_both') {
-            $('#page-dtcf').show();
-            $('#page-tmcf').show();
-            $('#page-dtsep').show();
-        }
-    });
-    $("#page-default-format").trigger('change');
 
     $("#page-sa").change(function() {
         if ($('#page-sa').val() == 'custom') {
@@ -196,10 +224,12 @@ jQuery(document).ready(function ($) {
         if ($('#page-sa').val() == 'do_not_show') {
             $('#page-author-link').hide();
             $('#page-custom-author-sep').hide();
+            $('#custom-page-author-sep').removeAttr('required');
         }
         if ($('#page-sa').val() != 'do_not_show') {
             $('#page-author-link').show();
             $('#page-custom-author-sep').show();
+            $('#custom-page-author-sep').prop('required',true);
         }
     });
     $("#page-sa").trigger('change');
@@ -208,10 +238,14 @@ jQuery(document).ready(function ($) {
         if ($('#tt-format').val() == 'human_readable') {
             $('#tt-human-end-with').show();
             $('#tt-format-output').hide();
+            $('#tt-ago-replace').prop('required',true);
+            $('#lmt-tt-format').removeAttr('required');
         }
         if ($('#tt-format').val() != 'human_readable') {
             $('#tt-human-end-with').hide();
             $('#tt-format-output').show();
+            $('#tt-ago-replace').removeAttr('required');
+            $('#lmt-tt-format').prop('required',true);
         }
     });
     $("#tt-format").trigger('change');
@@ -226,10 +260,12 @@ jQuery(document).ready(function ($) {
         if ($('#lmt-tt-sa').val() == 'do_not_show') {
             $('#tt-author-link').hide();
             $('#tt-custom-author-sep').hide();
+            $('#custom-tt-author-sep').removeAttr('required');
         }
         if ($('#lmt-tt-sa').val() != 'do_not_show') {
             $('#tt-author-link').show();
             $('#tt-custom-author-sep').show();
+            $('#custom-tt-author-sep').prop('required',true);
         }
     });
     $("#lmt-tt-sa").trigger('change');

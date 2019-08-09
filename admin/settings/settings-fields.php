@@ -196,11 +196,11 @@ function lmt_show_author_cb_display() {
         $options['lmt_show_author_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:14%;">';
+    echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:18%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -447,11 +447,11 @@ function lmt_show_author_page_cb_display() {
         $options['lmt_show_author_page_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:14%;">';
+    echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:18%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_page_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -594,11 +594,11 @@ function lmt_show_author_tt_cb_display() {
         $options['lmt_show_author_tt_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do not show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:14%;">';
+    echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:18%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_tt_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';

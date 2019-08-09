@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.5.9
+Stable tag: 1.6.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -177,70 +177,17 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.5.9 =
-Release Date: June 8, 2019
+= 1.6.0 =
+Release Date: August 9, 2019
 
-* Fixed: GeneratePress missing function error.
-
-= 1.5.8 =
-Release Date: June 8, 2019
-
-* Improved: Output Buffering Mechanism.
-* Fixed: Some Typo.
-* Removed: Some duplicate codes.
-
-= 1.5.7 =
-Release Date: June 7, 2019
-
-* NEW: Schema Markup Compatibility with other SEO and Schema Plugins. Please resave schema option in plugin settings after upgrading your plugin.
-* Fixed: `ob_start` warning.
-
-= 1.5.6 =
-Release Date: May 8, 2019
-
-* Added: A link to hide the notice permanently.
-
-= 1.5.5 =
-Release Date: May 4, 2019
-
-* Added: Option to sort posts by post modified date on edit.php page.
-* Added: A filter `wplmi_post_edit_default_check` to auto check Disable Update Option in Post meta box when creating a new post.
-* Added: A Option in Tools tab to auto check Disable Update Option.
-
-= 1.5.4 =
-Release Date: May 2, 2019
-
-* Fixed: Missing Generatepress Option.
-
-= 1.5.3 =
-Release Date: April 25, 2019
-
-* Added: Post Modified by field in Rest API Output.
-* Fixed: Elementor Deprecated Hooks.
-* Fixed: Conflict with Bootstrap CSS Class.
-* Fixed: Check Box Slider CSS issue.
-* Fixed: Plugin version number.
-* Fixed: Unclosed HTML Tags in Admin Notices.
-
-= 1.5.2 =
-Release Date: March 29, 2019
-
-* Added: A filter `wplmi_elementor_widget_query_filter` to sort Elementor Pro Posts and Portfolio widgets by last modified date.
-* Added: A filter `wplmi_custom_author_list_selection` to set the custom author role for plugin settings.
-
-= 1.5.1 =
-Release Date: March 26, 2019
-
-* Fixed: Some Error Notices.
-
-= 1.5.0 =
-Release Date: March 26, 2019
-
-* Added: Email Notification feature if someone made any change to any post which supports revision.
-* Fixed: Wrong Settings Label.
-* Fixed: Post Updated Message not showing last modified time.
-* Fixed: Some Typo.
-* Removed: Some unused CSS files.
+* Added: A filter `wplmi_custom_schema_post_date_fotmat` to compatible any theme with Compatibility Schema Mode.
+* Added: A filter `wplmi_switch_global_replace_hook` to switvh the Global Replace action hook.
+* Added: Post Shortcode attribute to enable output on search pages.
+* Improved: Last Modified Posts Dashboard Widget.
+* Improved: Compatibility between the Newspaper theme and Advanced Schema Mode.
+* Fixed: An issue which prevents plugin settings from saving.
+* Fixed: JS error in Browser Console.
+* Fixed: Unclosed HTML tag.
 
 = Other Versions =
 

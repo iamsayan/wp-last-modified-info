@@ -26,7 +26,11 @@ function lmt_generatepress_theme_replace_author_meta() {
 }
 
 // Handles hentry find and replace on frontend
-add_action( 'init', 'lmt_remove_hentry_support_generatepress', 1 );
+if( apply_filters( 'wplmi_switch_global_replace_hook', false ) ) {
+    add_action( 'init', 'lmt_remove_hentry_support_generatepress', 1 );
+} else {
+    add_action( 'template_redirect', 'lmt_remove_hentry_support_generatepress' );
+}
 
 function lmt_remove_hentry_support_generatepress() {
     if( defined( 'GENERATE_VERSION' ) && !is_admin() ) {

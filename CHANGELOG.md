@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.0
+Release Date: August 9, 2019
+
+* Added: A filter `wplmi_custom_schema_post_date_fotmat` to compatible any theme with Compatibility Schema Mode.
+* Added: A filter `wplmi_switch_global_replace_hook` to switvh the Global Replace action hook.
+* Added: Post Shortcode attribute to enable output on search pages.
+* Improved: Last Modified Posts Dashboard Widget.
+* Improved: Compatibility between the Newspaper theme and Advanced Schema Mode.
+* Fixed: An issue which prevents plugin settings from saving.
+* Fixed: JS error in Browser Console.
+* Fixed: Unclosed HTML tag.
+
 ## 1.5.9
 Release Date: June 8, 2019
 
