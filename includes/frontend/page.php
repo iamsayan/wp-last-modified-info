@@ -58,52 +58,87 @@ if( isset( $options['lmt_html_tag_page'] ) ) {
     $html_tag = 'p';
 }
 
-if( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'do_not_show' ) ) {
-    $lmt_page_uca = '';
+if( isset( $options['lmt_enable_page_author_hyperlink_target'] ) && $options['lmt_enable_page_author_hyperlink_target'] == 'self' ) {
+    $target = '_self';
+} else {
+    $target = '_blank';
 }
-elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'default' ) ) {
+
+if( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'do_not_show' ) ) {
+    
+    $lmt_page_uca = '';
+    $author_sep_page = '';
+
+} elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'default' ) ) {
         
     $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
     
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_page' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+        
+        $lmt_page_uca = '<a href="' . get_author_posts_url( $author_id ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_website' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+        
+        $lmt_page_uca = '<a href="' . get_the_author_meta( 'url', $author_id ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_email' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+        
+        $lmt_page_uca = '<a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'none' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author">' . get_the_author_meta( 'display_name', $author_id ) . '</span>';
+        
+        $lmt_page_uca = get_the_author_meta( 'display_name', $author_id );
+    
     }
-}
-elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'custom' ) ) {
+
+} elseif( isset($options['lmt_show_author_page_cb']) && ($options['lmt_show_author_page_cb'] == 'custom' ) ) {
     
     $get_author = $options['lmt_show_author_list_page'];
 
     if( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_page' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+        
+        $lmt_page_uca = '<a href="' . get_author_posts_url( $get_author ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_website' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+        
+        $lmt_page_uca = '<a href="' . get_the_author_meta( 'url', $get_author ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'author_email' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+    
+        $lmt_page_uca = '<a href="mailto:' . get_the_author_meta( 'user_email', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
+    
     } elseif( isset($options['lmt_enable_page_author_hyperlink']) && ($options['lmt_enable_page_author_hyperlink'] == 'none' ) ) {
-        $lmt_page_uca = $author_sep_page . ' <span class="page-modified-author">' . get_the_author_meta( 'display_name', $get_author ) . '</span>';
+    
+        $lmt_page_uca = get_the_author_meta( 'display_name', $get_author );
+    
     }
+
 }      
         
 if( isset( $options_page ) && ( isset( $updated_time_page ) || isset( $updated_day_page ) || isset( $lmt_page_us ) || isset( $lmt_page_uca ) ) ) {
 
     if( isset($options['lmt_last_modified_format_page']) && ($options['lmt_last_modified_format_page'] == 'human_readable' ) ) {
-        $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
-    }
-    elseif( isset($options['lmt_last_modified_format_page']) && ($options['lmt_last_modified_format_page'] == 'default' ) ) {
+        
+        $format = human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago_page;
+    
+    } elseif( isset($options['lmt_last_modified_format_page']) && ($options['lmt_last_modified_format_page'] == 'default' ) ) {
+        
         if( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'only_time' ) ) {
-            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_time_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
+            
+            $format = $updated_time_page;
+        
+        } elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'only_date' ) ) {
+            
+            $format = $updated_day_page;
+        
+        } elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'show_both' ) ) {
+            
+            $format = $updated_day_page . ' ' . $options_page_sep . ' ' . $updated_time_page;
+        
         }
-        elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'only_date' ) ) {
-            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
-        }
-        elseif( isset($options['lmt_last_modified_default_format_page']) && ($options['lmt_last_modified_default_format_page'] == 'show_both' ) ) {
-            $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $updated_day_page . ' ' . $options_page_sep . ' ' . $updated_time_page . '</time>' . $lmt_page_uca . '</' . $html_tag . '>';
-        }
+
     }
+
+    $modified_content = '<' . $html_tag . ' class="page-last-modified">' . $options_page . ' <time class="page-last-modified-td"'. $schema_page .'>' . $format . '</time>' . $author_sep_page . ' <span class="page-modified-author">' . $lmt_page_uca . '</span></' . $html_tag . '>';
+        
 }

@@ -196,17 +196,17 @@ function lmt_show_author_cb_display() {
         $options['lmt_show_author_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Hide', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:18%;">';
+    echo '<select id="post-sa" name="lmt_plugin_global_settings[lmt_show_author_cb]" style="width:10%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
-    ?> 
+    ?>
     <span id="post-custom-author-sep" style="display:none;">&nbsp;&nbsp;<label for="custom-post-author-sep" style="font-size:13px;"><strong><?php _e( 'Separator:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php if(empty($options['lmt_post_author_sep'])){
         $options['lmt_post_author_sep'] = 'by';
@@ -219,7 +219,7 @@ function lmt_show_author_cb_display() {
         $options['lmt_show_author_list'] = 1;
     }
     $users = get_users( apply_filters( 'wplmi_custom_author_list_selection', '' ) );
-    echo '<select id="custom-post-author" name="lmt_plugin_global_settings[lmt_show_author_list]" style="width:20%;">';
+    echo '<select id="custom-post-author" name="lmt_plugin_global_settings[lmt_show_author_list]" style="width:18%;">';
     foreach( $users as $user ) {
         $selected = ($options['lmt_show_author_list'] == $user->ID) ? ' selected="selected"' : '';
         echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
@@ -238,15 +238,31 @@ function lmt_show_author_cb_display() {
             'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
             'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
-        echo '<select id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" style="width:16%;">';
+        echo '<select id="post-authorlink" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink]" style="width:15%;">';
         foreach( $redirects as $redirect => $label ) {
             $selected = ($options['lmt_enable_author_hyperlink'] == $redirect) ? ' selected="selected"' : '';
             echo '<option value="' . $redirect . '"' . $selected . '>' . $label . '</option>';
         }
         echo '</select>';
         ?>
-    </span> 
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    </span>
+    <span id="post-author-link-target" style="display:none;">&nbsp;&nbsp;<label for="post-authorlinktarget" style="font-size:13px;"><strong><?php _e( 'Target:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+        <?php
+        if(!isset($options['lmt_enable_author_hyperlink_target'])){
+            $options['lmt_enable_author_hyperlink_target'] = 'blank';
+        }
+        $targets = array(
+            'self'    => __( '_self', 'wp-last-modified-info' ),
+            'blank'   => __( '_blank', 'wp-last-modified-info' ),
+        );
+        echo '<select id="post-authorlinktarget" name="lmt_plugin_global_settings[lmt_enable_author_hyperlink_target]" style="width:10%;">';
+        foreach( $targets as $target => $label ) {
+            $selected = ($options['lmt_enable_author_hyperlink_target'] == $target) ? ' selected="selected"' : '';
+            echo '<option value="' . $target . '"' . $selected . '>' . $label . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </span>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -447,18 +463,17 @@ function lmt_show_author_page_cb_display() {
         $options['lmt_show_author_page_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Hide', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:18%;">';
+    echo '<select id="page-sa" name="lmt_plugin_global_settings[lmt_show_author_page_cb]" style="width:10%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_page_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
     }
     echo '</select>';
-    ?>
-    <span id="page-custom-author-sep" style="display:none;">&nbsp;&nbsp;<label for="custom-page-author-sep" style="font-size:13px;"><strong><?php _e( 'Separator:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    ?><span id="page-custom-author-sep" style="display:none;">&nbsp;&nbsp;<label for="custom-page-author-sep" style="font-size:13px;"><strong><?php _e( 'Separator:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php if(empty($options['lmt_page_author_sep'])){
         $options['lmt_page_author_sep'] = 'by';
     } ?>
@@ -470,7 +485,7 @@ function lmt_show_author_page_cb_display() {
         $options['lmt_show_author_list_page'] = 1;
     }
     $users = get_users( apply_filters( 'wplmi_custom_author_list_selection', '' ) );
-    echo '<select id="custom-page-author" name="lmt_plugin_global_settings[lmt_show_author_list_page]" style="width:20%;">';
+    echo '<select id="custom-page-author" name="lmt_plugin_global_settings[lmt_show_author_list_page]" style="width:18%;">';
     foreach( $users as $user ) {
         $selected = ($options['lmt_show_author_list_page'] == $user->ID) ? ' selected="selected"' : '';
         echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
@@ -489,10 +504,27 @@ function lmt_show_author_page_cb_display() {
             'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
             'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
-        echo '<select id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" style="width:16%;">';
+        echo '<select id="page-authorlink" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink]" style="width:15%;">';
         foreach( $redirects as $redirect => $label ) {
             $selected = ($options['lmt_enable_page_author_hyperlink'] == $redirect) ? ' selected="selected"' : '';
             echo '<option value="' . $redirect . '"' . $selected . '>' . $label . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </span>
+    <span id="page-author-link-target" style="display:none;">&nbsp;&nbsp;<label for="page-authorlinktarget" style="font-size:13px;"><strong><?php _e( 'Target:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+        <?php
+        if(!isset($options['lmt_enable_page_author_hyperlink_target'])){
+            $options['lmt_enable_page_author_hyperlink_target'] = 'blank';
+        }
+        $targets = array(
+            'self'    => __( '_self', 'wp-last-modified-info' ),
+            'blank'   => __( '_blank', 'wp-last-modified-info' ),
+        );
+        echo '<select id="page-authorlinktarget" name="lmt_plugin_global_settings[lmt_enable_page_author_hyperlink_target]" style="width:10%;">';
+        foreach( $targets as $target => $label ) {
+            $selected = ($options['lmt_enable_page_author_hyperlink_target'] == $target) ? ' selected="selected"' : '';
+            echo '<option value="' . $target . '"' . $selected . '>' . $label . '</option>';
         }
         echo '</select>';
         ?>
@@ -594,11 +626,11 @@ function lmt_show_author_tt_cb_display() {
         $options['lmt_show_author_tt_cb'] = 'do_not_show';
     }
     $items = array(
-        'do_not_show' => __( 'Do Not Show', 'wp-last-modified-info' ),
+        'do_not_show' => __( 'Hide', 'wp-last-modified-info' ),
         'default'     => __( 'Default', 'wp-last-modified-info' ),
         'custom'      => __( 'Custom', 'wp-last-modified-info' )
     );
-    echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:18%;">';
+    echo '<select id="lmt-tt-sa" name="lmt_plugin_global_settings[lmt_show_author_tt_cb]" style="width:10%;">';
     foreach( $items as $item => $label ) {
         $selected = ($options['lmt_show_author_tt_cb'] == $item) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -618,7 +650,7 @@ function lmt_show_author_tt_cb_display() {
         $options['lmt_show_author_list_tt'] = 1;
     }
     $users = get_users( apply_filters( 'wplmi_custom_author_list_selection', '' ) );
-    echo '<select id="lmt-custom-tt-author" name="lmt_plugin_global_settings[lmt_show_author_list_tt]" style="width:20%;">';
+    echo '<select id="lmt-custom-tt-author" name="lmt_plugin_global_settings[lmt_show_author_list_tt]" style="width:18%;">';
     foreach( $users as $user ) {
         $selected = ($options['lmt_show_author_list_tt'] == $user->ID) ? ' selected="selected"' : '';
         echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
@@ -637,10 +669,27 @@ function lmt_show_author_tt_cb_display() {
             'author_website'  => __( 'Author Website', 'wp-last-modified-info' ),
             'author_email'    => __( 'Author Email', 'wp-last-modified-info' )
         );
-        echo '<select id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" style="width:16%;">';
+        echo '<select id="lmt-tt-authorlink" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink]" style="width:15%;">';
         foreach( $redirects as $redirect => $label ) {
             $selected = ($options['lmt_enable_tt_author_hyperlink'] == $redirect) ? ' selected="selected"' : '';
             echo '<option value="' . $redirect . '"' . $selected . '>' . $label . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </span>
+    <span id="tt-author-link-target" style="display:none;">&nbsp;&nbsp;<label for="tt-authorlinktarget" style="font-size:13px;"><strong><?php _e( 'Target:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+        <?php
+        if(!isset($options['lmt_enable_tt_author_hyperlink_target'])){
+            $options['lmt_enable_tt_author_hyperlink_target'] = 'blank';
+        }
+        $targets = array(
+            'self'    => __( '_self', 'wp-last-modified-info' ),
+            'blank'   => __( '_blank', 'wp-last-modified-info' ),
+        );
+        echo '<select id="tt-authorlinktarget" name="lmt_plugin_global_settings[lmt_enable_tt_author_hyperlink_target]" style="width:10%;">';
+        foreach( $targets as $target => $label ) {
+            $selected = ($options['lmt_enable_tt_author_hyperlink_target'] == $target) ? ' selected="selected"' : '';
+            echo '<option value="' . $target . '"' . $selected . '>' . $label . '</option>';
         }
         echo '</select>';
         ?>

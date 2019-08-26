@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.1
+Release Date: August 26, 2019
+
+* Added: An option to set author link target.
+* Fixed: Unclosed HTML tags.
+* Fixed: Tooltip display issue.
+* Removed: Some duplicate codes.
+
 ## 1.6.0
 Release Date: August 9, 2019
 

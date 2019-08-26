@@ -160,15 +160,28 @@ jQuery(document).ready(function ($) {
         if ($('#post-sa').val() == 'do_not_show') {
             $('#post-author-link').hide();
             $('#post-custom-author-sep').hide();
+            $('#post-author-link-target').hide();
             $('#custom-post-author-sep').removeAttr('required');
         }
         if ($('#post-sa').val() != 'do_not_show') {
             $('#post-author-link').show();
             $('#post-custom-author-sep').show();
+            $('#post-author-link-target').show();
             $('#custom-post-author-sep').prop('required',true);
         }
     });
     $("#post-sa").trigger('change');
+
+    $("#post-authorlink").change(function() {
+        if ($('#post-authorlink').val() == 'none') {
+            $('#post-authorlinktarget').prop('disabled', true);
+        } else if ($('#post-authorlink').val() == 'author_email') {
+            $('#post-authorlinktarget').prop('disabled', true);
+        } else {
+            $('#post-authorlinktarget').prop('disabled', false);
+        }
+    });
+    $("#post-authorlink").trigger('change');
 
     $("#page-format").change(function() {
         if ($('#page-format').val() == 'human_readable') {
@@ -224,15 +237,28 @@ jQuery(document).ready(function ($) {
         if ($('#page-sa').val() == 'do_not_show') {
             $('#page-author-link').hide();
             $('#page-custom-author-sep').hide();
+            $('#page-author-link-target').hide();
             $('#custom-page-author-sep').removeAttr('required');
         }
         if ($('#page-sa').val() != 'do_not_show') {
             $('#page-author-link').show();
             $('#page-custom-author-sep').show();
+            $('#page-author-link-target').show();
             $('#custom-page-author-sep').prop('required',true);
         }
     });
     $("#page-sa").trigger('change');
+
+    $("#page-authorlink").change(function() {
+        if ($('#page-authorlink').val() == 'none') {
+            $('#page-authorlinktarget').prop('disabled', true);
+        } else if ($('#page-authorlink').val() == 'author_email') {
+            $('#page-authorlinktarget').prop('disabled', true);
+        } else {
+            $('#page-authorlinktarget').prop('disabled', false);
+        }
+    });
+    $("#page-authorlink").trigger('change');
 
     $("#tt-format").change(function() {
         if ($('#tt-format').val() == 'human_readable') {
@@ -260,15 +286,28 @@ jQuery(document).ready(function ($) {
         if ($('#lmt-tt-sa').val() == 'do_not_show') {
             $('#tt-author-link').hide();
             $('#tt-custom-author-sep').hide();
+            $('#tt-author-link-target').hide();
             $('#custom-tt-author-sep').removeAttr('required');
         }
         if ($('#lmt-tt-sa').val() != 'do_not_show') {
             $('#tt-author-link').show();
             $('#tt-custom-author-sep').show();
+            $('#tt-author-link-target').show();
             $('#custom-tt-author-sep').prop('required',true);
         }
     });
     $("#lmt-tt-sa").trigger('change');
+
+    $("#lmt-tt-authorlink").change(function() {
+        if ($('#lmt-tt-authorlink').val() == 'none') {
+            $('#tt-authorlinktarget').prop('disabled', true);
+        } else if ($('#lmt-tt-authorlink').val() == 'author_email') {
+            $('#tt-authorlinktarget').prop('disabled', true);
+        } else {
+            $('#tt-authorlinktarget').prop('disabled', false);
+        }
+    });
+    $("#lmt-tt-authorlink").trigger('change');
 
     $("#schema-jsonld").change(function() {
         if ($('#schema-jsonld').val() == 'enable') {
