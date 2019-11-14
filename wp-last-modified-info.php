@@ -5,7 +5,7 @@
  * Description: 🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
  * Version: 1.6.2
  * Author: Sayan Datta
- * Author URI: https://www.linkedin.com/in/meetsayan/
+ * Author URI: https://about.me/iamsayan
  * License: GPLv3
  * Text Domain: wp-last-modified-info
  * Domain Path: /languages
