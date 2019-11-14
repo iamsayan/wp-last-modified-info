@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.2
+Release Date: November 14, 2019
+
+* Compatibility with WordPress 5.3.
+* Improved: Now it is possible to check/uncheck "Disable Update" option globally.
+* Fixed: Some broken links.
+* Fixed: Minor CSS issue.
+* Removed: Some unnessary files.
+* Other minor improvemnts and fixes.
+
 ## 1.6.1
 Release Date: August 26, 2019
 
