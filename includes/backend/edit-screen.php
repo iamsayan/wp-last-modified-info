@@ -15,7 +15,7 @@ add_action( 'quick_edit_custom_box', 'lmt_add_item_to_quick_edit', 10, 2 );
 add_filter( 'wp_insert_post_data', 'lmt_disable_update_date', 99, 2 );
 
 function lmt_show_on_dashboard( $post ) {
-    global $wp_locale;
+    global $wp_locale, $wp_version;
 
 	if( $post->post_status == 'auto-draft' ) {
 		return;
@@ -62,19 +62,16 @@ function lmt_show_on_dashboard( $post ) {
 				</label>
 				<label>
 					<span class="screen-reader-text"><?php _e('Day', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;" />
-				</label>,
-				<label>
+					<input type="text" id="jjm" class="jjm-edit" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label>, <label>
 					<span class="screen-reader-text"><?php _e('Year', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" style="width:3.4em;" />
-				</label> <?php _e('@', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="aam" class="aam-edit" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
+				</label><?php if( version_compare( $wp_version,'5.3' ) >= 0 ) { _e( ' at ', 'wp-last-modified-info' ); } else { _e( ' @ ', 'wp-last-modified-info' ); }; ?><label>
 					<span class="screen-reader-text"><?php _e('Hour', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;" />
-				</label><?php _e(':', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="hhm" class="hhm-edit" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off"/>
+				</label><?php _e(':', 'wp-last-modified-info'); ?><label>
 					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="margin-left:-3px;" />
+					<input type="text" id="mnm" class="mnm-edit" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
 				</label>
 			</div>
 			<?php
@@ -185,7 +182,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 		return;
 	}
 
-	global $post, $wp_locale;
+	global $post, $wp_locale, $wp_version;
 
 	//check if post is object otherwise you're not in singular post
     if( ! is_object( $post ) ) {
@@ -211,7 +208,7 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 	<div id="inline-edit-col-modified-date">
         <legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
 			<div class="timestamp-wrap">
-				<label  class="inline-edit-group">
+				<label class="inline-edit-group">
 					<span class="screen-reader-text"><?php _e('Month', 'wp-last-modified-info'); ?></span>
 					<select id="mmm" class="time-modified" name="mmm">
 						<?php
@@ -223,23 +220,19 @@ function lmt_add_item_to_quick_edit( $column_name, $post_type ) {
 						?>
 					</select>
 				</label>
-				<label  class="inline-edit-group">
+				<label class="inline-edit-group">
 					<span class="screen-reader-text"><?php _e('Day', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="jjm" class="time-modified" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.3em;" />
-				</label>,
-				<label>
+					<input type="text" id="jjm" class="time-modified tm-jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label>, <label>
 					<span class="screen-reader-text"><?php _e('Year', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="aam" class="time-modified" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" style="font-size:12px;width:3.5em;" />
-				</label> <?php _e('@', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="aam" class="time-modified tm-aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
+				</label><?php if( version_compare( $wp_version,'5.3' ) >= 0 ) { _e( ' at ', 'wp-last-modified-info' ); } else { _e( ' @ ', 'wp-last-modified-info' ); }; ?><label>
 					<span class="screen-reader-text"><?php _e('Hour', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="hhm" class="time-modified" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.3em;" />
-				</label><?php _e(':', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="hhm" class="time-modified tm-hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label><?php _e(':', 'wp-last-modified-info'); ?><label>
 					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="mnm" class="time-modified" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="font-size:12px;width:2.35em;margin-left:-3px;" />
-				</label>
-                <label for="lmt_disable">
+					<input type="text" id="mnm" class="time-modified tm-mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label>&nbsp;&nbsp;<label for="lmt_disable">
 			        <input type="checkbox" id="lmt_disable" name="disableupdate" <?php if( $stop_update == 'yes' ) { echo 'checked'; } ?>>
 			        <span class="checkbox-title"><?php _e( 'Disable update', 'wp-last-modified-info' ); ?></span>
 			    </label>

@@ -36,6 +36,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
     $format = isset($options['lmt_last_modified_format_post']) ? $options['lmt_last_modified_format_post'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_post']) ? $options['lmt_last_modified_default_format_post'] : 'only_date';
     $gap = isset($options['lmt_gap_on_post']) ? $options['lmt_gap_on_post'] : 0;
+    $lt = isset( $options['lmt_enable_author_hyperlink_target'] ) && $options['lmt_enable_author_hyperlink_target'] == 'self' ? '_self' : '_blank';
     
     $atts = shortcode_atts(
 		array(
@@ -61,6 +62,7 @@ function lmt_post_modified_info_shortcode( $atts ) {
             'display'      => $display,
             'filter'       => 'no',
             'filter_id'    => array(),
+            'link_target'  => $lt,
             'gap'          => $gap,
         ), $atts, 'lmt-post-modified-info' );
 
@@ -101,9 +103,9 @@ function lmt_post_modified_info_shortcode( $atts ) {
         $author_id = get_post_meta( $atts['id'], '_edit_last', true );
     
         if( isset($atts['author_link']) && ($atts['author_link'] == 'author_page' ) ) {
-            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_website' ) ) {
-            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_email' ) ) {
             $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'none' ) ) {
@@ -115,9 +117,9 @@ function lmt_post_modified_info_shortcode( $atts ) {
         $get_author = $atts['author_id'];
     
         if( isset($atts['author_link']) && ($atts['author_link'] == 'author_page' ) ) {
-            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_website' ) ) {
-            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+            $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_email' ) ) {
             $lmt_post_uca = $author_sep . ' <span class="post-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'none' ) ) {
@@ -178,6 +180,7 @@ function lmt_page_modified_info_shortcode( $atts ) {
     $format = isset($options['lmt_last_modified_format_page']) ? $options['lmt_last_modified_format_page'] : 'default';
     $display = isset($options['lmt_last_modified_default_format_page']) ? $options['lmt_last_modified_default_format_page'] : 'only_date';
     $gap = isset($options['lmt_gap_on_page']) ? $options['lmt_gap_on_page'] : '0';
+    $lt = isset( $options['lmt_enable_page_author_hyperlink_target'] ) && $options['lmt_enable_page_author_hyperlink_target'] == 'self' ? '_self' : '_blank';
     
     $atts = shortcode_atts(
 		array(
@@ -197,6 +200,7 @@ function lmt_page_modified_info_shortcode( $atts ) {
             'display'      => $display,
             'filter'       => 'no',
             'filter_id'    => array(),
+            'link_target'  => $lt,
             'gap'          => $gap,
         ), $atts, 'lmt-page-modified-info' );
 
@@ -234,9 +238,9 @@ function lmt_page_modified_info_shortcode( $atts ) {
         $author_id = get_post_meta( $atts['id'], '_edit_last', true );
     
         if( isset($atts['author_link']) && ($atts['author_link'] == 'author_page' ) ) {
-            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $author_id ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_website' ) ) {
-            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
+            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $author_id ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_email' ) ) {
             $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'none' ) ) {
@@ -248,9 +252,9 @@ function lmt_page_modified_info_shortcode( $atts ) {
         $get_author = $atts['author_id'];
     
         if( isset($atts['author_link']) && ($atts['author_link'] == 'author_page' ) ) {
-            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_author_posts_url( $get_author ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_website' ) ) {
-            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="_blank" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
+            $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="' . get_the_author_meta( 'url', $get_author ) . '" target="' . $atts['link_target'] . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'author_email' ) ) {
             $lmt_page_uca = $author_sep . ' <span class="page-modified-author"><a href="mailto:' . get_the_author_meta( 'user_email', $get_author ) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a></span>';
         } elseif( isset($atts['author_link']) && ($atts['author_link'] == 'none' ) ) {

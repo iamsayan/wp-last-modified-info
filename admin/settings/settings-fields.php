@@ -15,7 +15,7 @@ function lmt_enable_last_modified_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked(isset($options['lmt_enable_last_modified_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -23,7 +23,7 @@ function lmt_enable_schema_on_post_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="post-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_post_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_post_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on single posts page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -60,7 +60,7 @@ function lmt_show_last_modified_time_date_post_display() {
     }
     echo '</select>';
     ?></span>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to. \'Show on Homepage\' option is applicable for posts only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to. \'Show on Homepage\' option is applicable for posts only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -86,7 +86,7 @@ function lmt_post_custom_text_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single posts page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'post-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single posts page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'post-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -113,7 +113,7 @@ function lmt_last_modified_format_post_display() {
         } ?>
         <input id="post-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with'])) { echo htmlentities($options['lmt_replace_ago_text_with']); } ?>" />
     </span>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -157,7 +157,7 @@ function lmt_last_modified_default_format_post_display() {
         <input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_post_time_format'])) { echo $options['lmt_custom_post_time_format']; } ?>" />
     </span>
 
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a single post if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a single post if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -185,7 +185,7 @@ function lmt_gap_on_post_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -262,7 +262,7 @@ function lmt_show_author_cb_display() {
         }
         echo '</select>';
         ?>
-    </span>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    </span>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -285,7 +285,7 @@ function lmt_custom_post_types_list_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select custom post types to show last modified info on selected post types only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select custom post types to show last modified info on selected post types only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -297,7 +297,7 @@ function lmt_enable_last_modified_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable" name="lmt_plugin_global_settings[lmt_enable_last_modified_page_cb]" value="1" <?php checked(isset($options['lmt_enable_last_modified_page_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -305,7 +305,7 @@ function lmt_enable_schema_on_page_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="page-enable-schema" name="lmt_plugin_global_settings[lmt_enable_schema_on_page_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_on_page_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable inline dateModified microdata schema markup on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -327,7 +327,7 @@ function lmt_show_last_modified_time_date_page_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box and apply shortcode on that particular page, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a page. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from page edit screen > WP Last Modified Info meta box and apply shortcode on that particular page, if you want to.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -353,7 +353,7 @@ function lmt_page_custom_text_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'page-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enter your custom text which will be shown on single page. You can also set a custom style from \'Custom CSS tab\' for this. Use \'page-last-modified\' as css class.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -380,7 +380,7 @@ function lmt_last_modified_format_page_display() {
         } ?>
         <input id="page-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_page]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_page'])) { echo htmlentities($options['lmt_replace_ago_text_with_page']); } ?>" />
     </span>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -424,7 +424,7 @@ function lmt_last_modified_default_format_page_display() {
         <input id="custom-page-time-format" name="lmt_plugin_global_settings[lmt_custom_page_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_page_time_format'])) { echo $options['lmt_custom_page_time_format']; } ?>" />
     </span>
 
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a page if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a page if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -452,7 +452,7 @@ function lmt_gap_on_page_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the gap between published time and modified time. If modified time is greater than published time + gap, then it shows last modified info on frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -529,7 +529,7 @@ function lmt_show_author_page_cb_display() {
         echo '</select>';
         ?>
     </span>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on pages.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -554,7 +554,7 @@ function lmt_tt_generatepress_theme_mod_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the GeneratePress Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the GeneratePress Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -575,14 +575,14 @@ function lmt_tt_astra_theme_mod_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the Astra Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Enable the Astra Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
 function lmt_tt_updated_text_box_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?> <input id="lmt-tt-updated-text" name="lmt_plugin_global_settings[lmt_tt_updated_text_box]" type="text" size="40" style="width:40%;" placeholder="Updated on" value="<?php if (isset($options['lmt_tt_updated_text_box'])) { echo htmlentities( $options['lmt_tt_updated_text_box'] ); } ?>" />
-        &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'If you want to display any message before last modified date/time, set here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'If you want to display any message before last modified date/time, set here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -615,7 +615,7 @@ function lmt_last_modified_format_tt_display() {
         } ?>
         <input id="tt-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_tt]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_tt'])) { echo htmlentities($options['lmt_replace_ago_text_with_tt']); } ?>" />
     </span>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -677,7 +677,7 @@ function lmt_show_author_tt_cb_display() {
         echo '</select>';
         ?>
     </span>
-    <span id="tt-author-link-target" style="display:none;">&nbsp;&nbsp;<label for="tt-authorlinktarget" style="font-size:13px;"><strong><?php _e( 'Target:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
+    <span id="tt-author-link-target" style="displa1y:none;">&nbsp;&nbsp;<label for="tt-authorlinktarget" style="font-size:13px;"><strong><?php _e( 'Target:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php
         if(!isset($options['lmt_enable_tt_author_hyperlink_target'])){
             $options['lmt_enable_tt_author_hyperlink_target'] = 'blank';
@@ -694,7 +694,7 @@ function lmt_show_author_tt_cb_display() {
         echo '</select>';
         ?>
     </span>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name using template tags.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name using template tags.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -739,7 +739,7 @@ function lmt_enable_jsonld_markup_cb_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Set the JSON-LD Markup mode if you want to show last modified info to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Set the JSON-LD Markup mode if you want to show last modified info to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <div class="schema-text" style="font-size: 12px;margin-top: 5px;"><i><?php _e( 'If you already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></i></div>
     <?php
 }
@@ -762,7 +762,7 @@ function lmt_enable_jsonld_markup_post_types_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select on which post types you want to enable JSON-LD Markup.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select on which post types you want to enable JSON-LD Markup.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -770,7 +770,7 @@ function lmt_enable_schema_support_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="schema-support" name="lmt_plugin_global_settings[lmt_enable_schema_support_cb]" value="1" <?php checked(isset($options['lmt_enable_schema_support_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if your theme does not support schema markup. This will add WebPage type schema support to the html tag. Please check Schema Markup before activate this option using Google Structured Data Tool. If Google already detects schema markup, you don\'t need to enable it anymore.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -782,7 +782,7 @@ function lmt_enable_notification_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-enable" name="lmt_plugin_global_settings[lmt_enable_notification_cb]" value="1" <?php checked(isset($options['lmt_enable_notification_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to receive email notification if anyone makes changes to any post of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to receive email notification if anyone makes changes to any post of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -790,7 +790,7 @@ function lmt_enable_author_noti_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-author" name="lmt_plugin_global_settings[lmt_enable_author_noti_cb]" value="1" <?php checked(isset($options['lmt_enable_author_noti_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to send notification to the post author.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to send notification to the post author.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -798,7 +798,7 @@ function lmt_enable_draft_noti_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="noti-draft" name="lmt_plugin_global_settings[lmt_enable_draft_noti_cb]" value="1" <?php checked(isset($options['lmt_enable_draft_noti_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable notification when anyone makes changes to any draft post.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to enable notification when anyone makes changes to any draft post.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
    <?php
 }
 
@@ -875,7 +875,7 @@ function lmt_enable_on_admin_bar_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="admin-bar-display" name="lmt_plugin_global_settings[lmt_enable_on_admin_bar_cb]" value="1" <?php checked(isset($options['lmt_enable_on_admin_bar_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -897,7 +897,7 @@ function lmt_admin_default_sort_order_display() {
     }
     echo '</select>';
     ?>
-    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Backend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Backend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 
@@ -912,7 +912,7 @@ function lmt_del_plugin_data_cb_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?>  <label class="switch">
         <input type="checkbox" id="del-data" name="lmt_plugin_global_settings[lmt_del_plugin_data_cb]" value="1" <?php checked(isset($options['lmt_del_plugin_data_cb']), 1); ?> /> 
-        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to delete plugin data at the time of uninstallation.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to delete plugin data at the time of uninstallation.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

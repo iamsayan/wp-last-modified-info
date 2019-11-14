@@ -72,17 +72,17 @@ function lmt_meta_box_callback( $post ) {
     wp_nonce_field( 'lmt_meta_box_build_nonce', 'lmt_meta_box_nonce' );
     
     if ( $pt != 'page' ) { ?>
-        <p id="lmt-status" class="meta-options">
+        <div id="lmt-status" class="meta-options">
             <label for="lmt_status" class="selectit" title="<?php _e( 'You can disable auto insertation of last modified info on this', 'wp-last-modified-info' ); ?> <?php echo $post_types->capability_type ?>">
 		        <input id="lmt_status" type="checkbox" name="disableautoinsert" <?php if( $chkMeta == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
 	        </label>
-        </p> <?php 
+    </div> <?php 
     } elseif ( $pt == 'page' ) { ?>
-        <p id="lmt-status" class="meta-options">
+        <div id="lmt-status" class="meta-options">
             <label for="lmt_status" class="selectit" title="<?php _e( 'You can disable auto insertation of last modified info on this', 'wp-last-modified-info' ); ?> <?php echo $post_types->capability_type ?>">
 		        <input id="lmt_status" type="checkbox" name="disableautoinsert" <?php if( $chkMeta == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this page', 'wp-last-modified-info' ); ?>
 	        </label>
-        </p> <?php 
+    </div> <?php 
     } 
 }
 

@@ -12,35 +12,36 @@
 	color: #82878c;
 }
 
-#timestampmodifieddiv {
-    padding-top: 5px;
-    line-height: 23px;
-}
-
 #timestampmodifieddiv p {
     margin: 8px 0px 6px;
 }
 
-#timestampmodifieddiv select { 
-    height: 21px;
-    line-height: 14px;
-    padding: 0;
-    vertical-align: top;
-    font-size: 12px;
+#timestampmodifieddiv input {
+    text-align: center;
 }
-
-/*#timestampmodifieddiv input {
-    border-width: 1px;
-    border-style: solid;
-}*/
 
 #hhm, #jjm, #mnm {
     width: 2em;
 }
 
-#aam, #hhm, #jjm, #mnm {
-    padding: 1px;
-    font-size: 12px;
+#aam {
+    width: 3.4em;
+}
+
+@media screen and (max-width: 782px) {
+    .timestamp-wrap select#mmm {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .timestamp-wrap #aam, .timestamp-wrap #hhm, .timestamp-wrap #jjm, .timestamp-wrap #mnm {
+        padding: 12px 3px;
+        font-size: 14px;
+        margin-bottom: 5px;
+        width: auto;
+        text-align: center;
+    }
 }
 
 .tooltipsc {

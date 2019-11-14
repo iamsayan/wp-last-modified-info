@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
-Tested up to: 5.2
-Stable tag: 1.6.1
+Tested up to: 5.3
+Stable tag: 1.6.2
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -177,19 +177,28 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.6.2 =
+Release Date: November 14, 2019
+
+* Compatibility with WordPress 5.3.
+* Improved: Now it is possible to check/uncheck "Disable Update" option globally.
+* Fixed: Some broken links.
+* Fixed: Minor CSS issue.
+* Removed: Some unnessary files.
+* Other minor improvemnts and fixes.
+
 = 1.6.1 =
 Release Date: August 26, 2019
 
-* Added: An option to set author link target.
+* Added: An option to set authot link target.
 * Fixed: Unclosed HTML tags.
-* Fixed: Tooltip display issue.
 * Removed: Some duplicate codes.
 
 = 1.6.0 =
 Release Date: August 9, 2019
 
 * Added: A filter `wplmi_custom_schema_post_date_fotmat` to compatible any theme with Compatibility Schema Mode.
-* Added: A filter `wplmi_switch_global_replace_hook` to switvh the Global Replace action hook.
+* Added: A filter `wplmi_switch_global_replace_hook` to switch the Global Replace action hook.
 * Added: Post Shortcode attribute to enable output on search pages.
 * Improved: Last Modified Posts Dashboard Widget.
 * Improved: Compatibility between the Newspaper theme and Advanced Schema Mode.
@@ -203,5 +212,5 @@ Release Date: August 9, 2019
 
 == Upgrade Notice ==
 
-= 1.5.9 =
-In this release, we added Schema Markup Compatibility with other SEO and Schema Plugins. Please resave schema option in plugin settings after upgrading your plugin.
+= 1.6.2 =
+In this release, we make this plugin compatible with WordPress 5.3.

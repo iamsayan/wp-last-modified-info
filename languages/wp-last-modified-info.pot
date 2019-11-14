@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-08-26 23:08+0530\n"
+"POT-Creation-Date: 2019-11-14 12:15+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -111,7 +111,7 @@ msgstr ""
 #: admin/elementor/class/modified-date.php:60
 #: admin/elementor/class/modified-time.php:60
 #: admin/settings/settings-fields.php:201 admin/settings/settings-fields.php:468
-#: admin/settings/settings-fields.php:631 admin/settings/settings-page.php:198
+#: admin/settings/settings-fields.php:631 admin/settings/settings-page.php:199
 msgid "Custom"
 msgstr ""
 
@@ -762,7 +762,7 @@ msgstr ""
 #: admin/settings/settings-page.php:48 admin/settings/settings-page.php:52
 #: admin/settings/settings-page.php:57 admin/settings/settings-page.php:61
 #: admin/settings/settings-page.php:65 admin/settings/settings-page.php:69
-#: admin/settings/settings-page.php:131
+#: admin/settings/settings-page.php:130
 msgid "Save Settings"
 msgstr ""
 
@@ -903,77 +903,75 @@ msgstr ""
 
 #: admin/settings/settings-page.php:114
 msgid ""
-"This plugin helps to easily login or register to wordpress by using SMS or "
-"Email Verification without any password."
-msgstr ""
-
-#: admin/settings/settings-page.php:115
-msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
 msgstr ""
 
-#: admin/settings/settings-page.php:125
+#: admin/settings/settings-page.php:124
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings/settings-page.php:139
+#: admin/settings/settings-page.php:138
 msgid "Plugin Tools"
 msgstr ""
 
+#: admin/settings/settings-page.php:139
+msgid "Check/Un-Check <i>Disable Update</i> Option"
+msgstr ""
+
 #: admin/settings/settings-page.php:140
-msgid "Enable <i>Disable Update</i> Option"
-msgstr ""
-
-#: admin/settings/settings-page.php:141
 msgid ""
-"This will enable Disable Update option for all posts, pages and CPTs "
-"automatically."
+"This will enable or disable \"Disable Update\" option for all posts, pages "
+"and CPTs automatically."
 msgstr ""
 
-#: admin/settings/settings-page.php:146
-msgid "Enable Option"
+#: admin/settings/settings-page.php:145
+msgid "Un-Check All"
 msgstr ""
 
-#: admin/settings/settings-page.php:150 admin/settings/settings-page.php:156
+#: admin/settings/settings-page.php:147
+msgid "Check All"
+msgstr ""
+
+#: admin/settings/settings-page.php:151 admin/settings/settings-page.php:157
 msgid "Export Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:151
+#: admin/settings/settings-page.php:152
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: admin/settings/settings-page.php:160 admin/settings/settings-page.php:167
+#: admin/settings/settings-page.php:161 admin/settings/settings-page.php:168
 msgid "Import Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:161
+#: admin/settings/settings-page.php:162
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: admin/settings/settings-page.php:171 admin/settings/settings-page.php:177
+#: admin/settings/settings-page.php:172 admin/settings/settings-page.php:178
 msgid "Reset Settings"
 msgstr ""
 
-#: admin/settings/settings-page.php:172
+#: admin/settings/settings-page.php:173
 msgid "WARNING:"
 msgstr ""
 
-#: admin/settings/settings-page.php:172
+#: admin/settings/settings-page.php:173
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: admin/settings/settings-page.php:200 admin/settings/settings-page.php:202
+#: admin/settings/settings-page.php:201 admin/settings/settings-page.php:203
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: admin/settings/settings-page.php:203
+#: admin/settings/settings-page.php:204
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
@@ -981,25 +979,21 @@ msgid ""
 "via PayPal."
 msgstr ""
 
-#: admin/settings/tools.php:34
-msgid "Success! All Checkboxes are checked successfully."
-msgstr ""
-
-#: admin/settings/tools.php:81
+#: admin/settings/tools.php:87
 msgid ""
 "<strong>Settings import failed:</strong> Please upload a valid .json file to "
 "import settings in this website."
 msgstr ""
 
-#: admin/settings/tools.php:85
+#: admin/settings/tools.php:91
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: admin/settings/tools.php:92
+#: admin/settings/tools.php:98
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
-#: admin/settings/tools.php:115
+#: admin/settings/tools.php:121
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
@@ -1015,8 +1009,8 @@ msgstr ""
 msgid "Last Modified"
 msgstr ""
 
-#: includes/backend/edit-screen.php:45 includes/backend/edit-screen.php:120
-#: includes/backend/gutenburg.php:146
+#: includes/backend/edit-screen.php:45 includes/backend/edit-screen.php:117
+#: includes/backend/gutenburg.php:143
 msgid "Updated on:"
 msgstr ""
 
@@ -1032,61 +1026,64 @@ msgstr ""
 msgid "Last modified date and time"
 msgstr ""
 
-#: includes/backend/edit-screen.php:52 includes/backend/edit-screen.php:215
+#: includes/backend/edit-screen.php:52 includes/backend/edit-screen.php:212
 #: includes/backend/gutenburg.php:75
 msgid "Month"
 msgstr ""
 
-#: includes/backend/edit-screen.php:58 includes/backend/edit-screen.php:221
+#: includes/backend/edit-screen.php:58 includes/backend/edit-screen.php:218
 #: includes/backend/gutenburg.php:81
 #, php-format
 msgid "%1$s-%2$s"
 msgstr ""
 
-#: includes/backend/edit-screen.php:64 includes/backend/edit-screen.php:227
+#: includes/backend/edit-screen.php:64 includes/backend/edit-screen.php:224
 #: includes/backend/gutenburg.php:87
 msgid "Day"
 msgstr ""
 
-#: includes/backend/edit-screen.php:68 includes/backend/edit-screen.php:231
-#: includes/backend/gutenburg.php:91
+#: includes/backend/edit-screen.php:67 includes/backend/edit-screen.php:227
+#: includes/backend/gutenburg.php:90
 msgid "Year"
 msgstr ""
 
-#: includes/backend/edit-screen.php:70 includes/backend/edit-screen.php:233
-#: includes/backend/gutenburg.php:93
-msgid "@"
+#: includes/backend/edit-screen.php:69 includes/backend/edit-screen.php:229
+msgid " at "
 msgstr ""
 
-#: includes/backend/edit-screen.php:72 includes/backend/edit-screen.php:235
-#: includes/backend/gutenburg.php:95
+#: includes/backend/edit-screen.php:69 includes/backend/edit-screen.php:229
+msgid " @ "
+msgstr ""
+
+#: includes/backend/edit-screen.php:70 includes/backend/edit-screen.php:230
+#: includes/backend/gutenburg.php:93
 msgid "Hour"
 msgstr ""
 
-#: includes/backend/edit-screen.php:74 includes/backend/edit-screen.php:237
-#: includes/backend/gutenburg.php:97
+#: includes/backend/edit-screen.php:72 includes/backend/edit-screen.php:232
+#: includes/backend/gutenburg.php:95
 msgid ":"
 msgstr ""
 
-#: includes/backend/edit-screen.php:76 includes/backend/edit-screen.php:239
-#: includes/backend/gutenburg.php:99
+#: includes/backend/edit-screen.php:73 includes/backend/edit-screen.php:233
+#: includes/backend/gutenburg.php:96
 msgid "Minute"
 msgstr ""
 
-#: includes/backend/edit-screen.php:106 includes/backend/gutenburg.php:130
+#: includes/backend/edit-screen.php:103 includes/backend/gutenburg.php:127
 msgid "OK"
 msgstr ""
 
-#: includes/backend/edit-screen.php:106 includes/backend/gutenburg.php:130
+#: includes/backend/edit-screen.php:103 includes/backend/gutenburg.php:127
 msgid "Cancel"
 msgstr ""
 
-#: includes/backend/edit-screen.php:108 includes/backend/edit-screen.php:244
-#: includes/backend/gutenburg.php:132
+#: includes/backend/edit-screen.php:105 includes/backend/edit-screen.php:237
+#: includes/backend/gutenburg.php:129
 msgid "Disable update"
 msgstr ""
 
-#: includes/backend/edit-screen.php:212
+#: includes/backend/edit-screen.php:209
 msgid "Modified"
 msgstr ""
 
@@ -1096,6 +1093,10 @@ msgstr ""
 
 #: includes/backend/gutenburg.php:58
 msgid "Updated on"
+msgstr ""
+
+#: includes/backend/gutenburg.php:92
+msgid "@"
 msgstr ""
 
 #: includes/backend/notification.php:55
@@ -1162,7 +1163,7 @@ msgstr ""
 msgid "No. of Posts to Display on this Widget:"
 msgstr ""
 
-#: includes/backend/widget.php:74
+#: includes/backend/widget.php:73
 msgid "Recently Updated"
 msgstr ""
 
@@ -1181,65 +1182,40 @@ msgstr ""
 msgid "This %1$s was last updated on %2$s at %3$s by %4$s"
 msgstr ""
 
-#: includes/frontend/template-tags.php:121
+#: includes/frontend/template-tags.php:100
 msgid " (Scheduled)"
 msgstr ""
 
-#: includes/install.php:20
-msgid ""
-"Your version of PHP is below the minimum version of PHP required by WP Last "
-"Modified Info plugin. Please contact your host and request that your version "
-"be upgraded to 5.6 or later."
-msgstr ""
-
-#: includes/install.php:26
-#, php-format
-msgid ""
-"Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
-"configure plugin settings."
-msgstr ""
-
-#: includes/install.php:35
-msgid ""
-"Introducing the New Facebook Account Kit Login plugin which brings a "
-"lightweight, secure, flexible, free and easy way to configure Facebook's "
-"Secure and easy Passwordless Login to your WordPress website. You can login "
-"by using a OTP on your Phone Number or WhatsApp or Email Verification without "
-"any password. Try this plugin now!"
-msgstr ""
-
-#: includes/install.php:36
-msgid "Install this plugin"
-msgstr ""
-
-#: includes/install.php:37
-msgid "I have already tried it"
-msgstr ""
-
-#: includes/install.php:38
-msgid "No, I don't want to try it"
-msgstr ""
-
-#: includes/install.php:38
-msgid "Powered by"
-msgstr ""
-
-#: includes/trigger.php:66
+#: includes/trigger.php:73
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
 "%3$s<a/>"
 msgstr ""
 
-#: wp-last-modified-info.php:145
+#: wp-last-modified-info.php:140
+msgid ""
+"Your version of PHP is below the minimum version of PHP required by WP Last "
+"Modified Info plugin. Please contact your host and request that your version "
+"be upgraded to 5.6 or later."
+msgstr ""
+
+#: wp-last-modified-info.php:146
+#, php-format
+msgid ""
+"Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
+"configure plugin settings."
+msgstr ""
+
+#: wp-last-modified-info.php:169
 msgid "Settings"
 msgstr ""
 
-#: wp-last-modified-info.php:154
+#: wp-last-modified-info.php:178
 msgid "Support"
 msgstr ""
 
-#: wp-last-modified-info.php:155
+#: wp-last-modified-info.php:179
 msgid "Donate"
 msgstr ""
 
@@ -1260,5 +1236,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://sayandatta.com"
+msgid "https://www.linkedin.com/in/meetsayan/"
 msgstr ""

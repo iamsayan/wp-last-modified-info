@@ -12,6 +12,7 @@ add_action( 'wp_head','lmt_style_hook_in_header', 10 );
 // add css to admin page
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
+add_action( 'admin_print_footer_scripts-post-new.php', 'lmt_print_admin_cb_auto_check_script' );
 add_action( 'admin_init', 'lmt_post_do_admin_actions' );
 // create action in pre_get_posts hook
 add_action( 'pre_get_posts', 'lmt_post_default_sorting_order_to_modified' );
@@ -37,6 +38,12 @@ function lmt_print_admin_post_css() {
 
 function lmt_print_admin_users_css() {
     echo '<style type="text/css"> .fixed .column-last-updated, .fixed .column-last-login { width:12%; } </style>'."\n";
+}
+
+function lmt_print_admin_cb_auto_check_script() {
+    if( apply_filters( 'wplmi_post_edit_default_check', false ) ) {
+        echo "<script>jQuery(document).ready(function ($) { $('#lmt_status').prop( 'checked', true ); });</script>"."\n";
+    }
 }
 
 function lmt_post_updated_messages( $messages ) {
@@ -112,8 +119,8 @@ function lmt_post_default_sorting_order_to_modified( $query ) {
 }
 
 // require plugin files
-require_once plugin_dir_path( __FILE__ ) . 'frontend/post-options.php';
-require_once plugin_dir_path( __FILE__ ) . 'frontend/page-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/post.php';
+require_once plugin_dir_path( __FILE__ ) . 'frontend/page.php';
 require_once plugin_dir_path( __FILE__ ) . 'frontend/template-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'frontend/schema.php';
 require_once plugin_dir_path( __FILE__ ) . 'frontend/admin-bar.php';

@@ -254,3 +254,7 @@ input, select, textarea {
 code {
     font-size: 11px;
 }
+
+input, select, span.dashicon {
+    vertical-align: middle;
+}

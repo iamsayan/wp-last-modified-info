@@ -70,10 +70,10 @@ function lmt_show_on_gutenburg_edit_screen( $post ) {
 
         <fieldset id="timestampmodifieddiv" class="hide-if-js">
 			<legend class="screen-reader-text"><?php _e('Last modified date and time', 'wp-last-modified-info'); ?></legend>
-			<div class="timestamp-wrap">
+			<div class="timestamp-wrap tsw-be">
 				<label>
 					<span class="screen-reader-text"><?php _e('Month', 'wp-last-modified-info'); ?></span>
-					<select id="mmm" name="mmm" style="margin-top: 3px;">
+					<select id="mmm" name="mmm" class="be-mmm">
 						<?php
 						for ($i = 1; $i < 13; $i++) {
 							$monthnum = zeroise($i, 2);
@@ -85,19 +85,16 @@ function lmt_show_on_gutenburg_edit_screen( $post ) {
 				</label>
 				<label>
 					<span class="screen-reader-text"><?php _e('Day', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;width: 2.2em;" />
-				</label>,
-				<label>
+					<input type="text" id="jjm" class="be-jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label>, <label>
 					<span class="screen-reader-text"><?php _e('Year', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" style="width:3.4em;" />
-				</label> <?php _e('@', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="aam" class="be-aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
+				</label> <?php _e('@', 'wp-last-modified-info'); ?><label>
 					<span class="screen-reader-text"><?php _e('Hour', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" style="margin-right:-2px;width: 2.2em;" />
-				</label><?php _e(':', 'wp-last-modified-info'); ?>
-				<label>
+					<input type="text" id="hhm" class="be-hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off" />
+				</label><?php _e(':', 'wp-last-modified-info'); ?><label>
 					<span class="screen-reader-text"><?php _e('Minute', 'wp-last-modified-info'); ?></span>
-					<input type="text" id="mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" style="margin-left:-3px;width: 2.2em;" />
+					<input type="text" id="mnm" class="be-mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
 				</label>
 			</div>
 			<?php

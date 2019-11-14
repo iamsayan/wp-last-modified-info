@@ -54,46 +54,28 @@ function get_the_last_modified_info () {
         $author_id = get_post_meta(get_the_ID(), '_edit_last', true);
 
         if( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_page' ) ) {
-            
             $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_author_posts_url( $author_id ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_website' ) ) {
-           
             $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_the_author_meta( 'url', $author_id ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_email' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' <a href="mailto:' . get_the_author_meta( 'user_email', $author_id ) . '" rel="author">' . get_the_author_meta( 'display_name', $author_id ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'none' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' ' . get_the_author_meta( 'display_name', $author_id );
-        
         }
     
     } elseif( isset($options['lmt_show_author_tt_cb']) && ($options['lmt_show_author_tt_cb'] == 'custom' ) ) {
         
         $get_author = $options['lmt_show_author_list_tt'];
         
-        
         if( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_page' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_author_posts_url( $get_author ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_website' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' <a href="' . get_the_author_meta( 'url', $get_author ) . '" target="' . $target . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'author_email' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' <a href="mailto:' . get_the_author_meta('user_email', $get_author) . '" rel="author">' . get_the_author_meta( 'display_name', $get_author ) . '</a>';
-        
         } elseif( isset($options['lmt_enable_tt_author_hyperlink']) && ($options['lmt_enable_tt_author_hyperlink'] == 'none' ) ) {
-        
             $lmt_tt_uca = $author_sep_tt . ' ' . get_the_author_meta( 'display_name', $get_author );
-        
         }
-        
     }
 
     if( isset($options['lmt_tt_enable_schema_cb']) && ($options['lmt_tt_enable_schema_cb'] == 1 ) ) {
@@ -103,21 +85,18 @@ function get_the_last_modified_info () {
     }
 
     if( isset($options['lmt_last_modified_format_tt']) && ($options['lmt_last_modified_format_tt'] == 'human_readable' ) ) {
-        $lmt_tt_ud = human_time_diff(get_the_modified_time( 'U' ), current_time( 'U' )) . $replace_ago_tt;
+        $lmt_tt_ud = human_time_diff( get_the_modified_time( 'U' ), current_time( 'U' ) ) . $replace_ago_tt;
     } else {
         $lmt_tt_ud = $last_modified_tt;
     }
                    
     if(!empty($options['lmt_tt_class_box'])) {
-             
         $lmt_template_tag = '<span class="'. esc_html($options['lmt_tt_class_box']) .'">' . $last_modified_text . ' <time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
-
     } else {
-        
         $lmt_template_tag = '<span>' . $last_modified_text . ' <time' . $schema_tt . '>' . $lmt_tt_ud . '</time>' . $lmt_tt_uca . '</span>';
     }
 
-    if ( get_post_status() == 'future' ) {
+    if( get_post_status() == 'future' ) {
         return get_the_modified_time() . __( ' (Scheduled)', 'wp-last-modified-info' );
     }
     return $lmt_template_tag;

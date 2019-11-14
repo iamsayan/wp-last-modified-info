@@ -12,12 +12,9 @@
  * Process auto meta update settings
  */
 function lmt_check_disable_update_settings() {
-	if( empty( $_POST['lmt_check_disable_update_action'] ) || 'lmt_check_disable_update' != $_POST['lmt_check_disable_update_action'] )
-		return;
-	if( ! wp_verify_nonce( $_POST['lmt_check_nonce'], 'lmt_check_nonce' ) )
-		return;
-	if( ! current_user_can( 'manage_options' ) )
-		return;
+	if ( ! isset( $_GET['lmt_update_cb_action'] ) ) {
+        return;
+	}
 	
 	$args = array(
 		'numberposts'   => -1,
@@ -25,16 +22,25 @@ function lmt_check_disable_update_settings() {
 	);
 
 	$posts = get_posts( $args );
-	foreach( $posts as $post ) {
-		update_post_meta( $post->ID, '_lmt_disableupdate', 'yes' );
+
+    if ( 'check' === $_GET['lmt_update_cb_action'] ) {
+        check_admin_referer( 'lmt_update_cb_action_check' );
+        foreach( $posts as $post ) {
+			update_post_meta( $post->ID, '_lmt_disableupdate', 'yes' );
+		}
+		update_option( 'lmt_check_disable_update', 'yes' );
+    }
+
+    if ( 'uncheck' === $_GET['lmt_update_cb_action'] ) {
+        check_admin_referer( 'lmt_update_cb_action_uncheck' );
+        foreach( $posts as $post ) {
+			update_post_meta( $post->ID, '_lmt_disableupdate', 'no' );
+		}
+		update_option( 'lmt_check_disable_update', 'no' );
 	}
 
-    function lmt_check_disable_update_notice() {
-        echo '<div class="notice notice-success is-dismissible">
-                 <p><strong>' . __( 'Success! All Checkboxes are checked successfully.', 'wp-last-modified-info' ) . '</strong></p>
-             </div>';
-    }
-    add_action('admin_notices', 'lmt_check_disable_update_notice'); 
+	wp_redirect( remove_query_arg( 'lmt_update_cb_action' ) );
+    exit;
 }
 
 add_action( 'admin_init', 'lmt_check_disable_update_settings' );
@@ -75,12 +81,12 @@ function lmt_process_settings_import() {
 		return;
 	if( ! current_user_can( 'manage_options' ) )
 		return;
-    $extension = explode( '.', $_FILES['import_file']['name'] );
+    $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) );
     $file_extension = end($extension);
 	if( $file_extension != 'json' ) {
 		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-last-modified-info' ) );
 	}
-	$import_file = $_FILES['import_file']['tmp_name'];
+	$import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] );
 	if( empty( $import_file ) ) {
 		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-last-modified-info' ) );
 	}

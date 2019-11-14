@@ -30,14 +30,13 @@ function lmt_dashboard_widget_control_callback() {
     $widget_options = get_option( 'lmt_dashboard_widget_options' );
     $value = isset($widget_options['number']) ? esc_attr($widget_options['number']) : '';
     // Update widget options
-    if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['lmt_widget_post']) ) {
+    if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_POST['lmt_widget_post'] ) ) {
         update_option( 'lmt_dashboard_widget_options', $_POST['lmt_widget_value'] );
     } ?>
     <p>
-        <label for="widget-post-no"><strong><?php _e('No. of Posts to Display on this Widget:', 'wp-last-modified-info'); ?></strong> </label>
-        &nbsp;&nbsp;&nbsp;<input class="widefat" id="widget-post-no" name="lmt_widget_value[number]" type="number" size="15" style="width:15%;" placeholder="5" min="3" value="<?php echo $value; ?>" />
+        <label for="widget-post-no"><strong><?php _e( 'No. of Posts to Display on this Widget:', 'wp-last-modified-info' ); ?></strong></label>
+        &nbsp;&nbsp;&nbsp;<input class="widefat" id="widget-post-no" name="lmt_widget_value[number]" type="number" size="15" style="width:15%;vertical-align: middle;" placeholder="5" min="3" value="<?php echo $value; ?>" /><input name="lmt_widget_post" type="hidden" value="1" />
     </p>
-    <input name="lmt_widget_post" type="hidden" value="1" />
     <?php
 }
 
@@ -122,6 +121,11 @@ function lmt_load_custom_css_to_admin_head() { ?>
         #dashboard_last_modified_posts .inside {
             margin: 0;
             padding-bottom: 0;
+        }
+
+        #dashboard_last_modified_posts .dashboard-widget-control-form {
+            padding-top: 10px;
+            padding-bottom: 15px;
         }
     </style>
 <?php }
