@@ -14,7 +14,7 @@
         <div><?php _e( 'WP Last Modified Info is a small tool that shows last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?></div><hr>
         <div class="top-sharebar">
             <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" title="<?php _e( 'Please rate 5 stars if you like WP Last Modified Info', 'wp-last-modified-info' ); ?>"><span class="dashicons dashicons-star-filled"></span> <?php _e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
-            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Checkout%20WP%20Last%20Modified%20Info,%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily.&tw_p=tweetbutton&url=https://wordpress.org/plugins/wp-last-modified-info/&via=im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php _e( 'Tweet about WP Last Modified Info', 'wp-last-modified-info' ); ?></a>
+            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Checkout%20WP%20Last%20Modified%20Info v<?php echo LMT_PLUGIN_VERSION; ?>,%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily.&tw_p=tweetbutton&url=https://wordpress.org/plugins/wp-last-modified-info/&via=im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php _e( 'Tweet about WP Last Modified Info', 'wp-last-modified-info' ); ?></a>
         </div>
     </div>
     <div id="nav-container" class="nav-tab-wrapper">
@@ -99,7 +99,10 @@
 		    		            get_the_last_modified_info();
 		    	    } ?&gt;</code></p>
                     </p>
-    
+
+                    <p><li><strong><?php _e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?></strong></li></p>
+                    <p><?php printf( __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts is %1$s and for page is %2$s. To enter the shortcode directly into templates using PHP, use %3$s for post and %4$s for pages.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>[lmt-page-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>echo do_shortcode( &#39;[lmt-page-modified-info]&#39; );</code>' ); ?>
+                    
                     <p><li><strong><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></strong></li></p>
                     <p><?php _e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
                     
@@ -107,7 +110,7 @@
                     
                     <h2><?php _e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2><p><hr></p>
                     <p><strong><?php _e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
-                    <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comm1ents/" target = "_blank">Ultimate Social Comments</a></strong> - <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Social Comments</a></strong> - <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/wp-auto-republish/" target = "_blank">WP Auto Republish</a></strong> - <?php _e( 'Automatically republish you old evergreen content to grab better SEO.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - <?php _e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/simple-posts-ticker/" target = "_blank">Simple Posts Ticker</a></strong> - <?php _e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
@@ -141,11 +144,8 @@
 		    		<?php $check = wp_nonce_url( add_query_arg( 'lmt_update_cb_action', 'check' ), 'lmt_update_cb_action_check' ); 
                     $uncheck = wp_nonce_url( add_query_arg( 'lmt_update_cb_action', 'uncheck' ), 'lmt_update_cb_action_uncheck' ); ?>
                     <p>
-                        <?php if( get_option( 'lmt_check_disable_update' ) === 'yes' ) { ?>
-                        <a href="<?php echo $uncheck; ?>" class="button button-secondary"><?php _e( 'Un-Check All', 'wp-last-modified-info' ); ?></a>&nbsp;
-                        <?php } else { ?>
                         <a href="<?php echo $check; ?>" class="button button-secondary"><?php _e( 'Check All', 'wp-last-modified-info' ); ?></a>
-                        <?php } ?>
+                        <a href="<?php echo $uncheck; ?>" class="button button-secondary"><?php _e( 'Un-Check All', 'wp-last-modified-info' ); ?></a>
                     </p>
                 <p><hr></p>
                     <span><strong><?php _e( 'Export Settings', 'wp-last-modified-info' ); ?></strong></span>

@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.3
+Release Date: November 24, 2019
+
+* NEW: Added a new filter hook `wplmi_post_disable_update_default_check` to auto lock modified info in post edit page.
+* Improved: Check/uncheck "Disable Update" option is separated from now.
+* Fixed: Check/uncheck "Disable Update" option is not working on draft posts.
+* Fixed: A minor CSS issue.
+* Other minor improvemnts and fixes.
+
 ## 1.6.2
 Release Date: November 14, 2019
 

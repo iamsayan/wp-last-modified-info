@@ -18,7 +18,8 @@ function lmt_check_disable_update_settings() {
 	
 	$args = array(
 		'numberposts'   => -1,
-		'post_type'     => 'any'
+		'post_type'     => 'any',
+		'post_status'   => 'any',
 	);
 
 	$posts = get_posts( $args );
@@ -28,7 +29,6 @@ function lmt_check_disable_update_settings() {
         foreach( $posts as $post ) {
 			update_post_meta( $post->ID, '_lmt_disableupdate', 'yes' );
 		}
-		update_option( 'lmt_check_disable_update', 'yes' );
     }
 
     if ( 'uncheck' === $_GET['lmt_update_cb_action'] ) {
@@ -36,7 +36,6 @@ function lmt_check_disable_update_settings() {
         foreach( $posts as $post ) {
 			update_post_meta( $post->ID, '_lmt_disableupdate', 'no' );
 		}
-		update_option( 'lmt_check_disable_update', 'no' );
 	}
 
 	wp_redirect( remove_query_arg( 'lmt_update_cb_action' ) );
@@ -114,7 +113,7 @@ function lmt_remove_plugin_settings() {
 	if( ! current_user_can( 'manage_options' ) )
 		return;
     $plugin_settings = 'lmt_plugin_global_settings';
-    delete_option( $plugin_settings );
+	delete_option( $plugin_settings );
 
     function lmt_settings_reset_success_notice() {
         echo '<div class="notice notice-success is-dismissible">

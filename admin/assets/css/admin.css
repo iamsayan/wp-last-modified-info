@@ -51,8 +51,8 @@ td {
 .switch {
   position: relative;
   display: inline-block !important;
-  width: 40px;
-  height: 20px;
+  width: 40px !important;
+  height: 20px !important;
 }
 
 .switch input {
@@ -74,10 +74,10 @@ td {
 .cb-slider:before {
   position: absolute;
   content: "";
-  height: 12px;
-  width: 12px;
-  left: 4px;
-  bottom: 4px;
+  height: 12px !important;
+  width: 12px !important;
+  left: 4px !important;
+  bottom: 4px !important;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -98,11 +98,11 @@ input:checked+.cb-slider:before {
 }
 
 .cb-slider.round {
-  border-radius: 34px;
+  border-radius: 34px !important;
 }
 
 .cb-slider.round:before {
-  border-radius: 50%;
+  border-radius: 50% !important;
 }
 
 .active {

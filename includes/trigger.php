@@ -13,6 +13,7 @@ add_action( 'wp_head','lmt_style_hook_in_header', 10 );
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
 add_action( 'admin_print_footer_scripts-post-new.php', 'lmt_print_admin_cb_auto_check_script' );
+add_action( 'admin_print_footer_scripts-post.php', 'lmt_print_admin_du_cb_auto_check_script' );
 add_action( 'admin_init', 'lmt_post_do_admin_actions' );
 // create action in pre_get_posts hook
 add_action( 'pre_get_posts', 'lmt_post_default_sorting_order_to_modified' );
@@ -44,6 +45,19 @@ function lmt_print_admin_cb_auto_check_script() {
     if( apply_filters( 'wplmi_post_edit_default_check', false ) ) {
         echo "<script>jQuery(document).ready(function ($) { $('#lmt_status').prop( 'checked', true ); });</script>"."\n";
     }
+}
+
+function lmt_print_admin_du_cb_auto_check_script() {
+    if( apply_filters( 'wplmi_post_disable_update_default_check', false ) ) { ?>
+        <script>
+            jQuery(document).ready(function ($) {
+                $('#lmt_disable').prop( 'checked', true );
+                $('input[name="disableupdatehidden"]').val('1');
+                $('input[name="disableupdategutenburghidden"]').val('yes');
+                $('#change-modified').val('yes');
+            });
+        </script>
+    <?php }
 }
 
 function lmt_post_updated_messages( $messages ) {
@@ -104,17 +118,21 @@ function lmt_add_custom_field_lmi( $post_id ) {
 }
 
 function lmt_post_default_sorting_order_to_modified( $query ) {
+	global $pagenow;
+	
     // get plugin options
     $options = get_option('lmt_plugin_global_settings');
 
     $order = 'desc';
-    if( isset($options['lmt_admin_default_sort_order']) && ($options['lmt_admin_default_sort_order'] == 'published') ) {
+    if( isset($options['lmt_admin_default_sort_order']) && $options['lmt_admin_default_sort_order'] == 'published' ) {
         $order = 'asc';
     }
 
-    if( ( isset($options['lmt_admin_default_sort_order']) && ($options['lmt_admin_default_sort_order'] != 'default') ) && is_admin() ) {
-	    $query->set( 'orderby', 'modified' );
-        $query->set( 'order', $order );
+    if( isset($options['lmt_admin_default_sort_order']) && $options['lmt_admin_default_sort_order'] != 'default' ) {
+		if ( is_admin() && 'edit.php' == $pagenow && !isset( $_GET['orderby'] ) ) {
+	        $query->set( 'orderby', 'modified' );
+            $query->set( 'order', $order );
+		}
     }
 }
 

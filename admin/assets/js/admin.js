@@ -96,6 +96,18 @@ jQuery(document).ready(function ($) {
 
     });
 
+    $("#post-enable").change(function() {
+        if ($('#post-enable').is(':checked')) {
+            $('#post-show-status').prop('disabled', false);
+            $('#post-homepage').prop('disabled', false);
+        }
+        if (!$('#post-enable').is(':checked')) {
+            $('#post-show-status').prop('disabled', true);
+            $('#post-homepage').prop('disabled', true);
+        }
+    });
+    $("#post-enable").trigger('change');
+
     $("#post-show-status").change(function() {
         if ($('#post-show-status').val() == 'manual') {
             $('.cpt').hide();
@@ -105,6 +117,16 @@ jQuery(document).ready(function ($) {
         }
     });
     $("#post-show-status").trigger('change');
+
+    $("#page-enable").change(function() {
+        if ($('#page-enable').is(':checked')) {
+            $('#page-show-status').prop('disabled', false);
+        }
+        if (!$('#page-enable').is(':checked')) {
+            $('#page-show-status').prop('disabled', true);
+        }
+    });
+    $("#page-enable").trigger('change');
 
     $("#post-format").change(function() {
         if ($('#post-format').val() == 'human_readable') {

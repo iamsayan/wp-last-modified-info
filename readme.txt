@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -177,13 +177,23 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.6.3 =
+Release Date: November 24, 2019
+
+* NEW: Added a new filter hook `wplmi_post_disable_update_default_check` to auto lock modified info in post edit page.
+* Improved: Check/uncheck "Disable Update" option is separated from now.
+* Fixed: Check/uncheck "Disable Update" option is not working on draft posts.
+* Fixed: A minor CSS issue.
+* Other minor improvemnts and fixes.
+
 = 1.6.2 =
-Release Date: November 14, 2019
+Release Date: November 16, 2019
 
 * Compatibility with WordPress 5.3.
 * Improved: Now it is possible to check/uncheck "Disable Update" option globally.
 * Fixed: Some broken links.
 * Fixed: Minor CSS issue.
+* Fixed: Column Header sorting is not working properly.
 * Removed: Some unnessary files.
 * Other minor improvemnts and fixes.
 

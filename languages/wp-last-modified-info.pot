@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-11-14 12:15+0530\n"
+"POT-Creation-Date: 2019-11-24 19:44+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -762,7 +762,7 @@ msgstr ""
 #: admin/settings/settings-page.php:48 admin/settings/settings-page.php:52
 #: admin/settings/settings-page.php:57 admin/settings/settings-page.php:61
 #: admin/settings/settings-page.php:65 admin/settings/settings-page.php:69
-#: admin/settings/settings-page.php:130
+#: admin/settings/settings-page.php:133
 msgid "Save Settings"
 msgstr ""
 
@@ -860,77 +860,89 @@ msgid "Returns the last modified info:"
 msgstr ""
 
 #: admin/settings/settings-page.php:103
+msgid "How to use shortcodes?"
+msgstr ""
+
+#: admin/settings/settings-page.php:104
+#, php-format
+msgid ""
+"You can insert the last modified info by simply using the shortcode. "
+"Shortcode for posts is %1$s and for page is %2$s. To enter the shortcode "
+"directly into templates using PHP, use %3$s for post and %4$s for pages."
+msgstr ""
+
+#: admin/settings/settings-page.php:106
 msgid ""
 "Is it possible to show last modified info to Search Engines and keep hidden "
 "form visitors?"
 msgstr ""
 
-#: admin/settings/settings-page.php:104
+#: admin/settings/settings-page.php:107
 msgid ""
 "Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save "
 "settings."
 msgstr ""
 
-#: admin/settings/settings-page.php:108
+#: admin/settings/settings-page.php:111
 msgid "My Other WordPress Plugins"
 msgstr ""
 
-#: admin/settings/settings-page.php:109
+#: admin/settings/settings-page.php:112
 msgid "Like this plugin? Check out my other WordPress plugins:"
 msgstr ""
 
-#: admin/settings/settings-page.php:110
+#: admin/settings/settings-page.php:113
 msgid ""
 "Ultimate Facebook Comment Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: admin/settings/settings-page.php:111
+#: admin/settings/settings-page.php:114
 msgid "Automatically republish you old evergreen content to grab better SEO."
 msgstr ""
 
-#: admin/settings/settings-page.php:112
+#: admin/settings/settings-page.php:115
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO)."
 msgstr ""
 
-#: admin/settings/settings-page.php:113
+#: admin/settings/settings-page.php:116
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: admin/settings/settings-page.php:114
+#: admin/settings/settings-page.php:117
 msgid ""
 "Customize WP header, add custom code and enable, disable or remove the "
 "unwanted meta tags, links from the source code and many more."
 msgstr ""
 
-#: admin/settings/settings-page.php:124
+#: admin/settings/settings-page.php:127
 msgid "Saving..."
 msgstr ""
 
-#: admin/settings/settings-page.php:138
+#: admin/settings/settings-page.php:141
 msgid "Plugin Tools"
 msgstr ""
 
-#: admin/settings/settings-page.php:139
+#: admin/settings/settings-page.php:142
 msgid "Check/Un-Check <i>Disable Update</i> Option"
 msgstr ""
 
-#: admin/settings/settings-page.php:140
+#: admin/settings/settings-page.php:143
 msgid ""
 "This will enable or disable \"Disable Update\" option for all posts, pages "
 "and CPTs automatically."
 msgstr ""
 
-#: admin/settings/settings-page.php:145
-msgid "Un-Check All"
-msgstr ""
-
 #: admin/settings/settings-page.php:147
 msgid "Check All"
+msgstr ""
+
+#: admin/settings/settings-page.php:148
+msgid "Un-Check All"
 msgstr ""
 
 #: admin/settings/settings-page.php:151 admin/settings/settings-page.php:157
@@ -979,21 +991,21 @@ msgid ""
 "via PayPal."
 msgstr ""
 
-#: admin/settings/tools.php:87
+#: admin/settings/tools.php:86
 msgid ""
 "<strong>Settings import failed:</strong> Please upload a valid .json file to "
 "import settings in this website."
 msgstr ""
 
-#: admin/settings/tools.php:91
+#: admin/settings/tools.php:90
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: admin/settings/tools.php:98
+#: admin/settings/tools.php:97
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
-#: admin/settings/tools.php:121
+#: admin/settings/tools.php:120
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
@@ -1186,36 +1198,36 @@ msgstr ""
 msgid " (Scheduled)"
 msgstr ""
 
-#: includes/trigger.php:73
+#: includes/trigger.php:87
 #, php-format
 msgid ""
 "updated on <strong>%1$s</strong>. <a href=\"%2$s\" target=\"_blank\">View "
 "%3$s<a/>"
 msgstr ""
 
-#: wp-last-modified-info.php:140
+#: wp-last-modified-info.php:139
 msgid ""
 "Your version of PHP is below the minimum version of PHP required by WP Last "
 "Modified Info plugin. Please contact your host and request that your version "
 "be upgraded to 5.6 or later."
 msgstr ""
 
-#: wp-last-modified-info.php:146
+#: wp-last-modified-info.php:145
 #, php-format
 msgid ""
 "Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
 "configure plugin settings."
 msgstr ""
 
-#: wp-last-modified-info.php:169
+#: wp-last-modified-info.php:168
 msgid "Settings"
 msgstr ""
 
-#: wp-last-modified-info.php:178
+#: wp-last-modified-info.php:177
 msgid "Support"
 msgstr ""
 
-#: wp-last-modified-info.php:179
+#: wp-last-modified-info.php:178
 msgid "Donate"
 msgstr ""
 
@@ -1236,5 +1248,5 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://www.linkedin.com/in/meetsayan/"
+msgid "https://about.me/iamsayan"
 msgstr ""
