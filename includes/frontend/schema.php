@@ -34,7 +34,7 @@ function lmt_json_ld_schema_markup() {
     $json = [
         '@context'         => 'http://schema.org/',
         '@type'            => 'CreativeWork',
-        'dateModified'     => get_post_modified_time( 'Y-m-d\TH:i:sP', true ),
+        'dateModified'     => get_post_modified_time( 'Y-m-d\TH:i:sP', false ),
         'headline'         => esc_html( $post->post_title ),
         'description'      => wptexturize( $short_content ),
         'mainEntityOfPage' => [

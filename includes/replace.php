@@ -47,7 +47,13 @@ function lmt_replace_published_date_with_mod_date() {
 }
 
 function lmt_replace_published_date_with_mod_date_ob_callback( $buffer ) {
-    $buffer = str_replace( apply_filters( 'wplmi_custom_schema_post_date_fotmat', array( get_post_time( 'Y-m-d\TH:i:sP', true ), get_the_time('c'), date( DATE_W3C, get_the_time('U') ) ) ), get_post_modified_time( 'Y-m-d\TH:i:sP', true ), $buffer );
+    global $post;
+    // All in One SEO Pack Meta Compatibility
+    $buffer = str_replace( date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_date_gmt ) ), date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_modified_gmt ) ), $buffer );
+    // Yoast SEO Compatibility
+    $buffer = str_replace( get_post_time( 'Y-m-d\TH:i:sP', true ), get_post_modified_time( 'Y-m-d\TH:i:sP', true ), $buffer );
+    // Rank Math, All in One SEO Pack SEO & Newspaper theme Compatibility
+    $buffer = str_replace( apply_filters( 'wplmi_custom_schema_post_date_fotmat', array( get_post_time( 'Y-m-d\TH:i:sP', false ), date( DATE_W3C, get_the_time('U') ), mysql2date( DATE_W3C, $post->post_modified_gmt, false ) ) ), get_post_modified_time( 'Y-m-d\TH:i:sP', false ), $buffer );
     
     return $buffer;
 }

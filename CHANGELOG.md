@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.4
+Release Date: November 27, 2019
+
+* Fixed: Compatibility with Rank Math and Yoast SEO for their recent changes.
+* Fixed: Fixed an error of `dateModified` showing an incorrect time when timezone was not set to UTC.
+
 ## 1.6.3
 Release Date: November 24, 2019
 

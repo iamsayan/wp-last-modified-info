@@ -79,7 +79,7 @@ function get_the_last_modified_info () {
     }
 
     if( isset($options['lmt_tt_enable_schema_cb']) && ($options['lmt_tt_enable_schema_cb'] == 1 ) ) {
-        $schema_tt = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
+        $schema_tt = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', false ) .'"';
     } else {
         $schema_tt = '';
     }

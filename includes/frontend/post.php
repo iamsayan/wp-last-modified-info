@@ -79,7 +79,7 @@ function lmt_print_last_modified_info_post( $content ) {
     
     $schema_post = '';
     if( isset($options['lmt_enable_schema_on_post_cb']) && ($options['lmt_enable_schema_on_post_cb'] == 1) ) {
-        $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'"';
+        $schema_post = ' itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', false ) .'"';
         if( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) {
             $schema_post = '';
         }
