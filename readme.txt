@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -176,6 +176,14 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.6.5 =
+Release Date: December 21, 2019
+
+* Fixed: Post Link is showing when post is updated for non-public posts.
+* Fixed: Incorrect HTML tag output in post edit page.
+* Fixed: Some Browser JS warnings.
+* Fixed: Some CSS issues with WordPress v5.3.2.
 
 = 1.6.4 =
 Release Date: November 27, 2019

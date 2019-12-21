@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.6.5
+Release Date: December 21, 2019
+
+* Fixed: Post Link is showing when post is updated for non-public posts.
+* Fixed: Incorrect HTML tag output in post edit page.
+* Fixed: Some Browser JS warnings.
+* Fixed: Some CSS issues with WordPress v5.3.2.
+
 ## 1.6.4
 Release Date: November 27, 2019
 

@@ -64,6 +64,13 @@ function lmt_post_updated_messages( $messages ) {
     // define globally
     global $post;
 
+    if( ! is_object( $post ) ) {
+        if( isset( $_GET['post'] ) ) {
+            $post_id = $_GET['post'];
+            $post = get_post( $post_id );
+        }
+    }
+
     // get plugin options
     $options = get_option('lmt_plugin_global_settings');
 
@@ -76,17 +83,14 @@ function lmt_post_updated_messages( $messages ) {
     $modified = date_i18n( apply_filters( 'wplmi_post_updated_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
 
     // get post types returns object
-    $object = get_post_type_object( get_post_type( $post ) );
-    $args = array(
-        'public'   => true,
-        //'_builtin' => true
-    );
-
-    $post_types = get_post_types( $args, 'names' );
-    foreach ( $post_types as $screen ) {
-        $messages[$screen][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%1$s</strong>. <a href="%2$s" target="_blank">View %3$s<a/>', 'wp-last-modified-info' ), $modified, esc_url( get_permalink( $post->ID ) ), $object->capability_type );
+    $object = get_post_type_object( $post->post_type );
+    if( is_post_type_viewable( $post->post_type ) ) {
+        $link = sprintf(__( ' <a href="%1$s" target="_blank">View %2$s</a>', 'wp-last-modified-info' ), esc_url( get_permalink( $post->ID ) ), $object->capability_type );
+    } else {
+        $link = '';
     }
-
+    $messages[$post->post_type][1] = esc_html( $object->labels->singular_name ) . ' ' . sprintf(__( 'updated on <strong>%s</strong>.', 'wp-last-modified-info' ), $modified ) . $link;
+    
     return $messages;
 }
 

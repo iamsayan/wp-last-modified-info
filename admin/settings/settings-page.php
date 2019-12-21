@@ -41,32 +41,31 @@
     <div id="form_area">
         <div id="main-form">
             <form id="form-container" method="post" action="options.php">
-                <?php if ( function_exists('wp_nonce_field') ) { wp_nonce_field('wp_last_modified_info'); } ?>
                 <?php settings_fields('lmt_post_page_plugin_section'); ?>
                 <div id="show-post">
                     <?php do_settings_sections('lmt_post_section'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-posts' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-post' ); ?>
                 </div>
                 <div style="display:none" id="show-page">
                     <?php do_settings_sections('lmt_page_section'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-page' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-page' ); ?>
                 </div>
                 <div style="display:none" id="show-tt">
                     <?php do_settings_sections('lmt_template_tag_section'); ?>
                     <br><b><?php _e( 'Note:', 'wp-last-modified-info' ); ?></b> <i><?php _e( 'Always backup .php files before making any changes, the backup file comes in handy for restoring the default file in case WordPress goes crazy.', 'wp-last-modified-info' ); ?></i>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-tt' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-tt' ); ?>
                 </div>
                 <div style="display:none" id="show-schema">
                     <?php do_settings_sections('lmt_schema_section'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-schema' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-schema' ); ?>
                 </div>
                 <div style="display:none" id="show-noti">
                     <?php do_settings_sections('lmt_notification_section'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-notification' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-notification' ); ?>
                 </div>
                 <div style="display:none" id="show-misc">
                     <?php do_settings_sections('lmt_misc_section'); ?>
-                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'save-misc' ); ?>
+                    <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-misc' ); ?>
                 </div>
                 <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
                 <div id="saveMessage" class="successModal" style="display:none;"><p><?php _e( 'Settings Saved Successfully!', 'wp-last-modified-info' ); ?></p></div>
@@ -154,7 +153,7 @@
 		    			<p><input type="hidden" name="lmt_export_action" value="lmt_export_settings" /></p>
 		    			<p>
 		    				<?php wp_nonce_field( 'lmt_export_nonce', 'lmt_export_nonce' ); ?>
-		    				<?php submit_button( __( 'Export Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
+		    				<?php submit_button( __( 'Export Settings', 'wp-last-modified-info' ), 'secondary', 'wplmi-export', false ); ?>
 		    			</p>
 		    		</form>
                 <p><hr></p>
@@ -165,7 +164,7 @@
 		    			<p>
 		    				<input type="hidden" name="lmt_import_action" value="lmt_import_settings" />
 		    				<?php wp_nonce_field( 'lmt_import_nonce', 'lmt_import_nonce' ); ?>
-		    				<?php submit_button( __( 'Import Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
+		    				<?php submit_button( __( 'Import Settings', 'wp-last-modified-info' ), 'secondary', 'wplmi-import', false ); ?>
 		    			</p>
 		    		</form>
                 <p><hr></p>
@@ -175,7 +174,7 @@
 		    			<p><input type="hidden" name="lmt_reset_action" value="lmt_reset_settings" /></p>
 	                    <p>
 		    				<?php wp_nonce_field( 'lmt_reset_nonce', 'lmt_reset_nonce' ); ?>
-		    				<?php submit_button( __( 'Reset Settings', 'wp-last-modified-info' ), 'secondary', 'submit', false ); ?>
+		    				<?php submit_button( __( 'Reset Settings', 'wp-last-modified-info' ), 'secondary', 'wplmi-reset', false ); ?>
 		    		    </p>
 		    		</form>
                 <br>
@@ -202,6 +201,6 @@
         </div>
         <span class="coffee-heading"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
         <p style="text-align: justify;"><?php printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . LMT_PLUGIN_VERSION . '</strong>' ); ?></strong></p>
-        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://about.me/iamsayan" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://about.me/iamsayan" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="mailto:iamsayan@pm.me" target="_blank" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
     </div>
 </div>
