@@ -10,7 +10,6 @@
  /**
  * Add Last modified author to Rest API
  */
-
 add_action( 'rest_api_init', 'lmt_register_modified_by_api_field' );
 
 function lmt_register_modified_by_api_field() {
@@ -19,7 +18,7 @@ function lmt_register_modified_by_api_field() {
         'post', // object type
         apply_filters( 'wplmi_modified_by_field_name', 'modified_by' ), // field name
         array(
-            'get_callback'  => 'lmt_modified_by_wp_rest_api_output', // callback
+            'get_callback' => 'lmt_modified_by_wp_rest_api_output', // callback
         )
     );
 }

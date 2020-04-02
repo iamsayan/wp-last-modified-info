@@ -17,7 +17,7 @@ function lmt_donate_admin_notice() {
     if ( lmt_plugin_installed_time_donate() > strtotime( '-360 hours' )
         || '1' === get_option( 'lmt_plugin_dismiss_donate_notice' )
         || ! current_user_can( 'manage_options' )
-        || apply_filters( 'lmt_plugin_show_sticky_donate_notice', false ) ) {
+        || apply_filters( 'lmt_plugin_hide_sticky_donate_notice', false ) ) {
         return;
     }
 

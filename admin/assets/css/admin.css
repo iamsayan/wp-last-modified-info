@@ -28,7 +28,7 @@ td {
     bottom: 26px;
     color: #fff;
     content: attr(title);
-    left: -270px;
+    left: -200px;
     padding: 5px 15px;
     position: absolute;
     z-index: 98;

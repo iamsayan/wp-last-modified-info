@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
-Tested up to: 5.3
-Stable tag: 1.6.5
+Tested up to: 5.4
+Stable tag: 1.6.6
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -105,11 +105,15 @@ CSS Classes:
 
 `.post-last-modified`: use this class for posts.
 
+`.post-last-modified-text`: use this class for posts prefix.
+
 `.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
 
 `.post-modified-author`: use this class for post author.
 
 `.page-last-modified`: use this class for pages.
+
+`.page-last-modified-text`: use this class for pages prefix.
 
 `.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
 
@@ -177,6 +181,19 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.6.6 =
+Release Date: April 2, 2020
+
+* NEW: Added Shortcode `[lmt-site-modified-info]` to display website modified time. It will trigger when a post is saved.
+* NEW: Added a method to directly replace the post published date with post modified date. This feature may not work with some themes.
+* Added: `%post_link%` variable to PHP Output Buffer replace process.
+* Added: Ablity to sort posts on frontend by post modified date.
+* Tweak: Removed the required from Noti Post Types fields as sometime it prevents plugin from save the data.
+* Tweak: Form now "Text before Last Modified Info" fields do not support and HTML tags. You can use `post-last-modified-text` CSS class for posts, `page-last-modified-text` CSS class for pages and `tt-last-modified-text` CSS class for template tags to apply styles.
+* Fixed: Properly sanitizes input and escapes the output to prevent a XSS vulnerability. Thanks to @Jeroen Mulder.
+* Fixed: Some CSS and JS issues.
+* Compatibilty with WordPress v5.4.
+
 = 1.6.5 =
 Release Date: December 21, 2019
 
@@ -236,5 +253,5 @@ Release Date: August 9, 2019
 
 == Upgrade Notice ==
 
-= 1.6.2 =
-In this release, we make this plugin compatible with WordPress 5.3.
+= 1.6.6 =
+In this release, we make this plugin compatible with WordPress 5.4.

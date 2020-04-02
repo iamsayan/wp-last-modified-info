@@ -11,7 +11,7 @@
 add_action( 'add_meta_boxes', 'lmt_add_meta_box_to_gutenburg' );
 
 // insert data upon post save
-add_filter('wp_insert_post_data', 'lmt_disable_update_date_gutenburg', 99, 2);
+add_filter( 'wp_insert_post_data', 'lmt_disable_update_date_gutenburg', 99, 2 );
 
 function lmt_add_meta_box_to_gutenburg( $post ) {
     // If user can't publish posts, then get out

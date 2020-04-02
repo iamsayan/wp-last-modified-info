@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://iamsayan.github.io/wp-last-modified-info/
  * Description: 🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.0 and beyond.
- * Version: 1.6.5
+ * Version: 1.6.6
  * Author: Sayan Datta
  * Author URI: https://about.me/iamsayan
  * License: GPLv3
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'LMT_PLUGIN_VERSION', '1.6.5' );
+define( 'LMT_PLUGIN_VERSION', '1.6.6' );
 
 // debug scripts
 //define( 'LMT_PLUGIN_ENABLE_DEBUG', 'true' );
@@ -53,8 +53,6 @@ function lmt_plugin_load_textdomain() {
 
 // register activation hook
 register_activation_hook( __FILE__, 'lmt_plugin_run_on_activation' );
-// register deactivation hook
-register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
 
 function lmt_plugin_run_on_activation() {
     if ( ! current_user_can( 'activate_plugins' ) ) {
@@ -62,6 +60,9 @@ function lmt_plugin_run_on_activation() {
     }
     set_transient( 'lmt-admin-notice-on-activation', true );
 }
+
+// register deactivation hook
+register_deactivation_hook( __FILE__, 'lmt_plugin_run_on_deactivation' );
 
 function lmt_plugin_run_on_deactivation() {
     if ( ! current_user_can( 'activate_plugins' ) ) {
@@ -72,6 +73,8 @@ function lmt_plugin_run_on_deactivation() {
     delete_option( 'lmt_plugin_installed_time' );
     delete_option( 'lmt_plugin_installed_time_donate' );
 }
+
+add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
 
 //add admin styles and scripts
 function lmt_custom_admin_styles_scripts() {
@@ -89,6 +92,8 @@ function lmt_custom_admin_styles_scripts() {
         wp_enqueue_script( 'lmt-selectize-js', plugins_url( 'admin/assets/lib/selectize/js/selectize.min.js', __FILE__ ), array(), '0.12.6' );
     }
 }
+
+add_action( 'admin_enqueue_scripts', 'lmt_shortcode_admin_styles_scripts' );
 
 function lmt_shortcode_admin_styles_scripts( $hook ) {
     global $wp_version;
@@ -118,6 +123,8 @@ function lmt_shortcode_admin_styles_scripts( $hook ) {
     }
 }
 
+add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
+
 function lmt_ajax_save_admin_scripts() {
     if( is_admin() ) { 
         // Embed the Script on our Plugin's Option Page Only
@@ -128,9 +135,6 @@ function lmt_ajax_save_admin_scripts() {
     }
 }
 
-add_action( 'admin_enqueue_scripts', 'lmt_custom_admin_styles_scripts' );
-add_action( 'admin_enqueue_scripts', 'lmt_shortcode_admin_styles_scripts' );
-add_action( 'admin_init', 'lmt_ajax_save_admin_scripts' );
 add_action( 'admin_notices', 'lmt_new_plugin_install_notice' );
 
 function lmt_new_plugin_install_notice() { 
@@ -162,6 +166,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/schema-remove.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/theme-support.php';
 
+// plugin action links
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );
+
 // add action links
 function lmt_add_action_links( $links ) {
     $lmtlinks = array(
@@ -169,6 +176,9 @@ function lmt_add_action_links( $links ) {
     );
     return array_merge( $lmtlinks, $links );
 }
+
+// plugin row elements
+add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
 
 function lmt_plugin_meta_links( $links, $file ) {
 	$plugin = plugin_basename(__FILE__);
@@ -179,11 +189,5 @@ function lmt_plugin_meta_links( $links, $file ) {
 		);
 	return $links;
 }
-
-// plugin action links
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'lmt_add_action_links', 10, 2 );
-
-// plugin row elements
-add_filter( 'plugin_row_meta', 'lmt_plugin_meta_links', 10, 2 );
 
 ?>

@@ -15,8 +15,9 @@
  * @return string Shortcode output.
  */
 
-add_shortcode('lmt-post-modified-info', 'lmt_post_modified_info_shortcode');
-add_shortcode('lmt-page-modified-info', 'lmt_page_modified_info_shortcode');
+add_shortcode( 'lmt-post-modified-info', 'lmt_post_modified_info_shortcode' );
+add_shortcode( 'lmt-page-modified-info', 'lmt_page_modified_info_shortcode' );
+add_shortcode( 'lmt-site-modified-info', 'lmt_global_modified_info_shortcode' );
 
 function lmt_post_modified_info_shortcode( $atts ) {
     $options = get_option('lmt_plugin_global_settings');
@@ -290,6 +291,16 @@ function lmt_page_modified_info_shortcode( $atts ) {
             return $html_content;
         }
     }
+}
+
+function lmt_global_modified_info_shortcode( $atts ) {
+    $option = get_option('wplmi_site_global_update_info');
+    $atts = shortcode_atts(
+		array(
+            'format'  => get_option('date_format') . ' ' . get_option('time_format'),
+        ), $atts, 'lmt-site-modified-info' );
+    
+    return get_date_from_gmt( date( 'Y-m-d H:i:s', $option ), $atts['format'] );
 }
 
 ?>

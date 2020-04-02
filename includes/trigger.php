@@ -9,18 +9,21 @@
 
 // add custom css
 add_action( 'wp_head','lmt_style_hook_in_header', 10 );
+
 // add css to admin page
 add_action( 'admin_print_styles-edit.php', 'lmt_print_admin_post_css' ); 
 add_action( 'admin_print_styles-users.php', 'lmt_print_admin_users_css' );
 add_action( 'admin_print_footer_scripts-post-new.php', 'lmt_print_admin_cb_auto_check_script' );
 add_action( 'admin_print_footer_scripts-post.php', 'lmt_print_admin_du_cb_auto_check_script' );
 add_action( 'admin_init', 'lmt_post_do_admin_actions' );
+
 // create action in pre_get_posts hook
-add_action( 'pre_get_posts', 'lmt_post_default_sorting_order_to_modified' );
+add_action( 'pre_get_posts', 'lmt_post_sorting_order_backend' );
+add_action( 'pre_get_posts', 'lmt_post_sorting_order_frontend' );
 
 function lmt_post_do_admin_actions() {
     // add last modified timestamp/shortcode in custom field
-    add_action( 'save_post', 'lmt_add_custom_field_lmi', 10, 1 );
+    add_action( 'save_post', 'lmt_run_action_on_save_post', 10, 3 );
     // add last modified timestamp on post/page updated message
     add_filter( 'post_updated_messages', 'lmt_post_updated_messages', 10, 1 );
 }
@@ -94,7 +97,7 @@ function lmt_post_updated_messages( $messages ) {
     return $messages;
 }
 
-function lmt_add_custom_field_lmi( $post_id ) {
+function lmt_run_action_on_save_post( $post_id, $post, $update ) {
     // get wordpress date time format
     $get_df = get_option( 'date_format' );
     $get_tf = get_option( 'time_format' );
@@ -109,19 +112,22 @@ function lmt_add_custom_field_lmi( $post_id ) {
     }
 
     // check post meta if not exists
-    if ( !add_post_meta( $post_id, 'wp_last_modified_info', $modified, true ) ) {
+    if ( ! add_post_meta( $post_id, 'wp_last_modified_info', $modified, true ) ) {
         // update post meta
         update_post_meta( $post_id, 'wp_last_modified_info', $modified );
     }
 
     // check post meta if not exists
-    if ( !add_post_meta( $post_id, 'wplmi_shortcode', $shortcode, true ) ) {
+    if ( ! add_post_meta( $post_id, 'wplmi_shortcode', $shortcode, true ) ) {
         // update post meta
         update_post_meta( $post_id, 'wplmi_shortcode', $shortcode );
     }
+
+    // update global site update time
+    update_option( 'wplmi_site_global_update_info', time() );
 }
 
-function lmt_post_default_sorting_order_to_modified( $query ) {
+function lmt_post_sorting_order_backend( $query ) {
 	global $pagenow;
 	
     // get plugin options
@@ -133,9 +139,28 @@ function lmt_post_default_sorting_order_to_modified( $query ) {
     }
 
     if( isset($options['lmt_admin_default_sort_order']) && $options['lmt_admin_default_sort_order'] != 'default' ) {
-		if ( is_admin() && 'edit.php' == $pagenow && !isset( $_GET['orderby'] ) ) {
+		if ( is_admin() && 'edit.php' === $pagenow && !isset( $_GET['orderby'] ) ) {
 	        $query->set( 'orderby', 'modified' );
             $query->set( 'order', $order );
+		}
+    }
+}
+
+function lmt_post_sorting_order_frontend( $query ) {
+	// get plugin options
+    $options = get_option('lmt_plugin_global_settings');
+
+    $order = 'desc';
+    if( isset($options['lmt_default_sort_order']) && $options['lmt_default_sort_order'] == 'published' ) {
+        $order = 'asc';
+    }
+
+    if( isset($options['lmt_default_sort_order']) && $options['lmt_default_sort_order'] != 'default' ) {
+		if ( $query->is_main_query() && !is_admin() ) {
+	        if ( $query->is_home() || $query->is_category() || $query->is_tag() ) {
+                $query->set( 'orderby', 'modified' );
+                $query->set( 'order', $order );
+            }
 		}
     }
 }

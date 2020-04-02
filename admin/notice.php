@@ -17,7 +17,7 @@ function lmt_rating_admin_notice() {
     if ( lmt_plugin_get_installed_time() > strtotime( '-240 hours' )
         || '1' === get_option( 'lmt_plugin_dismiss_rating_notice' )
         || ! current_user_can( 'manage_options' )
-        || apply_filters( 'lmt_plugin_show_sticky_notice', false ) ) {
+        || apply_filters( 'lmt_plugin_hide_sticky_notice', false ) ) {
         return;
     }
 

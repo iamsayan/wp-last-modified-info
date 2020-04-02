@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2019-12-21 23:58+0530\n"
+"POT-Creation-Date: 2020-04-02 20:59+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -445,7 +445,7 @@ msgstr ""
 msgid ""
 "If you do not want to edit any theme files, you can replace your post "
 "published date with the post modified info by using this option. Use %1$s for "
-"published date and %2$s for modified date."
+"published date, %2$s for modified date and %3$s for post permalinks."
 msgstr ""
 
 #: admin/settings/settings-fields.php:730
@@ -534,28 +534,39 @@ msgid ""
 "Enable this if you want to show last modified info on wordpress admin bar."
 msgstr ""
 
-#: admin/settings/settings-fields.php:889
+#: admin/settings/settings-fields.php:886
+msgid ""
+"Enable this if you want to show replace original post published date with "
+"post modified date. Your theme may not be able to support this feature. "
+"Please check it on frontend after activating this option."
+msgstr ""
+
+#: admin/settings/settings-fields.php:897 admin/settings/settings-fields.php:919
 msgid "Default Order"
 msgstr ""
 
-#: admin/settings/settings-fields.php:890
+#: admin/settings/settings-fields.php:898 admin/settings/settings-fields.php:920
 msgid "Modified Post First"
 msgstr ""
 
-#: admin/settings/settings-fields.php:891
+#: admin/settings/settings-fields.php:899 admin/settings/settings-fields.php:921
 msgid "Modified Post Last"
 msgstr ""
 
-#: admin/settings/settings-fields.php:900
+#: admin/settings/settings-fields.php:908
 msgid "Select the post sorting order in Admin Edit page in Backend."
 msgstr ""
 
-#: admin/settings/settings-fields.php:907
+#: admin/settings/settings-fields.php:930
+msgid "Select the post sorting order in Admin Edit page in Frontend."
+msgstr ""
+
+#: admin/settings/settings-fields.php:937
 #, php-format
 msgid "Do not add %s tag. This tag is not required, as it is already added."
 msgstr ""
 
-#: admin/settings/settings-fields.php:915
+#: admin/settings/settings-fields.php:945
 msgid ""
 "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
@@ -706,14 +717,22 @@ msgid "Show Modified Info on Admin Bar:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:77
-msgid "Default Admin Post Sorting Order:"
+msgid "Change Original Time to Modified Time:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:78
-msgid "Custom CSS Code:"
+msgid "Default Admin Post Sorting Order:"
 msgstr ""
 
 #: admin/settings/settings-loader.php:79
+msgid "Default Frontend Post Sorting Order:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:80
+msgid "Custom CSS Code:"
+msgstr ""
+
+#: admin/settings/settings-loader.php:81
 msgid "Delete Plugin Data upon Uninstallation:"
 msgstr ""
 
@@ -1194,43 +1213,43 @@ msgstr ""
 msgid "This %1$s was last updated on %2$s at %3$s by %4$s"
 msgstr ""
 
-#: includes/frontend/template-tags.php:100
+#: includes/frontend/template-tags.php:108
 msgid " (Scheduled)"
 msgstr ""
 
-#: includes/trigger.php:88
+#: includes/trigger.php:91
 #, php-format
 msgid " <a href=\"%1$s\" target=\"_blank\">View %2$s</a>"
 msgstr ""
 
-#: includes/trigger.php:92
+#: includes/trigger.php:95
 #, php-format
 msgid "updated on <strong>%s</strong>."
 msgstr ""
 
-#: wp-last-modified-info.php:139
+#: wp-last-modified-info.php:143
 msgid ""
 "Your version of PHP is below the minimum version of PHP required by WP Last "
 "Modified Info plugin. Please contact your host and request that your version "
 "be upgraded to 5.6 or later."
 msgstr ""
 
-#: wp-last-modified-info.php:145
+#: wp-last-modified-info.php:149
 #, php-format
 msgid ""
 "Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to "
 "configure plugin settings."
 msgstr ""
 
-#: wp-last-modified-info.php:168
+#: wp-last-modified-info.php:175
 msgid "Settings"
 msgstr ""
 
-#: wp-last-modified-info.php:177
+#: wp-last-modified-info.php:187
 msgid "Support"
 msgstr ""
 
-#: wp-last-modified-info.php:178
+#: wp-last-modified-info.php:188
 msgid "Donate"
 msgstr ""
 

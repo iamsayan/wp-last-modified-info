@@ -69,7 +69,7 @@ function lmt_post_custom_text_display() {
     if(empty($options['lmt_post_custom_text'])){
         $options['lmt_post_custom_text'] = 'Last Updated on';
     }
-    ?>  <input id="post-custom-text" name="lmt_plugin_global_settings[lmt_post_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_post_custom_text'])) { echo htmlentities($options['lmt_post_custom_text']); } ?>" />
+    ?>  <input id="post-custom-text" name="lmt_plugin_global_settings[lmt_post_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_post_custom_text'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_post_custom_text'] ) ); } ?>" />
     
     &nbsp;&nbsp;<label for="post-html-tag" style="font-size:13px;"><strong><?php _e( 'HTML Tag:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php if(!isset($options['lmt_html_tag_post'])){
@@ -111,7 +111,7 @@ function lmt_last_modified_format_post_display() {
         <?php if(empty($options['lmt_replace_ago_text_with'])){
             $options['lmt_replace_ago_text_with'] = 'ago';
         } ?>
-        <input id="post-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with'])) { echo htmlentities($options['lmt_replace_ago_text_with']); } ?>" />
+        <input id="post-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_replace_ago_text_with'] ) ); } ?>" />
     </span>
     &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
@@ -140,21 +140,21 @@ function lmt_last_modified_default_format_post_display() {
         <?php if(empty($options['lmt_custom_post_date_format'])){
             $options['lmt_custom_post_date_format'] = get_option( 'date_format' );
         } ?>
-        <input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="8" style="width:8%;" required placeholder="F jS, Y" value="<?php if (isset($options['lmt_custom_post_date_format'])) { echo $options['lmt_custom_post_date_format']; } ?>" />
+        <input id="custom-post-date-format" name="lmt_plugin_global_settings[lmt_custom_post_date_format]" type="text" size="8" style="width:8%;" required placeholder="F jS, Y" value="<?php if (isset($options['lmt_custom_post_date_format'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_custom_post_date_format'] ) ); } ?>" />
     </span>
 
     <span id="post-dtsep" style="display:none;">&nbsp;&nbsp;<label for="custom-post-dtsep" style="font-size:13px;"><strong><?php _e( 'Separator:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_post_date_time_sep'])){
             $options['lmt_post_date_time_sep'] = 'at';
         } ?>
-        <input id="custom-post-dtsep" name="lmt_plugin_global_settings[lmt_post_date_time_sep]" type="text" size="6" style="width:6%;" required placeholder="at" value="<?php if (isset($options['lmt_post_date_time_sep'])) { echo htmlentities($options['lmt_post_date_time_sep']); } ?>" />
+        <input id="custom-post-dtsep" name="lmt_plugin_global_settings[lmt_post_date_time_sep]" type="text" size="6" style="width:6%;" required placeholder="at" value="<?php if (isset($options['lmt_post_date_time_sep'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_post_date_time_sep'] ) ); } ?>" />
     </span>
 
     <span id="post-tmcf" style="display:none;">&nbsp;&nbsp;<label for="custom-post-time-format" style="font-size:13px;"><strong><?php _e( 'Time Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
         <?php if(empty($options['lmt_custom_post_time_format'])){
             $options['lmt_custom_post_time_format'] = get_option( 'time_format' );
         } ?>
-        <input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_post_time_format'])) { echo $options['lmt_custom_post_time_format']; } ?>" />
+        <input id="custom-post-time-format" name="lmt_plugin_global_settings[lmt_custom_post_time_format]" type="text" size="8" style="width:8%;" required placeholder="h:i a" value="<?php if (isset($options['lmt_custom_post_time_format'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_custom_post_time_format'] ) ); } ?>" />
     </span>
 
     &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select how you want to show last modified info on a single post if Traditional Format is active.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
@@ -211,7 +211,7 @@ function lmt_show_author_cb_display() {
     <?php if(empty($options['lmt_post_author_sep'])){
         $options['lmt_post_author_sep'] = 'by';
     } ?>
-    <input id="custom-post-author-sep" name="lmt_plugin_global_settings[lmt_post_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_post_author_sep'])) { echo htmlentities($options['lmt_post_author_sep']); } ?>" />
+    <input id="custom-post-author-sep" name="lmt_plugin_global_settings[lmt_post_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_post_author_sep'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_post_author_sep'] ) ); } ?>" />
     </span>
     <span id="post-custom-author" style="display:none;">&nbsp;&nbsp;<label for="custom-post-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php
@@ -336,7 +336,7 @@ function lmt_page_custom_text_display() {
     if(empty($options['lmt_page_custom_text'])){
         $options['lmt_page_custom_text'] = 'Last Updated on';
     }
-    ?> <input id="page-custom-text" name="lmt_plugin_global_settings[lmt_page_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_page_custom_text'])) { echo htmlentities($options['lmt_page_custom_text']); } ?>" />
+    ?> <input id="page-custom-text" name="lmt_plugin_global_settings[lmt_page_custom_text]" type="text" size="30" style="width:30%;" required placeholder="<?php _e( 'Last Updated on', 'wp-last-modified-info' ); ?>" value="<?php if (isset($options['lmt_page_custom_text'])) { echo htmlspecialchars( wp_kses_data($options['lmt_page_custom_text']) ); } ?>" />
        
     &nbsp;&nbsp;<label for="page-html-tag" style="font-size:13px;"><strong><?php _e( 'HTML Tag:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php if(!isset($options['lmt_html_tag_page'])){
@@ -378,7 +378,7 @@ function lmt_last_modified_format_page_display() {
         <?php if(empty($options['lmt_replace_ago_text_with_page'])){
             $options['lmt_replace_ago_text_with_page'] = 'ago';
         } ?>
-        <input id="page-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_page]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_page'])) { echo htmlentities($options['lmt_replace_ago_text_with_page']); } ?>" />
+        <input id="page-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_page]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_page'])) { echo htmlspecialchars( wp_kses_data($options['lmt_replace_ago_text_with_page']) ); } ?>" />
     </span>
     &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
@@ -414,7 +414,7 @@ function lmt_last_modified_default_format_page_display() {
         <?php if(empty($options['lmt_page_date_time_sep'])){
             $options['lmt_page_date_time_sep'] = 'at';
         } ?>
-        <input id="custom-page-dtsep" name="lmt_plugin_global_settings[lmt_page_date_time_sep]" type="text" size="6" style="width:6%;" required placeholder="at" value="<?php if (isset($options['lmt_page_date_time_sep'])) { echo htmlentities($options['lmt_page_date_time_sep']); } ?>" />
+        <input id="custom-page-dtsep" name="lmt_plugin_global_settings[lmt_page_date_time_sep]" type="text" size="6" style="width:6%;" required placeholder="at" value="<?php if (isset($options['lmt_page_date_time_sep'])) { echo htmlspecialchars( wp_kses_data($options['lmt_page_date_time_sep']) ); } ?>" />
     </span>
 
     <span id="page-tmcf" style="display:none;">&nbsp;&nbsp;<label for="custom-page-time-format" style="font-size:13px;"><strong><?php _e( 'Time Format:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
@@ -477,7 +477,7 @@ function lmt_show_author_page_cb_display() {
     <?php if(empty($options['lmt_page_author_sep'])){
         $options['lmt_page_author_sep'] = 'by';
     } ?>
-    <input id="custom-page-author-sep" name="lmt_plugin_global_settings[lmt_page_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_page_author_sep'])) { echo htmlentities($options['lmt_page_author_sep']); } ?>" />
+    <input id="custom-page-author-sep" name="lmt_plugin_global_settings[lmt_page_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_page_author_sep'])) { echo htmlspecialchars( wp_kses_data($options['lmt_page_author_sep']) ); } ?>" />
     </span>
     <span id="page-custom-author" style="display:none;">&nbsp;&nbsp;<label for="custom-page-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
     <?php
@@ -581,7 +581,7 @@ function lmt_tt_astra_theme_mod_display() {
 
 function lmt_tt_updated_text_box_display() {
     $options = get_option('lmt_plugin_global_settings');
-    ?> <input id="lmt-tt-updated-text" name="lmt_plugin_global_settings[lmt_tt_updated_text_box]" type="text" size="40" style="width:40%;" placeholder="Updated on" value="<?php if (isset($options['lmt_tt_updated_text_box'])) { echo htmlentities( $options['lmt_tt_updated_text_box'] ); } ?>" />
+    ?> <input id="lmt-tt-updated-text" name="lmt_plugin_global_settings[lmt_tt_updated_text_box]" type="text" size="40" style="width:40%;" placeholder="Updated on" value="<?php if (isset($options['lmt_tt_updated_text_box'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_tt_updated_text_box'] ) ); } ?>" />
         &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'If you want to display any message before last modified date/time, set here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
@@ -613,7 +613,7 @@ function lmt_last_modified_format_tt_display() {
         <?php if(empty($options['lmt_replace_ago_text_with_tt'])){
             $options['lmt_replace_ago_text_with_tt'] = 'ago';
         } ?>
-        <input id="tt-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_tt]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_tt'])) { echo htmlentities($options['lmt_replace_ago_text_with_tt']); } ?>" />
+        <input id="tt-ago-replace" name="lmt_plugin_global_settings[lmt_replace_ago_text_with_tt]" type="text" size="10" style="width:10%;" required placeholder="ago" value="<?php if (isset($options['lmt_replace_ago_text_with_tt'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_replace_ago_text_with_tt']) ); } ?>" />
     </span>
     &nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
@@ -641,7 +641,7 @@ function lmt_show_author_tt_cb_display() {
     <?php if(empty($options['lmt_tt_author_sep'])){
         $options['lmt_tt_author_sep'] = 'by';
     } ?>
-    <input id="custom-tt-author-sep" name="lmt_plugin_global_settings[lmt_tt_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_tt_author_sep'])) { echo htmlentities($options['lmt_tt_author_sep']); } ?>" />
+    <input id="custom-tt-author-sep" name="lmt_plugin_global_settings[lmt_tt_author_sep]" type="text" size="6" style="width:6%;" placeholder="by" required value="<?php if (isset($options['lmt_tt_author_sep'])) { echo htmlspecialchars( wp_kses_data($options['lmt_tt_author_sep']) ); } ?>" />
     </span>
 
     <span id="tt-custom-author" style="display:none;">&nbsp;&nbsp;<label for="lmt-custom-tt-author" style="font-size:13px;"><strong><?php _e( 'Select:', 'wp-last-modified-info' ); ?></strong></label>&nbsp;&nbsp;
@@ -712,7 +712,7 @@ function lmt_tt_class_box_display() {
 function lmt_tt_replace_published_date_display() {
     $options = get_option('lmt_plugin_global_settings');
     ?> <textarea id="lmt-tt-replace" placeholder="&lt;i class=&#34;icon-clock&#34;&gt;&lt;/i&gt;%published_date%" name="lmt_plugin_global_settings[lmt_tt_replace_published_date]" rows="5" cols="90" style="width:90%;"><?php if (isset($options['lmt_tt_replace_published_date'])) { echo $options['lmt_tt_replace_published_date']; } ?></textarea>
-    <br><span style="float: left;width: 90%;font-size: smaller;line-height: 1.9;"><?php printf(__( 'If you do not want to edit any theme files, you can replace your post published date with the post modified info by using this option. Use %1$s for published date and %2$s for modified date.', 'wp-last-modified-info' ), '<code>%published_date%</code>', '<code>%modified_date%</code>' ); ?></span>
+    <br><span style="float: left;width: 90%;font-size: smaller;line-height: 1.9;"><?php printf(__( 'If you do not want to edit any theme files, you can replace your post published date with the post modified info by using this option. Use %1$s for published date, %2$s for modified date and %3$s for post permalinks.', 'wp-last-modified-info' ), '<code>%published_date%</code>', '<code>%modified_date%</code>', '<code>%post_link%</code>' ); ?></span>
     <?php
 }
 
@@ -822,7 +822,7 @@ function lmt_enable_noti_post_types_display() {
         'public'   => true,
     ), 'names'); 
 
-    echo '<select id="noti-pt" name="lmt_plugin_global_settings[lmt_enable_noti_post_types][]" multiple="multiple" required style="width:100%;">';
+    echo '<select id="noti-pt" name="lmt_plugin_global_settings[lmt_enable_noti_post_types][]" multiple="multiple" style="width:100%;">';
     foreach( $post_types as $post_type ) {
         if ( post_type_supports( $post_type, 'revisions' ) ) {
             $selected = in_array( $post_type, $options['lmt_enable_noti_post_types'] ) ? ' selected="selected"' : '';
@@ -837,7 +837,7 @@ function lmt_email_subject_display() {
     if( empty($options['lmt_email_subject']) ) {
         $options['lmt_email_subject'] = __( '[%site_name%] A %post_type% of %author_name% has been modified on your blog.', 'wp-last-modified-info' );
     }
-    ?> <input id="email-sub" name="lmt_plugin_global_settings[lmt_email_subject]" type="text" size="100" style="width:100%;" value="<?php if (isset($options['lmt_email_subject'])) { echo htmlentities( $options['lmt_email_subject'] ); } ?>" />
+    ?> <input id="email-sub" name="lmt_plugin_global_settings[lmt_email_subject]" type="text" size="100" style="width:100%;" value="<?php if (isset($options['lmt_email_subject'])) { echo htmlspecialchars( wp_kses_data( $options['lmt_email_subject'] ) ); } ?>" />
         <br>
     <?php printf(
 		'<small style="line-height: 2;"><i>%s</i><code>&#37;post_title&#37;</code> <code>&#37;author_name&#37;</code> <code>&#37;post_type&#37;</code> <code>&#37;site_name&#37;</code> <code>&#37;site_url&#37;</code> <code>&#37;current_time&#37;</code><small>',
@@ -879,6 +879,14 @@ function lmt_enable_on_admin_bar_cb_display() {
     <?php
 }
 
+function lmt_replace_original_published_date_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    ?>  <label class="switch">
+        <input type="checkbox" id="lmt-replace" name="lmt_plugin_global_settings[lmt_replace_original_published_date]" value="1" <?php checked(isset($options['lmt_replace_original_published_date']), 1); ?> /> 
+        <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show replace original post published date with post modified date. Your theme may not be able to support this feature. Please check it on frontend after activating this option.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+   <?php
+}
+
 function lmt_admin_default_sort_order_display() {
     $options = get_option('lmt_plugin_global_settings');
     
@@ -890,7 +898,7 @@ function lmt_admin_default_sort_order_display() {
         'modified'    => __( 'Modified Post First', 'wp-last-modified-info' ),
         'published'   => __( 'Modified Post Last', 'wp-last-modified-info' )
     );
-    echo '<select id="lmt-order" name="lmt_plugin_global_settings[lmt_admin_default_sort_order]" style="width:20%;">';
+    echo '<select id="lmt-admin-order" name="lmt_plugin_global_settings[lmt_admin_default_sort_order]" style="width:20%;">';
     foreach( $items as $item => $label ) {
         $selected = ( $options['lmt_admin_default_sort_order'] == $item ) ? ' selected="selected"' : '';
         echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -898,6 +906,28 @@ function lmt_admin_default_sort_order_display() {
     echo '</select>';
     ?>
     &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Backend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+    <?php
+}
+
+function lmt_default_sort_order_display() {
+    $options = get_option('lmt_plugin_global_settings');
+    
+    if( !isset($options['lmt_default_sort_order']) ) {
+        $options['lmt_default_sort_order'] = 'default';
+    }
+    $items = array(
+        'default'     => __( 'Default Order', 'wp-last-modified-info' ),
+        'modified'    => __( 'Modified Post First', 'wp-last-modified-info' ),
+        'published'   => __( 'Modified Post Last', 'wp-last-modified-info' )
+    );
+    echo '<select id="lmt-order" name="lmt_plugin_global_settings[lmt_default_sort_order]" style="width:20%;">';
+    foreach( $items as $item => $label ) {
+        $selected = ( $options['lmt_default_sort_order'] == $item ) ? ' selected="selected"' : '';
+        echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+    }
+    echo '</select>';
+    ?>
+    &nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
     <?php
 }
 

@@ -43,9 +43,9 @@ function lmt_adminbar_info() {
     $org_time = get_the_time('U');
 
     if ( $mod_time > $cur_time || $org_time > $mod_time ) {
-        return sprintf(__( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time());
+        return sprintf( __( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time() );
     }
-    return sprintf(__( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff(get_the_modified_time( 'U' ), $cur_time));
+    return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( get_the_modified_time( 'U' ), $cur_time ) );
 }
 
 // add a link to the WP Toolbar

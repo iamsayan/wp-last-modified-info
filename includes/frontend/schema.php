@@ -81,7 +81,6 @@ if( isset($options['lmt_enable_schema_support_cb']) && ($options['lmt_enable_sch
 }
 
 function lmt_add_schema_attribute( $input ) {
-
     $output = trim( $input );
     $attrs = array(
         array(
