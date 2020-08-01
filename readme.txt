@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
-Tested up to: 5.4
-Stable tag: 1.6.6
+Tested up to: 5.5
+Stable tag: 1.7.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -181,71 +181,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.6.6 =
-Release Date: April 2, 2020
+= 1.7.0 Beta =
+Release Date: August 1, 2020
 
-* NEW: Added Shortcode `[lmt-site-modified-info]` to display website modified time. It will trigger when a post is saved.
-* NEW: Added a method to directly replace the post published date with post modified date. This feature may not work with some themes.
-* Added: `%post_link%` variable to PHP Output Buffer replace process.
-* Added: Ablity to sort posts on frontend by post modified date.
-* Tweak: Removed the required from Noti Post Types fields as sometime it prevents plugin from save the data.
-* Tweak: Form now "Text before Last Modified Info" fields do not support and HTML tags. You can use `post-last-modified-text` CSS class for posts, `page-last-modified-text` CSS class for pages and `tt-last-modified-text` CSS class for template tags to apply styles.
-* Fixed: Properly sanitizes input and escapes the output to prevent a XSS vulnerability. Thanks to @Jeroen Mulder.
+* Various improvements introduced.
 * Fixed: Some CSS and JS issues.
-* Compatibilty with WordPress v5.4.
-
-= 1.6.5 =
-Release Date: December 21, 2019
-
-* Fixed: Post Link is showing when post is updated for non-public posts.
-* Fixed: Incorrect HTML tag output in post edit page.
-* Fixed: Some Browser JS warnings.
-* Fixed: Some CSS issues with WordPress v5.3.2.
-
-= 1.6.4 =
-Release Date: November 27, 2019
-
-* Fixed: Compatibility with Rank Math and Yoast SEO for their recent changes.
-* Fixed: Fixed an error of `dateModified` showing an incorrect time when timezone was not set to UTC.
-
-= 1.6.3 =
-Release Date: November 24, 2019
-
-* NEW: Added a new filter hook `wplmi_post_disable_update_default_check` to auto lock modified info in post edit page.
-* Improved: Check/uncheck "Disable Update" option is separated from now.
-* Fixed: Check/uncheck "Disable Update" option is not working on draft posts.
-* Fixed: A minor CSS issue.
-* Other minor improvemnts and fixes.
-
-= 1.6.2 =
-Release Date: November 16, 2019
-
-* Compatibility with WordPress 5.3.
-* Improved: Now it is possible to check/uncheck "Disable Update" option globally.
-* Fixed: Some broken links.
-* Fixed: Minor CSS issue.
-* Fixed: Column Header sorting is not working properly.
-* Removed: Some unnessary files.
-* Other minor improvemnts and fixes.
-
-= 1.6.1 =
-Release Date: August 26, 2019
-
-* Added: An option to set authot link target.
-* Fixed: Unclosed HTML tags.
-* Removed: Some duplicate codes.
-
-= 1.6.0 =
-Release Date: August 9, 2019
-
-* Added: A filter `wplmi_custom_schema_post_date_fotmat` to compatible any theme with Compatibility Schema Mode.
-* Added: A filter `wplmi_switch_global_replace_hook` to switch the Global Replace action hook.
-* Added: Post Shortcode attribute to enable output on search pages.
-* Improved: Last Modified Posts Dashboard Widget.
-* Improved: Compatibility between the Newspaper theme and Advanced Schema Mode.
-* Fixed: An issue which prevents plugin settings from saving.
-* Fixed: JS error in Browser Console.
-* Fixed: Unclosed HTML tag.
+* Compatibilty with WordPress v5.5.
 
 = Other Versions =
 
@@ -253,5 +194,5 @@ Release Date: August 9, 2019
 
 == Upgrade Notice ==
 
-= 1.6.6 =
-In this release, we make this plugin compatible with WordPress 5.4.
+= 1.7.0 =
+In this release, we make this plugin compatible with WordPress 5.5.

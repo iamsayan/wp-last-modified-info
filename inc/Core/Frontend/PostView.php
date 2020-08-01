@@ -1,0 +1,235 @@
+<?php
+/**
+ * Show Original Republish Data.
+ *
+ * @since      1.7.0
+ * @package    WP Last Modified Info
+ * @subpackage Wplmi\Core
+ * @author     Sayan Datta <hello@sayandatta.in>
+ */
+
+namespace Wplmi\Core\Frontend;
+
+use Wplmi\Helpers\Hooker;
+use Wplmi\Helpers\HelperFunctions;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Republish info class.
+ */
+class PostView
+{
+	use HelperFunctions, Hooker;
+
+	/**
+	 * Register functions.
+	 */
+	public function register()
+	{
+		$this->filter( 'the_content', 'show_info', $this->do_filter( 'display_priority', 10 ) );
+		$this->action( 'wp_footer', 'run_replace', 20 );
+	}
+
+	/**
+	 * Show original publish info.
+	 * 
+	 * @param string  $content  Original Content
+	 * 
+	 * @return string $content  Filtered Content
+	 */
+	public function show_info( $content )
+	{
+		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
+			return $content;
+		}
+
+		$post_types = $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] );
+		if ( ! in_array( get_post_type(), $post_types ) ) {
+			return $content;
+		}
+
+		$position = $this->get_data( 'lmt_show_last_modified_time_date_post', 'before_content' );
+		if ( ! in_array( $position, [ 'before_content', 'after_content' ] ) ) {
+			return $content;
+		}
+
+		$disable = $this->get_meta( get_the_ID(), '_lmt_disable' );
+		if ( ! empty( $disable ) && $disable == 'yes' ) {
+			return $content;
+		}
+
+		$template = $this->get_data( 'lmt_last_modified_info_template' );
+		if ( empty( $template ) ) {
+			return $content;
+		}
+
+		if ( ! in_the_loop() && $this->do_filter( 'disable_post_loop', true ) ) {
+			return $content;
+		}
+
+		$archives = $this->get_data( 'lmt_archives' );
+		if ( ! empty( $archives ) ) {
+			foreach ( $archives as $archive ) {
+		    	if ( $archive() ) {
+		    		return $content;
+		    	}
+		    }
+		}
+
+		$published_timestamp = get_post_time( 'U' );
+		$modified_timestamp = get_post_modified_time( 'U' );
+		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
+
+		if ( $modified_timestamp <= ( $published_timestamp + $gap ) ) {
+			return $content;
+		}
+
+		$author_id = $this->get_meta( get_the_ID(), '_edit_last' );
+		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
+			$author_id = $this->get_data( 'lmt_show_author_list' );
+		}
+
+		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
+		$date_type = $this->do_filter( 'post_datetime_type', $date_type, get_the_ID() );
+
+		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
+		if ( $date_type == 'default' ) {
+			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
+			$format = $this->do_filter( 'post_datetime_format', $format, get_the_ID() );
+			$timestamp = ( ! empty( $format ) ) ? get_the_modified_date( $format ) : get_the_modified_date( get_option( 'date_format' ) );
+		}
+		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, get_the_ID() );
+
+		$template = $this->generate( htmlspecialchars_decode( $template ), get_the_ID(), $timestamp, $author_id );
+
+		if ( $position == 'before_content' ) {
+        	$content = $template . $content;
+        } else if ( $position == 'after_content' ) {
+        	$content = $content . $template;
+	    }
+
+    	return $content;
+	}
+
+	public function run_replace()
+	{
+		global $post;
+		$post_id = $post->ID;
+
+		if ( ! is_singular() ) {
+			return;
+		}
+
+		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
+			return;
+		}
+
+		$post_types = $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] );
+		if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
+			return;
+		}
+
+		$position = $this->get_data( 'lmt_show_last_modified_time_date_post', 'before_content' );
+		if ( $position !== 'replace_original' ) {
+			return;
+		}
+
+		$disable = $this->get_meta( $post_id, '_lmt_disable' );
+		if ( ! empty( $disable ) && $disable == 'yes' ) {
+			return;
+		}
+
+		$template = $this->get_data( 'lmt_last_modified_info_template' );
+		$selectors = $this->get_data( 'lmt_css_selectors' );
+		if ( empty( $template ) || empty( $selectors ) ) {
+			return;
+		}
+
+		$published_timestamp = get_post_time( 'U' );
+		$modified_timestamp = get_post_modified_time( 'U' );
+		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
+
+		if ( $modified_timestamp <= ( $published_timestamp + $gap ) ) {
+			return;
+		}
+
+		$author_id = $this->get_meta( $post->ID, '_edit_last' );
+		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
+			$author_id = $this->get_data( 'lmt_show_author_list' );
+		}
+
+		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
+		$date_type = $this->do_filter( 'post_datetime_type', $date_type, $post_id );
+
+		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
+		if ( $date_type == 'default' ) {
+			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
+			$format = $this->do_filter( 'post_datetime_format', $format, get_the_ID() );
+			$timestamp = ( ! empty( $format ) ) ? get_the_modified_date( $format ) : get_the_modified_date( get_option( 'date_format' ) );
+		}
+		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, $post_id );
+
+		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( $template ), $post_id, $timestamp, $author_id ) );
+		$selectors = preg_replace( "/\r|\n/", '', wp_kses_post( $selectors ) ); ?>
+
+	    <script type="text/javascript">
+	        jQuery(document).ready(function ($) {
+				var selector = $( '<?php echo $selectors; ?>' );
+                if ( selector.length ) {
+					selector.replaceWith( '<?php echo $template; ?>' );
+				}
+	        });
+	    </script>
+		<?php
+	}
+	
+	/**
+	 * Replace email variables.
+	 *
+	 * @param string  $html  Input data.
+	 * @param object  $post  WP Post object.
+	 * @param string  $type  Sting type. Default subject.
+	 * 
+	 * @return string
+	 */
+	protected function generate( $html, $post_id, $timestamp, $author_id )
+	{
+		$html = stripslashes( $html );
+
+		$post = get_post( $post_id );
+		
+		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'inline' ) && ! $this->is_archive() ) {
+			$timestamp = '<time itemprop="dateModified" datetime="'. esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post->ID ) ) . '">' . $timestamp . '</time>';
+		}
+
+		$author_name = get_the_author_meta( 'display_name', $author_id );
+		$author_url = esc_url( get_the_author_meta( 'url', $author_id ) );
+		$author_email = filter_var( get_the_author_meta( 'user_email', $author_id ), FILTER_SANITIZE_EMAIL );
+		$author_archive = esc_url( get_author_posts_url( $author_id ) );
+
+		$date_format = $this->do_filter( 'post_published_date_format', get_option( 'date_format' ), $post->ID );
+		
+		$html = str_replace( [ '%original_author_name%', '%post_original_author%' ], get_the_author(), $html ); 
+		$html = str_replace( [ '%author_name%', '%post_author%' ], $author_name, $html ); 
+		$html = str_replace( [ '%author_url%','%author_website%' ], $author_url, $html );
+		$html = str_replace( '%author_email%', $author_email, $html );
+		$html = str_replace( [ '%author_archive%', '%author_posts_url%' ], $author_archive, $html );
+		$html = str_replace( [ '%post_published%', '%published_date%' ], esc_attr( get_post_time( $date_format, false, $post->ID ) ), $html );
+		$html = str_replace( '%post_link%', esc_url( get_the_permalink( $post->ID ) ), $html );
+		
+		$html = $this->do_filter( 'post_tags', $html, $post->ID );
+		$html = str_replace( [ '%post_modified%', '%modified_date%' ], esc_attr( $timestamp ), wp_kses_post( $html ) );
+		
+		return preg_replace( "/\r|\n/", '', $html );
+	}
+
+	private function is_archive()
+	{
+		if ( is_archive() || is_tax() || is_home() || is_front_page() || is_search() || is_404() ) {
+            return true;
+		}
+
+		return false;
+	}
+}

@@ -1,0 +1,27 @@
+{
+    "name": "sayan/wp-last-modified-info",
+    "description": "The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Sayan Datta",
+            "email": "hello@sayandatta.in",
+            "homepage": "http://www.sayandatta.in",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "hello@sayandatta.in"
+    },
+    "funding": [
+        {
+            "type": "Paypal",
+            "url": "https://paypal.me/iamsayan"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {"Wplmi\\": "./inc"}
+    }
+}
