@@ -64,10 +64,6 @@ class Loader
 
     public function render( $content )
     {
-        if ( ! is_singular() ) {
-            return $content;
-        }
-
         $start_tag = '<time itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'">';
         $end_tag = '</time>';
 
