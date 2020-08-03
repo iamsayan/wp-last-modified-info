@@ -32,7 +32,7 @@ class EditScreen
 		$this->action( 'quick_edit_custom_box', 'quick_edit', 10, 2 );
 		$this->action( 'wp_insert_post', 'save_metadata', 99 );
 		$this->action( 'woocommerce_update_product', 'woo_save_metadata' );
-		$this->filter( 'wp_insert_post_data', 'update_data', 9999, 2 );
+		$this->filter( 'wp_insert_post_data', 'update_data', 99, 2 );
 	}
 	
 	/**
@@ -412,7 +412,11 @@ class EditScreen
 	    	$wpdb->update( $wpdb->posts, $args, [
 	    	    'ID' => $post_id,
 	    	] );
-	    }
+		}
+		
+		if ( $this->do_filter( 'force_update_author_id', false ) ) {
+		    $this->update_meta( $post_id, '_edit_last', get_current_user_id() );
+		}
 	}
 
 	/**

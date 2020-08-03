@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2020-08-01 10:39+0530\n"
+"POT-Creation-Date: 2020-08-03 21:41+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: hello@sayandatta.in\n"
@@ -687,7 +687,7 @@ msgid "Default"
 msgstr ""
 
 #: inc/Core/Elementor/Modules/ModifiedDate.php:70
-#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:153
+#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:152
 msgid "Custom"
 msgstr ""
 
@@ -1102,99 +1102,93 @@ msgid ""
 "marquee style."
 msgstr ""
 
-#: templates/admin.php:96
-msgid ""
-"Customize WP header, add custom code and enable, disable or remove the "
-"unwanted meta tags, links from the source code and many more."
-msgstr ""
-
-#: templates/admin.php:101
+#: templates/admin.php:100
 msgid "Plugin Tools"
 msgstr ""
 
-#: templates/admin.php:103
+#: templates/admin.php:102
 msgid "Check/Un-Check <i>Disable Update</i> Option"
 msgstr ""
 
-#: templates/admin.php:104
+#: templates/admin.php:103
 msgid ""
 "This will enable or disable \"Disable Update\" option for all posts, pages "
 "and CPTs automatically."
 msgstr ""
 
-#: templates/admin.php:105
+#: templates/admin.php:104
 msgid ""
 "It will enable post modified info output on all activated post types. Do you "
 "want to continue?"
 msgstr ""
 
-#: templates/admin.php:105 templates/admin.php:106
+#: templates/admin.php:104 templates/admin.php:105
 msgid "Success! Requested Action processed successfully."
 msgstr ""
 
-#: templates/admin.php:105
+#: templates/admin.php:104
 msgid "Check All"
 msgstr ""
 
-#: templates/admin.php:106
+#: templates/admin.php:105
 msgid ""
 "It will disable post modified info output on all activated post types. Do you "
 "want to continue?"
 msgstr ""
 
-#: templates/admin.php:106
+#: templates/admin.php:105
 msgid "Un-Check All"
 msgstr ""
 
-#: templates/admin.php:109 templates/admin.php:115
+#: templates/admin.php:108 templates/admin.php:114
 msgid "Export Settings"
 msgstr ""
 
-#: templates/admin.php:110
+#: templates/admin.php:109
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: templates/admin.php:120 templates/admin.php:127
+#: templates/admin.php:119 templates/admin.php:126
 msgid "Import Settings"
 msgstr ""
 
-#: templates/admin.php:121
+#: templates/admin.php:120
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: templates/admin.php:132 templates/admin.php:134
+#: templates/admin.php:131 templates/admin.php:133
 msgid "Reset Settings"
 msgstr ""
 
-#: templates/admin.php:133
+#: templates/admin.php:132
 msgid "WARNING:"
 msgstr ""
 
-#: templates/admin.php:133
+#: templates/admin.php:132
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: templates/admin.php:134
+#: templates/admin.php:133
 msgid ""
 "It will delete all the data relating to this plugin settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: templates/admin.php:134
+#: templates/admin.php:133
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
-#: templates/admin.php:155 templates/admin.php:157
+#: templates/admin.php:154 templates/admin.php:156
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: templates/admin.php:158
+#: templates/admin.php:157
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
