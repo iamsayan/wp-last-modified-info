@@ -102,20 +102,6 @@ Yes, this plugin supports all types of custom posts.
 
 Go to 'Settings > WP Last Modified Info > Misc. Options > Custom CSS' and add your custom css.
 
-##### CSS Classes: #####
-
-`.post-last-modified`: use this class for posts.
-
-`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
-
-`.post-modified-author`: use this class for post author.
-
-`.page-last-modified`: use this class for pages.
-
-`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
-
-`.page-modified-author`: use this class for page author.
-
 #### Can I sort posts and pages by last modified info in dashboard? ####
 
 Yes you can. You can sort posts and pages by ascending or desending order.
@@ -156,19 +142,7 @@ Displays/echos the last modified info:
 
 #### Published date is equal to modified date. What is the solution? ####
 
-Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be same and the last modified date will still appear on post/pages even if it’s the same as the publish date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via custom filters.
-
-Use `wplmi_date_time_diff_post` for posts and `wplmi_date_time_diff_page` for pages.
-
-Example
-
-`function override_time_diff() {
-       return '86400'; // 86400 seconds i.e. 24 hours, set it according to your need
-}`
-
-`add_filter( 'wplmi_date_time_diff_post', 'override_time_diff' ); // for posts`
-
-`add_filter( 'wplmi_date_time_diff_page', 'override_time_diff' ); // for pages`
+Sometimes you may want to show last modified date only. For that reason, post published date and modified date would be the same and the last modified date will still appear on post/pages even if it’s the same as the published date. In that case, you can set a time difference(ex. 1 day i.e. 24 hours) between post published date and modified date via plugin settings gap option.
 
 #### The plugin isn't working or have a bug? ####
 
