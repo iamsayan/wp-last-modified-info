@@ -1,6 +1,6 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Send notification on every post update.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
@@ -16,7 +16,7 @@ use Wplmi\Helpers\HelperFunctions;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Notification class.
  */
 class Notification
 {

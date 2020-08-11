@@ -1,6 +1,42 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.7.0
+Release Date: August 11, 2020
+
+* Improvement: Rewrite the plugin from scratch.
+* Added: Templateting system to customize the output as you want.
+* Added: A method to replace post published date with post modified date. It will only work on Single Post Page.
+* Added: Some validations to check if the custom modified date is a valid past date.
+* Added: An option to hide last modified info on various archives from plugin settings.
+* Added: Dedicated CSS editor to enable syntax highlighting.
+* Added: Option to show Last Modified Author Avatar using Elementor.
+* Added: Lots of filters and hooks to make the plugin customizable.
+* Tweak: Traditional Date Format and Time Format field is merged into one field.
+* Tweak: Better theme (Astra & GeneratePress) compatibility.
+* Tweak: Notification Email will only add an only valid email and this field is now not mandatory.
+* Tweak: Modified Date Update is disabled for Scheduled and Draft Posts.
+* Tweak: Modified info will be shown only if the Published date is not equal to the modified date.
+* Tweak: CTRL+S will save the plugin settings automatically.
+* Fixed: A bug where WooCommerce Product Modified Date is changed automatically even the Disabled option is checked.
+* Fixed: Some CSS and JS issues.
+* Various improvements introduced.
+* Compatibility with WordPress v5.5.
+* Plugin now strictly requires PHP v5.6 or higher.
+
+## 1.6.6
+Release Date: April 2, 2020
+
+* NEW: Added Shortcode `[lmt-site-modified-info]` to display website modified time. It will trigger when a post is saved.
+* NEW: Added a method to directly replace the post published date with post modified date. This feature may not work with some themes.
+* Added: `%post_link%` variable to PHP Output Buffer replace process.
+* Added: Ablity to sort posts on frontend by post modified date.
+* Tweak: Removed the required from Noti Post Types fields as sometime it prevents plugin from save the data.
+* Tweak: Form now "Text before Last Modified Info" fields do not support and HTML tags. You can use `post-last-modified-text` CSS class for posts, `page-last-modified-text` CSS class for pages and `tt-last-modified-text` CSS class for template tags to apply styles.
+* Fixed: Properly sanitizes input and escapes the output to prevent a XSS vulnerability. Thanks to @Jeroen Mulder.
+* Fixed: Some CSS and JS issues.
+* Compatibilty with WordPress v5.4.
+
 ## 1.6.5
 Release Date: December 21, 2019
 

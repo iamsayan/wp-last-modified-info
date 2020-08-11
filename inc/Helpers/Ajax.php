@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper functions.
+ * Ajax Helpers.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info

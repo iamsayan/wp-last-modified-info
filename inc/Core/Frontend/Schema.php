@@ -4,7 +4,7 @@
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Frontend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -146,6 +146,7 @@ class Schema extends BaseController
 	 * Replace the strings.
 	 * 
 	 * @param string  $html  Original Content
+	 * 
 	 * @return string $html  Filtered Content
 	 */
 	public function replace( $html )

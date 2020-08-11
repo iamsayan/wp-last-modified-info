@@ -4,7 +4,7 @@
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Frontend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -28,7 +28,7 @@ class PostView
 	public function register()
 	{
 		$this->filter( 'the_content', 'show_info', $this->do_filter( 'display_priority', 10 ) );
-		$this->action( 'wp_footer', 'run_replace', 20 );
+		$this->action( 'wp_footer', 'run_replace', 5 );
 	}
 
 	/**
@@ -109,14 +109,16 @@ class PostView
         	$content = $content . $template;
 	    }
 
-    	return $content;
+    	return $this->do_filter( 'post_content_output', $content );
 	}
 
+	/**
+	 * Replace Published date with Modified Date using jQuery.
+	 */
 	public function run_replace()
 	{
 		global $post;
-		$post_id = $post->ID;
-
+		
 		if ( ! is_singular() ) {
 			return;
 		}
@@ -125,6 +127,7 @@ class PostView
 			return;
 		}
 
+		$post_id = $post->ID;
 		$post_types = $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] );
 		if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
 			return;
@@ -224,6 +227,11 @@ class PostView
 		return preg_replace( "/\r|\n/", '', $html );
 	}
 
+	/**
+	 * Check archive pages
+	 * 
+	 * @return bool
+	 */
 	private function is_archive()
 	{
 		if ( is_archive() || is_tax() || is_home() || is_front_page() || is_search() || is_404() ) {

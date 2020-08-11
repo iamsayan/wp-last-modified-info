@@ -4,7 +4,7 @@
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -38,13 +38,15 @@ class AdminColumn
 	{
 		// get all post types
 		$post_types = get_post_types( $this->do_filter( 'admin_column_post_types', [] ) );
-		foreach( $post_types as $post_type ) {
-			$this->filter( "manage_edit-{$post_type}_columns", 'column_title' );
-			$this->action( "manage_edit-{$post_type}_sortable_columns", 'column_sortable', 10, 2 );
-			$this->filter( "manage_{$post_type}_posts_columns", 'column_title' );
-			$this->filter( "manage_{$post_type}_sortable_columns", 'column_sortable', 10, 2 );
-			$this->action( "manage_{$post_type}_posts_custom_column", 'column_data', 10, 2 );
-		}
+		if ( ! empty( $post_types ) ) {
+	    	foreach ( $post_types as $post_type ) {
+	    		$this->filter( "manage_edit-{$post_type}_columns", 'column_title' );
+	    		$this->action( "manage_edit-{$post_type}_sortable_columns", 'column_sortable', 10, 2 );
+	    		$this->filter( "manage_{$post_type}_posts_columns", 'column_title' );
+	    		$this->filter( "manage_{$post_type}_sortable_columns", 'column_sortable', 10, 2 );
+	    		$this->action( "manage_{$post_type}_posts_custom_column", 'column_data', 10, 2 );
+	    	}
+	    }
 	}
 	
 	/**
@@ -76,11 +78,11 @@ class AdminColumn
 			    		$html .= ' <span class="wplmi-lock dashicons dashicons-lock" title="' . esc_attr__( 'Modified date time update is disabled.', 'wp-last-modified-info' ) . '" style="font-size:16px; padding-top: 3px;"></span>';
 			    	}
 			    	$html .= '<span class="hidden-df" style="display: none;">' . $mod_format . '</span>';
-				    $html .= '<span class="hidden-status" style="display: none;">' . get_post_status( $post_id ) . '</span>';
 				    $html .= '<span class="hidden-pm" style="display: none;">' . get_post( $post_id )->post_modified . '</span>';
 				    $html .= '<span class="hidden-disabled" style="display: none;">' . $disabled . '</span>';
 				}
-
+				$html .= '<span class="hidden-status" style="display: none;">' . get_post_status( $post_id ) . '</span>';
+				    
 				echo $html;
 			break;
 		// end all case breaks

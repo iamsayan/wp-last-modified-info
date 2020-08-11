@@ -30,7 +30,7 @@ trait HelperFunctions
 	protected function get_post_types( $public = true ) {
 		$post_types = get_post_types( [ 'public' => $public ], 'objects' );
 		$data = [];
-		foreach( $post_types as $post_type ) {
+		foreach ( $post_types as $post_type ) {
 			if ( ! is_object( $post_type ) )
 			    continue;															
 			
@@ -67,6 +67,8 @@ trait HelperFunctions
 	/**
 	 * Check plugin settings if enabled
 	 * 
+	 * @param  string  $name  Settings field name.
+	 * 
 	 * @return bool
 	 */
 	protected function is_enabled( $name )
@@ -79,6 +81,14 @@ trait HelperFunctions
 		return false;
 	}
 
+	/**
+	 * Check plugin settings has a particular value
+	 * 
+	 * @param  string  $name   Settings field name.
+	 * @param  string  $value  Settings field value.
+	 * 
+	 * @return bool
+	 */
 	protected function is_equal( $name, $value )
 	{
 		$data = $this->get_data( 'lmt_' . $name );
@@ -89,6 +99,15 @@ trait HelperFunctions
 		return false;
 	}
 
+	/**
+	 * Check plugin settings has in a array
+	 * 
+	 * @param  string  $name     Settings field name.
+	 * @param  array   $value    Settings field values.
+	 * @param  bool    $default  Default value.
+	 * 
+	 * @return bool
+	 */
 	protected function in_array( $name, array $values, $default = false )
 	{
 		$data = $this->get_data( 'lmt_' . $name, $default );

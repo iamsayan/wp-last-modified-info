@@ -1,10 +1,10 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Show profile update info.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -16,7 +16,7 @@ use Wplmi\Helpers\SettingsData;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * User Column class.
  */
 class UserColumn
 {

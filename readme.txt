@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.6
 Tested up to: 5.5
-Stable tag: 1.7.0 Beta 2
+Stable tag: 1.7.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -19,13 +19,13 @@ Most WordPress themes usually show the date when a post was last published. This
 
 Many popular blogs and websites don't show any date on their articles. This is a bad practice and you should never remove dates from your blog posts.
 
-So now it is possible to add last modified / updated info on your WordPress posts and pages. Just install and activate this and configuration is very easy.
+So now it is possible to add last modified/updated info on your WordPress posts and pages. Just install and activate this and configuration is very easy.
 
-Like WP Last Modified Info plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
+Like WP Last Modified Info plugin? Consider leaving a [5-star review](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post).
 
 #### What does this plugin do?
 
-This plugin automatically inserts last modified or updated info on your WordPress posts (including custom post types) and pages. It is possible to use shortcode `[lmt-post-modified-info]` for posts and `[lmt-page-modified-info]` for pages for manual insert. This plugin also adds 'dateModified' schema markup in WordPress posts automatically and it is used to tell the last modified date & time of a post or a page to various search engines like Google, Bing etc.
+This plugin automatically inserts last modified or updated info on your WordPress posts (including custom post types) and pages. It is possible to use shortcode `[lmt-post-modified-info]` for a manual insert. This plugin also adds 'dateModified' schema markup in WordPress posts automatically and it is used to tell the last modified date & time of a post or a page to various search engines like Google, Bing etc.
 
 * Allows you to display **Last modified** information in your **posts and pages individually**.
 * Provides you with options to display the **last modified/last updated date above or below your posts and pages**.
@@ -101,24 +101,6 @@ Yes, this plugin supports all types of custom posts.
 
 Go to 'Settings > WP Last Modified Info > Misc. Options > Custom CSS' and add your custom CSS.
 
-CSS Classes:
-
-`.post-last-modified`: use this class for posts.
-
-`.post-last-modified-text`: use this class for posts prefix.
-
-`.post-last-modified-td`: use this class if you want to add style only to last modified date/time on posts.
-
-`.post-modified-author`: use this class for post author.
-
-`.page-last-modified`: use this class for pages.
-
-`.page-last-modified-text`: use this class for pages prefix.
-
-`.page-last-modified-td`: use this class if you want to add style only to last modified date/time on the pages.
-
-`.page-modified-author`: use this class for page author.
-
 = Can I sort posts and pages by last modified info in the dashboard? =
 
 Yes, you can. You can sort posts and pages by ascending or descending order.
@@ -167,26 +149,44 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 == Screenshots ==
 
-1. Show last modified info on the front end
-2. Google Structured data result
+1. Show last modified info on the front end.
+2. Google Structured data result.
 3. Post / Page / Custom post types admin column: Last Modified column with author name.
 4. Added last modified/updated info on post/page publish box and in post updated message.
 5. Last modified posts widgets in the dashboard.
-6. Post Options
-7. Page Options
-8. Template Tag Options
-9. Email Notification
+6. Post Options.
+7. Template Tags Options.
+8. Email Notification.
+9. Miscellaneous Options.
 
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.7.0 Beta =
-Release Date: August 1, 2020
+= 1.7.0 =
+Release Date: August 11, 2020
 
-* Various improvements introduced.
+IMPORTANT: As various changes introduced in this plugin, please re-configure your plugin settings after update, otherwise, it may stop working.
+
+* Improvement: Rewrite the plugin from scratch.
+* Added: Templateting system to customize the output as you want.
+* Added: A method to replace post published date with post modified date. It will only work on Single Post Page.
+* Added: Some validations to check if the custom modified date is a valid past date.
+* Added: An option to hide last modified info on various archives from plugin settings.
+* Added: Dedicated CSS editor to enable syntax highlighting.
+* Added: Option to show Last Modified Author Avatar using Elementor.
+* Added: Lots of filters and hooks to make the plugin customizable.
+* Tweak: Traditional Date Format and Time Format field is merged into one field.
+* Tweak: Better theme (Astra & GeneratePress) compatibility.
+* Tweak: Notification Email will only add an only valid email and this field is now not mandatory.
+* Tweak: Modified Date Update is disabled for Scheduled and Draft Posts.
+* Tweak: Modified info will be shown only if the Published date is not equal to the modified date.
+* Tweak: CTRL+S will save the plugin settings automatically.
+* Fixed: A bug where WooCommerce Product Modified Date is changed automatically even the Disabled option is checked.
 * Fixed: Some CSS and JS issues.
-* Compatibilty with WordPress v5.5.
+* Various improvements introduced.
+* Compatibility with WordPress v5.5.
+* Plugin now strictly requires PHP v5.6 or higher.
 
 = Other Versions =
 
@@ -195,4 +195,4 @@ Release Date: August 1, 2020
 == Upgrade Notice ==
 
 = 1.7.0 =
-In this release, we make this plugin compatible with WordPress 5.5.
+In this release, we make this plugin compatible with WordPress 5.5. Please re-configure your plugin settings, otherwise it may stop working.

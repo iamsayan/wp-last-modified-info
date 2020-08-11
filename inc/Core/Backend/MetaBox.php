@@ -1,10 +1,10 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Post Meta box.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -16,7 +16,7 @@ use Wplmi\Helpers\SettingsData;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Metabox class.
  */
 class MetaBox
 {
@@ -32,6 +32,12 @@ class MetaBox
 		$this->action( 'admin_print_footer_scripts-post-new.php', 'default_check' );
 	}
 	
+	/**
+	 * Add Meta box.
+	 * 
+	 * @param string $post_type Post Type
+	 * @param object $post      WP Post
+	 */
 	public function meta_box( $post_type, $post )
 	{
 		// If user can't publish posts, then get out
@@ -74,7 +80,7 @@ class MetaBox
 			
 		<div id="wplmi-status" class="meta-options">
 			<label for="wplmi_status" class="selectit" title="<?php _e( 'You can disable auto insertation of last modified info on this', 'wp-last-modified-info' ); ?> <?php echo $post_types->name; ?>">
-				<input id="wplmi_status" type="checkbox" name="wplmi_disable_auto_insert" <?php if( $disabled == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
+				<input id="wplmi_status" type="checkbox" name="wplmi_disable_auto_insert" <?php if ( $disabled == 'yes' ) { echo 'checked'; } ?> /> <?php _e( 'Disable auto insert on this post', 'wp-last-modified-info' ); ?>
 		    </label>
 		</div>
 		<?php 
@@ -109,7 +115,9 @@ class MetaBox
 		}
 	}
 
-	
+	/**
+	 * Auto check metabox checkbox on new post create.
+	 */
 	public function default_check()
 	{
 		if ( $this->do_filter( 'default_checkbox_check', false ) ) {

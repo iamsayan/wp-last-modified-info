@@ -3,8 +3,8 @@
  * Dashboard widget.
  *
  * @since      1.7.0
- * @package    WP Auto Republish
- * @subpackage Wpar\Core\Premium
+ * @package    WP Last Modified Info
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 

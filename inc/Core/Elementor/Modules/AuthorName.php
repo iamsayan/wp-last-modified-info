@@ -1,10 +1,10 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Shows modified author name.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Elementor\Modules
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 

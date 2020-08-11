@@ -95,10 +95,12 @@ class DonateNotice
 	private function calculate_time()
 	{
 		$installed_time = get_option( 'wplmi_plugin_installed_time_donate' );
+		
 		if ( ! $installed_time ) {
 			$installed_time = time();
 			update_option( 'wplmi_plugin_installed_time_donate', $installed_time );
 		}
+		
 		return $installed_time;
 	}
 }

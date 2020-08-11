@@ -65,8 +65,8 @@ class BaseController
 		$this->plugin_path = plugin_dir_path( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin_url = plugin_dir_url( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-last-modified-info.php';
-		$this->version = '1.7.0 Beta 2';
-		$this->debug = true;
+		$this->version = '1.7.0';
+		$this->debug = false;
 		$this->name = 'WP Last Modified Info';
 	}
 

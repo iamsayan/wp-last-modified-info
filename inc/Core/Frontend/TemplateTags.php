@@ -1,28 +1,24 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Template tags.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Frontend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
 namespace Wplmi\Core\Frontend;
 
-use Wplmi\Helpers\Hooker;
 use Wplmi\Core\Frontend\PostView;
-use Wplmi\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Template tags class.
  */
 class TemplateTags extends PostView
 {
-	use HelperFunctions, Hooker;
-
 	/**
 	 * Register functions.
 	 */
@@ -32,18 +28,19 @@ class TemplateTags extends PostView
 	}
 
 	/**
-	 * Show original publish info.
+	 * Template tag output.
 	 * 
-	 * @param string  $content  Original Content
+	 * @param string  $html       Actual Content
+	 * @param bool    $escape     Remove all html tags including script tags
+	 * @param bool    $only_date  Generates only modified date
 	 * 
-	 * @return string $content  Filtered Content
+	 * @return string $html
 	 */
 	public function output( $html, $escape, $only_date )
 	{
 		global $post;
-		$post_id = $post->ID;
-
-		if ( ! is_singular() ) {
+		
+		if ( ! is_object( $post ) || ! is_singular() ) {
 			return $html;
 		}
 
@@ -52,7 +49,8 @@ class TemplateTags extends PostView
 			return $html;
 		}
 
-		$author_id = $this->get_meta( $post->ID, '_edit_last' );
+		$post_id = $post->ID;
+		$author_id = $this->get_meta( $post_id, '_edit_last' );
 		if ( $this->is_equal( 'show_author_tt_cb', 'custom', 'default' ) ) {
 			$author_id = $this->get_data( 'lmt_show_author_list_tt' );
 		}

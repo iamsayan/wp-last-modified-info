@@ -2,16 +2,16 @@
 /**
  * Register all classes
  *
- * @since      1.1.0
+ * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wpar\Core
+ * @subpackage Wplmi\Core
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
 namespace Wplmi;
 
 /**
- * WPAR Main Class.
+ * WPLMI Main Class.
  */
 final class WPLMILoader
 {

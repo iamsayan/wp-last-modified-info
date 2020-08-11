@@ -1,10 +1,10 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Elementor loader.
  *
- * @since      1.1.0
+ * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Elementor
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -17,7 +17,7 @@ use Wplmi\Core\Elementor\Modules;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Elementor loader class.
  */
 class Loader
 {
@@ -37,11 +37,9 @@ class Loader
 	}
 
 	/**
-	 * Show original publish info.
+	 * Register custom dynamic tags.
 	 * 
-	 * @param string  $content  Original Content
-	 * 
-	 * @return string $content  Filtered Content
+	 * @param object  $dynamic_tags  Original Elementor dynamic tags object
 	 */
 	public function tags( $dynamic_tags )
     {
@@ -56,12 +54,24 @@ class Loader
         $dynamic_tags->register_tag( new Modules\AuthorUrl() );
     }
 
+    /**
+	 * Modify elementor query obejct.
+	 * 
+	 * @param object  $query  Original Elementor query object
+	 */
     public function query( $query )
     {
         // ordered by post modified date
         $query->set( 'orderby', 'modified' );
     }
 
+    /**
+	 * Show filtered content.
+	 * 
+	 * @param string  $content  Original Content
+	 * 
+	 * @return string $content  Filtered Content
+	 */
     public function render( $content )
     {
         $start_tag = '<time itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'">';

@@ -230,8 +230,8 @@ class Dashboard
      *
      * @since    1.7.0
      *
-     * @param    array    $input     The address input.
-     * @return   array    $output    The sanitized input.
+     * @param   array  $input   The address input.
+     * @return  array  $output  The sanitized input.
      */
     public function sanitizeOutput( $input )
     {    
@@ -240,7 +240,7 @@ class Dashboard
 		
 		foreach ( $input as $key => $value ) {
 			if ( in_array( $key, $fields ) ) {
-				$output[$key] = htmlspecialchars( wp_kses_post( $value ) );
+				$output[$key] = wp_kses_post( $value );
 			} else {
 				$output[$key] = $value;
 			}

@@ -67,7 +67,7 @@ class MiscActions extends BaseController
 	        // Iterate through the plugins being updated and check if ours is there
 		    foreach( $options['plugins'] as $plugin ) {
 		        if ( $plugin === $this->plugin ) {
-					$this->do_action( 'plugin_updated', $this->version, $options['translations']['version'] );
+					$this->do_action( 'plugin_updated', $this->version, $options );
 		        }
 		    }
 		}

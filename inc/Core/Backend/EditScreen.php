@@ -1,10 +1,10 @@
 <?php
 /**
- * Modified Date Update.
+ * Post edit screen.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -136,7 +136,7 @@ class EditScreen
 					'mnm' => [ $mn, $mn_current ],
 				];
 	
-				foreach( $vals as $key => $val ) {
+				foreach ( $vals as $key => $val ) {
 					echo '<input type="hidden" id="hidden_' . $key . '" name="hidden_' . $key . '" value="' . $val[0] . '">';
 					echo '<input type="hidden" id="cur_' . $key . '" name="cur_' . $key . '" value="' . $val[1] . '">';
 				} ?>
@@ -239,7 +239,7 @@ class EditScreen
 					'mnm' => [ $mn, $mn_current ],
 				];
 	
-				foreach( $vals as $key => $val ) {
+				foreach ( $vals as $key => $val ) {
 					echo '<input type="hidden" id="hidden_' . $key . '" name="hidden_' . $key . '" value="' . $val[0] . '">';
 					echo '<input type="hidden" id="cur_' . $key . '" name="cur_' . $key . '" value="' . $val[1] . '">';
 				} ?>
@@ -403,6 +403,7 @@ class EditScreen
 		
 		$disabled = $this->get_meta( $post_id, '_lmt_disableupdate' );
 		$modified = $this->get_meta( $post_id, '_wplmi_last_modified' );
+		
 		if ( $disabled == 'yes' && $modified ) {
 	    	$args = [
 	            'post_modified'     => $modified,
@@ -433,6 +434,7 @@ class EditScreen
 		}
 
 		$modified = $this->get_meta( $product_id, '_wplmi_last_modified' );
+		
 		if ( $modified ) {
 	    	$args = [
 	            'post_modified'     => $modified,

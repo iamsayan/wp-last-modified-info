@@ -18,8 +18,10 @@ class Uninstall
 	/**
 	 * Run plugin uninstallation process.
 	 */
-	public static function uninstall() {
+	public static function uninstall()
+	{
 		$option_name = 'lmt_plugin_global_settings';
+		
 		if ( ! is_multisite() ) {
 			$options = get_option( $option_name );
 			if ( isset( $options['lmt_del_plugin_data_cb'] ) && $options['lmt_del_plugin_data_cb'] == 1 ) {
@@ -57,12 +59,14 @@ class Uninstall
 		];
 	
 		$posts = get_posts( $args );
-		foreach( $posts as $post ) {
-			delete_post_meta( $post->ID, '_lmt_disable' );
-			delete_post_meta( $post->ID, '_lmt_disableupdate' );
-			delete_post_meta( $post->ID, '_wplmi_last_modified' );
-			delete_post_meta( $post->ID, 'wp_last_modified_info' );
-			delete_post_meta( $post->ID, 'wplmi_shortcode' );
-		}
+		if ( ! empty( $posts ) ) {
+	    	foreach ( $posts as $post ) {
+	    		delete_post_meta( $post->ID, '_lmt_disable' );
+	    		delete_post_meta( $post->ID, '_lmt_disableupdate' );
+	    		delete_post_meta( $post->ID, '_wplmi_last_modified' );
+	    		delete_post_meta( $post->ID, 'wp_last_modified_info' );
+	    		delete_post_meta( $post->ID, 'wplmi_shortcode' );
+	    	}
+	    }
 	}
 }

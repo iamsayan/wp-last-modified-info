@@ -1,6 +1,6 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Shows last modified info on admin bar.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
@@ -16,7 +16,7 @@ use Wplmi\Helpers\HelperFunctions;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Admin Bar class.
  */
 class AdminBar
 {
@@ -74,6 +74,9 @@ class AdminBar
         $wp_admin_bar->add_node( $args );
 	}
 	
+	/**
+	 * Generate title to show on admin bar
+	 */
 	private function title()
 	{
 		// retrive date time formats
@@ -87,6 +90,9 @@ class AdminBar
 		return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( get_the_modified_time( 'U' ), $cur_time ) );
 	}
 
+	/**
+	 * Generate revision url to show on admin bar
+	 */
 	private function revision()
 	{
 		global $post;

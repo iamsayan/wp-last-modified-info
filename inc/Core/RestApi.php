@@ -1,6 +1,6 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Shows last modified author name on rest output.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
@@ -16,7 +16,7 @@ use Wplmi\Helpers\SettingsData;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Rest Api class.
  */
 class RestApi
 {
@@ -48,6 +48,15 @@ class RestApi
 		);
 	}
 
+	/**
+	 * Rest Api outpur callback
+	 * 
+	 * @param object  $object      WP Post Object
+	 * @param string  $field_name  Field Name
+	 * @param string  $request     Request
+	 * 
+	 * @return string|null
+	 */
 	public function rest_output( $object, $field_name, $request )
 	{
 		$author_id = $this->get_meta( $object['id'], '_edit_last' );

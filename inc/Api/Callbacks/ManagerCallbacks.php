@@ -27,7 +27,7 @@ class ManagerCallbacks
 	{
 		?><label class="switch">
 			<input type="checkbox" id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked( $this->get_data( 'lmt_enable_last_modified_cb' ), 1 ); ?> /> 
-			<span class="cb-slider round"></span></label>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to auto republish old posts of your blog.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+			<span class="cb-slider round"></span></label>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to auto republish old posts of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
@@ -45,7 +45,7 @@ class ManagerCallbacks
 			echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select \'Before Content or After Content\', you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post, if you want to. \'Show on Homepage\' option is applicable for posts only.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select where you want to show last modified info on a single posts. If you select Before Content or After Content or Replace Method, you can disable auto insert on particular posts from post edit screen > WP Last Modified Info meta box and apply shortcode on that particular post.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
@@ -61,14 +61,14 @@ class ManagerCallbacks
 			echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select last modified date time format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
 	public function date_format( $args )
 	{
-		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_date_time_format]" type="text" style="width:25%;" placeholder="<?php _e( 'Default:', 'wp-auto-republish' ); ?> <?php echo get_option( 'date_format' ); ?>" value="<?php echo $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ); ?>" />&nbsp;
-		<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank"><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span></a>
+		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_date_time_format]" type="text" style="width:25%;" placeholder="<?php _e( 'Default:', 'wp-last-modified-info' ); ?> <?php echo get_option( 'date_format' ); ?>" value="<?php echo $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ); ?>" />&nbsp;
+		<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank"><span class="tooltip" title="<?php _e( 'Set post last modified date time format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span></a>
 		<?php
 	}
 
@@ -120,7 +120,7 @@ class ManagerCallbacks
 			echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the author name which you want to display for all posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
@@ -142,21 +142,21 @@ class ManagerCallbacks
 			echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;</span><span class="tooltip" title="<?php _e( 'Select the archives where you don\'t want to show last modified info.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
 	public function selectors( $args )
 	{
 		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_css_selectors]" type="text" style="width:90%;" value="<?php echo wp_kses_post( $this->get_data( 'lmt_css_selectors', 'ul li.meta-date' ) ); ?>" />&nbsp;
-		<span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
-		<p><small><?php printf(__( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>'); ?></small></p>
+		<span class="tooltip" title="<?php _e( 'Add the CSS selector to replace the post meta. It may not work for all themes. Please check before using it. If you n eed any help, please open a support ticket with your website URL.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
 	public function display_info( $args )
 	{
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template' ) ); ?></textarea>
+		$default = '<p id="last-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template', $default ) ); ?></textarea>
 		<p>
 		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>
@@ -173,7 +173,7 @@ class ManagerCallbacks
 			echo '<option value="' . $post_type . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select post types of which you want to republish.', 'wp-auto-republish' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select post types on which you want to show last modified info.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 	/* ============================================================================================== 
@@ -224,7 +224,7 @@ class ManagerCallbacks
 			echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable the GeneratePress Theme Support form here. It will replace the post meta published date with post modified date.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Set the template type from here to diaplay on post meta.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
@@ -240,14 +240,14 @@ class ManagerCallbacks
 			echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select last modified date time format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
 	public function template_date_format( $args )
 	{
-		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_tt_set_format_box]" type="text" style="width:25%;" placeholder="<?php _e( 'Default:', 'wp-auto-republish' ); ?> <?php echo get_option( 'date_format' ); ?>" value="<?php echo $this->get_data( 'lmt_tt_set_format_box', get_option( 'date_format' ) ); ?>" />&nbsp;
-		<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank"><span class="tooltip" title="<?php _e( 'Select last modified info format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span></a>
+		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_tt_set_format_box]" type="text" style="width:25%;" placeholder="<?php _e( 'Default:', 'wp-last-modified-info' ); ?> <?php echo get_option( 'date_format' ); ?>" value="<?php echo $this->get_data( 'lmt_tt_set_format_box', get_option( 'date_format' ) ); ?>" />&nbsp;
+		<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank"><span class="tooltip" title="<?php _e( 'Set post last modified date time format from here.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span></a>
 		<?php
 	}
 
@@ -276,13 +276,14 @@ class ManagerCallbacks
 			echo '<option value="' . $user->ID . '"' . $selected . '>' . $user->display_name . '</option>';
 		}
 		echo '</select>';
-		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select how you want to display last modified author name on posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the author name which you want to display for all posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
 	public function template_display_info( $args )
 	{
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template_tt' ) ); ?></textarea>
+		$default = '<p id="last-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ); ?></textarea>
 		<p>
 		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>

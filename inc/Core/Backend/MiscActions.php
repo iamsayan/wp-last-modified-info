@@ -1,10 +1,10 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Register miscellaneous actions.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Backend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
@@ -16,7 +16,7 @@ use Wplmi\Helpers\HelperFunctions;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Misc Actions class.
  */
 class MiscActions
 {
@@ -34,6 +34,9 @@ class MiscActions
         $this->filter( 'get_the_date', 'replace_date', 10, 3 );
 	}
 
+	/**
+	 * WP Actions added to admin_init.
+	 */
 	public function actions()
 	{
 		$this->filter( 'post_updated_messages', 'messages' );
@@ -78,6 +81,11 @@ class MiscActions
 		return $messages;
 	}
 
+	/**
+	 * Runs after post save.
+	 * 
+	 * @param int      $post_id  Post ID
+	 */
 	public function save_post( $post_id )
 	{
 		// get wordpress date time format
@@ -99,6 +107,15 @@ class MiscActions
 		update_option( 'wplmi_site_global_update_info', time() );
 	}
 
+	/**
+	 * Replace published date.
+	 * 
+	 * @param string   $time     Post published time
+	 * @param string   $format   Post date format
+	 * @param int      $post_id  Post ID
+	 * 
+	 * @return string  $time
+	 */
 	public function replace_date( $time, $format, $post )
 	{
 		if ( ! $this->is_enabled( 'replace_original_published_date' ) || is_admin() ) {
@@ -108,6 +125,15 @@ class MiscActions
 		return get_the_modified_date( $format, $post );
 	}
 
+	/**
+	 * Replace published time.
+	 * 
+	 * @param string   $time     Post published time
+	 * @param string   $format   Post date format
+	 * @param int      $post_id  Post ID
+	 * 
+	 * @return string  $time
+	 */
 	public function replace_time( $time, $format, $post )
 	{
 		if ( ! $this->is_enabled( 'replace_original_published_date' ) || is_admin() ) {
@@ -117,6 +143,11 @@ class MiscActions
 		return get_the_modified_time( $format, $post );
 	}
 
+	/**
+	 * Filter query.
+	 * 
+	 * @param object $query WP Query
+	 */
 	public function sorting_order( $query )
 	{
 		global $pagenow;
@@ -139,6 +170,9 @@ class MiscActions
 		}
 	}
 
+	/**
+	 * Custom CSS Ouput.
+	 */
 	public function custom_css()
 	{
 		echo '<style id="wplmi-inline-css" type="text/css"> span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; } '."\n". wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ."\n".'</style>'."\n";

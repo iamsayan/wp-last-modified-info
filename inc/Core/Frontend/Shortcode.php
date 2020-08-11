@@ -1,28 +1,24 @@
 <?php
 /**
- * Show Original Republish Data.
+ * Show modified info using shortcode.
  *
  * @since      1.7.0
  * @package    WP Last Modified Info
- * @subpackage Wplmi\Core
+ * @subpackage Wplmi\Core\Frontend
  * @author     Sayan Datta <hello@sayandatta.in>
  */
 
 namespace Wplmi\Core\Frontend;
 
-use Wplmi\Helpers\Hooker;
 use Wplmi\Core\Frontend\PostView;
-use Wplmi\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Republish info class.
+ * Shortcode class.
  */
 class Shortcode extends PostView
 {
-	use HelperFunctions, Hooker;
-
 	/**
 	 * Register functions.
 	 */
@@ -34,17 +30,16 @@ class Shortcode extends PostView
 	}
 
 	/**
-	 * Show original publish info.
+     * Callback to register shortcodes.
+     *
+     * @param array $atts Shortcode attributes.
 	 * 
-	 * @param string  $content  Original Content
-	 * 
-	 * @return string $content  Filtered Content
-	 */
+     * @return string     Shortcode output.
+     */
 	public function render( $atts )
 	{
 		global $post;
-		$post_id = $post->ID;
-
+		
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
 			return;
 		}
@@ -56,7 +51,8 @@ class Shortcode extends PostView
 		$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
 		$format = ( ! empty( $format ) ) ? $format : get_option( 'date_format' );
 
-		$author_id = $this->get_meta( get_the_ID(), '_edit_last' );
+		$post_id = $post->ID;
+		$author_id = $this->get_meta( $post_id, '_edit_last' );
 		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
@@ -120,6 +116,13 @@ class Shortcode extends PostView
     	return $template;
 	}
 
+	/**
+     * Callback to register shortcodes.
+     *
+     * @param array $atts Shortcode attributes.
+	 * 
+     * @return string     Shortcode output.
+     */
 	public function render_global( $atts )
 	{
 		$option = get_option( 'wplmi_site_global_update_info' );
