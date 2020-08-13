@@ -31,7 +31,9 @@ class PluginTools
 		$this->action( 'admin_init', 'export_settings' );
 		$this->action( 'admin_init', 'import_settings' );
 		$this->action( 'admin_notices', 'admin_notice' );
-        $this->ajax( 'process_set_meta', 'set_meta' );
+		$this->ajax( 'process_set_meta', 'set_meta' );
+		$this->ajax( 'process_copy_data', 'copy_data' );
+		$this->ajax( 'process_import_plugin_data', 'import_data' );
 		$this->ajax( 'process_delete_plugin_data', 'remove_settings' );
 	}
 	
@@ -92,6 +94,9 @@ class PluginTools
 		exit;
 	}
 
+	/**
+     * Process post meta data update
+     */
 	public function set_meta()
 	{
 		// security check
@@ -110,17 +115,61 @@ class PluginTools
 		];
 	
 		$posts = get_posts( $args );
-		foreach( $posts as $post ) {
-			if ( $action == 'check' ) {
-			    $this->update_meta( $post->ID, '_lmt_disableupdate', 'yes' );
-			} else if ( $action == 'uncheck' ) {
-				$this->update_meta( $post->ID, '_lmt_disableupdate', 'no' );
-			}
-		}
+		if ( ! empty( $posts ) ) {
+	    	foreach( $posts as $post ) {
+	    		if ( $action == 'check' ) {
+	    		    $this->update_meta( $post->ID, '_lmt_disableupdate', 'yes' );
+	    		} else if ( $action == 'uncheck' ) {
+	    			$this->update_meta( $post->ID, '_lmt_disableupdate', 'no' );
+	    		}
+	    	}
+	    }
 	
 		$this->success( [
 			'reload' => false,
 		] );
+	}
+
+	/**
+     * Process a settings export from ajax request
+     */
+	public function copy_data()
+	{
+		// security check
+		$this->verify_nonce();
+
+		$option = get_option( 'lmt_plugin_global_settings' );
+
+		//error_log( json_encode( $option ) );
+	
+		$this->success( [
+			'elements' => json_encode( $option ),
+		] );
+	}
+
+	/**
+     * Process a settings import from ajax request
+     */
+	public function import_data()
+	{
+		// security check
+		$this->verify_nonce();
+
+		if ( ! isset( $_REQUEST['settings_data'] ) ) {
+			$this->error();
+		}
+
+		$data = stripslashes( $_REQUEST['settings_data'] );
+		$settings = (array) json_decode( $data );
+
+		if ( is_array( $settings ) && ! empty( $settings ) ) {
+			update_option( 'lmt_plugin_global_settings', $settings );
+			
+			// set temporary transient for admin notice
+		    set_transient( 'wplmi_import_db_done', true );
+		}
+
+		$this->success();
 	}
 
 	/**
@@ -142,13 +191,15 @@ class PluginTools
 		];
 	
 		$posts = get_posts( $args );
-		foreach( $posts as $post ) {
-			$this->delete_meta( $post->ID, '_lmt_disable' );
-			$this->delete_meta( $post->ID, '_lmt_disableupdate' );
-			$this->delete_meta( $post->ID, '_wplmi_last_modified' );
-			$this->delete_meta( $post->ID, 'wp_last_modified_info' );
-			$this->delete_meta( $post->ID, 'wplmi_shortcode' );
-		}
+		if ( ! empty( $posts ) ) {
+	    	foreach( $posts as $post ) {
+	    		$this->delete_meta( $post->ID, '_lmt_disable' );
+	    		$this->delete_meta( $post->ID, '_lmt_disableupdate' );
+	    		$this->delete_meta( $post->ID, '_wplmi_last_modified' );
+	    		$this->delete_meta( $post->ID, 'wp_last_modified_info' );
+	    		$this->delete_meta( $post->ID, 'wplmi_shortcode' );
+	    	}
+	    }
 
 		$this->success( [
 			'reload' => true,

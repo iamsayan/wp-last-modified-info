@@ -81,7 +81,7 @@ class PostView
 		$modified_timestamp = get_post_modified_time( 'U' );
 		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
 
-		if ( $modified_timestamp <= ( $published_timestamp + $gap ) ) {
+		if ( $modified_timestamp < ( $published_timestamp + $gap ) ) {
 			return $content;
 		}
 
@@ -153,7 +153,7 @@ class PostView
 		$modified_timestamp = get_post_modified_time( 'U' );
 		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
 
-		if ( $modified_timestamp <= ( $published_timestamp + $gap ) ) {
+		if ( $modified_timestamp < ( $published_timestamp + $gap ) ) {
 			return;
 		}
 
@@ -220,9 +220,11 @@ class PostView
 		$html = str_replace( [ '%author_archive%', '%author_posts_url%' ], $author_archive, $html );
 		$html = str_replace( [ '%post_published%', '%published_date%' ], esc_attr( get_post_time( $date_format, false, $post->ID ) ), $html );
 		$html = str_replace( '%post_link%', esc_url( get_the_permalink( $post->ID ) ), $html );
+		$html = str_replace( '%post_categories%', get_the_category_list( $this->do_filter( 'post_categories_separator', ', ', $post->ID ), '', $post->ID ), $html );
+		$html = str_replace( '%comment_count%', get_comments_number( $post->ID ), $html );
 		
 		$html = $this->do_filter( 'post_tags', $html, $post->ID );
-		$html = str_replace( [ '%post_modified%', '%modified_date%' ], esc_attr( $timestamp ), wp_kses_post( $html ) );
+		$html = str_replace( [ '%post_modified%', '%modified_date%' ], $timestamp, wp_kses_post( $html ) );
 		
 		return preg_replace( "/\r|\n/", '', $html );
 	}

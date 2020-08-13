@@ -129,7 +129,7 @@ jQuery(document).ready(function ($) {
                         mdc.close();
                         var cd = $.dialog({
                             title: wplmi_admin_L10n.deleting,
-                            content: wplmi_admin_L10n.process_delete,
+                            content: wplmi_admin_L10n.processing,
                             useBootstrap: false,
                             draggable: false,
                             theme: 'material',
@@ -186,6 +186,76 @@ jQuery(document).ready(function ($) {
                 },
                 cancel: {
                     text: wplmi_admin_L10n.cancel_button,
+                    action: function () {}
+                } 
+            }
+        })
+    }));
+
+    $("input.wplmi-copy").on('click',(function(e) {
+        e.preventDefault();
+        var el = $(this);
+        var value = el.val();
+        var action = el.data('action');
+        el.addClass("disabled").val(wplmi_admin_L10n.please_wait);
+        $.post( wplmi_admin_L10n.ajaxurl, { action: action, security: wplmi_admin_L10n.security }, function( response, status ) {
+            if( response.success === true ) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(response.data.elements).select();
+                document.execCommand("copy");
+                $temp.remove();
+                el.removeClass("disabled").val(value);
+                $(".wplmi-copied").show().delay(1000).fadeOut();
+            } 
+        });
+    }));
+
+    $("input.wplmi-paste").on('click',(function(e) {
+        e.preventDefault();
+        var el = $(this);
+        var mdc = $.confirm({
+            title: wplmi_admin_L10n.paste_data,
+            content: '<textarea id="wplmi-settings-data-import" rows="4" style="width: 100%;"></textarea>',
+            useBootstrap: false,
+            theme: 'material',
+            animation: 'scale',
+            type: 'green',
+            boxWidth: '40%',
+            draggable: false,
+            scrollToPreviousElement: false,
+            buttons: {
+                confirm: {
+                    text: wplmi_admin_L10n.import_btn,
+                    action: function () {
+                        var settings_data = this.$content.find('#wplmi-settings-data-import').val();
+                        if ( ! settings_data ) {
+                            alert( 'Please enter valid settings data!' );
+                            return false;
+                        }
+                        console.log( settings_data );
+                        mdc.close();
+                        $.dialog({
+                            title: wplmi_admin_L10n.importing,
+                            content: wplmi_admin_L10n.processing,
+                            useBootstrap: false,
+                            draggable: false,
+                            theme: 'material',
+                            type: 'orange',
+                            closeIcon: false,
+                            boxWidth: '25%',
+                            scrollToPreviousElement: false,
+                        });
+                        $.post( wplmi_admin_L10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmi_admin_L10n.security }, function( response, status ) {
+                            if( response.success === true ) {
+                                window.location.reload();
+                                $.cookie('wplmi_active_tab', 'post', { expires: 30 });
+                            } 
+                        });
+                    }    
+                },
+                close: {
+                    text: wplmi_admin_L10n.close_btn,
                     action: function () {}
                 } 
             }

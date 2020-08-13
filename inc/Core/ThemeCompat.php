@@ -51,9 +51,13 @@ class ThemeCompat
 		$output = '';
 		$format = $this->do_filter( 'astra_post_date_format', '' );
 
-		$output .= '<span class="posted-on">';
-		$output .= '<span class="post-updated" itemprop="dateModified"> ' . esc_attr( get_the_modified_date( $format ) ) . '</span>';
+		$output .= '<span class="posted-on">' . $this->do_filter( 'astra_post_date_prepend', '' );
+		$output .= '<span class="post-updated" itemprop="dateModified">' . esc_attr( get_the_modified_date( $format ) ) . '</span>' . $this->do_filter( 'astra_post_date_append', '' );
 		$output .= '</span>';
+
+		if ( ! is_singular() && $this->do_filter( 'astra_filter_archive_output', true ) ) {
+			return $output;
+		}
 
 		if ( $this->is_equal( 'tt_theme_template_type', 'custom' ) ) {
 			$output = $this->do_filter( 'astra_post_template', get_the_last_modified_info(), $html );
@@ -81,7 +85,7 @@ class ThemeCompat
 		$author_id = $this->get_meta( get_the_ID(), '_edit_last' );
 		$output = '';
 
-		if ( $this->do_filter( 'astra_enable_author_output', true ) ) {
+		if ( $this->do_filter( 'astra_enable_author_output', false ) ) {
 		    $output .= '<span class="posted-by vcard author" itemprop="author" itemtype="https://schema.org/Person" itemscope="">';
 		    $output .= '<a class="url fn n" href="' . esc_url( get_author_posts_url( $author_id ) ) . '" title="' . esc_attr( sprintf( __( 'View all posts by %s', 'wp-last-modified-info' ), get_the_author_meta( 'display_name', $author_id ) ) ) . '" rel="author" itemprop="url">';
 		    $output .= '<span class="author-name" itemprop="name">' . esc_attr( get_the_author_meta( 'display_name', $author_id ) ) . '</span>';
@@ -121,6 +125,10 @@ class ThemeCompat
 		$output .= '<time class="post-updated" datetime="' . esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false ) ) . '" itemprop="dateModified">' . esc_attr( get_the_modified_date( $format ) ). '</time>';
 		$output .= '</a></span> ';
 
+		if ( ! is_singular() && $this->do_filter( 'gp_filter_archive_output', true ) ) {
+			return $output;
+		}
+
 		if ( $this->is_equal( 'tt_theme_template_type', 'custom' ) ) {
 			$output = $this->do_filter( 'gp_post_template', get_the_last_modified_info(), $html );
 		}
@@ -147,7 +155,7 @@ class ThemeCompat
 		$author_id = $this->get_meta( get_the_ID(), '_edit_last' );
 		$output = '';
 
-		if ( $this->is_equal( 'tt_theme_template_type', 'default' ) && $this->do_filter( 'gp_enable_author_output', true ) ) {
+		if ( $this->is_equal( 'tt_theme_template_type', 'default' ) && $this->do_filter( 'gp_enable_author_output', false ) ) {
 		    $output .= '<span class="posted-on">' . apply_filters( 'generate_inside_post_meta_item_output', '', 'author' );
 		    $output .= '<span class="author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope="">';
 		    $output .= '<a class="url fn n" href="' . esc_url( get_author_posts_url( $author_id ) ) . '" title="' . esc_attr( sprintf( __( 'View all posts by %s', 'wp-last-modified-info' ), get_the_author_meta( 'display_name', $author_id ) ) ) . '" rel="author" itemprop="url">';

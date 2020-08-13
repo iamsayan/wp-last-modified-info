@@ -149,14 +149,15 @@ class ManagerCallbacks
 	public function selectors( $args )
 	{
 		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_css_selectors]" type="text" style="width:90%;" value="<?php echo wp_kses_post( $this->get_data( 'lmt_css_selectors', 'ul li.meta-date' ) ); ?>" />&nbsp;
-		<span class="tooltip" title="<?php _e( 'Add the CSS selector to replace the post meta. It may not work for all themes. Please check before using it. If you n eed any help, please open a support ticket with your website URL.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
-		<?php
+		<span class="tooltip" title="<?php _e( 'Add the CSS selector to replace the post meta. It may not work for all themes. Please check before using it. If you need any help, please open a support ticket with your website URL.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+		<p><small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'If you are using any caching plugin, please clear/remove your cache after any changes made to this field.', 'wp-last-modified-info' ); ?></span></small>
+		</p><?php
 	}
 
 	public function display_info( $args )
 	{
-		$default = '<p id="last-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template', $default ) ); ?></textarea>
+		$default = '<p id="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template', $default ) ); ?></textarea>
 		<p>
 		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>
@@ -282,8 +283,8 @@ class ManagerCallbacks
 
 	public function template_display_info( $args )
 	{
-		$default = '<p id="last-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ); ?></textarea>
+		$default = '<p id="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ); ?></textarea>
 		<p>
 		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>
@@ -467,7 +468,7 @@ class ManagerCallbacks
     
 	public function custom_css( $args )
 	{
-        ?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="6" cols="100" style="width:90%;"><?php echo esc_html( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ); ?></textarea>
+        ?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="6" style="width:90%;"><?php echo esc_html( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ); ?></textarea>
 		<p><small><?php printf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></small></p>
 		<?php
     }

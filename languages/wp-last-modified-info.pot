@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2020-08-11 22:05+0530\n"
+"POT-Creation-Date: 2020-08-12 23:47+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: hello@sayandatta.in\n"
@@ -50,27 +50,27 @@ msgid ""
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:55
-#: inc/Api/Callbacks/ManagerCallbacks.php:234
+#: inc/Api/Callbacks/ManagerCallbacks.php:235
 msgid "Traditional Format"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:56
-#: inc/Api/Callbacks/ManagerCallbacks.php:235
+#: inc/Api/Callbacks/ManagerCallbacks.php:236
 msgid "Human Readable Format"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:64
-#: inc/Api/Callbacks/ManagerCallbacks.php:243
+#: inc/Api/Callbacks/ManagerCallbacks.php:244
 msgid "Select last modified date time format from here."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:70
-#: inc/Api/Callbacks/ManagerCallbacks.php:249
+#: inc/Api/Callbacks/ManagerCallbacks.php:250
 msgid "Default:"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:71
-#: inc/Api/Callbacks/ManagerCallbacks.php:250
+#: inc/Api/Callbacks/ManagerCallbacks.php:251
 msgid "Set post last modified date time format from here."
 msgstr ""
 
@@ -114,23 +114,23 @@ msgid ""
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:101
-#: inc/Api/Callbacks/ManagerCallbacks.php:257
+#: inc/Api/Callbacks/ManagerCallbacks.php:258
 #: inc/Core/Elementor/Modules/AuthorName.php:31
 msgid "Last Modified Author"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:102
-#: inc/Api/Callbacks/ManagerCallbacks.php:258
+#: inc/Api/Callbacks/ManagerCallbacks.php:259
 msgid "Custom Author"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:110
-#: inc/Api/Callbacks/ManagerCallbacks.php:266
+#: inc/Api/Callbacks/ManagerCallbacks.php:267
 msgid "Select how you want to display last modified author name on posts."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:123
-#: inc/Api/Callbacks/ManagerCallbacks.php:279
+#: inc/Api/Callbacks/ManagerCallbacks.php:280
 msgid "Select the author name which you want to display for all posts."
 msgstr ""
 
@@ -178,82 +178,88 @@ msgstr ""
 #: inc/Api/Callbacks/ManagerCallbacks.php:152
 msgid ""
 "Add the CSS selector to replace the post meta. It may not work for all "
-"themes. Please check before using it. If you n eed any help, please open a "
+"themes. Please check before using it. If you need any help, please open a "
 "support ticket with your website URL."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:161
-#: inc/Api/Callbacks/ManagerCallbacks.php:288
+#: inc/Api/Callbacks/ManagerCallbacks.php:153
+msgid ""
+"If you are using any caching plugin, please clear/remove your cache after any "
+"changes made to this field."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:162
+#: inc/Api/Callbacks/ManagerCallbacks.php:289
 msgid "Use these tags"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:170
-#: inc/Api/Callbacks/ManagerCallbacks.php:320
-#: inc/Api/Callbacks/ManagerCallbacks.php:375
+#: inc/Api/Callbacks/ManagerCallbacks.php:171
+#: inc/Api/Callbacks/ManagerCallbacks.php:321
+#: inc/Api/Callbacks/ManagerCallbacks.php:376
 msgid "Select post types"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:176
+#: inc/Api/Callbacks/ManagerCallbacks.php:177
 msgid "Select post types on which you want to show last modified info."
-msgstr ""
-
-#: inc/Api/Callbacks/ManagerCallbacks.php:186
-#: inc/Api/Callbacks/ManagerCallbacks.php:202
-msgid "Use Default Post Date"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:187
 #: inc/Api/Callbacks/ManagerCallbacks.php:203
+msgid "Use Default Post Date"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:188
+#: inc/Api/Callbacks/ManagerCallbacks.php:204
 msgid "Replace Post Meta Data"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:195
+#: inc/Api/Callbacks/ManagerCallbacks.php:196
 msgid ""
 "Enable the Astra Theme Support form here. It will replace the post meta "
 "published date with post modified date."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:211
+#: inc/Api/Callbacks/ManagerCallbacks.php:212
 msgid ""
 "Enable the GeneratePress Theme Support form here. It will replace the post "
 "meta published date with post modified date."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:218
+#: inc/Api/Callbacks/ManagerCallbacks.php:219
 msgid "Show Modified Date"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:219
+#: inc/Api/Callbacks/ManagerCallbacks.php:220
 msgid "Custom Template"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:227
+#: inc/Api/Callbacks/ManagerCallbacks.php:228
 msgid "Set the template type from here to diaplay on post meta."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:301
+#: inc/Api/Callbacks/ManagerCallbacks.php:302
 msgid "Default Mode (CreativeWork)"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:302
+#: inc/Api/Callbacks/ManagerCallbacks.php:303
 msgid "Inline Mode (MicroData)"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:303
+#: inc/Api/Callbacks/ManagerCallbacks.php:304
 msgid "Compatibilty Mode (Advanced)"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:304
+#: inc/Api/Callbacks/ManagerCallbacks.php:305
 msgid "Disable Schema Markup"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:312
+#: inc/Api/Callbacks/ManagerCallbacks.php:313
 msgid ""
 "Set the JSON-LD Markup mode if you want to show last modified info to search "
 "engines."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:313
+#: inc/Api/Callbacks/ManagerCallbacks.php:314
 msgid ""
 "If you already have a SEO plugin or a Schema Plugin on your site, then you "
 "can use this option. In this mode, this plugin will try to convert the post "
@@ -263,11 +269,11 @@ msgid ""
 "Pack, SEOPress, Schema and many other plugins."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:326
+#: inc/Api/Callbacks/ManagerCallbacks.php:327
 msgid "Select on which post types you want to enable JSON-LD Markup."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:334
+#: inc/Api/Callbacks/ManagerCallbacks.php:335
 msgid ""
 "Enable this if your theme does not support schema markup. This will add "
 "WebPage type schema support to the html tag. Please check Schema Markup "
@@ -275,75 +281,75 @@ msgid ""
 "already detects schema markup, you don't need to enable it anymore."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:346
+#: inc/Api/Callbacks/ManagerCallbacks.php:347
 msgid ""
 "Enable this if you want to receive email notification if anyone makes changes "
 "to any post of your blog."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:354
+#: inc/Api/Callbacks/ManagerCallbacks.php:355
 msgid "Enable this if you want to send notification to the post author."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:362
+#: inc/Api/Callbacks/ManagerCallbacks.php:363
 msgid ""
 "Enable this if you want to enable notification when anyone makes changes to "
 "any draft post."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:388
+#: inc/Api/Callbacks/ManagerCallbacks.php:389
 msgid "Use these tags into email subject"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:407
+#: inc/Api/Callbacks/ManagerCallbacks.php:408
 msgid "Use these tags into email body"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:409
+#: inc/Api/Callbacks/ManagerCallbacks.php:410
 msgid "Email body supports HTML."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:422
+#: inc/Api/Callbacks/ManagerCallbacks.php:423
 msgid ""
 "Enable this if you want to show last modified info on wordpress admin bar."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:430
+#: inc/Api/Callbacks/ManagerCallbacks.php:431
 msgid ""
 "Enable this if you want to show replace original post published date with "
 "post modified date. Your theme may not be able to support this feature. "
 "Please check it on frontend after activating this option."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:437
-#: inc/Api/Callbacks/ManagerCallbacks.php:454
-msgid "Default Order"
-msgstr ""
-
 #: inc/Api/Callbacks/ManagerCallbacks.php:438
 #: inc/Api/Callbacks/ManagerCallbacks.php:455
-msgid "Modified Post First"
+msgid "Default Order"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:439
 #: inc/Api/Callbacks/ManagerCallbacks.php:456
+msgid "Modified Post First"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:440
+#: inc/Api/Callbacks/ManagerCallbacks.php:457
 msgid "Modified Post Last"
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:447
+#: inc/Api/Callbacks/ManagerCallbacks.php:448
 msgid "Select the post sorting order in Admin Edit page in Backend."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:464
+#: inc/Api/Callbacks/ManagerCallbacks.php:465
 msgid "Select the post sorting order in Admin Edit page in Frontend."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:471
+#: inc/Api/Callbacks/ManagerCallbacks.php:472
 #, php-format
 msgid "Do not add %s tag. This tag is not required, as it is already added."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:479
+#: inc/Api/Callbacks/ManagerCallbacks.php:480
 msgid ""
 "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
@@ -450,6 +456,18 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+#: inc/Base/Enqueue.php:81
+msgid "Paste Here"
+msgstr ""
+
+#: inc/Base/Enqueue.php:82
+msgid "Import"
+msgstr ""
+
+#: inc/Base/Enqueue.php:83
+msgid "Importing..."
+msgstr ""
+
 #: inc/Base/MiscActions.php:41
 msgid "Settings"
 msgstr ""
@@ -462,17 +480,17 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#: inc/Base/PluginTools.php:77
+#: inc/Base/PluginTools.php:79
 msgid ""
 "<strong>Settings import failed:</strong> Please upload a valid .json file to "
 "import settings in this website."
 msgstr ""
 
-#: inc/Base/PluginTools.php:81
+#: inc/Base/PluginTools.php:83
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: inc/Base/PluginTools.php:164
+#: inc/Base/PluginTools.php:215
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
@@ -703,7 +721,7 @@ msgid "Default"
 msgstr ""
 
 #: inc/Core/Elementor/Modules/ModifiedDate.php:70
-#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:153
+#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:155
 msgid "Custom"
 msgstr ""
 
@@ -791,7 +809,7 @@ msgstr ""
 msgid "New Ping Status:"
 msgstr ""
 
-#: inc/Core/ThemeCompat.php:86 inc/Core/ThemeCompat.php:153
+#: inc/Core/ThemeCompat.php:90 inc/Core/ThemeCompat.php:161
 #, php-format
 msgid "View all posts by %s"
 msgstr ""
@@ -866,7 +884,7 @@ msgid "Posts Types to Show Modified Info:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:184
-msgid "Custom Message to Display on Posts:"
+msgid "HTML Template for Template Tags:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:187
@@ -1164,7 +1182,7 @@ msgstr ""
 msgid "Un-Check All"
 msgstr ""
 
-#: templates/admin.php:109 templates/admin.php:115
+#: templates/admin.php:109 templates/admin.php:114
 msgid "Export Settings"
 msgstr ""
 
@@ -1174,45 +1192,57 @@ msgid ""
 "easily import the configuration into another site."
 msgstr ""
 
-#: templates/admin.php:120 templates/admin.php:127
+#: templates/admin.php:115
+msgid "Copy"
+msgstr ""
+
+#: templates/admin.php:116
+msgid "Copied!"
+msgstr ""
+
+#: templates/admin.php:121 templates/admin.php:128
 msgid "Import Settings"
 msgstr ""
 
-#: templates/admin.php:121
+#: templates/admin.php:122
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: templates/admin.php:132 templates/admin.php:134
+#: templates/admin.php:129
+msgid "Paste"
+msgstr ""
+
+#: templates/admin.php:134 templates/admin.php:136
 msgid "Reset Settings"
 msgstr ""
 
-#: templates/admin.php:133
+#: templates/admin.php:135
 msgid "WARNING:"
 msgstr ""
 
-#: templates/admin.php:133
+#: templates/admin.php:135
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: templates/admin.php:134
+#: templates/admin.php:136
 msgid ""
 "It will delete all the data relating to this plugin settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: templates/admin.php:134
+#: templates/admin.php:136
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
-#: templates/admin.php:155 templates/admin.php:157
+#: templates/admin.php:157 templates/admin.php:159
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: templates/admin.php:158
+#: templates/admin.php:160
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "

@@ -106,7 +106,7 @@ Class ModifiedDate extends Tag {
         $value = get_the_modified_date( $date_format );
         
         if ( 'yes' === $schema ) {
-           $output = '%schema_start%' . $value . '%schema_end%';
+           $output = '%wplmi_schema_start%' . $value . '%wplmi_schema_end%';
         } else {
             $output = $value;
         }

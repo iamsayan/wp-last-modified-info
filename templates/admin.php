@@ -109,11 +109,12 @@
                     <span><strong><?php _e( 'Export Settings', 'wp-last-modified-info' ); ?></strong></span>
 		    		<p><?php _e( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-last-modified-info' ); ?></p>
 		    		<form method="post">
-		    			<p><input type="hidden" name="wplmi_export_action" value="wplmi_export_settings" /></p>
-		    			<p>
-		    				<?php wp_nonce_field( 'wplmi_export_nonce', 'wplmi_export_nonce' ); ?>
+		    			<p><input type="hidden" name="wplmi_export_action" value="wplmi_export_settings" />
+                            <?php wp_nonce_field( 'wplmi_export_nonce', 'wplmi_export_nonce' ); ?>
 		    				<?php submit_button( __( 'Export Settings', 'wp-last-modified-info' ), 'secondary', 'wplmi-export', false ); ?>
-		    			</p>
+                            <input type="button" class="button wplmi-copy" data-action="wplmi_process_copy_data" value="<?php _e( 'Copy', 'wp-last-modified-info' ); ?>" style="margin-left: -1px;">
+                            <span class="wplmi-copied" style="padding-left: 6px;display: none;color: #068611;"><?php _e( 'Copied!', 'wp-last-modified-info' ); ?></span>
+                        </p>
 		    		</form>
                 </div><hr>
                 <div>
@@ -125,8 +126,9 @@
 		    				<input type="hidden" name="wplmi_import_action" value="wplmi_import_settings" />
 		    				<?php wp_nonce_field( 'wplmi_import_nonce', 'wplmi_import_nonce' ); ?>
 		    				<?php submit_button( __( 'Import Settings', 'wp-last-modified-info' ), 'secondary', 'wplmi-import', false ); ?>
-		    			</p>
-		    		</form>
+                            <input type="button" class="button wplmi-paste" data-action="wplmi_process_paste_data" value="<?php _e( 'Paste', 'wp-last-modified-info' ); ?>">
+                        </p>
+                    </form>
                 </div><hr>
                 <div style="padding-bottom: 10px;">
                     <span><strong><?php _e( 'Reset Settings', 'wp-last-modified-info' ); ?></strong></span>

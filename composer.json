@@ -1,6 +1,6 @@
 {
     "name": "sayan/wp-last-modified-info",
-    "description": "The WP Auto Republish plugin helps revive old posts by resetting the publish date to the current date. This will push old posts to your front page, the top of archive pages, and back into RSS feeds. Ideal for sites with a large repository of evergreen content.",
+    "description": "Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.6 and beyond.",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
     "authors": [

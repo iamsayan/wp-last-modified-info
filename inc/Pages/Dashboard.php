@@ -181,7 +181,7 @@ class Dashboard
 				'template_date_format' => __( 'Last Modified Info Date Time Format:', 'wp-last-modified-info' ),
 				'template_author_display' => __( 'Display Last Modified Author Name:', 'wp-last-modified-info' ),
 				'template_author_list' => __( 'Custom Post Author for All Posts:', 'wp-last-modified-info' ),
-				'template_display_info' => __( 'Custom Message to Display on Posts:', 'wp-last-modified-info' )
+				'template_display_info' => __( 'HTML Template for Template Tags:', 'wp-last-modified-info' )
 			],
 			'schema' => [
 			    'enable_schema' => __( 'JSON-LD Schema Markup Mode:', 'wp-last-modified-info' ),

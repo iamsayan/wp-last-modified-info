@@ -26,6 +26,7 @@ class Shortcode extends PostView
 	{
 		add_shortcode( 'lmt-post-modified-info', [ $this, 'render' ] );
 		add_shortcode( 'lmt-page-modified-info', [ $this, 'render' ] );
+		add_shortcode( 'lmt-template-tags', [ $this, 'render_template_tags' ] );
 		add_shortcode( 'lmt-site-modified-info', [ $this, 'render_global' ] );
 	}
 
@@ -44,10 +45,6 @@ class Shortcode extends PostView
 			return;
 		}
 
-		if ( ! $this->is_equal( 'show_last_modified_time_date_post', 'manual' ) ) {
-			return;
-		}
-
 		$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
 		$format = ( ! empty( $format ) ) ? $format : get_option( 'date_format' );
 
@@ -63,8 +60,8 @@ class Shortcode extends PostView
 			'date_type'    => $this->get_data( 'lmt_last_modified_format_post', 'default' ),
 			'schema'       => $this->get_data( 'lmt_enable_jsonld_markup_cb', 'disable' ),
 			'author_id'    => $author_id,
-			'hide_archive' => [],
-			'filter_ids'   => [],
+			'hide_archive' => '',
+			'filter_ids'   => '',
 			'gap'          => $this->get_data( 'lmt_gap_on_post', 0 ),
 		], $atts, 'lmt-post-modified-info' );
 
@@ -99,7 +96,7 @@ class Shortcode extends PostView
 
 		$published_timestamp = get_the_time( 'U' );
 		$modified_timestamp = get_the_modified_time( 'U' );
-		if ( $modified_timestamp <= ( $published_timestamp + $atts['gap'] ) ) {
+		if ( $modified_timestamp < ( $published_timestamp + $atts['gap'] ) ) {
 			return;
 		}
 
@@ -114,6 +111,25 @@ class Shortcode extends PostView
 		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( $template ), $get_post->ID, $timestamp, $atts['author_id'] ) );
 
     	return $template;
+	}
+
+	/**
+     * Callback to register template tags shortcodes.
+	 * 
+	 * @since v1.7.1
+     *
+     * @param array $atts Shortcode attributes.
+	 * 
+     * @return string     Shortcode output.
+     */
+	public function render_template_tags( $atts )
+	{
+		$atts = shortcode_atts( [
+			'escape'    => false,
+			'only_date' => false,
+		], $atts, 'lmt-template-tags' );
+		
+		return get_the_last_modified_info( $atts['escape'], $atts['only_date'] );
 	}
 
 	/**

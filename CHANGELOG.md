@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.7.1
+Release Date: August 12, 2020
+
+* Added: Some PostView template tags.
+* Added: An option to Copy and Paste plugin settings to Export and Import respectively.
+* Fixed: Astra & GeneratePress Schema Output.
+* Fixed: Elemetor Schema Output.
+* Other minor improvements.
+
 ## 1.7.0
 Release Date: August 11, 2020
 

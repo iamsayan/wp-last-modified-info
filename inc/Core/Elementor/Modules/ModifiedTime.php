@@ -110,7 +110,7 @@ Class ModifiedTime extends Tag {
         }
     
         if ( 'yes' === $schema ) {
-            $output = '%schema_start%' . $value . '%wplmi_schema_end%';
+            $output = '%wplmi_schema_start%' . $value . '%wplmi_schema_end%';
         } else {
             $output = $value;
         }

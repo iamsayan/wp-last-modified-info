@@ -69,7 +69,7 @@ class Enqueue extends BaseController
 				'error'          => __( 'Error!', 'wp-last-modified-info' ),
 				'deleting'       => __( 'Deleting...', 'wp-last-modified-info' ),
 				'warning'        => __( 'Warning!', 'wp-last-modified-info' ),
-				'process_delete' => __( 'Please wait while we are processing your request...', 'wp-last-modified-info' ),
+				'processing'     => __( 'Please wait while we are processing your request...', 'wp-last-modified-info' ),
 				'save_button'    => __( 'Save Settings', 'wp-last-modified-info' ),
 				'save_success'   => __( 'Settings Saved Successfully!', 'wp-last-modified-info' ),
 				'process_failed' => __( 'Invalid Nonce! We could not process your request.', 'wp-last-modified-info' ),
@@ -78,6 +78,9 @@ class Enqueue extends BaseController
 				'cancel_button'  => __( 'Cancel', 'wp-last-modified-info' ),
 				'please_wait'    => __( 'Please wait...', 'wp-last-modified-info' ),
 				'close_btn'      => __( 'Close', 'wp-last-modified-info' ),
+				'paste_data'     => __( 'Paste Here', 'wp-last-modified-info' ),
+				'import_btn'     => __( 'Import', 'wp-last-modified-info' ),
+				'importing'      => __( 'Importing...', 'wp-last-modified-info' ),
 				'security'       => wp_create_nonce( 'wplmi_admin_nonce' ),
 			] );
 		}
