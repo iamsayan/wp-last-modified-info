@@ -30,6 +30,7 @@ class MiscActions
 		$this->action( 'admin_init', 'actions' );
 		$this->action( 'wp_head', 'custom_css' );
 		$this->action( 'pre_get_posts', 'sorting_order' );
+		$this->action( 'init', 'disable_date_time' );
 		$this->filter( 'get_the_time', 'replace_time', 10, 3 );
         $this->filter( 'get_the_date', 'replace_date', 10, 3 );
 	}
@@ -68,15 +69,15 @@ class MiscActions
 		$get_tf = get_option( 'time_format' );
 	
 		$m_orig	= get_post_field( 'post_modified', $post->ID, 'raw' );
-		$post_modified = '<strong>' . date_i18n( $this->do_filter( 'post_updated_datetime_format', $get_df . ' @ ' . $get_tf, $post->ID ), strtotime( $m_orig ) ) . '</strong>.';
+		$post_modified = '&nbsp;<strong>' . date_i18n( $this->do_filter( 'post_updated_datetime_format', $get_df . ' @ ' . $get_tf, $post->ID ), strtotime( $m_orig ) ) . '</strong>.&nbsp;';
 	
 		// get post types returns object
 		$post_types = get_post_type_object( $post->post_type );
 		if ( is_post_type_viewable( $post->post_type ) ) {
-			$post_modified .= sprintf( __( ' <a href="%1$s" target="_blank">%2$s %3$s</a>' ), esc_url( get_permalink( $post->ID ) ), __( 'View', 'wp-last-modified-info' ), $post_types->name );
+			$post_modified .= sprintf( __( '<a href="%1$s" target="_blank">%2$s %3$s</a>' ), esc_url( get_permalink( $post->ID ) ), __( 'View', 'wp-last-modified-info' ), $post_types->name );
 		}
 
-		$messages[$post->post_type][1] = esc_html( $post_types->labels->singular_name ) . ' ' . sprintf( __( '%1$s %2$s' ), __( 'updated on', 'wp-last-modified-info' ), $post_modified );
+		$messages[$post->post_type][1] = esc_html( $post_types->labels->singular_name ) . '&nbsp;' . sprintf( __( '%1$s%2$s' ), __( 'updated on', 'wp-last-modified-info' ), $post_modified );
 		
 		return $messages;
 	}
@@ -104,7 +105,7 @@ class MiscActions
 		$this->update_meta( $post_id, 'wplmi_shortcode', $shortcode );
 	
 		// update global site update time
-		update_option( 'wplmi_site_global_update_info', time() );
+		update_option( 'wplmi_site_global_update_info', current_time( 'timestamp', 0 ) );
 	}
 
 	/**
@@ -118,7 +119,7 @@ class MiscActions
 	 */
 	public function replace_date( $time, $format, $post )
 	{
-		if ( ! $this->is_enabled( 'replace_original_published_date' ) || is_admin() ) {
+		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
             return $time;
 		}
 
@@ -136,11 +137,28 @@ class MiscActions
 	 */
 	public function replace_time( $time, $format, $post )
 	{
-		if ( ! $this->is_enabled( 'replace_original_published_date' ) || is_admin() ) {
+		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
             return $time;
 		}
 
 		return get_the_modified_time( $format, $post );
+	}
+
+	/**
+	 * Disable Date Time output completely.
+	 */
+	public function disable_date_time()
+	{
+		if ( ! $this->is_equal( 'replace_published_date', 'remove' ) || is_admin() ) {
+            return;
+		}
+
+		add_filter( 'the_date', '__return_false', 1 );
+		add_filter( 'the_time', '__return_false', 1 );
+		add_filter( 'the_modified_date', '__return_false', 1 );
+		add_filter( 'get_the_date', '__return_false', 1 );
+		add_filter( 'get_the_time', '__return_false', 1 );
+		add_filter( 'get_the_modified_date', '__return_false', 1 );
 	}
 
 	/**
@@ -155,13 +173,15 @@ class MiscActions
 		$admin_order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
 		$front_order = $this->is_equal( 'default_sort_order', 'published' ) ? 'asc' : 'desc';
 
-		if ( is_admin() ) {
-			if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) && 'edit.php' === $pagenow && ! isset( $_REQUEST['orderby'] ) ) {
+		if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) ) {
+			if ( is_admin() && 'edit.php' === $pagenow && ! isset( $_REQUEST['orderby'] ) ) {
 				$query->set( 'orderby', 'modified' );
 				$query->set( 'order', $admin_order );
 			}
-		} else {
-			if ( ! $this->is_equal( 'default_sort_order', 'default' ) && $query->is_main_query() ) {
+		}
+		
+		if ( ! $this->is_equal( 'default_sort_order', 'default' ) ) {
+			if ( ! is_admin() && $query->is_main_query() ) {
 			    if ( $query->is_home() || $query->is_category() || $query->is_tag() ) {
 			    	$query->set( 'orderby', 'modified' );
 			    	$query->set( 'order', $front_order );
@@ -175,6 +195,6 @@ class MiscActions
 	 */
 	public function custom_css()
 	{
-		echo '<style id="wplmi-inline-css" type="text/css"> span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; } '."\n". wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ."\n".'</style>'."\n";
+		echo '<style id="wplmi-inline-css" type="text/css"> span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; } '."\n". wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) )."\n".'</style>'."\n";
 	}
 }

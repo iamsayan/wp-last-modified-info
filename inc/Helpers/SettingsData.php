@@ -13,7 +13,7 @@ namespace Wplmi\Helpers;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Meta & Option class.
+ * Meta & Options class.
  */
 trait SettingsData
 {

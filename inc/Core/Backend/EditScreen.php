@@ -27,11 +27,11 @@ class EditScreen
 	 */
 	public function register()
 	{
-		$this->action( 'post_submitbox_misc_actions', 'submitbox_edit' );
+		$this->action( 'post_submitbox_misc_actions', 'submitbox_edit', 5 );
 		$this->action( 'add_meta_boxes', 'meta_box', 10, 2 );
 		$this->action( 'quick_edit_custom_box', 'quick_edit', 10, 2 );
 		$this->action( 'wp_insert_post', 'save_metadata', 99 );
-		$this->action( 'woocommerce_update_product', 'woo_save_metadata' );
+		$this->action( 'woocommerce_update_product', 'woo_save_metadata', 1 );
 		$this->filter( 'wp_insert_post_data', 'update_data', 99, 2 );
 	}
 	
@@ -337,12 +337,14 @@ class EditScreen
 		$disabled = sanitize_text_field( $postarr['wplmi_disable'] );
 
 		$this->update_meta( $postarr['ID'], '_lmt_disableupdate', $disabled );
+
+		$published_timestamp = get_the_time( 'U', $postarr['ID'] );
 		
 		if ( $disabled == 'yes' ) {
 		   
 			$data['post_modified'] = $modified;
 			$data['post_modified_gmt'] = get_gmt_from_date( $modified );
-		
+
 		} else if ( $disabled == 'no' ) {
 			
 			if ( $change == 'yes' ) {
@@ -362,9 +364,11 @@ class EditScreen
 	        
 				$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
 				$modified = $newdate;
-    
-	            $data['post_modified'] = $newdate;
-				$data['post_modified_gmt'] = get_gmt_from_date( $newdate );
+	
+				if ( strtotime( $newdate ) >= $published_timestamp ) {
+	                $data['post_modified'] = $newdate;
+				    $data['post_modified_gmt'] = get_gmt_from_date( $newdate );
+				}
 			} else {
 				$modified = current_time( 'mysql' );
 			}
@@ -404,7 +408,7 @@ class EditScreen
 		$disabled = $this->get_meta( $post_id, '_lmt_disableupdate' );
 		$modified = $this->get_meta( $post_id, '_wplmi_last_modified' );
 		
-		if ( $disabled == 'yes' && $modified ) {
+		if ( $modified && $disabled == 'yes' ) {
 	    	$args = [
 	            'post_modified'     => $modified,
 	            'post_modified_gmt' => get_gmt_from_date( $modified ),
@@ -412,7 +416,9 @@ class EditScreen
     
 	    	$wpdb->update( $wpdb->posts, $args, [
 	    	    'ID' => $post_id,
-	    	] );
+			] );
+			
+			clean_post_cache( $post_id );
 		}
 		
 		if ( $this->do_filter( 'force_update_author_id', false ) ) {
@@ -434,8 +440,9 @@ class EditScreen
 		}
 
 		$modified = $this->get_meta( $product_id, '_wplmi_last_modified' );
+		$published_timestamp = get_the_time( 'U', $product_id );
 		
-		if ( $modified ) {
+		if ( $modified && ( strtotime( $modified ) >= $published_timestamp ) ) {
 	    	$args = [
 	            'post_modified'     => $modified,
 	            'post_modified_gmt' => get_gmt_from_date( $modified ),
@@ -443,7 +450,9 @@ class EditScreen
     
 	    	$wpdb->update( $wpdb->posts, $args, [
 	    	    'ID' => $product_id,
-	    	] );
+			] );
+			
+			clean_post_cache( $product_id );
 	    }
 	}
 }

@@ -27,7 +27,7 @@ class ManagerCallbacks
 	{
 		?><label class="switch">
 			<input type="checkbox" id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_enable_last_modified_cb]" value="1" <?php checked( $this->get_data( 'lmt_enable_last_modified_cb' ), 1 ); ?> /> 
-			<span class="cb-slider round"></span></label>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to auto republish old posts of your blog.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
+			<span class="cb-slider round"></span></label>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this Global Switch if you want to show last modified info on your posts.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicons dashicons-editor-help"></span></span>
 		<?php
 	}
 
@@ -150,16 +150,16 @@ class ManagerCallbacks
 	{
 		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_css_selectors]" type="text" style="width:90%;" value="<?php echo wp_kses_post( $this->get_data( 'lmt_css_selectors', 'ul li.meta-date' ) ); ?>" />&nbsp;
 		<span class="tooltip" title="<?php _e( 'Add the CSS selector to replace the post meta. It may not work for all themes. Please check before using it. If you need any help, please open a support ticket with your website URL.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
-		<p><small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'If you are using any caching plugin, please clear/remove your cache after any changes made to this field.', 'wp-last-modified-info' ); ?></span></small>
+		<p><small><span class="help-text"><?php _e( 'If you are using any caching plugin, please clear/remove your cache after any changes made to this field.', 'wp-last-modified-info' ); ?></span></small>
 		</p><?php
 	}
 
 	public function display_info( $args )
 	{
-		$default = '<p id="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template', $default ) ); ?></textarea>
+		$default = '<p class="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template]" rows="6" style="width:95%;"><?php echo esc_html( wp_unslash( $this->get_data( 'lmt_last_modified_info_template', $default ) ) ); ?></textarea>
 		<p>
-		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
+		    <small><span class="help-text"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>
 			</small>
 		</p><?php
@@ -283,10 +283,10 @@ class ManagerCallbacks
 
 	public function template_display_info( $args )
 	{
-		$default = '<p id="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
-		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" style="width:90%;"><?php echo esc_html( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ); ?></textarea>
+		$default = '<p class="post-modified-info">Last Updated on %post_modified% by <a href="%author_url%" target="_blank" class="last-modified-author">%author_name%</a></p>';
+		?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_last_modified_info_template_tt]" rows="6" style="width:90%;"><?php echo esc_html( wp_unslash( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ) ); ?></textarea>
 		<p>
-		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
+		    <small><span class="help-text"><?php _e( 'Use these tags', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;author_name&#37;</code> <code>&#37;author_url&#37;</code> <code>&#37;author_email&#37;</code> <code>&#37;author_archive&#37;</code> <code>&#37;post_published&#37;</code> <code>&#37;post_link&#37;</code> <code>&#37;post_modified&#37;</code>
 			</small>
 		</p><?php
@@ -311,7 +311,7 @@ class ManagerCallbacks
 		}
 		echo '</select>';
 		?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Set the JSON-LD Markup mode if you want to show last modified info to search engines.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
-		<div class="schema-text" style="font-size: 12px;margin-top: 5px;font-style: italic;"><?php _e( 'If you already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></div>
+		<div class="schema-text"><?php _e( 'If you already have a SEO plugin or a Schema Plugin on your site, then you can use this option. In this mode, this plugin will try to convert the post published date output of any SEO or Schema plugin to the post modified date. This is dynamically applied when the content is displayed, and the stored content is not changed. Tested with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and many other plugins.', 'wp-last-modified-info' ); ?></div>
 		<?php
 	}
 	
@@ -320,7 +320,7 @@ class ManagerCallbacks
 		$post_types = $this->get_post_types();
 		echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_enable_jsonld_markup_post_types][]" multiple="multiple" data-placeholder="' . __( 'Select post types', 'wp-last-modified-info' ) . '" style="width:80%;">';
 		foreach( $post_types as $post_type => $label ) {
-            $selected = in_array( $post_type, $this->get_data( 'lmt_enable_jsonld_markup_post_types', [ 'post' ] ) ) ? ' selected="selected"' : '';
+			$selected = in_array( $post_type, $this->get_data( 'lmt_enable_jsonld_markup_post_types', [ 'post' ] ) ) ? ' selected="selected"' : '';
 			echo '<option value="' . $post_type . '"' . $selected . '>' . $label . '</option>';
 		}
 		echo '</select>';
@@ -386,7 +386,7 @@ class ManagerCallbacks
 		$default = '[%site_name%] A %post_type% of %author_name% has been modified on your blog.';
 		?><input id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_email_subject]" type="text" style="width:100%;" value="<?php echo esc_html( $this->get_data( 'lmt_email_subject', $default ) ); ?>" />
 		<p>
-			<small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags into email subject', 'wp-last-modified-info' ); ?></span> -
+			<small><span class="help-text"><?php _e( 'Use these tags into email subject', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;post_title&#37;</code> <code>&#37;author_name&#37;</code> <code>&#37;post_type&#37;</code> <code>&#37;site_name&#37;</code> <code>&#37;site_url&#37;</code> <code>&#37;current_time&#37;</code></small>
 		</p>
 		<?php
@@ -405,17 +405,17 @@ class ManagerCallbacks
 		];
 		wp_editor( esc_html( $this->get_data( 'lmt_email_message', $default ) ), $args['label_for'], $config ); ?>
 		<p>
-		    <small style="line-height: 2;"><span style="font-style: italic;"><?php _e( 'Use these tags into email body', 'wp-last-modified-info' ); ?></span> -
+		    <small><span class="help-text"><?php _e( 'Use these tags into email body', 'wp-last-modified-info' ); ?></span> -
 			<code>&#37;admin_email&#37;</code> <code>&#37;post_title&#37;</code> <code>&#37;author_name&#37;</code> <code>&#37;modified_author_name&#37;</code> <code>&#37;post_type&#37;</code> <code>&#37;post_edit_link&#37;</code> <code>&#37;site_name&#37;</code> <code>&#37;site_url&#37;</code> <code>&#37;current_time&#37;</code> <code>&#37;post_diff&#37;</code>
-			<span style="font-style: italic;"><?php _e( 'Email body supports HTML.', 'wp-last-modified-info' ); ?></span></small>
+			<span class="help-text"><?php _e( 'Email body supports HTML.', 'wp-last-modified-info' ); ?></span></small>
 		</p>
 	<?php
 	}
 
 	/* ============================================================================================== 
                                                 Misc Options
-    ============================================================================================== */
-    
+	============================================================================================== */
+	
 	public function admin_bar( $args )
 	{
         ?><label class="switch">
@@ -423,14 +423,14 @@ class ManagerCallbacks
             <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show last modified info on wordpress admin bar.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
         <?php
     }
-    
-	public function replace_date( $args )
+	
+	public function disable_plugin_info( $args )
 	{
         ?><label class="switch">
-            <input type="checkbox" id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_replace_original_published_date]" value="1" <?php checked( $this->get_data( 'lmt_replace_original_published_date' ), 1 ); ?> /> 
-            <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you want to show replace original post published date with post modified date. Your theme may not be able to support this feature. Please check it on frontend after activating this option.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
-       <?php
-    }
+            <input type="checkbox" id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_disable_plugin_info]" value="1" <?php checked( $this->get_data( 'lmt_disable_plugin_info' ), 1 ); ?> /> 
+            <span class="cb-slider round"></span></label>&nbsp;&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Enable this if you do not want to show last updated info on plugins page.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+        <?php
+	}
     
 	public function admin_sort_order( $args )
 	{
@@ -439,7 +439,7 @@ class ManagerCallbacks
             'modified'    => __( 'Modified Post First', 'wp-last-modified-info' ),
             'published'   => __( 'Modified Post Last', 'wp-last-modified-info' )
 		];
-        echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_admin_default_sort_order]" style="width:20%;">';
+        echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_admin_default_sort_order]" style="width:25%;">';
         foreach( $items as $item => $label ) {
             $selected = ( $this->get_data( 'lmt_admin_default_sort_order', 'default' ) == $item ) ? ' selected="selected"' : '';
             echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -456,7 +456,7 @@ class ManagerCallbacks
             'modified'    => __( 'Modified Post First', 'wp-last-modified-info' ),
             'published'   => __( 'Modified Post Last', 'wp-last-modified-info' )
 		];
-        echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_default_sort_order]" style="width:20%;">';
+        echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_default_sort_order]" style="width:25%;">';
         foreach( $items as $item => $label ) {
             $selected = ( $this->get_data( 'lmt_default_sort_order', 'default' ) == $item ) ? ' selected="selected"' : '';
             echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
@@ -464,12 +464,30 @@ class ManagerCallbacks
         echo '</select>';
         ?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'Select the post sorting order in Admin Edit page in Frontend.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
         <?php
-    }
+	}
+	
+	public function replace_date( $args )
+	{
+        $items = [
+            'none'     => __( 'Do Nothing', 'wp-last-modified-info' ),
+            'replace'  => __( 'Convert to Modified Date', 'wp-last-modified-info' ),
+            'remove'   => __( 'Hide from Search Engines', 'wp-last-modified-info' )
+		];
+        echo '<select id="' . $args['label_for'] . '" name="lmt_plugin_global_settings[lmt_replace_published_date]" style="width:25%;">';
+        foreach( $items as $item => $label ) {
+            $selected = ( $this->get_data( 'lmt_replace_published_date', 'none' ) == $item ) ? ' selected="selected"' : '';
+            echo '<option value="' . $item . '"' . $selected . '>' . $label . '</option>';
+        }
+        echo '</select>';
+        ?>&nbsp;&nbsp;<span class="tooltip" title="<?php _e( 'You can convert original post date to modified date or remove published date completely.', 'wp-last-modified-info' ); ?>"><span title="" class="dashicon dashicons dashicons-editor-help"></span></span>
+        <div class="remove-info-text"><?php _e( 'This option remove all the dates output from frontend and also from search engines if your theme supports it. If you see any empty or blank icon or option on frontend or post meta area, just hide that element with the Custom CSS option below. Please disable schema if you are using this option.', 'wp-last-modified-info' ); ?></div>
+		<?php
+	}
     
 	public function custom_css( $args )
 	{
-        ?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="6" style="width:90%;"><?php echo esc_html( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ); ?></textarea>
-		<p><small><?php printf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></small></p>
+        ?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="6" style="width:90%;"><?php echo esc_html( wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ) ); ?></textarea>
+		<p><small><span class="help-text"><?php printf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></span></small></p>
 		<?php
     }
     

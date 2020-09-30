@@ -1,6 +1,48 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.7.5
+Release Date: September 30, 2020
+
+* Fixed: PHP Fatal error on plugin activation.
+
+## 1.7.4
+Release Date: September 30, 2020
+
+* Added: Ability to show plugins last modified info on plugins page.
+* Fixed: HTML non-spacing issue on post ecit screen.
+* Fixed: `datePublished` schema is replaced by `dateModified` automatically even if schema output is disabled from plugin settings.
+
+## 1.7.3
+Release Date: September 27, 2020
+
+* Added: Ability to remove/hide post dates from search engines completely.
+* Fixed: PHP Fatal error in WordPress version less than v4.9.0.
+* Fixed: A bug where last modified info was not showing using shortcode if "Change Original Time to Modified Time" option was enabled from Misc Options.
+* Tweak: Added some CSS adjustments to make it more easy.
+* Tweak: Properly set HTML element's CSS Class names.
+* Twaek: The minimun required WordPress version is now v4.7.0.
+* Tweak: Increased rating notice auto show time interval.
+* Tweak: Cache will be automatically purged the modified date is changed.
+* Tweak: Custom modified date which is greater than original published date is only accepted in Products also.
+* Tweak: Correct modified date was not properly reflected for products if custom modified date is being set from quick edit.
+* Tweak: Increased priority of `the_content` hook to `5`.
+* Tweak: `<p></p>` tag will be removed automatically from shortcode.
+* Tweak: Added improved replace date mechanism to make it work properly with any caching or minification plugin.
+* Tweak: From now, `itemprop="datePublished"` schema will be replaced automatically with `itemprop="dateModified"`. It can be disabled by `wplmi/published_schema_replace` filter.
+* Other minor improvements and fixes.
+
+## 1.7.2
+Release Date: August 14, 2020
+
+* Added: Ability to use Template Tag as Shortcode.
+* Tweak: From now custom modified date which is greater than original published date is only accepted.
+* Tweak: Make Global Site modified info Date translable.
+* Fixed: Variable not found PHP warning on user list page.
+* Fixed: A bug where Actual post published date is not translating.
+* Fixed: A bug where Plugin shows error on dev console if Syntax Highlighting is disabled from Profile settings.
+* Other minor improvements.
+
 ## 1.7.1
 Release Date: August 12, 2020
 

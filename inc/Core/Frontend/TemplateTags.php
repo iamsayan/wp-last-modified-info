@@ -62,12 +62,12 @@ class TemplateTags extends PostView
 		if ( $date_type == 'default' ) {
 			$format = $this->get_data( 'lmt_tt_set_format_box', get_option( 'date_format' ) );
 			$format = $this->do_filter( 'template_tags_datetime_format', $format, $post_id );
-			$timestamp = ( ! empty( $format ) ) ? get_the_modified_date( $format ) : get_the_modified_date( get_option( 'date_format' ) );
-		    $final_timestamp = $timestamp;
+			$timestamp = $this->get_modified_date( $format );
 		}
+		$final_timestamp = $timestamp;
 		$timestamp = $this->do_filter( 'template_tags_formatted_date', $timestamp, $post_id );
 
-		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( $template ), $post_id, $timestamp, $author_id ) );
+		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( wp_unslash( $template ) ), $post_id, $timestamp, $author_id ) );
 	
 		if ( $escape ) {
 			$template = wp_strip_all_tags( $template );

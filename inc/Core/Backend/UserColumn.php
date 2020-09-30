@@ -44,7 +44,7 @@ class UserColumn
 	public function update_user( $user_id )
 	{
 	    // update user meta
-	    update_user_meta( $user_id, 'profile_last_modified', current_time( $get_df ) . '<br>' . current_time( $get_tf ) );
+	    update_user_meta( $user_id, 'profile_last_modified', current_time( 'timestamp', 0 ) );
 	}
 	
 	/**
@@ -56,15 +56,17 @@ class UserColumn
 	public function column_data( $value, $column, $user_id )
 	{
 		// get author meta
-	    $updated = get_the_author_meta( 'profile_last_modified', $user_id, true );
-    
+	    $timestamp = get_the_author_meta( 'profile_last_modified', $user_id, true );
+		$get_df = get_option( 'date_format' );
+		$get_tf = get_option( 'time_format' );
+
 	    switch ( $column ) {
 	    	case 'last-updated' :
-	    	    if ( ! $updated ) {
+	    	    if ( ! $timestamp ) {
 					return __( 'Never', 'wp-last-modified-info' );
 				}
 	    		
-	    		return get_the_author_meta( 'profile_last_modified', $user_id, true );
+	    		return date_i18n( $this->do_filter( 'user_column_datetime_format', $get_df . '\<\b\r\>' . $get_tf ), $timestamp );
 	        break;
 		}
 		

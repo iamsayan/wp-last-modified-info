@@ -66,7 +66,7 @@ class AdminBar
             'title'  => $this->title(),
             'href'   => $this->revision(),
             'meta' => array(
-                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type(), get_the_modified_date(), get_the_modified_time(), get_the_modified_author() ),
+                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type(), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
                 'target' => '_blank',
             )
         );
@@ -80,14 +80,14 @@ class AdminBar
 	private function title()
 	{
 		// retrive date time formats
-		$cur_time = current_time('U');
-		$mod_time = get_the_modified_time( 'U' );
-		$org_time = get_the_time('U');
+		$cur_time = current_time( 'U' );
+		$mod_time = $this->get_modified_date( 'U' );
+		$org_time = get_post_time( 'U', false, get_the_ID(), true );
 	
 		if ( $mod_time > $cur_time || $org_time > $mod_time ) {
-			return sprintf( __( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), get_the_modified_date( 'M j' ), get_the_modified_time() );
+			return sprintf( __( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), $this->get_modified_date( 'M j' ), $this->get_modified_date( get_option( 'time_format' ) ) );
 		}
-		return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( get_the_modified_time( 'U' ), $cur_time ) );
+		return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( $this->get_modified_date( 'U' ), $cur_time ) );
 	}
 
 	/**

@@ -28,6 +28,7 @@ class Enqueue extends BaseController
 	public function register()
 	{
 		$this->action( 'admin_enqueue_scripts', 'assets' );
+		$this->action( 'wp_enqueue_scripts', 'frontend_assets' );
 	}
 
 	/**
@@ -35,8 +36,11 @@ class Enqueue extends BaseController
 	 */
 	public function assets( $hook )
 	{
-		$version = ( $this->debug ) ? time() : $this->version;
+		global $wp_version;
 
+		$version = ( $this->debug ) ? time() : $this->version;
+        $current_user = wp_get_current_user();
+		
 		// get current screen
 		$current_screen = get_current_screen();
 		if ( strpos( $current_screen->base, 'wp-last-modified-info' ) !== false ) {
@@ -57,17 +61,14 @@ class Enqueue extends BaseController
 			$this->load( 'js', 'jquery-cookie', 'jquery.cookie.js', '1.4.1', [ 'jquery' ] );
 			$this->load( 'js', 'selectize', 'selectize.min.js', '0.12.6', [ 'jquery' ] );
 			$this->load( 'js', 'confirm', 'jquery-confirm.min.js', '3.3.4', [ 'jquery' ] );
-		    $this->load( 'js', 'admin', 'admin.min.js', $version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm-js', 'wplmi-selectize-js', 'wplmi-jquery-cookie-js' ] );
+		    $this->load( 'js', 'admin', 'admin.min.js', $version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm', 'wplmi-selectize', 'wplmi-jquery-cookie' ] );
 		
-			wp_localize_script( 'wplmi-admin-js', 'wplmi_admin_L10n', [
+			$args = [
 				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
-				'html_editor'    => wp_enqueue_code_editor( [ 'type' => 'text/html' ] ),
-				'css_editor'     => wp_enqueue_code_editor( [ 'type' => 'text/css' ] ),
 				'saving'         => __( 'Saving...', 'wp-last-modified-info' ),
 				'saving_text'    => __( 'Please wait while we are saving your settings...', 'wp-last-modified-info' ),
 				'done'           => __( 'Done!', 'wp-last-modified-info' ),
 				'error'          => __( 'Error!', 'wp-last-modified-info' ),
-				'deleting'       => __( 'Deleting...', 'wp-last-modified-info' ),
 				'warning'        => __( 'Warning!', 'wp-last-modified-info' ),
 				'processing'     => __( 'Please wait while we are processing your request...', 'wp-last-modified-info' ),
 				'save_button'    => __( 'Save Settings', 'wp-last-modified-info' ),
@@ -82,7 +83,15 @@ class Enqueue extends BaseController
 				'import_btn'     => __( 'Import', 'wp-last-modified-info' ),
 				'importing'      => __( 'Importing...', 'wp-last-modified-info' ),
 				'security'       => wp_create_nonce( 'wplmi_admin_nonce' ),
-			] );
+			];
+
+			if ( version_compare( $wp_version, '4.9', '>=' ) ) {
+				$args['html_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/html' ] );
+				$args['css_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/css' ] );
+				$args['highlighting'] = ( $current_user->syntax_highlighting ) ? 'enable' : 'disable';
+			}
+
+			wp_localize_script( 'wplmi-admin', 'wplmi_admin_L10n', $args );
 		}
 
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
@@ -98,6 +107,18 @@ class Enqueue extends BaseController
 	}
 
 	/**
+	 * Load frontend assets.
+	 */
+	public function frontend_assets()
+	{
+		$version = ( $this->debug ) ? time() : $this->version;
+		
+		if ( is_singular() ) {
+		    $this->load( 'js', 'frontend', 'frontend.min.js', $version, [ 'jquery' ] );
+		}
+	}
+
+	/**
 	 * Enqueue CSS & JS wrapper function.
 	 */
 	private function load( $type, $handle, $name, $version, $dep = [], $end = true )
@@ -105,7 +126,7 @@ class Enqueue extends BaseController
 		if ( $type == 'css' ) {
 		    wp_enqueue_style( 'wplmi-' . $handle, $this->plugin_url . 'assets/css/' . $name, $dep, $version );
 		} else if ( $type == 'js' ) {
-		    wp_enqueue_script( 'wplmi-' . $handle . '-js', $this->plugin_url . 'assets/js/' . $name, $dep, $version, $end );
+		    wp_enqueue_script( 'wplmi-' . $handle, $this->plugin_url . 'assets/js/' . $name, $dep, $version, $end );
 		}
 	}
 }

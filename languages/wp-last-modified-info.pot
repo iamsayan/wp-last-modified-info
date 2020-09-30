@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WP Last Modified Info\n"
-"POT-Creation-Date: 2020-08-12 23:47+0530\n"
+"POT-Creation-Date: 2020-09-30 08:14+0530\n"
 "PO-Revision-Date: 2019-03-29 15:38+0530\n"
 "Last-Translator: \n"
 "Language-Team: hello@sayandatta.in\n"
@@ -22,7 +22,9 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:30
-msgid "Enable this if you want to auto republish old posts of your blog."
+msgid ""
+"Enable this Global Switch if you want to show last modified info on your "
+"posts."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:37
@@ -316,9 +318,7 @@ msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:431
 msgid ""
-"Enable this if you want to show replace original post published date with "
-"post modified date. Your theme may not be able to support this feature. "
-"Please check it on frontend after activating this option."
+"Enable this if you do not want to show last updated info on plugins page."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:438
@@ -345,11 +345,37 @@ msgid "Select the post sorting order in Admin Edit page in Frontend."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:472
+msgid "Do Nothing"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:473
+msgid "Convert to Modified Date"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:474
+msgid "Hide from Search Engines"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:482
+msgid ""
+"You can convert original post date to modified date or remove published date "
+"completely."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:483
+msgid ""
+"This option remove all the dates output from frontend and also from search "
+"engines if your theme supports it. If you see any empty or blank icon or "
+"option on frontend or post meta area, just hide that element with the Custom "
+"CSS option below. Please disable schema if you are using this option."
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:490
 #, php-format
 msgid "Do not add %s tag. This tag is not required, as it is already added."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:480
+#: inc/Api/Callbacks/ManagerCallbacks.php:498
 msgid ""
 "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
@@ -385,7 +411,7 @@ msgstr ""
 msgid "I already donated"
 msgstr ""
 
-#: inc/Base/DonateNotice.php:53 inc/Base/RatingNotice.php:54
+#: inc/Base/DonateNotice.php:53 inc/Base/RatingNotice.php:53
 msgid "Nope&#44; maybe later"
 msgstr ""
 
@@ -393,78 +419,74 @@ msgstr ""
 msgid "I don't want to donate"
 msgstr ""
 
-#: inc/Base/Enqueue.php:66
+#: inc/Base/Enqueue.php:68
 msgid "Saving..."
 msgstr ""
 
-#: inc/Base/Enqueue.php:67
+#: inc/Base/Enqueue.php:69
 msgid "Please wait while we are saving your settings..."
 msgstr ""
 
-#: inc/Base/Enqueue.php:68
+#: inc/Base/Enqueue.php:70
 msgid "Done!"
 msgstr ""
 
-#: inc/Base/Enqueue.php:69
+#: inc/Base/Enqueue.php:71
 msgid "Error!"
 msgstr ""
 
-#: inc/Base/Enqueue.php:70
-msgid "Deleting..."
-msgstr ""
-
-#: inc/Base/Enqueue.php:71
+#: inc/Base/Enqueue.php:72
 msgid "Warning!"
 msgstr ""
 
-#: inc/Base/Enqueue.php:72
+#: inc/Base/Enqueue.php:73
 msgid "Please wait while we are processing your request..."
 msgstr ""
 
-#: inc/Base/Enqueue.php:73 templates/admin.php:36 templates/admin.php:41
+#: inc/Base/Enqueue.php:74 templates/admin.php:36 templates/admin.php:41
 #: templates/admin.php:45 templates/admin.php:49 templates/admin.php:53
 msgid "Save Settings"
 msgstr ""
 
-#: inc/Base/Enqueue.php:74 templates/admin.php:57
+#: inc/Base/Enqueue.php:75
 msgid "Settings Saved Successfully!"
 msgstr ""
 
-#: inc/Base/Enqueue.php:75
+#: inc/Base/Enqueue.php:76
 msgid "Invalid Nonce! We could not process your request."
 msgstr ""
 
-#: inc/Base/Enqueue.php:76 inc/Core/Backend/EditScreen.php:150
+#: inc/Base/Enqueue.php:77 inc/Core/Backend/EditScreen.php:150
 #: inc/Core/Backend/EditScreen.php:253
 msgid "OK"
 msgstr ""
 
-#: inc/Base/Enqueue.php:77
+#: inc/Base/Enqueue.php:78
 msgid "Confirm"
 msgstr ""
 
-#: inc/Base/Enqueue.php:78 inc/Core/Backend/EditScreen.php:151
+#: inc/Base/Enqueue.php:79 inc/Core/Backend/EditScreen.php:151
 #: inc/Core/Backend/EditScreen.php:254
 msgid "Cancel"
 msgstr ""
 
-#: inc/Base/Enqueue.php:79 templates/admin.php:56
+#: inc/Base/Enqueue.php:80
 msgid "Please wait..."
 msgstr ""
 
-#: inc/Base/Enqueue.php:80
+#: inc/Base/Enqueue.php:81
 msgid "Close"
 msgstr ""
 
-#: inc/Base/Enqueue.php:81
+#: inc/Base/Enqueue.php:82
 msgid "Paste Here"
 msgstr ""
 
-#: inc/Base/Enqueue.php:82
+#: inc/Base/Enqueue.php:83
 msgid "Import"
 msgstr ""
 
-#: inc/Base/Enqueue.php:83
+#: inc/Base/Enqueue.php:84
 msgid "Importing..."
 msgstr ""
 
@@ -494,7 +516,7 @@ msgstr ""
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
-#: inc/Base/RatingNotice.php:51
+#: inc/Base/RatingNotice.php:50
 msgid ""
 "Hey, I noticed you've been using WP Last Modified Info for more than 1 week – "
 "that’s awesome! Could you please do me a BIG favor and give it a <strong>5-"
@@ -502,15 +524,15 @@ msgid ""
 "my motivation."
 msgstr ""
 
-#: inc/Base/RatingNotice.php:52
+#: inc/Base/RatingNotice.php:51
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: inc/Base/RatingNotice.php:53
+#: inc/Base/RatingNotice.php:52
 msgid "I already did"
 msgstr ""
 
-#: inc/Base/RatingNotice.php:55
+#: inc/Base/RatingNotice.php:54
 msgid "I don't want to rate"
 msgstr ""
 
@@ -537,7 +559,7 @@ msgstr ""
 msgid "Modified date time update is disabled."
 msgstr ""
 
-#: inc/Core/Backend/AdminColumn.php:100
+#: inc/Core/Backend/AdminColumn.php:101
 msgid "Last Modified"
 msgstr ""
 
@@ -557,7 +579,7 @@ msgstr ""
 msgid "No. of Posts to Display on this Widget"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:57 inc/Core/Backend/UserColumn.php:82
+#: inc/Core/Backend/EditScreen.php:57 inc/Core/Backend/UserColumn.php:84
 msgid "Last Updated"
 msgstr ""
 
@@ -640,25 +662,63 @@ msgstr ""
 msgid "Disable auto insert on this post"
 msgstr ""
 
-#: inc/Core/Backend/MiscActions.php:76
+#: inc/Core/Backend/MiscActions.php:77
 #, php-format
-msgid " <a href=\"%1$s\" target=\"_blank\">%2$s %3$s</a>"
+msgid "<a href=\"%1$s\" target=\"_blank\">%2$s %3$s</a>"
 msgstr ""
 
-#: inc/Core/Backend/MiscActions.php:76
+#: inc/Core/Backend/MiscActions.php:77
 msgid "View"
 msgstr ""
 
-#: inc/Core/Backend/MiscActions.php:79
+#: inc/Core/Backend/MiscActions.php:80
 #, php-format
-msgid "%1$s %2$s"
+msgid "%1$s%2$s"
 msgstr ""
 
-#: inc/Core/Backend/MiscActions.php:79
+#: inc/Core/Backend/MiscActions.php:80
 msgid "updated on"
 msgstr ""
 
-#: inc/Core/Backend/UserColumn.php:64
+#: inc/Core/Backend/PluginsData.php:191 inc/Core/Backend/PluginsData.php:193
+#, php-format
+msgid "Updated: %s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:198
+#, php-format
+msgid "Ratings: %s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:202
+#, php-format
+msgid "Reviews: %s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:206
+#, php-format
+msgid "Requires at least: v%s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:211
+#, php-format
+msgid "Tested upto: v%s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:213
+#, php-format
+msgid "Tested upto: %s"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:219
+msgid "Status:"
+msgstr ""
+
+#: inc/Core/Backend/PluginsData.php:219
+msgid "Available"
+msgstr ""
+
+#: inc/Core/Backend/UserColumn.php:66
 msgid "Never"
 msgstr ""
 
@@ -721,7 +781,7 @@ msgid "Default"
 msgstr ""
 
 #: inc/Core/Elementor/Modules/ModifiedDate.php:70
-#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:155
+#: inc/Core/Elementor/Modules/ModifiedTime.php:70 templates/admin.php:153
 msgid "Custom"
 msgstr ""
 
@@ -932,7 +992,7 @@ msgid "Show Modified Info on Admin Bar:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:202
-msgid "Change Original Time to Modified Time:"
+msgid "Hide Plugins Last Modified Info:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:203
@@ -944,26 +1004,30 @@ msgid "Default Frontend Post Sorting Order:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:205
-msgid "Custom CSS Code (if required):"
+msgid "Post Date Time Change or Removal:"
 msgstr ""
 
 #: inc/Pages/Dashboard.php:206
+msgid "Custom CSS Code (if required):"
+msgstr ""
+
+#: inc/Pages/Dashboard.php:207
 msgid "Delete Plugin Data upon Uninstallation:"
 msgstr ""
 
-#: inc/Pages/Dashboard.php:212
+#: inc/Pages/Dashboard.php:213
 msgid "Enable Astra Theme Auto Support:"
 msgstr ""
 
-#: inc/Pages/Dashboard.php:213
+#: inc/Pages/Dashboard.php:214
 msgid "Astra Theme Info Template Type:"
 msgstr ""
 
-#: inc/Pages/Dashboard.php:219
+#: inc/Pages/Dashboard.php:220
 msgid "Enable GeneratePress Theme Support:"
 msgstr ""
 
-#: inc/Pages/Dashboard.php:220
+#: inc/Pages/Dashboard.php:221
 msgid "GeneratePress Theme Template Type:"
 msgstr ""
 
@@ -1015,57 +1079,57 @@ msgid ""
 "handy for restoring the default file in case WordPress goes crazy."
 msgstr ""
 
-#: templates/admin.php:60
+#: templates/admin.php:58
 msgid "Do you need help with this plugin? Here are some FAQ for you:"
 msgstr ""
 
-#: templates/admin.php:61
+#: templates/admin.php:60
 msgid "How this plugin works?"
 msgstr ""
 
-#: templates/admin.php:62
+#: templates/admin.php:61
 msgid ""
 "This plugin hooks into wordpress content area and shows last modified "
 "information of posts and pages."
 msgstr ""
 
-#: templates/admin.php:64
+#: templates/admin.php:63
 msgid "Is this plugin compatible with any themes?"
 msgstr ""
 
-#: templates/admin.php:65
+#: templates/admin.php:64
 msgid ""
 "Yes, this plugin is compatible with any theme. But Replace Post Meta Option "
 "may not be compatible with some theme. Please check before using this option."
 msgstr ""
 
-#: templates/admin.php:67
+#: templates/admin.php:66
 #, php-format
 msgid "Do I need to add %s tag?"
 msgstr ""
 
-#: templates/admin.php:68
+#: templates/admin.php:67
 msgid ""
 "No, this tag is not required, as it is already added. You just need to add "
 "only CSS Codes."
 msgstr ""
 
-#: templates/admin.php:70
+#: templates/admin.php:69
 msgid "How to set custom date/time format?"
 msgstr ""
 
-#: templates/admin.php:71
+#: templates/admin.php:70
 #, php-format
 msgid ""
 "Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about "
 "Date/Time Syntax."
 msgstr ""
 
-#: templates/admin.php:73
+#: templates/admin.php:72
 msgid "How to use template tag functionality?"
 msgstr ""
 
-#: templates/admin.php:74
+#: templates/admin.php:73
 msgid ""
 "Models the function naming convention used by WordPress for "
 "the_modified_time / get_the_modified_time and similar functions. In this "
@@ -1073,19 +1137,19 @@ msgid ""
 "etc. and add/replace default published date function with this:"
 msgstr ""
 
-#: templates/admin.php:75
+#: templates/admin.php:74
 msgid "Displays/echos the last modified info:"
 msgstr ""
 
-#: templates/admin.php:78
+#: templates/admin.php:77
 msgid "Returns the last modified info:"
 msgstr ""
 
-#: templates/admin.php:83
+#: templates/admin.php:81
 msgid "How to use shortcodes?"
 msgstr ""
 
-#: templates/admin.php:84
+#: templates/admin.php:82
 #, php-format
 msgid ""
 "You can insert the last modified info by simply using the shortcode. "
@@ -1094,160 +1158,177 @@ msgid ""
 "%3$s to display global site modified info on website frontend."
 msgstr ""
 
-#: templates/admin.php:86
+#: templates/admin.php:84
 msgid ""
 "Is it possible to show last modified info to Search Engines and keep hidden "
 "form visitors?"
 msgstr ""
 
-#: templates/admin.php:87
+#: templates/admin.php:85
 msgid ""
 "Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save "
 "settings."
 msgstr ""
 
-#: templates/admin.php:90
+#: templates/admin.php:89
 msgid "My Other WordPress Plugins"
 msgstr ""
 
-#: templates/admin.php:91
+#: templates/admin.php:90
 msgid "Like this plugin? Check out my other WordPress plugins:"
 msgstr ""
 
-#: templates/admin.php:92
+#: templates/admin.php:91
 msgid ""
 "Automatically republish you old evergreen content to grab better SEO and "
-"share them of Social Media."
+"share them of Social Media to boost your traffic."
 msgstr ""
 
-#: templates/admin.php:93
+#: templates/admin.php:92
 msgid ""
 "Ultimate Facebook Comment Solution with instant email notification for any "
 "WordPress Website. Everything is customizable."
 msgstr ""
 
-#: templates/admin.php:94
+#: templates/admin.php:93
 msgid ""
 "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to "
 "wordpress pages very easily (tested on Yoast SEO)."
 msgstr ""
 
-#: templates/admin.php:95
+#: templates/admin.php:94
 msgid ""
 "Simple Posts Ticker is a small tool that shows your most recent posts in a "
 "marquee style."
 msgstr ""
 
-#: templates/admin.php:96
+#: templates/admin.php:95
 msgid ""
 "This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based "
 "on Razorpay Payment Links."
 msgstr ""
 
-#: templates/admin.php:101
+#: templates/admin.php:99
 msgid "Plugin Tools"
 msgstr ""
 
-#: templates/admin.php:103
+#: templates/admin.php:101
 msgid "Check/Un-Check <i>Disable Update</i> Option"
 msgstr ""
 
-#: templates/admin.php:104
+#: templates/admin.php:102
 msgid ""
 "This will enable or disable \"Disable Update\" option for all posts, pages "
 "and CPTs automatically."
 msgstr ""
 
-#: templates/admin.php:105
+#: templates/admin.php:103
 msgid ""
 "It will enable post modified info output on all activated post types. Do you "
 "want to continue?"
 msgstr ""
 
-#: templates/admin.php:105 templates/admin.php:106
+#: templates/admin.php:103 templates/admin.php:104
 msgid "Success! Requested Action processed successfully."
 msgstr ""
 
-#: templates/admin.php:105
+#: templates/admin.php:103 templates/admin.php:104
+msgid "Processing..."
+msgstr ""
+
+#: templates/admin.php:103
 msgid "Check All"
 msgstr ""
 
-#: templates/admin.php:106
+#: templates/admin.php:104
 msgid ""
 "It will disable post modified info output on all activated post types. Do you "
 "want to continue?"
 msgstr ""
 
-#: templates/admin.php:106
+#: templates/admin.php:104
 msgid "Un-Check All"
 msgstr ""
 
-#: templates/admin.php:109 templates/admin.php:114
+#: templates/admin.php:107 templates/admin.php:112
 msgid "Export Settings"
 msgstr ""
 
-#: templates/admin.php:110
+#: templates/admin.php:108
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
 
-#: templates/admin.php:115
+#: templates/admin.php:113
 msgid "Copy"
 msgstr ""
 
-#: templates/admin.php:116
+#: templates/admin.php:114
 msgid "Copied!"
 msgstr ""
 
-#: templates/admin.php:121 templates/admin.php:128
+#: templates/admin.php:119 templates/admin.php:126
 msgid "Import Settings"
 msgstr ""
 
-#: templates/admin.php:122
+#: templates/admin.php:120
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
 
-#: templates/admin.php:129
+#: templates/admin.php:127
 msgid "Paste"
 msgstr ""
 
-#: templates/admin.php:134 templates/admin.php:136
+#: templates/admin.php:132
 msgid "Reset Settings"
 msgstr ""
 
-#: templates/admin.php:135
+#: templates/admin.php:133
 msgid "WARNING:"
 msgstr ""
 
-#: templates/admin.php:135
+#: templates/admin.php:133
 msgid ""
 "Resetting will delete all custom options to the default settings of the "
 "plugin in your database."
 msgstr ""
 
-#: templates/admin.php:136
+#: templates/admin.php:134
 msgid ""
-"It will delete all the data relating to this plugin settings. Do you want to "
-"continue?"
+"It will delete all the data relating to this plugin settings. You have to re-"
+"configure this plugin again. Do you want to continue?"
 msgstr ""
 
-#: templates/admin.php:136
+#: templates/admin.php:134
 msgid "Success! Plugin Settings reset successfully."
 msgstr ""
 
-#: templates/admin.php:157 templates/admin.php:159
+#: templates/admin.php:134
+msgid "Deleting..."
+msgstr ""
+
+#: templates/admin.php:134
+msgid "Reset All Settings"
+msgstr ""
+
+#: templates/admin.php:155 templates/admin.php:157
 msgid "Buy me a coffee!"
 msgstr ""
 
-#: templates/admin.php:160
+#: templates/admin.php:158
 #, php-format
 msgid ""
 "Thank you for using %s. If you found the plugin useful buy me a coffee! Your "
 "donation will motivate and make me happy for all the efforts. You can donate "
 "via PayPal."
+msgstr ""
+
+#: vendor/deliciousbrains/wp-background-processing/classes/wp-background-process.php:425
+#, php-format
+msgid "Every %d Minutes"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -1259,7 +1340,7 @@ msgid ""
 "🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and "
 "time automatically on pages and posts very easily. It is possible to use "
 "shortcodes to display last modified info anywhere on a WordPress site running "
-"4.6 and beyond."
+"4.7 and beyond."
 msgstr ""
 
 #. Author of the plugin/theme

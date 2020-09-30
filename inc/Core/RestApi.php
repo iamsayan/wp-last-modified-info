@@ -41,7 +41,7 @@ class RestApi
 	{
 		register_rest_field(
 			'post', // object type
-			$this->do_filter( 'modified_by_field_name', 'modified_by' ), // field name
+			$this->do_filter( 'modified_rest_field_name', 'modified_by' ), // field name
 			[
 				'get_callback' => [ $this, 'rest_output' ], // callback
 			]

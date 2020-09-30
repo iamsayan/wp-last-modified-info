@@ -65,13 +65,13 @@ class DashboardWidget
     
         if ( isset( $num ) ) {
     	    // Show recently modified posts
-    	    $posts = get_posts( [
+    	    $posts = get_posts( $this->do_filter( 'dashboard_widget_args', [
 				'post_type'      => 'post',
 				'post_status'    => 'publish',
 				'posts_per_page' => $num,
 				'orderby'        => 'modified',
 				'no_found_rows'  => true,
-            ] );
+            ] ) );
             ?>
 			<div id="activity-widget"><?php
             if ( ! empty( $posts ) ) { ?>
@@ -95,7 +95,7 @@ class DashboardWidget
                     </ul>
                 </div>
             <?php } else { ?>
-                <div class="no-activity"><p class="smiley" aria-hidden="true"></p><p><?php _e( 'No modified posts yet!', 'wp-last-modified-info' ); ?></p></div>
+                <div class="no-activity"><p><?php _e( 'No modified posts yet!', 'wp-last-modified-info' ); ?></p></div>
             <?php } ?>
         </div> <?php
         }
@@ -125,31 +125,15 @@ class DashboardWidget
 	 */
 	public function widget_css()
 	{ ?>
-		<style>
-			#dashboard_last_modified_posts .no-activity .smiley {
-				margin-top: 0;
-			}
+		<style type="text/css">
 			#dashboard_last_modified_posts .no-activity p {
 				color: #72777c;
 				font-size: 16px;
 			}
 			#dashboard_last_modified_posts .no-activity {
 				overflow: hidden;
-				padding: 0 0 12px;
+				padding: 12px 0;
 				text-align: center;
-			}
-			#dashboard_last_modified_posts .no-activity .smiley:before {
-				content: "\f328";
-				font: normal 120px/1 dashicons;
-				speak: none;
-				display: block;
-				margin: 0 5px 0 0;
-				padding: 0;
-				text-indent: 0;
-				text-align: center;
-				position: relative;
-				-webkit-font-smoothing: antialiased;
-				text-decoration: none!important;
 			}
 			#dashboard_last_modified_posts .inside {
 				margin: 0;

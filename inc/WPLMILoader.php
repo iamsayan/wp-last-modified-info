@@ -45,6 +45,7 @@ final class WPLMILoader
 			Core\Backend\DashboardWidget::class,
 			Core\Backend\EditScreen::class,
 			Core\Backend\MetaBox::class,
+			Core\Backend\PluginsData::class,
 			Core\Elementor\Loader::class
 		];
 

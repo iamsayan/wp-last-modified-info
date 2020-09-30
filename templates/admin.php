@@ -52,58 +52,56 @@
                     <?php do_settings_sections( 'wplmi_plugin_misc_option' ); ?>
                     <?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary save-settings', 'wplmi-save-misc' ); ?>
                 </div>
-                
-                <div id="progressMessage" class="progressModal" style="display:none;"><?php _e( 'Please wait...', 'wp-last-modified-info' ); ?></div>
-                <div id="saveMessage" class="successModal" style="display:none;"><?php _e( 'Settings Saved Successfully!', 'wp-last-modified-info' ); ?></div>
-                
-                <div style="display: none;" id="wplmi-help" class="wplmi-metabox">
+            </form>
+            <div style="display: none;" id="wplmi-help" class="wplmi-metabox">
+                <div class="help-container">
                     <h2><?php _e( 'Do you need help with this plugin? Here are some FAQ for you:', 'wp-last-modified-info' ); ?></h2>
-                    <p><li><strong><?php _e( 'How this plugin works?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'This plugin hooks into wordpress content area and shows last modified information of posts and pages.', 'wp-last-modified-info' ); ?></p>
+                    <ol class="help-faq">
+                        <p><li><?php _e( 'How this plugin works?', 'wp-last-modified-info' ); ?></li>
+                        <?php _e( 'This plugin hooks into wordpress content area and shows last modified information of posts and pages.', 'wp-last-modified-info' ); ?></p>
                     
-                    <p><li><strong><?php _e( 'Is this plugin compatible with any themes?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Yes, this plugin is compatible with any theme. But Replace Post Meta Option may not be compatible with some theme. Please check before using this option.', 'wp-last-modified-info' ); ?></p>
+                        <p><li><?php _e( 'Is this plugin compatible with any themes?', 'wp-last-modified-info' ); ?></li>
+                        <?php _e( 'Yes, this plugin is compatible with any theme. But Replace Post Meta Option may not be compatible with some theme. Please check before using this option.', 'wp-last-modified-info' ); ?></p>
                     
-                    <p><li><strong><?php printf( __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></strong></li></p>
-                    <p><?php _e( 'No, this tag is not required, as it is already added. You just need to add only CSS Codes.', 'wp-last-modified-info' ); ?></p>
+                        <p><li><?php printf( __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></li>
+                        <?php _e( 'No, this tag is not required, as it is already added. You just need to add only CSS Codes.', 'wp-last-modified-info' ); ?></p>
+                    
+                        <p><li><?php _e( 'How to set custom date/time format?', 'wp-last-modified-info' ); ?></li>
+                        <?php printf( __( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
+                    
+                        <p><li><?php _e( 'How to use template tag functionality?', 'wp-last-modified-info' ); ?></li>
+                        <?php _e( 'Models the function naming convention used by WordPress for the_modified_time / get_the_modified_time and similar functions. In this case, you have to edit your theme\'s template files i.e. single.php, page.php etc. and add/replace default published date function with this:', 'wp-last-modified-info' ); ?> &nbsp;&nbsp;
+                        <p><i><?php _e( 'Displays/echos the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'the_last_modified_info' ) ) {
+                            the_last_modified_info();
+		                } ?&gt;</code></p>       
+                        <p><i><?php _e( 'Returns the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'get_the_last_modified_info' ) ) {
+		        	        get_the_last_modified_info();
+		                } ?&gt;</code></p></p>
+                    
+                        <p><li><?php _e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?></li>
+                        <?php printf( __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
     
-                    <p><li><strong><?php _e( 'How to set custom date/time format?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php printf( __( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
-                    
-                    <p><li><strong><?php _e( 'How to use template tag functionality?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Models the function naming convention used by WordPress for the_modified_time / get_the_modified_time and similar functions. In this case, you have to edit your theme\'s template files i.e. single.php, page.php etc. and add/replace default published date function with this:', 'wp-last-modified-info' ); ?> &nbsp;&nbsp;
-                    <p><i><?php _e( 'Displays/echos the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'the_last_modified_info' ) ) {
-                                the_last_modified_info();
-		    	           } ?&gt;</code></p>       
-                    <p><i><?php _e( 'Returns the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'get_the_last_modified_info' ) ) {
-		    		            get_the_last_modified_info();
-		    	    } ?&gt;</code></p>
-                    </p>
-
-                    <p><li><strong><?php _e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php printf( __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?>
-                    
-                    <p><li><strong><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></strong></li></p>
-                    <p><?php _e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
-
-                    <br>
+                        <p><li><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></li>
+                        <?php _e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
+                    </ol>
+                </div>
+                <div class="help-container">
                     <h2><?php _e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2>
                     <p><strong><?php _e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
-                    <li><strong><a href = "https://wordpress.org/plugins/wp-auto-republish/" target = "_blank">WP Auto Republish (Freemium)</a></strong> - <?php _e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media.', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/wp-auto-republish/" target = "_blank">WP Auto Republish</a></strong> - <?php _e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Social Comments - Notification & Lazy Load</a></strong> - <?php _e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - <?php _e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/simple-posts-ticker/" target = "_blank">Simple Posts Ticker - Easy, Lightweight & Flexible</a></strong> - <?php _e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/rzp-woocommerce/" target = "_blank">Razorpay Payment Gateway for WooCommerce</a></strong> - <?php _e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
-                    <br>
                 </div>
-            </form>
+            </div>
             <div id="wplmi-tools" style="display: none;" class="wplmi-metabox">
                 <h2><?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?></h2>
                 <div>
                     <strong><?php _e( 'Check/Un-Check <i>Disable Update</i> Option', 'wp-last-modified-info' ); ?></strong>
 		    	    <p><?php _e( 'This will enable or disable "Disable Update" option for all posts, pages and CPTs automatically.', 'wp-last-modified-info' ); ?></p>
-		    		<p><input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="check" data-notice="<?php _e( 'It will enable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Check All', 'wp-last-modified-info' ); ?>">
-                    <input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="uncheck" data-notice="<?php _e( 'It will disable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Un-Check All', 'wp-last-modified-info' ); ?>"></p>
+		    		<p><input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="check" data-notice="<?php _e( 'It will enable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php _e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Check All', 'wp-last-modified-info' ); ?>">
+                    <input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="uncheck" data-notice="<?php _e( 'It will disable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php _e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Un-Check All', 'wp-last-modified-info' ); ?>"></p>
                 </div><hr>
                 <div>
                     <span><strong><?php _e( 'Export Settings', 'wp-last-modified-info' ); ?></strong></span>
@@ -133,7 +131,7 @@
                 <div style="padding-bottom: 10px;">
                     <span><strong><?php _e( 'Reset Settings', 'wp-last-modified-info' ); ?></strong></span>
 		    		<p style="color: #ff0000;"><strong><?php _e( 'WARNING:', 'wp-last-modified-info' ); ?> </strong><?php _e( 'Resetting will delete all custom options to the default settings of the plugin in your database.', 'wp-last-modified-info' ); ?></p>
-		    	    <p><input type="button" class="button button-primary wplmi-reset" data-action="wplmi_process_delete_plugin_data" data-type="delete" data-notice="<?php _e( 'It will delete all the data relating to this plugin settings. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Plugin Settings reset successfully.', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Reset Settings', 'wp-last-modified-info' ); ?>"></p>
+		    	    <p><input type="button" class="button button-primary wplmi-reset" data-action="wplmi_process_delete_plugin_data" data-type="delete" data-notice="<?php _e( 'It will delete all the data relating to this plugin settings. You have to re-configure this plugin again. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Plugin Settings reset successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php _e( 'Deleting...', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Reset All Settings', 'wp-last-modified-info' ); ?>"></p>
                 </div>
             </div>
         </div>

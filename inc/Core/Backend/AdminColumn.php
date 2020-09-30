@@ -77,11 +77,12 @@ class AdminColumn
 			    	if ( $p_meta == 'yes' ) {
 			    		$html .= ' <span class="wplmi-lock dashicons dashicons-lock" title="' . esc_attr__( 'Modified date time update is disabled.', 'wp-last-modified-info' ) . '" style="font-size:16px; padding-top: 3px;"></span>';
 			    	}
-			    	$html .= '<span class="hidden-df" style="display: none;">' . $mod_format . '</span>';
-				    $html .= '<span class="hidden-pm" style="display: none;">' . get_post( $post_id )->post_modified . '</span>';
-				    $html .= '<span class="hidden-disabled" style="display: none;">' . $disabled . '</span>';
+			    	$html .= '<span class="wplmi-hidden-date-format" style="display: none;">' . $mod_format . '</span>';
+				    $html .= '<span class="wplmi-hidden-post-modified" style="display: none;">' . get_post( $post_id )->post_modified . '</span>';
+				    $html .= '<span class="wplmi-hidden-disabled" style="display: none;">' . $disabled . '</span>';
+					$html .= '<span class="wplmi-hidden-post-type" style="display: none;">' . get_post_type( $post_id ) . '</span>';
 				}
-				$html .= '<span class="hidden-status" style="display: none;">' . get_post_status( $post_id ) . '</span>';
+				$html .= '<span class="wplmi-hidden-status" style="display: none;">' . get_post_status( $post_id ) . '</span>';
 				    
 				echo $html;
 			break;
@@ -120,6 +121,6 @@ class AdminColumn
 	 */
 	public function style()
 	{
-		echo '<style type="text/css">.fixed th.column-lastmodified { width: 16%; }</style>'."\n";
+		echo '<style type="text/css">.fixed th.column-lastmodified { width: 14%; }</style>'."\n";
 	}
 }

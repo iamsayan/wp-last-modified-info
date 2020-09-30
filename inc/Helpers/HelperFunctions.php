@@ -50,6 +50,28 @@ trait HelperFunctions
 	}
 
 	/**
+	 * Post Modified time wrapper function.
+	 *
+	 * @param string     $format Date Format.
+	 * @param object|int $post
+	 * 
+	 * @return string
+	 */
+	protected function get_modified_date( $format = '', $post = null ) {
+		$post = get_post( $post );
+ 
+        if ( ! $post ) {
+            $the_time = false;
+        } else {
+            $_format = ! empty( $format ) ? $format : get_option( 'date_format' );
+     
+            $the_time = get_post_modified_time( $_format, false, $post, true );
+		}
+		
+		return $the_time;
+	}
+
+	/**
 	 * Insert the plugins settings in proper place.
 	 *
 	 * @param  array   $array     Default setting fields.

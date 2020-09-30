@@ -52,7 +52,7 @@ class ThemeCompat
 		$format = $this->do_filter( 'astra_post_date_format', '' );
 
 		$output .= '<span class="posted-on">' . $this->do_filter( 'astra_post_date_prepend', '' );
-		$output .= '<span class="post-updated" itemprop="dateModified">' . esc_attr( get_the_modified_date( $format ) ) . '</span>' . $this->do_filter( 'astra_post_date_append', '' );
+		$output .= '<span class="post-updated" itemprop="dateModified">' . esc_attr( $this->get_modified_date( $format ) ) . '</span>' . $this->do_filter( 'astra_post_date_append', '' );
 		$output .= '</span>';
 
 		if ( ! is_singular() && $this->do_filter( 'astra_filter_archive_output', true ) ) {
@@ -121,8 +121,8 @@ class ThemeCompat
 		$format = $this->do_filter( 'gp_post_date_format', '' );
 
 		$output .= '<span class="posted-on">' . apply_filters( 'generate_inside_post_meta_item_output', '', 'date' );
-		$output .= '<a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( get_the_modified_time() ) . '" rel="bookmark">';
-		$output .= '<time class="post-updated" datetime="' . esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false ) ) . '" itemprop="dateModified">' . esc_attr( get_the_modified_date( $format ) ). '</time>';
+		$output .= '<a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( $this->get_modified_date( get_option( 'time_format' ) ) ) . '" rel="bookmark">';
+		$output .= '<time class="post-updated" datetime="' . esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false ) ) . '" itemprop="dateModified">' . esc_attr( $this->get_modified_date( $format ) ). '</time>';
 		$output .= '</a></span> ';
 
 		if ( ! is_singular() && $this->do_filter( 'gp_filter_archive_output', true ) ) {

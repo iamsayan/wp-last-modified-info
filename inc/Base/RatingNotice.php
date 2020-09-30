@@ -11,7 +11,6 @@
 namespace Wplmi\Base;
 
 use Wplmi\Helpers\Hooker;
-use Wplmi\Base\BaseController;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -63,7 +62,7 @@ class RatingNotice
 	public function dismiss_notice()
 	{
 		if ( get_option( 'wplmi_plugin_no_thanks_rating_notice' ) === '1' ) {
-			if ( get_option( 'wplmi_plugin_dismissed_time' ) > strtotime( '-168 hours' ) ) {
+			if ( get_option( 'wplmi_plugin_dismissed_time' ) > strtotime( '-360 hours' ) ) {
 				return;
 			}
 			delete_option( 'wplmi_plugin_dismiss_rating_notice' );

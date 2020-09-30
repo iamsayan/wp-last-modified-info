@@ -21,6 +21,8 @@ class ComposerStaticInit864e9b664caffe9d69b14c441bfd3b88
     );
 
     public static $classMap = array (
+        'WP_Async_Request' => __DIR__ . '/..' . '/deliciousbrains/wp-background-processing/classes/wp-async-request.php',
+        'WP_Background_Process' => __DIR__ . '/..' . '/deliciousbrains/wp-background-processing/classes/wp-background-process.php',
         'Wplmi\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/AdminCallbacks.php',
         'Wplmi\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/ManagerCallbacks.php',
         'Wplmi\\Api\\SettingsApi' => __DIR__ . '/../..' . '/inc/Api/SettingsApi.php',
@@ -41,6 +43,7 @@ class ComposerStaticInit864e9b664caffe9d69b14c441bfd3b88
         'Wplmi\\Core\\Backend\\EditScreen' => __DIR__ . '/../..' . '/inc/Core/Backend/EditScreen.php',
         'Wplmi\\Core\\Backend\\MetaBox' => __DIR__ . '/../..' . '/inc/Core/Backend/MetaBox.php',
         'Wplmi\\Core\\Backend\\MiscActions' => __DIR__ . '/../..' . '/inc/Core/Backend/MiscActions.php',
+        'Wplmi\\Core\\Backend\\PluginsData' => __DIR__ . '/../..' . '/inc/Core/Backend/PluginsData.php',
         'Wplmi\\Core\\Backend\\UserColumn' => __DIR__ . '/../..' . '/inc/Core/Backend/UserColumn.php',
         'Wplmi\\Core\\Elementor\\Loader' => __DIR__ . '/../..' . '/inc/Core/Elementor/Loader.php',
         'Wplmi\\Core\\Elementor\\Modules\\AuthorName' => __DIR__ . '/../..' . '/inc/Core/Elementor/Modules/AuthorName.php',

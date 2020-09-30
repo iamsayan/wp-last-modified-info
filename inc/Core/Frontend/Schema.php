@@ -161,9 +161,13 @@ class Schema extends BaseController
 		    return $html;
 		}
 
-		$replace = $this->do_filter( 'published_schema_replace', false );
-		if ( $replace ) {
-		    $html = str_replace( ' itemprop="datePublished"', ' itemprop="dateModified"', $html );
+		$replace = $this->do_filter( 'published_schema_replace', true );
+		if ( ! $this->is_equal( 'enable_jsonld_markup_cb', 'disable' ) && $replace ) {
+			if ( $this->is_equal( 'replace_published_date', 'remove' ) ) {
+			    $html = str_replace( ' itemprop="datePublished"', '', $html );
+			} else {
+				$html = str_replace( ' itemprop="datePublished"', ' itemprop="dateModified"', $html );
+			}
 		}
 	
 		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'comp_mode' ) ) {
@@ -172,7 +176,7 @@ class Schema extends BaseController
 		    // Yoast SEO Compatibility
 		    $html = str_replace( get_post_time( 'Y-m-d\TH:i:sP', true, $post ), get_post_modified_time( 'Y-m-d\TH:i:sP', true, $post ), $html );
 		    // Rank Math, All in One SEO Pack SEO & Newspaper theme Compatibility
-		    $html = str_replace( $this->do_filter( 'schema_datetime_fotmat', [ get_post_time( 'Y-m-d\TH:i:sP', false, $post ), date( DATE_W3C, get_the_time( 'U', $post ) ), mysql2date( DATE_W3C, $post->post_modified_gmt, false ) ] ), get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post ), $html );
+		    $html = str_replace( $this->do_filter( 'schema_datetime_fotmat', [ get_post_time( 'Y-m-d\TH:i:sP', false, $post ), date( DATE_W3C, get_post_time( 'U' ) ), mysql2date( DATE_W3C, $post->post_modified_gmt, false ) ] ), get_post_modified_time( 'Y-m-d\TH:i:sP', false ), $html );
 		}
 
 		return $html;

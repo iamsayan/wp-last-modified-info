@@ -65,7 +65,7 @@ class BaseController
 		$this->plugin_path = plugin_dir_path( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin_url = plugin_dir_url( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-last-modified-info.php';
-		$this->version = '1.7.1';
+		$this->version = '1.7.5';
 		$this->debug = false;
 		$this->name = 'WP Last Modified Info';
 	}
@@ -75,9 +75,9 @@ class BaseController
 	 */
 	private function dirname_r( $path, $count = 1 ) {
 		if ( $count > 1 ) {
-		   return dirname( $this->dirname_r( $path, --$count ) );
+		    return dirname( $this->dirname_r( $path, --$count ) );
 		} else {
-		   return dirname( $path );
+		    return dirname( $path );
 		}
 	}
 }

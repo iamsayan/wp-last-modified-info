@@ -1,15 +1,15 @@
 === WP Last Modified Info ===
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
-Requires at least: 4.6
+Requires at least: 4.7
 Tested up to: 5.5
-Stable tag: 1.7.1
+Stable tag: 1.7.5
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.6 and beyond.
+🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
 
 == Description ==
 
@@ -48,7 +48,7 @@ This plugin automatically inserts last modified or updated info on your WordPres
 
 #### Compatibility
 
-* This plugin is fully compatible with WordPress Version 4.6 and beyond and also compatible with any WordPress theme.
+* This plugin is fully compatible with WordPress Version 4.7 and beyond and also compatible with any WordPress theme.
 * Fully compatible with Yoast SEO, Rank Math, All in One SEO Pack, SEOPress, Schema and other many plugins.
 
 #### Support
@@ -162,6 +162,48 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.7.5 =
+Release Date: September 30, 2020
+
+* Fixed: PHP Fatal error on plugin activation.
+
+= 1.7.4 =
+Release Date: September 30, 2020
+
+* Added: Ability to show plugins last modified info on plugins page.
+* Fixed: HTML non-spacing issue on post ecit screen.
+* Fixed: `datePublished` schema is replaced by `dateModified` automatically even if schema output is disabled from plugin settings.
+
+= 1.7.3 =
+Release Date: September 27, 2020
+
+* Added: Ability to remove/hide post dates from search engines completely.
+* Fixed: PHP Fatal error in WordPress version less than v4.9.0.
+* Fixed: A bug where last modified info was not showing using shortcode if "Change Original Time to Modified Time" option was enabled from Misc Options.
+* Tweak: Added some CSS adjustments to make it more easy.
+* Tweak: Properly set HTML element's CSS Class names.
+* Twaek: The minimun required WordPress version is now v4.7.0.
+* Tweak: Increased rating notice auto show time interval.
+* Tweak: Cache will be automatically purged the modified date is changed.
+* Tweak: Custom modified date which is greater than original published date is only accepted in Products also.
+* Tweak: Correct modified date was not properly reflected for products if custom modified date is being set from quick edit.
+* Tweak: Increased priority of `the_content` hook to `5`.
+* Tweak: `<p></p>` tag will be removed automatically from shortcode.
+* Tweak: Added improved replace date mechanism to make it work properly with any caching or minification plugin.
+* Tweak: From now, `itemprop="datePublished"` schema will be replaced automatically with `itemprop="dateModified"`. It can be disabled by `wplmi/published_schema_replace` filter.
+* Other minor improvements and fixes.
+
+= 1.7.2 =
+Release Date: August 14, 2020
+
+* Added: Ability to use Template Tag as Shortcode.
+* Tweak: From now custom modified date which is greater than original published date is only accepted.
+* Tweak: Make Global Site modified info Date translable.
+* Fixed: Variable not found PHP warning on user list page.
+* Fixed: A bug where Actual post published date is not translating.
+* Fixed: A bug where Plugin shows error on dev console if Syntax Highlighting is disabled from Profile settings.
+* Other minor improvements.
 
 = 1.7.1 =
 Release Date: August 12, 2020

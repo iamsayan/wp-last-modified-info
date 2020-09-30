@@ -56,7 +56,7 @@ class PluginTools
 		ignore_user_abort( true );
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=' . $output . '-wplmi-export-' . date( 'm-d-Y' ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-wplmi-export-' . date( 'm-d-Y' ) . '.json' );
 		header( "Expires: 0" );
 		echo json_encode( $settings );
 		exit;
@@ -159,7 +159,7 @@ class PluginTools
 			$this->error();
 		}
 
-		$data = stripslashes( $_REQUEST['settings_data'] );
+		$data = wp_unslash( $_REQUEST['settings_data'] );
 		$settings = (array) json_decode( $data );
 
 		if ( is_array( $settings ) && ! empty( $settings ) ) {

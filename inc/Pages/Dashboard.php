@@ -199,9 +199,10 @@ class Dashboard
 			],
 			'misc' => [
 			    'admin_bar' => __( 'Show Modified Info on Admin Bar:', 'wp-last-modified-info' ),
-			    'replace_date' => __( 'Change Original Time to Modified Time:', 'wp-last-modified-info' ),
-				'admin_sort_order' => __( 'Default Admin Post Sorting Order:', 'wp-last-modified-info' ),
+			    'disable_plugin_info' => __( 'Hide Plugins Last Modified Info:', 'wp-last-modified-info' ),
+			    'admin_sort_order' => __( 'Default Admin Post Sorting Order:', 'wp-last-modified-info' ),
 				'sort_order' => __( 'Default Frontend Post Sorting Order:', 'wp-last-modified-info' ),
+				'replace_date' => __( 'Post Date Time Change or Removal:', 'wp-last-modified-info' ),
 				'custom_css' => __( 'Custom CSS Code (if required):', 'wp-last-modified-info' ),
 				'delete_data' => __( 'Delete Plugin Data upon Uninstallation:', 'wp-last-modified-info' )
 			]
@@ -228,7 +229,7 @@ class Dashboard
      * A custom sanitization function that will take the incoming input, and sanitize
      * the input before handing it back to WordPress to save to the database.
      *
-     * @since    1.7.0
+     * @since 1.7.0
      *
      * @param   array  $input   The address input.
      * @return  array  $output  The sanitized input.
