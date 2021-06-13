@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.7.7
+Release Date: June 13, 2021
+
+* Removed: WP Backgroud Processing Library. You can use [Migrate WP Cron to Action Scheduler](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post) Plugin to overcome the limitation of WP Cron.
+* Improved: Added a hook to fetch plugin data just after plugin upgradation.
+* Corrected Template Tags wrong Tab name.
+* Compatibility with WordPress v5.7.
+
+## 1.7.6
+Release Date: December 25, 2020
+
+* Added: Modified Date Time Bulk Update Capability.
+* Added: Option to view posts which are included in Disable Update list.
+* Fixed: Post order displays as Modified by default on some installations.
+* Fixed: Reverted back to the old method of post meta replace.
+* Improved: Admin Settings Page UI.
+* Compatibility with WordPress v5.6.
+
 ## 1.7.5
 Release Date: September 30, 2020
 
