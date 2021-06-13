@@ -10,6 +10,7 @@
 
 namespace Wplmi\Core\Backend;
 
+use Wplmi\Helpers\Ajax;
 use Wplmi\Helpers\Hooker;
 use Wplmi\Helpers\SettingsData;
 
@@ -20,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class EditScreen
 {
-	use Hooker, SettingsData;
+	use Ajax, Hooker, SettingsData;
 
 	/**
 	 * Register functions.
@@ -30,8 +31,10 @@ class EditScreen
 		$this->action( 'post_submitbox_misc_actions', 'submitbox_edit', 5 );
 		$this->action( 'add_meta_boxes', 'meta_box', 10, 2 );
 		$this->action( 'quick_edit_custom_box', 'quick_edit', 10, 2 );
+		$this->action( 'bulk_edit_custom_box', 'bulk_edit', 10, 2 );
 		$this->action( 'wp_insert_post', 'save_metadata', 99 );
 		$this->action( 'woocommerce_update_product', 'woo_save_metadata', 1 );
+		$this->ajax( 'process_bulk_edit', 'bulk_save' );
 		$this->filter( 'wp_insert_post_data', 'update_data', 99, 2 );
 	}
 	
@@ -95,7 +98,7 @@ class EditScreen
 				<div class="timestamp-wrap">
 					<label>
 						<span class="screen-reader-text"><?php _e( 'Month', 'wp-last-modified-info' ); ?></span>
-						<select id="mmm" name="mmm">
+						<select id="mmm" name="mmm" class="time-modified">
 							<?php
 							for ( $i = 1; $i < 13; $i++ ) {
 								$monthnum = zeroise( $i, 2 );
@@ -107,16 +110,16 @@ class EditScreen
 					</label>
 					<label>
 						<span class="screen-reader-text"><?php _e( 'Day', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="jjm" class="jjm-edit" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
+						<input type="text" id="jjm" class="time-modified jjm-edit" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
 					</label>, <label>
 						<span class="screen-reader-text"><?php _e( 'Year', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="aam" class="aam-edit" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
+						<input type="text" id="aam" class="time-modified aam-edit" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
 					</label> <?php _e( 'at', 'wp-last-modified-info' ); ?><label> 
 						<span class="screen-reader-text"><?php _e( 'Hour', 'wp-last-modified-info'); ?></span>
-						<input type="text" id="hhm" class="hhm-edit" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off"/>
+						<input type="text" id="hhm" class="time-modified hhm-edit" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off"/>
 					</label><?php _e(':', 'wp-last-modified-info'); ?><label>
 						<span class="screen-reader-text"><?php _e( 'Minute', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="mnm" class="mnm-edit" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
+						<input type="text" id="mnm" class="time-modified mnm-edit" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
 					</label>
 				</div>
 				<?php
@@ -198,7 +201,7 @@ class EditScreen
 				<div class="timestamp-wrap tsw-be">
 					<label>
 						<span class="screen-reader-text"><?php _e( 'Month', 'wp-last-modified-info' ); ?></span>
-						<select id="mmm" name="mmm" class="be-mmm">
+						<select id="mmm" name="mmm" class="time-modified be-mmm">
 							<?php
 							for ( $i = 1; $i < 13; $i++ ) {
 								$monthnum = zeroise( $i, 2 );
@@ -210,16 +213,16 @@ class EditScreen
 					</label>
 					<label>
 						<span class="screen-reader-text"><?php _e( 'Day', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="jjm" class="be-jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
+						<input type="text" id="jjm" class="time-modified be-jjm" name="jjm" value="<?php echo $jj; ?>" size="2" maxlength="2" autocomplete="off" />
 					</label><span style="vertical-align: sub;">,</span> <label>
 						<span class="screen-reader-text"><?php _e( 'Year', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="aam" class="be-aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
+						<input type="text" id="aam" class="time-modified be-aam" name="aam" value="<?php echo $aa; ?>" size="4" maxlength="4" autocomplete="off" />
 					</label> <span style="vertical-align: sub;"><?php _e( 'at', 'wp-last-modified-info' ); ?></span><label> 
 						<span class="screen-reader-text"><?php _e( 'Hour', 'wp-last-modified-info'); ?></span>
-						<input type="text" id="hhm" class="be-hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off"/>
+						<input type="text" id="hhm" class="time-modified be-hhm" name="hhm" value="<?php echo $hh; ?>" size="2" maxlength="2" autocomplete="off"/>
 					</label><span style="vertical-align: sub;"><?php _e(':', 'wp-last-modified-info'); ?></span><label>
 						<span class="screen-reader-text"><?php _e( 'Minute', 'wp-last-modified-info' ); ?></span>
-						<input type="text" id="mnm" class="be-mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
+						<input type="text" id="mnm" class="time-modified be-mnm" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
 					</label>
 				</div>
 				<?php
@@ -315,6 +318,114 @@ class EditScreen
 	}
 
 	/**
+	 * Quick ecit HTML output.
+	 * 
+	 * @param string  $column_name  Current column name
+	 * @param string  $post_type    Post type
+	 */
+	public function bulk_edit( $column_name, $post_type )
+	{
+		global $wp_locale;
+
+		if ( 'lastmodified' !== $column_name ) {
+			return;
+		} ?>
+
+        <div class="inline-edit-col wplmi-bulkedit">
+		    <fieldset class="inline-edit-date">
+		    	<legend><span class="title"><?php _e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
+		    	<div class="timestamp-wrap">
+		    		<label class="inline-edit-group">
+		    			<span class="screen-reader-text"><?php _e( 'Month', 'wp-last-modified-info' ); ?></span>
+		    			<select id="mmm" class="time-modified" name="mmm">
+		    			<option value="none">— <?php _e( 'No Change', 'wp-last-modified-info' ); ?> —</option>
+		    				<?php
+		    				for ( $i = 1; $i < 13; $i++ ) {
+		    					$monthnum = zeroise( $i, 2 );
+		    					$monthtext = $wp_locale->get_month_abbrev( $wp_locale->get_month( $i ) );
+		    					echo '<option value="' . $monthnum . '" data-text="' . $monthtext . '">' . sprintf( __( '%1$s-%2$s' ), $monthnum, $monthtext ) . '</option>';
+		    				}
+		    				?>
+		    			</select>
+		    		</label>
+		    		<label class="inline-edit-group">
+		    			<span class="screen-reader-text"><?php _e( 'Day', 'wp-last-modified-info' ); ?></span>
+		    			<input type="text" id="jjm" class="time-modified tm-jjm" name="jjm" value="" size="2" maxlength="2" placeholder="<?php _e( 'Day', 'wp-last-modified-info' ); ?>" autocomplete="off" />
+		    		</label>, <label>
+		    			<span class="screen-reader-text"><?php _e( 'Year', 'wp-last-modified-info' ); ?></span>
+		    			<input type="text" id="aam" class="time-modified tm-aam" name="aam" value="" size="4" maxlength="4" placeholder="<?php _e( 'Year', 'wp-last-modified-info' ); ?>" autocomplete="off" />
+		    		</label> <?php _e( 'at', 'wp-last-modified-info' ); ?> <label>
+		    			<span class="screen-reader-text"><?php _e( 'Hour', 'wp-last-modified-info' ); ?></span>
+		    			<input type="text" id="hhm" class="time-modified tm-hhm" name="hhm" value="" size="2" maxlength="2" placeholder="<?php _e( 'Hour', 'wp-last-modified-info' ); ?>" autocomplete="off" />
+		    		</label>:<label>
+		    			<span class="screen-reader-text"><?php _e( 'Minute', 'wp-last-modified-info' ); ?></span>
+		    			<input type="text" id="mnm" class="time-modified tm-mnm" name="mnm" value="" size="2" maxlength="2" placeholder="<?php _e( 'Min', 'wp-last-modified-info' ); ?>" autocomplete="off" />
+		    		</label>&nbsp;&nbsp;<label for="wplmi_disable">
+						<span class="select-title"><?php _e( 'Update Status', 'wp-last-modified-info' ); ?></span>
+						<select id="wplmi-disable-update" class="disable-update" name="disable_update">
+		    			    <option value="none">— <?php _e( 'No Change', 'wp-last-modified-info' ); ?> —</option>
+						    <option value="no"><?php _e( 'Enable Update', 'wp-last-modified-info' ); ?></option>
+						    <option value="yes"><?php _e( 'Disable Update', 'wp-last-modified-info' ); ?></option>
+		    			</select>
+		    		</label>
+		    	</div>
+		    </fieldset>
+	    </div>
+		<?php
+	}
+
+	/**
+     * Process bulk post meta data update
+     */
+	public function bulk_save()
+	{
+		// security check
+		$this->verify_nonce( 'wplmi_edit_nonce' );
+
+		global $wpdb;
+
+		// we need the post IDs
+	    $post_ids = ( isset( $_POST[ 'post_ids' ] ) && ! empty( $_POST[ 'post_ids' ] ) ) ? $_POST[ 'post_ids' ] : NULL;
+    
+	    // if we have post IDs
+	    if ( ! empty( $post_ids ) && is_array( $post_ids ) ) {
+    
+			$mmm = sanitize_text_field( $_POST['modified_month'] );
+		    $jj = sanitize_text_field( $_POST['modified_day'] );
+		    $aa = sanitize_text_field( $_POST['modified_year'] );
+		    $hh = sanitize_text_field( $_POST['modified_hour'] );
+		    $mn = sanitize_text_field( $_POST['modified_minute'] );
+			$disable = sanitize_text_field( $_POST['modified_disable'] );
+    
+		    $mm = ( is_numeric( $mmm ) && $mmm <= 12 ) ? $mmm : '01'; // months
+		    $jj = ( is_numeric( $jj ) && $jj <= 31 ) ? $jj : '01'; // days
+		    $aa = ( is_numeric( $aa ) && $aa >= 0 ) ? $aa : '1970'; // years
+		    $hh = ( is_numeric( $hh ) && $hh <= 24 ) ? $hh : '12'; // hours
+		    $mn = ( is_numeric( $mn ) && $mn <= 60 ) ? $mn : '00'; // minutes
+		    $ss = '00'; // seconds
+	    
+			$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
+
+			set_transient( 'wplmi_temp_modified_date', $newdate, 15 );
+
+	    	foreach( $post_ids as $post_id ) {
+				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
+				    if ( $mmm != 'none' ) {
+						$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
+						$this->update_meta( $post_id, '_wplmi_bulk_update', 'yes' );
+				    }
+    
+				    if ( $disable != 'none' ) {
+				    	$this->update_meta( $post_id, '_lmt_disableupdate', $disable );
+				    }
+				}
+			}
+	    }
+	
+		$this->success();
+	}
+
+	/**
 	 * Save post modified info to db.
 	 * 
 	 * @param object   $data     Old Data
@@ -326,6 +437,18 @@ class EditScreen
 	{
 		if ( in_array( $postarr['post_status'], [ 'auto-draft', 'future' ] ) ) {
 			return $data;
+		}
+
+		$modified_temp = get_transient( 'wplmi_temp_modified_date' );
+		$proceed = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update' );
+		
+		if ( $modified_temp && $proceed == 'yes' ) {
+			$data['post_modified'] = $modified_temp;
+			$data['post_modified_gmt'] = get_gmt_from_date( $modified_temp );
+
+			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update' );
+
+		    return $data;
 		}
 
 		if ( ! isset( $postarr['wplmi_modified'], $postarr['wplmi_change'], $postarr['wplmi_disable'] ) ) {
@@ -375,6 +498,8 @@ class EditScreen
 		}
 
 		$this->update_meta( $postarr['ID'], '_wplmi_last_modified', $modified );
+
+		//error_log( 'WPIPD: ' . $postarr['ID'] );
 	
 		return $data;
 	}
@@ -391,20 +516,26 @@ class EditScreen
 		// return if autosave
 	    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 	    	return;
-	    }
+		}
+		
 	    // Check the user's permissions.
 	    if ( ! current_user_can( 'edit_post', $post_id ) ) {
 	    	return;
-	    }
-
-		if ( in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
-			return;
+		}
+		
+		if ( get_transient( 'wplmi_temp_modified_date' ) ) {
+			delete_transient( 'wplmi_temp_modified_date' );
+		    return;
 		}
 
 		if ( isset( $_POST['wplmi_modified'], $_POST['wplmi_change'], $_POST['wplmi_disable'] ) ) {
 			return;
 		}
-		
+
+		if ( in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
+			return;
+		}
+
 		$disabled = $this->get_meta( $post_id, '_lmt_disableupdate' );
 		$modified = $this->get_meta( $post_id, '_wplmi_last_modified' );
 		
@@ -424,6 +555,8 @@ class EditScreen
 		if ( $this->do_filter( 'force_update_author_id', false ) ) {
 		    $this->update_meta( $post_id, '_edit_last', get_current_user_id() );
 		}
+
+		//error_log( 'WPIP: ' . $post_id );
 	}
 
 	/**

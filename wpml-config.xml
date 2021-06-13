@@ -1,7 +1,9 @@
 <wpml-config>
     <admin-texts>
         <key name="lmt_plugin_global_settings">
+            <key name="lmt_date_time_format" />
             <key name="lmt_last_modified_info_template" />
+            <key name="lmt_tt_set_format_box" />
             <key name="lmt_last_modified_info_template_tt" />
         </key>
     </admin-texts>   

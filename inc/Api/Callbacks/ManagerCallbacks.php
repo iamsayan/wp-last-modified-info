@@ -487,7 +487,9 @@ class ManagerCallbacks
 	public function custom_css( $args )
 	{
         ?><textarea id="<?php echo $args['label_for']; ?>" name="lmt_plugin_global_settings[lmt_custom_style_box]" rows="6" style="width:90%;"><?php echo esc_html( wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ) ); ?></textarea>
-		<p><small><span class="help-text"><?php printf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></span></small></p>
+		<p><small><span class="help-text"><?php 
+		/* translators: %s: Code */
+		printf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></span></small></p>
 		<?php
     }
     

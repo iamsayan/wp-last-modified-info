@@ -45,7 +45,9 @@ class AdminNotice extends BaseController
 		if ( get_transient( 'wplmi-show-notice-on-activation' ) !== false ) { 
 			if ( version_compare( PHP_VERSION, '5.6', '>=' ) ) { ?>
 			    <div class="notice notice-success">
-				    <p><strong><?php printf( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ), 'WP Last Modified Info', $this->version, admin_url( 'options-general.php?page=wp-last-modified-info' ) ); ?></strong></p>
+				    <p><strong><?php 
+					/* translators: %s: 1. Plugin Name, 2. Version, 3. Link */
+					printf( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ), 'WP Last Modified Info', $this->version, admin_url( 'options-general.php?page=wp-last-modified-info' ) ); ?></strong></p>
 			    </div> <?php
 			}
 			delete_transient( 'wplmi-show-notice-on-activation' );

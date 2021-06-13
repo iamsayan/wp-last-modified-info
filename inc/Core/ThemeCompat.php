@@ -87,7 +87,9 @@ class ThemeCompat
 
 		if ( $this->do_filter( 'astra_enable_author_output', false ) ) {
 		    $output .= '<span class="posted-by vcard author" itemprop="author" itemtype="https://schema.org/Person" itemscope="">';
-		    $output .= '<a class="url fn n" href="' . esc_url( get_author_posts_url( $author_id ) ) . '" title="' . esc_attr( sprintf( __( 'View all posts by %s', 'wp-last-modified-info' ), get_the_author_meta( 'display_name', $author_id ) ) ) . '" rel="author" itemprop="url">';
+		    $output .= '<a class="url fn n" href="' . esc_url( get_author_posts_url( $author_id ) ) . '" title="' . esc_attr( 
+				/* translators: %s: author meta */
+				sprintf( __( 'View all posts by %s', 'wp-last-modified-info' ), get_the_author_meta( 'display_name', $author_id ) ) ) . '" rel="author" itemprop="url">';
 		    $output .= '<span class="author-name" itemprop="name">' . esc_attr( get_the_author_meta( 'display_name', $author_id ) ) . '</span>';
 			$output .= '</a></span>';
 			

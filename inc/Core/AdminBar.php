@@ -66,6 +66,7 @@ class AdminBar
             'title'  => $this->title(),
             'href'   => $this->revision(),
             'meta' => array(
+				/* translators: %s: Post Info */
                 'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type(), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
                 'target' => '_blank',
             )
@@ -85,8 +86,11 @@ class AdminBar
 		$org_time = get_post_time( 'U', false, get_the_ID(), true );
 	
 		if ( $mod_time > $cur_time || $org_time > $mod_time ) {
+			/* translators: %s: date time info */
 			return sprintf( __( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), $this->get_modified_date( 'M j' ), $this->get_modified_date( get_option( 'time_format' ) ) );
 		}
+		
+		/* translators: %s: time diff */
 		return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( $this->get_modified_date( 'U' ), $cur_time ) );
 	}
 

@@ -6,8 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'WP_Async_Request' => $vendorDir . '/deliciousbrains/wp-background-processing/classes/wp-async-request.php',
-    'WP_Background_Process' => $vendorDir . '/deliciousbrains/wp-background-processing/classes/wp-background-process.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Wplmi\\Api\\Callbacks\\AdminCallbacks' => $baseDir . '/inc/Api/Callbacks/AdminCallbacks.php',
     'Wplmi\\Api\\Callbacks\\ManagerCallbacks' => $baseDir . '/inc/Api/Callbacks/ManagerCallbacks.php',
     'Wplmi\\Api\\SettingsApi' => $baseDir . '/inc/Api/SettingsApi.php',
@@ -29,6 +28,7 @@ return array(
     'Wplmi\\Core\\Backend\\MetaBox' => $baseDir . '/inc/Core/Backend/MetaBox.php',
     'Wplmi\\Core\\Backend\\MiscActions' => $baseDir . '/inc/Core/Backend/MiscActions.php',
     'Wplmi\\Core\\Backend\\PluginsData' => $baseDir . '/inc/Core/Backend/PluginsData.php',
+    'Wplmi\\Core\\Backend\\PostStatusFilters' => $baseDir . '/inc/Core/Backend/PostStatusFilters.php',
     'Wplmi\\Core\\Backend\\UserColumn' => $baseDir . '/inc/Core/Backend/UserColumn.php',
     'Wplmi\\Core\\Elementor\\Loader' => $baseDir . '/inc/Core/Elementor/Loader.php',
     'Wplmi\\Core\\Elementor\\Modules\\AuthorName' => $baseDir . '/inc/Core/Elementor/Modules/AuthorName.php',

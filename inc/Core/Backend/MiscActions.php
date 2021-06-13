@@ -30,6 +30,7 @@ class MiscActions
 		$this->action( 'admin_init', 'actions' );
 		$this->action( 'wp_head', 'custom_css' );
 		$this->action( 'pre_get_posts', 'sorting_order' );
+		$this->action( 'pre_get_posts', 'frontend_sorting_order' );
 		$this->action( 'init', 'disable_date_time' );
 		$this->filter( 'get_the_time', 'replace_time', 10, 3 );
         $this->filter( 'get_the_date', 'replace_date', 10, 3 );
@@ -169,22 +170,31 @@ class MiscActions
 	public function sorting_order( $query )
 	{
 		global $pagenow;
-
-		$admin_order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
-		$front_order = $this->is_equal( 'default_sort_order', 'published' ) ? 'asc' : 'desc';
-
+		$order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
+		
 		if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) ) {
 			if ( is_admin() && 'edit.php' === $pagenow && ! isset( $_REQUEST['orderby'] ) ) {
 				$query->set( 'orderby', 'modified' );
-				$query->set( 'order', $admin_order );
+				$query->set( 'order', $order );
 			}
 		}
-		
+	}
+
+	/**
+	 * Filter query.
+	 * 
+	 * @param object $query WP Query
+	 */
+	public function frontend_sorting_order( $query )
+	{
+		global $pagenow;
+		$order = $this->is_equal( 'default_sort_order', 'published' ) ? 'asc' : 'desc';
+
 		if ( ! $this->is_equal( 'default_sort_order', 'default' ) ) {
 			if ( ! is_admin() && $query->is_main_query() ) {
 			    if ( $query->is_home() || $query->is_category() || $query->is_tag() ) {
 			    	$query->set( 'orderby', 'modified' );
-			    	$query->set( 'order', $front_order );
+			    	$query->set( 'order', $order );
 				}
 			}
 		}

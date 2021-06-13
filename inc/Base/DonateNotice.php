@@ -36,7 +36,7 @@ class DonateNotice
 	public function show_notice()
 	{
 		// Show notice after 240 hours (10 days) from installed time.
-		if ( $this->calculate_time() > strtotime( '-360 hours' )
+		if ( $this->calculate_time() > strtotime( '-240 hours' )
 			|| '1' === get_option( 'wplmi_plugin_dismiss_donate_notice' )
 			|| ! current_user_can( 'manage_options' )
 			|| apply_filters( 'wplmi/hide_sticky_donate_notice', false ) ) {

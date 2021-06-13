@@ -12,10 +12,11 @@
 <div class="wrap">
     <div class="head-wrap">
         <h1 class="title"><?php echo $this->name; ?><span class="title-count"><?php echo $this->version; ?></span></h1>
-        <div><?php _e( 'WP Last Modified Info is a small tool that shows last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?></div><hr>
+        <div><?php _e( 'WP Last Modified Info is a small tool that shows last update date and time on pages and posts very easily.', 'wp-last-modified-info' ); ?></div>
         <div class="top-sharebar">
-            <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" title="Please rate 5 stars if you like <?php echo $this->name; ?>"><span class="dashicons dashicons-star-filled"></span> <?php _e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
-            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Checkout%20WP%20Last%20Modified%20Info v<?php echo $this->version; ?>,%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily.&tw_p=tweetbutton&url=https://wordpress.org/plugins/wp-last-modified-info/&via=im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php _e( 'Tweet about WP Last Modified Info', 'wp-last-modified-info' ); ?></a>
+            <a class="share-btn rate-btn" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/#new-post" target="_blank" title="Please rate 5 stars if you like <?php echo $this->name; ?>"><span class="dashicons dashicons-star-filled"></span> <?php _e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
+            <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Checkout%20WP%20Last%20Modified%20Info v<?php echo $this->version; ?>,%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily.&tw_p=tweetbutton&url=https://wordpress.org/plugins/wp-last-modified-info/&via=im_sayaan" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php _e( 'Share on Twitter', 'wp-last-modified-info' ); ?></a>
+            <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-last-modified-info/" target="_blank"><span class="dashicons dashicons-facebook"></span> <?php _e( 'Share on Facebook', 'wp-auto-republish' ); ?></a>
         </div>
     </div>
     <div id="nav-container" class="nav-tab-wrapper">
@@ -63,11 +64,15 @@
                         <p><li><?php _e( 'Is this plugin compatible with any themes?', 'wp-last-modified-info' ); ?></li>
                         <?php _e( 'Yes, this plugin is compatible with any theme. But Replace Post Meta Option may not be compatible with some theme. Please check before using this option.', 'wp-last-modified-info' ); ?></p>
                     
-                        <p><li><?php printf( __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></li>
+                        <p><li><?php printf( 
+                            /* translators: %s: code html tag */
+                            __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?></li>
                         <?php _e( 'No, this tag is not required, as it is already added. You just need to add only CSS Codes.', 'wp-last-modified-info' ); ?></p>
                     
                         <p><li><?php _e( 'How to set custom date/time format?', 'wp-last-modified-info' ); ?></li>
-                        <?php printf( __( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
+                        <?php printf( 
+                            /* translators: %s: html tags */
+                            __( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
                     
                         <p><li><?php _e( 'How to use template tag functionality?', 'wp-last-modified-info' ); ?></li>
                         <?php _e( 'Models the function naming convention used by WordPress for the_modified_time / get_the_modified_time and similar functions. In this case, you have to edit your theme\'s template files i.e. single.php, page.php etc. and add/replace default published date function with this:', 'wp-last-modified-info' ); ?> &nbsp;&nbsp;
@@ -79,7 +84,9 @@
 		                } ?&gt;</code></p></p>
                     
                         <p><li><?php _e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?></li>
-                        <?php printf( __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
+                        <?php printf( 
+                            /* translators: %s: shortcodes */
+                            __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
     
                         <p><li><?php _e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?></li>
                         <?php _e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
@@ -93,12 +100,13 @@
                     <li><strong><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a></strong> - <?php _e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to wordpress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/simple-posts-ticker/" target = "_blank">Simple Posts Ticker - Easy, Lightweight & Flexible</a></strong> - <?php _e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
                     <li><strong><a href = "https://wordpress.org/plugins/rzp-woocommerce/" target = "_blank">Razorpay Payment Gateway for WooCommerce</a></strong> - <?php _e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
+                    <li><strong><a href = "https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target = "_blank">Migrate WP Cron to Action Scheduler</a></strong> - <?php _e( 'The Migrate WP Cron to Action Scheduler plugin does alter the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
                 </div>
             </div>
             <div id="wplmi-tools" style="display: none;" class="wplmi-metabox">
                 <h2><?php _e( 'Plugin Tools', 'wp-last-modified-info' ); ?></h2>
                 <div>
-                    <strong><?php _e( 'Check/Un-Check <i>Disable Update</i> Option', 'wp-last-modified-info' ); ?></strong>
+                    <strong><?php _e( 'Check or Un-Check <i>Disable Update</i> Option', 'wp-last-modified-info' ); ?></strong>
 		    	    <p><?php _e( 'This will enable or disable "Disable Update" option for all posts, pages and CPTs automatically.', 'wp-last-modified-info' ); ?></p>
 		    		<p><input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="check" data-notice="<?php _e( 'It will enable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php _e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Check All', 'wp-last-modified-info' ); ?>">
                     <input type="button" class="button button-secondary wplmi-reset" data-action="wplmi_process_set_meta" data-type="uncheck" data-notice="<?php _e( 'It will disable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php _e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php _e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php _e( 'Un-Check All', 'wp-last-modified-info' ); ?>"></p>
@@ -155,7 +163,9 @@
             <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
         </div>
         <span class="coffee-heading"><?php _e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
-        <p style="text-align: justify;"><?php printf( __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . $this->version . '</strong>' ); ?></strong></p>
-        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://www.sayandatta.in/contact/" target="_blank" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+        <p style="text-align: justify;"><?php printf( 
+            /* translators: %s: plugin name */
+            __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . $this->version . '</strong>' ); ?></strong></p>
+        <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://www.sayandatta.in/contact/" target="_blank" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
     </div>
 </div>

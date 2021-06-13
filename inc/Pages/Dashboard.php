@@ -113,7 +113,7 @@ class Dashboard
 	{
 		$sections = [ 
 			'post' => __( 'Post Options', 'wp-last-modified-info' ),
-			'template_tag' => __( 'Post Options', 'wp-last-modified-info' ),
+			'template_tag' => __( 'Template Tags', 'wp-last-modified-info' ),
 			'schema' => __( 'Schema Options', 'wp-last-modified-info' ),
 			'notification' => __( 'Email Notification', 'wp-last-modified-info' ),
 			'misc' => __( 'Miscellaneous Options', 'wp-last-modified-info' )

@@ -65,7 +65,7 @@ class MiscActions extends BaseController
 		// If an update has taken place and the updated type is plugins and the plugins element exists
 		if ( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 	        // Iterate through the plugins being updated and check if ours is there
-		    foreach( $options['plugins'] as $plugin ) {
+		    foreach ( $options['plugins'] as $plugin ) {
 		        if ( $plugin === $this->plugin ) {
 					$this->do_action( 'plugin_updated', $this->version, $options );
 		        }

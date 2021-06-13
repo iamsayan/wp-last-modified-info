@@ -28,6 +28,7 @@ class PostView
 	public function register()
 	{
 		$this->filter( 'the_content', 'show_info', $this->do_filter( 'display_priority', 5 ) );
+		$this->action( 'wp_footer', 'run_replace', 99 );
 	}
 
 	/**
@@ -49,7 +50,7 @@ class PostView
 		}
 
 		$position = $this->get_data( 'lmt_show_last_modified_time_date_post', 'before_content' );
-		if ( ! in_array( $position, [ 'before_content', 'after_content', 'replace_original' ] ) ) {
+		if ( ! in_array( $position, [ 'before_content', 'after_content' ] ) ) {
 			return $content;
 		}
 
@@ -106,15 +107,84 @@ class PostView
         	$content = $this->wrapper( $template, get_the_ID() ) . $content;
         } else if ( $position == 'after_content' ) {
         	$content = $content . $this->wrapper( $template, get_the_ID() );
-	    } else if ( $position == 'replace_original' ) {
-	    	wp_localize_script( 'wplmi-frontend', 'wplmiFrontend', [
-				'is_enabled'    => $this->is_enabled( 'enable_last_modified_cb' ) ? 'yes' : 'no',
-				'css_selectors' => preg_replace( "/\r|\n/", '', wp_kses_post( $this->get_data( 'lmt_css_selectors' ) ) ),
-				'html_template' => $template
-	    	] );
 	    }
 
     	return $this->do_filter( 'post_content_output', $content, $position, $template, get_the_ID() );
+	}
+
+	/**
+	 * Replace Published date with Modified Date using jQuery.
+	 */
+	public function run_replace()
+	{
+		global $post;
+		
+		if ( ! is_singular() ) {
+			return;
+		}
+
+		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
+			return;
+		}
+
+		$post_id = $post->ID;
+		$post_types = $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] );
+		if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
+			return;
+		}
+
+		$position = $this->get_data( 'lmt_show_last_modified_time_date_post', 'before_content' );
+		if ( $position !== 'replace_original' ) {
+			return;
+		}
+
+		$disable = $this->get_meta( $post_id, '_lmt_disable' );
+		if ( ! empty( $disable ) && $disable == 'yes' ) {
+			return;
+		}
+
+		$template = $this->get_data( 'lmt_last_modified_info_template' );
+		$selectors = $this->get_data( 'lmt_css_selectors' );
+		if ( empty( $template ) || empty( $selectors ) ) {
+			return;
+		}
+
+		$published_timestamp = get_post_time( 'U' );
+		$modified_timestamp = get_post_modified_time( 'U' );
+		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
+
+		if ( $modified_timestamp < ( $published_timestamp + $gap ) ) {
+			return;
+		}
+
+		$author_id = $this->get_meta( $post->ID, '_edit_last' );
+		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
+			$author_id = $this->get_data( 'lmt_show_author_list' );
+		}
+
+		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
+		$date_type = $this->do_filter( 'post_datetime_type', $date_type, $post_id );
+
+		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
+		if ( $date_type == 'default' ) {
+			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
+			$format = $this->do_filter( 'post_datetime_format', $format, get_the_ID() );
+			$timestamp = ( ! empty( $format ) ) ? get_the_modified_date( $format ) : get_the_modified_date( get_option( 'date_format' ) );
+		}
+		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, $post_id );
+
+		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( wp_unslash( $template ) ), $post_id, $timestamp, $author_id ) );
+		$selectors = preg_replace( "/\r|\n/", '', wp_kses_post( $selectors ) ); ?>
+
+	    <script type="text/javascript">
+	        jQuery(document).ready(function ($) {
+				var selector = $( '<?php echo $selectors; ?>' );
+                if ( selector.length ) {
+					selector.replaceWith( '<?php echo $template; ?>' );
+				}
+	        });
+	    </script>
+		<?php
 	}
 
 	/**

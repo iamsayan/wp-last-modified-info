@@ -183,6 +183,7 @@ class PluginTools
 		delete_option( 'lmt_plugin_global_settings' );
 		delete_option( 'wplmi_site_global_update_info' );
 		delete_option( 'lmt_dashboard_widget_options' );
+		delete_option( 'wplmi_plugin_api_data' );
 
 		$args = [
 			'numberposts'   => -1,

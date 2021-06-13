@@ -18,14 +18,9 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Plugins details class.
  */
-class PluginsData extends \WP_Background_Process
+class PluginsData
 {
 	use HelperFunctions, Hooker;
-
-	/**
-	 * @var string
-	 */
-	protected $action = 'wplmi_fetch_plugin_data';
 
 	/**
 	 * Register functions.
@@ -36,6 +31,7 @@ class PluginsData extends \WP_Background_Process
 		$this->action( 'wplmi/fetch_plugin_data', 'clean_start' );
 		$this->action( 'plugin_row_meta', 'display', 99, 2 );
 		$this->action( 'activate_plugin', 'activate_plugin' );
+		$this->action( 'upgrader_process_complete', 'update_action', 10, 2 );
 	}
 
 	/**
@@ -56,7 +52,6 @@ class PluginsData extends \WP_Background_Process
 		if ( get_site_transient( 'wplmi_lock_fetch' ) === false ) {
 			// check if disabled from settings
 			if ( ! $this->is_enabled( 'disable_plugin_info' ) ) {
-			    $this->kill_process();
 			    $this->start_process();
 			}
 
@@ -74,26 +69,9 @@ class PluginsData extends \WP_Background_Process
 		foreach ( $plugins as $plugin ) {
 			$file_parts = explode( '/', $plugin );
             if ( count( $file_parts ) > 1 ) {
-				$this->push_to_queue( $file_parts[0] );
+				$this->call_api( $file_parts[0] );
 			}
 		}
-
-		$this->save()->dispatch();
-	}
-
-	/**
-	 * Task
-	 *
-	 * @param mixed $item Queue item to iterate over
-	 *
-	 * @return mixed
-	 */
-	protected function task( $item )
-	{
-        $this->call_api( $item );
-		sleep( 2 ); // stop for 2 seconds to optimize memory usage
-		
-		return false;
 	}
 
 	/**
@@ -148,16 +126,7 @@ class PluginsData extends \WP_Background_Process
 		    $new_data[$data->slug]['active_installs'] = $data->active_installs;
 		}
 
-		update_option( 'wplmi_plugin_api_data', $new_data );
-
-		return true;
-	}
-
-	/**
-	 * Kill process.
-	 */
-	private function kill_process() {
-		$this->cancel_process();
+		return update_option( 'wplmi_plugin_api_data', $new_data );
 	}
 
 	/**
@@ -188,34 +157,42 @@ class PluginsData extends \WP_Background_Process
 			$current_date = current_time( 'timestamp', 0 );
             $diff = strtotime( '-1 year', $current_date );
 			if ( $diff <= $date ) {
+				/* translators: %s: updated time */
 			    $links[] = sprintf( __( 'Updated: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">' . date_i18n( get_option( 'date_format' ), $date ) . '</span>' );
 		    } else {
+				/* translators: %s: updated time */
 				$links[] = sprintf( __( 'Updated: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;color: #c30808;">' . date_i18n( get_option( 'date_format' ), $date ) . '</span>' );
 		    }
 	    }
 
 		if ( isset( $data[$new_file]['rating'] ) ) {
-			$links[] = sprintf( __( 'Ratings: %s', 'wp-last-modified-info' ), ( $data[$new_file]['rating'] / 10 ) . '/10' );
+			/* translators: %s: rating */
+			$links[] = sprintf( __( 'Ratings: %s', 'wp-last-modified-info' ), ( round( $data[$new_file]['rating'], 0 ) / 10 ) . '/10' );
 		}
 
 		if ( isset( $data[$new_file]['num_ratings'] ) ) {
+			/* translators: %s: no. of reviews */
 			$links[] = sprintf( __( 'Reviews: %s', 'wp-last-modified-info' ), $data[$new_file]['num_ratings'] );
 		}
 
 		if ( isset( $data[$new_file]['requires'] ) ) {
+			/* translators: %s: vertion number */
 			$links[] = sprintf( __( 'Requires at least: v%s', 'wp-last-modified-info' ), $data[$new_file]['requires'] );
 		}
 
 		if ( isset( $data[$new_file]['tested'] ) ) {
 			if ( version_compare( $wp_version, $data[$new_file]['tested'], '<=' ) ) {
-			    $links[] = sprintf( __( 'Tested upto: v%s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">' . $data[$new_file]['tested'] . '</span>' );
+				/* translators: %s: tested upto version */
+			    $links[] = sprintf( __( 'Tested upto: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">v' . $data[$new_file]['tested'] . '</span>' );
 			} else {
+				/* translators: %s: tested upto version */
 				$links[] = sprintf( __( 'Tested upto: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;color: #c30808;">v' . $data[$new_file]['tested'] . '</span>' );
 			}
 		}
 
 		if ( isset( $data[$new_file]['svn_exists'] ) ) {
 			if ( $data[$new_file]['svn_exists'] == 'yes' ) {
+				/* translators: %s: plugin info */
 			    $links[] = sprintf( '%1$s %2$s', __( 'Status:', 'wp-last-modified-info' ), '<a href="https://wordpress.org/plugins/' . $data[$new_file]['slug'] . '/" target="_blank">' . __( 'Available', 'wp-last-modified-info' ) . '</a>' );
 			}
 		}
@@ -278,7 +255,7 @@ class PluginsData extends \WP_Background_Process
 		// If an update has taken place and the updated type is plugins and the plugins element exists
 		if ( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 	        // Iterate through the plugins being updated
-		    foreach( $options['plugins'] as $plugin ) {
+		    foreach ( $options['plugins'] as $plugin ) {
 		        $this->call_api( $this->get_path( $plugin ) );
 		    }
 		}

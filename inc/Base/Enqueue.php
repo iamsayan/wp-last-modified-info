@@ -28,7 +28,6 @@ class Enqueue extends BaseController
 	public function register()
 	{
 		$this->action( 'admin_enqueue_scripts', 'assets' );
-		$this->action( 'wp_enqueue_scripts', 'frontend_assets' );
 	}
 
 	/**
@@ -103,18 +102,11 @@ class Enqueue extends BaseController
 		if ( $hook == 'edit.php' ) {
 			$this->load( 'css', 'edit', 'edit.min.css', $version );
 			$this->load( 'js', 'edit', 'edit.min.js', $version, [ 'jquery' ] );
-		}
-	}
 
-	/**
-	 * Load frontend assets.
-	 */
-	public function frontend_assets()
-	{
-		$version = ( $this->debug ) ? time() : $this->version;
-		
-		if ( is_singular() ) {
-		    $this->load( 'js', 'frontend', 'frontend.min.js', $version, [ 'jquery' ] );
+			wp_localize_script( 'wplmi-edit', 'wplmi_edit_L10n', [
+				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+				'security' => wp_create_nonce( 'wplmi_edit_nonce' ),
+			] );
 		}
 	}
 

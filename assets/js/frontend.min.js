@@ -1,1 +1,0 @@
-jQuery(document).ready(function(e){if("undefined"==typeof wplmiFrontend)return!1;if("yes"===wplmiFrontend.is_enabled){var n=e(wplmiFrontend.css_selectors);n.length&&n.replaceWith(wplmiFrontend.html_template)}});
