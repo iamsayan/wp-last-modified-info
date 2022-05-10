@@ -80,7 +80,7 @@ trait SettingsData
 	protected function get_data( $key, $default = false ) {
 		$settings = get_option( 'lmt_plugin_global_settings' );
 
-		return ( isset( $settings[ $key ] ) ) ? $settings[ $key ] : $default;
+		return ( isset( $settings[ $key ] ) && ! empty( $settings[ $key ] ) ) ? $settings[ $key ] : $default;
 	}
 
 	/**

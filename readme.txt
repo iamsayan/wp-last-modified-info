@@ -163,12 +163,13 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
-= 1.7.7 =
-Release Date: June 13, 2021
+= 1.8.0 =
+Release Date:
 
 * NEW: New Plugin UI.
 * NEW: Block Editor Controls.
 * Fixed: Dashboard Widget Issue.
+* Fixed: The issue where plugin returns true even if there is no value in settings.
 * Compatibility with WordPress v6.0.
 
 = Other Versions =

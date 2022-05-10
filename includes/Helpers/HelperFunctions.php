@@ -113,7 +113,7 @@ trait HelperFunctions
 	 */
 	protected function is_equal( $name, $value ) {
 		$data = $this->get_data( 'lmt_' . $name );
-		if ( $data == $value ) {
+		if ( $data && $data == $value ) {
             return true;
 		}
 

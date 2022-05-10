@@ -2,6 +2,8 @@
 /.git
 /.github
 /node_modules
+/assets/block-editor/src
+/includes/Core/Blocks/src
 
 _config.yml
 .distignore
