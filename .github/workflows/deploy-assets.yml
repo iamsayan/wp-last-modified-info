@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Update plugin and assets
     runs-on: ubuntu-latest
+    environment: wp.org plugin
     
     steps:
       - name: Check out Git repository
