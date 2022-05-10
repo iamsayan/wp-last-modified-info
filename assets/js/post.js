@@ -1,6 +1,6 @@
 (function($) {
 
-    $tsmdiv = $('#timestampmodifieddiv');
+    let $tsmdiv = $('#timestampmodifieddiv');
 	
 	/**
 	 * Partially borrowed from wp-admin/js/post.js

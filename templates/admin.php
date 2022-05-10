@@ -21,9 +21,9 @@
     <a href="#help" class="wplmi-tab" id="wplmi-tab-help"><?php esc_html_e( 'Help', 'wp-last-modified-info' ); ?></a>
 
     <div class="top-sharebar">
-        <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" title="<?php esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-last-modified-info' ); ?>"><span class="dashicons dashicons-star-filled"></span> <?php esc_html_e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
-        <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/%20via%20%40im_sayaan%20" target="_blank"><span class="dashicons dashicons-twitter"></span> <?php esc_html_e( 'Tweet', 'wp-last-modified-info' ); ?></a>
-        <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-last-modified-info/&quote=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/" target="_blank"><span class="dashicons dashicons-facebook"></span> <?php esc_html_e( 'Share', 'wp-last-modified-info' ); ?></a>
+        <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" title="<?php esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-last-modified-info' ); ?>" rel="noopener"><span class="dashicons dashicons-star-filled"></span> <?php esc_html_e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
+        <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/%20via%20%40im_sayaan%20" target="_blank" rel="noopener"><span class="dashicons dashicons-twitter"></span> <?php esc_html_e( 'Tweet', 'wp-last-modified-info' ); ?></a>
+        <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-last-modified-info/&quote=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/" target="_blank" rel="noopener"><span class="dashicons dashicons-facebook"></span> <?php esc_html_e( 'Share', 'wp-last-modified-info' ); ?></a>
     </div>
 </div>
 <div class="wrap wplmi-wrap" data-reload="no">
@@ -155,10 +155,10 @@
                             <li>
                                 <?php esc_html_e( 'How to use template tag functionality?', 'wp-last-modified-info' ); ?>
                                 <p><?php esc_html_e( 'Models the function naming convention used by WordPress for the_modified_time / get_the_modified_time and similar functions. In this case, you have to edit your theme\'s template files i.e. single.php, page.php etc. and add/replace default published date function with this:', 'wp-last-modified-info' ); ?> &nbsp;&nbsp;
-                                <p><i><?php esc_html_e( 'Displays/echos the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'the_last_modified_info' ) ) {
+                                <p><em><?php esc_html_e( 'Displays/echos the last modified info:', 'wp-last-modified-info' ); ?></em> <code>&lt;?php if ( function_exists( 'the_last_modified_info' ) ) {
                                 the_last_modified_info();
                                 } ?&gt;</code></p>
-                                <p><i><?php esc_html_e( 'Returns the last modified info:', 'wp-last-modified-info' ); ?></i> <code>&lt;?php if ( function_exists( 'get_the_last_modified_info' ) ) {
+                                <p><em><?php esc_html_e( 'Returns the last modified info:', 'wp-last-modified-info' ); ?></em> <code>&lt;?php if ( function_exists( 'get_the_last_modified_info' ) ) {
                                 get_the_last_modified_info();
                                 } ?&gt;</code></p></p>
                             </li>
@@ -176,12 +176,12 @@
                         <ul class="my-plugins">
                             <h2><?php esc_html_e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2>
                             <p><strong><?php esc_html_e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
-                            <li><a href = "https://wordpress.org/plugins/wp-auto-re5publish/" target = "_blank">RevivePress</a> - <?php esc_html_e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href = "https://wordpress.org/plugins/ultimate-facebook-comments/" target = "_blank">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href = "https://wordpress.org/plugins/change-wp-page-permalinks/" target = "_blank">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
-                            <li><a href = "https://wordpress.org/plugins/simple-posts-ticker/" target = "_blank">Simple Posts Ticker - Easy, Lightweight & Flexible</a> - <?php esc_html_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href = "https://wordpress.org/plugins/rzp-woocommerce/" target = "_blank">Razorpay Payment Gateway for WooCommerce</a> - <?php esc_html_e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href = "https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target = "_blank">Migrate WP Cron to Action Scheduler</a> - <?php esc_html_e( 'The Migrate WP Cron to Action Scheduler plugin does alter the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/wp-auto-re5publish/" target="_blank" rel="noopener">RevivePress</a> - <?php esc_html_e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank" rel="noopener">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank" rel="noopener">Simple Posts Ticker - Easy, Lightweight & Flexible</a> - <?php esc_html_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/rzp-woocommerce/" target="_blank" rel="noopener">Razorpay Payment Gateway for WooCommerce</a> - <?php esc_html_e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target="_blank" rel="noopener">Migrate WP Cron to Action Scheduler</a> - <?php esc_html_e( 'The Migrate WP Cron to Action Scheduler plugin does alter the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                             <option value="15usd">$15</option>
                             <option value=""><?php esc_html_e( 'Custom', 'wp-last-modified-info' ); ?></option>
                         </select></p>
-                        <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
+                        <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" rel="noopener" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
                     </div>
                     <span class="coffee-heading"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
                     <p style="text-align: justify;"><?php printf( 

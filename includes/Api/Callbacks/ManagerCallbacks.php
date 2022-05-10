@@ -421,7 +421,7 @@ class ManagerCallbacks
 		$default = 'The following changes are made on a %post_type% of your blog by  %modified_author_name%' . "\n\n" . '<p><strong>Post: %post_title%</strong></p><p>%post_diff%</p>';
 		$this->do_field( [
 			'type'    => 'wp_editor',
-			'id'      => 'wplmi_email_message',
+			'id'      => $args['label_for'],
 			'name'    => 'lmt_email_message',
 			'value'   => $this->get_data( 'lmt_email_message', $default ),
 			//'description' => $this->do_filter( 'email_template_tags', 'message' ),
@@ -547,7 +547,7 @@ class ManagerCallbacks
 	 * @since 1.8.0
 	 * @return string
 	 */
-	private function get_available_tags( $in_url = false ) {
+	private function get_available_tags() {
 		$tags = [ 'author_name', 'author_url', 'author_email', 'author_archive', 'post_published', 'post_link', 'post_modified' ];
 		$content = [];
 		foreach ( $tags as $tag ) {

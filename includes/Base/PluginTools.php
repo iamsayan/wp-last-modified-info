@@ -118,6 +118,7 @@ class PluginTools
 		}
 
 		$action = sanitize_text_field( $_REQUEST['action_type'] );
+		$value = ( $action == 'check' ) ? 'yes' : 'no';
 
 		$args = [
 			'numberposts' => -1,
@@ -125,15 +126,11 @@ class PluginTools
 			'post_status' => [ 'publish', 'draft', 'pending' ],
 			'fields'      => 'ids',
 		];
-	
+		
 		$posts = get_posts( $args );
 		if ( ! empty( $posts ) ) {
-	    	foreach ( $posts as $post ) {
-	    		if ( $action == 'check' ) {
-	    		    $this->update_meta( $post_id, '_lmt_disableupdate', 'yes' );
-	    		} elseif ( $action == 'uncheck' ) {
-	    			$this->update_meta( $post_id, '_lmt_disableupdate', 'no' );
-	    		}
+	    	foreach ( $posts as $post_id ) {
+	    		$this->update_meta( $post_id, '_lmt_disableupdate', $value );
 	    	}
 	    }
 	

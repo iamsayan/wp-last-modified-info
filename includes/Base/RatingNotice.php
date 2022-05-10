@@ -46,10 +46,10 @@ class RatingNotice
         
         <div class="notice notice-success">
             <p><?php esc_html_e( 'Hey, I noticed you\'ve been using WP Last Modified Info for more than 1 week – that’s awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help us spread the word and boost my motivation.', 'wp-last-modified-info' ); ?></p>
-            <p><a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" class="button button-secondary"><?php esc_html_e( 'Ok, you deserve it', 'wp-last-modified-info' ); ?></a>&nbsp;
-            <a href="<?php echo $dismiss; ?>" class="already-did"><strong><?php esc_html_e( 'I already did', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
-            <a href="<?php echo $no_thanks; ?>" class="later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
-            <a href="<?php echo $dismiss; ?>" class="hide"><strong><?php esc_html_e( 'I don\'t want to rate', 'wp-last-modified-info' ); ?></strong></a></p>
+            <p><a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" rel="noopener" target="_blank" class="button button-secondary"><?php esc_html_e( 'Ok, you deserve it', 'wp-last-modified-info' ); ?></a>&nbsp;
+            <a href="<?php echo esc_url( $dismiss ); ?>" rel="noopener" class="already-did"><strong><?php esc_html_e( 'I already did', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
+            <a href="<?php echo esc_url( $no_thanks ); ?>" rel="noopener" class="later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
+            <a href="<?php echo esc_url( $dismiss ); ?>" rel="noopener" class="hide"><strong><?php esc_html_e( 'I don\'t want to rate', 'wp-last-modified-info' ); ?></strong></a></p>
         </div>
 	<?php
 	}

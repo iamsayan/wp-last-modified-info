@@ -44,12 +44,7 @@ class AdminBar
 		}
 
         // If it's admin page, then get out!
-        if ( ! is_singular() ) {
-			return;
-		}
-    
-        // If user can't publish posts, then get out
-        if ( ! current_user_can( 'publish_posts' ) ) {
+        if ( ! is_singular() || ! current_user_can( 'publish_posts' ) ) {
 			return;
 		}
     
@@ -64,8 +59,8 @@ class AdminBar
             'title'  => $this->title(),
             'href'   => $this->revision(),
             'meta'   => array(
-				/* translators: %s: Post Info */
-                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type(), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
+				/* translators: %1$s: Post Type Label, %2$s: Post Modified Date, %3$s: Post Modified Time, %4$s: POst Modified Author */
+                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), esc_html( $object->labels->singular_name ), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
                 'target' => '_blank',
             ),
         );
@@ -96,20 +91,20 @@ class AdminBar
 	 */
 	private function revision() {
 		global $post;
-		$post_id = $post->ID;
 	
 		// If user can't edit post, then don't show
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
 			return;
 		}
 	
-		$revision = wp_get_post_revisions( $post_id );
+		$revision = wp_get_post_revisions( $post->ID );
 		$latest_revision = array_shift( $revision );
+		$url = '';
 	
 		if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
-			return get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
+			$url = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
 		}
 	
-		return;
+		return $url;
 	}
 }

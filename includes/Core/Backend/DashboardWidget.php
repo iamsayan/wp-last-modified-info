@@ -46,10 +46,8 @@ class DashboardWidget
 
 	/**
 	 * Dashboard widget callback.
-	 * 
-	 * @param string $widget_id Widget ID
 	 */
-	public function widget_callback( $widget_id ) {
+	public function widget_callback() {
 		$timestamp = current_time( 'timestamp', 0 );
 
 		$widget_options = get_option( 'lmt_dashboard_widget_options' );
@@ -110,10 +108,12 @@ class DashboardWidget
 			echo '</div>';
 				
 		} else {
+
 			echo '<div class="no-activity">';
 			echo '<p class="smiley" aria-hidden="true"></p>';
 			echo '<p>' . __( 'No modified posts yet!' ) . '</p>';
 			echo '</div>';
+			
 		}
 		wp_reset_postdata();
 

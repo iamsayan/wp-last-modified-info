@@ -51,22 +51,16 @@ jQuery(document).ready(function ($) {
         switch (c) {
             case '=':
                 return p1 == p2;
-                break;
             case '>':
                 return p1 > p2;
-                break;
             case '<':
                 return p1 < p2;
-                break;
             case '!=':
                 return p1 != p2;
-                break;
             case '>=':
                 return p1 >= p2;
-                break;
             case '<=':
                 return p1 <= p2;
-                break;
         }
     }
 

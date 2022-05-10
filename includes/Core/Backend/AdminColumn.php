@@ -56,34 +56,33 @@ class AdminColumn
 	 * @return string  $time
 	 */
 	public function column_data( $column, $post_id ) {
-		switch ( $column ) {
-			case 'lastmodified':
-				$get_df = get_option( 'date_format' );
-				$get_tf = get_option( 'time_format' );
-				$m_orig = get_post_field( 'post_modified', $post_id, 'raw' );
-				$p_meta = $this->get_meta( $post_id, '_lmt_disableupdate' );
-				$modified = date_i18n( $this->do_filter( 'admin_column_datetime_format', $get_df . ' \a\t ' . $get_tf, $post_id ), strtotime( $m_orig ) );
-				$mod_format = date( 'M d, Y H:i:s', strtotime( $m_orig ) );
-				$disabled = ( ! empty( $p_meta ) ) ? $p_meta : 'no';
+		if ( 'lastmodified' === $column ) {
+			$post = get_post( $post_id );
+
+			$get_df = get_option( 'date_format' );
+			$get_tf = get_option( 'time_format' );
+			$m_orig = get_post_field( 'post_modified', $post->ID, 'raw' );
+			$p_meta = $this->get_meta( $post->ID, '_lmt_disableupdate' );
+			$modified = date_i18n( $this->do_filter( 'admin_column_datetime_format', $get_df . ' \a\t ' . $get_tf, $post->ID ), strtotime( $m_orig ) );
+			$mod_format = date( 'M d, Y H:i:s', strtotime( $m_orig ) );
+			$disabled = ( ! empty( $p_meta ) ) ? $p_meta : 'no';
+			
+			$html = $modified;
+			if ( get_the_modified_author() ) {
+				$html .= '<br>' . __( 'by', 'wp-last-modified-info' ) . ' <strong>' . esc_html( get_the_modified_author() ) . '</strong>';
+			}
+			if ( ! in_array( $post->post_status, [ 'auto-draft', 'future' ] ) ) {
+				if ( $p_meta == 'yes' ) {
+					$html .= ' <span class="wplmi-lock dashicons dashicons-lock" title="' . esc_attr__( 'Modified date time update is disabled.', 'wp-last-modified-info' ) . '" style="font-size:16px; padding-top: 3px;"></span>';
+				}
+				$html .= '<span class="wplmi-hidden-date-format" style="display: none;">' . esc_html( $mod_format ) . '</span>';
+				$html .= '<span class="wplmi-hidden-post-modified" style="display: none;">' . esc_html( $post->post_modified ) . '</span>';
+				$html .= '<span class="wplmi-hidden-disabled" style="display: none;">' . esc_html( $disabled ) . '</span>';
+				$html .= '<span class="wplmi-hidden-post-type" style="display: none;">' . esc_html( $post->post_type ) . '</span>';
+			}
+			$html .= '<span class="wplmi-hidden-status" style="display: none;">' . esc_html( $post->post_status ) . '</span>';
 				
-				$html = $modified;
-				if ( get_the_modified_author() ) {
-					$html .= '<br>' . __( 'by', 'wp-last-modified-info' ) . ' <strong>' . get_the_modified_author() . '</strong>';
-				}
-				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
-			    	if ( $p_meta == 'yes' ) {
-			    		$html .= ' <span class="wplmi-lock dashicons dashicons-lock" title="' . esc_attr__( 'Modified date time update is disabled.', 'wp-last-modified-info' ) . '" style="font-size:16px; padding-top: 3px;"></span>';
-			    	}
-			    	$html .= '<span class="wplmi-hidden-date-format" style="display: none;">' . $mod_format . '</span>';
-				    $html .= '<span class="wplmi-hidden-post-modified" style="display: none;">' . get_post( $post_id )->post_modified . '</span>';
-				    $html .= '<span class="wplmi-hidden-disabled" style="display: none;">' . $disabled . '</span>';
-					$html .= '<span class="wplmi-hidden-post-type" style="display: none;">' . get_post_type( $post_id ) . '</span>';
-				}
-				$html .= '<span class="wplmi-hidden-status" style="display: none;">' . get_post_status( $post_id ) . '</span>';
-				    
-				echo $html;
-			    break;
-		// end all case breaks
+			echo $html;
 		}
 	}
 	

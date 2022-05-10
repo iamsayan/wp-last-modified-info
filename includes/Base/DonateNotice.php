@@ -46,10 +46,10 @@ class DonateNotice
 		
 		<div class="notice notice-success">
 			<p><?php esc_html_e( 'Hey, I noticed you\'ve been using WP Last Modified Info for more than 2 week – that’s awesome! If you like WP Last Modified Info and you are satisfied with the plugin, isn’t that worth a coffee or two? Please consider donating. Donations help me to continue support and development of this free plugin! Thank you very much!', 'wp-last-modified-info' ); ?></p>
-			<p><a href="https://www.paypal.me/iamsayan" target="_blank" class="button button-secondary"><?php esc_html_e( 'Donate Now', 'wp-last-modified-info' ); ?></a>&nbsp;
-			<a href="<?php echo $dismiss; ?>" class="already-did"><strong><?php esc_html_e( 'I already donated', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
-			<a href="<?php echo $no_thanks; ?>" class="later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
-			<a href="<?php echo $dismiss; ?>" class="hide"><strong><?php esc_html_e( 'I don\'t want to donate', 'wp-last-modified-info' ); ?></strong></a></p>
+			<p><a href="https://www.paypal.me/iamsayan" target="_blank" rel="noopener" class="button button-secondary"><?php esc_html_e( 'Donate Now', 'wp-last-modified-info' ); ?></a>&nbsp;
+			<a href="<?php echo esc_url( $dismiss ); ?>" rel="noopener" class="already-did"><strong><?php esc_html_e( 'I already donated', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
+			<a href="<?php echo esc_url( $no_thanks ); ?>" rel="noopener" class="later"><strong><?php esc_html_e( 'Nope&#44; maybe later', 'wp-last-modified-info' ); ?></strong></a>&nbsp;<strong>|</strong>
+			<a href="<?php echo esc_url( $dismiss ); ?>" rel="noopener" class="hide"><strong><?php esc_html_e( 'I don\'t want to donate', 'wp-last-modified-info' ); ?></strong></a></p>
 		</div>
 	<?php
 	}

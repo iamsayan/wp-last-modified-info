@@ -59,7 +59,7 @@ class Schema extends BaseController
 		$short_content = ( ! empty( $excerpt ) ) ? $excerpt : $short_content;
 	
 		$json = [
-			'@context'         => 'http://schema.org/',
+			'@context'         => 'https://schema.org/',
 			'@type'            => 'CreativeWork',
 			'dateModified'     => esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false ) ),
 			'headline'         => esc_html( $post->post_title ),

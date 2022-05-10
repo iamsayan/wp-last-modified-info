@@ -23,8 +23,6 @@ class AdminCallbacks extends BaseController
 	 * Call dashboard template.
 	 */
 	public function adminDashboard() {
-		$options = get_option( 'lmt_plugin_global_settings' );
-
 		return require_once( "$this->plugin_path/templates/admin.php" );
 	}
 
