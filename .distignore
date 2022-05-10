@@ -1,0 +1,16 @@
+/.wordpress-org
+/.git
+/.github
+/node_modules
+
+_config.yml
+.distignore
+.gitignore
+CHANGELOG.md
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpcs.xml
+README.md
+todo

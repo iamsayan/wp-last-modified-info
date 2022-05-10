@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
-Tested up to: 5.9
-Stable tag: 1.7.7
+Tested up to: 6.0
+Stable tag: 1.8.0
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -166,96 +166,10 @@ If you like WP Last Modified Info, please take a moment to [give a 5-star rating
 = 1.7.7 =
 Release Date: June 13, 2021
 
-* Removed: WP Backgroud Processing Library. You can use [Migrate WP Cron to Action Scheduler](https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/) Plugin to overcome the limitation of WP Cron.
-* Improved: Added a hook to fetch plugin data just after plugin upgradation.
-* Corrected Template Tags wrong Tab name.
-* Compatibility with WordPress v5.7.
-
-= 1.7.6 =
-Release Date: December 25, 2020
-
-* Added: Modified Date Time Bulk Update Capability.
-* Added: Option to view posts which are included in Disable Update list.
-* Fixed: Post order displays as Modified by default on some installations.
-* Fixed: Reverted back to the old method of post meta replace.
-* Improved: Admin Settings Page UI.
-* Compatibility with WordPress v5.6.
-
-= 1.7.5 =
-Release Date: September 30, 2020
-
-* Fixed: PHP Fatal error on plugin activation.
-
-= 1.7.4 =
-Release Date: September 30, 2020
-
-* Added: Ability to show plugins last modified info on plugins page.
-* Fixed: HTML non-spacing issue on post ecit screen.
-* Fixed: `datePublished` schema is replaced by `dateModified` automatically even if schema output is disabled from plugin settings.
-
-= 1.7.3 =
-Release Date: September 27, 2020
-
-* Added: Ability to remove/hide post dates from search engines completely.
-* Fixed: PHP Fatal error in WordPress version less than v4.9.0.
-* Fixed: A bug where last modified info was not showing using shortcode if "Change Original Time to Modified Time" option was enabled from Misc Options.
-* Tweak: Added some CSS adjustments to make it more easy.
-* Tweak: Properly set HTML element's CSS Class names.
-* Twaek: The minimun required WordPress version is now v4.7.0.
-* Tweak: Increased rating notice auto show time interval.
-* Tweak: Cache will be automatically purged the modified date is changed.
-* Tweak: Custom modified date which is greater than original published date is only accepted in Products also.
-* Tweak: Correct modified date was not properly reflected for products if custom modified date is being set from quick edit.
-* Tweak: Increased priority of `the_content` hook to `5`.
-* Tweak: `<p></p>` tag will be removed automatically from shortcode.
-* Tweak: Added improved replace date mechanism to make it work properly with any caching or minification plugin.
-* Tweak: From now, `itemprop="datePublished"` schema will be replaced automatically with `itemprop="dateModified"`. It can be disabled by `wplmi/published_schema_replace` filter.
-* Other minor improvements and fixes.
-
-= 1.7.2 =
-Release Date: August 14, 2020
-
-* Added: Ability to use Template Tag as Shortcode.
-* Tweak: From now custom modified date which is greater than original published date is only accepted.
-* Tweak: Make Global Site modified info Date translable.
-* Fixed: Variable not found PHP warning on user list page.
-* Fixed: A bug where Actual post published date is not translating.
-* Fixed: A bug where Plugin shows error on dev console if Syntax Highlighting is disabled from Profile settings.
-* Other minor improvements.
-
-= 1.7.1 =
-Release Date: August 12, 2020
-
-* Added: Some PostView template tags.
-* Added: An option to Copy and Paste plugin settings to Export and Import respectively.
-* Fixed: Astra & GeneratePress Schema Output.
-* Fixed: Elemetor Schema Output.
-* Other minor improvements.
-
-= 1.7.0 =
-Release Date: August 11, 2020
-
-IMPORTANT: As various changes introduced in this plugin, please re-configure your plugin settings after update, otherwise, it may stop working.
-
-* Improvement: Rewrite the plugin from scratch.
-* Added: Templateting system to customize the output as you want.
-* Added: A method to replace post published date with post modified date. It will only work on Single Post Page.
-* Added: Some validations to check if the custom modified date is a valid past date.
-* Added: An option to hide last modified info on various archives from plugin settings.
-* Added: Dedicated CSS editor to enable syntax highlighting.
-* Added: Option to show Last Modified Author Avatar using Elementor.
-* Added: Lots of filters and hooks to make the plugin customizable.
-* Tweak: Traditional Date Format and Time Format field is merged into one field.
-* Tweak: Better theme (Astra & GeneratePress) compatibility.
-* Tweak: Notification Email will only add an only valid email and this field is now not mandatory.
-* Tweak: Modified Date Update is disabled for Scheduled and Draft Posts.
-* Tweak: Modified info will be shown only if the Published date is not equal to the modified date.
-* Tweak: CTRL+S will save the plugin settings automatically.
-* Fixed: A bug where WooCommerce Product Modified Date is changed automatically even the Disabled option is checked.
-* Fixed: Some CSS and JS issues.
-* Various improvements introduced.
-* Compatibility with WordPress v5.5.
-* Plugin now strictly requires PHP v5.6 or higher.
+* NEW: New Plugin UI.
+* NEW: Block Editor Controls.
+* Fixed: Dashboard Widget Issue.
+* Compatibility with WordPress v6.0.
 
 = Other Versions =
 
