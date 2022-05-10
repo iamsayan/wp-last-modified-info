@@ -8,6 +8,7 @@ jobs:
   deploy:
     name: New release
     runs-on: ubuntu-latest
+    environment: wp.org plugin
     
     steps:
     - name: Checkout code
