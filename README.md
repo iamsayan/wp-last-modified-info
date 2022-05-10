@@ -1,4 +1,4 @@
-![alt text](https://github.com/iamsayan/wp-last-modified-info/raw/master/banner.png "Plugin Banner")
+![WP Last Modified Info](.github/banner.png "Plugin Banner")
 
 # WP Last Modified Info #
 

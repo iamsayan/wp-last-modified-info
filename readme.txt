@@ -2,7 +2,7 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 1.7.7
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
