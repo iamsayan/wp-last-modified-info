@@ -10,7 +10,7 @@ import { DateTimePicker, Dropdown, Button } from "@wordpress/components";
 const PostModifiedField = () => {
     const settings = __experimentalGetSettings();
     const dateTimeFormat = settings.formats.datetime;
-    const is12Hour = settings.formats.time.includes( 'a' ) ? true : false;
+    const is12Hour = settings.formats.time.includes( 'a' ) || settings.formats.time.includes( 'A' );
 
     const { editedModified, currentModified, postStatus, postMeta } = useSelect( ( select ) => {
         return {

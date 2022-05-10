@@ -4,20 +4,22 @@ jQuery(document).ready(function ($) {
         return false;
     }
 
-    var highlighting = true;
+    var highlighting = true,
+    wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
+
     if ( wplmi_admin_L10n.highlighting == 'disable' ) {
         highlighting = false;
     }
 
     if ( highlighting ) {
-        var wplmi_editor = wp.codeEditor.initialize($('#wplmi_display_info'), wplmi_admin_L10n.html_editor);
-        var wplmi_css_editor = wp.codeEditor.initialize($('#wplmi_custom_css'), wplmi_admin_L10n.css_editor);
-        var wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmi_admin_L10n.html_editor);
+        wplmi_editor = wp.codeEditor.initialize($('#wplmi_display_info'), wplmi_admin_L10n.html_editor);
+        wplmi_css_editor = wp.codeEditor.initialize($('#wplmi_custom_css'), wplmi_admin_L10n.css_editor);
+        wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmi_admin_L10n.html_editor);
     }
 
     var wplmi_btns = $( '#wplmi-nav-container' ).find( 'a.wplmi-tab:not(.type-link)' );
-    for ( var i = 0; i < wplmi_btns.length; i++ ) {
-        $( wplmi_btns[i] ).on( 'click', function (e) {
+    for (let wplmi_btn of wplmi_btns) {
+        $( wplmi_btn ).on( 'click', function (e) {
             e.preventDefault();
             var tab_id = $(this).attr('id').replace('wplmi-tab-', '');
             $('a.is-active').removeClass("is-active");
@@ -64,7 +66,7 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    $( '.wplmi-wrap' ).find( '.wplmi-form-el[data-condition]' ).each( function( index, el ) {
+    $( '.wplmi-wrap' ).find( '.wplmi-form-el[data-condition]' ).each( function( _index, el ) {
         let condition = $( el ).data( 'condition' );
         $( `#wplmi_${condition[0].replace( 'wplmi_', '' )}` ).on( 'change', function() {
             if ( opt( $(this).val(), condition[2], condition[1] ) ) {
@@ -76,7 +78,7 @@ jQuery(document).ready(function ($) {
     } );
 
     setTimeout( () => {
-        $( '.wplmi-wrap' ).find( '.wplmi-form-el[data-show-if]' ).each( function( index, el ) {
+        $( '.wplmi-wrap' ).find( '.wplmi-form-el[data-show-if]' ).each( function( _index, el ) {
             let element = $( el ).data( 'show-if' );
             $( `#wplmi_${element.replace( 'wplmi_', '' )}` ).on( 'change', function() {
                 if ( $( this ).is( ':checked' ) ) {
@@ -92,7 +94,7 @@ jQuery(document).ready(function ($) {
 
     if ( highlighting ) {
         var editors = [ wplmi_editor, wplmi_css_editor, wplmi_tag_editor ];
-        editors.forEach(function (item, index, arr) { 
+        editors.forEach(function (item) {
             $( item.codemirror.getWrapperElement() ).resizable( {
                 handles: 's',
                 resize: function() {
@@ -181,7 +183,6 @@ jQuery(document).ready(function ($) {
                     buttons: {
                         buttonOK: {
                             text: wplmi_admin_L10n.ok_button,
-                            action: function () {}
                         }
                     }
                 });
@@ -201,10 +202,9 @@ jQuery(document).ready(function ($) {
                     buttons: {
                         buttonOK: {
                             text: wplmi_admin_L10n.ok_button,
-                            action: function () {}
                         }
                     }
-                });;
+                });
             },
         });
     });
@@ -243,7 +243,7 @@ jQuery(document).ready(function ($) {
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
                         });
-                        $.post( wplmi_admin_L10n.ajaxurl, { action: action, action_type: type, security: wplmi_admin_L10n.security }, function( response, status ) {
+                        $.post( wplmi_admin_L10n.ajaxurl, { action: action, action_type: type, security: wplmi_admin_L10n.security }, function( response ) {
                             if( response.success === true ) {
                                 cd.close();
                                 $.alert({
@@ -281,7 +281,6 @@ jQuery(document).ready(function ($) {
                                     buttons: {
                                         buttonOK: {
                                             text: wplmi_admin_L10n.ok_button,
-                                            action: function () {}
                                         }
                                     }
                                 });
@@ -291,7 +290,6 @@ jQuery(document).ready(function ($) {
                 },
                 cancel: {
                     text: wplmi_admin_L10n.cancel_button,
-                    action: function () {}
                 } 
             }
         })
@@ -303,13 +301,20 @@ jQuery(document).ready(function ($) {
         var value = el.val();
         var action = el.data('action');
         el.addClass("disabled").val(wplmi_admin_L10n.please_wait);
-        $.post( wplmi_admin_L10n.ajaxurl, { action: action, security: wplmi_admin_L10n.security }, function( response, status ) {
+        $.post( wplmi_admin_L10n.ajaxurl, { action: action, security: wplmi_admin_L10n.security }, function( response ) {
             if ( response.success === true ) {
-                var $temp = $("<input>");
-                $("body").append($temp);
-                $temp.val(response.data.elements).select();
-                document.execCommand("copy");
-                $temp.remove();
+                if ( navigator.clipboard ) {
+                    navigator.clipboard.writeText( response.data.elements ).then( function() {
+                        console.log('Copied to clipboard!');
+                    }, function(err) {
+                        console.error('Could not copy text: ', err);
+                    } );
+                }
+                // var $temp = $("<input>");
+                // $("body").append($temp);
+                // $temp.val(response.data.elements).select();
+                // document.execCommand("copy");
+                // $temp.remove();
                 el.removeClass("disabled").val(value);
                 $(".wplmi-copied").show().delay(1000).fadeOut();
             } 
@@ -318,7 +323,6 @@ jQuery(document).ready(function ($) {
 
     $( "input.wplmi-paste" ).on( 'click', function( e ) {
         e.preventDefault();
-        var el = $(this);
         var mdc = $.confirm({
             title: wplmi_admin_L10n.paste_data,
             content: '<textarea id="wplmi-settings-data-import" rows="4" style="width: 100%;"></textarea>',
@@ -338,7 +342,6 @@ jQuery(document).ready(function ($) {
                             alert( 'Please enter valid settings data!' );
                             return false;
                         }
-                        console.log( settings_data );
                         mdc.close();
                         $.dialog({
                             title: wplmi_admin_L10n.importing,
@@ -351,7 +354,7 @@ jQuery(document).ready(function ($) {
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
                         });
-                        $.post( wplmi_admin_L10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmi_admin_L10n.security }, function( response, status ) {
+                        $.post( wplmi_admin_L10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmi_admin_L10n.security }, function( response ) {
                             if( response.success === true ) {
                                 window.location.reload();
                                 $.cookie('wplmi_active_tab', 'post', { expires: 30 });
@@ -361,43 +364,10 @@ jQuery(document).ready(function ($) {
                 },
                 close: {
                     text: wplmi_admin_L10n.close_btn,
-                    action: function () {}
                 } 
             }
         })
     } );
-
-    // $("#wplmi_date_type").change(function() {
-    //     if ($(this).val() == 'default') {
-    //         $('.wplmi_el_date_format').show();
-    //     } else if ($(this).val() == 'human_readable') {
-    //         $('.wplmi_el_date_format').hide();
-    //     }
-    // }).change();
-
-    // $("#wplmi_author_display").change(function() {
-    //     if ($(this).val() == 'custom') {
-    //         $('.wplmi_el_author_list').show();
-    //     } else {
-    //         $('.wplmi_el_author_list').hide();
-    //     }
-    // }).change();
-
-    // $("#wplmi_template_date_type").change(function() {
-    //     if ($(this).val() == 'default') {
-    //         $('.wplmi_el_template_date_format').show();
-    //     } else if ($(this).val() == 'human_readable') {
-    //         $('.wplmi_el_template_date_format').hide();
-    //     }
-    // }).change();
-
-    // $("#wplmi_template_author_display").change(function() {
-    //     if ($(this).val() == 'custom') {
-    //         $('.wplmi_el_template_author_list').show();
-    //     } else {
-    //         $('.wplmi_el_template_author_list').hide();
-    //     }
-    // }).change();
 
     // $("#wplmi_astra_support, #wplmi_generatepress_support").change(function() {
     //     if ($(this).val() == 'replace') {

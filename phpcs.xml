@@ -11,6 +11,7 @@
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/languages/*</exclude-pattern>
 	<exclude-pattern>*/assets/*</exclude-pattern>
+	<exclude-pattern>*/build/*</exclude-pattern>
 	
 	<!-- Show progress, show the error codes for each message (source). -->
 	<arg value="ps" />
