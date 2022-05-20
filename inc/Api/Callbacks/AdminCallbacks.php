@@ -43,7 +43,7 @@ class AdminCallbacks extends BaseController
 				<?php do_settings_sections( $attr['name'] ); ?>
 			</div>
 			<p class="wplmi-control-area">
-				<?php submit_button( __( 'Save Settings', 'wp-auto-republish' ), 'primary wplmi-save', '', false ); ?>
+				<?php submit_button( __( 'Save Settings', 'wp-last-modified-info' ), 'primary wplmi-save', '', false ); ?>
 			</p>
 		</div>
 		<?php

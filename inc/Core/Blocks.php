@@ -52,7 +52,7 @@ class Blocks extends BaseController
 
 		foreach ( self::$blocks as $name => $callback ) {
             register_block_type( $this->plugin_path . '/blocks/build/' . $name, [
-                'render_callback' => [ $this, $callback ]
+                'render_callback' => [ $this, $callback ],
             ] );
         }
 	}
@@ -80,14 +80,14 @@ class Blocks extends BaseController
 			$classes[] = $attributes['className'];
 		}
 
-		$content = $this->get_modified_date( $attributes['format'], $post_id );
+		$date_content = $this->get_modified_date( $attributes['format'], $post_id );
 
 		if ( isset( $attributes['textBefore'] ) ) {
-			$content = '<span class="wplmi-site-modified-prefix">' . esc_html( $attributes['textBefore'] ) . '</span>' . $content;
+			$date_content = '<span class="wplmi-site-modified-prefix">' . esc_html( $attributes['textBefore'] ) . '</span>' . $date_content;
 		}
 
 		if ( isset( $attributes['textAfter'] ) ) {
-			$content = $content . '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
+			$date_content = $date_content . '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
 		}
 
 		$styles = $this->convert_styles( $attributes['styles'] );
@@ -97,7 +97,7 @@ class Blocks extends BaseController
 			( $attributes['display'] == 'block' ) ? 'div' : 'span',
 			esc_attr( join( ' ', $classes ) ),
 			esc_attr( $styles ),
-			$content
+			$date_content
 		);
 	}
 

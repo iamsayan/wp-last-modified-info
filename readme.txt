@@ -168,15 +168,19 @@ Release Date:
 
 * NEW: New Plugin UI.
 * NEW: Block Editor Controls.
+* NEW: Added 3 New Blocks for WordPress 5.8 and beyond.
 * Improvement: Enhanced Escaping.
 * Improvement: Plugin Rating is now calcualted out of 5.
-* Improvement: Use of Vanilla JS to Replace Post Date instead of jQuery.
+* Improvement: Use of Vanilla JS instead of jQuery to Replace Post Date.
 * Improvement: Remove Plugin Update data on Deactivation.
+* Improvement: Uses Post ID instead on WP Post Object to reduce memory usage.
 * Fixed: Dashboard Widget Issue.
+* Fixed: Elementor Deprecated issue.
 * Fixed: The issue where plugin returns true even if there is no value in settings.
-* Fixed: Rest API Output if `get_userdata()` function returns false.
+* Fixed: Rest API Output error if `get_userdata()` function returns false.
 * Removed: Astra and GeneratePress Theme support.
 * Removed: jQuery Cookie Library.
+* Added filter `wplmi/plugin_links` for plugin links output.
 * Tested with WPML.
 * Compatibility with WordPress v6.0 and PHP v8.0.
 
@@ -187,4 +191,4 @@ Release Date:
 == Upgrade Notice ==
 
 = 1.8.0 =
-In this release, we make this plugin compatible with WordPress 6.0. Please re-configure your plugin settings, otherwise it may stop working.
+In this release, we make this plugin compatible with WordPress 6.0. You may need to re-configure your plugin settings, to get it working.
