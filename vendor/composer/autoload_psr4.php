@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Wplmi\\' => array($baseDir . '/includes'),
+    'Wplmi\\' => array($baseDir . '/inc'),
 );

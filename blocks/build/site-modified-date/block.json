@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+    "name": "wplmi/site-modified-date",
+    "title": "Site Modified Date",
+    "description": "Display website\"s last modified date.",
+    "icon": "image-rotate",
+	"keywords": [ "last-modified", "time", "date", "last-updated", "updated" ],
+	"category": "widgets",
+	"textdomain": "wp-last-modified-info",
+    "attributes": {
+        "format": {
+            "type": "string"
+        },
+        "display": {
+            "type": "string",
+            "default": "block"
+        },
+		"textAlign": {
+            "type": "string",
+			"default": "left"
+        },
+        "textBefore": {
+            "type": "string"
+        },
+        "textAfter": {
+            "type": "string"
+        },
+		"varFontSize": {
+            "type": "integer",
+            "default": 16,
+            "minimum": 1
+        },
+        "varLineHeight": {
+            "type": "string"
+        },
+        "varColorBackground": {
+            "type": "string",
+            "format": "hex-color"
+        },
+        "varColorBorder": {
+            "type": "string",
+            "format": "hex-color"
+        },
+        "varColorText": {
+            "type": "string",
+            "format": "hex-color"
+        }
+    },
+    "supports": {
+		"html": false
+	},
+	"editorScript": "file:index.js"
+}

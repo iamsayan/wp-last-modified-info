@@ -63,7 +63,7 @@
 	<!--</rule>-->
 
 	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<exclude-pattern>includes/**/abstract-*.php</exclude-pattern>
+		<exclude-pattern>inc/**/abstract-*.php</exclude-pattern>
 		<exclude-pattern>tests/*</exclude-pattern>
 		<exclude-pattern>src/*</exclude-pattern>
 	</rule>

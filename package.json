@@ -2,14 +2,13 @@
 	"name": "wp-last-modified-info",
 	"version": "1.8.0",
 	"description": "Adds last modified date and time automatically on pages and posts very easily.",
-	"main": "assets/block-editor/build/index.js",
 	"scripts": {
 		"build": "npm-run-all -p build:be build:blocks",
-		"build:be": "wp-scripts build assets/block-editor/src/index.js --output-path=assets/block-editor/build/",
-		"build:blocks": "wp-scripts build includes/Core/Blocks/src/index.js --output-path=includes/Core/Blocks/build/",
 		"start": "npm-run-all -p start:be start:blocks",
-		"start:be": "wp-scripts start assets/block-editor/src/index.js --output-path=assets/block-editor/build/",
-		"start:blocks": "wp-scripts start includes/Core/Blocks/src/index.js --output-path=includes/Core/Blocks/build/",
+		"build:be": "wp-scripts build --webpack-src-dir=assets/block-editor/src/ --output-path=assets/block-editor/build/",
+		"build:blocks": "wp-scripts build --webpack-src-dir=blocks/src/ --output-path=blocks/build/",
+		"start:be": "wp-scripts start --webpack-src-dir=assets/block-editor/src/ --output-path=assets/block-editor/build/",
+		"start:blocks": "wp-scripts start --webpack-src-dir=blocks/src/ --output-path=blocks/build/",
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"packages-update": "wp-scripts packages-update"

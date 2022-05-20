@@ -168,9 +168,17 @@ Release Date:
 
 * NEW: New Plugin UI.
 * NEW: Block Editor Controls.
+* Improvement: Enhanced Escaping.
+* Improvement: Plugin Rating is now calcualted out of 5.
+* Improvement: Use of Vanilla JS to Replace Post Date instead of jQuery.
+* Improvement: Remove Plugin Update data on Deactivation.
 * Fixed: Dashboard Widget Issue.
 * Fixed: The issue where plugin returns true even if there is no value in settings.
-* Compatibility with WordPress v6.0.
+* Fixed: Rest API Output if `get_userdata()` function returns false.
+* Removed: Astra and GeneratePress Theme support.
+* Removed: jQuery Cookie Library.
+* Tested with WPML.
+* Compatibility with WordPress v6.0 and PHP v8.0.
 
 = Other Versions =
 
@@ -178,5 +186,5 @@ Release Date:
 
 == Upgrade Notice ==
 
-= 1.7.0 =
-In this release, we make this plugin compatible with WordPress 5.5. Please re-configure your plugin settings, otherwise it may stop working.
+= 1.8.0 =
+In this release, we make this plugin compatible with WordPress 6.0. Please re-configure your plugin settings, otherwise it may stop working.

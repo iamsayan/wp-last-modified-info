@@ -23,7 +23,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Wplmi\\": "./includes"
+            "Wplmi\\": "./inc"
         },
         "files": [
             "functions.php"
@@ -37,5 +37,9 @@
             "clear",
 			"vendor/bin/phpstan analyze inc wp-last-modified-info.php"
 		]
-	}
+	},
+    "require": {
+        "afragen/wp-dismiss-notice": "^0.2.3",
+        "deliciousbrains/wp-background-processing": "^1.0"
+    }
 }

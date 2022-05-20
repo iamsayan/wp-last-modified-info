@@ -4,6 +4,7 @@
 /node_modules
 /assets/block-editor/src
 /includes/Core/Blocks/src
+/blocks/src
 
 _config.yml
 .distignore
@@ -15,4 +16,5 @@ package.json
 package-lock.json
 phpcs.xml
 README.md
+LICENSE
 todo

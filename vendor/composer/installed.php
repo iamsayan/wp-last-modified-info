@@ -1,24 +1,41 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => 'bb4e953f8e459a2dd06e2bbf4d1ffeb6efbb18fc',
+        'name' => 'iamsayan/wp-last-modified-info',
+        'dev' => true,
     ),
-    'reference' => NULL,
-    'name' => 'iamsayan/wp-last-modified-info',
-  ),
-  'versions' => 
-  array (
-    'iamsayan/wp-last-modified-info' => 
-    array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => NULL,
+    'versions' => array(
+        'afragen/wp-dismiss-notice' => array(
+            'pretty_version' => '0.2.3',
+            'version' => '0.2.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../afragen/wp-dismiss-notice',
+            'aliases' => array(),
+            'reference' => '21949732f1ea21d81500bdda8f882ac7eb0f98af',
+            'dev_requirement' => false,
+        ),
+        'deliciousbrains/wp-background-processing' => array(
+            'pretty_version' => '1.0.2',
+            'version' => '1.0.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../deliciousbrains/wp-background-processing',
+            'aliases' => array(),
+            'reference' => '2cbee1abd1b49e1133cd8f611df4d4fc5a8b9800',
+            'dev_requirement' => false,
+        ),
+        'iamsayan/wp-last-modified-info' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'bb4e953f8e459a2dd06e2bbf4d1ffeb6efbb18fc',
+            'dev_requirement' => false,
+        ),
     ),
-  ),
 );

@@ -39,7 +39,7 @@
                             'id'          => 'wplmi-post',
                             'class'       => 'wplmi-post',
                             'title'       => __( 'Post Settings', 'wp-last-modified-info' ),
-                            'description' => __( 'Configure the Global Republish settings from here. Last run:', 'wp-last-modified-info' ),
+                            'description' => __( 'Control the Auto Insertion of ast Modified Info from here.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_post_option',
                         ] );
 
@@ -47,7 +47,7 @@
                             'id'          => 'wplmi-template',
                             'class'       => 'wplmi-template d-none',
                             'title'       => __( 'Template Tags', 'wp-last-modified-info' ),
-                            'description' => __( 'Configure the Global Republish settings from here. Last run:', 'wp-last-modified-info' ),
+                            'description' => sprintf( '%1$s <br> <code>&lt;?php if ( function_exists( \'rank_math_the_breadcrumbs\' ) ) rank_math_the_breadcrumbs(); ?&gt;</code> %2$s <code>[rank_math_breadcrumb]</code>', __( 'Use the following code in your theme template files to display last modified info.', 'wp-last-modified-info' ), __( 'OR', 'wp-last-modified-info' ) ),
                             'name'        => 'wplmi_plugin_template_tag_option',
                         ] );
 

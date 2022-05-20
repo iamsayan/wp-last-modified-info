@@ -21,7 +21,7 @@ const PostModifiedFrontControl = () => {
         return null;
     }
 
-    if ( ! wplmiBlockEditor.postTypes.includes( postType ) ) {
+    if ( ! wplmiBlockEditor.postTypes.includes( postType ) || ! wplmiBlockEditor.isEnabled ) {
         return null;
     }
     
