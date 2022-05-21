@@ -24,7 +24,9 @@ class Deactivate
 		}
 
 		delete_option( 'wplmi_plugin_dismiss_rating_notice' );
+		delete_option( 'wplmi_plugin_dismiss_donate_notice' );
         delete_option( 'wplmi_plugin_no_thanks_rating_notice' );
+        delete_option( 'wplmi_plugin_no_thanks_donate_notice' );
         delete_option( 'wplmi_plugin_installed_time' );
         delete_option( 'wplmi_plugin_installed_time_donate' );
 	}
