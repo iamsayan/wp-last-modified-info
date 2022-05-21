@@ -372,7 +372,7 @@ class ManagerCallbacks
 	}
 	
 	public function email_notification_message( $args ) {
-		$default = 'The following changes are made on a %post_type% of your blog by  %modified_author_name%' . "\n\n" . '<p><strong>Post: %post_title%</strong></p><p>%post_diff%</p>';
+		$default = 'The following changes are made on a %post_type% of your blog by %modified_author_name%' . "\n\n" . '<p><strong>Post: %post_title%</strong></p><p>%post_diff%</p>';
 		$this->do_field( [
 			'type'    => 'wp_editor',
 			'id'      => $args['label_for'],

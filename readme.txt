@@ -155,9 +155,10 @@ Post detailed information about the issue in the [support forum](https://wordpre
 4. Added last modified/updated info on post/page publish box and in post updated message.
 5. Last modified posts widgets in the dashboard.
 6. Post Options.
-7. Template Tags Options.
-8. Email Notification.
-9. Miscellaneous Options.
+7. Template Tag Options.
+8. Schema Options
+9. Email Notification.
+10. Miscellaneous Options.
 
 == Changelog ==
 
