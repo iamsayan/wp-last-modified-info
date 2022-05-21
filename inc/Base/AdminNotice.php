@@ -106,19 +106,17 @@ class AdminNotice extends BaseController
 	 */
 	public function dismiss_notice() {
 		// Check for Rating Notice
-		if ( get_option( 'wplmi_plugin_no_thanks_rating_notice' ) === '1' ) {
-			if ( get_option( 'wplmi_plugin_dismissed_time' ) <= strtotime( '-14 days' ) ) {
-				delete_option( 'wplmi_plugin_dismiss_rating_notice' );
-				delete_option( 'wplmi_plugin_no_thanks_rating_notice' );
-			}
+		if ( get_option( 'wplmi_plugin_no_thanks_rating_notice' ) === '1'
+			&& get_option( 'wplmi_plugin_dismissed_time' ) <= strtotime( '-14 days' ) ) {
+			delete_option( 'wplmi_plugin_dismiss_rating_notice' );
+			delete_option( 'wplmi_plugin_no_thanks_rating_notice' );
 		}
 
 		// Check for Donate Notice
-		if ( get_option( 'wplmi_plugin_no_thanks_donate_notice' ) === '1' ) {
-			if ( get_option( 'wplmi_plugin_dismissed_time_donate' ) <= strtotime( '-15 days' ) ) {
-				delete_option( 'wplmi_plugin_dismiss_donate_notice' );
-				delete_option( 'wplmi_plugin_no_thanks_donate_notice' );
-			}
+		if ( get_option( 'wplmi_plugin_no_thanks_donate_notice' ) === '1'
+			&& get_option( 'wplmi_plugin_dismissed_time_donate' ) <= strtotime( '-15 days' ) ) {
+			delete_option( 'wplmi_plugin_dismiss_donate_notice' );
+			delete_option( 'wplmi_plugin_no_thanks_donate_notice' );
 		}
 
 		if ( ! isset( $_REQUEST['wplmi_notice_action'] ) || empty( $_REQUEST['wplmi_notice_action'] ) ) {

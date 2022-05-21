@@ -194,8 +194,3 @@ Release Date: May 21, 2022
 = Other Versions =
 
 * View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
-
-== Upgrade Notice ==
-
-= 1.8.0 =
-In this release, we make this plugin compatible with WordPress 6.0. You may need to re-configure your plugin settings once, to get it properly working.
