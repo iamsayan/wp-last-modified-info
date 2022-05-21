@@ -23,11 +23,6 @@ class AdminNotice extends BaseController
 	use Hooker;
 
 	/**
-	 * Notice.
-	 */
-	private $notice;
-	
-	/**
 	 * Register functions.
 	 */
 	public function register() {
