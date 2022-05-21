@@ -4,50 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d25fa911b2745b9ac9dcc8178c436f41",
+    "content-hash": "4e3736569593cc33ee93c5446e8b968a",
     "packages": [
-        {
-            "name": "afragen/wp-dismiss-notice",
-            "version": "0.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/afragen/wp-dismiss-notice.git",
-                "reference": "21949732f1ea21d81500bdda8f882ac7eb0f98af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/afragen/wp-dismiss-notice/zipball/21949732f1ea21d81500bdda8f882ac7eb0f98af",
-                "reference": "21949732f1ea21d81500bdda8f882ac7eb0f98af",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "wp-dismiss-notice.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andy Fragen",
-                    "email": "andy@thefragens.com",
-                    "homepage": "https://thefragens.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Library for time dismissible WordPress admin notices.",
-            "support": {
-                "issues": "https://github.com/afragen/wp-dismiss-notice/issues",
-                "source": "https://github.com/afragen/wp-dismiss-notice"
-            },
-            "time": "2021-12-19T21:53:57+00:00"
-        },
         {
             "name": "deliciousbrains/wp-background-processing",
             "version": "1.0.2",

@@ -7,8 +7,6 @@
  * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
-use Wplmi\Core\Frontend\TemplateTags;
-
 if ( ! function_exists( 'get_the_last_modified_info' ) ) {
 
     /**
@@ -19,7 +17,7 @@ if ( ! function_exists( 'get_the_last_modified_info' ) ) {
      * @param array  $args     Republish args
      */
     function get_the_last_modified_info( $escape = false, $only_date = false ) {
-        $template = new TemplateTags( compact( 'escape', 'only_date' ) );
+        $template = new \Wplmi\Core\Frontend\TemplateTags( compact( 'escape', 'only_date' ) );
 
         return $template->output();
     }

@@ -12,8 +12,8 @@
 <div id="wplmi-nav-container" class="wplmi-admin-toolbar">
 	<h2>WP Last Modified Info<span class="title-count"><?php echo esc_html( $this->version ); ?></span></h2>
     
-    <a href="#post" class="wplmi-tab is-active" id="wplmi-tab-post"><?php esc_html_e( 'Post Options', 'wp-last-modified-info' ); ?></a>
-    <a href="#template" class="wplmi-tab" id="wplmi-tab-template"><?php esc_html_e( 'Template Tags', 'wp-last-modified-info' ); ?></a>
+    <a href="#post" class="wplmi-tab is-active" id="wplmi-tab-post"><?php esc_html_e( 'Posts', 'wp-last-modified-info' ); ?></a>
+    <a href="#template" class="wplmi-tab" id="wplmi-tab-template"><?php esc_html_e( 'Template Tag', 'wp-last-modified-info' ); ?></a>
     <a href="#schema" class="wplmi-tab" id="wplmi-tab-schema"><?php esc_html_e( 'Schema', 'wp-last-modified-info' ); ?></a>
     <a href="#notification" class="wplmi-tab" id="wplmi-tab-notification"><?php esc_html_e( 'Notification', 'wp-last-modified-info' ); ?></a>
     <a href="#misc" class="wplmi-tab" id="wplmi-tab-misc"><?php esc_html_e( 'Misc.', 'wp-last-modified-info' ); ?></a>
@@ -22,8 +22,8 @@
 
     <div class="top-sharebar">
         <a class="share-btn rate-btn no-popup" href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" title="<?php esc_html_e( 'Please rate 5 stars if you like RevivePress', 'wp-last-modified-info' ); ?>" rel="noopener"><span class="dashicons dashicons-star-filled"></span> <?php esc_html_e( 'Rate 5 stars', 'wp-last-modified-info' ); ?></a>
-        <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/%20via%20%40im_sayaan%20" target="_blank" rel="noopener"><span class="dashicons dashicons-twitter"></span> <?php esc_html_e( 'Tweet', 'wp-last-modified-info' ); ?></a>
-        <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-last-modified-info/&quote=Check%20out%20RevivePress,%20a%20%23WordPress%20%23Plugin%20that%20revive%20your%20old%20evergreen%20content%20by%20republishing%20them%20and%20sharing%20them%20on%20Social%20Media%20https%3A//wordpress.org/plugins/wp-last-modified-info/" target="_blank" rel="noopener"><span class="dashicons dashicons-facebook"></span> <?php esc_html_e( 'Share', 'wp-last-modified-info' ); ?></a>
+        <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Checkout%20WP%20Last%20Modified%20Info%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily%20with%20%40Gutenberg%20block%20integration.&tw_p=tweetbutton&url=https://wordpress.org/plugins/wp-last-modified-info/&via=im_sayaan" target="_blank" rel="noopener"><span class="dashicons dashicons-twitter"></span> <?php esc_html_e( 'Tweet', 'wp-last-modified-info' ); ?></a>
+        <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://wordpress.org/plugins/wp-last-modified-info/&quote=Checkout%20WP%20Last%20Modified%20Info%20a%20%23WordPress%20plugin%20that%20shows%20last%20update%20date%20and%20time%20on%20pages%20and%20posts%20very%20easily%20with%20%40Gutenberg%20block%20integration.%20https%3A//wordpress.org/plugins/wp-last-modified-info/" target="_blank" rel="noopener"><span class="dashicons dashicons-facebook"></span> <?php esc_html_e( 'Share', 'wp-last-modified-info' ); ?></a>
     </div>
 </div>
 <div class="wrap wplmi-wrap" data-reload="no">
@@ -39,15 +39,15 @@
                             'id'          => 'wplmi-post',
                             'class'       => 'wplmi-post',
                             'title'       => __( 'Post Settings', 'wp-last-modified-info' ),
-                            'description' => __( 'Control the Auto Insertion of ast Modified Info from here.', 'wp-last-modified-info' ),
+                            'description' => __( 'Control the Auto Insertion of ast Modified Info here.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_post_option',
                         ] );
 
                         $this->doSettingsSection( [
                             'id'          => 'wplmi-template',
                             'class'       => 'wplmi-template d-none',
-                            'title'       => __( 'Template Tags', 'wp-last-modified-info' ),
-                            'description' => sprintf( '%1$s <br> <code>&lt;?php if ( function_exists( \'rank_math_the_breadcrumbs\' ) ) rank_math_the_breadcrumbs(); ?&gt;</code> %2$s <code>[rank_math_breadcrumb]</code>', __( 'Use the following code in your theme template files to display last modified info.', 'wp-last-modified-info' ), __( 'OR', 'wp-last-modified-info' ) ),
+                            'title'       => __( 'Template Tag', 'wp-last-modified-info' ),
+                            'description' => __( 'Use the template tag in your theme template files or Gutenberg Block on your posts to display last modified info.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_template_tag_option',
                         ] );
 
@@ -55,7 +55,7 @@
                             'id'          => 'wplmi-schema',
                             'class'       => 'wplmi-schema d-none',
                             'title'       => __( 'Schema Options', 'wp-last-modified-info' ),
-                            'description' => __( 'Configure the Global Republish settings from here. Last run:', 'wp-last-modified-info' ),
+                            'description' => __( 'Configure the JSON-LD Structured Data settings here.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_schema_option',
                         ] );
 
@@ -63,7 +63,7 @@
                             'id'          => 'wplmi-notification',
                             'class'       => 'wplmi-notification d-none',
                             'title'       => __( 'Email Notification', 'wp-last-modified-info' ),
-                            'description' => __( 'Configure the Global Republish settings from here. Last run:', 'wp-last-modified-info' ),
+                            'description' => __( 'Configure the settings to get Email Notiifcation after post update.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_notification_option',
                         ] );
 
@@ -71,7 +71,7 @@
                             'id'          => 'wplmi-misc',
                             'class'       => 'wplmi-misc d-none',
                             'title'       => __( 'Miscellaneous Options', 'wp-last-modified-info' ),
-                            'description' => __( 'Configure the Global Republish settings from here. Last run:', 'wp-last-modified-info' ),
+                            'description' => __( 'Change some uncommon but essential settings here.', 'wp-last-modified-info' ),
                             'name'        => 'wplmi_plugin_misc_option',
                         ] );
                     ?>
@@ -80,7 +80,7 @@
                     <div class="wplmi-metabox-holder">
                         <div class="wplmi-metabox-td">
                             <h3 class="wplmi-metabox-title"><?php esc_html_e( 'Plugin Tools', 'wp-last-modified-info' ); ?></h3>
-                            <p class="wplmi-metabox-description"><?php esc_html_e( 'Perform database related actions from here.', 'wp-last-modified-info' ); ?></p>
+                            <p class="wplmi-metabox-description"><?php esc_html_e( 'Perform database related actions here.', 'wp-last-modified-info' ); ?></p>
                         </div>
                     </div>
                     <div class="inside wplmi-inside" style="padding: 10px 20px;">
@@ -176,12 +176,12 @@
                         <ul class="my-plugins">
                             <h2><?php esc_html_e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2>
                             <p><strong><?php esc_html_e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
-                            <li><a href="https://wordpress.org/plugins/wp-auto-re5publish/" target="_blank" rel="noopener">RevivePress</a> - <?php esc_html_e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website. Everything is customizable.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank" rel="noopener">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily (tested on Yoast SEO).', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/wp-auto-republish/" target="_blank" rel="noopener">RevivePress</a> - <?php esc_html_e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank" rel="noopener">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank" rel="noopener">Simple Posts Ticker - Easy, Lightweight & Flexible</a> - <?php esc_html_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/rzp-woocommerce/" target="_blank" rel="noopener">Razorpay Payment Gateway for WooCommerce</a> - <?php esc_html_e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target="_blank" rel="noopener">Migrate WP Cron to Action Scheduler</a> - <?php esc_html_e( 'The Migrate WP Cron to Action Scheduler plugin does alter the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target="_blank" rel="noopener">Migrate WP Cron to Action Scheduler</a> - <?php esc_html_e( 'It alters the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
                         </ul>
                     </div>
                 </div>

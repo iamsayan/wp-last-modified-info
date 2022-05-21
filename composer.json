@@ -39,7 +39,6 @@
 		]
 	},
     "require": {
-        "afragen/wp-dismiss-notice": "^0.2.3",
         "deliciousbrains/wp-background-processing": "^1.0"
     }
 }

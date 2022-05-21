@@ -1,20 +1,20 @@
 jQuery(document).ready(function ($) {
 
-    if ( typeof wplmi_admin_L10n === 'undefined' ) {
+    if ( typeof wplmiAdminL10n === 'undefined' ) {
         return false;
     }
 
     var highlighting = true,
     wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
 
-    if ( wplmi_admin_L10n.highlighting == 'disable' ) {
+    if ( wplmiAdminL10n.highlighting == 'disable' ) {
         highlighting = false;
     }
 
     if ( highlighting ) {
-        wplmi_editor = wp.codeEditor.initialize($('#wplmi_display_info'), wplmi_admin_L10n.html_editor);
-        wplmi_css_editor = wp.codeEditor.initialize($('#wplmi_custom_css'), wplmi_admin_L10n.css_editor);
-        wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmi_admin_L10n.html_editor);
+        wplmi_editor = wp.codeEditor.initialize($('#wplmi_display_info'), wplmiAdminL10n.html_editor);
+        wplmi_css_editor = wp.codeEditor.initialize($('#wplmi_custom_css'), wplmiAdminL10n.css_editor);
+        wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmiAdminL10n.html_editor);
     }
 
     var wplmi_btns = $( '#wplmi-nav-container' ).find( 'a.wplmi-tab:not(.type-link)' );
@@ -133,10 +133,10 @@ jQuery(document).ready(function ($) {
 
     $( '#wplmi-settings-form' ).submit( function( e ) {
         e.preventDefault();
-        $( ".wplmi-save" ).addClass( "disabled" ).val( wplmi_admin_L10n.saving );
+        $( ".wplmi-save" ).addClass( "disabled" ).val( wplmiAdminL10n.saving );
         var jd = $.dialog({
-            title: wplmi_admin_L10n.saving,
-            content: wplmi_admin_L10n.saving_text,
+            title: wplmiAdminL10n.saving,
+            content: wplmiAdminL10n.saving_text,
             useBootstrap: false,
             draggable: false,
             theme: 'material',
@@ -149,8 +149,8 @@ jQuery(document).ready(function ($) {
             success: function() {
                 jd.close();
                 $.alert({
-                    title: wplmi_admin_L10n.done,
-                    content: wplmi_admin_L10n.save_success,
+                    title: wplmiAdminL10n.done,
+                    content: wplmiAdminL10n.save_success,
                     useBootstrap: false,
                     draggable: false,
                     theme: 'material',
@@ -159,17 +159,17 @@ jQuery(document).ready(function ($) {
                     scrollToPreviousElement: false,
                     buttons: {
                         buttonOK: {
-                            text: wplmi_admin_L10n.ok_button,
+                            text: wplmiAdminL10n.ok_button,
                         }
                     }
                 });
-                $(".wplmi-save").removeClass("disabled").val(wplmi_admin_L10n.save_button);
+                $(".wplmi-save").removeClass("disabled").val(wplmiAdminL10n.save_button);
             },
             error: function() { 
                 jd.close();
                 $.alert({
-                    title: wplmi_admin_L10n.error,
-                    content: wplmi_admin_L10n.process_failed,
+                    title: wplmiAdminL10n.error,
+                    content: wplmiAdminL10n.process_failed,
                     useBootstrap: false,
                     draggable: false,
                     theme: 'material',
@@ -178,7 +178,7 @@ jQuery(document).ready(function ($) {
                     scrollToPreviousElement: false,
                     buttons: {
                         buttonOK: {
-                            text: wplmi_admin_L10n.ok_button,
+                            text: wplmiAdminL10n.ok_button,
                         }
                     }
                 });
@@ -195,7 +195,7 @@ jQuery(document).ready(function ($) {
         var type = el.data('type');
         var process = el.data('process');
         var mdc = $.confirm({
-            title: wplmi_admin_L10n.warning,
+            title: wplmiAdminL10n.warning,
             content: notice,
             useBootstrap: false,
             theme: 'material',
@@ -206,12 +206,12 @@ jQuery(document).ready(function ($) {
             scrollToPreviousElement: false,
             buttons: {
                 confirm: {
-                    text: wplmi_admin_L10n.confirm_button,
+                    text: wplmiAdminL10n.confirm_button,
                     action: function () {
                         mdc.close();
                         var cd = $.dialog({
                             title: process,
-                            content: wplmi_admin_L10n.processing,
+                            content: wplmiAdminL10n.processing,
                             useBootstrap: false,
                             draggable: false,
                             theme: 'material',
@@ -220,11 +220,11 @@ jQuery(document).ready(function ($) {
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
                         });
-                        $.post( wplmi_admin_L10n.ajaxurl, { action: action, action_type: type, security: wplmi_admin_L10n.security }, function( response ) {
+                        $.post( wplmiAdminL10n.ajaxurl, { action: action, action_type: type, security: wplmiAdminL10n.security }, function( response ) {
                             if( response.success === true ) {
                                 cd.close();
                                 $.alert({
-                                    title: wplmi_admin_L10n.done,
+                                    title: wplmiAdminL10n.done,
                                     content: success,
                                     useBootstrap: false,
                                     draggable: false,
@@ -234,11 +234,11 @@ jQuery(document).ready(function ($) {
                                     scrollToPreviousElement: false,
                                     buttons: {
                                         buttonOK: {
-                                            text: wplmi_admin_L10n.ok_button,
+                                            text: wplmiAdminL10n.ok_button,
                                             action: function () {
                                                 if( response.data.reload === true ) {
-                                                    window.location.reload();
-                                                    $.cookie('wplmi_active_tab', 'post', { expires: 30 });
+                                                    localStorage.setItem('wplmi_active_tab', 'post');
+                                                    location.reload();
                                                 }
                                             }
                                         }
@@ -247,7 +247,7 @@ jQuery(document).ready(function ($) {
                             } else {
                                 cd.close();
                                 $.alert({
-                                    title: wplmi_admin_L10n.error,
+                                    title: wplmiAdminL10n.error,
                                     content: response.data.error,
                                     useBootstrap: false,
                                     draggable: false,
@@ -257,7 +257,7 @@ jQuery(document).ready(function ($) {
                                     scrollToPreviousElement: false,
                                     buttons: {
                                         buttonOK: {
-                                            text: wplmi_admin_L10n.ok_button,
+                                            text: wplmiAdminL10n.ok_button,
                                         }
                                     }
                                 });
@@ -266,7 +266,7 @@ jQuery(document).ready(function ($) {
                     }    
                 },
                 cancel: {
-                    text: wplmi_admin_L10n.cancel_button,
+                    text: wplmiAdminL10n.cancel_button,
                 } 
             }
         })
@@ -277,8 +277,8 @@ jQuery(document).ready(function ($) {
         var el = $(this);
         var value = el.val();
         var action = el.data('action');
-        el.addClass("disabled").val(wplmi_admin_L10n.please_wait);
-        $.post( wplmi_admin_L10n.ajaxurl, { action: action, security: wplmi_admin_L10n.security }, function( response ) {
+        el.addClass("disabled").val(wplmiAdminL10n.please_wait);
+        $.post( wplmiAdminL10n.ajaxurl, { action: action, security: wplmiAdminL10n.security }, function( response ) {
             if ( response.success === true ) {
                 if ( navigator.clipboard ) {
                     navigator.clipboard.writeText( response.data.elements ).then( function() {
@@ -287,11 +287,6 @@ jQuery(document).ready(function ($) {
                         console.error('Could not copy text: ', err);
                     } );
                 }
-                // var $temp = $("<input>");
-                // $("body").append($temp);
-                // $temp.val(response.data.elements).select();
-                // document.execCommand("copy");
-                // $temp.remove();
                 el.removeClass("disabled").val(value);
                 $(".wplmi-copied").show().delay(1000).fadeOut();
             } 
@@ -301,7 +296,7 @@ jQuery(document).ready(function ($) {
     $( "input.wplmi-paste" ).on( 'click', function( e ) {
         e.preventDefault();
         var mdc = $.confirm({
-            title: wplmi_admin_L10n.paste_data,
+            title: wplmiAdminL10n.paste_data,
             content: '<textarea id="wplmi-settings-data-import" rows="4" style="width: 100%;"></textarea>',
             useBootstrap: false,
             theme: 'material',
@@ -312,7 +307,7 @@ jQuery(document).ready(function ($) {
             scrollToPreviousElement: false,
             buttons: {
                 confirm: {
-                    text: wplmi_admin_L10n.import_btn,
+                    text: wplmiAdminL10n.import_btn,
                     action: function () {
                         var settings_data = this.$content.find('#wplmi-settings-data-import').val();
                         if ( ! settings_data ) {
@@ -321,8 +316,8 @@ jQuery(document).ready(function ($) {
                         }
                         mdc.close();
                         $.dialog({
-                            title: wplmi_admin_L10n.importing,
-                            content: wplmi_admin_L10n.processing,
+                            title: wplmiAdminL10n.importing,
+                            content: wplmiAdminL10n.processing,
                             useBootstrap: false,
                             draggable: false,
                             theme: 'material',
@@ -331,16 +326,16 @@ jQuery(document).ready(function ($) {
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
                         });
-                        $.post( wplmi_admin_L10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmi_admin_L10n.security }, function( response ) {
+                        $.post( wplmiAdminL10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmiAdminL10n.security }, function( response ) {
                             if( response.success === true ) {
-                                window.location.reload();
-                                $.cookie('wplmi_active_tab', 'post', { expires: 30 });
+                                localStorage.setItem('wplmi_active_tab', 'post');
+                                location.reload();
                             } 
                         });
                     }    
                 },
                 close: {
-                    text: wplmi_admin_L10n.close_btn,
+                    text: wplmiAdminL10n.close_btn,
                 } 
             }
         })
@@ -367,12 +362,17 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $(".coffee-amt").change(function() {
+    $(".coffee-amt").on( 'change', function() {
         var btn = $('.buy-coffee-btn');
         btn.attr('href', btn.data('link') + $(this).val());
     });
 
-    $(window).keydown( function(e) {
+    $( 'a.share-btn:not(.no-popup)' ).on( 'click', function (e) {
+        e.preventDefault();
+        wplmiOpenPopup( $(this).attr('href'), 'Share Window', 950, 700 );
+    } );
+
+    $( window ).keydown( function(e) {
         if (e.ctrlKey || e.metaKey) {
             switch (String.fromCharCode(e.which).toLowerCase()) {
                 case 's':
@@ -383,4 +383,21 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $( '.click-to-copy' ).on( 'click', function( e ) {
+        e.preventDefault();
+        if ( navigator.clipboard ) {
+            navigator.clipboard.writeText( $( this ).text() ).then( function() {
+                alert( wplmiAdminL10n.copied );
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            } );
+        }
+    } )
+
 });
+
+function wplmiOpenPopup( url, title, w, h ) {
+    var y = window.outerHeight / 2 + window.screenY - ( h / 2)
+    var x = window.outerWidth / 2 + window.screenX - ( w / 2)
+    return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + y + ', left=' + x);
+}

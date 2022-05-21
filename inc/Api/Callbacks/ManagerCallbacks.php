@@ -71,6 +71,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_date_time_format',
 			'value'       => $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ),
+			/* translators: %s: Link */
 			'description' => sprintf( __( 'Set post last modified date time format from here. %s', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="nopender">' . __( 'Learn more', 'wp-last-modified-info' ) . '</a>' ),
 			'condition'   => [ 'wplmi_date_type', '=', 'default' ],
 			'show_if'     => 'wplmi_enable_plugin',
@@ -166,7 +167,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_last_modified_info_template',
 			'value'       => wp_unslash( $this->get_data( 'lmt_last_modified_info_template', $default ) ),
-			'description' => $this->generate_template_tags(),
+			'description' => $this->generate_template_tags( [ 'author_name', 'author_url', 'author_email', 'author_archive', 'post_published', 'post_link', 'post_modified' ] ),
 			'show_if'     => 'wplmi_enable_plugin',
 		] );
 	}
@@ -246,7 +247,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_last_modified_info_template_tt',
 			'value'       => wp_unslash( $this->get_data( 'lmt_last_modified_info_template_tt', $default ) ),
-			'description' => $this->generate_template_tags(),
+			'description' => $this->generate_template_tags( [ 'author_name', 'author_url', 'author_email', 'author_archive', 'post_published', 'post_link', 'post_modified' ] ),
 		] );
 	}
 
@@ -361,19 +362,13 @@ class ManagerCallbacks
 			'id'         => $args['label_for'],
 			'name'       => 'lmt_email_subject',
 			'value'      => $this->get_data( 'lmt_email_subject', '[%site_name%] A %post_type% of %author_name% has been modified on your blog.' ),
-			//'description' => $this->do_filter( 'email_template_tags', 'subject' ),
+			'description' => $this->generate_template_tags( [ 'post_title', 'post_type', 'author_name', 'site_name', 'site_url', 'current_time' ] ),
 			'attributes' => [
 				'rows' => 2,
 				'cols' => 100,
 			],
 			'show_if'    => 'wplmi_enable_notification',
 		] );
-?>
-		<p>
-			<small><span class="help-text"><?php _e( 'Use these tags into email subject', 'wp-last-modified-info' ); ?></span> -
-			<code>&#37;post_title&#37;</code> <code>&#37;author_name&#37;</code> <code>&#37;post_type&#37;</code> <code>&#37;site_name&#37;</code> <code>&#37;site_url&#37;</code> <code>&#37;current_time&#37;</code></small>
-		</p>
-		<?php
 	}
 	
 	public function email_notification_message( $args ) {
@@ -383,17 +378,9 @@ class ManagerCallbacks
 			'id'      => $args['label_for'],
 			'name'    => 'lmt_email_message',
 			'value'   => $this->get_data( 'lmt_email_message', $default ),
-			//'description' => $this->do_filter( 'email_template_tags', 'message' ),
+			'description' => $this->generate_template_tags( [ 'post_title', 'post_type', 'author_name', 'modified_author_name', 'post_edit_link', 'post_diff', 'site_name', 'site_url', 'admin_email', 'current_time' ] ),
 			'show_if' => 'wplmi_enable_notification',
 		] );
-
-		 ?>
-		<p>
-		    <small><span class="help-text"><?php _e( 'Use these tags into email body', 'wp-last-modified-info' ); ?></span> -
-			<code>&#37;admin_email&#37;</code> <code>&#37;post_title&#37;</code> <code>&#37;author_name&#37;</code> <code>&#37;modified_author_name&#37;</code> <code>&#37;post_type&#37;</code> <code>&#37;post_edit_link&#37;</code> <code>&#37;site_name&#37;</code> <code>&#37;site_url&#37;</code> <code>&#37;current_time&#37;</code> <code>&#37;post_diff&#37;</code>
-			<span class="help-text"><?php _e( 'Email body supports HTML.', 'wp-last-modified-info' ); ?></span></small>
-		</p>
-	<?php
 	}
 
 	/* ============================================================================================== 
@@ -471,6 +458,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_custom_style_box',
 			'value'       => wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) ),
+			/* translators: %s: Tag */
 			'description' => sprintf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt;&lt;/style&gt;</code>' ),
 		] );
     }
@@ -490,11 +478,11 @@ class ManagerCallbacks
 	 * 
 	 * @since 1.8.0
 	 */
-	private function generate_template_tags() {
+	private function generate_template_tags( $tags ) {
 		ob_start() ?>
 		<div class="dynamic-tags">
 			<div class="dynamic-tags-label"><?php esc_html_e( 'Use these tags. Available Dynamic Tags', 'wp-last-modified-info' ); ?>:</div>
-			<div class="dynamic-tags-content"><?php echo $this->get_available_tags(); ?></div>
+			<div class="dynamic-tags-content"><?php echo $this->get_available_tags( $tags ); ?></div>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -506,11 +494,10 @@ class ManagerCallbacks
 	 * @since 1.8.0
 	 * @return string
 	 */
-	private function get_available_tags() {
-		$tags = [ 'author_name', 'author_url', 'author_email', 'author_archive', 'post_published', 'post_link', 'post_modified' ];
+	private function get_available_tags( $tags ) {
 		$content = [];
 		foreach ( $tags as $tag ) {
-			$content[] = '<code class="click-to-copy">&#37;' . esc_html( $tag ) . '&#37;</code>';
+			$content[] = '<code class="click-to-copy">%' . esc_html( $tag ) . '%</code>';
 		}
 
 		return join( ' ', $content );

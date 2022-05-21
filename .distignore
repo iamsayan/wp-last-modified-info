@@ -3,8 +3,15 @@
 /.github
 /node_modules
 /assets/block-editor/src
-/includes/Core/Blocks/src
+/assets/css/admin.sass
+/assets/css/edit.sass
+/assets/css/post.sass
+/assets/js/admin.js
+/assets/js/edit.js
+/assets/js/post.js
 /blocks/src
+/includes/Core/Blocks/src
+/vendor/bin
 
 _config.yml
 .distignore

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
- * Description: 🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
+ * Description: Ultimate Last Modified Plugin for WordPress with Gutenberg Block Integration. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
  * Version: 1.8.0
  * Author: Sayan Datta
  * Author URI: https://sayandatta.in
@@ -47,33 +47,41 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 /**
  * The code that runs during plugin activation
  */
-function wplmi_plugin_activation() {
-	Wplmi\Base\Activate::activate();
+if ( ! function_exists( 'wplmi_plugin_activation' ) ) {
+	function wplmi_plugin_activation() {
+		Wplmi\Base\Activate::activate();
+	}
 }
 register_activation_hook( __FILE__, 'wplmi_plugin_activation' );
 
 /**
  * The code that runs during plugin deactivation
  */
-function wplmi_plugin_deactivation() {
-	Wplmi\Base\Deactivate::deactivate();
+if ( ! function_exists( 'wplmi_plugin_deactivation' ) ) {
+	function wplmi_plugin_deactivation() {
+		Wplmi\Base\Deactivate::deactivate();
+	}
 }
 register_deactivation_hook( __FILE__, 'wplmi_plugin_deactivation' );
 
 /**
  * The code that runs during plugin uninstalltion
  */
-function wplmi_plugin_uninstallation() {
-	Wplmi\Base\Uninstall::uninstall();
+if ( ! function_exists( 'wplmi_plugin_uninstallation' ) ) {
+	function wplmi_plugin_uninstallation() {
+		Wplmi\Base\Uninstall::uninstall();
+	}
 }
 register_uninstall_hook( __FILE__, 'wplmi_plugin_uninstallation' );
 
 /**
  * Initialize all the core classes of the plugin
  */
-function wplmi_plugin_init() {
-	if ( class_exists( 'Wplmi\\Loader' ) ) {
-		Wplmi\Loader::register_services();
+if ( ! function_exists( 'wplmi_plugin_init' ) ) {
+	function wplmi_plugin_init() {
+		if ( class_exists( 'Wplmi\\Loader' ) ) {
+			Wplmi\Loader::register_services();
+		}
 	}
 }
 wplmi_plugin_init();

@@ -9,7 +9,6 @@ return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'WP_Async_Request' => $vendorDir . '/deliciousbrains/wp-background-processing/classes/wp-async-request.php',
     'WP_Background_Process' => $vendorDir . '/deliciousbrains/wp-background-processing/classes/wp-background-process.php',
-    'WP_Dismiss_Notice' => $vendorDir . '/afragen/wp-dismiss-notice/wp-dismiss-notice.php',
     'Wplmi\\Api\\Callbacks\\AdminCallbacks' => $baseDir . '/inc/Api/Callbacks/AdminCallbacks.php',
     'Wplmi\\Api\\Callbacks\\ManagerCallbacks' => $baseDir . '/inc/Api/Callbacks/ManagerCallbacks.php',
     'Wplmi\\Api\\SettingsApi' => $baseDir . '/inc/Api/SettingsApi.php',

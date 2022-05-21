@@ -57,6 +57,7 @@ class Enqueue extends BaseController
 		
 			$args = [
 				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'copied'         => __( 'Copied!', 'wp-last-modified-info' ),
 				'saving'         => __( 'Saving...', 'wp-last-modified-info' ),
 				'saving_text'    => __( 'Please wait while we are saving your settings...', 'wp-last-modified-info' ),
 				'done'           => __( 'Done!', 'wp-last-modified-info' ),
@@ -85,7 +86,7 @@ class Enqueue extends BaseController
 				$args['highlighting'] = ( $current_user->syntax_highlighting ) ? 'enable' : 'disable';
 			}
 
-			wp_localize_script( 'wplmi-admin', 'wplmi_admin_L10n', $args );
+			wp_localize_script( 'wplmi-admin', 'wplmiAdminL10n', $args );
 		}
 
 		if ( $this->is_block_editor() ) {

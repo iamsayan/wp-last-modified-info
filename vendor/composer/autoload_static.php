@@ -28,7 +28,6 @@ class ComposerStaticInit864e9b664caffe9d69b14c441bfd3b88
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'WP_Async_Request' => __DIR__ . '/..' . '/deliciousbrains/wp-background-processing/classes/wp-async-request.php',
         'WP_Background_Process' => __DIR__ . '/..' . '/deliciousbrains/wp-background-processing/classes/wp-background-process.php',
-        'WP_Dismiss_Notice' => __DIR__ . '/..' . '/afragen/wp-dismiss-notice/wp-dismiss-notice.php',
         'Wplmi\\Api\\Callbacks\\AdminCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/AdminCallbacks.php',
         'Wplmi\\Api\\Callbacks\\ManagerCallbacks' => __DIR__ . '/../..' . '/inc/Api/Callbacks/ManagerCallbacks.php',
         'Wplmi\\Api\\SettingsApi' => __DIR__ . '/../..' . '/inc/Api/SettingsApi.php',

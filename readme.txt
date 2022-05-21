@@ -9,7 +9,7 @@ Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
-🔥 Ultimate Last Modified Solution for WordPress. Adds last modified date and time automatically on pages and posts very easily. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
+Ultimate Last Modified Plugin for WordPress with Gutenberg Block Integration. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
 
 == Description ==
 
@@ -164,7 +164,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.8.0 =
-Release Date:
+Release Date: May 21, 2022
 
 * NEW: New Plugin UI.
 * NEW: Block Editor Controls.
@@ -182,6 +182,7 @@ Release Date:
 * Removed: jQuery Cookie Library.
 * Added filter `wplmi/plugin_links` for plugin links output.
 * Tested with WPML.
+* Development is now done in GitHub.
 * Compatibility with WordPress v6.0 and PHP v8.0.
 
 = Other Versions =
@@ -191,4 +192,4 @@ Release Date:
 == Upgrade Notice ==
 
 = 1.8.0 =
-In this release, we make this plugin compatible with WordPress 6.0. You may need to re-configure your plugin settings, to get it working.
+In this release, we make this plugin compatible with WordPress 6.0. You may need to re-configure your plugin settings once, to get it properly working.
