@@ -358,28 +358,28 @@ class ManagerCallbacks
 
 	public function email_notification_subject( $args ) {
 		$this->do_field( [
-			'type'       => 'textarea',
-			'id'         => $args['label_for'],
-			'name'       => 'lmt_email_subject',
-			'value'      => $this->get_data( 'lmt_email_subject', '[%site_name%] A %post_type% of %author_name% has been modified on your blog.' ),
+			'type'        => 'textarea',
+			'id'          => $args['label_for'],
+			'name'        => 'lmt_email_subject',
+			'value'       => $this->get_data( 'lmt_email_subject', '[%site_name%] A %post_type% of %author_name% has been modified on your blog.' ),
 			'description' => $this->generate_template_tags( [ 'post_title', 'post_type', 'author_name', 'site_name', 'site_url', 'current_time' ] ),
-			'attributes' => [
+			'attributes'  => [
 				'rows' => 2,
 				'cols' => 100,
 			],
-			'show_if'    => 'wplmi_enable_notification',
+			'show_if'     => 'wplmi_enable_notification',
 		] );
 	}
 	
 	public function email_notification_message( $args ) {
 		$default = 'The following changes are made on a %post_type% of your blog by %modified_author_name%' . "\n\n" . '<p><strong>Post: %post_title%</strong></p><p>%post_diff%</p>';
 		$this->do_field( [
-			'type'    => 'wp_editor',
-			'id'      => $args['label_for'],
-			'name'    => 'lmt_email_message',
-			'value'   => $this->get_data( 'lmt_email_message', $default ),
+			'type'        => 'wp_editor',
+			'id'          => $args['label_for'],
+			'name'        => 'lmt_email_message',
+			'value'       => $this->get_data( 'lmt_email_message', $default ),
 			'description' => $this->generate_template_tags( [ 'post_title', 'post_type', 'author_name', 'modified_author_name', 'post_edit_link', 'post_diff', 'site_name', 'site_url', 'admin_email', 'current_time' ] ),
-			'show_if' => 'wplmi_enable_notification',
+			'show_if'     => 'wplmi_enable_notification',
 		] );
 	}
 
