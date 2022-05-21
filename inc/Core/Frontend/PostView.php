@@ -25,8 +25,7 @@ class PostView
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->filter( 'the_content', 'show_info', $this->do_filter( 'display_priority', 5 ) );
 		$this->action( 'wp_footer', 'run_replace', 99 );
 	}
@@ -38,8 +37,7 @@ class PostView
 	 * 
 	 * @return string $content  Filtered Content
 	 */
-	public function show_info( $content )
-	{
+	public function show_info( $content ) {
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
 			return $content;
 		}
@@ -77,11 +75,8 @@ class PostView
 		    }
 		}
 
-		$published_timestamp = get_post_time( 'U' );
-		$modified_timestamp = get_post_modified_time( 'U' );
-		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
-
-		if ( $modified_timestamp < ( $published_timestamp + $gap ) ) {
+		$timestamp = $this->get_timestamp( get_the_ID() );
+		if ( ! $timestamp ) {
 			return $content;
 		}
 
@@ -90,22 +85,11 @@ class PostView
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
 
-		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
-		$date_type = $this->do_filter( 'post_datetime_type', $date_type, get_the_ID() );
-
-		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
-		if ( $date_type == 'default' ) {
-			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
-			$format = $this->do_filter( 'post_datetime_format', $format, get_the_ID() );
-			$timestamp = $this->get_modified_date( $format );
-		}
-		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, get_the_ID() );
-
-		$template = $this->generate( htmlspecialchars_decode( wp_unslash( $template ) ), get_the_ID(), $timestamp, $author_id );
+		$template = $this->generate( $template, get_the_ID(), $timestamp, $author_id );
 
 		if ( $position == 'before_content' ) {
         	$content = $this->wrapper( $template, get_the_ID() ) . $content;
-        } else if ( $position == 'after_content' ) {
+        } elseif ( $position == 'after_content' ) {
         	$content = $content . $this->wrapper( $template, get_the_ID() );
 	    }
 
@@ -115,8 +99,7 @@ class PostView
 	/**
 	 * Replace Published date with Modified Date using jQuery.
 	 */
-	public function run_replace()
-	{
+	public function run_replace() {
 		global $post;
 		
 		if ( ! is_singular() ) {
@@ -127,9 +110,8 @@ class PostView
 			return;
 		}
 
-		$post_id = $post->ID;
 		$post_types = $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] );
-		if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
+		if ( ! in_array( $post->post_type, $post_types ) ) {
 			return;
 		}
 
@@ -138,7 +120,7 @@ class PostView
 			return;
 		}
 
-		$disable = $this->get_meta( $post_id, '_lmt_disable' );
+		$disable = $this->get_meta( $post->ID, '_lmt_disable' );
 		if ( ! empty( $disable ) && $disable == 'yes' ) {
 			return;
 		}
@@ -149,11 +131,8 @@ class PostView
 			return;
 		}
 
-		$published_timestamp = get_post_time( 'U' );
-		$modified_timestamp = get_post_modified_time( 'U' );
-		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
-
-		if ( $modified_timestamp < ( $published_timestamp + $gap ) ) {
+		$timestamp = $this->get_timestamp( $post->ID );
+		if ( ! $timestamp ) {
 			return;
 		}
 
@@ -162,70 +141,96 @@ class PostView
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
 
-		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
-		$date_type = $this->do_filter( 'post_datetime_type', $date_type, $post_id );
+		$template = $this->generate( $template, $post->ID, $timestamp, $author_id );
+		$allowed_htmls = array_merge( wp_kses_allowed_html( 'post' ), [
+			'time' => [
+				'class'    => [],
+				'itemprop' => [],
+				'datetime' => [],
+			],
+		] );
 
-		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
-		if ( $date_type == 'default' ) {
-			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
-			$format = $this->do_filter( 'post_datetime_format', $format, get_the_ID() );
-			$timestamp = ( ! empty( $format ) ) ? get_the_modified_date( $format ) : get_the_modified_date( get_option( 'date_format' ) );
-		}
-		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, $post_id );
-
-		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( wp_unslash( $template ) ), $post_id, $timestamp, $author_id ) );
-		$selectors = preg_replace( "/\r|\n/", '', wp_kses_post( $selectors ) ); ?>
+		echo '<div class="wplmi-frontend-template" style="display: none;">' . wp_kses( $template, $allowed_htmls ) . '</div>'; ?>
 
 	    <script type="text/javascript">
-	        jQuery(document).ready(function ($) {
-				var selector = $( '<?php echo $selectors; ?>' );
-                if ( selector.length ) {
-					selector.replaceWith( '<?php echo $template; ?>' );
-				}
-	        });
+			const wplmiNodeList = document.querySelectorAll( '<?php echo wp_kses_post( preg_replace( "/\r|\n/", '', $selectors ) ); ?>' );
+			for ( let i = 0; i < wplmiNodeList.length; i++ ) {
+				wplmiNodeList[i].outerHTML = document.querySelector( '.wplmi-frontend-template' ).innerHTML;
+			}
 	    </script>
 		<?php
 	}
 
 	/**
-	 * Replace email variables.
+	 * Get Timestamp.
 	 *
-	 * @param string  $html  Input data.
-	 * @param object  $post  WP Post object.
-	 * @param string  $type  Sting type. Default subject.
+	 * @param int  $post_id  WP Post ID.
 	 * 
 	 * @return string
 	 */
-	protected function generate( $html, $post_id, $timestamp, $author_id )
-	{
-		$html = stripslashes( $html );
+	private function get_timestamp( $post_id ) {
+		$published_timestamp = get_post_time( 'U', false, $post_id );
+		$modified_timestamp = get_post_modified_time( 'U', false, $post_id );
+		$gap = $this->get_data( 'lmt_gap_on_post', 0 );
 
-		$post = get_post( $post_id );
-		
-		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'inline' ) && ! $this->is_archive() ) {
-			$timestamp = '<time itemprop="dateModified" datetime="'. esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post->ID ) ) . '">' . $timestamp . '</time>';
+		if ( ( $modified_timestamp - $published_timestamp ) < $gap ) {
+			return false;
 		}
 
+		// Get Format
+		$date_type = $this->get_data( 'lmt_last_modified_format_post', 'default' );
+		$date_type = $this->do_filter( 'post_datetime_type', $date_type, $post_id );
+
+		// Generate Timestamp
+		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
+		if ( $date_type == 'default' ) {
+			$format = $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) );
+			$format = $this->do_filter( 'post_datetime_format', $format, $post_id );
+			$timestamp = $this->get_modified_date( $format, $post_id );
+		}
+		$timestamp = $this->do_filter( 'post_formatted_date', $timestamp, $post_id );
+
+		return $timestamp;
+	}
+
+	/**
+	 * Replace email variables.
+	 *
+	 * @param string  $html    Input data.
+	 * @param int     $post_id Post ID.
+	 * @param string  $type    Sting type. Default subject.
+	 * 
+	 * @return string
+	 */
+	protected function generate( $html, $post_id, $timestamp, $author_id ) {
+		$html = htmlspecialchars_decode( wp_unslash( $html ) );
+
+		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'inline' ) && ! $this->is_archive() ) {
+			$timestamp = '<time itemprop="dateModified" datetime="'. esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post_id ) ) . '">' . esc_html( $timestamp ) . '</time>';
+		}
+
+		// Prepare contents
 		$author_name = get_the_author_meta( 'display_name', $author_id );
 		$author_url = esc_url( get_the_author_meta( 'url', $author_id ) );
 		$author_email = filter_var( get_the_author_meta( 'user_email', $author_id ), FILTER_SANITIZE_EMAIL );
 		$author_archive = esc_url( get_author_posts_url( $author_id ) );
 
-		$date_format = $this->do_filter( 'post_published_date_format', get_option( 'date_format' ), $post->ID );
+		// Published date format
+		$date_format = $this->do_filter( 'post_published_date_format', get_option( 'date_format' ), $post_id );
 		
+		// Start replace
 		$html = str_replace( [ '%original_author_name%', '%post_original_author%' ], get_the_author(), $html ); 
 		$html = str_replace( [ '%author_name%', '%post_author%' ], $author_name, $html ); 
-		$html = str_replace( [ '%author_url%','%author_website%' ], $author_url, $html );
+		$html = str_replace( [ '%author_url%', '%author_website%' ], $author_url, $html );
 		$html = str_replace( '%author_email%', $author_email, $html );
 		$html = str_replace( [ '%author_archive%', '%author_posts_url%' ], $author_archive, $html );
-		$html = str_replace( [ '%post_published%', '%published_date%' ], esc_attr( get_post_time( $date_format, false, $post->ID, true ) ), $html );
-		$html = str_replace( '%post_link%', esc_url( get_the_permalink( $post->ID ) ), $html );
-		$html = str_replace( '%post_categories%', get_the_category_list( $this->do_filter( 'post_categories_separator', ', ', $post->ID ), '', $post->ID ), $html );
-		$html = str_replace( '%comment_count%', get_comments_number( $post->ID ), $html );
-		
-		$html = $this->do_filter( 'post_tags', $html, $post->ID );
-		$html = str_replace( [ '%post_modified%', '%modified_date%' ], $timestamp, wp_kses_post( $html ) );
-		
+		$html = str_replace( [ '%post_published%', '%published_date%' ], esc_attr( get_post_time( $date_format, false, $post_id, true ) ), $html );
+		$html = str_replace( '%post_link%', esc_url( get_the_permalink( $post_id ) ), $html );
+		$html = str_replace( '%post_categories%', get_the_category_list( $this->do_filter( 'post_categories_separator', ', ', $post_id ), '', $post_id ), $html );
+		$html = str_replace( '%comment_count%', get_comments_number( $post_id ), $html );
+		$html = str_replace( [ '%post_modified%', '%modified_date%' ], $timestamp, $html );
+
+		$html = $this->do_filter( 'post_tags', $html, $post_id );
 		return preg_replace( "/\r|\n/", '', $html );
 	}
 
@@ -241,8 +246,7 @@ class PostView
 	 * 
 	 * @return string
 	 */
-	protected function wrapper( $content, $post_id, $remove = false, $wrap = false, $output_type = 'post', $element = 'p' )
-	{
+	protected function wrapper( $content, $post_id, $remove = false, $wrap = false, $output_type = 'post', $element = 'p' ) {
 		$wrapper = $this->do_filter( $output_type . '_wrapper_element', $element, $post_id );
 
 		if ( $this->do_filter( $output_type . '_remove_auto_p', $remove, $post_id ) ) {
@@ -250,7 +254,7 @@ class PostView
 		}
 
 		if ( $this->do_filter( $output_type . '_wrapper', $wrap, $post_id ) ) {
-		    $content = '<' . esc_attr( $wrapper ) . ' class="wplmi-' . $output_type . ' post-last-modified">' . $content . '</' . esc_attr( $wrapper ) . '>';
+		    $content = '<' . esc_attr( $wrapper ) . ' class="wplmi-' . esc_attr( $output_type ) . ' post-last-modified">' . $content . '</' . esc_attr( $wrapper ) . '>';
 		}
 
 		return $content;
@@ -261,8 +265,7 @@ class PostView
 	 * 
 	 * @return bool
 	 */
-	private function is_archive()
-	{
+	private function is_archive() {
 		if ( is_archive() || is_tax() || is_home() || is_front_page() || is_search() || is_404() ) {
             return true;
 		}

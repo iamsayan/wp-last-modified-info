@@ -25,13 +25,12 @@ class MiscActions
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'admin_init', 'actions' );
 		$this->action( 'wp_head', 'custom_css' );
 		$this->action( 'pre_get_posts', 'sorting_order' );
 		$this->action( 'pre_get_posts', 'frontend_sorting_order' );
-		$this->action( 'init', 'disable_date_time' );
+		$this->action( 'init', 'disable_date_time', 1 );
 		$this->filter( 'get_the_time', 'replace_time', 10, 3 );
         $this->filter( 'get_the_date', 'replace_date', 10, 3 );
 	}
@@ -39,8 +38,7 @@ class MiscActions
 	/**
 	 * WP Actions added to admin_init.
 	 */
-	public function actions()
-	{
+	public function actions() {
 		$this->filter( 'post_updated_messages', 'messages' );
 		$this->action( 'save_post', 'save_post' );
 	}
@@ -53,8 +51,7 @@ class MiscActions
 	 * 
 	 * @return string  $time
 	 */
-	public function messages( $messages )
-	{
+	public function messages( $messages ) {
 		// define globally
 		global $post;
 	
@@ -65,11 +62,11 @@ class MiscActions
 			}
 		}
 	
-		// get wordpress date time format
+		// get WordPress date time format
 		$get_df = get_option( 'date_format' );
 		$get_tf = get_option( 'time_format' );
 	
-		$m_orig	= get_post_field( 'post_modified', $post->ID, 'raw' );
+		$m_orig = get_post_field( 'post_modified', $post->ID, 'raw' );
 		$post_modified = '&nbsp;<strong>' . date_i18n( $this->do_filter( 'post_updated_datetime_format', $get_df . ' @ ' . $get_tf, $post->ID ), strtotime( $m_orig ) ) . '</strong>.&nbsp;';
 	
 		// get post types returns object
@@ -78,7 +75,9 @@ class MiscActions
 			$post_modified .= sprintf( __( '<a href="%1$s" target="_blank">%2$s %3$s</a>' ), esc_url( get_permalink( $post->ID ) ), __( 'View', 'wp-last-modified-info' ), $post_types->name );
 		}
 
-		$messages[$post->post_type][1] = esc_html( $post_types->labels->singular_name ) . '&nbsp;' . sprintf( __( '%1$s%2$s' ), __( 'updated on', 'wp-last-modified-info' ), $post_modified );
+		if ( isset( $messages[ $post->post_type ] ) ) {
+			$messages[ $post->post_type ][1] = esc_html( $post_types->labels->singular_name ) . '&nbsp;' . sprintf( __( '%1$s%2$s' ), __( 'updated on', 'wp-last-modified-info' ), $post_modified );
+		}
 		
 		return $messages;
 	}
@@ -88,13 +87,12 @@ class MiscActions
 	 * 
 	 * @param int      $post_id  Post ID
 	 */
-	public function save_post( $post_id )
-	{
-		// get wordpress date time format
+	public function save_post( $post_id ) {
+		// get WordPress date time format
 		$get_df = get_option( 'date_format' );
 		$get_tf = get_option( 'time_format' );
 		// get post meta data
-		$m_orig	= get_post_field( 'post_modified', $post_id, 'raw' );
+		$m_orig = get_post_field( 'post_modified', $post_id, 'raw' );
 		$m_stamp = strtotime( $m_orig );
 		$modified = date_i18n( $this->do_filter( 'custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
 		$shortcode = '[lmt-post-modified-info]';
@@ -118,8 +116,7 @@ class MiscActions
 	 * 
 	 * @return string  $time
 	 */
-	public function replace_date( $time, $format, $post )
-	{
+	public function replace_date( $time, $format, $post ) {
 		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
             return $time;
 		}
@@ -136,8 +133,7 @@ class MiscActions
 	 * 
 	 * @return string  $time
 	 */
-	public function replace_time( $time, $format, $post )
-	{
+	public function replace_time( $time, $format, $post ) {
 		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
             return $time;
 		}
@@ -148,8 +144,7 @@ class MiscActions
 	/**
 	 * Disable Date Time output completely.
 	 */
-	public function disable_date_time()
-	{
+	public function disable_date_time() {
 		if ( ! $this->is_equal( 'replace_published_date', 'remove' ) || is_admin() ) {
             return;
 		}
@@ -167,8 +162,7 @@ class MiscActions
 	 * 
 	 * @param object $query WP Query
 	 */
-	public function sorting_order( $query )
-	{
+	public function sorting_order( $query ) {
 		global $pagenow;
 		$order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
 		
@@ -185,8 +179,7 @@ class MiscActions
 	 * 
 	 * @param object $query WP Query
 	 */
-	public function frontend_sorting_order( $query )
-	{
+	public function frontend_sorting_order( $query ) {
 		global $pagenow;
 		$order = $this->is_equal( 'default_sort_order', 'published' ) ? 'asc' : 'desc';
 
@@ -203,8 +196,7 @@ class MiscActions
 	/**
 	 * Custom CSS Ouput.
 	 */
-	public function custom_css()
-	{
+	public function custom_css() {
 		echo '<style id="wplmi-inline-css" type="text/css"> span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; } '."\n". wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) )."\n".'</style>'."\n";
 	}
 }

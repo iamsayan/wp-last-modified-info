@@ -25,8 +25,7 @@ class Notification
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'post_updated', 'email', 10, 3 );
 	}
 
@@ -37,8 +36,7 @@ class Notification
 	 * 
 	 * @return string $content  Filtered Content
 	 */
-	public function email( $post_id, $post_after, $post_before )
-	{
+	public function email( $post_id, $post_after, $post_before ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
@@ -138,8 +136,7 @@ class Notification
 	 * 
 	 * @return string
 	 */
-	private function generate_html( $text, $post_id, $post_before, $html = '', $type = 'subject' )
-	{
+	private function generate_html( $text, $post_id, $post_before, $html = '', $type = 'subject' ) {
 		$text = stripslashes( $text );
 		$text = str_replace( '%author_name%', get_the_author_meta( 'display_name', $post_before->post_author ), $text );
 		$text = str_replace( '%modified_author_name%', get_the_author_meta( 'display_name', $this->get_meta( $post_id, '_edit_last' ) ), $text ); 

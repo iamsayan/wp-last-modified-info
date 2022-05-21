@@ -22,8 +22,7 @@ class Shortcode extends PostView
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		add_shortcode( 'lmt-post-modified-info', [ $this, 'render' ] );
 		add_shortcode( 'lmt-page-modified-info', [ $this, 'render' ] );
 		add_shortcode( 'lmt-template-tags', [ $this, 'render_template_tags' ] );
@@ -37,22 +36,20 @@ class Shortcode extends PostView
 	 * 
      * @return string     Shortcode output.
      */
-	public function render( $atts )
-	{
+	public function render( $atts ) {
 		global $post;
-		
+
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
 			return;
 		}
 
-		$post_id = $post->ID;
-		$author_id = $this->get_meta( $post_id, '_edit_last' );
+		$author_id = $this->get_meta( $post->ID, '_edit_last' );
 		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
 	
 		$atts = shortcode_atts( [
-			'id'           => $post_id,
+			'id'           => $post->ID,
 			'template'     => $this->get_data( 'lmt_last_modified_info_template' ),
 			'date_format'  => $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ),
 			'date_type'    => $this->get_data( 'lmt_last_modified_format_post', 'default' ),
@@ -60,7 +57,7 @@ class Shortcode extends PostView
 			'author_id'    => $author_id,
 			'hide_archive' => '',
 			'filter_ids'   => '',
-			'gap'          => $this->get_data( 'lmt_gap_on_post', 0 )
+			'gap'          => $this->get_data( 'lmt_gap_on_post', 0 ),
 		], $atts, 'lmt-post-modified-info' );
 
 		$get_post = get_post( absint( $atts['id'] ) );
@@ -93,7 +90,7 @@ class Shortcode extends PostView
 
 		$published_timestamp = get_post_time( 'U' );
 		$modified_timestamp = get_post_modified_time( 'U' );
-		if ( $modified_timestamp < ( $published_timestamp + $atts['gap'] ) ) {
+		if ( ( $modified_timestamp - $published_timestamp ) < $atts['gap'] ) {
 			return;
 		}
 
@@ -105,7 +102,7 @@ class Shortcode extends PostView
 		}
 		$timestamp = $this->do_filter( 'post_datetime_format', $timestamp, $get_post->ID );
 
-		$template = str_replace( "'", '"', $this->generate( htmlspecialchars_decode( wp_unslash( $atts['template'] ) ), $get_post->ID, $timestamp, $atts['author_id'] ) );
+		$template = $this->generate( $atts['template'], $get_post->ID, $timestamp, $atts['author_id'] );
 
     	return $this->wrapper( $template, $get_post->ID, true, false, 'sc' );
 	}
@@ -119,8 +116,7 @@ class Shortcode extends PostView
 	 * 
      * @return string     Shortcode output.
      */
-	public function render_template_tags( $atts )
-	{
+	public function render_template_tags( $atts ) {
 		$atts = shortcode_atts( [
 			'escape'    => false,
 			'only_date' => false,
@@ -136,15 +132,14 @@ class Shortcode extends PostView
 	 * 
      * @return string     Shortcode output.
      */
-	public function render_global( $atts )
-	{
+	public function render_global( $atts ) {
 		$option = get_option( 'wplmi_site_global_update_info' );
 		if ( $option === false ) {
 			return;
 		}
 
 		$atts = shortcode_atts( [
-			'format'  => get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ),
+			'format' => get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ),
 		], $atts, 'lmt-site-modified-info' );
 		
 		return date_i18n( $atts['format'], $option );

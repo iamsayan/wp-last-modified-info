@@ -6,8 +6,8 @@
     "authors": [
         {
             "name": "Sayan Datta",
-            "email": "hello@sayandatta.in",
-            "homepage": "http://sayandatta.in",
+            "email": "iamsayan@protonmail.com",
+            "homepage": "https://sayandatta.in",
             "role": "Developer"
         }
     ],
@@ -22,6 +22,23 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {"Wplmi\\": "./inc"}
+        "psr-4": {
+            "Wplmi\\": "./inc"
+        },
+        "files": [
+            "functions.php"
+        ]
+    },
+    "scripts": {
+        "build": [
+			"composer dump-autoload -o"
+		],
+		"analyze": [
+            "clear",
+			"vendor/bin/phpstan analyze inc wp-last-modified-info.php"
+		]
+	},
+    "require": {
+        "deliciousbrains/wp-background-processing": "^1.0"
     }
 }

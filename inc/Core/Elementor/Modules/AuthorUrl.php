@@ -21,28 +21,23 @@ defined( 'ABSPATH' ) || exit;
  */
 Class AuthorUrl extends Data_Tag {
 
-    public function get_name()
-    {
+    public function get_name() {
         return 'wplmi-modified-author-url';
     }
     
-    public function get_title()
-    {
+    public function get_title() {
         return __( 'Last Modified Author URL', 'wp-last-modified-info' );
     }
     
-    public function get_group()
-    {
+    public function get_group() {
         return 'wplmi-module';
     }
     
-    public function get_categories()
-    {
+    public function get_categories() {
         return [ Module::URL_CATEGORY ];
     }
     
-    public function get_value( array $options = [] )
-    {
+    public function get_value( array $options = [] ) {
         $value = '';
         $author_id = get_post_meta( get_the_ID(), '_edit_last', true );
 
@@ -59,18 +54,17 @@ Class AuthorUrl extends Data_Tag {
 		return $value;
 	}
 
-    protected function _register_controls()
-    {
+    protected function register_controls() {
 		$this->add_control(
 			'url',
 			[
-				'label' => __( 'URL', 'wp-last-modified-info' ),
-				'type' => Controls_Manager::SELECT,
+				'label'   => __( 'URL', 'wp-last-modified-info' ),
+				'type'    => Controls_Manager::SELECT,
 				'default' => 'archive',
 				'options' => [
 					'archive' => __( 'Author Archive', 'wp-last-modified-info' ),
                     'website' => __( 'Author Website', 'wp-last-modified-info' ),
-                    'email' => __( 'Author Email', 'wp-last-modified-info' ),
+                    'email'   => __( 'Author Email', 'wp-last-modified-info' ),
 				],
 			]
 		);

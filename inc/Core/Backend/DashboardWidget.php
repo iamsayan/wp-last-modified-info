@@ -10,6 +10,7 @@
 
 namespace Wplmi\Core\Backend;
 
+use WP_Query;
 use Wplmi\Helpers\Hooker;
 use Wplmi\Helpers\HelperFunctions;
 
@@ -25,8 +26,7 @@ class DashboardWidget
 	/**
 	 * Register functions.
 	 */
-	public function register() 
-	{
+	public function register() {
 		$this->action( 'wp_dashboard_setup', 'dashboard_widget' );
 		$this->action( 'admin_head-index.php', 'widget_css' );
 	}
@@ -34,12 +34,11 @@ class DashboardWidget
 	/**
 	 * Register dashboard widgets.
 	 */
-	public function dashboard_widget()
-	{
+	public function dashboard_widget() {
 		global $wp_meta_boxes;
 		wp_add_dashboard_widget(
 			'dashboard_last_modified_posts', // Widget slug.
-			__( 'Last Updated Posts', 'wp-last-modified-info' ), // Title.
+			__( 'Last Updated', 'wp-last-modified-info' ), // Title.
 			[ $this, 'widget_callback' ], // callback.
 			[ $this, 'widget_control_callback' ] // control callback.
 		);
@@ -47,65 +46,84 @@ class DashboardWidget
 
 	/**
 	 * Dashboard widget callback.
-	 * 
-	 * @param string $widget_id Widget ID
 	 */
-	public function widget_callback( $widget_id )
-	{
-        global $post;
-        // Save the global post object so we can restore it later
-    	$save_post = $post;
-        // get widget options
-        $widget_options = get_option( 'lmt_dashboard_widget_options' );
-        // get wordpress date time format
-        $get_df = get_option( 'date_format' );
-        $get_tf = get_option( 'time_format' );
-    
+	public function widget_callback() {
+		$timestamp = current_time( 'timestamp', 0 );
+
+		$widget_options = get_option( 'lmt_dashboard_widget_options' );
         $num = ! empty( $widget_options['number'] ) ? esc_attr( $widget_options['number'] ) : 5;
+
+		$args = $this->do_filter( 'dashboard_widget_args', [
+			'post_type'      => 'any',
+			'post_status'    => 'publish',
+			'posts_per_page' => $num,
+			'orderby'        => 'modified',
+			'no_found_rows'  => true,
+		] );
+		$posts = new WP_Query( $args );
+
+		echo '<div id="activity-widget">';
+
+	    if ( $posts->have_posts() ) {
+
+			echo '<div id="published-posts" class="activity-block">';
+			echo '<h3>' .  esc_html__( 'Recently Updated', 'wp-last-modified-info' ) . '</h3>';
+			echo '<ul>';
+
+			$today    = gmdate( 'Y-m-d', $timestamp );
+		    $tomorrow = gmdate( 'Y-m-d', strtotime( '+1 day', $timestamp ) );
+
+            while ( $posts->have_posts() ) {
+				$posts->the_post();
+	
+				$time = get_post_modified_time( 'U' );
+			    if ( gmdate( 'Y-m-d', $time ) == $today ) {
+			    	$relative = __( 'Today' );
+			    } elseif ( gmdate( 'Y-m-d', $time ) == $tomorrow ) {
+			    	$relative = __( 'Tomorrow' );
+			    } elseif ( gmdate( 'Y', $time ) !== gmdate( 'Y', $timestamp ) ) {
+			    	/* translators: Date and time format for recent posts on the dashboard, from a different calendar year, see https://www.php.net/date */
+			    	$relative = date_i18n( 'M jS Y', $timestamp );
+			    } else {
+			    	/* translators: Date and time format for recent posts on the dashboard, see https://www.php.net/date */
+			    	$relative = date_i18n( 'M jS', $timestamp );
+			    }
+				
+				// Use the post edit link for those who can edit, the permalink otherwise.
+			    $recent_post_link = current_user_can( 'edit_post', get_the_ID() ) ? get_edit_post_link() : get_permalink();
     
-        if ( isset( $num ) ) {
-    	    // Show recently modified posts
-    	    $posts = get_posts( $this->do_filter( 'dashboard_widget_args', [
-				'post_type'      => 'post',
-				'post_status'    => 'publish',
-				'posts_per_page' => $num,
-				'orderby'        => 'modified',
-				'no_found_rows'  => true,
-            ] ) );
-            ?>
-			<div id="activity-widget"><?php
-            if ( ! empty( $posts ) ) { ?>
-                <div id="published-posts" class="activity-block">
-                    <h3><?php _e( 'Recently Updated', 'wp-last-modified-info' ); ?></h3>
-                    <ul> <?php
-                        foreach ( $posts as $post ) : 
-                            setup_postdata( $post ); ?>
-                            <li>
-                                <span><?php the_modified_time( 'M jS, ' . $get_tf ); ?></span>
-                                <?php if ( current_user_can( 'edit_post', get_the_ID() ) ) {
-                                        edit_post_link( esc_attr( get_the_title() ) );
-                                    } else {
-                                        echo '<a href="' . get_the_permalink() . '" target="_blank" title="' . get_the_title() . '">' . get_the_title() . '</a>';
-                                    } ?> &nbsp;<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank"><span class="dashicons dashicons-external" style="font-size:15px;margin-left:0px;min-width:0px;"></span></a>
-                            </li>
-                        <?php endforeach;
-    		            wp_reset_postdata();
-    		            // Restore the global post object
-    		            $post = $save_post; ?>
-                    </ul>
-                </div>
-            <?php } else { ?>
-                <div class="no-activity"><p><?php _e( 'No modified posts yet!', 'wp-last-modified-info' ); ?></p></div>
-            <?php } ?>
-        </div> <?php
-        }
+			    $draft_or_post_title = _draft_or_post_title();
+			    printf(
+			    	'<li><span>%1$s</span> <a href="%2$s" aria-label="%3$s">%4$s</a></li>',
+			    	/* translators: 1: Relative date, 2: Time. */
+			    	sprintf( _x( '%1$s, %2$s', 'dashboard' ), $relative, date_i18n( get_option( 'time_format' ), $timestamp ) ),
+			    	$recent_post_link,
+			    	/* translators: %s: Post title. */
+			    	esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $draft_or_post_title ) ),
+					$draft_or_post_title
+				);
+			}
+						
+		    echo '</ul>';
+			echo '</div>';
+				
+		} else {
+
+			echo '<div class="no-activity">';
+			echo '<p class="smiley" aria-hidden="true"></p>';
+			echo '<p>' . __( 'No modified posts yet!' ) . '</p>';
+			echo '</div>';
+			
+		}
+		wp_reset_postdata();
+
+		echo '</div>';
     }
 
 	/**
 	 * Dashboard widget control callback.
 	 */
-	public function widget_control_callback()
-	{
+	public function widget_control_callback() {
 		// Get widget options
 		$widget_options = get_option( 'lmt_dashboard_widget_options' );
 		$value = isset( $widget_options['number'] ) ? esc_attr( $widget_options['number'] ) : '';
@@ -114,7 +132,7 @@ class DashboardWidget
 			update_option( 'lmt_dashboard_widget_options', $_POST['wplmi_widget_value'] );
 		} ?>
 		<p>
-			<label for="post-count"><strong><?php _e( 'No. of Posts to Display on this Widget', 'wp-last-modified-info' ); ?>:</strong></label>
+			<label for="post-count"><strong><?php esc_html_e( 'No. of Posts to Display on this Widget', 'wp-last-modified-info' ); ?>:</strong></label>
 			&nbsp;&nbsp;&nbsp;<input class="widefat" id="post-count" name="wplmi_widget_value[number]" type="number" size="15" style="width:15%;vertical-align: middle;" placeholder="5" min="3" value="<?php echo $value; ?>" /><input name="wplmi_widget_post" type="hidden" value="1" />
 		</p>
 		<?php
@@ -123,8 +141,7 @@ class DashboardWidget
 	/**
 	 * Locad custom css for dashboard widget.
 	 */
-	public function widget_css()
-	{ ?>
+	public function widget_css() { ?>
 		<style type="text/css">
 			#dashboard_last_modified_posts .no-activity p {
 				color: #72777c;

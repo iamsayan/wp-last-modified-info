@@ -26,8 +26,7 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-    public function get_meta( $post_id, $key, $single = true )
-	{
+    public function get_meta( $post_id, $key, $single = true ) {
 		return \get_post_meta( $post_id, $key, $single );
 	}
 
@@ -40,8 +39,7 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function add_meta( $post_id, $key, $value )
-	{
+	protected function add_meta( $post_id, $key, $value ) {
 		return \add_post_meta( $post_id, $key, $value );
 	}
 
@@ -54,8 +52,7 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function update_meta( $post_id, $key, $value )
-	{
+	protected function update_meta( $post_id, $key, $value ) {
 		return \update_post_meta( $post_id, $key, $value );
 	}
 
@@ -68,8 +65,7 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function delete_meta( $post_id, $key, $value = '' )
-	{
+	protected function delete_meta( $post_id, $key, $value = '' ) {
 		return \delete_post_meta( $post_id, $key, $value );
 	}
 
@@ -81,11 +77,10 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function get_data( $key, $default = false )
-	{
+	protected function get_data( $key, $default = false ) {
 		$settings = get_option( 'lmt_plugin_global_settings' );
 
-		return ( isset( $settings[$key] ) ) ? $settings[$key] : $default;
+		return ( isset( $settings[ $key ] ) && ! empty( $settings[ $key ] ) ) ? $settings[ $key ] : $default;
 	}
 
 	/**
@@ -96,8 +91,7 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function build_meta( $post_id, $meta_key, $default = false, $unserialize = false, $single = true )
-	{
+	protected function build_meta( $post_id, $meta_key, $default = false, $unserialize = false, $single = true ) {
 		$meta = $this->get_meta( $post_id, $meta_key, $single );
 		if ( $unserialize ) {
 			$meta = maybe_unserialize( $meta );

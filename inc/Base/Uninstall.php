@@ -18,8 +18,7 @@ class Uninstall
 	/**
 	 * Run plugin uninstallation process.
 	 */
-	public static function uninstall()
-	{
+	public static function uninstall() {
 		$option_name = 'lmt_plugin_global_settings';
 		
 		if ( ! is_multisite() ) {
@@ -46,27 +45,27 @@ class Uninstall
 	/**
 	 * Run plugin uninstallation process.
 	 */
-	public static function uninstaller()
-	{
+	public static function uninstaller() {
 		delete_option( 'lmt_plugin_global_settings' );
 		delete_option( 'wplmi_site_global_update_info' );
 		delete_option( 'lmt_dashboard_widget_options' );
 		delete_option( 'wplmi_plugin_api_data' );
 
 		$args = [
-			'numberposts'   => -1,
-			'post_type'     => 'any',
-			'post_status'   => 'any',
+			'numberposts' => -1,
+			'post_type'   => 'any',
+			'post_status' => 'any',
+			'fields'      => 'ids',
 		];
 	
 		$posts = get_posts( $args );
 		if ( ! empty( $posts ) ) {
-	    	foreach ( $posts as $post ) {
-	    		delete_post_meta( $post->ID, '_lmt_disable' );
-	    		delete_post_meta( $post->ID, '_lmt_disableupdate' );
-	    		delete_post_meta( $post->ID, '_wplmi_last_modified' );
-	    		delete_post_meta( $post->ID, 'wp_last_modified_info' );
-	    		delete_post_meta( $post->ID, 'wplmi_shortcode' );
+	    	foreach ( $posts as $post_id ) {
+	    		delete_post_meta( $post_id, '_lmt_disable' );
+	    		delete_post_meta( $post_id, '_lmt_disableupdate' );
+	    		delete_post_meta( $post_id, '_wplmi_last_modified' );
+	    		delete_post_meta( $post_id, 'wp_last_modified_info' );
+	    		delete_post_meta( $post_id, 'wplmi_shortcode' );
 	    	}
 	    }
 	}

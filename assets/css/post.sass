@@ -1,0 +1,81 @@
+.curtime #wplmi-timestamp:before
+  font: 400 20px/1 dashicons
+  display: inline-block
+  margin-left: -1px
+  padding-right: 3px
+  vertical-align: top
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  content: "\f469"
+  position: relative
+  top: -1px
+  color: #82878c
+
+body:not(.admin-color-fresh) .curtime #wplmi-timestamp:before
+  color: currentColor !important
+
+#timestampmodifieddiv
+  p
+    margin: 8px 0px 6px
+
+  input
+    text-align: center
+
+#hhm, #jjm, #mnm
+  width: 2em
+
+#aam
+  width: 3.4em
+
+#aam, #hhm, #jjm, #mnm
+  padding: 6px 1px
+  font-size: 12px
+  line-height: 1.16666666
+
+@media screen and (max-width: 782px)
+  .timestamp-wrap
+    select#mmm
+      display: block
+      width: 100%
+      margin-bottom: 10px
+
+    #aam, #hhm, #jjm, #mnm
+      padding: 12px 3px
+      font-size: 14px
+      margin-bottom: 5px
+      width: auto
+      text-align: center
+
+.tooltipsc
+  position: relative
+  display: inline-block
+
+  .tooltiptext
+    visibility: hidden
+    width: 140px
+    background-color: #555
+    color: #fff
+    text-align: center
+    border-radius: 6px
+    padding: 5px
+    position: absolute
+    z-index: 1
+    bottom: 150%
+    left: 62%
+    margin-left: -75px
+    opacity: 0
+    transition: opacity 0.3s
+
+    &::after
+      content: ""
+      position: absolute
+      top: 100%
+      left: 50%
+      margin-left: -5px
+      border-width: 5px
+      border-style: solid
+      border-color: #555 transparent transparent transparent
+
+  &:hover .tooltiptext
+    visibility: visible
+    opacity: 1

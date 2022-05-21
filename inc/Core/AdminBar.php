@@ -25,8 +25,7 @@ class AdminBar
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'admin_bar_menu', 'admin_bar' );
 	}
 
@@ -37,8 +36,7 @@ class AdminBar
 	 * 
 	 * @return string $content  Filtered Content
 	 */
-	public function admin_bar( $wp_admin_bar )
-	{
+	public function admin_bar( $wp_admin_bar ) {
 		global $post;
 
 		if ( ! $this->is_enabled( 'enable_on_admin_bar_cb' ) ) {
@@ -46,30 +44,25 @@ class AdminBar
 		}
 
         // If it's admin page, then get out!
-        if ( ! is_singular() ) {
+        if ( ! is_singular() || ! current_user_can( 'publish_posts' ) ) {
 			return;
 		}
     
-        // If user can't publish posts, then get out
-        if ( ! current_user_can( 'publish_posts' ) ) {
-			return;
-		}
-    
-        if ( get_post_status() === 'auto-draft' ) {
+        if ( 'auto-draft' === get_post_status() ) {
     		return;
         }
         
         $object = get_post_type_object( get_post_type() );
         $args = array(
-            'id' => 'wplmi-update',
+            'id'     => 'wplmi-update',
             'parent' => 'top-secondary',
             'title'  => $this->title(),
             'href'   => $this->revision(),
-            'meta' => array(
-				/* translators: %s: Post Info */
-                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), get_post_type(), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
+            'meta'   => array(
+				/* translators: %1$s: Post Type Label, %2$s: Post Modified Date, %3$s: Post Modified Time, %4$s: POst Modified Author */
+                'title'  => sprintf( __( 'This %1$s was last updated on %2$s at %3$s by %4$s', 'wp-last-modified-info' ), esc_html( $object->labels->singular_name ), $this->get_modified_date(), $this->get_modified_date( get_option( 'time_format' ) ), get_the_modified_author() ),
                 'target' => '_blank',
-            )
+            ),
         );
     
         $wp_admin_bar->add_node( $args );
@@ -78,8 +71,7 @@ class AdminBar
 	/**
 	 * Generate title to show on admin bar
 	 */
-	private function title()
-	{
+	private function title() {
 		// retrive date time formats
 		$cur_time = current_time( 'U' );
 		$mod_time = $this->get_modified_date( 'U' );
@@ -97,23 +89,22 @@ class AdminBar
 	/**
 	 * Generate revision url to show on admin bar
 	 */
-	private function revision()
-	{
+	private function revision() {
 		global $post;
-		$post_id = $post->ID;
 	
 		// If user can't edit post, then don't show
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
 			return;
 		}
 	
-		$revision = wp_get_post_revisions( $post_id );
+		$revision = wp_get_post_revisions( $post->ID );
 		$latest_revision = array_shift( $revision );
+		$url = '';
 	
 		if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
-			return get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
+			$url = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
 		}
 	
-		return;
+		return $url;
 	}
 }

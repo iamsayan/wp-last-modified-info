@@ -1,6 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.0
+Release Date: May 21, 2022
+
+* NEW: New Plugin UI.
+* NEW: Block Editor Controls.
+* NEW: Added 3 New Blocks for WordPress 5.8 and beyond.
+* Improvement: Enhanced Escaping.
+* Improvement: Plugin Rating is now calcualted out of 5.
+* Improvement: Use of Vanilla JS instead of jQuery to Replace Post Date.
+* Improvement: Remove Plugin Update data on Deactivation.
+* Improvement: Uses Post ID instead on WP Post Object to reduce memory usage.
+* Fixed: Dashboard Widget Issue.
+* Fixed: Elementor Deprecated issue.
+* Fixed: The issue where plugin returns true even if there is no value in settings.
+* Fixed: Rest API Output error if `get_userdata()` function returns false.
+* Removed: Astra and GeneratePress Theme support.
+* Removed: jQuery Cookie Library.
+* Added filter `wplmi/plugin_links` for plugin links output.
+* Tested with WPML.
+* Development is now done in GitHub.
+* Compatibility with WordPress v6.0 and PHP v8.0.
+
 ## 1.7.7
 Release Date: June 13, 2021
 

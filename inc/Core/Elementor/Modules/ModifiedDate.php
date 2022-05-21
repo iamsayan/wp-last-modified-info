@@ -21,36 +21,31 @@ defined( 'ABSPATH' ) || exit;
  */
 Class ModifiedDate extends Tag {
 
-    public function get_name()
-    {
+    public function get_name() {
         return 'wplmi-modified-date';
     }
     
-    public function get_title()
-    {
+    public function get_title() {
         return __( 'Last Modified Date', 'wp-last-modified-info' );
     }
     
-    public function get_group()
-    {
+    public function get_group() {
         return 'wplmi-module';
     }
     
-    public function get_categories()
-    {
+    public function get_categories() {
         return [ Module::TEXT_CATEGORY ];
     }
     
-    protected function _register_controls()
-    {
+    protected function register_controls() {
         $this->add_control(
             'schema',
             [
-                'label' => __( 'Schema Markup', 'wp-last-modified-info' ),
-                'type' => Controls_Manager::SELECT,
+                'label'   => __( 'Schema Markup', 'wp-last-modified-info' ),
+                'type'    => Controls_Manager::SELECT,
                 'options' => [
                     'yes' => __( 'Yes', 'wp-last-modified-info' ),
-                    'no' => __( 'No', 'wp-last-modified-info' ),
+                    'no'  => __( 'No', 'wp-last-modified-info' ),
                 ],
                 'default' => 'yes',
             ]
@@ -59,35 +54,34 @@ Class ModifiedDate extends Tag {
         $this->add_control(
             'format',
             [
-                'label' => __( 'Date Format', 'wp-last-modified-info' ),
-                'type' => Controls_Manager::SELECT,
+                'label'   => __( 'Date Format', 'wp-last-modified-info' ),
+                'type'    => Controls_Manager::SELECT,
                 'options' => [
                     'default' => __( 'Default', 'wp-last-modified-info' ),
-                    'F j, Y' => date_i18n( 'F j, Y' ),
-                    'Y-m-d' => date_i18n( 'Y-m-d' ),
-                    'm/d/Y' => date_i18n( 'm/d/Y' ),
-                    'd/m/Y' => date_i18n( 'd/m/Y' ),
+                    'F j, Y'  => date_i18n( 'F j, Y' ),
+                    'Y-m-d'   => date_i18n( 'Y-m-d' ),
+                    'm/d/Y'   => date_i18n( 'm/d/Y' ),
+                    'd/m/Y'   => date_i18n( 'd/m/Y' ),
                     'custom'  => __( 'Custom', 'wp-last-modified-info' ),
                 ],
-                'default' => 'default'
+                'default' => 'default',
             ]
         );
     
         $this->add_control(
             'custom_format',
             [
-                'label' => __( 'Custom Format', 'wp-last-modified-info' ),
-                'default' => '',
+                'label'       => __( 'Custom Format', 'wp-last-modified-info' ),
+                'default'     => '',
                 'description' => sprintf( '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">%s</a>', __( 'Documentation on date and time formatting', 'wp-last-modified-info' ) ),
-                'condition' => [
+                'condition'   => [
                     'format' => 'custom',
                 ],
             ]
         );
     }
     
-    public function render()
-    {
+    public function render() {
         $schema = $this->get_settings( 'schema' );
     	$format = $this->get_settings( 'format' );
     

@@ -42,32 +42,15 @@ class BaseController
 	 * @var string
 	 */
 	public $version;
-
-	/**
-	 * Plugin name.
-	 *
-	 * @var string
-	 */
-	public $name;
-
-	/**
-	 * Enable debug.
-	 *
-	 * @var bool
-	 */
-	public $debug;
 	
 	/**
      * The constructor.
      */
-	public function __construct()
-	{
+	public function __construct() {
 		$this->plugin_path = plugin_dir_path( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin_url = plugin_dir_url( $this->dirname_r( __FILE__, 2 ) );
 		$this->plugin = plugin_basename( $this->dirname_r( __FILE__, 3 ) ) . '/wp-last-modified-info.php';
-		$this->version = '1.7.7';
-		$this->debug = false;
-		$this->name = 'WP Last Modified Info';
+		$this->version = WPLMI_VERSION;
 	}
 
 	/**

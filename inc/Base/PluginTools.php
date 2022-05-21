@@ -26,8 +26,7 @@ class PluginTools
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'admin_init', 'export_settings' );
 		$this->action( 'admin_init', 'import_settings' );
 		$this->action( 'admin_notices', 'admin_notice' );
@@ -40,24 +39,31 @@ class PluginTools
 	/**
      * Process a settings export that generates a .json file
      */
-	public function export_settings()
-	{
-		if ( empty( $_POST['wplmi_export_action'] ) || 'wplmi_export_settings' != $_POST['wplmi_export_action'] )
+	public function export_settings() {
+		if ( empty( $_POST['wplmi_export_action'] ) || 'wplmi_export_settings' != $_POST['wplmi_export_action'] ) {
 			return;
-		if ( ! wp_verify_nonce( $_POST['wplmi_export_nonce'], 'wplmi_export_nonce' ) )
+		}
+
+		if ( ! wp_verify_nonce( $_POST['wplmi_export_nonce'], 'wplmi_export_nonce' ) ) {
 			return;
-		if ( ! current_user_can( 'manage_options' ) )
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
+
 		$settings = get_option( 'lmt_plugin_global_settings' );
 		$url = get_home_url();
 		$find = [ 'http://', 'https://' ];
 		$replace = '';
 		$output = str_replace( $find, $replace, $url );
+
 		ignore_user_abort( true );
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-wplmi-export-' . date( 'm-d-Y' ) . '.json' );
 		header( "Expires: 0" );
+
 		echo json_encode( $settings );
 		exit;
 	}
@@ -65,26 +71,32 @@ class PluginTools
 	/**
      * Process a settings import from a json file
      */
-	public function import_settings()
-	{
-    	if ( empty( $_POST['wplmi_import_action'] ) || 'wplmi_import_settings' != $_POST['wplmi_import_action'] )
+	public function import_settings() {
+    	if ( empty( $_POST['wplmi_import_action'] ) || 'wplmi_import_settings' != $_POST['wplmi_import_action'] ) {
     		return;
-    	if ( ! wp_verify_nonce( $_POST['wplmi_import_nonce'], 'wplmi_import_nonce' ) )
+		}
+
+    	if ( ! wp_verify_nonce( $_POST['wplmi_import_nonce'], 'wplmi_import_nonce' ) ) {
     		return;
-    	if ( ! current_user_can( 'manage_options' ) )
+		}
+
+    	if ( ! current_user_can( 'manage_options' ) ) {
     		return;
+		}
+
         $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) );
         $file_extension = end( $extension );
-    	if ( $file_extension != 'json' ) {
+    	if ( 'json' !== $file_extension ) {
     		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-last-modified-info' ) );
     	}
+
     	$import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] );
     	if ( empty( $import_file ) ) {
     		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-last-modified-info' ) );
     	}
+
     	// Retrieve the settings from the file and convert the json object to an array.
     	$settings = (array) json_decode( file_get_contents( $import_file ) );
-		
 		update_option( 'lmt_plugin_global_settings', $settings );
 
 		// set temporary transient for admin notice
@@ -97,8 +109,7 @@ class PluginTools
 	/**
      * Process post meta data update
      */
-	public function set_meta()
-	{
+	public function set_meta() {
 		// security check
 		$this->verify_nonce();
 
@@ -107,21 +118,19 @@ class PluginTools
 		}
 
 		$action = sanitize_text_field( $_REQUEST['action_type'] );
+		$value = ( $action == 'check' ) ? 'yes' : 'no';
 
 		$args = [
-			'numberposts'   => -1,
-			'post_type'     => $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] ),
-			'post_status'   => [ 'publish', 'draft', 'pending' ],
+			'numberposts' => -1,
+			'post_type'   => $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] ),
+			'post_status' => [ 'publish', 'draft', 'pending' ],
+			'fields'      => 'ids',
 		];
-	
+		
 		$posts = get_posts( $args );
 		if ( ! empty( $posts ) ) {
-	    	foreach( $posts as $post ) {
-	    		if ( $action == 'check' ) {
-	    		    $this->update_meta( $post->ID, '_lmt_disableupdate', 'yes' );
-	    		} else if ( $action == 'uncheck' ) {
-	    			$this->update_meta( $post->ID, '_lmt_disableupdate', 'no' );
-	    		}
+	    	foreach ( $posts as $post_id ) {
+	    		$this->update_meta( $post_id, '_lmt_disableupdate', $value );
 	    	}
 	    }
 	
@@ -133,14 +142,11 @@ class PluginTools
 	/**
      * Process a settings export from ajax request
      */
-	public function copy_data()
-	{
+	public function copy_data() {
 		// security check
 		$this->verify_nonce();
 
 		$option = get_option( 'lmt_plugin_global_settings' );
-
-		//error_log( json_encode( $option ) );
 	
 		$this->success( [
 			'elements' => json_encode( $option ),
@@ -150,8 +156,7 @@ class PluginTools
 	/**
      * Process a settings import from ajax request
      */
-	public function import_data()
-	{
+	public function import_data() {
 		// security check
 		$this->verify_nonce();
 
@@ -175,8 +180,7 @@ class PluginTools
 	/**
      * Process reset plugin settings
      */
-	public function remove_settings()
-	{
+	public function remove_settings() {
     	// security check
 		$this->verify_nonce();
 		
@@ -186,19 +190,20 @@ class PluginTools
 		delete_option( 'wplmi_plugin_api_data' );
 
 		$args = [
-			'numberposts'   => -1,
-			'post_type'     => 'any',
-			'post_status'   => 'any',
+			'numberposts' => -1,
+			'post_type'   => 'any',
+			'post_status' => 'any',
+			'fields'      => 'ids',
 		];
 	
 		$posts = get_posts( $args );
 		if ( ! empty( $posts ) ) {
-	    	foreach( $posts as $post ) {
-	    		$this->delete_meta( $post->ID, '_lmt_disable' );
-	    		$this->delete_meta( $post->ID, '_lmt_disableupdate' );
-	    		$this->delete_meta( $post->ID, '_wplmi_last_modified' );
-	    		$this->delete_meta( $post->ID, 'wp_last_modified_info' );
-	    		$this->delete_meta( $post->ID, 'wplmi_shortcode' );
+	    	foreach ( $posts as $post_id ) {
+	    		$this->delete_meta( $post_id, '_lmt_disable' );
+	    		$this->delete_meta( $post_id, '_lmt_disableupdate' );
+	    		$this->delete_meta( $post_id, '_wplmi_last_modified' );
+	    		$this->delete_meta( $post_id, 'wp_last_modified_info' );
+	    		$this->delete_meta( $post_id, 'wplmi_shortcode' );
 	    	}
 	    }
 
@@ -210,10 +215,9 @@ class PluginTools
 	/**
      * Process reset plugin settings
      */
-	public function admin_notice()
-	{
+	public function admin_notice() {
     	if ( get_transient( 'wplmi_import_db_done' ) !== false ) { ?>
-			<div class="notice notice-success is-dismissible"><p><strong><?php _e( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ); ?></strong></p></div><?php 
+			<div class="notice notice-success is-dismissible"><p><strong><?php esc_html_e( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ); ?></strong></p></div><?php 
 		    delete_transient( 'wplmi_import_db_done' );
 	    }
 	}

@@ -21,40 +21,35 @@ defined( 'ABSPATH' ) || exit;
  */
 Class AuthorName extends Tag {
 
-    public function get_name()
-    {
+    public function get_name() {
         return 'wplmi-modified-author';
     }
     
-    public function get_title()
-    {
+    public function get_title() {
         return __( 'Last Modified Author', 'wp-last-modified-info' );
     }
     
-    public function get_group()
-    {
+    public function get_group() {
         return 'wplmi-module';
     }
     
-    public function get_categories()
-    {
+    public function get_categories() {
         return [ Module::TEXT_CATEGORY ];
     }
 
-    protected function _register_controls()
-    {
+    protected function register_controls() {
         $this->add_control(
             'show_avatar',
             [
                 'label' => __( 'Show Avatar', 'wp-last-modified-info' ),
-                'type' => Controls_Manager::SWITCHER
+                'type'  => Controls_Manager::SWITCHER,
             ]
         );
 
         $this->add_control(
             'custom_text',
             [
-                'label' => __( 'Text After', 'wp-last-modified-info' ),
+                'label'     => __( 'Text After', 'wp-last-modified-info' ),
                 'condition' => [
                     'show_avatar' => 'yes',
                 ],
@@ -62,8 +57,7 @@ Class AuthorName extends Tag {
         );
     }
     
-    public function render()
-    {
+    public function render() {
         $avatar = $this->get_settings( 'show_avatar' );
         $text = $this->get_settings( 'custom_text' );
         

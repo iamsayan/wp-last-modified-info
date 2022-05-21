@@ -10,7 +10,7 @@
 
 namespace Wplmi\Core\Elementor;
 
-use \Elementor\Plugin;
+use Elementor\Plugin;
 use Wplmi\Helpers\Hooker;
 use Wplmi\Core\Elementor\Modules;
 
@@ -26,8 +26,7 @@ class Loader
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
         if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
             $this->action( 'elementor/frontend/the_content', 'render' );
             $this->action( 'elementor/widget/render_content', 'render' );
@@ -41,10 +40,9 @@ class Loader
 	 * 
 	 * @param object  $dynamic_tags  Original Elementor dynamic tags object
 	 */
-	public function tags( $dynamic_tags )
-    {
+	public function tags( $dynamic_tags ) {
         Plugin::$instance->dynamic_tags->register_group( 'wplmi-module', [
-            'title' => __( 'WP Last Modified Info', 'wp-last-modified-info' )
+            'title' => __( 'WP Last Modified Info', 'wp-last-modified-info' ),
         ] );
 
         // Finally register the tags
@@ -59,8 +57,7 @@ class Loader
 	 * 
 	 * @param object  $query  Original Elementor query object
 	 */
-    public function query( $query )
-    {
+    public function query( $query ) {
         // ordered by post modified date
         $query->set( 'orderby', 'modified' );
     }
@@ -72,8 +69,7 @@ class Loader
 	 * 
 	 * @return string $content  Filtered Content
 	 */
-    public function render( $content )
-    {
+    public function render( $content ) {
         $start_tag = '<time itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'">';
         $end_tag = '</time>';
 

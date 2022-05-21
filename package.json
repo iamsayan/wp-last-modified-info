@@ -1,0 +1,22 @@
+{
+	"name": "wp-last-modified-info",
+	"version": "1.8.0",
+	"description": "Adds last modified date and time automatically on pages and posts very easily.",
+	"scripts": {
+		"build": "npm run build:be && npm run build:blocks",
+		"start": "npm-run-all -p start:be start:blocks",
+		"build:be": "wp-scripts build --webpack-src-dir=assets/block-editor/src/ --output-path=assets/block-editor/build/",
+		"build:blocks": "wp-scripts build --webpack-src-dir=blocks/src/ --output-path=blocks/build/",
+		"start:be": "wp-scripts start --webpack-src-dir=assets/block-editor/src/ --output-path=assets/block-editor/build/",
+		"start:blocks": "wp-scripts start --webpack-src-dir=blocks/src/ --output-path=blocks/build/",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"author": "Sayan Datta",
+	"license": "ISC",
+	"devDependencies": {
+		"@wordpress/scripts": "^23.0.0",
+		"npm-run-all": "^4.1.5"
+	}
+}

@@ -1,0 +1,713 @@
+#wpcontent .wplmi-admin-toolbar
+  margin-left: -20px
+  padding-left: 20px
+
+.wplmi-admin-toolbar
+  background: #fff
+  border-bottom: 1px solid #ccd0d4
+  padding-top: 10px
+  position: sticky
+  z-index: 99
+  top: 32px
+
+  h2
+    font-size: 20px
+    display: inline-block
+    padding: 5px 0
+    margin: 0
+    letter-spacing: -.02rem
+    text-transform: uppercase
+
+  .title-count
+    top: -2px
+    font-size: 11px
+    margin-left: 12px
+    letter-spacing: 0
+    text-transform: uppercase
+    padding: 6px 12px !important
+    border-radius: 5px
+    background-color: #615be7
+
+    &.premium
+      background: #2ca562
+
+  .wplmi-tab
+    display: inline-block
+    font-size: .75rem
+    color: #707070
+    text-transform: uppercase
+    line-height: 2.5714285714
+    padding: 5px
+    margin: 0 5px
+    text-decoration: none
+    border-bottom: #fff solid 3px
+    font-weight: 500
+
+    &.is-active
+      border-bottom: #005ae0 solid 3px // #0071a4
+      padding-bottom: 10px
+      color: #000
+
+    &:hover
+      color: #005ae0 //#0073dc
+
+    &:focus
+      box-shadow: none
+
+  .wplmi-upgrade .dashicons
+    vertical-align: middle
+    margin-top: -2px
+    margin-right: 1px
+    font-size: 18px
+
+  .btn-upgrade
+    display: inline-flex
+    background: #dee3ff
+    border: 1px solid #c6d3f8
+    box-sizing: border-box
+    border-radius: 0.25rem
+    padding: 0 0.7rem
+    vertical-align: middle
+    margin-top: -6px
+    margin-left: 10px
+    text-decoration: none
+
+  a.btn-upgrade
+    cursor: pointer
+
+  .btn-upgrade
+    .dashicons
+      margin-top: 7px
+      color: #425fdd
+
+    p
+      font-family: system-ui
+      font-weight: 600
+      letter-spacing: 0.2
+      line-height: 1
+      font-size: 0.695rem
+      text-transform: uppercase
+      color: #425fdd
+      margin-left: 0.4rem
+    
+.wplmi-form-control
+  &:not(.selectize-control):not(.selectize-dropdown):not(.wplmi-editor)
+    width: 40%
+    padding: 6px 12px !important
+    border-color: #ccc
+
+  &:focus, &:hover
+    border-color: #ccc !important
+
+.selectize-control
+  width: 95% !important
+
+input.wplmi-form-control:read-only
+  cursor: pointer
+
+textarea.wplmi-form-control:not(.selectize-control):not(.selectize-dropdown)
+  width: 95% !important
+
+.wplmi-form-control.expand:not(.selectize-control)
+  width: 60% !important
+
+.selectize-input
+  padding: 8px 12px 5px !important
+
+  &:not(.has-items)
+    padding: 13px 15px !important
+
+select.wplmi-form-control
+  background-position: right 13px top 55% !important
+
+.selectize-control.multi .selectize-input > div
+  padding: 5px 25px 5px 12px !important
+
+div.description
+  font-size: .79rem !important
+  margin: 7px 0 0 !important
+  font-style: italic
+  color: #696969
+  line-height: 1.5
+
+  div
+    margin-top: 10px
+
+    &.red
+      color: #bd4444
+
+.dynamic-tags
+  .dynamic-tags-label
+    margin: 6px 0
+
+code
+  line-height: 1
+
+  &.click-to-copy
+    line-height: 3.1
+    cursor: pointer
+    background: #f7f8fb
+    border: 2px solid #e3eaf3
+    border-radius: 2px
+    padding: 8px 12px
+    font-style: normal
+    color: #828f9a
+    font-weight: 600
+    text-transform: uppercase
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+h1.title .title-count
+  font-size: 10px
+  padding: 2px 8px
+  opacity: 0.7
+
+.top-sharebar
+  position: absolute
+  right: 20px
+  top: 15px
+  // padding-right: 20px
+
+  > *
+    vertical-align: middle
+    margin-left: 10px
+    float: right
+
+.share-text
+  font-size: 10px
+  text-align: right
+  line-height: 1.5
+  margin-right: 5px
+  color: #838383
+
+.share-btn
+  background: #333
+  color: #fff
+  text-decoration: none
+  padding: 2px 10px 2px 8px
+  border-radius: 5px
+  font-size: 12px
+  line-height: 2em
+
+  &:hover
+    opacity: 0.5
+    color: #fff
+
+  &:active, &:focus
+    color: #fff
+
+  .dashicons
+    font-size: 14px
+    margin: 5px 2px 0 0
+    height: 14px
+
+  &.twitter
+    background-color: #2196F3
+
+  &.donate
+    background-color: #009794
+
+  &.facebook
+    background-color: #3b5998
+
+  &.rate-btn .dashicons
+    color: #FF9800
+
+@media (min-width: 320px) and (max-width: 640px)
+  .coffee-box, .top-sharebar
+    display: none
+
+input, select, textarea
+  border-radius: 3px
+
+input, select
+  vertical-align: middle
+
+#wplmi-settings-form
+  .inside
+    margin: 8px 8px 0 8px
+
+  .postbox p:not(.desc):not(.wplmi-metabox-description):not(#wplmi-post-age-help)
+    margin: 0
+    padding: 20px
+    background-color: #f8f9fa
+    //border-radius: 0 0 6px 6px
+    border-top: 1px solid #ccd0d4
+    
+  tr.d-none
+    display: none
+
+  th
+    width: 25%
+
+  td:not(.social-td)
+    width: 75%
+
+  tbody tr
+    padding: 5px 0
+    border-top: 1px solid #dadfe4
+
+  tr:first-child
+    border-top: 0
+
+  th, td
+    padding: 25px 0
+
+  th
+    padding-right: 20px
+
+/* #wplmi-query, #wplmi-post-types, #wplmi-single, #wplmi-tools, #wplmi-twitter, #wplmi-email {
+ *    display: none;
+ *}
+
+.wplmi-clear
+  margin: 8px 0px !important
+
+.wplmi-clear-area
+  margin: 5px 0px !important
+    
+.postbox
+  //border-radius: 6px
+  margin-bottom: 25px
+
+  h3.hndle
+    padding: 10px 16px !important
+    border-bottom: 1px solid #ccd0d4
+
+.help-faq
+  margin: 1.5em .8rem 1rem 1.6rem
+
+  li
+    font-weight: 600
+    font-style: italic
+    font-size: 14px
+
+    p
+      text-align: justify
+      font-weight: 400
+      font-style: normal
+
+.my-plugins
+  margin: 1.5em .8rem 1rem 1rem
+
+  h2
+    padding: 0 15px 0 0 !important
+    font-weight: 600 !important
+
+  li
+    //font-weight: 600
+    //font-style: italic
+    font-size: 13px
+    //list-style: disc
+
+    a
+      font-weight: 600
+    
+hr
+  margin: 0 !important
+
+.wp-core-ui .wplmi-wrap .postbox .button:not(.default):not(.button-small)
+  font-size: 14px
+  line-height: 38px
+  height: auto
+  min-height: 30px
+  padding: 0 20px
+  -webkit-transition: .25s all linear
+  transition: .25s all linear
+  border-radius: 3px
+  background: #f8f9fa
+  -webkit-box-shadow: none
+  box-shadow: none
+  color: #fff
+  border-color: #005ae0
+  background: #005ae0
+
+.button.wplmi-add-social-account
+  float: right
+
+.wplmi-wrap
+  margin-top: 25px
+
+  #poststuff
+    padding-top: 0
+
+  div[class*="notice"]:not(.notice-alt)
+    //border-radius: 6px
+    width: 996px
+    padding-right: 12px !important
+
+    &:not(.fs-notice-body):not(.components-notice__content)
+      margin-bottom: 25px
+    
+#wplmi-settings-form, .metabox-holder
+  width: 1024px
+  max-width: 100%
+
+.wplmi-metabox-holder
+  text-align: center
+  border-bottom: 1px solid #ccd0d4
+  background-color: #f8f9fa
+  padding: 10px
+  border-radius: 6px 6px 0 0
+
+  .wplmi-metabox-title
+    font-size: 22px
+    margin-bottom: 0
+
+  .wplmi-metabox-description
+    font-size: 13px
+    font-style: normal
+    color: #7f868d
+
+.postbox.d-none
+  display: none
+
+.jconfirm-box
+  text-align: center
+
+.jconfirm-buttons
+  text-align: center !important
+
+.settings_page_wp-last-modified-info #wpfooter
+  padding: 15px 20px
+  border-top: 1px solid #b5bfc9
+  background: #fff
+
+.wplmi-footer
+  font-style: italic
+
+  a
+    text-decoration: none
+    
+.wplmi-tools-box
+  border-bottom: 1px solid #ccd0d4
+  margin-bottom: 15px
+  padding: 0 0 10px
+  color: #646970
+
+  &:last-child
+    margin-bottom: 0
+    padding-bottom: 0
+    border: 0
+
+  span
+    font-size: 17px
+    font-weight: 600
+    color: #242628
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#wplmi-form-area
+  background-color: #FFFFFF
+  border-top: solid 1px #ffffff
+  border-bottom: solid 1px #ccc
+  border-left: solid 1px #ccc
+  border-right: solid 1px #ccc
+
+#wplmi-form
+  margin-left: 22px
+  margin-right: 22px
+
+td
+  width: 75%
+
+
+
+
+// new 
+input, select
+  vertical-align: middle
+
+.switch
+  position: relative
+  display: inline-block
+  width: 50px
+  height: 24px
+
+  input
+    display: none
+
+.slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #EA6262
+  border-radius: 34px
+  -webkit-transition: .4s
+  transition: .4s
+  border: 2px solid #EA6262
+
+  &:before
+    position: absolute
+    content: ""
+    height: 14px
+    width: 14px
+    left: 4px
+    bottom: 3px
+    background-color: white
+    border-radius: 50%
+    -webkit-transition: .1s
+    transition: .1s
+
+input
+  &:checked + .slider
+    background-color: #3CB371
+    border-color: #3CB371
+
+  &:focus + .slider
+    box-shadow: 0 0 1px #3CB371
+
+  &:checked + .slider:before
+    -webkit-transform: translateX(24px)
+    -ms-transform: translateX(24px)
+    transform: translateX(24px)
+
+.toggle-on, .toggle-off
+  position: absolute
+  top: 6px
+  left: 10px
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+.toggle-on
+  display: none
+  outline: 1px solid transparent
+  outline-offset: -1px
+  background: #fff
+  fill: #fff
+  border: 1px solid #fff
+  border-radius: 2px
+
+.toggle-off
+  color: #fff
+  fill: currentColor
+  right: 6px
+  left: auto
+
+input:checked + .slider
+  .toggle-on
+    display: block
+
+  .toggle-off
+    display: none
+
+.selectize-control
+  display: inline-block
+  vertical-align: middle
+
+
+
+
+
+
+
+
+
+
+.active
+  color: #444
+  margin-bottom: -1px
+  box-shadow: none
+  background: #fff none repeat scroll 0 0
+  border-bottom: 1px solid #fff
+
+.donate
+  background-color: #ffa000
+  color: #fff
+
+.progressModal, .successModal
+  display: block
+  position: fixed
+  top: 50%
+  left: 50%
+  height: auto
+  padding-top: 5px
+  padding-right: 30px
+  padding-bottom: 5px
+  padding-left: 30px
+  border: 1px solid #3CB371
+  background-color: #fff
+  z-index: 1000
+  overflow: auto
+  transform: translate(-50%, -50%)
+  border-radius: 15px
+  -moz-border-radius: 15px
+  -webkit-border-radius: 15px
+  box-shadow: 5px 5px 10px #cfcfcf
+  -moz-box-shadow: 5px 5px 10px #cfcfcf
+  -webkit-box-shadow: 5px 5px 10px #cfcfcf
+
+.selectize-control
+  display: inline-block
+  vertical-align: middle
+
+.coffee-box
+  padding: 15px 5px 15px 15px
+  border: 1px solid #4CAF50
+  padding-left: 148px
+  background: url(../images/coffee.svg) no-repeat
+  border-radius: 3px
+  background-position: 30px center
+  margin: 30px 0 15px 0
+  background-size: 84px
+
+  .coffee-amt
+    width: 120px
+    padding: 5px
+    height: auto
+    font-size: 1.5em
+
+.coffee-amt-wrap
+  float: right
+  margin: 0 30px
+
+.coffee-heading
+  color: #23282d
+  font-size: 1.3em
+  margin: 1em 0
+  display: block
+  font-weight: 600
+
+h1.title .title-count
+  font-size: 10px
+  padding: 2px 8px
+  opacity: 0.7
+
+.share-text
+  font-size: 10px
+  text-align: right
+  line-height: 1.5
+  margin-right: 5px
+  color: #838383
+
+.share-btn
+  background: #333
+  color: #fff
+  text-decoration: none
+  padding: 2px 10px
+  border-radius: 2em
+  font-size: 12px
+  line-height: 2em
+
+  &:hover
+    opacity: 0.5
+    color: #fff
+
+  &:active, &:focus
+    color: #fff
+
+  .dashicons
+    font-size: 14px
+    margin: 5px 2px 0 0
+    height: 14px
+
+  &.twitter
+    background-color: #2196F3
+
+  &.facebook
+    background-color: #3b5998
+
+  &.rate-btn .dashicons
+    color: #FF9800
+
+@media (min-width: 320px) and (max-width: 480px)
+  .coffee-box, .top-sharebar
+    display: none
+
+input, select, textarea
+  border-radius: 3px
+
+input, select, span.dashicon
+  vertical-align: middle
+
+// .wplmi-metabox h2
+//   padding-bottom: 15px
+//   border-bottom: 1px solid #ccc
+//   margin: 15px 0 10px
+
+.wplmi_css_date_format, .wplmi_css_author_list, .wplmi_css_author_link, .wplmi_css_author_link_target
+  display: none
+
+#wplmi-settings-form
+  .CodeMirror
+    height: 200px
+    width: 95%
+
+    &.large
+      height: 300px
+
+  .CodeMirror-scroll
+    border: 1px solid #ddd
+    height: 100%
+
+    /* Fallback for browsers that don't support calc()
+    height: calc( 100% - 2px )
+    padding-bottom: 0
+    margin-right: 0
+
+    .CodeMirror-sizer
+      border-right-width: 0 !important
+
+  .CodeMirror.disabled .CodeMirror-scroll
+    background-color: #eeeeee
+
+/* jQuery UI resizable styles, for the resizable CodeMirror instance
+
+.ui-resizable
+  position: relative
+
+.ui-resizable-handle
+  position: absolute
+  font-size: 0.1px
+  display: block
+  touch-action: none
+
+.ui-resizable-s
+  cursor: s-resize
+  height: 10px
+  width: 100%
+  bottom: -5px
+  left: 0
+
+label.wplmi-invalid
+  font-size: 12px
+  font-style: italic
+  color: #ff0000
+
+.schema-text, .remove-info-text
+  font-size: 12px
+  margin-top: 6px
+  font-style: italic
+  line-height: 1.45
+
+small
+  line-height: 2
+
+  span.help-text
+    font-style: italic
+
+code
+  font-style: normal
+
+.help-container
+  padding-bottom: 5px
+
+div.help-container:last-child
+  padding-bottom: 15px

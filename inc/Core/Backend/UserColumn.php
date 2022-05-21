@@ -25,8 +25,7 @@ class UserColumn
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'profile_update', 'update_user' );
 		$this->action( 'manage_users_custom_column', 'column_data', 10, 3 );
 		$this->filter( 'manage_users_columns', 'column_title' );
@@ -41,8 +40,7 @@ class UserColumn
 	 * 
 	 * @return string  $time
 	 */
-	public function update_user( $user_id )
-	{
+	public function update_user( $user_id ) {
 	    // update user meta
 	    update_user_meta( $user_id, 'profile_last_modified', current_time( 'timestamp', 0 ) );
 	}
@@ -53,15 +51,14 @@ class UserColumn
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
-	public function column_data( $value, $column, $user_id )
-	{
+	public function column_data( $value, $column, $user_id ) {
 		// get author meta
 	    $timestamp = get_the_author_meta( 'profile_last_modified', $user_id, true );
 		$get_df = get_option( 'date_format' );
 		$get_tf = get_option( 'time_format' );
 
 	    switch ( $column ) {
-	    	case 'last-updated' :
+	    	case 'last-updated':
 	    	    if ( ! $timestamp ) {
 					return __( 'Never', 'wp-last-modified-info' );
 				}
@@ -79,8 +76,7 @@ class UserColumn
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
-	public function column_title( $column )
-	{
+	public function column_title( $column ) {
 		$column['last-updated'] = __( 'Last Updated', 'wp-last-modified-info' );
 		
 		return $column;
@@ -92,8 +88,7 @@ class UserColumn
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
-	public function style()
-	{
+	public function style() {
 		echo '<style type="text/css">.fixed th.column-last-updated { width:12%; }</style>'."\n";
 	}
 }

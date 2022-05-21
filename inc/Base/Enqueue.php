@@ -12,6 +12,7 @@ namespace Wplmi\Base;
 
 use Wplmi\Helpers\Hooker;
 use Wplmi\Base\BaseController;
+use Wplmi\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -20,29 +21,22 @@ defined( 'ABSPATH' ) || exit;
  */
 class Enqueue extends BaseController
 {
-	use Hooker;
+	use Hooker, HelperFunctions;
 
 	/**
 	 * Register functions.
 	 */
-	public function register()
-	{
+	public function register() {
 		$this->action( 'admin_enqueue_scripts', 'assets' );
 	}
 
 	/**
 	 * Load admin assets.
 	 */
-	public function assets( $hook )
-	{
+	public function assets( $hook ) {
 		global $wp_version;
 
-		$version = ( $this->debug ) ? time() : $this->version;
-        $current_user = wp_get_current_user();
-		
-		// get current screen
-		$current_screen = get_current_screen();
-		if ( strpos( $current_screen->base, 'wp-last-modified-info' ) !== false ) {
+		if ( 'settings_page_wp-last-modified-info' === $hook ) {
 			
 			// enqueue required css
 			wp_enqueue_style( 'wp-codemirror' );
@@ -53,17 +47,17 @@ class Enqueue extends BaseController
 			wp_enqueue_script( 'wp-theme-plugin-editor' );
 			
 			// load required css & js files.
-			$this->load( 'css', 'admin', 'admin.min.css', $version );
+			$this->load( 'css', 'admin', 'admin.min.css', $this->version );
 			$this->load( 'css', 'selectize', 'selectize.min.css', '0.12.6' );
 			$this->load( 'css', 'confirm', 'jquery-confirm.min.css', '3.3.4' );
 		
-			$this->load( 'js', 'jquery-cookie', 'jquery.cookie.js', '1.4.1', [ 'jquery' ] );
 			$this->load( 'js', 'selectize', 'selectize.min.js', '0.12.6', [ 'jquery' ] );
 			$this->load( 'js', 'confirm', 'jquery-confirm.min.js', '3.3.4', [ 'jquery' ] );
-		    $this->load( 'js', 'admin', 'admin.min.js', $version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm', 'wplmi-selectize', 'wplmi-jquery-cookie' ] );
+		    $this->load( 'js', 'admin', 'admin.min.js', $this->version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm', 'wplmi-selectize' ] );
 		
 			$args = [
 				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'copied'         => __( 'Copied!', 'wp-last-modified-info' ),
 				'saving'         => __( 'Saving...', 'wp-last-modified-info' ),
 				'saving_text'    => __( 'Please wait while we are saving your settings...', 'wp-last-modified-info' ),
 				'done'           => __( 'Done!', 'wp-last-modified-info' ),
@@ -85,23 +79,28 @@ class Enqueue extends BaseController
 			];
 
 			if ( version_compare( $wp_version, '4.9', '>=' ) ) {
+				$current_user = wp_get_current_user();
+
 				$args['html_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/html' ] );
 				$args['css_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/css' ] );
 				$args['highlighting'] = ( $current_user->syntax_highlighting ) ? 'enable' : 'disable';
 			}
 
-			wp_localize_script( 'wplmi-admin', 'wplmi_admin_L10n', $args );
+			wp_localize_script( 'wplmi-admin', 'wplmiAdminL10n', $args );
 		}
 
-		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-			$this->load( 'css', 'post', 'post.min.css', $version );
-			$this->load( 'css', 'edit', 'edit.min.css', $version );
-			$this->load( 'js', 'editor', 'editor.min.js', $version, [ 'jquery' ] );
+		if ( $this->is_block_editor() ) {
+			return;
 		}
 
-		if ( $hook == 'edit.php' ) {
-			$this->load( 'css', 'edit', 'edit.min.css', $version );
-			$this->load( 'js', 'edit', 'edit.min.js', $version, [ 'jquery' ] );
+		if ( in_array( $hook, [ 'post-new.php', 'post.php' ], true ) ) {
+			$this->load( 'css', 'post', 'post.min.css', $this->version );
+			$this->load( 'js', 'post', 'post.min.js', $this->version, [ 'jquery' ] );
+		}
+
+		if ( 'edit.php' === $hook ) {
+			$this->load( 'css', 'edit', 'edit.min.css', $this->version );
+			$this->load( 'js', 'edit', 'edit.min.js', $this->version, [ 'jquery' ] );
 
 			wp_localize_script( 'wplmi-edit', 'wplmi_edit_L10n', [
 				'ajaxurl'  => admin_url( 'admin-ajax.php' ),
@@ -113,11 +112,10 @@ class Enqueue extends BaseController
 	/**
 	 * Enqueue CSS & JS wrapper function.
 	 */
-	private function load( $type, $handle, $name, $version, $dep = [], $end = true )
-	{
+	private function load( $type, $handle, $name, $version, $dep = [], $end = true ) {
 		if ( $type == 'css' ) {
 		    wp_enqueue_style( 'wplmi-' . $handle, $this->plugin_url . 'assets/css/' . $name, $dep, $version );
-		} else if ( $type == 'js' ) {
+		} elseif ( $type == 'js' ) {
 		    wp_enqueue_script( 'wplmi-' . $handle, $this->plugin_url . 'assets/js/' . $name, $dep, $version, $end );
 		}
 	}
