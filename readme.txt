@@ -167,7 +167,7 @@ If you like WP Last Modified Info, please take a moment to [give a 5-star rating
 = 1.8.1 =
 Release Date: May 22, 2022
 
-* Fixed: Notice can't be dismissed.
+* Fixed: Notice can't be dismissed and causing a error.
 
 = 1.8.0 =
 Release Date: May 21, 2022
