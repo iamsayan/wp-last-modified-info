@@ -23,11 +23,6 @@ class AdminNotice extends BaseController
 	use Hooker;
 
 	/**
-	 * Notice.
-	 */
-	private $notice;
-	
-	/**
 	 * Register functions.
 	 */
 	public function register() {
@@ -110,6 +105,20 @@ class AdminNotice extends BaseController
 	 * Dismiss admin notices.
 	 */
 	public function dismiss_notice() {
+		// Check for Rating Notice
+		if ( get_option( 'wplmi_plugin_no_thanks_rating_notice' ) === '1'
+			&& get_option( 'wplmi_plugin_dismissed_time' ) <= strtotime( '-14 days' ) ) {
+			delete_option( 'wplmi_plugin_dismiss_rating_notice' );
+			delete_option( 'wplmi_plugin_no_thanks_rating_notice' );
+		}
+
+		// Check for Donate Notice
+		if ( get_option( 'wplmi_plugin_no_thanks_donate_notice' ) === '1'
+			&& get_option( 'wplmi_plugin_dismissed_time_donate' ) <= strtotime( '-15 days' ) ) {
+			delete_option( 'wplmi_plugin_dismiss_donate_notice' );
+			delete_option( 'wplmi_plugin_no_thanks_donate_notice' );
+		}
+
 		if ( ! isset( $_REQUEST['wplmi_notice_action'] ) || empty( $_REQUEST['wplmi_notice_action'] ) ) {
 			return;
 		}
@@ -119,26 +128,9 @@ class AdminNotice extends BaseController
 		$notice = sanitize_text_field( $_REQUEST['wplmi_notice_action'] );
 		$notice = explode( '_', $notice );
 		$notice_type = end( $notice );
-		$notice_action = join( '_', array_pop( $notice ) );
+		array_pop( $notice );
+		$notice_action = join( '_', $notice );
 
-		// Check for Rating Notice
-		if ( get_option( 'wplmi_plugin_no_thanks_rating_notice' ) === '1' ) {
-			if ( get_option( 'wplmi_plugin_dismissed_time' ) > strtotime( '-14 days' ) ) {
-				return;
-			}
-			delete_option( 'wplmi_plugin_dismiss_rating_notice' );
-			delete_option( 'wplmi_plugin_no_thanks_rating_notice' );
-		}
-
-		// Check for Donate Notice
-		if ( get_option( 'wplmi_plugin_no_thanks_donate_notice' ) === '1' ) {
-			if ( get_option( 'wplmi_plugin_dismissed_time_donate' ) > strtotime( '-15 days' ) ) {
-				return;
-			}
-			delete_option( 'wplmi_plugin_dismiss_donate_notice' );
-			delete_option( 'wplmi_plugin_no_thanks_donate_notice' );
-		}
-	
 		if ( 'dismiss' === $notice_action ) {
 			update_option( 'wplmi_plugin_dismiss_' . $notice_type . '_notice', '1' );
 		}

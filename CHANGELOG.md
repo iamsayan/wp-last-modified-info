@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.1
+Release Date: May 22, 2022
+
+* Fixed: Notice can't be dismissed and causing a error.
+
 ## 1.8.0
 Release Date: May 21, 2022
 

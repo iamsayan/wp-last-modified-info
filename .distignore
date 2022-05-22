@@ -15,6 +15,7 @@
 
 _config.yml
 .distignore
+.editorconfig
 .gitignore
 CHANGELOG.md
 composer.json

@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -164,6 +164,11 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.8.1 =
+Release Date: May 22, 2022
+
+* Fixed: Notice can't be dismissed and causing a error.
+
 = 1.8.0 =
 Release Date: May 21, 2022
 
@@ -189,8 +194,3 @@ Release Date: May 21, 2022
 = Other Versions =
 
 * View the <a href="https://plugins.svn.wordpress.org/wp-last-modified-info/trunk/changelog.txt" target="_blank">Changelog</a> file.
-
-== Upgrade Notice ==
-
-= 1.8.0 =
-In this release, we make this plugin compatible with WordPress 6.0. You may need to re-configure your plugin settings once, to get it properly working.
