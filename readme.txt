@@ -167,8 +167,9 @@ If you like WP Last Modified Info, please take a moment to [give a 5-star rating
 = 1.8.2 =
 Release Date:
 
+* Fixed: Block Editor JS Errors on some cases.
 * Fixed: Dashboard Widget showing wrong timestamp.
-* Added nonce checking on Dashbaord Widget.
+* Added: Nonce checking on Dashbaord Widget.
 
 = 1.8.1 =
 Release Date: May 22, 2022

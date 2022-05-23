@@ -14,7 +14,7 @@ const PostModifiedDateToggle = () => {
 		};
 	} );
 
-    const { editPost } = useDispatch( 'core/editor', [ postMeta._lmt_disableupdate ] );
+    const { editPost } = useDispatch( 'core/editor' );
 
     if ( [ 'auto-draft', 'future' ].includes( postStatus ) ) {
         return null;
@@ -24,8 +24,8 @@ const PostModifiedDateToggle = () => {
         <PluginPostStatusInfo>
             <span>{ __( 'Lock Modified Date', 'wp-last-modified-info' ) }</span>
             <FormToggle
-                checked={ postMeta._lmt_disableupdate == 'yes' ? true : false }
-                onChange={ () => editPost( { meta: { _lmt_disableupdate: postMeta._lmt_disableupdate == 'yes' ? 'no' : 'yes' } } ) }
+                checked={ postMeta?._lmt_disableupdate == 'yes' ? true : false }
+                onChange={ () => editPost( { meta: { _lmt_disableupdate: postMeta?._lmt_disableupdate == 'yes' ? 'no' : 'yes' } } ) }
             />
         </PluginPostStatusInfo>
     );

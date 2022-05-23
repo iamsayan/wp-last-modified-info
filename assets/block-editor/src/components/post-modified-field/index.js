@@ -23,7 +23,7 @@ const PostModifiedField = () => {
         };
     } );
 
-    const { editPost } = useDispatch( 'core/editor', [ editedModified ] );
+    const { editPost } = useDispatch( 'core/editor' );
 
     if ( [ 'auto-draft', 'future' ].includes( postStatus ) ) {
         return null;
@@ -31,7 +31,7 @@ const PostModifiedField = () => {
 
     return (
         <PluginPostStatusInfo>
-            { postMeta._lmt_disableupdate == 'yes' ? (
+            { postMeta?._lmt_disableupdate == 'yes' ? (
                 <>
                     <span>{ __( 'Last Modified', 'wp-last-modified-info' ) }</span>
                     <b>{ dateI18n( dateTimeFormat, currentModified ) }</b>
