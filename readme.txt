@@ -164,6 +164,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+= 1.8.2 =
+Release Date:
+
+* Fixed: Dashboard Widget showing wrong timestamp.
+* Added nonce checking on Dashbaord Widget.
+
 = 1.8.1 =
 Release Date: May 22, 2022
 
