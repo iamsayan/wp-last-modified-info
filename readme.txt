@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -165,7 +165,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.8.2 =
-Release Date:
+Release Date: May 24, 2022
 
 * Fixed: Block Editor JS Errors on some cases.
 * Fixed: Dashboard Widget showing wrong timestamp.
