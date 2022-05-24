@@ -36,7 +36,8 @@ class DashboardWidget
 	 */
 	public function dashboard_widget() {
 		global $wp_meta_boxes;
-		wp_add_dashboard_widget(
+		
+		\wp_add_dashboard_widget(
 			'dashboard_last_modified_posts', // Widget slug.
 			__( 'Last Updated', 'wp-last-modified-info' ), // Title.
 			[ $this, 'widget_callback' ], // callback.
@@ -51,10 +52,10 @@ class DashboardWidget
 		$timestamp = current_time( 'timestamp', 0 );
 
 		$widget_options = get_option( 'lmt_dashboard_widget_options' );
-        $num = ! empty( $widget_options['number'] ) ? esc_attr( $widget_options['number'] ) : 5;
+        $num = ! empty( $widget_options['number'] ) ? intval( $widget_options['number'] ) : 5;
 
 		$args = $this->do_filter( 'dashboard_widget_args', [
-			'post_type'      => 'any',
+			'post_type'      => 'post',
 			'post_status'    => 'publish',
 			'posts_per_page' => $num,
 			'orderby'        => 'modified',
@@ -76,17 +77,17 @@ class DashboardWidget
             while ( $posts->have_posts() ) {
 				$posts->the_post();
 	
-				$time = get_post_modified_time( 'U' );
-			    if ( gmdate( 'Y-m-d', $time ) == $today ) {
+				$modified_timestamp = get_post_modified_time( 'U' );
+			    if ( gmdate( 'Y-m-d', $modified_timestamp ) == $today ) {
 			    	$relative = __( 'Today' );
-			    } elseif ( gmdate( 'Y-m-d', $time ) == $tomorrow ) {
+			    } elseif ( gmdate( 'Y-m-d', $modified_timestamp ) == $tomorrow ) {
 			    	$relative = __( 'Tomorrow' );
-			    } elseif ( gmdate( 'Y', $time ) !== gmdate( 'Y', $timestamp ) ) {
+			    } elseif ( gmdate( 'Y', $modified_timestamp ) !== gmdate( 'Y', $timestamp ) ) {
 			    	/* translators: Date and time format for recent posts on the dashboard, from a different calendar year, see https://www.php.net/date */
-			    	$relative = date_i18n( 'M jS Y', $timestamp );
+			    	$relative = date_i18n( 'M jS Y', $modified_timestamp );
 			    } else {
 			    	/* translators: Date and time format for recent posts on the dashboard, see https://www.php.net/date */
-			    	$relative = date_i18n( 'M jS', $timestamp );
+			    	$relative = date_i18n( 'M jS', $modified_timestamp );
 			    }
 				
 				// Use the post edit link for those who can edit, the permalink otherwise.
@@ -96,7 +97,7 @@ class DashboardWidget
 			    printf(
 			    	'<li><span>%1$s</span> <a href="%2$s" aria-label="%3$s">%4$s</a></li>',
 			    	/* translators: 1: Relative date, 2: Time. */
-			    	sprintf( _x( '%1$s, %2$s', 'dashboard' ), $relative, date_i18n( get_option( 'time_format' ), $timestamp ) ),
+			    	sprintf( _x( '%1$s, %2$s', 'dashboard' ), $relative, date_i18n( get_option( 'time_format' ), $modified_timestamp ) ),
 			    	$recent_post_link,
 			    	/* translators: %s: Post title. */
 			    	esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $draft_or_post_title ) ),
@@ -124,17 +125,23 @@ class DashboardWidget
 	 * Dashboard widget control callback.
 	 */
 	public function widget_control_callback() {
+		// Update widget options
+		if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['wplmi_widget_options'] ) ) {
+			check_admin_referer();
+			update_option( 'lmt_dashboard_widget_options', array_map( 'intval', $_POST['wplmi_widget_options'] ) );
+		} 
+
 		// Get widget options
 		$widget_options = get_option( 'lmt_dashboard_widget_options' );
-		$value = isset( $widget_options['number'] ) ? esc_attr( $widget_options['number'] ) : '';
-		// Update widget options
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_POST['wplmi_widget_post'] ) ) {
-			update_option( 'lmt_dashboard_widget_options', $_POST['wplmi_widget_value'] );
-		} ?>
-		<p>
-			<label for="post-count"><strong><?php esc_html_e( 'No. of Posts to Display on this Widget', 'wp-last-modified-info' ); ?>:</strong></label>
-			&nbsp;&nbsp;&nbsp;<input class="widefat" id="post-count" name="wplmi_widget_value[number]" type="number" size="15" style="width:15%;vertical-align: middle;" placeholder="5" min="3" value="<?php echo $value; ?>" /><input name="wplmi_widget_post" type="hidden" value="1" />
-		</p>
+		$value = isset( $widget_options['number'] ) ? $widget_options['number'] : '';
+		
+		wp_nonce_field(); ?>
+		<table>
+			<tr>
+				<td><label for="post-count"><strong><?php esc_html_e( 'Number of Posts to Display', 'wp-last-modified-info' ); ?>:</strong></label></td>
+				<td><input class="widefat" id="post-count" name="wplmi_widget_options[number]" type="number" placeholder="5" min="3" value="<?php echo esc_attr( $value ); ?>" /></td>
+			</tr>
+		</table>
 		<?php
 	}
 
@@ -143,6 +150,10 @@ class DashboardWidget
 	 */
 	public function widget_css() { ?>
 		<style type="text/css">
+			#dashboard_last_modified_posts table {
+				width: 100%;
+				margin-bottom: 15px;
+			}
 			#dashboard_last_modified_posts .no-activity p {
 				color: #72777c;
 				font-size: 16px;
@@ -158,7 +169,7 @@ class DashboardWidget
 			}
 	
 			#dashboard_last_modified_posts .dashboard-widget-control-form {
-				padding-top: 10px;
+				padding-top: 12px;
 				padding-bottom: 15px;
 			}
 		</style>

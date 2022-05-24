@@ -36,16 +36,13 @@
             "type": "string"
         },
         "varColorBackground": {
-            "type": "string",
-            "format": "hex-color"
+            "type": "string"
         },
         "varColorBorder": {
-            "type": "string",
-            "format": "hex-color"
+            "type": "string"
         },
         "varColorText": {
-            "type": "string",
-            "format": "hex-color"
+            "type": "string"
         }
     },
 	"usesContext": [ "postId", "postType", "queryId" ],

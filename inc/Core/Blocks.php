@@ -23,17 +23,6 @@ class Blocks extends BaseController
 {
 	use HelperFunctions, Hooker;
 
-    /**
-	 * List of Blocks in Name => Callback pair.
-	 *
-	 * @var array
-	 */
-	private static $blocks = [
-		'post-modified-date' => 'post_modified',
-		'post-template-tag'  => 'post_template_tag',
-		'site-modified-date' => 'site_modified',
-	];
-
 	/**
 	 * Register functions.
 	 */
@@ -45,15 +34,35 @@ class Blocks extends BaseController
 	 * Register blocks script, translations for it and register blocks.
 	 */
 	public function register_blocks() {
-		global $wp_version;
+		global $pagenow, $wp_version;
 		if ( version_compare( $wp_version, '5.8', '<' ) ) {
 			return;
 		}
 
-		foreach ( self::$blocks as $name => $callback ) {
-            register_block_type( $this->plugin_path . '/blocks/build/' . $name, [
-                'render_callback' => [ $this, $callback ],
-            ] );
+		/**
+		 * List of Blocks in Name => Callback pair.
+		 */
+		$blocks = [
+			'post-modified-date' => [
+				'callback' => 'post_modified',
+				'visible'  => ( 'widgets.php' !== $pagenow ),
+			],
+			'post-template-tag'  => [
+				'callback' => 'post_template_tag',
+				'visible'  => ( 'widgets.php' !== $pagenow ),
+			],
+			'site-modified-date' => [
+				'callback' => 'site_modified',
+				'visible'  => true,
+			],
+		];
+
+		foreach ( $blocks as $name => $params ) {
+			if ( $params['visible'] ) {
+				register_block_type( $this->plugin_path . '/blocks/build/' . $name, [
+					'render_callback' => [ $this, $params['callback'] ],
+				] );
+			}
         }
 	}
 

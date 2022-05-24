@@ -9,7 +9,7 @@ import { DateTimePicker, Dropdown, Button } from "@wordpress/components";
 
 const PostModifiedField = () => {
     const settings = __experimentalGetSettings();
-    const dateTimeFormat = settings.formats.datetime;
+    const dateTimeFormat = settings.formats.date + ' ' + settings.formats.time;
     const is12HourFormat = ( format ) => {
         return /(?:^|[^\\])[aAgh]/.test( format );
     }
@@ -23,7 +23,7 @@ const PostModifiedField = () => {
         };
     } );
 
-    const { editPost } = useDispatch( 'core/editor', [ editedModified ] );
+    const { editPost } = useDispatch( 'core/editor' );
 
     if ( [ 'auto-draft', 'future' ].includes( postStatus ) ) {
         return null;
@@ -31,7 +31,7 @@ const PostModifiedField = () => {
 
     return (
         <PluginPostStatusInfo>
-            { postMeta._lmt_disableupdate == 'yes' ? (
+            { postMeta?._lmt_disableupdate == 'yes' ? (
                 <>
                     <span>{ __( 'Last Modified', 'wp-last-modified-info' ) }</span>
                     <b>{ dateI18n( dateTimeFormat, currentModified ) }</b>

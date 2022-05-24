@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Last Modified Info 1.8.0\n"
+"Project-Id-Version: WP Last Modified Info 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-last-modified-info\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-21T15:14:58+00:00\n"
+"POT-Creation-Date: 2022-05-24T12:50:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-last-modified-info\n"
@@ -461,17 +461,17 @@ msgstr ""
 msgid "Last Modified"
 msgstr ""
 
-#: inc/Core/Backend/DashboardWidget.php:41
+#: inc/Core/Backend/DashboardWidget.php:42
 #: inc/Core/Backend/UserColumn.php:80
 msgid "Last Updated"
 msgstr ""
 
-#: inc/Core/Backend/DashboardWidget.php:70
+#: inc/Core/Backend/DashboardWidget.php:71
 msgid "Recently Updated"
 msgstr ""
 
-#: inc/Core/Backend/DashboardWidget.php:135
-msgid "No. of Posts to Display on this Widget"
+#: inc/Core/Backend/DashboardWidget.php:141
+msgid "Number of Posts to Display"
 msgstr ""
 
 #: inc/Core/Backend/EditScreen.php:67

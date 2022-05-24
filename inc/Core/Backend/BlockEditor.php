@@ -94,6 +94,12 @@ class BlockEditor extends BaseController
 	 * Enqueue Block Editor assets.
 	 */
 	public function assets() {
+		global $post;
+
+		if ( ! $post instanceof \WP_Post ) {
+			return; // load assets only in post edit screen.
+		}
+
 		$asset_file = include( $this->plugin_path . 'assets/block-editor/build/index.asset.php' );
 
 		wp_enqueue_script( 'wplmi-block-editor', $this->plugin_url . 'assets/block-editor/build/index.js', $asset_file['dependencies'], $asset_file['version'], true );
