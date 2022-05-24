@@ -1,4 +1,4 @@
-(function($) {
+( function( $ ) {
 
     // Copy of the WP inline edit post function.
     var $wp_inline_edit = inlineEditPost.edit;
@@ -49,7 +49,7 @@
                 $( '#inline-edit-col-modified-date', $edit_row ).remove();
             }
 
-            $( '.time-modified', $edit_row ).change( function() {
+            $( '.time-modified', $edit_row ).on( 'change', function() {
                 /*if ( ! $( '#wplmi_disable', $edit_row ).is( ':checked' ) ) {
                     $( '#wplmi-change-modified', $edit_row ).val( 'yes' );
                 }*/
@@ -59,21 +59,31 @@
                 $( '#wplmi_disable', $edit_row ).prop( 'checked', false );
             });
 
-            $( '#wplmi_disable', $edit_row ).change( function() {
-                if ( $(this).is( ':checked' ) ) {
+            $( '#wplmi_disable', $edit_row ).on( 'change', function() {
+                if ( $( this ).is( ':checked' ) ) {
                     $( '#wplmi-disable-hidden', $edit_row ).val( 'yes' );
                 }
-                if ( ! $(this).is( ':checked' ) ) {
+                if ( ! $( this ).is( ':checked' ) ) {
                     $( '#wplmi-disable-hidden', $edit_row ).val( 'no' );
                 }
-            }).change();
+            } ).trigger( 'change' );
         }
 
     };
 
     $( '#inline-edit-col-modified-date' ).appendTo( '.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date' );
 
-    $( '#bulk_edit' ).on( 'click', function() {
+    $( 'body' ).on( 'click', '#bulk_edit', function( e ) {
+        var el = $( this );
+        if ( el.hasClass( 'prevented' ) ) {
+            return;
+        }
+
+        e.preventDefault();
+        el.addClass( 'prevented' );
+
+        // let's add the WordPress default spinner just before the button
+		el.after( '<span class="spinner is-active"></span>' );
 	
 		// define the bulk edit row
 		var $bulk_row = $( '#bulk-edit' );
@@ -82,7 +92,7 @@
 		var $post_ids = new Array();
 		$bulk_row.find( '#bulk-titles' ).children().each( function() {
 			$post_ids.push( $( this ).attr( 'id' ).replace( /^(ttle)/i, '' ) );
-		});
+		} );
 		
 		// get the custom fields
 		var $modified_month = $bulk_row.find( 'select[name="mmm"]' ).val();
@@ -91,25 +101,22 @@
 		var $modified_hour = $bulk_row.find( 'input[name="hhm"]' ).val();
         var $modified_minute = $bulk_row.find( 'input[name="mnm"]' ).val();
         var $modified_disable = $bulk_row.find( 'select[name="disable_update"]' ).val();
-        
-        // save the data
-        $.ajax({
-            url: wplmi_edit_L10n.ajaxurl,
-            type: 'POST',
-            async: false,
-            cache: false,
-            data: {
-                action: 'wplmi_process_bulk_edit',
-                post_ids: $post_ids,
-                modified_month: $modified_month,
-                modified_day: $modified_day,
-                modified_year: $modified_year,
-                modified_hour: $modified_hour,
-                modified_minute: $modified_minute,
-                modified_disable: $modified_disable,
-                security: wplmi_edit_L10n.security
-            }
-        });
-	});
 
-})(jQuery);
+        var wplmiBulkData = {
+            action: 'wplmi_process_bulk_edit',
+            post_ids: $post_ids,
+            modified_month: $modified_month,
+            modified_day: $modified_day,
+            modified_year: $modified_year,
+            modified_hour: $modified_hour,
+            modified_minute: $modified_minute,
+            modified_disable: $modified_disable,
+            security: wplmi_edit_L10n.security
+        };
+
+        $.post( wplmi_edit_L10n.ajaxurl, wplmiBulkData, function( response ) {
+            $( 'body' ).find( '#bulk_edit' ).trigger( 'click' );
+        } );
+	} );
+
+} )( jQuery );
