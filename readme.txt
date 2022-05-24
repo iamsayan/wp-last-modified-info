@@ -169,6 +169,8 @@ Release Date:
 
 * Fixed: Block Editor JS Errors on some cases.
 * Fixed: Dashboard Widget showing wrong timestamp.
+* Fixed: Widget Editor is not loading some cases if this plugin is active.
+* Fixed: Block Rendering issue if custom colors are specified in theme.json.
 * Added: Nonce checking on Dashbaord Widget.
 
 = 1.8.1 =

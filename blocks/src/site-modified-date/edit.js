@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 import { FontSizePicker, PanelBody, TextControl, SelectControl } from '@wordpress/components';
-import { ColorPaletteControl,InspectorControls, LineHeightControl, useBlockProps } from '@wordpress/block-editor';
+import { ColorPaletteControl, InspectorControls, LineHeightControl, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Register Block

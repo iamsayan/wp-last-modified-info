@@ -9,7 +9,7 @@ import { DateTimePicker, Dropdown, Button } from "@wordpress/components";
 
 const PostModifiedField = () => {
     const settings = __experimentalGetSettings();
-    const dateTimeFormat = settings.formats.datetime;
+    const dateTimeFormat = settings.formats.date + ' ' + settings.formats.time;
     const is12HourFormat = ( format ) => {
         return /(?:^|[^\\])[aAgh]/.test( format );
     }
