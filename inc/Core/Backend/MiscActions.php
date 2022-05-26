@@ -167,7 +167,7 @@ class MiscActions
 		$order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
 		
 		if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) ) {
-			if ( is_admin() && 'edit.php' === $pagenow && ! isset( $_REQUEST['orderby'] ) ) {
+			if ( is_admin() && 'edit.php' === $pagenow && ! ( $query->get( 'orderby' ) || $query->get( 'order' ) ) ) {
 				$query->set( 'orderby', 'modified' );
 				$query->set( 'order', $order );
 			}

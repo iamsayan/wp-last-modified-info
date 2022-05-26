@@ -168,6 +168,7 @@ If you like WP Last Modified Info, please take a moment to [give a 5-star rating
 Release Date:
 
 * Fixed: Bulk Editing is not working.
+* Fixed: Dashbaord Widget Posts List Order was wrong on some cases.
 
 = 1.8.2 =
 Release Date: May 24, 2022
