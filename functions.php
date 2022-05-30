@@ -13,8 +13,8 @@ if ( ! function_exists( 'get_the_last_modified_info' ) ) {
      * Call the republish function directly
      * 
      * @since 1.8.0
-     * @param int    $post_id  Post ID
-     * @param array  $args     Republish args
+     * @param bool   $escape     Escape true|false
+     * @param bool   $only_date  Return only date true|false
      */
     function get_the_last_modified_info( $escape = false, $only_date = false ) {
         $template = new \Wplmi\Core\Frontend\TemplateTags( compact( 'escape', 'only_date' ) );
@@ -32,8 +32,8 @@ if ( ! function_exists( 'the_last_modified_info' ) ) {
      * Call the republish function directly
      * 
      * @since 1.8.0
-     * @param int    $post_id  Post ID
-     * @param array  $args     Republish args
+     * @param bool   $escape   Escape true|false
+     * @param bool   $date     Return only date true|false
      */
     function the_last_modified_info( $escape = false, $date = false ) {
         // displays/echos the last modified info.

@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -165,7 +165,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.8.3 =
-Release Date:
+Release Date: May 30, 2022
 
 * Fixed: Bulk Editing is not working.
 * Fixed: Dashbaord Widget Posts List Order was wrong on some cases.
