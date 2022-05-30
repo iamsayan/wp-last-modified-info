@@ -272,15 +272,13 @@ class EditScreen
 	    
 			$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
 
+			set_transient( 'wplmi_temp_modified_date', $newdate, 30 );
+
 	    	foreach ( $post_ids as $post_id ) {
 				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
 				    if ( $mmm != 'none' ) {
-						$wpdb->update( $wpdb->posts, [
-							'post_modified'     => $newdate,
-							'post_modified_gmt' => get_gmt_from_date( $newdate ),
-						], [ 'ID' => $post_id ] );
-
-						clean_post_cache( $post_id );
+						$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
+						$this->update_meta( $post_id, '_wplmi_bulk_update', 'yes' );
 				    }
     
 				    if ( $disable != 'none' ) {
@@ -308,6 +306,18 @@ class EditScreen
 
 		if ( $this->do_filter( 'force_update_author_id', false ) ) {
 		    $this->update_meta( $postarr['ID'], '_edit_last', get_current_user_id() );
+		}
+
+		$modified_temp = get_transient( 'wplmi_temp_modified_date' );
+		$proceed = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update' );
+		
+		if ( $modified_temp && $proceed == 'yes' ) {
+			$data['post_modified'] = $modified_temp;
+			$data['post_modified_gmt'] = get_gmt_from_date( $modified_temp );
+
+			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update' );
+
+		    return $data;
 		}
 
 		if ( ! isset( $postarr['wplmi_modified'], $postarr['wplmi_change'], $postarr['wplmi_disable'] ) ) {

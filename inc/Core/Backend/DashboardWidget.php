@@ -55,11 +55,13 @@ class DashboardWidget
         $num = ! empty( $widget_options['number'] ) ? intval( $widget_options['number'] ) : 5;
 
 		$args = $this->do_filter( 'dashboard_widget_args', [
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => $num,
-			'orderby'        => 'modified',
-			'no_found_rows'  => true,
+			'post_type'        => 'post',
+			'post_status'      => 'publish',
+			'posts_per_page'   => $num,
+			'orderby'          => 'modified',
+			'order'            => 'DESC',
+			'no_found_rows'    => true,
+			'suppress_filters' => true,
 		] );
 		$posts = new WP_Query( $args );
 
@@ -139,7 +141,7 @@ class DashboardWidget
 		<table>
 			<tr>
 				<td><label for="post-count"><strong><?php esc_html_e( 'Number of Posts to Display', 'wp-last-modified-info' ); ?>:</strong></label></td>
-				<td><input class="widefat" id="post-count" name="wplmi_widget_options[number]" type="number" placeholder="5" min="3" value="<?php echo esc_attr( $value ); ?>" /></td>
+				<td><input class="widefat" id="post-count" name="wplmi_widget_options[number]" type="number" placeholder="5" min="3" max="100" value="<?php echo esc_attr( $value ); ?>" /></td>
 			</tr>
 		</table>
 		<?php
