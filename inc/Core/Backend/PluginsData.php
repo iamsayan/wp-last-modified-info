@@ -132,11 +132,20 @@ class PluginsData extends WP_Background_Process
 		$new_data[ $data->slug ] = [
 			'slug'         => $data->slug,
             'version'      => $data->version,
-            'requires'     => $data->requires,
-            'tested'       => $data->tested,
-            'last_updated' => $data->last_updated,
 			'svn_exists'   => $this->svn_exists( $data->slug ) ? 'yes' : 'no',
 		];
+
+		if ( isset( $data->requires ) ) {
+		    $new_data[ $data->slug ]['requires'] = $data->requires;
+		}
+
+		if ( isset( $data->tested ) ) {
+		    $new_data[ $data->slug ]['tested'] = $data->tested;
+		}
+
+		if ( isset( $data->last_updated ) ) {
+		    $new_data[ $data->slug ]['last_updated'] = $data->last_updated;
+		}
 
 		if ( isset( $data->rating ) ) {
 		    $new_data[ $data->slug ]['rating'] = $data->rating;
@@ -175,7 +184,7 @@ class PluginsData extends WP_Background_Process
 			return $links;
 		}
 
-		if ( isset( $data[ $new_file ]['last_updated'] ) ) {
+		if ( ! empty( $data[ $new_file ]['last_updated'] ) ) {
 			$date = get_date_from_gmt( $data[ $new_file ]['last_updated'], 'U' );
 			$current_date = current_time( 'timestamp', 0 );
             $diff = strtotime( '-1 year', $current_date );
@@ -188,22 +197,22 @@ class PluginsData extends WP_Background_Process
 		    }
 	    }
 
-		if ( isset( $data[ $new_file ]['rating'] ) ) {
+		if ( ! empty( $data[ $new_file ]['rating'] ) ) {
 			/* translators: %s: rating */
 			$links[] = sprintf( esc_html__( 'Ratings: %s', 'wp-last-modified-info' ), esc_html( ( round( (int) $data[ $new_file ]['rating'], 0 ) / 20 ) . '/5' ) );
 		}
 
-		if ( isset( $data[ $new_file ]['num_ratings'] ) ) {
+		if ( ! empty( $data[ $new_file ]['num_ratings'] ) ) {
 			/* translators: %s: no. of reviews */
 			$links[] = sprintf( esc_html__( 'Reviews: %s', 'wp-last-modified-info' ), esc_html( $data[ $new_file ]['num_ratings'] ) );
 		}
 
-		if ( isset( $data[ $new_file ]['requires'] ) ) {
+		if ( ! empty( $data[ $new_file ]['requires'] ) ) {
 			/* translators: %s: vertion number */
 			$links[] = sprintf( esc_html__( 'Requires at least: v%s', 'wp-last-modified-info' ), esc_html( $data[ $new_file ]['requires'] ) );
 		}
 
-		if ( isset( $data[ $new_file ]['tested'] ) ) {
+		if ( ! empty( $data[ $new_file ]['tested'] ) ) {
 			if ( version_compare( $wp_version, $data[ $new_file ]['tested'], '<=' ) ) {
 				/* translators: %s: tested upto version */
 			    $links[] = sprintf( esc_html__( 'Tested upto: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">v' . esc_html( $data[ $new_file ]['tested'] ) . '</span>' );
@@ -213,7 +222,7 @@ class PluginsData extends WP_Background_Process
 			}
 		}
 
-		if ( isset( $data[ $new_file ]['svn_exists'] ) ) {
+		if ( ! empty( $data[ $new_file ]['svn_exists'] ) ) {
 			if ( $data[ $new_file ]['svn_exists'] == 'yes' ) {
 				/* translators: %s: plugin info */
 			    $links[] = sprintf( '%1$s %2$s', __( 'Status:', 'wp-last-modified-info' ), '<a href="https://wordpress.org/plugins/' . esc_attr( $data[ $new_file ]['slug'] ) . '/" target="_blank">' . esc_html__( 'Available', 'wp-last-modified-info' ) . '</a>' );

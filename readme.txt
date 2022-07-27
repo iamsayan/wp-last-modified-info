@@ -171,6 +171,7 @@ Release Date: July 25, 2022
 * Fixed: Quick Edit HTML issue.
 * Fixed: Default Post Type ordering was not working.
 * Fixed: JS issue if Syntax Highlighting is disabled from User Profile.
+* Fixed: PHP Warning: Undefined property.
 
 = 1.8.3 =
 Release Date: May 30, 2022
