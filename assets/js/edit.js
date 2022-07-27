@@ -71,7 +71,7 @@
 
     };
 
-    $( '#inline-edit-col-modified-date' ).appendTo( '.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date' );
+    $( '#inline-edit-col-modified-date' ).insertAfter( '.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date' );
 
     $( 'body' ).on( 'click', '#bulk_edit', function( e ) {
         var el = $( this );

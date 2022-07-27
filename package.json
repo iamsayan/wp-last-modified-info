@@ -16,7 +16,7 @@
 	"author": "Sayan Datta",
 	"license": "ISC",
 	"devDependencies": {
-		"@wordpress/scripts": "^23.0.0",
+		"@wordpress/scripts": "^23.5.0",
 		"npm-run-all": "^4.1.5"
 	}
 }

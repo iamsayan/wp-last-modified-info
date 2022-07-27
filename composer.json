@@ -31,7 +31,7 @@
     },
     "scripts": {
         "build": [
-			"composer dump-autoload"
+			"composer dump-autoload -o"
 		],
 		"analyze": [
             "clear",

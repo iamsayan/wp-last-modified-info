@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -163,6 +163,14 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.8.4 =
+Release Date: July 25, 2022
+
+* Added: User Column Sorting.
+* Fixed: Quick Edit HTML issue.
+* Fixed: Default Post Type ordering was not working.
+* Fixed: JS issue if Syntax Highlighting is disabled from User Profile.
 
 = 1.8.3 =
 Release Date: May 30, 2022

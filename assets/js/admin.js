@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
     var highlighting = true,
     wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
 
-    if ( wplmiAdminL10n.highlighting == 'disable' ) {
+    if ( wplmiAdminL10n.highlighting == 'off' ) {
         highlighting = false;
     }
 
@@ -385,15 +385,43 @@ jQuery(document).ready(function ($) {
 
     $( '.click-to-copy' ).on( 'click', function( e ) {
         e.preventDefault();
-        if ( navigator.clipboard ) {
-            navigator.clipboard.writeText( $( this ).text() ).then( function() {
-                alert( wplmiAdminL10n.copied );
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            } );
+        if ( highlighting ) {
+            var active_tab = localStorage.getItem('wplmi_active_tab'),
+                editor;
+            if ( active_tab == 'post' ) {
+                editor = wplmi_editor;
+            }
+            if ( active_tab == 'misc' ) {
+                editor = wplmi_css_editor;
+            }
+            if ( active_tab == 'template' ) {
+                editor = wplmi_tag_editor;
+            }
+            insertText( $( this ).text(), editor );
+        } else {
+            insertAtCursor( $( this ).parents( 'td' ).find( 'textarea' ), $( this ).text() );
         }
     } )
 
+    function insertText( data, cme ) {
+        var cm = cme.codemirror;
+        var doc = cm.getDoc();
+        var cursor = doc.getCursor();
+        var pos = {
+            line: cursor.line,
+            ch: cursor.ch
+        };
+        doc.replaceRange(data, pos);
+    }
+
+    function insertAtCursor( myField, myValue ) {
+        var cursorPos = myField.prop( 'selectionStart' );
+        var v = myField.val();
+        var textBefore = v.substring( 0,  cursorPos );
+        var textAfter  = v.substring( cursorPos, v.length );
+    
+        myField.val( textBefore + myValue + textAfter );
+    }
 });
 
 function wplmiOpenPopup( url, title, w, h ) {

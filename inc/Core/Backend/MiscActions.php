@@ -167,7 +167,7 @@ class MiscActions
 		$order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
 		
 		if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) ) {
-			if ( is_admin() && 'edit.php' === $pagenow && ! ( $query->get( 'orderby' ) || $query->get( 'order' ) ) ) {
+			if ( is_admin() && 'edit.php' === $pagenow && ! isset( $_GET['orderby'], $_GET['order'] ) ) {
 				$query->set( 'orderby', 'modified' );
 				$query->set( 'order', $order );
 			}
@@ -197,6 +197,13 @@ class MiscActions
 	 * Custom CSS Ouput.
 	 */
 	public function custom_css() {
-		echo '<style id="wplmi-inline-css" type="text/css"> span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; } '."\n". wp_unslash( wp_kses_post( $this->get_data( 'lmt_custom_style_box' ) ) )."\n".'</style>'."\n";
+		$css = $this->get_data( 'lmt_custom_style_box' );
+		if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+			$css .= ' span.wplmi-user-avatar { width: 16px;display: inline-block !important;flex-shrink: 0; } img.wplmi-elementor-avatar { border-radius: 100%;margin-right: 3px; }';
+		}
+
+		if ( ! empty( $css ) ) {
+			echo '<style id="wplmi-inline-css" type="text/css">'."\n". wp_unslash( wp_kses_post( $css ) ) ."\n".'</style>'."\n";
+		}
 	}
 }

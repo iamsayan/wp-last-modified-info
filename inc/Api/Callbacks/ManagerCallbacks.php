@@ -413,7 +413,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_admin_default_sort_order',
 			'value'       => $this->get_data( 'lmt_admin_default_sort_order', 'default' ),
-			'description' => __( 'Select the post sorting order in Admin Edit page in Backend.', 'wp-last-modified-info' ),
+			'description' => __( 'Select the post sorting order on Admin Edit page in Backend.', 'wp-last-modified-info' ),
 			'options'     => [
 				'default'   => __( 'Default Order', 'wp-last-modified-info' ),
 				'modified'  => __( 'Modified Post First', 'wp-last-modified-info' ),
@@ -428,7 +428,7 @@ class ManagerCallbacks
 			'id'          => $args['label_for'],
 			'name'        => 'lmt_default_sort_order',
 			'value'       => $this->get_data( 'lmt_default_sort_order', 'default' ),
-			'description' => __( 'Select the post sorting order in Admin Edit page in Frontend.', 'wp-last-modified-info' ),
+			'description' => __( 'Select the post sorting order on Frontend.', 'wp-last-modified-info' ),
 			'options'     => [
 				'default'   => __( 'Default Order', 'wp-last-modified-info' ),
 				'modified'  => __( 'Modified Post First', 'wp-last-modified-info' ),
@@ -445,7 +445,7 @@ class ManagerCallbacks
 			'value'       => $this->get_data( 'lmt_replace_published_date', 'none' ),
 			'description' => __( 'You can convert original post date to modified date or remove published date completely. "Hide from Search Engines" option remove all the dates output from frontend and also from search engines if your theme supports it. If you see any empty or blank icon or option on frontend or post meta area, just hide that element with the Custom CSS option below. Please disable schema if you are using this option.', 'wp-last-modified-info' ),
 			'options'     => [
-				'none'    => __( 'Do Nothing', 'wp-last-modified-info' ),
+				'none'    => __( 'Disable', 'wp-last-modified-info' ),
 				'replace' => __( 'Convert to Modified Date', 'wp-last-modified-info' ),
 				'remove'  => __( 'Hide from Search Engines', 'wp-last-modified-info' ),
 			],
