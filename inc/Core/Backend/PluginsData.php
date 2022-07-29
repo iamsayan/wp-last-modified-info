@@ -130,9 +130,9 @@ class PluginsData extends WP_Background_Process
 		$new_data = ( $saved_data && is_array( $saved_data ) ) ? $saved_data : [];
 
 		$new_data[ $data->slug ] = [
-			'slug'         => $data->slug,
-            'version'      => $data->version,
-			'svn_exists'   => $this->svn_exists( $data->slug ) ? 'yes' : 'no',
+			'slug'       => $data->slug,
+            'version'    => $data->version,
+			'svn_exists' => $this->svn_exists( $data->slug ) ? 'yes' : 'no',
 		];
 
 		if ( isset( $data->requires ) ) {
