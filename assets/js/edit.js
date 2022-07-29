@@ -1,7 +1,7 @@
 ( function( $ ) {
 
     // Copy of the WP inline edit post function.
-    var $wp_inline_edit = inlineEditPost.edit;
+    let $wp_inline_edit = inlineEditPost.edit;
 
     // Overwrite the function.
     inlineEditPost.edit = function( id ) {
@@ -9,29 +9,29 @@
         // Invoke the original function.
         $wp_inline_edit.apply( this, arguments );
 
-        var $post_id = 0;
+        let $post_id = 0;
         if ( typeof( id ) == 'object' ) {
             $post_id = parseInt( this.getId( id ) );
         }
 
         if ( $post_id > 0 ) {
             // Define the edit row.
-            var $edit_row = $( '#edit-' + $post_id );
-            var $post_row = $( '#post-' + $post_id );
+            let $edit_row = $( '#edit-' + $post_id );
+            let $post_row = $( '#post-' + $post_id );
 
             // Get the data
-            var $disabled = $( '.column-lastmodified .wplmi-hidden-disabled', $post_row ).text();
-            var $modified = $( '.column-lastmodified .wplmi-hidden-post-modified', $post_row ).text();
-            var $status = $( '.column-lastmodified .wplmi-hidden-status', $post_row ).text();
-            var $month = $( '.column-lastmodified .wplmi-hidden-date-format', $post_row ).text().replace(/\d/g, '');
-            var $mmm = $month.substr( 0, 3 );
-            var $date = $( '.column-lastmodified .wplmi-hidden-date-format', $post_row ).text().replace(/[^0-9]/gi, '');
-            var $jjm = $date.substr( 0, 2 );
-            var $aam = $date.substr( 2, 4 );
-            var $hhm = $date.substr( 6, 2 );
-            var $mnm = $date.substr( 8, 2 );
-            var $ssm = $date.substr( 10, 2 );
-            var $wplmi_disable_update = !! $( '.column-lastmodified .wplmi-lock', $post_row ).size();
+            let $disabled = $( '.column-lastmodified .wplmi-hidden-disabled', $post_row ).text();
+            let $modified = $( '.column-lastmodified .wplmi-hidden-post-modified', $post_row ).text();
+            let $status = $( '.column-lastmodified .wplmi-hidden-status', $post_row ).text();
+            let $month = $( '.column-lastmodified .wplmi-hidden-date-format', $post_row ).text().replace(/\d/g, '');
+            let $mmm = $month.substr( 0, 3 );
+            let $date = $( '.column-lastmodified .wplmi-hidden-date-format', $post_row ).text().replace(/[^0-9]/gi, '');
+            let $jjm = $date.substr( 0, 2 );
+            let $aam = $date.substr( 2, 4 );
+            let $hhm = $date.substr( 6, 2 );
+            let $mnm = $date.substr( 8, 2 );
+            let $ssm = $date.substr( 10, 2 );
+            let $wplmi_disable_update = !! $( '.column-lastmodified .wplmi-lock', $post_row ).size();
 
             // Populate the data.
             $( ':input[name="mmm"]', $edit_row ).find( "[data-text='" + $mmm + "']" ).attr( 'selected', 'selected' );
@@ -44,7 +44,7 @@
             $( ':input[name="wplmi_disable"]', $edit_row ).val( $disabled );
             $( ':input[name="wplmi_modified"]', $edit_row ).val( $modified );
 
-            var $statuses = [ 'future', 'auto-draft' ];
+            let $statuses = [ 'future', 'auto-draft' ];
             if ( $statuses.includes( $status ) ) {
                 $( '#inline-edit-col-modified-date', $edit_row ).remove();
             }
@@ -71,10 +71,10 @@
 
     };
 
-    $( '#inline-edit-col-modified-date' ).appendTo( '.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date' );
+    $( '#inline-edit-col-modified-date' ).insertAfter( '.inline-edit-col-left:first-child .inline-edit-col .inline-edit-date' );
 
     $( 'body' ).on( 'click', '#bulk_edit', function( e ) {
-        var el = $( this );
+        let el = $( this );
         if ( el.hasClass( 'prevented' ) ) {
             return;
         }
@@ -86,23 +86,23 @@
 		el.after( '<span class="spinner is-active"></span>' );
 	
 		// define the bulk edit row
-		var $bulk_row = $( '#bulk-edit' );
+		let $bulk_row = $( '#bulk-edit' );
 		
 		// get the selected post ids that are being edited
-		var $post_ids = new Array();
+		let $post_ids = new Array();
 		$bulk_row.find( '#bulk-titles' ).children().each( function() {
 			$post_ids.push( $( this ).attr( 'id' ).replace( /^(ttle)/i, '' ) );
 		} );
 		
 		// get the custom fields
-		var $modified_month = $bulk_row.find( 'select[name="mmm"]' ).val();
-		var $modified_day = $bulk_row.find( 'input[name="jjm"]' ).val();
-		var $modified_year = $bulk_row.find( 'input[name="aam"]' ).val();
-		var $modified_hour = $bulk_row.find( 'input[name="hhm"]' ).val();
-        var $modified_minute = $bulk_row.find( 'input[name="mnm"]' ).val();
-        var $modified_disable = $bulk_row.find( 'select[name="disable_update"]' ).val();
+		let $modified_month = $bulk_row.find( 'select[name="mmm"]' ).val();
+		let $modified_day = $bulk_row.find( 'input[name="jjm"]' ).val();
+		let $modified_year = $bulk_row.find( 'input[name="aam"]' ).val();
+		let $modified_hour = $bulk_row.find( 'input[name="hhm"]' ).val();
+        let $modified_minute = $bulk_row.find( 'input[name="mnm"]' ).val();
+        let $modified_disable = $bulk_row.find( 'select[name="disable_update"]' ).val();
 
-        var wplmiBulkData = {
+        let wplmiBulkData = {
             action: 'wplmi_process_bulk_edit',
             post_ids: $post_ids,
             modified_month: $modified_month,

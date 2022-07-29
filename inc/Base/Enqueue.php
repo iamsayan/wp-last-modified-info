@@ -83,7 +83,9 @@ class Enqueue extends BaseController
 
 				$args['html_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/html' ] );
 				$args['css_editor'] = wp_enqueue_code_editor( [ 'type' => 'text/css' ] );
-				$args['highlighting'] = ( $current_user->syntax_highlighting ) ? 'enable' : 'disable';
+				$args['highlighting'] = ( $current_user->syntax_highlighting === 'true' ) ? 'on' : 'off';
+			} else {
+				$args['highlighting'] = 'off';
 			}
 
 			wp_localize_script( 'wplmi-admin', 'wplmiAdminL10n', $args );

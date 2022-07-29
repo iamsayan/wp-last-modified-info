@@ -28,7 +28,9 @@ class UserColumn
 	public function register() {
 		$this->action( 'profile_update', 'update_user' );
 		$this->action( 'manage_users_custom_column', 'column_data', 10, 3 );
-		$this->filter( 'manage_users_columns', 'column_title' );
+		$this->filter( 'manage_users_columns', 'load_columns' );
+		$this->filter( 'manage_users_sortable_columns', 'sortable_columns' );
+		$this->action( 'pre_user_query', 'user_column_orderby' );
 		$this->action( 'admin_head-users.php', 'style' );
 	}
 	
@@ -64,10 +66,22 @@ class UserColumn
 				}
 	    		
 	    		return date_i18n( $this->do_filter( 'user_column_datetime_format', $get_df . '\<\b\r\>' . $get_tf ), $timestamp );
-	        break;
+	        	break;
 		}
 		
 	    return $value;
+	}
+
+	/**
+	 * Register Column.
+	 * 
+	 * @param string   $columns  Column name
+	 * @return string  $columns  Filtered column
+	 */
+	public function load_columns( $columns ) {
+		$columns['last-updated'] = __( 'Last Updated', 'wp-last-modified-info' );
+		
+		return $columns;
 	}
 
 	/**
@@ -76,10 +90,30 @@ class UserColumn
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
-	public function column_title( $column ) {
-		$column['last-updated'] = __( 'Last Updated', 'wp-last-modified-info' );
-		
-		return $column;
+	public function sortable_columns( $sortable_columns ) {
+		$sortable_columns['last-updated'] = 'lastupdated';
+
+		return $sortable_columns;
+	}
+
+	/**
+	 * Sort Column.
+	 * 
+	 * @since 1.8.4
+	 * @param object   $user_search  User Query
+	 */
+	public function user_column_orderby( $user_search ) {
+		global $wpdb, $current_screen;
+	
+		if ( isset( $current_screen->id ) && 'users' != $current_screen->id ) {
+			return;
+		}
+	
+		$vars = $user_search->query_vars;
+		if ( 'lastupdated' === $vars['orderby'] ) {
+			$user_search->query_from .= " INNER JOIN {$wpdb->usermeta} m1 ON {$wpdb->users}.ID=m1.user_id AND (m1.meta_key='profile_last_modified')";
+			$user_search->query_orderby = ' ORDER BY UPPER(m1.meta_value) '. $vars['order'];
+		}
 	}
 
 	/**

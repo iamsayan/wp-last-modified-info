@@ -4,10 +4,10 @@ jQuery(document).ready(function ($) {
         return false;
     }
 
-    var highlighting = true,
+    let highlighting = true,
     wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
 
-    if ( wplmiAdminL10n.highlighting == 'disable' ) {
+    if ( wplmiAdminL10n.highlighting == 'off' ) {
         highlighting = false;
     }
 
@@ -17,11 +17,11 @@ jQuery(document).ready(function ($) {
         wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmiAdminL10n.html_editor);
     }
 
-    var wplmi_btns = $( '#wplmi-nav-container' ).find( 'a.wplmi-tab:not(.type-link)' );
-    for (var wplmi_btn of wplmi_btns) {
+    let wplmi_btns = $( '#wplmi-nav-container' ).find( 'a.wplmi-tab:not(.type-link)' );
+    for (let wplmi_btn of wplmi_btns) {
         $( wplmi_btn ).on( 'click', function (e) {
             e.preventDefault();
-            var tab_id = $(this).attr('id').replace('wplmi-tab-', '');
+            let tab_id = $(this).attr('id').replace('wplmi-tab-', '');
             $('a.is-active').removeClass("is-active");
             $(this).addClass("is-active");
             $(".wplmi-metabox .wplmi-" + tab_id).removeClass('d-none');
@@ -102,12 +102,12 @@ jQuery(document).ready(function ($) {
     }, 50 );
 
     if ( highlighting ) {
-        var editors = [ wplmi_editor, wplmi_css_editor, wplmi_tag_editor ];
+        let editors = [ wplmi_editor, wplmi_css_editor, wplmi_tag_editor ];
         editors.forEach(function (item) {
             $( item.codemirror.getWrapperElement() ).resizable( {
                 handles: 's',
                 resize: function() {
-                    var $this = $( this );
+                    let $this = $( this );
                     item.codemirror.setSize( $this.width(), $this.height() );
                 }
             } );
@@ -118,14 +118,14 @@ jQuery(document).ready(function ($) {
         } );
 
         $( '#wplmi-settings-form .wplmi_el_custom_css' ).find( '.CodeMirror' ).on( 'mousedown.codemirror', function() {
-            var $this = $( this );
+            let $this = $( this );
             $this.addClass( 'large' );
             wplmi_css_editor.codemirror.refresh();
             $this.off( 'mousedown.codemirror' );
         } );
         
         $( '#wplmi_enable_plugin' ).on( 'change', function() {
-            var is_enabled = $( this ).prop( 'checked' );
+            let is_enabled = $( this ).prop( 'checked' );
             wplmi_editor.codemirror.setOption( 'readOnly', ! is_enabled );
             $( '#wplmi-settings-form .wplmi_el_display_info' ).find( '.CodeMirror' ).toggleClass( 'disabled', ! is_enabled );
         } ).trigger( 'change' );
@@ -134,7 +134,7 @@ jQuery(document).ready(function ($) {
     $( '#wplmi-settings-form' ).submit( function( e ) {
         e.preventDefault();
         $( ".wplmi-save" ).addClass( "disabled" ).val( wplmiAdminL10n.saving );
-        var jd = $.dialog({
+        let jd = $.dialog({
             title: wplmiAdminL10n.saving,
             content: wplmiAdminL10n.saving_text,
             useBootstrap: false,
@@ -188,13 +188,13 @@ jQuery(document).ready(function ($) {
 
     $( "input.wplmi-reset" ).on( 'click', function( e ) {
         e.preventDefault();
-        var el = $(this);
-        var action = el.data('action');
-        var notice = el.data('notice');
-        var success = el.data('success');
-        var type = el.data('type');
-        var process = el.data('process');
-        var mdc = $.confirm({
+        let el = $(this);
+        let action = el.data('action');
+        let notice = el.data('notice');
+        let success = el.data('success');
+        let type = el.data('type');
+        let process = el.data('process');
+        let mdc = $.confirm({
             title: wplmiAdminL10n.warning,
             content: notice,
             useBootstrap: false,
@@ -209,7 +209,7 @@ jQuery(document).ready(function ($) {
                     text: wplmiAdminL10n.confirm_button,
                     action: function () {
                         mdc.close();
-                        var cd = $.dialog({
+                        let cd = $.dialog({
                             title: process,
                             content: wplmiAdminL10n.processing,
                             useBootstrap: false,
@@ -274,9 +274,9 @@ jQuery(document).ready(function ($) {
 
     $( "input.wplmi-copy" ).on( 'click', function( e ) {
         e.preventDefault();
-        var el = $(this);
-        var value = el.val();
-        var action = el.data('action');
+        let el = $(this);
+        let value = el.val();
+        let action = el.data('action');
         el.addClass("disabled").val(wplmiAdminL10n.please_wait);
         $.post( wplmiAdminL10n.ajaxurl, { action: action, security: wplmiAdminL10n.security }, function( response ) {
             if ( response.success === true ) {
@@ -295,7 +295,7 @@ jQuery(document).ready(function ($) {
 
     $( "input.wplmi-paste" ).on( 'click', function( e ) {
         e.preventDefault();
-        var mdc = $.confirm({
+        let mdc = $.confirm({
             title: wplmiAdminL10n.paste_data,
             content: '<textarea id="wplmi-settings-data-import" rows="4" style="width: 100%;"></textarea>',
             useBootstrap: false,
@@ -309,7 +309,7 @@ jQuery(document).ready(function ($) {
                 confirm: {
                     text: wplmiAdminL10n.import_btn,
                     action: function () {
-                        var settings_data = this.$content.find('#wplmi-settings-data-import').val();
+                        let settings_data = this.$content.find('#wplmi-settings-data-import').val();
                         if ( ! settings_data ) {
                             alert( 'Please enter valid settings data!' );
                             return false;
@@ -357,13 +357,13 @@ jQuery(document).ready(function ($) {
         delimiter: ',',
         placeholder: $(this).data('placeholder'),
         createFilter: function(input) {
-            var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return regex.test(String(input).toLowerCase());
         }
     });
 
     $(".coffee-amt").on( 'change', function() {
-        var btn = $('.buy-coffee-btn');
+        let btn = $('.buy-coffee-btn');
         btn.attr('href', btn.data('link') + $(this).val());
     });
 
@@ -385,19 +385,47 @@ jQuery(document).ready(function ($) {
 
     $( '.click-to-copy' ).on( 'click', function( e ) {
         e.preventDefault();
-        if ( navigator.clipboard ) {
-            navigator.clipboard.writeText( $( this ).text() ).then( function() {
-                alert( wplmiAdminL10n.copied );
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            } );
+        if ( highlighting ) {
+            let active_tab = localStorage.getItem('wplmi_active_tab'),
+                editor;
+            if ( active_tab == 'post' ) {
+                editor = wplmi_editor;
+            }
+            if ( active_tab == 'misc' ) {
+                editor = wplmi_css_editor;
+            }
+            if ( active_tab == 'template' ) {
+                editor = wplmi_tag_editor;
+            }
+            insertText( $( this ).text(), editor );
+        } else {
+            insertAtCursor( $( this ).parents( 'td' ).find( 'textarea' ), $( this ).text() );
         }
     } )
 
+    function insertText( data, cme ) {
+        let cm = cme.codemirror;
+        let doc = cm.getDoc();
+        let cursor = doc.getCursor();
+        let pos = {
+            line: cursor.line,
+            ch: cursor.ch
+        };
+        doc.replaceRange(data, pos);
+    }
+
+    function insertAtCursor( myField, myValue ) {
+        let cursorPos = myField.prop( 'selectionStart' );
+        let v = myField.val();
+        let textBefore = v.substring( 0,  cursorPos );
+        let textAfter  = v.substring( cursorPos, v.length );
+    
+        myField.val( textBefore + myValue + textAfter );
+    }
 });
 
 function wplmiOpenPopup( url, title, w, h ) {
-    var y = window.outerHeight / 2 + window.screenY - ( h / 2)
-    var x = window.outerWidth / 2 + window.screenX - ( w / 2)
+    let y = window.outerHeight / 2 + window.screenY - ( h / 2)
+    let x = window.outerWidth / 2 + window.screenX - ( w / 2)
     return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + y + ', left=' + x);
 }

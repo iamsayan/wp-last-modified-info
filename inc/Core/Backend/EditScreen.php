@@ -146,7 +146,7 @@ class EditScreen
 			return;
 		} ?>
 
-		<div id="inline-edit-col-modified-date">
+		<fieldset id="inline-edit-col-modified-date" class="inline-edit-date">
 			<legend><span class="title"><?php esc_html_e( 'Modified', 'wp-last-modified-info' ); ?></span></legend>
 				<div class="timestamp-wrap">
 					<label class="inline-edit-group">
@@ -182,7 +182,7 @@ class EditScreen
 				<input type="hidden" id="wplmi-change-modified" name="wplmi_change" value="no">
 				<input type="hidden" id="wplmi-disable-hidden" name="wplmi_disable" value="">
 				<input type="hidden" id="wplmi-post-modified" name="wplmi_modified" value="">
-			</div>
+			</fieldset>
 		<?php
 	}
 

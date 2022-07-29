@@ -143,14 +143,14 @@
                             <li>
                                 <?php printf( 
                                 /* translators: %s: code html tag */
-                                __( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?>
+                                esc_html__( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?>
                                 <p><?php esc_html_e( 'No, this tag is not required, as it is already added. You just need to add only CSS Codes.', 'wp-last-modified-info' ); ?></p>
                             </li>
                             <li>
                                 <?php esc_html_e( 'How to set custom date/time format?', 'wp-last-modified-info' ); ?>
                                 <p><?php printf( 
                                 /* translators: %s: html tags */
-                                __( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
+                                esc_html__( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
                             </li>
                             <li>
                                 <?php esc_html_e( 'How to use template tag functionality?', 'wp-last-modified-info' ); ?>
@@ -165,7 +165,7 @@
                             <li><?php esc_html_e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?>
                                 <p><?php printf( 
                                 /* translators: %s: shortcodes */
-                                __( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
+                                esc_html__( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
                             </li>
                             <li><?php esc_html_e( 'Is it possible to show last modified info to Search Engines and keep hidden form visitors?', 'wp-last-modified-info' ); ?>
                                 <p><?php esc_html_e( 'Yes, it is possible. Just Enable JSON-LD Markup type from Schema Tab and save settings.', 'wp-last-modified-info' ); ?></p>
@@ -177,11 +177,11 @@
                             <h2><?php esc_html_e( 'My Other WordPress Plugins', 'wp-last-modified-info' ); ?></h2>
                             <p><strong><?php esc_html_e( 'Like this plugin? Check out my other WordPress plugins:', 'wp-last-modified-info' ); ?></strong></p>
                             <li><a href="https://wordpress.org/plugins/wp-auto-republish/" target="_blank" rel="noopener">RevivePress</a> - <?php esc_html_e( 'Automatically republish you old evergreen content to grab better SEO and share them of Social Media to boost your traffic.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target="_blank" rel="noopener">Advanced Cron Scheduler for WordPress</a> - <?php esc_html_e( 'It alters the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
+                            <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank" rel="noopener">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank" rel="noopener">Simple Posts Ticker - Easy, Lightweight & Flexible</a> - <?php esc_html_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/rzp-woocommerce/" target="_blank" rel="noopener">Razorpay Payment Gateway for WooCommerce</a> - <?php esc_html_e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/migrate-wp-cron-to-action-scheduler/" target="_blank" rel="noopener">Migrate WP Cron to Action Scheduler</a> - <?php esc_html_e( 'It alters the way that WordPress core runs cron events using the Action Scheduler Library.', 'wp-last-modified-info' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -206,8 +206,9 @@
                     <span class="coffee-heading"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
                     <p style="text-align: justify;"><?php printf( 
                         /* translators: %s: plugin name */
-                        __( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . $this->version . '</strong>' ); ?></strong></p>
-                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" style="font-weight: 500;">Sayan Datta</a> | <a href="https://www.sayandatta.in/contact/" target="_blank" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/#new-post" target="_blank" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+                        esc_html__( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . esc_html( $this->version ) . '</strong>' ); ?></strong>
+                    </p>
+                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" rel="noopener" style="font-weight: 500;">Sayan Datta</a> | <a href="https://sayandatta.in/contact/" target="_blank" rel="noopener" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" rel="noopener" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
                 </div>
             </div>
         </div>
