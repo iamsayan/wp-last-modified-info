@@ -52,14 +52,14 @@ class MiscActions
 	 * @return string  $time
 	 */
 	public function messages( $messages ) {
-		// define globally
 		global $post;
-	
-		if ( ! is_object( $post ) ) {
-			if ( isset( $_REQUEST['post'] ) ) {
-				$post_id = absint( $_REQUEST['post'] );
-				$post = get_post( $post_id );
+
+		if ( ! $post instanceof \WP_Post ) {
+			if ( empty( $_REQUEST['post'] ) ) {
+				return $messages;
 			}
+			$post_id = absint( $_REQUEST['post'] );
+			$post = get_post( $post_id );
 		}
 	
 		// get WordPress date time format

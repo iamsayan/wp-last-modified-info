@@ -39,6 +39,10 @@ class AdminBar
 	public function admin_bar( $wp_admin_bar ) {
 		global $post;
 
+		if ( ! $post instanceof \WP_Post ) {
+			return;
+		}
+
 		if ( ! $this->is_enabled( 'enable_on_admin_bar_cb' ) ) {
 			return;
 		}
@@ -91,6 +95,10 @@ class AdminBar
 	 */
 	private function revision() {
 		global $post;
+
+		if ( ! $post instanceof \WP_Post ) {
+			return;
+		}
 	
 		// If user can't edit post, then don't show
 		if ( ! current_user_can( 'edit_post', $post->ID ) ) {

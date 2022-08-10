@@ -101,8 +101,8 @@ class PostView
 	 */
 	public function run_replace() {
 		global $post;
-		
-		if ( ! is_singular() ) {
+
+		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
 			return;
 		}
 

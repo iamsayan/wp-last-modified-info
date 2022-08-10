@@ -42,8 +42,8 @@ class TemplateTags extends PostView
 	 */
 	public function output() {
 		global $post;
-		
-		if ( ! is_object( $post ) ) {
+
+		if ( ! $post instanceof \WP_Post ) {
 			return;
 		}
 
