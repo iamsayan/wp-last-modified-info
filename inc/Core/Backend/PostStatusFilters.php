@@ -92,7 +92,7 @@ class PostStatusFilters
 	 * @param \WP_Query $query The wp_query instance.
 	 */
 	public function filter_posts( $query ) {
-		if ( ! empty( $_GET['update_disabled'] ) && is_admin() ) {
+		if ( ! empty( $_GET['update_locked'] ) && is_admin() ) {
 		    $meta_query = [
 				[
 		    		'key'     => '_lmt_disableupdate',
