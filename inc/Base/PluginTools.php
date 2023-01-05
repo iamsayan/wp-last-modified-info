@@ -113,17 +113,17 @@ class PluginTools
 		// security check
 		$this->verify_nonce();
 
-		if ( ! isset( $_REQUEST['action_type'] ) ) {
+		if ( ! isset( $_POST['action_type'] ) ) {
 			$this->error();
 		}
 
-		$action = sanitize_text_field( $_REQUEST['action_type'] );
+		$action = sanitize_text_field( wp_unslash( $_POST['action_type'] ) );
 		$value = ( $action == 'check' ) ? 'yes' : 'no';
 
 		$args = [
 			'numberposts' => -1,
-			'post_type'   => $this->get_data( 'lmt_custom_post_types_list', [ 'post' ] ),
-			'post_status' => [ 'publish', 'draft', 'pending' ],
+			'post_type'   => get_post_types(),
+			'post_status' => [ 'publish', 'draft', 'pending', 'future' ],
 			'fields'      => 'ids',
 		];
 		
@@ -184,28 +184,18 @@ class PluginTools
     	// security check
 		$this->verify_nonce();
 		
+		// Remove options
 		delete_option( 'lmt_plugin_global_settings' );
 		delete_option( 'wplmi_site_global_update_info' );
 		delete_option( 'lmt_dashboard_widget_options' );
 		delete_option( 'wplmi_plugin_api_data' );
 
-		$args = [
-			'numberposts' => -1,
-			'post_type'   => 'any',
-			'post_status' => 'any',
-			'fields'      => 'ids',
-		];
-	
-		$posts = get_posts( $args );
-		if ( ! empty( $posts ) ) {
-	    	foreach ( $posts as $post_id ) {
-	    		$this->delete_meta( $post_id, '_lmt_disable' );
-	    		$this->delete_meta( $post_id, '_lmt_disableupdate' );
-	    		$this->delete_meta( $post_id, '_wplmi_last_modified' );
-	    		$this->delete_meta( $post_id, 'wp_last_modified_info' );
-	    		$this->delete_meta( $post_id, 'wplmi_shortcode' );
-	    	}
-	    }
+		// Remove post metas
+		delete_post_meta_by_key( '_lmt_disable' );
+		delete_post_meta_by_key( '_lmt_disableupdate' );
+		delete_post_meta_by_key( '_wplmi_last_modified' );
+		delete_post_meta_by_key( 'wp_last_modified_info' );
+		delete_post_meta_by_key( 'wplmi_shortcode' );
 
 		$this->success( [
 			'reload' => true,
