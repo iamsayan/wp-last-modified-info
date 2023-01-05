@@ -55,8 +55,8 @@
                 }*/
 
                 $( '#wplmi-change-modified', $edit_row ).val( 'yes' );
-                $( '#wplmi-disable-hidden', $edit_row ).val( 'no' );
-                $( '#wplmi_disable', $edit_row ).prop( 'checked', false );
+                // $( '#wplmi-disable-hidden', $edit_row ).val( 'no' );
+                // $( '#wplmi_disable', $edit_row ).prop( 'checked', false );
             });
 
             $( '#wplmi_disable', $edit_row ).on( 'change', function() {
