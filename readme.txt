@@ -171,6 +171,9 @@ Release Date:
 * Fixed: WooCommerce product modified date updated even if the option is disabled.
 * Fixed: Update Locked posts was showing all posts in post list page.
 * Fixed: Lock Modified Date option was not working properly.
+* Fixed: Bulk Editing was not working.
+* Tweak: Allow Toogle Disable Update Option for all post types and posts with future date.
+* Imporved: Optimize codebase.
 * Tested with WordPress v6.1.
 
 = 1.8.4 =
