@@ -12,7 +12,7 @@ namespace Wplmi\Base;
 
 use Wplmi\Helpers\Ajax;
 use Wplmi\Helpers\Hooker;
-use Wplmi\Helpers\SettingsData;
+use Wplmi\Helpers\HelperFunctions;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class PluginTools
 {
-	use Ajax, Hooker, SettingsData;
+	use Ajax, Hooker, HelperFunctions;
 	
 	/**
 	 * Register functions.
@@ -122,7 +122,7 @@ class PluginTools
 
 		$args = [
 			'numberposts' => -1,
-			'post_type'   => get_post_types(),
+			'post_type'   => array_keys( $this->get_post_types() ),
 			'post_status' => [ 'publish', 'draft', 'pending', 'future' ],
 			'fields'      => 'ids',
 		];
