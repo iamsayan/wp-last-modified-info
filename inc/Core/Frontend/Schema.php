@@ -38,7 +38,7 @@ class Schema extends BaseController
 	public function schema_markup() { 
 		global $post;
 
-		if ( ! is_singular() ) {
+		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
 			return;
 		}
 	
@@ -148,12 +148,8 @@ class Schema extends BaseController
 	public function replace( $html ) {
 		global $post;
 
-		if ( ! $post ) {
+		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
 			return $html;
-		}
-	
-		if ( ! is_singular() ) {
-		    return $html;
 		}
 
 		$can_replace = $this->do_filter( 'published_schema_replace', true );

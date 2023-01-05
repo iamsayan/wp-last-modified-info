@@ -39,6 +39,10 @@ class Shortcode extends PostView
 	public function render( $atts ) {
 		global $post;
 
+		if ( ! $post instanceof \WP_Post ) {
+			return;
+		}
+		
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
 			return;
 		}
@@ -54,7 +58,7 @@ class Shortcode extends PostView
 			'date_format'  => $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ),
 			'date_type'    => $this->get_data( 'lmt_last_modified_format_post', 'default' ),
 			'schema'       => $this->get_data( 'lmt_enable_jsonld_markup_cb', 'disable' ),
-			'author_id'    => $author_id,
+			'author_id'    => (int) $author_id,
 			'hide_archive' => '',
 			'filter_ids'   => '',
 			'gap'          => $this->get_data( 'lmt_gap_on_post', 0 ),

@@ -53,15 +53,10 @@ class PluginsData extends WP_Background_Process
 	 * Start fetching process.
 	 */
 	public function clean_start() {
-		if ( get_site_transient( 'wplmi_lock_fetch' ) === false ) {
-			// check if disabled from settings
-			if ( ! $this->is_enabled( 'disable_plugin_info' ) ) {
-				$this->kill_process();
-			    $this->start_process();
-			}
-
-			// stop multiple cron run issue
-			set_site_transient( 'wplmi_lock_fetch', true, 5 );
+		// check if disabled from settings
+		if ( ! $this->is_enabled( 'disable_plugin_info' ) ) {
+			$this->kill_process();
+			$this->start_process();
 		}
 	}
 

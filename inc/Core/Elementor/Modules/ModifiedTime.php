@@ -87,7 +87,7 @@ Class ModifiedTime extends Tag {
         
         if ( 'human' === $format ) {
             /* translators: %s: Human readable date/time. */
-            $value = sprintf( __( '%s ago', 'wp-last-modified-info' ), human_time_diff( get_the_modified_time( 'U' ), current_time( 'U' ) ) );
+            $value = sprintf( __( '%s ago', 'wp-last-modified-info' ), human_time_diff( get_post_modified_time( 'U' ), current_time( 'U' ) ) );
 		} else {
     		switch ( $format ) {
     			case 'default':
@@ -100,7 +100,7 @@ Class ModifiedTime extends Tag {
     				$time_format = $format;
     				break;
     		}
-    		$value = get_the_modified_time( $time_format );
+    		$value = get_post_modified_time( $time_format, false, null, true );
         }
     
         if ( 'yes' === $schema ) {

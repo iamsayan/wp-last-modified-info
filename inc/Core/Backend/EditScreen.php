@@ -30,7 +30,6 @@ class EditScreen
 		$this->action( 'post_submitbox_misc_actions', 'submitbox_edit', 5 );
 		$this->action( 'quick_edit_custom_box', 'quick_edit', 10, 2 );
 		$this->action( 'bulk_edit_custom_box', 'bulk_edit', 10, 2 );
-		$this->action( 'woocommerce_update_product', 'woo_save_metadata', 1 );
 		$this->ajax( 'process_bulk_edit', 'bulk_save' );
 		$this->filter( 'wp_insert_post_data', 'update_data', 99, 2 );
 	}
@@ -60,8 +59,8 @@ class EditScreen
 		$post_types = get_post_type_object( $post->post_type );
 			
 		// get modified time with a particular format
-		$orig_time = get_the_time( 'U' );
-		$mod_time = get_the_modified_time( 'U' ); ?>
+		$orig_time = get_post_time( 'U', false, $post );
+		$mod_time = get_post_modified_time( 'U', false, $post ); ?>
 		
 		<div class="misc-pub-section curtime misc-pub-last-updated">
 			<span id="wplmi-timestamp"> <?php esc_html_e( 'Updated on:', 'wp-last-modified-info' ) ?> <strong><?php echo get_the_modified_time( 'M j, Y \a\t H:i' ); ?></strong></span>
@@ -120,7 +119,7 @@ class EditScreen
 				<input type="hidden" id="ssm" name="ssm" value="<?php echo $ss; ?>">
 				<input type="hidden" id="wplmi-change-modified" name="wplmi_change" value="no">
 				<input type="hidden" id="wplmi-disable-hidden" name="wplmi_disable" value="<?php echo ( $stop_update ) ? $stop_update : 'no'; ?>">
-				<input type="hidden" id="wplmi-post-modified" name="wplmi_modified" value="<?php echo $post->post_modified; ?>">
+				<input type="hidden" id="wplmi-post-modified" name="wplmi_modified" value="<?php echo $datemodified; ?>">
 	
 				<p id="wplmi-meta" class="wplmi-meta-options">
 					<a href="#edit_timestampmodified" class="save-timestamp hide-if-no-js button"><?php esc_html_e( 'OK', 'wp-last-modified-info '); ?></a>
@@ -246,13 +245,11 @@ class EditScreen
      * Process bulk post meta data update
      */
 	public function bulk_save() {
-		global $wpdb;
-
 		// security check
 		$this->verify_nonce( 'wplmi_edit_nonce' );
 
 		// we need the post IDs
-	    $post_ids = ( isset( $_POST['post_ids'] ) && ! empty( $_POST['post_ids'] ) ) ? array_map( 'intval', $_POST['post_ids'] ) : [];
+	    $post_ids = ( ! empty( $_POST['post_ids'] ) ) ? array_map( 'intval', $_POST['post_ids'] ) : [];
     
 	    // if we have post IDs
 	    if ( ! empty( $post_ids ) && is_array( $post_ids ) ) {
@@ -272,16 +269,14 @@ class EditScreen
 	    
 			$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
 
-			set_transient( 'wplmi_temp_modified_date', $newdate, 30 );
-
 	    	foreach ( $post_ids as $post_id ) {
 				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
-				    if ( $mmm != 'none' ) {
+				    if ( 'none' !== $mmm ) {
 						$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
-						$this->update_meta( $post_id, '_wplmi_bulk_update', 'yes' );
+						$this->update_meta( $post_id, '_wplmi_bulk_update_datetime', $newdate );
 				    }
     
-				    if ( $disable != 'none' ) {
+				    if ( 'none' !== $disable ) {
 				    	$this->update_meta( $post_id, '_lmt_disableupdate', $disable );
 				    }
 				}
@@ -308,123 +303,108 @@ class EditScreen
 		    $this->update_meta( $postarr['ID'], '_edit_last', get_current_user_id() );
 		}
 
-		$modified_temp = get_transient( 'wplmi_temp_modified_date' );
-		$proceed = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update' );
-		
-		if ( $modified_temp && $proceed == 'yes' ) {
-			$data['post_modified'] = $modified_temp;
-			$data['post_modified_gmt'] = get_gmt_from_date( $modified_temp );
+		// Check bulk edit state
+		$bulk_datetime = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
+		if ( ! empty( $bulk_datetime ) ) {
+			$data['post_modified'] = $bulk_datetime;
+			$data['post_modified_gmt'] = get_gmt_from_date( $bulk_datetime );
 
-			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update' );
+			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
 
 		    return $data;
 		}
 
+		// Get disable state.
+		$disabled = $this->get_meta( $postarr['ID'], '_lmt_disableupdate' );
+			
+		/**
+		 * Handle post editor save
+		 */
 		if ( ! isset( $postarr['wplmi_modified'], $postarr['wplmi_change'], $postarr['wplmi_disable'] ) ) {
+			/**
+			 * Handle Block editor save
+			 */
+			if ( ! empty( $postarr['wplmi_lockmodifiedupdate'] ) ) {
+				$disabled = $postarr['wplmi_lockmodifiedupdate'];
+			}
+			
+			if ( 'yes' === $disabled ) {
+				$data['post_modified']     = $postarr['post_modified'];
+				$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
+			} else {
+				$data['post_modified']     = current_time( 'mysql' );
+				$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+			}
+
+			// Check the duplicate request.
 			$temp_date = $this->get_meta( $postarr['ID'], 'wplmi_temp_date' );
 			if ( ! empty( $postarr['wplmi_modified_rest'] ) ) {
+				$published_timestamp = get_post_time( 'U', false, $postarr['ID'] );
 				$modified_timestamp = strtotime( $postarr['wplmi_modified_rest'] );
 				$modified_date      = date( 'Y-m-d H:i:s', $modified_timestamp );
 
-				$data['post_modified']     = $modified_date;
-				$data['post_modified_gmt'] = get_gmt_from_date( $modified_date );
+				if ( $modified_timestamp >= $published_timestamp ) {
+					$data['post_modified']     = $modified_date;
+					$data['post_modified_gmt'] = get_gmt_from_date( $modified_date );
 
-				$this->update_meta( $postarr['ID'], 'wplmi_temp_date', $modified_date );
-			} elseif ( $temp_date ) {
+					$this->update_meta( $postarr['ID'], 'wplmi_temp_date', $modified_date );
+				}
+			} 
+			elseif ( ! empty( $temp_date ) ) {
 				$data['post_modified']     = $temp_date;
 				$data['post_modified_gmt'] = get_gmt_from_date( $temp_date );
 
 				$this->delete_meta( $postarr['ID'], 'wplmi_temp_date' );
 			}
+		} else {
+			/**
+			 * Handle Classic editor save
+			 */
+			$modified = ! empty( $postarr['wplmi_modified'] ) ? sanitize_text_field( $postarr['wplmi_modified'] ) : $postarr['post_modified'];
+			$change = ! empty( $postarr['wplmi_change'] ) ? sanitize_text_field( $postarr['wplmi_change'] ) : 'no';
+			$disabled = ! empty( $postarr['wplmi_disable'] ) ? sanitize_text_field( $postarr['wplmi_disable'] ) : $disabled;
 
-			$disabled = $this->get_meta( $postarr['ID'], '_lmt_disableupdate' );
-			if ( isset( $postarr['wplmi_lockmodifiedupdate'] ) ) {
-				$disabled = $postarr['wplmi_lockmodifiedupdate'];
-			}
-			
-			if ( $disabled == 'yes' ) {
-				$data['post_modified']     = $postarr['post_modified'];
-				$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
-			}
+			// Update meta
+			$this->update_meta( $postarr['ID'], '_lmt_disableupdate', $disabled );
 
-			$this->update_meta( $postarr['ID'], '_wplmi_last_modified', $data['post_modified'] );
-
-			return $data;
-		}
-
-		$modified = sanitize_text_field( $postarr['wplmi_modified'] );
-		$change = sanitize_text_field( $postarr['wplmi_change'] );
-		$disabled = sanitize_text_field( $postarr['wplmi_disable'] );
-
-		$this->update_meta( $postarr['ID'], '_lmt_disableupdate', $disabled );
-
-		$published_timestamp = get_the_time( 'U', $postarr['ID'] );
-		
-		if ( $disabled == 'yes' ) {
-
-			$data['post_modified'] = $modified;
-			$data['post_modified_gmt'] = get_gmt_from_date( $modified );
-
-		} elseif ( $disabled == 'no' ) {
-			
-			if ( $change == 'yes' ) {
-		        $mm = sanitize_text_field( $postarr['mmm'] );
-		        $jj = sanitize_text_field( $postarr['jjm'] );
-		        $aa = sanitize_text_field( $postarr['aam'] );
-		        $hh = sanitize_text_field( $postarr['hhm'] );
-		        $mn = sanitize_text_field( $postarr['mnm'] );
-		        $ss = sanitize_text_field( $postarr['ssm'] );
-        
-		        $mm = ( is_numeric( $mm ) && $mm <= 12 ) ? $mm : '01'; // months
-		        $jj = ( is_numeric( $jj ) && $jj <= 31 ) ? $jj : '01'; // days
-		        $aa = ( is_numeric( $aa ) && $aa >= 0 ) ? $aa : '1970'; // years
-		        $hh = ( is_numeric( $hh ) && $hh <= 24 ) ? $hh : '12'; // hours
-		        $mn = ( is_numeric( $mn ) && $mn <= 60 ) ? $mn : '00'; // minutes
-		        $ss = ( is_numeric( $ss ) && $ss <= 60 ) ? $ss : '00'; // seconds
-	        
-				$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
-				$modified = $newdate;
-	
-				if ( strtotime( $newdate ) >= $published_timestamp ) {
-	                $data['post_modified'] = $newdate;
-				    $data['post_modified_gmt'] = get_gmt_from_date( $newdate );
-				}
+			// Check if disable is set to 'yes'
+			if ( 'yes' === $disabled ) {
+				$data['post_modified']     = $modified;
+				$data['post_modified_gmt'] = get_gmt_from_date( $modified );
 			} else {
-				$modified = current_time( 'mysql' );
+				$data['post_modified']     = current_time( 'mysql' );
+				$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+			}
+
+			// check is current state is changed
+			if ( 'yes' === $change ) {
+				$mm = sanitize_text_field( $postarr['mmm'] );
+				$jj = sanitize_text_field( $postarr['jjm'] );
+				$aa = sanitize_text_field( $postarr['aam'] );
+				$hh = sanitize_text_field( $postarr['hhm'] );
+				$mn = sanitize_text_field( $postarr['mnm'] );
+				$ss = sanitize_text_field( $postarr['ssm'] );
+		
+				$mm = ( is_numeric( $mm ) && $mm <= 12 ) ? $mm : '01'; // months
+				$jj = ( is_numeric( $jj ) && $jj <= 31 ) ? $jj : '01'; // days
+				$aa = ( is_numeric( $aa ) && $aa >= 0 ) ? $aa : '1970'; // years
+				$hh = ( is_numeric( $hh ) && $hh <= 24 ) ? $hh : '12'; // hours
+				$mn = ( is_numeric( $mn ) && $mn <= 60 ) ? $mn : '00'; // minutes
+				$ss = ( is_numeric( $ss ) && $ss <= 60 ) ? $ss : '00'; // seconds
+			
+				$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
+				$published_timestamp = get_post_time( 'U', false, $postarr['ID'] );
+			
+				if ( strtotime( $newdate ) >= $published_timestamp ) {
+					$data['post_modified'] = $newdate;
+					$data['post_modified_gmt'] = get_gmt_from_date( $newdate );
+				}
 			}
 		}
 
-		$this->update_meta( $postarr['ID'], '_wplmi_last_modified', $modified );
+		// Update post meta for future reference
+		$this->update_meta( $postarr['ID'], '_wplmi_last_modified', $data['post_modified'] );
 
 		return $data;
-	}
-
-	/**
-	 * Update Post Modified date from previously save meta to fix WooCommerce Product Update process.
-	 *
-	 * @param int $product_id The product ID.
-	 */
-	public function woo_save_metadata( $product_id ) {
-		global $wpdb;
-
-		if ( in_array( get_post_status( $product_id ), [ 'auto-draft', 'future' ] ) ) {
-			return;
-		}
-
-		$modified = $this->get_meta( $product_id, '_wplmi_last_modified' );
-		$published_timestamp = get_the_time( 'U', $product_id );
-		
-		if ( $modified && ( strtotime( $modified ) >= $published_timestamp ) ) {
-	    	$args = [
-	            'post_modified'     => $modified,
-	            'post_modified_gmt' => get_gmt_from_date( $modified ),
-	    	];
-    
-	    	$wpdb->update( $wpdb->posts, $args, [
-	    	    'ID' => $product_id,
-			] );
-			
-			clean_post_cache( $product_id );
-	    }
 	}
 }

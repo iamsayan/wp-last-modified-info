@@ -1,4 +1,5 @@
-(function($) {
+( function( $ ) {
+    'use strict';
 
     let $tsmdiv = $('#timestampmodifieddiv');
 	
@@ -28,16 +29,7 @@
     });
     
 	$tsmdiv.find( '.save-timestamp' ).click( function( e ) {
-        if ( $( '#wplmi_disable' ).is( ':checked' ) ) {
-            $( '#mmm' ).val( $('#hidden_mmm').val() );
-		    $( '#jjm' ).val( $('#hidden_jjm').val() );
-		    $( '#aam' ).val( $('#hidden_aam').val() );
-		    $( '#hhm' ).val( $('#hidden_hhm').val() );
-            $( '#mnm' ).val( $('#hidden_mnm').val() );
-        } else {
-            $( '#wplmi-change-modified' ).val( 'yes' );
-        }
-
+        $( '#wplmi-change-modified' ).val( 'yes' );
         if ( updateTextModified() ) {
             $tsmdiv.slideUp( 'fast' );
             $tsmdiv.siblings( 'a.edit-timestampmodified' ).show().focus();
@@ -56,7 +48,7 @@
 
             $( '#publishing-action .spinner' ).removeClass( 'is-active' );
         }
-    });
+    } );
     
     var updateTextModified = function() {
         if ( ! $tsmdiv.length ) {
@@ -107,11 +99,6 @@
 		if ( ! $(this).is( ':checked' ) ) {
 			$( '#wplmi-disable-hidden' ).val( 'no' );
 		}
-    }).change();
-    
-    $( '.time-modified' ).change( function() {
-        $( '#wplmi-disable-hidden' ).val( 'no' );
-        $( '#wplmi_disable' ).prop( 'checked', false );
-    });
+    } ).change();
 
-})( jQuery );
+} )( jQuery );

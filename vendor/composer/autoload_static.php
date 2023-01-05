@@ -50,6 +50,7 @@ class ComposerStaticInit864e9b664caffe9d69b14c441bfd3b88
         'Wplmi\\Core\\Backend\\PluginsData' => __DIR__ . '/../..' . '/inc/Core/Backend/PluginsData.php',
         'Wplmi\\Core\\Backend\\PostStatusFilters' => __DIR__ . '/../..' . '/inc/Core/Backend/PostStatusFilters.php',
         'Wplmi\\Core\\Backend\\UserColumn' => __DIR__ . '/../..' . '/inc/Core/Backend/UserColumn.php',
+        'Wplmi\\Core\\Backend\\WooCommerce' => __DIR__ . '/../..' . '/inc/Core/Backend/WooCommerce.php',
         'Wplmi\\Core\\Blocks' => __DIR__ . '/../..' . '/inc/Core/Blocks.php',
         'Wplmi\\Core\\Elementor\\Loader' => __DIR__ . '/../..' . '/inc/Core/Elementor/Loader.php',
         'Wplmi\\Core\\Elementor\\Modules\\AuthorName' => __DIR__ . '/../..' . '/inc/Core/Elementor/Modules/AuthorName.php',

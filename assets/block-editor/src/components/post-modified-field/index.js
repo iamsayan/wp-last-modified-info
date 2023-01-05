@@ -34,7 +34,7 @@ const PostModifiedField = () => {
             { postMeta?._lmt_disableupdate == 'yes' ? (
                 <>
                     <span>{ __( 'Last Modified', 'wp-last-modified-info' ) }</span>
-                    <b>{ dateI18n( dateTimeFormat, currentModified ) }</b>
+                    <b>{ dateI18n( dateTimeFormat, editedModified ) }</b>
                 </>
             ) : (
                 <>

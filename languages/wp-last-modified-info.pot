@@ -1,21 +1,21 @@
-# Copyright (C) 2022 Sayan Datta
+# Copyright (C) 2023 Sayan Datta
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Last Modified Info 1.8.3\n"
+"Project-Id-Version: WP Last Modified Info 1.8.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-last-modified-info\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-30T13:57:38+00:00\n"
+"POT-Creation-Date: 2023-01-05T15:15:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-last-modified-info\n"
 
 #. Plugin Name of the plugin
-#: inc/Core/Elementor/Loader.php:45
+#: inc/Core/Elementor/Loader.php:46
 #: inc/Pages/Dashboard.php:80
 #: inc/Pages/Dashboard.php:81
 msgid "WP Last Modified Info"
@@ -251,7 +251,7 @@ msgid "Enable this if you do not want to show last updated info on plugins page.
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:416
-msgid "Select the post sorting order in Admin Edit page in Backend."
+msgid "Select the post sorting order on Admin Edit page in Backend."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:418
@@ -270,7 +270,7 @@ msgid "Modified Post Last"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:431
-msgid "Select the post sorting order in Admin Edit page in Frontend."
+msgid "Select the post sorting order on Frontend."
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:446
@@ -278,7 +278,7 @@ msgid "You can convert original post date to modified date or remove published d
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:448
-msgid "Do Nothing"
+msgid "Disable"
 msgstr ""
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:449
@@ -386,7 +386,7 @@ msgid "Confirm"
 msgstr ""
 
 #: inc/Base/Enqueue.php:72
-#: inc/Core/Backend/EditScreen.php:127
+#: inc/Core/Backend/EditScreen.php:126
 msgid "Cancel"
 msgstr ""
 
@@ -430,22 +430,22 @@ msgstr ""
 msgid "<strong>Settings import failed:</strong> Please upload a file to import."
 msgstr ""
 
-#: inc/Base/PluginTools.php:220
+#: inc/Base/PluginTools.php:210
 msgid "Success! Plugin Settings has been imported successfully."
 msgstr ""
 
 #. translators: %1$s: Post Type Label, %2$s: Post Modified Date, %3$s: Post Modified Time, %4$s: POst Modified Author
-#: inc/Core/AdminBar.php:63
+#: inc/Core/AdminBar.php:67
 msgid "This %1$s was last updated on %2$s at %3$s by %4$s"
 msgstr ""
 
 #. translators: %s: date time info
-#: inc/Core/AdminBar.php:82
+#: inc/Core/AdminBar.php:86
 msgid "Updated on %1$s at %2$s"
 msgstr ""
 
 #. translators: %s: time diff
-#: inc/Core/AdminBar.php:86
+#: inc/Core/AdminBar.php:90
 msgid "Updated %s ago"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgid "Last Modified"
 msgstr ""
 
 #: inc/Core/Backend/DashboardWidget.php:42
-#: inc/Core/Backend/UserColumn.php:80
+#: inc/Core/Backend/UserColumn.php:82
 msgid "Last Updated"
 msgstr ""
 
@@ -474,92 +474,92 @@ msgstr ""
 msgid "Number of Posts to Display"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:67
-#: inc/Core/Backend/EditScreen.php:69
+#: inc/Core/Backend/EditScreen.php:66
+#: inc/Core/Backend/EditScreen.php:68
 msgid "Updated on:"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:68
+#: inc/Core/Backend/EditScreen.php:67
 msgid "Edit"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:68
+#: inc/Core/Backend/EditScreen.php:67
 msgid "Edit modified date and time"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:69
-#: inc/Core/Backend/EditScreen.php:90
-#: inc/Core/Backend/EditScreen.php:170
-#: inc/Core/Backend/EditScreen.php:225
+#: inc/Core/Backend/EditScreen.php:68
+#: inc/Core/Backend/EditScreen.php:89
+#: inc/Core/Backend/EditScreen.php:169
+#: inc/Core/Backend/EditScreen.php:224
 msgid "at"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:70
+#: inc/Core/Backend/EditScreen.php:69
 msgid "Last modified date and time"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:73
-#: inc/Core/Backend/EditScreen.php:153
-#: inc/Core/Backend/EditScreen.php:207
+#: inc/Core/Backend/EditScreen.php:72
+#: inc/Core/Backend/EditScreen.php:152
+#: inc/Core/Backend/EditScreen.php:206
 msgid "Month"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:85
-#: inc/Core/Backend/EditScreen.php:165
+#: inc/Core/Backend/EditScreen.php:84
+#: inc/Core/Backend/EditScreen.php:164
+#: inc/Core/Backend/EditScreen.php:219
 #: inc/Core/Backend/EditScreen.php:220
-#: inc/Core/Backend/EditScreen.php:221
 msgid "Day"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:88
-#: inc/Core/Backend/EditScreen.php:168
+#: inc/Core/Backend/EditScreen.php:87
+#: inc/Core/Backend/EditScreen.php:167
+#: inc/Core/Backend/EditScreen.php:222
 #: inc/Core/Backend/EditScreen.php:223
-#: inc/Core/Backend/EditScreen.php:224
 msgid "Year"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:91
-#: inc/Core/Backend/EditScreen.php:171
+#: inc/Core/Backend/EditScreen.php:90
+#: inc/Core/Backend/EditScreen.php:170
+#: inc/Core/Backend/EditScreen.php:225
 #: inc/Core/Backend/EditScreen.php:226
-#: inc/Core/Backend/EditScreen.php:227
 msgid "Hour"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:93
+#: inc/Core/Backend/EditScreen.php:92
 msgid ":"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:94
-#: inc/Core/Backend/EditScreen.php:174
-#: inc/Core/Backend/EditScreen.php:229
+#: inc/Core/Backend/EditScreen.php:93
+#: inc/Core/Backend/EditScreen.php:173
+#: inc/Core/Backend/EditScreen.php:228
 msgid "Minute"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:129
-#: inc/Core/Backend/EditScreen.php:178
-#: inc/Core/Backend/EditScreen.php:235
+#: inc/Core/Backend/EditScreen.php:128
+#: inc/Core/Backend/EditScreen.php:177
+#: inc/Core/Backend/EditScreen.php:234
 msgid "Lock Modified Date"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:150
-#: inc/Core/Backend/EditScreen.php:204
+#: inc/Core/Backend/EditScreen.php:149
+#: inc/Core/Backend/EditScreen.php:203
 msgid "Modified"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:209
-#: inc/Core/Backend/EditScreen.php:234
+#: inc/Core/Backend/EditScreen.php:208
+#: inc/Core/Backend/EditScreen.php:233
 msgid "No Change"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:230
+#: inc/Core/Backend/EditScreen.php:229
 msgid "Min"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:232
+#: inc/Core/Backend/EditScreen.php:231
 msgid "Update Status"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:236
+#: inc/Core/Backend/EditScreen.php:235
 msgid "Un-Lock Modified Date"
 msgstr ""
 
@@ -584,39 +584,39 @@ msgid "updated on"
 msgstr ""
 
 #. translators: %s: updated time
-#: inc/Core/Backend/PluginsData.php:184
-#: inc/Core/Backend/PluginsData.php:187
+#: inc/Core/Backend/PluginsData.php:188
+#: inc/Core/Backend/PluginsData.php:191
 msgid "Updated: %s"
 msgstr ""
 
 #. translators: %s: rating
-#: inc/Core/Backend/PluginsData.php:193
+#: inc/Core/Backend/PluginsData.php:197
 msgid "Ratings: %s"
 msgstr ""
 
 #. translators: %s: no. of reviews
-#: inc/Core/Backend/PluginsData.php:198
+#: inc/Core/Backend/PluginsData.php:202
 msgid "Reviews: %s"
 msgstr ""
 
 #. translators: %s: vertion number
-#: inc/Core/Backend/PluginsData.php:203
+#: inc/Core/Backend/PluginsData.php:207
 msgid "Requires at least: v%s"
 msgstr ""
 
 #. translators: %s: tested upto version
-#: inc/Core/Backend/PluginsData.php:209
-#: inc/Core/Backend/PluginsData.php:212
+#: inc/Core/Backend/PluginsData.php:213
+#: inc/Core/Backend/PluginsData.php:216
 msgid "Tested upto: %s"
 msgstr ""
 
 #. translators: %s: plugin info
-#: inc/Core/Backend/PluginsData.php:219
+#: inc/Core/Backend/PluginsData.php:223
 msgid "Status:"
 msgstr ""
 
 #. translators: %s: plugin info
-#: inc/Core/Backend/PluginsData.php:219
+#: inc/Core/Backend/PluginsData.php:223
 msgid "Available"
 msgstr ""
 
@@ -624,7 +624,7 @@ msgstr ""
 msgid "Update Locked"
 msgstr ""
 
-#: inc/Core/Backend/UserColumn.php:63
+#: inc/Core/Backend/UserColumn.php:65
 msgid "Never"
 msgstr ""
 
@@ -962,7 +962,7 @@ msgid "Help"
 msgstr ""
 
 #: templates/admin.php:24
-msgid "Please rate 5 stars if you like RevivePress"
+msgid "Please rate 5 stars if you like WP Last Modified Info"
 msgstr ""
 
 #: templates/admin.php:24
@@ -1181,23 +1181,23 @@ msgid "Automatically republish you old evergreen content to grab better SEO and 
 msgstr ""
 
 #: templates/admin.php:180
-msgid "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily."
+msgid "It alters the way that WordPress core runs cron events using the Action Scheduler Library."
 msgstr ""
 
 #: templates/admin.php:181
-msgid "Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style."
-msgstr ""
-
-#: templates/admin.php:182
-msgid "This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links."
-msgstr ""
-
-#: templates/admin.php:183
 msgid "Ultimate Facebook Comment Solution with instant email notification for any WordPress Website."
 msgstr ""
 
+#: templates/admin.php:182
+msgid "Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily."
+msgstr ""
+
+#: templates/admin.php:183
+msgid "Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style."
+msgstr ""
+
 #: templates/admin.php:184
-msgid "It alters the way that WordPress core runs cron events using the Action Scheduler Library."
+msgid "This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links."
 msgstr ""
 
 #: templates/admin.php:204

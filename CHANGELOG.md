@@ -1,6 +1,42 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.5
+Release Date: January 5, 2023
+
+* Fixed: PHP Error if the the global post object is undefined.
+* Fixed: WooCommerce product modified date updated even if the option is disabled.
+* Fixed: Update Locked posts was showing all posts in post list page.
+* Fixed: Lock Modified Date option was not working properly.
+* Fixed: Bulk Editing was not working.
+* Tweak: Allow Toogle Disable Update Option for all post types and posts with future date.
+* Imporved: Optimize codebase.
+* Tested with WordPress v6.1.
+
+## 1.8.4
+Release Date: July 29, 2022
+
+* Added: User Column Sorting.
+* Fixed: Quick Edit HTML issue.
+* Fixed: Default Post Type ordering was not working.
+* Fixed: JS issue if Syntax Highlighting is disabled from User Profile.
+* Fixed: PHP Warning: Undefined property.
+
+## 1.8.3
+Release Date: May 30, 2022
+
+* Fixed: Bulk Editing is not working.
+* Fixed: Dashbaord Widget Posts List Order was wrong on some cases.
+
+## 1.8.2
+Release Date: May 24, 2022
+
+* Fixed: Block Editor JS Errors on some cases.
+* Fixed: Dashboard Widget showing wrong timestamp.
+* Fixed: Widget Editor is not loading some cases if this plugin is active.
+* Fixed: Block Rendering issue if custom colors are specified in theme.json.
+* Added: Nonce checking on Dashbaord Widget.
+
 ## 1.8.1
 Release Date: May 22, 2022
 

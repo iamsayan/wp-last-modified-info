@@ -28,9 +28,9 @@ class Loader
 	 */
 	public function register() {
         if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+            $this->action( 'elementor/dynamic_tags/register', 'register_tags' );
             $this->action( 'elementor/frontend/the_content', 'render' );
             $this->action( 'elementor/widget/render_content', 'render' );
-            $this->action( 'elementor/dynamic_tags/register_tags', 'tags' );
             $this->action( 'elementor/query/wplmi_elementor_widget_query_filter', 'query' );
         }
 	}
@@ -40,16 +40,17 @@ class Loader
 	 * 
 	 * @param object  $dynamic_tags  Original Elementor dynamic tags object
 	 */
-	public function tags( $dynamic_tags ) {
-        Plugin::$instance->dynamic_tags->register_group( 'wplmi-module', [
+	public function register_tags( $dynamic_tags_manager ) {
+        // Register group
+        $dynamic_tags_manager->register_group( 'wplmi-module', [
             'title' => __( 'WP Last Modified Info', 'wp-last-modified-info' ),
         ] );
 
         // Finally register the tags
-        $dynamic_tags->register_tag( new Modules\ModifiedDate() );
-        $dynamic_tags->register_tag( new Modules\ModifiedTime() );
-        $dynamic_tags->register_tag( new Modules\AuthorName() );
-        $dynamic_tags->register_tag( new Modules\AuthorUrl() );
+        $dynamic_tags_manager->register( new Modules\ModifiedDate() );
+        $dynamic_tags_manager->register( new Modules\ModifiedTime() );
+        $dynamic_tags_manager->register( new Modules\AuthorName() );
+        $dynamic_tags_manager->register( new Modules\AuthorUrl() );
     }
 
     /**
