@@ -2,8 +2,8 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
-Tested up to: 6.0
-Stable tag: 1.8.4
+Tested up to: 6.1
+Stable tag: 1.8.5
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -165,7 +165,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.8.5 =
-Release Date:
+Release Date: January 5, 2023
 
 * Fixed: PHP Error if the the global post object is undefined.
 * Fixed: WooCommerce product modified date updated even if the option is disabled.
@@ -174,6 +174,7 @@ Release Date:
 * Fixed: Bulk Editing was not working.
 * Tweak: Allow Toogle Disable Update Option for all post types and posts with future date.
 * Imporved: Optimize codebase.
+* Imporved: Dashboard styling.
 * Tested with WordPress v6.1.
 
 = 1.8.4 =

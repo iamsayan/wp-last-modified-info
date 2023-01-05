@@ -11,6 +11,9 @@
   z-index: 99
   top: 32px
 
+  @media screen and (max-width: 782px)
+    text-align: center
+
   h2
     font-size: 20px
     display: inline-block
@@ -18,6 +21,9 @@
     margin: 0
     letter-spacing: -.02rem
     text-transform: uppercase
+
+    @media screen and (max-width: 782px)
+      display: block
 
   .title-count
     top: -2px
@@ -92,10 +98,13 @@
       margin-left: 0.4rem
     
 .wplmi-form-control
-  &:not(.selectize-control):not(.selectize-dropdown):not(.wplmi-editor)
+  &:not(.wplmi-editor)
     width: 40%
     padding: 6px 12px !important
     border-color: #ccc
+
+    @media screen and (max-width: 782px)
+      width: 95% !important
 
   &:focus, &:hover
     border-color: #ccc !important
@@ -173,6 +182,9 @@ h1.title .title-count
   top: 15px
   // padding-right: 20px
 
+  @media screen and (max-width: 1300px)
+    display: none
+
   > *
     vertical-align: middle
     margin-left: 10px
@@ -245,8 +257,14 @@ input, select
   th
     width: 25%
 
-  td:not(.social-td)
+    @media screen and (max-width: 782px)
+      width: 90%
+
+  td
     width: 75%
+
+    @media screen and (max-width: 782px)
+      display: table-cell
 
   tbody tr
     padding: 5px 0
@@ -332,20 +350,20 @@ hr
 
 .wplmi-wrap
   margin-top: 25px
+  max-width: 1200px
 
   #poststuff
     padding-top: 0
 
-  div[class*="notice"]:not(.notice-alt)
-    //border-radius: 6px
-    width: 996px
-    padding-right: 12px !important
+  // div[class*="notice"]:not(.notice-alt)
+  //   //border-radius: 6px
+  //   width: 996px
+  //   padding-right: 12px !important
 
-    &:not(.fs-notice-body):not(.components-notice__content)
-      margin-bottom: 25px
+  //   &:not(.fs-notice-body):not(.components-notice__content)
+  //     margin-bottom: 25px
     
 #wplmi-settings-form, .metabox-holder
-  width: 1024px
   max-width: 100%
 
 .wplmi-metabox-holder
