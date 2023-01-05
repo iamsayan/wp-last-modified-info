@@ -249,7 +249,7 @@ class EditScreen
 		$this->verify_nonce( 'wplmi_edit_nonce' );
 
 		// we need the post IDs
-	    $post_ids = ( isset( $_POST['post_ids'] ) && ! empty( $_POST['post_ids'] ) ) ? array_map( 'intval', $_POST['post_ids'] ) : [];
+	    $post_ids = ( ! empty( $_POST['post_ids'] ) ) ? array_map( 'intval', $_POST['post_ids'] ) : [];
     
 	    // if we have post IDs
 	    if ( ! empty( $post_ids ) && is_array( $post_ids ) ) {
@@ -269,16 +269,14 @@ class EditScreen
 	    
 			$newdate = sprintf( "%04d-%02d-%02d %02d:%02d:%02d", $aa, $mm, $jj, $hh, $mn, $ss );
 
-			set_transient( 'wplmi_temp_modified_date', $newdate, 30 );
-
 	    	foreach ( $post_ids as $post_id ) {
 				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
-				    if ( $mmm != 'none' ) {
+				    if ( 'none' !== $mmm ) {
 						$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
-						$this->update_meta( $post_id, '_wplmi_bulk_update', 'yes' );
+						$this->update_meta( $post_id, '_wplmi_bulk_update_datetime', $newdate );
 				    }
     
-				    if ( $disable != 'none' ) {
+				    if ( 'none' !== $disable ) {
 				    	$this->update_meta( $post_id, '_lmt_disableupdate', $disable );
 				    }
 				}
@@ -305,19 +303,16 @@ class EditScreen
 		    $this->update_meta( $postarr['ID'], '_edit_last', get_current_user_id() );
 		}
 
-		// // Check bulk edit state
-		// $modified_temp = get_transient( 'wplmi_temp_modified_date' );
-		// $proceed = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update' );
-		
-		// // Handle bulk edit
-		// if ( $modified_temp && $proceed == 'yes' ) {
-		// 	$data['post_modified'] = $modified_temp;
-		// 	$data['post_modified_gmt'] = get_gmt_from_date( $modified_temp );
+		// Check bulk edit state
+		$bulk_datetime = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
+		if ( ! empty( $bulk_datetime ) ) {
+			$data['post_modified'] = $bulk_datetime;
+			$data['post_modified_gmt'] = get_gmt_from_date( $bulk_datetime );
 
-		// 	$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update' );
+			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
 
-		//     return $data;
-		// }
+		    return $data;
+		}
 
 		// Get disable state.
 		$disabled = $this->get_meta( $postarr['ID'], '_lmt_disableupdate' );

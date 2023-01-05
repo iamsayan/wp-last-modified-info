@@ -1,5 +1,6 @@
 ( function( $ ) {
-
+    'use strict';
+    
     // Copy of the WP inline edit post function.
     let $wp_inline_edit = inlineEditPost.edit;
 
@@ -57,7 +58,7 @@
                 $( '#wplmi-change-modified', $edit_row ).val( 'yes' );
                 // $( '#wplmi-disable-hidden', $edit_row ).val( 'no' );
                 // $( '#wplmi_disable', $edit_row ).prop( 'checked', false );
-            });
+            } );
 
             $( '#wplmi_disable', $edit_row ).on( 'change', function() {
                 if ( $( this ).is( ':checked' ) ) {
@@ -90,10 +91,10 @@
 		
 		// get the selected post ids that are being edited
 		let $post_ids = new Array();
-		$bulk_row.find( '#bulk-titles' ).children().each( function() {
-			$post_ids.push( $( this ).attr( 'id' ).replace( /^(ttle)/i, '' ) );
+		$bulk_row.find( '#bulk-titles' ).find( '.ntdelbutton' ).each( function() {
+			$post_ids.push( $( this ).attr( 'id' ).replace( '_', '' ) );
 		} );
-		
+
 		// get the custom fields
 		let $modified_month = $bulk_row.find( 'select[name="mmm"]' ).val();
 		let $modified_day = $bulk_row.find( 'input[name="jjm"]' ).val();
@@ -115,7 +116,9 @@
         };
 
         $.post( wplmi_edit_L10n.ajaxurl, wplmiBulkData, function( response ) {
-            $( 'body' ).find( '#bulk_edit' ).trigger( 'click' );
+            setInterval( function() {
+                $( 'body' ).find( '#bulk_edit' ).trigger( 'click' );
+            }, 1000 );
         } );
 	} );
 
