@@ -31,6 +31,7 @@ return array(
     'Wplmi\\Core\\Backend\\PluginsData' => $baseDir . '/inc/Core/Backend/PluginsData.php',
     'Wplmi\\Core\\Backend\\PostStatusFilters' => $baseDir . '/inc/Core/Backend/PostStatusFilters.php',
     'Wplmi\\Core\\Backend\\UserColumn' => $baseDir . '/inc/Core/Backend/UserColumn.php',
+    'Wplmi\\Core\\Backend\\WooCommerce' => $baseDir . '/inc/Core/Backend/WooCommerce.php',
     'Wplmi\\Core\\Blocks' => $baseDir . '/inc/Core/Blocks.php',
     'Wplmi\\Core\\Elementor\\Loader' => $baseDir . '/inc/Core/Elementor/Loader.php',
     'Wplmi\\Core\\Elementor\\Modules\\AuthorName' => $baseDir . '/inc/Core/Elementor/Modules/AuthorName.php',

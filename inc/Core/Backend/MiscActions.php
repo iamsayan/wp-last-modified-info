@@ -31,8 +31,8 @@ class MiscActions
 		$this->action( 'pre_get_posts', 'sorting_order' );
 		$this->action( 'pre_get_posts', 'frontend_sorting_order' );
 		$this->action( 'init', 'disable_date_time', 1 );
-		$this->filter( 'get_the_time', 'replace_time', 10, 3 );
-        $this->filter( 'get_the_date', 'replace_date', 10, 3 );
+		$this->filter( 'get_the_time', 'replace_datetime', 10, 3 );
+        $this->filter( 'get_the_date', 'replace_datetime', 10, 3 );
 	}
 
 	/**
@@ -108,37 +108,20 @@ class MiscActions
 	}
 
 	/**
-	 * Replace published date.
+	 * Replace published datetime.
 	 * 
-	 * @param string   $time     Post published time
+	 * @param string   $datetime Post published time
 	 * @param string   $format   Post date format
 	 * @param int      $post_id  Post ID
 	 * 
 	 * @return string  $time
 	 */
-	public function replace_date( $time, $format, $post ) {
+	public function replace_datetime( $datetime, $format, $post ) {
 		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
-            return $time;
+            return $datetime;
 		}
 
-		return get_the_modified_date( $format, $post );
-	}
-
-	/**
-	 * Replace published time.
-	 * 
-	 * @param string   $time     Post published time
-	 * @param string   $format   Post date format
-	 * @param int      $post_id  Post ID
-	 * 
-	 * @return string  $time
-	 */
-	public function replace_time( $time, $format, $post ) {
-		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
-            return $time;
-		}
-
-		return get_the_modified_time( $format, $post );
+		return get_post_modified_time( $format, false, $post, true );
 	}
 
 	/**

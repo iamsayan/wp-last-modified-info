@@ -43,6 +43,7 @@ final class Loader
 			Core\Backend\MetaBox::class,
 			Core\Backend\PostStatusFilters::class,
 			Core\Backend\PluginsData::class,
+			Core\Backend\WooCommerce::class,
 			Core\Elementor\Loader::class,
 			Pages\Dashboard::class,
 		];

@@ -168,6 +168,8 @@ If you like WP Last Modified Info, please take a moment to [give a 5-star rating
 Release Date:
 
 * Fixed: PHP Error if the the global post object is undefined.
+* Fixed: WooCommerce product modified date updated even if the option is disabled.
+* Tested with WordPress v6.1.
 
 = 1.8.4 =
 Release Date: July 29, 2022
