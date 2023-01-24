@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.6
+Release Date: January 24, 2023
+
+* Fixed: Modified date is not showing if "Post Date Time Change or Removal" is set to "Convert to Modified Date" after last update.
+
 ## 1.8.5
 Release Date: January 5, 2023
 
