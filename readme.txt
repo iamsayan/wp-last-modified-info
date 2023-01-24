@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.1
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -163,6 +163,11 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.8.6 =
+Release Date: January 24, 2023
+
+* Fixed: Modified date is not showing if "Post Date Time Change or Removal" is set to "Convert to Modified Date" after last update.
 
 = 1.8.5 =
 Release Date: January 5, 2023
