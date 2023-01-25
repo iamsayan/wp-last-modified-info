@@ -116,13 +116,12 @@ class MiscActions
 	 * 
 	 * @return string  $time
 	 */
-	public function replace_time( $datetime, $format, $post ) {
+	public function replace_time( $time, $format, $post ) {
 		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
-            return $datetime;
+            return $time;
 		}
 
-		$_format = ! empty( $format ) ? $format : get_option( 'time_format' );
-		return get_post_modified_time( $_format, false, $post, true );
+		return get_the_modified_time( $format, $post );
 	}
 
 	/**
@@ -134,13 +133,12 @@ class MiscActions
 	 * 
 	 * @return string  $time
 	 */
-	public function replace_date( $datetime, $format, $post ) {
+	public function replace_date( $date, $format, $post ) {
 		if ( ! $this->is_equal( 'replace_published_date', 'replace' ) || is_admin() ) {
-            return $datetime;
+            return $date;
 		}
 
-		$_format = ! empty( $format ) ? $format : get_option( 'date_format' );
-		return get_post_modified_time( $_format, false, $post, true );
+		return get_the_modified_date( $format, $post );
 	}
 
 	/**
