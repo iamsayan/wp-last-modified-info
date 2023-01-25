@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.7
+Release Date: January 25, 2023
+
+* Fixed: Modified date is not showing on some cases.
+* Fixed: Bulk Edit save delay.
+* Fixed: Some Dashboard CSS.
+* Added: Wiki Link to Dynamic Tags Section.
+
 ## 1.8.6
 Release Date: January 24, 2023
 
