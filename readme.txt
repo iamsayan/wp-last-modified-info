@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
 Tested up to: 6.1
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 Requires PHP: 5.6
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -169,7 +169,7 @@ Release Date: January 25, 2023
 
 * Fixed: Modified date is not showing on some cases.
 * Fixed: Bulk Edit save delay.
-* Fixed: Textarea CSS.
+* Fixed: Some Dashboard CSS.
 * Added: Wiki Link to Dynamic Tags Section.
 
 = 1.8.6 =
