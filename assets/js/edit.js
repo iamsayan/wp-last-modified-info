@@ -116,9 +116,7 @@
         };
 
         $.post( wplmi_edit_L10n.ajaxurl, wplmiBulkData, function( response ) {
-            setInterval( function() {
-                $( 'body' ).find( '#bulk_edit' ).trigger( 'click' );
-            }, 1000 );
+            $( 'body' ).find( '#bulk_edit' ).trigger( 'click' );
         } );
 	} );
 

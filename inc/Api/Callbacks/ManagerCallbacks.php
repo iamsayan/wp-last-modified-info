@@ -481,7 +481,10 @@ class ManagerCallbacks
 	private function generate_template_tags( $tags ) {
 		ob_start() ?>
 		<div class="dynamic-tags">
-			<div class="dynamic-tags-label"><?php esc_html_e( 'Use these tags. Available Dynamic Tags', 'wp-last-modified-info' ); ?>:</div>
+			<div class="dynamic-tags-label">
+				<a href="https://github.com/iamsayan/wp-last-modified-info/wiki/Temaplate-Use-Cases" target="_blank" rel="noopener"><?php esc_html_e( 'Use these tags', 'wp-last-modified-info' ); ?></a>. 
+				<a href="https://github.com/iamsayan/wp-last-modified-info/wiki/Template-Tags" target="_blank" rel="noopener"><?php esc_html_e( 'Available Dynamic Tags', 'wp-last-modified-info' ); ?></a>:
+			</div>
 			<div class="dynamic-tags-content"><?php echo $this->get_available_tags( $tags ); ?></div>
 		</div>
 		<?php
