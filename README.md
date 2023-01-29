@@ -4,7 +4,14 @@
 
 🔥 Display last modified date and time on pages and posts very easily. You can use shortcode also to display last modified info anywhere on a WordPress site running 4.7 and beyond.
 
-[![WP compatibility](https://plugintests.com/plugins/wp-last-modified-info/wp-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest) [![PHP compatibility](https://plugintests.com/plugins/wp-last-modified-info/php-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest)
+[![WP compatibility](https://plugintests.com/plugins/wp-last-modified-info/wp-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest) 
+[![PHP compatibility](https://plugintests.com/plugins/wp-last-modified-info/php-badge.svg)](https://plugintests.com/plugins/wp-last-modified-info/latest)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/iamsayan/wp-last-modified-info)
+![PHP](https://img.shields.io/badge/php-v5.6%2B-blue)
+![GitHub Release Date](https://img.shields.io/github/release-date/iamsayan/wp-last-modified-info?logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/iamsayan/wp-last-modified-info?logo=github)
+![GitHub Repo stars](https://img.shields.io/github/stars/iamsayan/wp-last-modified-info?style=social)
+![GitHub forks](https://img.shields.io/github/forks/iamsayan/wp-last-modified-info?style=social)
 
 ## Description ##
 
