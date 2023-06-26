@@ -5,7 +5,7 @@
  * @since      1.8.0
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core;

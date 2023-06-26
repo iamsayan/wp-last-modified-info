@@ -5,7 +5,7 @@
  * @since      1.7.6
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core\Backend
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core\Backend;

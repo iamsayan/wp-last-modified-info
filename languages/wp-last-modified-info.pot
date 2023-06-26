@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Last Modified Info 1.8.5\n"
+"Project-Id-Version: WP Last Modified Info 1.8.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-last-modified-info\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-05T15:15:42+00:00\n"
+"POT-Creation-Date: 2023-06-26T12:31:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wp-last-modified-info\n"
@@ -34,7 +34,7 @@ msgid "Sayan Datta"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://sayandatta.in"
+msgid "https://www.sayandatta.co.in"
 msgstr ""
 
 #: inc/Api/Callbacks/AdminCallbacks.php:46
@@ -298,8 +298,12 @@ msgstr ""
 msgid "Enable this if you want to delete plugin data at the time of uninstallation."
 msgstr ""
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:484
-msgid "Use these tags. Available Dynamic Tags"
+#: inc/Api/Callbacks/ManagerCallbacks.php:485
+msgid "Use these tags"
+msgstr ""
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:486
+msgid "Available Dynamic Tags"
 msgstr ""
 
 #: inc/Base/AdminNotice.php:47
@@ -386,7 +390,7 @@ msgid "Confirm"
 msgstr ""
 
 #: inc/Base/Enqueue.php:72
-#: inc/Core/Backend/EditScreen.php:126
+#: inc/Core/Backend/EditScreen.php:129
 msgid "Cancel"
 msgstr ""
 
@@ -535,10 +539,14 @@ msgstr ""
 msgid "Minute"
 msgstr ""
 
-#: inc/Core/Backend/EditScreen.php:128
+#: inc/Core/Backend/EditScreen.php:97
+msgid "Keep this checked, if you do not want to change modified date and time on this post."
+msgstr ""
+
+#: inc/Core/Backend/EditScreen.php:98
 #: inc/Core/Backend/EditScreen.php:177
 #: inc/Core/Backend/EditScreen.php:234
-msgid "Lock Modified Date"
+msgid "Lock the Modified Date"
 msgstr ""
 
 #: inc/Core/Backend/EditScreen.php:149
@@ -560,7 +568,7 @@ msgid "Update Status"
 msgstr ""
 
 #: inc/Core/Backend/EditScreen.php:235
-msgid "Un-Lock Modified Date"
+msgid "Un-Lock the Modified Date"
 msgstr ""
 
 #: inc/Core/Backend/MetaBox.php:56
@@ -584,39 +592,39 @@ msgid "updated on"
 msgstr ""
 
 #. translators: %s: updated time
-#: inc/Core/Backend/PluginsData.php:188
-#: inc/Core/Backend/PluginsData.php:191
+#: inc/Core/Backend/PluginsData.php:190
+#: inc/Core/Backend/PluginsData.php:193
 msgid "Updated: %s"
 msgstr ""
 
 #. translators: %s: rating
-#: inc/Core/Backend/PluginsData.php:197
+#: inc/Core/Backend/PluginsData.php:199
 msgid "Ratings: %s"
 msgstr ""
 
 #. translators: %s: no. of reviews
-#: inc/Core/Backend/PluginsData.php:202
+#: inc/Core/Backend/PluginsData.php:204
 msgid "Reviews: %s"
 msgstr ""
 
 #. translators: %s: vertion number
-#: inc/Core/Backend/PluginsData.php:207
+#: inc/Core/Backend/PluginsData.php:209
 msgid "Requires at least: v%s"
 msgstr ""
 
 #. translators: %s: tested upto version
-#: inc/Core/Backend/PluginsData.php:213
-#: inc/Core/Backend/PluginsData.php:216
+#: inc/Core/Backend/PluginsData.php:215
+#: inc/Core/Backend/PluginsData.php:218
 msgid "Tested upto: %s"
 msgstr ""
 
 #. translators: %s: plugin info
-#: inc/Core/Backend/PluginsData.php:223
+#: inc/Core/Backend/PluginsData.php:225
 msgid "Status:"
 msgstr ""
 
 #. translators: %s: plugin info
-#: inc/Core/Backend/PluginsData.php:223
+#: inc/Core/Backend/PluginsData.php:225
 msgid "Available"
 msgstr ""
 
@@ -1208,4 +1216,14 @@ msgstr ""
 #. translators: %s: plugin name
 #: templates/admin.php:209
 msgid "Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal."
+msgstr ""
+
+#. translators: WordPress Version
+#: wp-last-modified-info.php:127
+msgid "You are using the outdated WordPress, please update it to version %s or higher."
+msgstr ""
+
+#. translators: PHP Version
+#: wp-last-modified-info.php:133
+msgid "WP Last Modified Info requires PHP version %s or above. Please update PHP to run this plugin."
 msgstr ""

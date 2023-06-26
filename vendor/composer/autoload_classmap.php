@@ -20,7 +20,6 @@ return array(
     'Wplmi\\Base\\Localization' => $baseDir . '/inc/Base/Localization.php',
     'Wplmi\\Base\\MiscActions' => $baseDir . '/inc/Base/MiscActions.php',
     'Wplmi\\Base\\PluginTools' => $baseDir . '/inc/Base/PluginTools.php',
-    'Wplmi\\Base\\Uninstall' => $baseDir . '/inc/Base/Uninstall.php',
     'Wplmi\\Core\\AdminBar' => $baseDir . '/inc/Core/AdminBar.php',
     'Wplmi\\Core\\Backend\\AdminColumn' => $baseDir . '/inc/Core/Backend/AdminColumn.php',
     'Wplmi\\Core\\Backend\\BlockEditor' => $baseDir . '/inc/Core/Backend/BlockEditor.php',

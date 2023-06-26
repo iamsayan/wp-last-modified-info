@@ -5,7 +5,7 @@
  * @since      1.7.0
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Base
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Base;
@@ -48,10 +48,10 @@ class Enqueue extends BaseController
 			
 			// load required css & js files.
 			$this->load( 'css', 'admin', 'admin.min.css', $this->version );
-			$this->load( 'css', 'selectize', 'selectize.min.css', '0.12.6' );
+			$this->load( 'css', 'selectize', 'selectize.min.css', '0.15.2' );
 			$this->load( 'css', 'confirm', 'jquery-confirm.min.css', '3.3.4' );
 		
-			$this->load( 'js', 'selectize', 'selectize.min.js', '0.12.6', [ 'jquery' ] );
+			$this->load( 'js', 'selectize', 'selectize.min.js', '0.15.2', [ 'jquery' ] );
 			$this->load( 'js', 'confirm', 'jquery-confirm.min.js', '3.3.4', [ 'jquery' ] );
 		    $this->load( 'js', 'admin', 'admin.min.js', $this->version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm', 'wplmi-selectize' ] );
 		

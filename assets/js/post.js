@@ -1,7 +1,7 @@
 ( function( $ ) {
     'use strict';
 
-    let $tsmdiv = $('#timestampmodifieddiv');
+    let $tsmdiv = $( '#timestampmodifieddiv' );
 	
 	/**
 	 * Partially borrowed from wp-admin/js/post.js
@@ -14,19 +14,19 @@
 			$(this).hide();
 		}
         e.preventDefault();
-    });
+    } );
     
 	$tsmdiv.find( '.cancel-timestamp' ).click( function( e ) {
         $tsmdiv.slideUp( 'fast' ).siblings( 'a.edit-timestampmodified' ).show().focus();
-		$( '#mmm' ).val( $('#hidden_mmm').val() );
-		$( '#jjm' ).val( $('#hidden_jjm').val() );
-		$( '#aam' ).val( $('#hidden_aam').val() );
-		$( '#hhm' ).val( $('#hidden_hhm').val() );
-        $( '#mnm' ).val( $('#hidden_mnm').val() );
+		$( '#mmm' ).val( $( '#hidden_mmm' ).val() );
+		$( '#jjm' ).val( $( '#hidden_jjm' ).val() );
+		$( '#aam' ).val( $( '#hidden_aam' ).val() );
+		$( '#hhm' ).val( $( '#hidden_hhm' ).val() );
+        $( '#mnm' ).val( $( '#hidden_mnm' ).val() );
         updateTextModified();
         $( '#wplmi-change-modified ').val( 'no' );
         e.preventDefault();
-    });
+    } );
     
 	$tsmdiv.find( '.save-timestamp' ).click( function( e ) {
         $( '#wplmi-change-modified' ).val( 'yes' );
@@ -35,7 +35,7 @@
             $tsmdiv.siblings( 'a.edit-timestampmodified' ).show().focus();
         }
         e.preventDefault();
-    });
+    } );
 
     $( '#post' ).on( 'submit', function( e ) {
         if ( ! updateTextModified() ) {
@@ -93,10 +93,10 @@
     }
 
     $( '#wplmi_disable' ).change( function() {
-		if ( $(this).is( ':checked' ) ) {
+		if ( $( this ).is( ':checked' ) ) {
 			$( '#wplmi-disable-hidden' ).val( 'yes' );
 		}
-		if ( ! $(this).is( ':checked' ) ) {
+		if ( ! $( this ).is( ':checked' ) ) {
 			$( '#wplmi-disable-hidden' ).val( 'no' );
 		}
     } ).change();

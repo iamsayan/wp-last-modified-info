@@ -5,7 +5,7 @@
  * @since      1.8.0
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core\Backend;
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core\Backend;
@@ -32,8 +32,11 @@ class BlockEditor extends BaseController
 
 		$post_types = get_post_types( [ 'show_in_rest' => true ] );
 		foreach ( $post_types as $post_type ) {
-			$this->filter( "rest_pre_insert_{$post_type}", 'modified_params', 10, 2 );
+			$this->filter( "rest_pre_insert_$post_type", 'modified_params', 10, 2 );
 		}
+
+		// AIOSEO Integration
+		$this->action( 'init', 'filter_aioseo' );
 	}
 
 	/**
@@ -77,6 +80,10 @@ class BlockEditor extends BaseController
 	 * @return stdClass $prepared_post Resulting post object.
 	 */
 	public function modified_params( $prepared_post, $request ) {
+		if ( 'PUT' !== $request->get_method() ) {
+			return $prepared_post;
+		}
+
 		$params = $request->get_params();
 
 		if ( isset( $params['modified'] ) ) {
@@ -107,5 +114,33 @@ class BlockEditor extends BaseController
 			'postTypes' => $this->get_data( 'lmt_custom_post_types_list', [] ),
 			'isEnabled' => $this->is_enabled( 'enable_last_modified_cb' ),
 		] );
+	}
+
+	/**
+	 * Conditional hooking for AIOSEO Plugin integration.
+	 */
+	public function filter_aioseo() {
+		if ( ! $this->do_filter( 'sync_aioseo_modified_date_update', true ) ) {
+			return;
+		}
+
+		$this->filter( 'aioseo_get_post', 'filter_post', 10, 2 );
+		add_filter( 'aioseo_last_modified_date_disable', '__return_true' );
+		add_filter( 'aioseo_limit_modified_date_post_types', '__return_empty_array' );
+	}
+
+	/**
+	 * AIOSEO Plugin integration.
+	 */
+	public function filter_post( $post ) {
+		$stop_update = $this->get_meta( $post->post_id, '_lmt_disableupdate' );
+
+		if ( 'yes' === $stop_update ) {
+			$post->limit_modified_date = 1;
+		} else {
+			$post->limit_modified_date = 0;
+		}
+
+		return $post;
 	}
 }

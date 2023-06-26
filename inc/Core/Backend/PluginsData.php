@@ -5,7 +5,7 @@
  * @since      1.7.4
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core\Backend
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core\Backend;
@@ -124,33 +124,40 @@ class PluginsData extends WP_Background_Process
 		$saved_data = get_option( 'wplmi_plugin_api_data' );
 		$new_data = ( $saved_data && is_array( $saved_data ) ) ? $saved_data : [];
 
+		if ( empty( $data->slug ) ) {
+		    return;
+		}
+
 		$new_data[ $data->slug ] = [
 			'slug'       => $data->slug,
-            'version'    => $data->version,
 			'svn_exists' => $this->svn_exists( $data->slug ) ? 'yes' : 'no',
 		];
 
-		if ( isset( $data->requires ) ) {
+		if ( ! empty( $data->version ) ) {
+		    $new_data[ $data->slug ]['version'] = $data->version;
+		}
+
+		if ( ! empty( $data->requires ) ) {
 		    $new_data[ $data->slug ]['requires'] = $data->requires;
 		}
 
-		if ( isset( $data->tested ) ) {
+		if ( ! empty( $data->tested ) ) {
 		    $new_data[ $data->slug ]['tested'] = $data->tested;
 		}
 
-		if ( isset( $data->last_updated ) ) {
+		if ( ! empty( $data->last_updated ) ) {
 		    $new_data[ $data->slug ]['last_updated'] = $data->last_updated;
 		}
 
-		if ( isset( $data->rating ) ) {
+		if ( ! empty( $data->rating ) ) {
 		    $new_data[ $data->slug ]['rating'] = $data->rating;
 		}
 
-		if ( isset( $data->num_ratings ) ) {
+		if ( ! empty( $data->num_ratings ) ) {
 		    $new_data[ $data->slug ]['num_ratings'] = $data->num_ratings;
 		}
 
-		if ( isset( $data->active_installs ) ) {
+		if ( ! empty( $data->active_installs ) ) {
 		    $new_data[ $data->slug ]['active_installs'] = $data->active_installs;
 		}
 
@@ -167,15 +174,10 @@ class PluginsData extends WP_Background_Process
 			return $links;
 		}
 
-        if ( get_option( 'wplmi_plugin_api_data' ) === false ) {
-			return $links;
-		}
-
 		$data = get_option( 'wplmi_plugin_api_data' );
-
 		$new_file = $this->get_path( $file );
 
-		if ( ! isset( $data[ $new_file ] ) ) {
+        if ( ! $data || ! isset( $data[ $new_file ] ) ) {
 			return $links;
 		}
 

@@ -5,7 +5,7 @@
  * @since      1.7.0
  * @package    WP Last Modified Info
  * @subpackage Templates
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 ?>
 
@@ -208,7 +208,7 @@
                         /* translators: %s: plugin name */
                         esc_html__( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . esc_html( $this->version ) . '</strong>' ); ?></strong>
                     </p>
-                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://sayandatta.in" target="_blank" rel="noopener" style="font-weight: 500;">Sayan Datta</a> | <a href="https://sayandatta.in/contact/" target="_blank" rel="noopener" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" rel="noopener" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
+                    <p style="text-align: justify; font-size: 12px; font-style: italic;">Developed with <span style="color:#e25555;">♥</span> by <a href="https://www.sayandatta.co.in" target="_blank" rel="noopener" style="font-weight: 500;">Sayan Datta</a> | <a href="https://www.sayandatta.co.in/contact/" target="_blank" rel="noopener" style="font-weight: 500;">Hire Me</a> | <a href="https://github.com/iamsayan/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">GitHub</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Support</a> | <a href="https://translate.wordpress.org/projects/wp-plugins/wp-last-modified-info" target="_blank" rel="noopener" style="font-weight: 500;">Translate</a> | <a href="https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?filter=5#new-post" target="_blank" rel="noopener" style="font-weight: 500;">Rate it</a> (<span style="color:#ffa000;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>) on WordPress.org, if you like this plugin.</p>
                 </div>
             </div>
         </div>
