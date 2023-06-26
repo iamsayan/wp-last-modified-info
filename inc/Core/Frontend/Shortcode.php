@@ -5,7 +5,7 @@
  * @since      1.7.0
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core\Frontend
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core\Frontend;
@@ -92,8 +92,8 @@ class Shortcode extends PostView
 			return;
 		}
 
-		$published_timestamp = get_post_time( 'U' );
-		$modified_timestamp = get_post_modified_time( 'U' );
+		$published_timestamp = get_post_time( 'U', false, $get_post );
+		$modified_timestamp = get_post_modified_time( 'U', false, $get_post );
 		if ( ( $modified_timestamp - $published_timestamp ) < $atts['gap'] ) {
 			return;
 		}
@@ -102,7 +102,7 @@ class Shortcode extends PostView
 
 		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
 		if ( $date_type == 'default' ) {
-			$timestamp = $this->get_modified_date( $atts['date_format'] );
+			$timestamp = $this->get_modified_date( $atts['date_format'], $get_post );
 		}
 		$timestamp = $this->do_filter( 'post_datetime_format', $timestamp, $get_post->ID );
 

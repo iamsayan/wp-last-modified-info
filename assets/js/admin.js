@@ -1,31 +1,34 @@
-jQuery(document).ready(function ($) {
+( function( $ ) {
+    'use strict';
 
     if ( typeof wplmiAdminL10n === 'undefined' ) {
         return false;
     }
 
     let highlighting = true,
-    wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
+        wplmi_editor, wplmi_css_editor, wplmi_tag_editor;
 
     if ( wplmiAdminL10n.highlighting == 'off' ) {
         highlighting = false;
     }
 
     if ( highlighting ) {
-        wplmi_editor = wp.codeEditor.initialize($('#wplmi_display_info'), wplmiAdminL10n.html_editor);
-        wplmi_css_editor = wp.codeEditor.initialize($('#wplmi_custom_css'), wplmiAdminL10n.css_editor);
-        wplmi_tag_editor = wp.codeEditor.initialize($('#wplmi_template_display_info'), wplmiAdminL10n.html_editor);
+        wplmi_editor = wp.codeEditor.initialize( $( '#wplmi_display_info' ), wplmiAdminL10n.html_editor );
+        wplmi_css_editor = wp.codeEditor.initialize( $( '#wplmi_custom_css' ), wplmiAdminL10n.css_editor );
+        wplmi_tag_editor = wp.codeEditor.initialize( $( '#wplmi_template_display_info' ), wplmiAdminL10n.html_editor );
     }
 
     let wplmi_btns = $( '#wplmi-nav-container' ).find( 'a.wplmi-tab:not(.type-link)' );
-    for (let wplmi_btn of wplmi_btns) {
-        $( wplmi_btn ).on( 'click', function (e) {
+    for ( let wplmi_btn of wplmi_btns ) {
+        $( wplmi_btn ).on( 'click', function ( e ) {
             e.preventDefault();
-            let tab_id = $(this).attr('id').replace('wplmi-tab-', '');
-            $('a.is-active').removeClass("is-active");
-            $(this).addClass("is-active");
-            $(".wplmi-metabox .wplmi-" + tab_id).removeClass('d-none');
-            $(".wplmi-metabox .postbox:not(.wplmi-" + tab_id + "), .wplmi-metabox .sub-links:not(.wplmi-" + tab_id + ")").addClass('d-none');
+
+            let tab_id = $( this ).attr( 'id' ).replace( 'wplmi-tab-', '' );
+            $( 'a.is-active' ).removeClass( "is-active" );
+            $( this ).addClass( "is-active" );
+            $( ".wplmi-metabox .wplmi-" + tab_id ).removeClass( 'd-none' );
+            $( ".wplmi-metabox .postbox:not(.wplmi-" + tab_id + "), .wplmi-metabox .sub-links:not(.wplmi-" + tab_id + ")" ).addClass( 'd-none' );
+            
             localStorage.setItem('wplmi_active_tab', tab_id);
             if ( highlighting ) {
                 if ( tab_id == 'post' ) {
@@ -134,7 +137,7 @@ jQuery(document).ready(function ($) {
     $( '#wplmi-settings-form' ).submit( function( e ) {
         e.preventDefault();
         $( ".wplmi-save" ).addClass( "disabled" ).val( wplmiAdminL10n.saving );
-        let jd = $.dialog({
+        let jd = $.dialog( {
             title: wplmiAdminL10n.saving,
             content: wplmiAdminL10n.saving_text,
             useBootstrap: false,
@@ -144,11 +147,11 @@ jQuery(document).ready(function ($) {
             closeIcon: false,
             boxWidth: '25%',
             scrollToPreviousElement: false,
-        });
-        $(this).ajaxSubmit({
+        } );
+        $( this ).ajaxSubmit( {
             success: function() {
                 jd.close();
-                $.alert({
+                $.alert( {
                     title: wplmiAdminL10n.done,
                     content: wplmiAdminL10n.save_success,
                     useBootstrap: false,
@@ -162,12 +165,12 @@ jQuery(document).ready(function ($) {
                             text: wplmiAdminL10n.ok_button,
                         }
                     }
-                });
-                $(".wplmi-save").removeClass("disabled").val(wplmiAdminL10n.save_button);
+                } );
+                $( ".wplmi-save" ).removeClass( "disabled" ).val( wplmiAdminL10n.save_button );
             },
             error: function() { 
                 jd.close();
-                $.alert({
+                $.alert( {
                     title: wplmiAdminL10n.error,
                     content: wplmiAdminL10n.process_failed,
                     useBootstrap: false,
@@ -181,7 +184,7 @@ jQuery(document).ready(function ($) {
                             text: wplmiAdminL10n.ok_button,
                         }
                     }
-                });
+                } );
             },
         });
     });
@@ -209,7 +212,7 @@ jQuery(document).ready(function ($) {
                     text: wplmiAdminL10n.confirm_button,
                     action: function () {
                         mdc.close();
-                        let cd = $.dialog({
+                        let cd = $.dialog( {
                             title: process,
                             content: wplmiAdminL10n.processing,
                             useBootstrap: false,
@@ -219,11 +222,11 @@ jQuery(document).ready(function ($) {
                             closeIcon: false,
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
-                        });
+                        } );
                         $.post( wplmiAdminL10n.ajaxurl, { action: action, action_type: type, security: wplmiAdminL10n.security }, function( response ) {
                             if( response.success === true ) {
                                 cd.close();
-                                $.alert({
+                                $.alert( {
                                     title: wplmiAdminL10n.done,
                                     content: success,
                                     useBootstrap: false,
@@ -243,7 +246,7 @@ jQuery(document).ready(function ($) {
                                             }
                                         }
                                     }
-                                });
+                                } );
                             } else {
                                 cd.close();
                                 $.alert({
@@ -260,42 +263,45 @@ jQuery(document).ready(function ($) {
                                             text: wplmiAdminL10n.ok_button,
                                         }
                                     }
-                                });
+                                } );
                             }
-                        });
+                        } );
                     }    
                 },
                 cancel: {
                     text: wplmiAdminL10n.cancel_button,
                 } 
             }
-        })
+        } )
     } );
 
     $( "input.wplmi-copy" ).on( 'click', function( e ) {
         e.preventDefault();
-        let el = $(this);
+
+        let el = $( this );
         let value = el.val();
-        let action = el.data('action');
-        el.addClass("disabled").val(wplmiAdminL10n.please_wait);
+        let action = el.data( 'action' );
+        el.addClass( "disabled" ).val( wplmiAdminL10n.please_wait );
+
         $.post( wplmiAdminL10n.ajaxurl, { action: action, security: wplmiAdminL10n.security }, function( response ) {
             if ( response.success === true ) {
                 if ( navigator.clipboard ) {
                     navigator.clipboard.writeText( response.data.elements ).then( function() {
-                        console.log('Copied to clipboard!');
+                        console.log( 'Copied to clipboard!' );
                     }, function(err) {
-                        console.error('Could not copy text: ', err);
+                        console.error( 'Could not copy text: ', err );
                     } );
                 }
-                el.removeClass("disabled").val(value);
-                $(".wplmi-copied").show().delay(1000).fadeOut();
+                el.removeClass( "disabled" ).val( value );
+                $( ".wplmi-copied" ).show().delay(1000).fadeOut();
             } 
-        });
+        } );
     } );
 
     $( "input.wplmi-paste" ).on( 'click', function( e ) {
         e.preventDefault();
-        let mdc = $.confirm({
+
+        let mdc = $.confirm( {
             title: wplmiAdminL10n.paste_data,
             content: '<textarea id="wplmi-settings-data-import" rows="4" style="width: 100%;"></textarea>',
             useBootstrap: false,
@@ -315,7 +321,7 @@ jQuery(document).ready(function ($) {
                             return false;
                         }
                         mdc.close();
-                        $.dialog({
+                        $.dialog( {
                             title: wplmiAdminL10n.importing,
                             content: wplmiAdminL10n.processing,
                             useBootstrap: false,
@@ -325,31 +331,31 @@ jQuery(document).ready(function ($) {
                             closeIcon: false,
                             boxWidth: '25%',
                             scrollToPreviousElement: false,
-                        });
+                        } );
                         $.post( wplmiAdminL10n.ajaxurl, { action: 'wplmi_process_import_plugin_data', settings_data: settings_data, security: wplmiAdminL10n.security }, function( response ) {
                             if( response.success === true ) {
                                 localStorage.setItem('wplmi_active_tab', 'post');
                                 location.reload();
                             } 
-                        });
+                        } );
                     }    
                 },
                 close: {
                     text: wplmiAdminL10n.close_btn,
                 } 
             }
-        })
+        } )
     } );
 
     $( '#wplmi_post_types, #wplmi_schema_post_types, #wplmi_notification_post_types, #wplmi_archives' ).selectize( {
-        plugins: ['remove_button'],
+        plugins: [ 'remove_button' ],
         delimiter: ',',
-        placeholder: $(this).data('placeholder'),
+        placeholder: $( this ).data( 'placeholder' ),
         persist: false,
         create: false
     } );
 
-    $('#wplmi_recipients_list').selectize({
+    $( '#wplmi_recipients_list' ).selectize( {
         plugins: ['remove_button', 'restore_on_backspace'],
         persist: false,
         create: true,
@@ -360,33 +366,33 @@ jQuery(document).ready(function ($) {
             let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return regex.test(String(input).toLowerCase());
         }
-    });
-
-    $(".coffee-amt").on( 'change', function() {
-        let btn = $('.buy-coffee-btn');
-        btn.attr('href', btn.data('link') + $(this).val());
-    });
-
-    $( 'a.share-btn:not(.no-popup)' ).on( 'click', function (e) {
-        e.preventDefault();
-        wplmiOpenPopup( $(this).attr('href'), 'Share Window', 950, 700 );
     } );
 
-    $( window ).keydown( function(e) {
-        if (e.ctrlKey || e.metaKey) {
-            switch (String.fromCharCode(e.which).toLowerCase()) {
+    $( ".coffee-amt" ).on( 'change', function() {
+        let btn = $('.buy-coffee-btn');
+        btn.attr( 'href', btn.data( 'link' ) + $( this ).val() );
+    } );
+
+    $( 'a.share-btn:not(.no-popup)' ).on( 'click', function ( e ) {
+        e.preventDefault();
+        wplmiOpenPopup( $( this ).attr( 'href' ), 'Share Window', 950, 700 );
+    } );
+
+    $( window ).keydown( function( e ) {
+        if ( e.ctrlKey || e.metaKey ) {
+            switch ( String.fromCharCode( e.which ).toLowerCase() ) {
                 case 's':
                     e.preventDefault();
-                    $('#wplmi-settings-form').submit();
+                    $( '#wplmi-settings-form' ).submit();
                     break;
             }
         }
-    });
+    } );
 
     $( '.click-to-copy' ).on( 'click', function( e ) {
         e.preventDefault();
         if ( highlighting ) {
-            let active_tab = localStorage.getItem('wplmi_active_tab'),
+            let active_tab = localStorage.getItem( 'wplmi_active_tab' ),
                 editor;
             if ( active_tab == 'post' ) {
                 editor = wplmi_editor;
@@ -422,7 +428,7 @@ jQuery(document).ready(function ($) {
     
         myField.val( textBefore + myValue + textAfter );
     }
-});
+} )( jQuery );
 
 function wplmiOpenPopup( url, title, w, h ) {
     let y = window.outerHeight / 2 + window.screenY - ( h / 2)

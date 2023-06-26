@@ -5,7 +5,7 @@
  * @since      1.7.0
  * @package    WP Last Modified Info
  * @subpackage Wplmi\Core\Backend
- * @author     Sayan Datta <hello@sayandatta.in>
+ * @author     Sayan Datta <iamsayan@protonmail.com>
  */
 
 namespace Wplmi\Core\Backend;
@@ -31,7 +31,7 @@ class EditScreen
 		$this->action( 'quick_edit_custom_box', 'quick_edit', 10, 2 );
 		$this->action( 'bulk_edit_custom_box', 'bulk_edit', 10, 2 );
 		$this->ajax( 'process_bulk_edit', 'bulk_save' );
-		$this->filter( 'wp_insert_post_data', 'update_data', 99, 2 );
+		$this->filter( 'wp_insert_post_data', 'update_data', 9999, 2 );
 	}
 	
 	/**
@@ -94,6 +94,9 @@ class EditScreen
 						<input type="text" id="mnm" class="time-modified mnm-edit" name="mnm" value="<?php echo $mn; ?>" size="2" maxlength="2" autocomplete="off" />
 					</label>
 				</div>
+				<label for="wplmi_disable" class="wplmi-disable-update" style="display:block;margin: 5px 0;" title="<?php esc_attr_e( 'Keep this checked, if you do not want to change modified date and time on this post.', 'wp-last-modified-info' ); ?>">
+					<input type="checkbox" id="wplmi_disable" name="disableupdate" <?php if ( $stop_update == 'yes' ) { echo 'checked'; } ?>><span><?php esc_html_e( 'Lock the Modified Date', 'wp-last-modified-info' ); ?></span>
+				</label>
 				<?php
 
 				$currentlocal = current_time( 'timestamp', 0 );
@@ -120,13 +123,10 @@ class EditScreen
 				<input type="hidden" id="wplmi-change-modified" name="wplmi_change" value="no">
 				<input type="hidden" id="wplmi-disable-hidden" name="wplmi_disable" value="<?php echo ( $stop_update ) ? $stop_update : 'no'; ?>">
 				<input type="hidden" id="wplmi-post-modified" name="wplmi_modified" value="<?php echo $datemodified; ?>">
-	
+				
 				<p id="wplmi-meta" class="wplmi-meta-options">
 					<a href="#edit_timestampmodified" class="save-timestamp hide-if-no-js button"><?php esc_html_e( 'OK', 'wp-last-modified-info '); ?></a>
 					<a href="#edit_timestampmodified" class="cancel-timestamp hide-if-no-js button-cancel"><?php esc_html_e( 'Cancel', 'wp-last-modified-info' ); ?></a>&nbsp;&nbsp;&nbsp;
-					<label for="wplmi_disable" class="wplmi-disable-update" title="Keep this checked, if you do not want to change modified date and time on this <?php echo $post_types->name ?>">
-						<input type="checkbox" id="wplmi_disable" name="disableupdate" <?php if ( $stop_update == 'yes' ) { echo 'checked'; } ?>><?php esc_html_e( 'Lock Modified Date', 'wp-last-modified-info' ); ?>
-					</label>
 				</p>
 			</fieldset>
 		</div><?php
@@ -174,7 +174,7 @@ class EditScreen
 						<input type="text" id="mnm" class="time-modified tm-mnm" name="mnm" value="" size="2" maxlength="2" autocomplete="off" />
 					</label>&nbsp;&nbsp;<label for="wplmi_disable">
 						<input type="checkbox" id="wplmi_disable" name="disableupdate" />
-						<span class="checkbox-title"><?php esc_html_e( 'Lock Modified Date', 'wp-last-modified-info' ); ?></span>
+						<span class="checkbox-title"><?php esc_html_e( 'Lock the Modified Date', 'wp-last-modified-info' ); ?></span>
 					</label>
 				</div>
 				<input type="hidden" id="ssm" name="ssm" value="">
@@ -231,8 +231,8 @@ class EditScreen
 						<span class="select-title"><?php esc_html_e( 'Update Status', 'wp-last-modified-info' ); ?></span>
 						<select id="wplmi-disable-update" class="disable-update" name="disable_update">
 		    			    <option value="none">— <?php esc_html_e( 'No Change', 'wp-last-modified-info' ); ?> —</option>
-						    <option value="yes"><?php esc_html_e( 'Lock Modified Date', 'wp-last-modified-info' ); ?></option>
-							<option value="no"><?php esc_html_e( 'Un-Lock Modified Date', 'wp-last-modified-info' ); ?></option>
+						    <option value="yes"><?php esc_html_e( 'Lock the Modified Date', 'wp-last-modified-info' ); ?></option>
+							<option value="no"><?php esc_html_e( 'Un-Lock the Modified Date', 'wp-last-modified-info' ); ?></option>
 						</select>
 		    		</label>
 		    	</div>
@@ -249,8 +249,8 @@ class EditScreen
 		$this->verify_nonce( 'wplmi_edit_nonce' );
 
 		// we need the post IDs
-	    $post_ids = ( ! empty( $_POST['post_ids'] ) ) ? array_map( 'intval', $_POST['post_ids'] ) : [];
-    
+	    $post_ids = ( ! empty( $_POST['post_ids'] ) ) ? wp_parse_id_list( $_POST['post_ids'] ) : [];
+
 	    // if we have post IDs
 	    if ( ! empty( $post_ids ) && is_array( $post_ids ) ) {
 			$mmm = sanitize_text_field( $_POST['modified_month'] );
@@ -273,7 +273,7 @@ class EditScreen
 				if ( ! in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ] ) ) {
 				    if ( 'none' !== $mmm ) {
 						$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
-						$this->update_meta( $post_id, '_wplmi_bulk_update_datetime', $newdate );
+						$this->update_meta( $post_id, 'wplmi_bulk_update_datetime', $newdate );
 				    }
     
 				    if ( 'none' !== $disable ) {
@@ -295,7 +295,7 @@ class EditScreen
 	 * @return object  $data
 	 */
 	public function update_data( $data, $postarr ) {
-		if ( in_array( $postarr['post_status'], [ 'auto-draft', 'future' ] ) ) {
+		if ( ! isset( $postarr['ID'] ) || in_array( $postarr['post_status'], [ 'auto-draft', 'future' ] ) ) {
 			return $data;
 		}
 
@@ -304,12 +304,12 @@ class EditScreen
 		}
 
 		// Check bulk edit state
-		$bulk_datetime = $this->get_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
+		$bulk_datetime = $this->get_meta( $postarr['ID'], 'wplmi_bulk_update_datetime' );
 		if ( ! empty( $bulk_datetime ) ) {
 			$data['post_modified'] = $bulk_datetime;
 			$data['post_modified_gmt'] = get_gmt_from_date( $bulk_datetime );
 
-			$this->delete_meta( $postarr['ID'], '_wplmi_bulk_update_datetime' );
+			$this->delete_meta( $postarr['ID'], 'wplmi_bulk_update_datetime' );
 
 		    return $data;
 		}

@@ -91,7 +91,7 @@
 		
 		// get the selected post ids that are being edited
 		let $post_ids = new Array();
-		$bulk_row.find( '#bulk-titles' ).find( '.ntdelbutton' ).each( function() {
+		$bulk_row.find( '#bulk-titles .ntdelbutton' ).each( function() {
 			$post_ids.push( $( this ).attr( 'id' ).replace( '_', '' ) );
 		} );
 

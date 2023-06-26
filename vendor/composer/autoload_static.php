@@ -39,7 +39,6 @@ class ComposerStaticInit864e9b664caffe9d69b14c441bfd3b88
         'Wplmi\\Base\\Localization' => __DIR__ . '/../..' . '/inc/Base/Localization.php',
         'Wplmi\\Base\\MiscActions' => __DIR__ . '/../..' . '/inc/Base/MiscActions.php',
         'Wplmi\\Base\\PluginTools' => __DIR__ . '/../..' . '/inc/Base/PluginTools.php',
-        'Wplmi\\Base\\Uninstall' => __DIR__ . '/../..' . '/inc/Base/Uninstall.php',
         'Wplmi\\Core\\AdminBar' => __DIR__ . '/../..' . '/inc/Core/AdminBar.php',
         'Wplmi\\Core\\Backend\\AdminColumn' => __DIR__ . '/../..' . '/inc/Core/Backend/AdminColumn.php',
         'Wplmi\\Core\\Backend\\BlockEditor' => __DIR__ . '/../..' . '/inc/Core/Backend/BlockEditor.php',

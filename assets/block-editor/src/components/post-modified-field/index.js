@@ -45,9 +45,9 @@ const PostModifiedField = () => {
                         renderToggle={ ( { onToggle, isOpen } ) => (
                             <Button
                                 className="edit-post-post-schedule__toggle"
+                                variant="tertiary"
                                 onClick={ onToggle }
                                 aria-expanded={ isOpen }
-                                isTertiary
                             >
                                 { dateI18n( dateTimeFormat, editedModified ) }
                             </Button>
@@ -57,6 +57,7 @@ const PostModifiedField = () => {
                                 currentDate={ editedModified }
                                 onChange={ ( modified ) => { editPost( { modified } ) } }
                                 is12Hour={ is12HourFormat( settings.formats.time ) }
+                                __nextRemoveResetButton={ true }
                             />
                         ) }
                     />

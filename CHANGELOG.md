@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.8
+Release Date: June 26, 2023
+
+* Added: Integration with AIOSEO Plugin last modified update checkbox.
+* Updated: @wordpress/scripts to the latest version.
+* Updated: Selectize JS Library.
+* Updated: Background Process PHP Library.
+* Tweak: Changed Toogle to Checkbox Control.
+* Fixed: Deprecated Button Component parameter.
+* Fixed: PHP Errors on Plugins page.
+* Fixed: Properly support the id attribute in the shortcode. Props to @yoren.
+* Tested with WordPress v6.2.
+
 ## 1.8.7
 Release Date: January 25, 2023
 
@@ -20,7 +33,7 @@ Release Date: January 5, 2023
 * Fixed: PHP Error if the the global post object is undefined.
 * Fixed: WooCommerce product modified date updated even if the option is disabled.
 * Fixed: Update Locked posts was showing all posts in post list page.
-* Fixed: Lock Modified Date option was not working properly.
+* Fixed: Lock the Modified Date option was not working properly.
 * Fixed: Bulk Editing was not working.
 * Tweak: Allow Toogle Disable Update Option for all post types and posts with future date.
 * Imporved: Optimize codebase.
