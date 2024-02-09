@@ -104,7 +104,10 @@ Class ModifiedTime extends Tag {
         }
     
         if ( 'yes' === $schema ) {
-            $output = '%wplmi_schema_start%' . $value . '%wplmi_schema_end%';
+            $start_tag = '<time itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'">';
+            $end_tag   = '</time>';
+
+            $output = $start_tag . $value . $end_tag;
         } else {
             $output = $value;
         }

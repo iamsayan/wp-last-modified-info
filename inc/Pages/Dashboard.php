@@ -54,6 +54,13 @@ class Dashboard
 	public $pages = [];
 
 	/**
+	 * Settings sub-pages.
+	 *
+	 * @var array
+	 */
+	public $sub_pages = [];
+
+	/**
 	 * Register functions.
 	 */
 	public function register() {
@@ -67,14 +74,14 @@ class Dashboard
 		$this->setSections();
 		$this->setFields();
 
-		$this->settings->addSubPages( $this->subpages )->register();
+		$this->settings->addSubPages( $this->sub_pages )->register();
 	}
 
 	/**
 	 * Register plugin pages.
 	 */
 	public function setSubPages() {
-		$this->subpages = [
+		$this->sub_pages = [
 			[
 				'parent_slug' => 'options-general.php', 
 				'page_title'  => __( 'WP Last Modified Info', 'wp-last-modified-info' ), 

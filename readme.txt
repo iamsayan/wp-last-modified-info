@@ -2,9 +2,9 @@
 Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
 Requires at least: 4.7
-Tested up to: 6.2
-Stable tag: 1.8.8
-Requires PHP: 5.6
+Tested up to: 6.4
+Stable tag: 1.8.9
+Requires PHP: 7.0
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -163,6 +163,18 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.8.9 =
+Release Date: February 9, 2024
+
+* Added: Lock Modified Date Block Editor Support for Custom Post type which has `show_in_rest` set to `true`. This behavior can be changed by `wpar/post_type_args` filter.
+* Updated: @wordpress/scripts to the latest version.
+* Updated: Background Process PHP Library.
+* Tweak: Replaced deprecated `__experimentalGetSettings()` with `getSettings()`.
+* Tweak: Use of `wp_kses_allowed_html` filter to allow custom HTML tag instead of using placeholders.
+* Added support for PHP v8.3.
+* Minimum required PHP Version is now 7.0.
+* Tested with WordPress v6.4.
 
 = 1.8.8 =
 Release Date: June 26, 2023

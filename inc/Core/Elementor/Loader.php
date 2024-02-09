@@ -28,6 +28,7 @@ class Loader
 	 */
 	public function register() {
         if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+            $this->filter( 'wp_kses_allowed_html', 'wp_kses_post_tags', 10, 2 );
             $this->action( 'elementor/dynamic_tags/register', 'register_tags' );
             $this->action( 'elementor/frontend/the_content', 'render' );
             $this->action( 'elementor/widget/render_content', 'render' );
@@ -54,7 +55,7 @@ class Loader
     }
 
     /**
-	 * Modify elementor query obejct.
+	 * Modify elementor query object.
 	 * 
 	 * @param object  $query  Original Elementor query object
 	 */
@@ -64,28 +65,34 @@ class Loader
     }
 
     /**
-	 * Show filtered content.
+	 * Remove old placeholders.
 	 * 
 	 * @param string  $content  Original Content
 	 * 
 	 * @return string $content  Filtered Content
 	 */
     public function render( $content ) {
-        $start_tag = '<time itemprop="dateModified" datetime="'. get_post_modified_time( 'Y-m-d\TH:i:sP', true ) .'">';
-        $end_tag = '</time>';
-
-        $content = str_replace( '%wplmi_schema_start%', $start_tag, $content );
-        $content = str_replace( '%wplmi_schema_end%', $end_tag, $content );
-
-        $content = str_replace( '%wplmi_span_start%', '<span class="wplmi-author">', $content );
-        $content = str_replace( '%wplmi_span_end%', '</span>', $content );
-
-        $author_id = get_post_meta( get_the_ID(), '_edit_last', true );
-        $author_name = get_the_author_meta( 'display_name', $author_id );
-
-        $content = str_replace( '%wplmi_author_avatar%', '<span class="wplmi-user-avatar">
-        <img class="elementor-avatar wplmi-elementor-avatar" src="' . esc_url( get_avatar_url( $author_id, [ 'size' => $this->do_filter( 'avatar_default_size', 96 ) ] ) ) . '" alt="' . $author_name . '"></span>', $content );
+        $content = str_replace( [ '%wplmi_schema_start%', '%wplmi_schema_end%', '%wplmi_span_start%', '%wplmi_span_end%', '%wplmi_author_avatar%' ], '', $content );
         
         return $content;
     }
+
+    /**
+	 * Allow HTMl Tag.
+	 * 
+	 * @param array  $tags    Tags array
+	 * @param string $context Current context
+	 * 
+	 * @return array $tags Tags array
+	 */
+    public function wp_kses_post_tags( $tags, $context ) {
+        if ( 'post' === $context ) {
+            $tags['time'] = [
+                'itemprop' => true,
+                'datetime' => true,
+            ];
+        }
+    
+        return $tags;
+    }    
 }

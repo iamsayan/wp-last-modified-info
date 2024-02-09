@@ -10,6 +10,7 @@
 
 namespace Wplmi\Core\Elementor\Modules;
 
+use Wplmi\Helpers\Hooker;
 use \Elementor\Controls_Manager;
 use \Elementor\Core\DynamicTags\Tag;
 use \Elementor\Modules\DynamicTags\Module;
@@ -20,6 +21,8 @@ defined( 'ABSPATH' ) || exit;
  * Republish info class.
  */
 Class AuthorName extends Tag {
+
+    use Hooker;
 
     public function get_name() {
         return 'wplmi-modified-author';
@@ -65,7 +68,11 @@ Class AuthorName extends Tag {
         $value = get_the_author_meta( 'display_name', $author_id );
 
         if ( 'yes' === $avatar ) {
-            $output = '%wplmi_author_avatar% ' . $text . '%wplmi_span_start%' . $value . '%wplmi_span_end%';
+            $author_id   = get_post_meta( get_the_ID(), '_edit_last', true );
+            $author_name = get_the_author_meta( 'display_name', $author_id );
+            $avatar      = '<span class="wplmi-user-avatar"><img class="elementor-avatar wplmi-elementor-avatar" src="' . esc_url( get_avatar_url( $author_id, [ 'size' => $this->do_filter( 'avatar_default_size', 96 ) ] ) ) . '" alt="' . $author_name . '"></span> ';
+
+            $output = '<span class="wplmi-author-tag">' . $avatar . $text . '<span class="wplmi-author">' . $value . '</span></span>';
         } else {
             $output = $value;
         }

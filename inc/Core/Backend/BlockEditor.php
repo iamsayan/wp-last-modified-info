@@ -27,16 +27,32 @@ class BlockEditor extends BaseController
 	 * Register functions.
 	 */
 	public function register() {
+		$this->filter( 'register_post_type_args', 'post_type_args', 99, 2 );
 		$this->action( 'init', 'register_meta' );
 		$this->action( 'enqueue_block_editor_assets', 'assets' );
-
-		$post_types = get_post_types( [ 'show_in_rest' => true ] );
-		foreach ( $post_types as $post_type ) {
-			$this->filter( "rest_pre_insert_$post_type", 'modified_params', 10, 2 );
-		}
-
+		
 		// AIOSEO Integration
 		$this->action( 'init', 'filter_aioseo' );
+	}
+
+	/**
+	 * Add support for `custom-fields` for all posts.
+	 * 
+	 * @param array  $args      Post type data
+	 * @param string $post_type Post type name
+	 * 
+	 * @return array $args Post type data
+	 */
+	public function post_type_args( $args, $post_type ) {
+		if ( ! $this->do_filter( 'enable_custom_fields_support', true ) ) {
+			return $args;
+		}
+
+		if ( ! empty( $args['show_in_rest'] ) ) {
+			$args['supports'][] = 'custom-fields';
+		}
+	  
+		return $this->do_filter( 'post_type_args', $args, $post_type );
 	}
 
 	/**
@@ -70,6 +86,11 @@ class BlockEditor extends BaseController
 				},
 			]
 		);
+
+		$post_types = get_post_types( [ 'show_in_rest' => true ] );
+		foreach ( $post_types as $post_type ) {
+			$this->filter( "rest_pre_insert_$post_type", 'modified_params', 99, 2 );
+		}
 	}
 
 	/**
