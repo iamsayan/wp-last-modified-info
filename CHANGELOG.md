@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.8.9
+Release Date: February 9, 2024
+
+* Added: Lock Modified Date Block Editor Support for Custom Post type which has `show_in_rest` set to `true`. This behavior can be changed by `wpar/post_type_args` filter.
+* Updated: @wordpress/scripts to the latest version.
+* Updated: Background Process PHP Library.
+* Tweak: Replaced deprecated `__experimentalGetSettings()` with `getSettings()`.
+* Tweak: Use of `wp_kses_allowed_html` filter to allow custom HTML tag instead of using placeholders.
+* Added support for PHP v8.3.
+* Minimum required PHP Version is now 7.0.
+* Tested with WordPress v6.4.
+
 ## 1.8.8
 Release Date: June 26, 2023
 
