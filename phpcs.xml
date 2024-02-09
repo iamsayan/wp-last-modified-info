@@ -26,7 +26,6 @@
 	<config name="minimum_supported_wp_version" value="4.7" /> <!-- Minimum WP Version -->
 	<config name="testVersion" value="5.6" /> <!-- Minimum PHP Version -->
 	<config name="text_domain" value="wp-last-modified-info"/>
-	<config name="installed_paths" value="D:\Laragon\wpcs" />
 
 	<!-- Rules -->
 	<rule ref="Squiz">
@@ -95,5 +94,6 @@
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed" />
 		<exclude name="Generic.PHP.ClosingPHPTag.NotFound" />
 		<exclude name="Generic.Files.LineLength.TooLong" />
+		<exclude name="Generic.Arrays.DisallowLongArraySyntax" />
 	</rule>
 </ruleset>

@@ -4,11 +4,11 @@
 import { __ } from "@wordpress/i18n";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { PluginPostStatusInfo } from '@wordpress/edit-post';
-import { dateI18n, __experimentalGetSettings } from "@wordpress/date";
+import { dateI18n, getSettings } from "@wordpress/date";
 import { DateTimePicker, Dropdown, Button } from "@wordpress/components";
 
 const PostModifiedField = () => {
-    const settings = __experimentalGetSettings();
+    const settings = getSettings();
     const dateTimeFormat = settings.formats.date + ' ' + settings.formats.time;
     const is12HourFormat = ( format ) => {
         return /(?:^|[^\\])[aAgh]/.test( format );
