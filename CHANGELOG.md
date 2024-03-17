@@ -1,10 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.0
+Release Date: March 17, 2024
+
+* Optimize WP Options Auto Loading.
+* Updated Composer Libraries.
+* Tested with WordPress v6.5.
+
 ## 1.8.9
 Release Date: February 9, 2024
 
-* Added: Lock Modified Date Block Editor Support for Custom Post type which has `show_in_rest` set to `true`. This behavior can be changed by `wpar/post_type_args` filter.
+* Added: Lock Modified Date Block Editor Support for Custom Post type which has `show_in_rest` set to `true`. This behavior can be changed by `wplmi/post_type_args` filter.
 * Updated: @wordpress/scripts to the latest version.
 * Updated: Background Process PHP Library.
 * Tweak: Replaced deprecated `__experimentalGetSettings()` with `getSettings()`.

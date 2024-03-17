@@ -161,7 +161,7 @@ class PluginsData extends WP_Background_Process
 		    $new_data[ $data->slug ]['active_installs'] = $data->active_installs;
 		}
 
-		return update_option( 'wplmi_plugin_api_data', array_filter( $new_data ) );
+		return update_option( 'wplmi_plugin_api_data', array_filter( $new_data ), false );
 	}
 
 	/**
@@ -283,7 +283,7 @@ class PluginsData extends WP_Background_Process
 
 		if ( isset( $saved_data[ $plugin ] ) ) {
 			unset( $saved_data[ $plugin ] );
-			update_option( 'wplmi_plugin_api_data', $saved_data );
+			update_option( 'wplmi_plugin_api_data', $saved_data, false );
 		}
 	}
 

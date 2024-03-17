@@ -17,6 +17,8 @@ defined( 'ABSPATH' ) || exit;
  */
 trait Fields {
 
+	private $option_name = 'lmt_plugin_global_settings';
+
 	/**
 	 * Send AJAX response.
 	 *
@@ -81,7 +83,7 @@ trait Fields {
 		$value = isset( $data['value'] ) ? $data['value'] : '';
 	
 		if ( $data['type'] == 'hidden' ) {
-			echo '<input type="hidden" name="lmt_plugin_global_settings[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" autocomplete="off" value="' . esc_attr( $value ) . '" />';
+			echo '<input type="hidden" name="' . $this->option_name . '[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" autocomplete="off" value="' . esc_attr( $value ) . '" />';
 			return;
 		}
 
@@ -97,7 +99,7 @@ trait Fields {
 		if ( $data['type'] == 'checkbox' ) {
 			$value = ! empty( $value ) ? $value : '1';
 			echo '<label class="switch">';
-				echo '<input type="checkbox" name="lmt_plugin_global_settings[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" class="wplmi-form-el" value="' . esc_attr( $value ) . '" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' />
+				echo '<input type="checkbox" name="' . $this->option_name . '[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" class="wplmi-form-el" value="' . esc_attr( $value ) . '" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' />
 				<span class="slider">
 					<svg width="3" height="8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 6" class="toggle-on" role="img" aria-hidden="true" focusable="false"><path d="M0 0h2v6H0z"></path></svg>
 					<svg width="8" height="8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6" class="toggle-off" role="img" aria-hidden="true" focusable="false"><path d="M3 1.5c.8 0 1.5.7 1.5 1.5S3.8 4.5 3 4.5 1.5 3.8 1.5 3 2.2 1.5 3 1.5M3 0C1.3 0 0 1.3 0 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"></path></svg>
@@ -108,12 +110,12 @@ trait Fields {
 
 		if ( isset( $data['type'] ) ) {
 			if ( in_array( $data['type'], [ 'text', 'email', 'password', 'date', 'number' ] ) ) {
-				echo '<input type="' . esc_attr( $data['type'] ) . '" name="lmt_plugin_global_settings[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" autocomplete="off" value="' . esc_attr( $value ) . '" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' />';
+				echo '<input type="' . esc_attr( $data['type'] ) . '" name="' . $this->option_name . '[' . esc_attr( $name ) . ']" id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" autocomplete="off" value="' . esc_attr( $value ) . '" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' />';
 			} elseif ( $data['type'] == 'textarea' ) {
-				echo '<textarea class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" id="' . esc_attr( $data['id'] ) . '" name="lmt_plugin_global_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">' . wp_kses_post( $value ) . '</textarea>';
+				echo '<textarea class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" id="' . esc_attr( $data['id'] ) . '" name="' . $this->option_name . '[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">' . wp_kses_post( $value ) . '</textarea>';
 			} elseif ( $data['type'] == 'select' ) {
 				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="lmt_plugin_global_settings[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">';
+					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="' . $this->option_name . '[' . esc_attr( $name ) . ']" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' autocomplete="off">';
 					if ( ! empty( $data['options'] ) ) {
 						foreach ( $data['options'] as $key => $option ) {
 							$disabled = '';
@@ -127,7 +129,7 @@ trait Fields {
 				}
 			} elseif ( $data['type'] == 'multiple' ) {
 				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="lmt_plugin_global_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
+					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="' . $this->option_name . '[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
 					if ( ! empty( $data['options'] ) ) {
 						foreach ( $data['options'] as $key => $option ) {
 							echo '<option value="' . esc_attr( $key ) . '" ' . selected( in_array( $key, $value ), true, false ) . '>' . esc_html( $option ) . '</option>';
@@ -137,7 +139,7 @@ trait Fields {
 				}
 			} elseif ( $data['type'] == 'multiple_tax' ) {
 				if ( isset( $data['options'] ) && is_array( $data['options'] ) ) {
-					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="lmt_plugin_global_settings[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
+					echo '<select id="' . esc_attr( $data['id'] ) . '" class="' . esc_attr( implode( ' ', array_unique( $class ) ) ) . '" name="' . $this->option_name . '[' . esc_attr( $name ) . '][]" multiple="multiple" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) ) . ' style="width: 90%">';
 					if ( ! empty( $data['options'] ) ) {
 						foreach ( $data['options'] as $key => $option ) {
 							echo '<optgroup label="' . esc_attr( $option['label'] ) . '">';
@@ -154,7 +156,7 @@ trait Fields {
 			} elseif ( $data['type'] == 'wp_editor' ) {
 				echo '<div class="wplmi-form-control wplmi-form-el wplmi-editor" ' . wp_kses_post( implode( ' ', array_unique( $attr ) ) )  . '>';
 				wp_editor( html_entity_decode( $value, ENT_COMPAT, "UTF-8" ), $data['id'], [
-					'textarea_name' => 'lmt_plugin_global_settings[' . esc_attr( $name ) . ']',
+					'textarea_name' => $this->option_name . '[' . esc_attr( $name ) . ']',
 					'textarea_rows' => '8',
 					'teeny'         => true,
 					'tinymce'       => false,

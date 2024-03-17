@@ -181,7 +181,6 @@
                             <li><a href="https://wordpress.org/plugins/ultimate-facebook-comments/" target="_blank" rel="noopener">Ultimate Social Comments - Notification & Lazy Load</a> - <?php esc_html_e( 'Ultimate Facebook Comment Solution with instant email notification for any WordPress Website.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/change-wp-page-permalinks/" target="_blank" rel="noopener">WP Page Permalink Extension</a> - <?php esc_html_e( 'Add any page extension like .html, .php, .aspx, .htm, .asp, .shtml only to WordPress pages very easily.', 'wp-last-modified-info' ); ?></li>
                             <li><a href="https://wordpress.org/plugins/simple-posts-ticker/" target="_blank" rel="noopener">Simple Posts Ticker - Easy, Lightweight & Flexible</a> - <?php esc_html_e( 'Simple Posts Ticker is a small tool that shows your most recent posts in a marquee style.', 'wp-last-modified-info' ); ?></li>
-                            <li><a href="https://wordpress.org/plugins/rzp-woocommerce/" target="_blank" rel="noopener">Razorpay Payment Gateway for WooCommerce</a> - <?php esc_html_e( 'This is the Razorpay, a Indian Payment Gateway plugin for WooCommerce based on Razorpay Payment Links.', 'wp-last-modified-info' ); ?></li>
                         </ul>
                     </div>
                 </div>

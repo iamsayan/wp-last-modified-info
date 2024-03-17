@@ -130,7 +130,7 @@ class DashboardWidget
 		// Update widget options
 		if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['wplmi_widget_options'] ) ) {
 			check_admin_referer();
-			update_option( 'lmt_dashboard_widget_options', array_map( 'intval', $_POST['wplmi_widget_options'] ) );
+			update_option( 'lmt_dashboard_widget_options', array_map( 'intval', $_POST['wplmi_widget_options'] ), false );
 		} 
 
 		// Get widget options
