@@ -97,7 +97,7 @@ class PluginTools
 
     	// Retrieve the settings from the file and convert the json object to an array.
     	$settings = (array) json_decode( file_get_contents( $import_file ) );
-		update_option( 'lmt_plugin_global_settings', $settings );
+		update_option( 'lmt_plugin_global_settings', $settings, false );
 
 		// set temporary transient for admin notice
 		set_transient( 'wplmi_import_db_done', true );
@@ -160,6 +160,10 @@ class PluginTools
 		// security check
 		$this->verify_nonce();
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+    		$this->error();
+		}
+
 		if ( ! isset( $_REQUEST['settings_data'] ) ) {
 			$this->error();
 		}
@@ -168,7 +172,7 @@ class PluginTools
 		$settings = (array) json_decode( $data );
 
 		if ( is_array( $settings ) && ! empty( $settings ) ) {
-			update_option( 'lmt_plugin_global_settings', $settings );
+			update_option( 'lmt_plugin_global_settings', $settings, false );
 			
 			// set temporary transient for admin notice
 		    set_transient( 'wplmi_import_db_done', true );

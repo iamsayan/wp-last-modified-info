@@ -27,7 +27,7 @@ class BlockEditor extends BaseController
 	 * Register functions.
 	 */
 	public function register() {
-		$this->filter( 'register_post_type_args', 'post_type_args', 99, 2 );
+		$this->filter( 'register_post_type_args', 'post_type_args', 9999, 2 );
 		$this->action( 'init', 'register_meta' );
 		$this->action( 'enqueue_block_editor_assets', 'assets' );
 		
@@ -44,11 +44,11 @@ class BlockEditor extends BaseController
 	 * @return array $args Post type data
 	 */
 	public function post_type_args( $args, $post_type ) {
-		if ( ! $this->do_filter( 'enable_custom_fields_support', true ) ) {
+		if ( ! $this->do_filter( 'enable_custom_fields_support', true, $post_type ) ) {
 			return $args;
 		}
 
-		if ( ! empty( $args['show_in_rest'] ) ) {
+		if ( ! empty( $args['show_in_rest'] ) && ! post_type_supports( $post_type, 'custom-fields' ) ) {
 			$args['supports'][] = 'custom-fields';
 		}
 	  
