@@ -1,9 +1,9 @@
 === WP Last Modified Info ===
 Contributors: infosatech
-Tags: last modified, timestamp, modified time, post modified, sort by modified, time, date 
+Tags: last modified, timestamp, modified time, post modified, sort by modified
 Requires at least: 4.7
-Tested up to: 6.5
-Stable tag: 1.9.0
+Tested up to: 6.6
+Stable tag: 1.9.1
 Requires PHP: 7.0
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -163,6 +163,12 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.9.1 =
+Release Date: August 9, 2024
+
+* Added changes according to WPCS.
+* Tested with WordPress v6.6.
 
 = 1.9.0 =
 Release Date: March 17, 2024

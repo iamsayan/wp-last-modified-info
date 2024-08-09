@@ -72,15 +72,15 @@ trait SettingsData
 	/**
 	 * retreive plugin data.
 	 *
-	 * @param string $key         Option key.
-	 * @param mixed  $value       Default value
+	 * @param string $key             Option key.
+	 * @param mixed  $default_value   Default value
 	 *
 	 * @return mixed
 	 */
-	protected function get_data( $key, $default = false ) {
+	protected function get_data( $key, $default_value = false ) {
 		$settings = get_option( 'lmt_plugin_global_settings' );
 
-		return ( isset( $settings[ $key ] ) && ! empty( $settings[ $key ] ) ) ? $settings[ $key ] : $default;
+		return ( ! empty( $settings[ $key ] )) ? $settings[ $key ] : $default_value;
 	}
 
 	/**
@@ -91,12 +91,12 @@ trait SettingsData
 	 *
 	 * @return mixed
 	 */
-	protected function build_meta( $post_id, $meta_key, $default = false, $unserialize = false, $single = true ) {
+	protected function build_meta( $post_id, $meta_key, $default_value = false, $unserialize = false, $single = true ) {
 		$meta = $this->get_meta( $post_id, $meta_key, $single );
 		if ( $unserialize ) {
 			$meta = maybe_unserialize( $meta );
 		}
 
-		return ( ! empty( $meta ) ) ? $meta : $default;
+		return ( ! empty( $meta ) ) ? $meta : $default_value;
 	}
 }

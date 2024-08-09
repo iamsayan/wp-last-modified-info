@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class AdminBar
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Register functions.
@@ -31,9 +32,9 @@ class AdminBar
 
 	/**
 	 * Show original publish info.
-	 * 
+	 *
 	 * @param string  $content  Original Content
-	 * 
+	 *
 	 * @return string $content  Filtered Content
 	 */
 	public function admin_bar( $wp_admin_bar ) {
@@ -51,11 +52,11 @@ class AdminBar
         if ( ! is_singular() || ! current_user_can( 'publish_posts' ) ) {
 			return;
 		}
-    
+
         if ( 'auto-draft' === get_post_status() ) {
     		return;
         }
-        
+
         $object = get_post_type_object( get_post_type() );
         $args = array(
             'id'     => 'wplmi-update',
@@ -68,10 +69,10 @@ class AdminBar
                 'target' => '_blank',
             ),
         );
-    
+
         $wp_admin_bar->add_node( $args );
 	}
-	
+
 	/**
 	 * Generate title to show on admin bar
 	 */
@@ -80,12 +81,12 @@ class AdminBar
 		$cur_time = current_time( 'U' );
 		$mod_time = $this->get_modified_date( 'U' );
 		$org_time = get_post_time( 'U', false, get_the_ID(), true );
-	
+
 		if ( $mod_time > $cur_time || $org_time > $mod_time ) {
 			/* translators: %s: date time info */
 			return sprintf( __( 'Updated on %1$s at %2$s', 'wp-last-modified-info' ), $this->get_modified_date( 'M j' ), $this->get_modified_date( get_option( 'time_format' ) ) );
 		}
-		
+
 		/* translators: %s: time diff */
 		return sprintf( __( 'Updated %s ago', 'wp-last-modified-info' ), human_time_diff( $this->get_modified_date( 'U' ), $cur_time ) );
 	}
@@ -99,20 +100,20 @@ class AdminBar
 		if ( ! $post instanceof \WP_Post ) {
 			return;
 		}
-	
+
 		// If user can't edit post, then don't show
 		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
 			return;
 		}
-	
+
 		$revision = wp_get_post_revisions( $post->ID );
 		$latest_revision = array_shift( $revision );
 		$url = '';
-	
+
 		if ( wp_revisions_enabled( $post ) && count( $revision ) >= 1 ) {
 			$url = get_admin_url() . 'revision.php?revision=' . $latest_revision->ID;
 		}
-	
+
 		return $url;
 	}
 }

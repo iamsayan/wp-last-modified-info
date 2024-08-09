@@ -10,8 +10,8 @@
 ?>
 
 <div id="wplmi-nav-container" class="wplmi-admin-toolbar">
-	<h2>WP Last Modified Info<span class="title-count"><?php echo esc_html( $this->version ); ?></span></h2>
-    
+	<h2>WP Last Modified Info<span class="title-count"><?= esc_html( $this->version ); ?></span></h2>
+
     <a href="#post" class="wplmi-tab is-active" id="wplmi-tab-post"><?php esc_html_e( 'Posts', 'wp-last-modified-info' ); ?></a>
     <a href="#template" class="wplmi-tab" id="wplmi-tab-template"><?php esc_html_e( 'Template Tag', 'wp-last-modified-info' ); ?></a>
     <a href="#schema" class="wplmi-tab" id="wplmi-tab-schema"><?php esc_html_e( 'Schema', 'wp-last-modified-info' ); ?></a>
@@ -141,14 +141,14 @@
                                 <p><?php esc_html_e( 'Yes, this plugin is compatible with any theme. But Replace Post Meta Option may not be compatible with some theme. Please check before using this option.', 'wp-last-modified-info' ); ?></p>
                             </li>
                             <li>
-                                <?php printf( 
+                                <?php printf(
                                 /* translators: %s: code html tag */
                                 esc_html__( 'Do I need to add %s tag?', 'wp-last-modified-info' ), '<code>&lt;style&gt; &lt;/style&gt;</code>' ); ?>
                                 <p><?php esc_html_e( 'No, this tag is not required, as it is already added. You just need to add only CSS Codes.', 'wp-last-modified-info' ); ?></p>
                             </li>
                             <li>
                                 <?php esc_html_e( 'How to set custom date/time format?', 'wp-last-modified-info' ); ?>
-                                <p><?php printf( 
+                                <p><?php printf(
                                 /* translators: %s: html tags */
                                 esc_html__( 'Go to %1$sWordPress Date/Time Syntax%2$s page and read instructions about Date/Time Syntax.', 'wp-last-modified-info' ), '<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank">', '</a>' ); ?></p>
                             </li>
@@ -163,7 +163,7 @@
                                 } ?&gt;</code></p></p>
                             </li>
                             <li><?php esc_html_e( 'How to use shortcodes?', 'wp-last-modified-info' ); ?>
-                                <p><?php printf( 
+                                <p><?php printf(
                                 /* translators: %s: shortcodes */
                                 esc_html__( 'You can insert the last modified info by simply using the shortcode. Shortcode for posts/pages/custom post types is %1$s. To enter the shortcode directly into templates using PHP, use %2$s for any post types. You can use %3$s to display global site modified info on website frontend.', 'wp-last-modified-info' ), '<code>[lmt-post-modified-info]</code>', '<code>echo do_shortcode( &#39;[lmt-post-modified-info]&#39; );</code>', '<code>[lmt-site-modified-info]</code>' ); ?></p>
                             </li>
@@ -203,7 +203,7 @@
                         <a class="button button-primary buy-coffee-btn" style="margin-left: 2px;" href="https://www.paypal.me/iamsayan/10usd" rel="noopener" data-link="https://www.paypal.me/iamsayan/" target="_blank"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></a>
                     </div>
                     <span class="coffee-heading"><?php esc_html_e( 'Buy me a coffee!', 'wp-last-modified-info' ); ?></span>
-                    <p style="text-align: justify;"><?php printf( 
+                    <p style="text-align: justify;"><?php printf(
                         /* translators: %s: plugin name */
                         esc_html__( 'Thank you for using %s. If you found the plugin useful buy me a coffee! Your donation will motivate and make me happy for all the efforts. You can donate via PayPal.', 'wp-last-modified-info' ), '<strong>WP Last Modified Info v' . esc_html( $this->version ) . '</strong>' ); ?></strong>
                     </p>

@@ -12,7 +12,7 @@
 	<exclude-pattern>*/languages/*</exclude-pattern>
 	<exclude-pattern>*/assets/*</exclude-pattern>
 	<exclude-pattern>*/build/*</exclude-pattern>
-	
+
 	<!-- Show progress, show the error codes for each message (source). -->
 	<arg value="ps" />
 
@@ -24,7 +24,7 @@
 
 	<!-- Configs -->
 	<config name="minimum_supported_wp_version" value="4.7" /> <!-- Minimum WP Version -->
-	<config name="testVersion" value="5.6" /> <!-- Minimum PHP Version -->
+	<config name="testVersion" value="7.0" /> <!-- Minimum PHP Version -->
 	<config name="text_domain" value="wp-last-modified-info"/>
 
 	<!-- Rules -->
@@ -44,6 +44,9 @@
 		<exclude name="WordPress.NamingConventions"/>
 		<exclude name="WordPress.DateTime.RestrictedFunctions.date_date"/>
 		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment"/>
+		<exclude name="WordPress.DateTime.CurrentTimeTimestamp.Requested"/>
+		<exclude name="Universal.Operators.StrictComparisons.LooseEqual"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
     </rule>
 	<rule ref="WordPress-Core" />
 	<rule ref="WordPress-Extra" />

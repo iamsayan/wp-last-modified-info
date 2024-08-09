@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Settings callbacks.
  *
@@ -18,10 +18,12 @@ defined( 'ABSPATH' ) || exit;
 
 class ManagerCallbacks
 {
-	use Fields, HelperFunctions, Hooker;
+	use Fields;
+    use HelperFunctions;
+    use Hooker;
 
-	/* ============================================================================================== 
-                                           Post Options
+	/* ==============================================================================================
+                                            Post Options
     ============================================================================================== */
 
 	public function enable_plugin( $args ) {
@@ -185,9 +187,9 @@ class ManagerCallbacks
 			'show_if'     => 'wplmi_enable_plugin',
 		] );
 	}
-	
-	/* ============================================================================================== 
-                                           Template Tags
+
+	/* ==============================================================================================
+                                            Template Tags
 	============================================================================================== */
 
 	public function template_date_type( $args ) {
@@ -251,8 +253,8 @@ class ManagerCallbacks
 		] );
 	}
 
-	/* ============================================================================================== 
-                                           Schema Options
+	/* ==============================================================================================
+                                            Schema Options
     ============================================================================================== */
 
 	public function enable_schema( $args ) {
@@ -270,7 +272,7 @@ class ManagerCallbacks
 			],
 		] );
 	}
-	
+
 	public function schema_post_types( $args ) {
 		$this->do_field( [
 			'type'        => 'multiple',
@@ -283,7 +285,7 @@ class ManagerCallbacks
 			'condition'   => [ 'wplmi_enable_schema', '=', 'enable' ],
 		] );
 	}
-	
+
 	public function enhanced_schema( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -294,11 +296,11 @@ class ManagerCallbacks
 			'condition'   => [ 'wplmi_enable_schema', '=', 'inline' ],
 		] );
 	}
-	
-	/* ============================================================================================== 
-                                           Notification Options
+
+	/* ==============================================================================================
+                                            Notification Options
 	============================================================================================== */
-	
+
 	public function enable_notification( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -308,7 +310,7 @@ class ManagerCallbacks
 			'description' => __( 'Enable this if you want to receive email notification if anyone makes changes to any post of your blog.', 'wp-last-modified-info' ),
 		] );
 	}
-	
+
 	public function author_notification( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -319,7 +321,7 @@ class ManagerCallbacks
 			'show_if'     => 'wplmi_enable_notification',
 		] );
 	}
-	
+
 	public function draft_notification( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -330,7 +332,7 @@ class ManagerCallbacks
 			'show_if'     => 'wplmi_enable_notification',
 		] );
 	}
-	
+
 	public function recipients_list( $args ) {
 		$this->do_field( [
 			'id'         => $args['label_for'],
@@ -342,7 +344,7 @@ class ManagerCallbacks
 			'show_if'    => 'wplmi_enable_notification',
 		] );
 	}
-	
+
 	public function notification_post_types( $args ) {
 		$this->do_field( [
 			'type'        => 'multiple',
@@ -370,7 +372,7 @@ class ManagerCallbacks
 			'show_if'     => 'wplmi_enable_notification',
 		] );
 	}
-	
+
 	public function email_notification_message( $args ) {
 		$default = 'The following changes are made on a %post_type% of your blog by %modified_author_name%' . "\n\n" . '<p><strong>Post: %post_title%</strong></p><p>%post_diff%</p>';
 		$this->do_field( [
@@ -383,10 +385,10 @@ class ManagerCallbacks
 		] );
 	}
 
-	/* ============================================================================================== 
+	/* ==============================================================================================
                                                 Misc Options
 	============================================================================================== */
-	
+
 	public function admin_bar( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -396,7 +398,7 @@ class ManagerCallbacks
 			'description' => __( 'Enable this if you want to show last modified info on WordPress admin bar.', 'wp-last-modified-info' ),
 		] );
     }
-	
+
 	public function disable_plugin_info( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -406,7 +408,7 @@ class ManagerCallbacks
 			'description' => __( 'Enable this if you do not want to show last updated info on plugins page.', 'wp-last-modified-info' ),
 		] );
 	}
-    
+
 	public function admin_sort_order( $args ) {
 		$this->do_field( [
 			'type'        => 'select',
@@ -421,7 +423,7 @@ class ManagerCallbacks
 			],
 		] );
     }
-    
+
 	public function sort_order( $args ) {
 		$this->do_field( [
 			'type'        => 'select',
@@ -436,7 +438,7 @@ class ManagerCallbacks
 			],
 		] );
 	}
-	
+
 	public function replace_date( $args ) {
 		$this->do_field( [
 			'type'        => 'select',
@@ -451,7 +453,7 @@ class ManagerCallbacks
 			],
 		] );
 	}
-    
+
 	public function custom_css( $args ) {
 		$this->do_field( [
 			'type'        => 'textarea',
@@ -462,7 +464,7 @@ class ManagerCallbacks
 			'description' => sprintf( __( 'Do not add %s tag. This tag is not required, as it is already added.', 'wp-last-modified-info' ), '<code>&lt;style&gt;&lt;/style&gt;</code>' ),
 		] );
     }
-    
+
 	public function delete_data( $args ) {
 		$this->do_field( [
 			'type'        => 'checkbox',
@@ -475,29 +477,30 @@ class ManagerCallbacks
 
 	/**
 	 * Generate template tags output.
-	 * 
+	 *
 	 * @since 1.8.0
 	 */
 	private function generate_template_tags( $tags ) {
 		ob_start() ?>
 		<div class="dynamic-tags">
 			<div class="dynamic-tags-label">
-				<a href="https://github.com/iamsayan/wp-last-modified-info/wiki/Temaplate-Use-Cases" target="_blank" rel="noopener"><?php esc_html_e( 'Use these tags', 'wp-last-modified-info' ); ?></a>. 
+				<a href="https://github.com/iamsayan/wp-last-modified-info/wiki/Temaplate-Use-Cases" target="_blank" rel="noopener"><?php esc_html_e( 'Use these tags', 'wp-last-modified-info' ); ?></a>.
 				<a href="https://github.com/iamsayan/wp-last-modified-info/wiki/Template-Tags" target="_blank" rel="noopener"><?php esc_html_e( 'Available Dynamic Tags', 'wp-last-modified-info' ); ?></a>:
 			</div>
-			<div class="dynamic-tags-content"><?php echo $this->get_available_tags( $tags ); ?></div>
+			<div class="dynamic-tags-content"><?= $this->get_available_tags( $tags ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 		</div>
 		<?php
 		return ob_get_clean();
 	}
 
 	/**
-	 * Get avaialable template tags.
-	 * 
-	 * @since 1.8.0
+	 * Get available template tags.
+	 *
+	 * @param $tags
 	 * @return string
+	 * @since 1.8.0
 	 */
-	private function get_available_tags( $tags ) {
+	private function get_available_tags( $tags ): string {
 		$content = [];
 		foreach ( $tags as $tag ) {
 			$content[] = '<code class="click-to-copy">%' . esc_html( $tag ) . '%</code>';

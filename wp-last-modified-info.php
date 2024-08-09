@@ -3,13 +3,13 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
  * Description: Ultimate Last Modified Plugin for WordPress with Gutenberg Block Integration. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
- * Version: 1.9.0
+ * Version: 1.9.1
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.co.in
  * License: GPLv3
  * Text Domain: wp-last-modified-info
  * Domain Path: /languages
- * 
+ *
  * WP Last Modified Info is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,13 +22,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with WP Last Modified Info. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @category Core
  * @package  WP Last Modified Info
  * @author   Sayan Datta <iamsayan@protonmail.com>
  * @license  http://www.gnu.org/licenses/ GNU General Public License
  * @link     https://wordpress.org/plugins/wp-last-modified-info/
- * 
+ *
  */
 
 // If this file is called firectly, abort!!!
@@ -46,7 +46,7 @@ final class WPLMI {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.0';
+	public $version = '1.9.1';
 
 	/**
 	 * Minimum version of WordPress required to run WPLMI.
@@ -161,7 +161,7 @@ final class WPLMI {
 		?>
 		<div class="notice wplmi-notice notice-error">
 			<p>
-				<?php echo join( '<br>', $this->messages ); // phpcs:ignore ?>
+				<?= join( '<br>', $this->messages ); // phpcs:ignore ?>
 			</p>
 		</div>
 		<?php
@@ -182,7 +182,7 @@ final class WPLMI {
 	 * Include the required files.
 	 */
 	private function includes() {
-		include dirname( __FILE__ ) . '/vendor/autoload.php';
+		include __DIR__ . '/vendor/autoload.php';
 	}
 
 	/**
@@ -190,17 +190,17 @@ final class WPLMI {
 	 */
 	private function instantiate() {
 		// Activation hook.
-		register_activation_hook( WPLMI_FILE, 
+		register_activation_hook( WPLMI_FILE,
 			function () {
 				Wplmi\Base\Activate::activate();
-			} 
+			}
 		);
 
 		// Deactivation hook.
-		register_deactivation_hook( WPLMI_FILE, 
+		register_deactivation_hook( WPLMI_FILE,
 			function () {
 				Wplmi\Base\Deactivate::deactivate();
-			} 
+			}
 		);
 
 		// Init WPLMI Classes.
@@ -213,7 +213,7 @@ final class WPLMI {
  *
  * @return WPLMI
  */
-function wplmi() {
+function wplmi() { // phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 	return WPLMI::get();
 }
 

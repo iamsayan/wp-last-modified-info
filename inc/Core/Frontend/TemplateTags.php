@@ -22,7 +22,7 @@ class TemplateTags extends PostView
 	/**
 	 * array $params
 	 */
-	private array $params;
+	private $params;
 
 	/**
 	 * Class constructor.
@@ -34,7 +34,7 @@ class TemplateTags extends PostView
 	public function __construct( array $args ) {
 		$this->params = $args;
 	}
-	
+
 	/**
 	 * Template tag output.
 	 *
@@ -73,7 +73,7 @@ class TemplateTags extends PostView
 
 		// Prepare template
 		$template = $this->generate( $template, $post->ID, $timestamp, $author_id );
-	
+
 		if ( $this->params['escape'] ) {
 			$template = wp_strip_all_tags( $template );
 		}

@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class PostView
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Register functions.
@@ -32,9 +33,9 @@ class PostView
 
 	/**
 	 * Show original publish info.
-	 * 
+	 *
 	 * @param string  $content  Original Content
-	 * 
+	 *
 	 * @return string $content  Filtered Content
 	 */
 	public function show_info( $content ) {
@@ -142,18 +143,11 @@ class PostView
 		}
 
 		$template = $this->generate( $template, $post->ID, $timestamp, $author_id );
-		$allowed_htmls = array_merge( wp_kses_allowed_html( 'post' ), [
-			'time' => [
-				'class'    => [],
-				'itemprop' => [],
-				'datetime' => [],
-			],
-		] );
 
-		echo '<div class="wplmi-frontend-template" style="display: none;">' . wp_kses( $template, $allowed_htmls ) . '</div>'; ?>
+		echo '<div class="wplmi-frontend-template" style="display: none;">' . $template . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 	    <script type="text/javascript">
-			const wplmiNodeList = document.querySelectorAll( '<?php echo wp_kses_post( preg_replace( "/\r|\n/", '', $selectors ) ); ?>' );
+			const wplmiNodeList = document.querySelectorAll( '<?= wp_kses_post( preg_replace( "/\r|\n/", '', $selectors ) ); ?>' );
 			for ( let i = 0; i < wplmiNodeList.length; i++ ) {
 				wplmiNodeList[i].outerHTML = document.querySelector( '.wplmi-frontend-template' ).innerHTML;
 			}
@@ -165,7 +159,7 @@ class PostView
 	 * Get Timestamp.
 	 *
 	 * @param int  $post_id  WP Post ID.
-	 * 
+	 *
 	 * @return string
 	 */
 	private function get_timestamp( $post_id ) {
@@ -199,7 +193,7 @@ class PostView
 	 * @param string  $html    Input data.
 	 * @param int     $post_id Post ID.
 	 * @param string  $type    Sting type. Default subject.
-	 * 
+	 *
 	 * @return string
 	 */
 	protected function generate( $html, $post_id, $timestamp, $author_id ) {
@@ -217,10 +211,10 @@ class PostView
 
 		// Published date format
 		$date_format = $this->do_filter( 'post_published_date_format', get_option( 'date_format' ), $post_id );
-		
+
 		// Start replace
-		$html = str_replace( [ '%original_author_name%', '%post_original_author%' ], get_the_author(), $html ); 
-		$html = str_replace( [ '%author_name%', '%post_author%' ], $author_name, $html ); 
+		$html = str_replace( [ '%original_author_name%', '%post_original_author%' ], get_the_author(), $html );
+		$html = str_replace( [ '%author_name%', '%post_author%' ], $author_name, $html );
 		$html = str_replace( [ '%author_url%', '%author_website%' ], $author_url, $html );
 		$html = str_replace( '%author_email%', $author_email, $html );
 		$html = str_replace( [ '%author_archive%', '%author_posts_url%' ], $author_archive, $html );
@@ -231,19 +225,29 @@ class PostView
 		$html = str_replace( [ '%post_modified%', '%modified_date%' ], $timestamp, $html );
 
 		$html = $this->do_filter( 'post_tags', $html, $post_id );
-		return preg_replace( "/\r|\n/", '', $html );
+		$html = preg_replace( "/\r|\n/", '', $html );
+
+		$allowed_htmls = array_merge( wp_kses_allowed_html( 'post' ), [
+			'time' => [
+				'class'    => [],
+				'itemprop' => [],
+				'datetime' => [],
+			],
+		] );
+
+		return wp_kses( $html, $allowed_htmls );
 	}
 
 	/**
 	 * Check archive pages
-	 * 
+	 *
 	 * @param string  $content      Post Content.
 	 * @param int     $post_id      WP Post ID.
 	 * @param bool    $remove       Whether to remove p tag | Default false.
 	 * @param bool    $wrap         Whether to wrap with specified html tag | Default false.
 	 * @param string  $output_type  Output Type | Default post.
 	 * @param string  $element      HTML element | Default p.
-	 * 
+	 *
 	 * @return string
 	 */
 	protected function wrapper( $content, $post_id, $remove = false, $wrap = false, $output_type = 'post', $element = 'p' ) {
@@ -262,7 +266,7 @@ class PostView
 
 	/**
 	 * Check archive pages
-	 * 
+	 *
 	 * @return bool
 	 */
 	private function is_archive() {

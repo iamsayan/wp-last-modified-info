@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class WooCommerce
 {
-	use Hooker, SettingsData;
+	use Hooker;
+    use SettingsData;
 
 	/**
 	 * Register functions.
@@ -31,7 +32,7 @@ class WooCommerce
 		$this->action( 'woocommerce_new_order', 'update_products', 99 );
 		$this->action( 'woocommerce_order_status_changed', 'update_products', 99 );
 	}
-	
+
 	/**
 	 * Update Post Modified date from previously save meta to fix WooCommerce Product Update process.
 	 *
@@ -54,7 +55,7 @@ class WooCommerce
 	            'post_modified'     => $modified,
 	            'post_modified_gmt' => get_gmt_from_date( $modified ),
 	    	];
- 
+
 	    	$wpdb->update( $wpdb->posts, $args, [
 	    	    'ID' => $product_id,
 			] );

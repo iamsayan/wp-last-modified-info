@@ -32,11 +32,11 @@ if ( ! is_multisite() ) {
 	}
 } else {
 	global $wpdb;
-	
+
 	$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 	$original_blog_id = get_current_blog_id();
-	foreach ( $blog_ids as $blog_id ) {
-		switch_to_blog( $blog_id );
+	foreach ( $blog_ids as $wp_blog_id ) {
+		switch_to_blog( $wp_blog_id );
 		$options = get_option( $option_name );
 		if ( isset( $options['lmt_del_plugin_data_cb'] ) && $options['lmt_del_plugin_data_cb'] == 1 ) {
 			wplmi_remove_plugin_data();

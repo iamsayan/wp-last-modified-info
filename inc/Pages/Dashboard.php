@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Dashboard actions.
  *
@@ -23,7 +23,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Dashboard
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Settings.
@@ -83,11 +84,11 @@ class Dashboard
 	public function setSubPages() {
 		$this->sub_pages = [
 			[
-				'parent_slug' => 'options-general.php', 
-				'page_title'  => __( 'WP Last Modified Info', 'wp-last-modified-info' ), 
-				'menu_title'  => __( 'WP Last Modified Info', 'wp-last-modified-info' ), 
-				'capability'  => 'manage_options', 
-				'menu_slug'   => 'wp-last-modified-info', 
+				'parent_slug' => 'options-general.php',
+				'page_title'  => __( 'WP Last Modified Info', 'wp-last-modified-info' ),
+				'menu_title'  => __( 'WP Last Modified Info', 'wp-last-modified-info' ),
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'wp-last-modified-info',
 				'callback'    => [ $this->callbacks, 'adminDashboard' ],
 			],
 		];
@@ -101,7 +102,7 @@ class Dashboard
 			[
 				'option_group' => 'wplmi_plugin_settings_fields',
 				'option_name'  => 'lmt_plugin_global_settings',
-				'callback'     => [ 
+				'callback'     => [
 					'sanitize_callback' => [ $this, 'sanitizeOutput' ],
 				],
 			],
@@ -114,14 +115,14 @@ class Dashboard
 	 * Register plugin sections.
 	 */
 	public function setSections() {
-		$sections = [ 
+		$sections = [
 			'post'         => __( 'Post Options', 'wp-last-modified-info' ),
 			'template_tag' => __( 'Template Tags', 'wp-last-modified-info' ),
 			'schema'       => __( 'Schema Options', 'wp-last-modified-info' ),
 			'notification' => __( 'Email Notification', 'wp-last-modified-info' ),
 			'misc'         => __( 'Miscellaneous Options', 'wp-last-modified-info' ),
 		];
-		
+
 		$args = [];
 		foreach ( $sections as $section => $title ) {
 		    $args[] = [
@@ -221,10 +222,10 @@ class Dashboard
      * @param   array  $input   The address input.
      * @return  array  $output  The sanitized input.
      */
-    public function sanitizeOutput( $input ) {    
+    public function sanitizeOutput( $input ) {
     	$output = [];
 		$fields = [ 'lmt_last_modified_info_template', 'lmt_last_modified_info_template_tt', 'lmt_email_subject', 'lmt_email_message' ];
-		
+
 		foreach ( $input as $key => $value ) {
 			if ( in_array( $key, $fields ) ) {
 				$output[ $key ] = wp_kses_post( $value );
@@ -232,7 +233,7 @@ class Dashboard
 				$output[ $key ] = $value;
 			}
 		}
-		
+
 		return $this->do_filter( 'validate_input', $output, $input );
     }
 }

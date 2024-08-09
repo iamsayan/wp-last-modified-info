@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class PostStatusFilters
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Register functions.
@@ -75,14 +76,14 @@ class PostStatusFilters
 	    				'post_type'     => $typenow,
 	    				'update_locked' => 1,
 	    			],
-	    		    admin_url( 'edit.php' ) 
+	    		    admin_url( 'edit.php' )
 	    	    ),
 	    		$current,
 	    		esc_html__( 'Update Locked', 'wp-last-modified-info' ),
 	    		number_format_i18n( count( $get_posts ) )
 	    	);
 	    }
-    
+
 		return $views;
 	}
 
@@ -100,7 +101,7 @@ class PostStatusFilters
 		    	    'compare' => '=',
 		    	],
 			];
-			
+
 			$query->set( 'meta_query', $meta_query );
 		}
 	}

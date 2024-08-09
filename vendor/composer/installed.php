@@ -3,7 +3,7 @@
         'name' => 'iamsayan/wp-last-modified-info',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'a96bfe39997587b1f9b8bce640592056862701a3',
+        'reference' => '4101109995a08c6c2539990de6b88a792703df27',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'iamsayan/wp-last-modified-info' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'a96bfe39997587b1f9b8bce640592056862701a3',
+            'reference' => '4101109995a08c6c2539990de6b88a792703df27',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

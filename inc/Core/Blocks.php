@@ -21,7 +21,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Blocks extends BaseController
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Register functions.
@@ -59,7 +60,7 @@ class Blocks extends BaseController
 
 		foreach ( $blocks as $name => $params ) {
 			if ( $params['visible'] ) {
-				register_block_type( $this->plugin_path . '/blocks/build/' . $name, [
+				register_block_type( $this->plugin_path . 'blocks/build/' . $name, [
 					'render_callback' => [ $this, $params['callback'] ],
 				] );
 			}
@@ -72,14 +73,14 @@ class Blocks extends BaseController
 	 * @param array    $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
-	 * 
+	 *
 	 * @return string  Returns the post modified date.
 	 */
 	public function post_modified( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) ) {
 			return;
 		}
-		
+
 		$post_id = $block->context['postId'];
 		$attributes = $this->normalize_attributes( $attributes );
 		$attributes = $this->do_filter( 'post_modified_block_attributes', $attributes, $post_id );
@@ -101,7 +102,7 @@ class Blocks extends BaseController
 
 		$styles = $this->convert_styles( $attributes['styles'] );
 
-		return sprintf( 
+		return sprintf(
 			'<%1$s class="%2$s" style="%3$s">%4$s</%1$s>',
 			( $attributes['display'] == 'block' ) ? 'div' : 'span',
 			esc_attr( join( ' ', $classes ) ),
@@ -116,7 +117,7 @@ class Blocks extends BaseController
 	 * @param array    $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
-	 * 
+	 *
 	 * @return string  Returns the post modified date.
 	 */
 	public function post_template_tag( $attributes, $content, $block ) {
@@ -129,7 +130,7 @@ class Blocks extends BaseController
 	 * @param array $attributes
 	 *
 	 * @param array    $attributes Block attributes.
-	 * 
+	 *
 	 * @return string  Returns the site modified date.
 	 */
 	public function site_modified( $attributes ) {
@@ -157,7 +158,7 @@ class Blocks extends BaseController
 
 		$styles = $this->convert_styles( $attributes['styles'] );
 
-		return sprintf( 
+		return sprintf(
 			'<%1$s class="%2$s" style="%3$s">%4$s</%1$s>',
 			( $attributes['display'] == 'block' ) ? 'div' : 'span',
 			esc_attr( join( ' ', $classes ) ),

@@ -2,3 +2,4 @@ node_modules
 todo
 /assets/block-editor/build/
 /blocks/build/
+.idea

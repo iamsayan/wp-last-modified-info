@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class AdminColumn
 {
-	use Hooker, SettingsData;
+	use Hooker;
+    use SettingsData;
 
 	/**
 	 * Register functions.
@@ -46,13 +47,13 @@ class AdminColumn
 	    	}
 	    }
 	}
-	
+
 	/**
 	 * Generate column data.
-	 * 
+	 *
 	 * @param string   $column   Column name
 	 * @param int      $post_id  Post ID
-	 * 
+	 *
 	 * @return string  $time
 	 */
 	public function column_data( $column, $post_id ) {
@@ -66,7 +67,7 @@ class AdminColumn
 			$modified = date_i18n( $this->do_filter( 'admin_column_datetime_format', $get_df . ' \a\t ' . $get_tf, $post->ID ), strtotime( $m_orig ) );
 			$mod_format = date( 'M d, Y H:i:s', strtotime( $m_orig ) );
 			$disabled = ( ! empty( $p_meta ) ) ? $p_meta : 'no';
-			
+
 			$html = $modified;
 			if ( get_the_modified_author() ) {
 				$html .= '<br>' . __( 'by', 'wp-last-modified-info' ) . ' <strong>' . esc_html( get_the_modified_author() ) . '</strong>';
@@ -81,26 +82,26 @@ class AdminColumn
 				$html .= '<span class="wplmi-hidden-post-type" style="display: none;">' . esc_html( $post->post_type ) . '</span>';
 			}
 			$html .= '<span class="wplmi-hidden-status" style="display: none;">' . esc_html( $post->post_status ) . '</span>';
-				
-			echo $html;
+
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
-	
+
 	/**
 	 * Column title.
-	 * 
+	 *
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
 	public function column_title( $column ) {
 		$column['lastmodified'] = __( 'Last Modified', 'wp-last-modified-info' );
-		
+
 		return $column;
 	}
 
 	/**
 	 * Make Column sortable.
-	 * 
+	 *
 	 * @param string   $column  Column name
 	 * @return array   $column  Filtered column
 	 */

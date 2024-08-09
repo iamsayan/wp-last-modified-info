@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Enqueue all css & js.
  *
@@ -21,7 +21,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Enqueue extends BaseController
 {
-	use Hooker, HelperFunctions;
+	use Hooker;
+    use HelperFunctions;
 
 	/**
 	 * Register functions.
@@ -37,7 +38,7 @@ class Enqueue extends BaseController
 		global $wp_version;
 
 		if ( 'settings_page_wp-last-modified-info' === $hook ) {
-			
+
 			// enqueue required css
 			wp_enqueue_style( 'wp-codemirror' );
 
@@ -45,16 +46,16 @@ class Enqueue extends BaseController
 			wp_enqueue_script( 'jquery-form' );
 			wp_enqueue_script( 'jquery-ui-resizable' );
 			wp_enqueue_script( 'wp-theme-plugin-editor' );
-			
+
 			// load required css & js files.
 			$this->load( 'css', 'admin', 'admin.min.css', $this->version );
 			$this->load( 'css', 'selectize', 'selectize.min.css', '0.15.2' );
 			$this->load( 'css', 'confirm', 'jquery-confirm.min.css', '3.3.4' );
-		
+
 			$this->load( 'js', 'selectize', 'selectize.min.js', '0.15.2', [ 'jquery' ] );
 			$this->load( 'js', 'confirm', 'jquery-confirm.min.js', '3.3.4', [ 'jquery' ] );
 		    $this->load( 'js', 'admin', 'admin.min.js', $this->version, [ 'jquery', 'jquery-form', 'jquery-ui-resizable', 'wplmi-confirm', 'wplmi-selectize' ] );
-		
+
 			$args = [
 				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
 				'copied'         => __( 'Copied!', 'wp-last-modified-info' ),

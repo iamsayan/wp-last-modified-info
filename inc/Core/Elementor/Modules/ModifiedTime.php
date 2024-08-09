@@ -10,9 +10,9 @@
 
 namespace Wplmi\Core\Elementor\Modules;
 
-use \Elementor\Controls_Manager;
-use \Elementor\Core\DynamicTags\Tag;
-use \Elementor\Modules\DynamicTags\Module;
+use Elementor\Controls_Manager;
+use Elementor\Core\DynamicTags\Tag;
+use Elementor\Modules\DynamicTags\Module;
 
 defined( 'ABSPATH' ) || exit;
 

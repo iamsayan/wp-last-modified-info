@@ -21,7 +21,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Schema extends BaseController
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * Register functions.
@@ -35,29 +36,29 @@ class Schema extends BaseController
 	/**
 	 * Echo Json-ld Schema codes.
 	 */
-	public function schema_markup() { 
+	public function schema_markup() {
 		global $post;
 
 		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
 			return;
 		}
-	
+
 		// get post infos
 		$full_content = $post->post_content;
 		$excerpt = $post->post_excerpt;
-	
+
 		// get post modfied author ID
-		$author_id = $this->get_meta( $post->ID, '_edit_last' ); 
+		$author_id = $this->get_meta( $post->ID, '_edit_last' );
 
 		// Strip shortcodes and tags
 		$full_content = preg_replace( '#\[[^\]]+\]#', '', $full_content );
 		$full_content = wp_strip_all_tags( $full_content );
 		$full_content = $this->do_filter( 'schema_content', $full_content, $post->ID );
-	
+
 		$desc_word_count = $this->do_filter( 'schema_description_word_count', 60 );
 		$short_content = wp_trim_words( $full_content, $desc_word_count, '' );
 		$short_content = ( ! empty( $excerpt ) ) ? $excerpt : $short_content;
-	
+
 		$json = [
 			'@context'         => 'https://schema.org/',
 			'@type'            => 'CreativeWork',
@@ -75,15 +76,15 @@ class Schema extends BaseController
 				'description' => esc_html( get_the_author_meta( 'description', $author_id ) ),
 			],
 		];
-	
+
 		if ( is_page() ) {
 			// change schema type for pages
 			$json['@type'] = 'WebPage';
 			unset( $json['mainEntityOfPage'] );
 		}
-	
+
 		$json = $this->do_filter( 'schema_items', $json, $post->ID );
-	
+
 		$output = '';
 		if ( ! empty( $json ) ) {
 			$output .= "\n\n";
@@ -96,14 +97,14 @@ class Schema extends BaseController
 		$post_types = $this->get_data( 'lmt_enable_jsonld_markup_post_types', [ 'post' ] );
 		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'enable' ) && ! empty( $post_types ) ) {
 			if ( in_array( get_post_type( $post->ID ), $post_types ) ) {
-				echo $output;
+				echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}
 
 	/**
 	 * Hooks the language attributes to add Extended schema compatibility.
-	 * 
+	 *
 	 * @param string  $input   Original Content
 	 * @return string $output  Filtered Content
 	 */
@@ -140,9 +141,9 @@ class Schema extends BaseController
 
 	/**
 	 * Replace the strings.
-	 * 
+	 *
 	 * @param string  $html  Original Content
-	 * 
+	 *
 	 * @return string $html  Filtered Content
 	 */
 	public function replace( $html ) {
@@ -155,14 +156,14 @@ class Schema extends BaseController
 		$can_replace = $this->do_filter( 'published_schema_replace', true );
 		if ( ! $this->is_equal( 'enable_jsonld_markup_cb', 'disable' ) && $can_replace ) {
 			$replace = ' itemprop="dateModified"';
-			
+
 			if ( $this->is_equal( 'replace_published_date', 'remove' ) ) {
 				$replace = '';
 			}
 
 			$html = str_replace( ' itemprop="datePublished"', $replace, $html );
 		}
-	
+
 		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'comp_mode' ) ) {
 		    // All in One SEO Pack Meta Compatibility
 		    $html = str_replace( date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_date_gmt ) ), date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_modified_gmt ) ), $html );

@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class UserColumn
 {
-	use Hooker, SettingsData;
+	use Hooker;
+    use SettingsData;
 
 	/**
 	 * Register functions.
@@ -33,23 +34,23 @@ class UserColumn
 		$this->action( 'pre_user_query', 'user_column_orderby' );
 		$this->action( 'admin_head-users.php', 'style' );
 	}
-	
+
 	/**
 	 * Generate column data.
-	 * 
+	 *
 	 * @param string   $column   Column name
 	 * @param int      $post_id  Post ID
-	 * 
+	 *
 	 * @return string  $time
 	 */
 	public function update_user( $user_id ) {
 	    // update user meta
 	    update_user_meta( $user_id, 'profile_last_modified', current_time( 'timestamp', 0 ) );
 	}
-	
+
 	/**
 	 * Make Column sortable.
-	 * 
+	 *
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
@@ -64,29 +65,29 @@ class UserColumn
 	    	    if ( ! $timestamp ) {
 					return __( 'Never', 'wp-last-modified-info' );
 				}
-	    		
+
 	    		return date_i18n( $this->do_filter( 'user_column_datetime_format', $get_df . '\<\b\r\>' . $get_tf ), $timestamp );
 	        	break;
 		}
-		
+
 	    return $value;
 	}
 
 	/**
 	 * Register Column.
-	 * 
+	 *
 	 * @param string   $columns  Column name
 	 * @return string  $columns  Filtered column
 	 */
 	public function load_columns( $columns ) {
 		$columns['last-updated'] = __( 'Last Updated', 'wp-last-modified-info' );
-		
+
 		return $columns;
 	}
 
 	/**
 	 * Column title.
-	 * 
+	 *
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */
@@ -98,17 +99,17 @@ class UserColumn
 
 	/**
 	 * Sort Column.
-	 * 
+	 *
 	 * @since 1.8.4
 	 * @param object   $user_search  User Query
 	 */
 	public function user_column_orderby( $user_search ) {
 		global $wpdb, $current_screen;
-	
-		if ( isset( $current_screen->id ) && 'users' != $current_screen->id ) {
+
+		if ( isset( $current_screen->id ) && 'users' !== $current_screen->id ) {
 			return;
 		}
-	
+
 		$vars = $user_search->query_vars;
 		if ( 'lastupdated' === $vars['orderby'] ) {
 			$user_search->query_from .= " INNER JOIN {$wpdb->usermeta} m1 ON {$wpdb->users}.ID=m1.user_id AND (m1.meta_key='profile_last_modified')";
@@ -118,7 +119,7 @@ class UserColumn
 
 	/**
 	 * Column title.
-	 * 
+	 *
 	 * @param string   $column  Column name
 	 * @return string  $column  Filtered column
 	 */

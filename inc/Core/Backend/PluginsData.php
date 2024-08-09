@@ -21,7 +21,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class PluginsData extends WP_Background_Process
 {
-	use HelperFunctions, Hooker;
+	use HelperFunctions;
+    use Hooker;
 
 	/**
 	 * @var string
@@ -86,7 +87,7 @@ class PluginsData extends WP_Background_Process
 	protected function task( $item ) {
         $this->call_api( $item );
 		sleep( 2 ); // stop for 2 seconds to optimize memory usage
-		
+
 		return false;
 	}
 
@@ -249,10 +250,10 @@ class PluginsData extends WP_Background_Process
 			'sslverify'   => true,
 			'stream'      => false,
 			'filename'    => null,
-		];  
-		
+		];
+
 		$response = wp_remote_get( 'https://plugins.svn.wordpress.org/' . $file . '/', $args );
-	
+
 		if ( is_wp_error( $response ) ) {
 			$status = false;
 		} else {

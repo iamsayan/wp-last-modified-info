@@ -20,7 +20,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class RestApi
 {
-	use Hooker, SettingsData;
+	use Hooker;
+    use SettingsData;
 
 	/**
 	 * Register functions.
@@ -30,11 +31,7 @@ class RestApi
 	}
 
 	/**
-	 * Show original publish info.
-	 * 
-	 * @param string  $content  Original Content
-	 * 
-	 * @return string $content  Filtered Content
+	 * Register Rest field.
 	 */
 	public function rest_init() {
 		register_rest_field(
@@ -48,19 +45,19 @@ class RestApi
 
 	/**
 	 * Rest Api outpur callback
-	 * 
-	 * @param object  $object      WP Post Object
+	 *
+	 * @param object  $rest_object WP Post Object
 	 * @param string  $field_name  Field Name
 	 * @param string  $request     Request
-	 * 
+	 *
 	 * @return string|null
 	 */
-	public function rest_output( $object, $field_name, $request ) {
-		$author_id = $this->get_meta( $object['id'], '_edit_last' );
-		
+	public function rest_output( $rest_object, $field_name, $request ) {
+		$author_id = $this->get_meta( $rest_object['id'], '_edit_last' );
+
 		if ( $author_id ) {
             $last_user = get_userdata( $author_id );
-		
+
 			if ( $last_user && is_object( $last_user ) ) {
 				return $last_user->display_name;
 			}

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Admin callbacks.
  *
@@ -29,15 +29,15 @@ class AdminCallbacks extends BaseController
 	public function sectionHeader( $title, $description ) { ?>
 		<div class="wplmi-metabox-holder">
 			<div class="wplmi-metabox-td">
-				<h3 class="wplmi-metabox-title"><?php echo esc_html( $title ); ?></h3>
-				<p class="wplmi-metabox-description"><?php echo wp_kses_post( $description ); ?></p>
+				<h3 class="wplmi-metabox-title"><?= esc_html( $title ); ?></h3>
+				<p class="wplmi-metabox-description"><?= wp_kses_post( $description ); ?></p>
 			</div>
 		</div>
 		<?php
 	}
 
 	public function doSettingsSection( $attr ) { ?>
-		<div id="<?php echo esc_attr( $attr['id'] ); ?>" class="postbox <?php echo esc_attr( $attr['class'] ); ?>">
+		<div id="<?= esc_attr( $attr['id'] ); ?>" class="postbox <?= esc_attr( $attr['class'] ); ?>">
 			<?php $this->sectionHeader( $attr['title'], $attr['description'] ); ?>
 			<div class="inside">
 				<?php do_settings_sections( $attr['name'] ); ?>

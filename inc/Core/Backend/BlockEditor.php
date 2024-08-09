@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Admin notices.
  *
@@ -21,8 +21,9 @@ defined( 'ABSPATH' ) || exit;
  */
 class BlockEditor extends BaseController
 {
-	use Hooker, HelperFunctions;
-	
+	use Hooker;
+    use HelperFunctions;
+
 	/**
 	 * Register functions.
 	 */
@@ -30,17 +31,17 @@ class BlockEditor extends BaseController
 		$this->filter( 'register_post_type_args', 'post_type_args', 9999, 2 );
 		$this->action( 'init', 'register_meta' );
 		$this->action( 'enqueue_block_editor_assets', 'assets' );
-		
+
 		// AIOSEO Integration
 		$this->action( 'init', 'filter_aioseo' );
 	}
 
 	/**
 	 * Add support for `custom-fields` for all posts.
-	 * 
+	 *
 	 * @param array  $args      Post type data
 	 * @param string $post_type Post type name
-	 * 
+	 *
 	 * @return array $args Post type data
 	 */
 	public function post_type_args( $args, $post_type ) {
@@ -49,9 +50,12 @@ class BlockEditor extends BaseController
 		}
 
 		if ( ! empty( $args['show_in_rest'] ) && ! post_type_supports( $post_type, 'custom-fields' ) ) {
+			if ( ! isset( $args['supports'] ) ) {
+				$args['supports'] = [];
+			}
 			$args['supports'][] = 'custom-fields';
 		}
-	  
+
 		return $this->do_filter( 'post_type_args', $args, $post_type );
 	}
 
@@ -59,7 +63,7 @@ class BlockEditor extends BaseController
 	 * Register meta fields.
 	 */
 	public function register_meta() {
-		register_meta( 
+		register_meta(
 			'post',
 			'_lmt_disableupdate',
 			[
@@ -70,10 +74,10 @@ class BlockEditor extends BaseController
 				'auth_callback'     => function () {
 					return current_user_can( 'edit_posts' );
 				},
-			] 
+			]
 		);
 
-		register_meta( 
+		register_meta(
 			'post',
 			'_lmt_disable',
 			[
@@ -110,7 +114,7 @@ class BlockEditor extends BaseController
 		if ( isset( $params['modified'] ) ) {
 			$prepared_post->wplmi_modified_rest = $params['modified'];
 		}
-	
+
 		if ( isset( $params['meta']['_lmt_disableupdate'] ) ) {
 			$prepared_post->wplmi_lockmodifiedupdate = $params['meta']['_lmt_disableupdate'];
 		}

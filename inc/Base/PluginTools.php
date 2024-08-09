@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Plugin Tools.
  *
@@ -21,8 +21,10 @@ defined( 'ABSPATH' ) || exit;
  */
 class PluginTools
 {
-	use Ajax, Hooker, HelperFunctions;
-	
+	use Ajax;
+    use Hooker;
+    use HelperFunctions;
+
 	/**
 	 * Register functions.
 	 */
@@ -35,16 +37,16 @@ class PluginTools
 		$this->ajax( 'process_import_plugin_data', 'import_data' );
 		$this->ajax( 'process_delete_plugin_data', 'remove_settings' );
 	}
-	
+
 	/**
      * Process a settings export that generates a .json file
      */
 	public function export_settings() {
-		if ( empty( $_POST['wplmi_export_action'] ) || 'wplmi_export_settings' != $_POST['wplmi_export_action'] ) {
+		if ( empty( $_POST['wplmi_export_action'] ) || 'wplmi_export_settings' !== $_POST['wplmi_export_action'] ) {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST['wplmi_export_nonce'], 'wplmi_export_nonce' ) ) {
+		if ( ! isset( $_POST['wplmi_export_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wplmi_export_nonce'] ) ), 'wplmi_export_nonce' ) ) {
 			return;
 		}
 
@@ -64,7 +66,7 @@ class PluginTools
 		header( 'Content-Disposition: attachment; filename=' . str_replace( '/', '-', $output ) . '-wplmi-export-' . date( 'm-d-Y' ) . '.json' );
 		header( "Expires: 0" );
 
-		echo json_encode( $settings );
+		echo wp_json_encode( $settings );
 		exit;
 	}
 
@@ -72,11 +74,11 @@ class PluginTools
      * Process a settings import from a json file
      */
 	public function import_settings() {
-    	if ( empty( $_POST['wplmi_import_action'] ) || 'wplmi_import_settings' != $_POST['wplmi_import_action'] ) {
+    	if ( empty( $_POST['wplmi_import_action'] ) || 'wplmi_import_settings' !== $_POST['wplmi_import_action'] ) {
     		return;
 		}
 
-    	if ( ! wp_verify_nonce( $_POST['wplmi_import_nonce'], 'wplmi_import_nonce' ) ) {
+    	if ( ! isset( $_POST['wplmi_import_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wplmi_import_nonce'] ) ), 'wplmi_import_nonce' ) ) {
     		return;
 		}
 
@@ -84,24 +86,30 @@ class PluginTools
     		return;
 		}
 
-        $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) );
+        $extension = explode( '.', sanitize_text_field( $_FILES['import_file']['name'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
         $file_extension = end( $extension );
     	if ( 'json' !== $file_extension ) {
-    		wp_die( __( '<strong>Settings import failed:</strong> Please upload a valid .json file to import settings in this website.', 'wp-last-modified-info' ) );
+    		wp_die( sprintf( '<strong>%s</strong>: %s',
+				esc_html__( 'Settings import failed', 'wp-last-modified-info' ),
+				esc_html__( 'Please upload a valid .json file to import settings in this website.', 'wp-last-modified-info' )
+			) );
     	}
 
-    	$import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] );
+    	$import_file = sanitize_text_field( $_FILES['import_file']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
     	if ( empty( $import_file ) ) {
-    		wp_die( __( '<strong>Settings import failed:</strong> Please upload a file to import.', 'wp-last-modified-info' ) );
+			wp_die( sprintf( '<strong>%s</strong>: %s',
+				esc_html__( 'Settings import failed', 'wp-last-modified-info' ),
+				esc_html__( 'Please upload a file to import.', 'wp-last-modified-info' )
+			) );
     	}
 
     	// Retrieve the settings from the file and convert the json object to an array.
-    	$settings = (array) json_decode( file_get_contents( $import_file ) );
+    	$settings = (array) json_decode( file_get_contents( $import_file ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		update_option( 'lmt_plugin_global_settings', $settings, false );
 
 		// set temporary transient for admin notice
 		set_transient( 'wplmi_import_db_done', true );
-        
+
 		wp_safe_redirect( add_query_arg( 'page', 'wp-last-modified-info', admin_url( 'options-general.php' ) ) );
 		exit;
 	}
@@ -113,11 +121,11 @@ class PluginTools
 		// security check
 		$this->verify_nonce();
 
-		if ( ! isset( $_POST['action_type'] ) ) {
+		if ( ! isset( $_POST['action_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$this->error();
 		}
 
-		$action = sanitize_text_field( wp_unslash( $_POST['action_type'] ) );
+		$action = sanitize_text_field( wp_unslash( $_POST['action_type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$value = ( $action == 'check' ) ? 'yes' : 'no';
 
 		$args = [
@@ -126,14 +134,14 @@ class PluginTools
 			'post_status' => [ 'publish', 'draft', 'pending', 'future' ],
 			'fields'      => 'ids',
 		];
-		
+
 		$posts = get_posts( $args );
 		if ( ! empty( $posts ) ) {
 	    	foreach ( $posts as $post_id ) {
 	    		$this->update_meta( $post_id, '_lmt_disableupdate', $value );
 	    	}
 	    }
-	
+
 		$this->success( [
 			'reload' => false,
 		] );
@@ -147,9 +155,9 @@ class PluginTools
 		$this->verify_nonce();
 
 		$option = get_option( 'lmt_plugin_global_settings' );
-	
+
 		$this->success( [
-			'elements' => json_encode( $option ),
+			'elements' => wp_json_encode( $option ),
 		] );
 	}
 
@@ -168,12 +176,12 @@ class PluginTools
 			$this->error();
 		}
 
-		$data = wp_unslash( $_REQUEST['settings_data'] );
+		$data = wp_unslash( $_REQUEST['settings_data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$settings = (array) json_decode( $data );
 
 		if ( is_array( $settings ) && ! empty( $settings ) ) {
 			update_option( 'lmt_plugin_global_settings', $settings, false );
-			
+
 			// set temporary transient for admin notice
 		    set_transient( 'wplmi_import_db_done', true );
 		}
@@ -187,7 +195,7 @@ class PluginTools
 	public function remove_settings() {
     	// security check
 		$this->verify_nonce();
-		
+
 		// Remove options
 		delete_option( 'lmt_plugin_global_settings' );
 		delete_option( 'wplmi_site_global_update_info' );
@@ -211,7 +219,7 @@ class PluginTools
      */
 	public function admin_notice() {
     	if ( get_transient( 'wplmi_import_db_done' ) !== false ) { ?>
-			<div class="notice notice-success is-dismissible"><p><strong><?php esc_html_e( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ); ?></strong></p></div><?php 
+			<div class="notice notice-success is-dismissible"><p><strong><?php esc_html_e( 'Success! Plugin Settings has been imported successfully.', 'wp-last-modified-info' ); ?></strong></p></div><?php
 		    delete_transient( 'wplmi_import_db_done' );
 	    }
 	}

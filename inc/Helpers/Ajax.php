@@ -38,7 +38,7 @@ trait Ajax {
 	 * @param string $action The nonce action name.
 	 */
 	protected function verify_nonce( $action = 'wplmi_admin_nonce' ) {
-		if ( ! isset( $_REQUEST['security'] ) || ! \wp_verify_nonce( $_REQUEST['security'], $action ) ) {
+		if ( ! isset( $_REQUEST['security'] ) || ! \wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['security'] ) ), $action ) ) {
 			$this->error( __( 'Error: Nonce verification failed', 'wp-last-modified-info' ) );
 		}
 	}
