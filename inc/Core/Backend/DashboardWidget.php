@@ -130,7 +130,7 @@ class DashboardWidget
 	public function widget_control_callback() {
 		// Update widget options
 		if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['wplmi_widget_options'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			check_admin_referer();
+			check_admin_referer( 'wplmi-dashboard-widget' );
 			update_option( 'lmt_dashboard_widget_options', array_map( 'intval', $_POST['wplmi_widget_options'] ), false );
 		}
 
@@ -138,7 +138,7 @@ class DashboardWidget
 		$widget_options = get_option( 'lmt_dashboard_widget_options' );
 		$value = isset( $widget_options['number'] ) ? $widget_options['number'] : '';
 
-		wp_nonce_field(); ?>
+		wp_nonce_field( 'wplmi-dashboard-widget' ); ?>
 		<table>
 			<tr>
 				<td><label for="post-count"><strong><?php esc_html_e( 'Number of Posts to Display', 'wp-last-modified-info' ); ?>:</strong></label></td>
