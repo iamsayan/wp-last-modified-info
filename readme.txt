@@ -165,7 +165,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.9.1 =
-Release Date: August 9, 2024
+Release Date: August 18, 2024
 
 * Added changes according to WPCS.
 * Tested with WordPress v6.6.
