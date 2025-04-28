@@ -11,8 +11,11 @@ jobs:
     environment: wp.org plugin
     
     steps:
+    - name: Install Subversion
+      run: sudo apt-get install subversion
+
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Build Block Assets
       run: |
