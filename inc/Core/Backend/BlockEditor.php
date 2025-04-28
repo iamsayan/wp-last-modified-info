@@ -30,10 +30,14 @@ class BlockEditor extends BaseController
 	public function register() {
 		$this->filter( 'register_post_type_args', 'post_type_args', 9999, 2 );
 		$this->action( 'init', 'register_meta' );
+		$this->action( 'rest_api_init', 'init_rest_api' );
 		$this->action( 'enqueue_block_editor_assets', 'assets' );
 
 		// AIOSEO Integration
 		$this->action( 'init', 'filter_aioseo' );
+
+		// Rank Math Integration
+		$this->filter( 'rank_math/lock_modified_date', 'filter_rank_math' );
 	}
 
 	/**
@@ -90,7 +94,12 @@ class BlockEditor extends BaseController
 				},
 			]
 		);
+	}
 
+	/**
+	 * Register rest api.
+	 */
+	public function init_rest_api() {
 		$post_types = get_post_types( [ 'show_in_rest' => true ] );
 		foreach ( $post_types as $post_type ) {
 			$this->filter( "rest_pre_insert_$post_type", 'modified_params', 99, 2 );
@@ -134,6 +143,7 @@ class BlockEditor extends BaseController
 
 		$asset_file = include( $this->plugin_path . 'assets/block-editor/build/index.asset.php' );
 
+		wp_enqueue_style( 'wplmi-block-editor', $this->plugin_url . 'assets/block-editor/build/style-index.css', [], $asset_file['version'] );
 		wp_enqueue_script( 'wplmi-block-editor', $this->plugin_url . 'assets/block-editor/build/index.js', $asset_file['dependencies'], $asset_file['version'], true );
 		wp_localize_script( 'wplmi-block-editor', 'wplmiBlockEditor', [
 			'postTypes' => $this->get_data( 'lmt_custom_post_types_list', [] ),
@@ -155,16 +165,19 @@ class BlockEditor extends BaseController
 	}
 
 	/**
+	 * Conditional hooking for Rank Math Plugin integration.
+	 */
+	public function filter_rank_math( $enabled ) {
+		return $this->do_filter( 'rank_math_lock_modified_date', false, $enabled );
+	}
+
+	/**
 	 * AIOSEO Plugin integration.
 	 */
 	public function filter_post( $post ) {
 		$stop_update = $this->get_meta( $post->post_id, '_lmt_disableupdate' );
 
-		if ( 'yes' === $stop_update ) {
-			$post->limit_modified_date = 1;
-		} else {
-			$post->limit_modified_date = 0;
-		}
+		$post->limit_modified_date = ( 'yes' === $stop_update  ) ? 1 : 0;
 
 		return $post;
 	}

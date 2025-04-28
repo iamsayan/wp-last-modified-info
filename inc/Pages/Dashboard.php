@@ -29,7 +29,7 @@ class Dashboard
 	/**
 	 * Settings.
 	 *
-	 * @var array
+	 * @var object
 	 */
 	public $settings;
 
@@ -65,6 +65,13 @@ class Dashboard
 	 * Register functions.
 	 */
 	public function register() {
+		$this->action( 'after_setup_theme', 'load', 1 );
+	}
+
+	/**
+	 * Load dashboard.
+	 */
+	public function load() {
 		$this->settings = new SettingsApi();
 		$this->callbacks = new AdminCallbacks();
 		$this->callbacks_manager = new ManagerCallbacks();

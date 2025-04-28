@@ -85,8 +85,8 @@
                     </div>
                     <div class="inside wplmi-inside" style="padding: 10px 20px;">
                         <div class="wplmi-tools-box">
-                            <span><?php esc_html_e( 'Toogle Disable Update Option', 'wp-last-modified-info' ); ?></span>
-                            <p><?php esc_html_e( 'This will enable or disable "Disable Update" option for all posts, pages and CPTs automatically.', 'wp-last-modified-info' ); ?></p>
+                            <span><?php esc_html_e( 'Toogle "Lock Modified Date" Option', 'wp-last-modified-info' ); ?></span>
+                            <p><?php esc_html_e( 'This will enable or disable "Lock Modified Date" option for all posts, pages and CPTs automatically.', 'wp-last-modified-info' ); ?></p>
                             <p><input type="button" class="button button-large button-secondary default wplmi-reset" data-action="wplmi_process_set_meta" data-type="check" data-notice="<?php esc_attr_e( 'It will enable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php esc_attr_e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php esc_attr_e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php esc_attr_e( 'Check All', 'wp-last-modified-info' ); ?>">
                             <input type="button" class="button button-large button-secondary default wplmi-reset" data-action="wplmi_process_set_meta" data-type="uncheck" data-notice="<?php esc_attr_e( 'It will disable post modified info output on all activated post types. Do you want to continue?', 'wp-last-modified-info' ); ?>" data-success="<?php esc_attr_e( 'Success! Requested Action processed successfully.', 'wp-last-modified-info' ); ?>" data-process="<?php esc_attr_e( 'Processing...', 'wp-last-modified-info' ); ?>" value="<?php esc_attr_e( 'Un-Check All', 'wp-last-modified-info' ); ?>"></p>
                         </div>

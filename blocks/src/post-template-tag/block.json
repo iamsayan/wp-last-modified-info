@@ -3,7 +3,7 @@
 	"apiVersion": 2,
     "name": "wplmi/post-template-tag",
     "title": "Modified Date Template",
-    "description": "Display post\"s last modified date using Template Tag.",
+    "description": "Displays post modified date using Template Tag.",
     "icon": "calendar-alt",
 	"keywords": [ "last-modified", "time", "date", "last-updated", "updated" ],
 	"category": "theme",

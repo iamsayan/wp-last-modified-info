@@ -3,7 +3,7 @@
 	"apiVersion": 2,
     "name": "wplmi/site-modified-date",
     "title": "Site Modified Date",
-    "description": "Display website\"s last modified date.",
+    "description": "Displays last website modified date.",
     "icon": "image-rotate",
 	"keywords": [ "last-modified", "time", "date", "last-updated", "updated" ],
 	"category": "widgets",

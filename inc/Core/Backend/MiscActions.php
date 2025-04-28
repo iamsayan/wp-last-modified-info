@@ -78,7 +78,10 @@ class MiscActions
 		}
 
 		if ( isset( $messages[ $wp_post->post_type ] ) ) {
-			$messages[ $wp_post->post_type ][1] = esc_html( $post_types->labels->singular_name ) . '&nbsp;' . sprintf( esc_html__( 'updated on %s', 'wp-last-modified-info' ), $post_modified );
+			$messages[ $wp_post->post_type ][1] = esc_html( $post_types->labels->singular_name ) . '&nbsp;' . sprintf( 
+				/* translators: %s: Post modified date */
+				esc_html__( 'updated on %s', 'wp-last-modified-info' ), $post_modified 
+			);
 		}
 
 		return $messages;
@@ -93,17 +96,14 @@ class MiscActions
 		// get WordPress date time format
 		$get_df = get_option( 'date_format' );
 		$get_tf = get_option( 'time_format' );
+
 		// get post meta data
-		$m_orig = get_post_field( 'post_modified', $post_id, 'raw' );
-		$m_stamp = strtotime( $m_orig );
-		$modified = date_i18n( $this->do_filter( 'custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
-		$shortcode = '[lmt-post-modified-info]';
+		$m_orig    = get_post_field( 'post_modified', $post_id, 'raw' );
+		$m_stamp   = strtotime( $m_orig );
+		$modified  = date_i18n( $this->do_filter( 'custom_field_date_time_format', $get_df . ' @ ' . $get_tf ), $m_stamp );
 
 		// update post meta
 		$this->update_meta( $post_id, 'wp_last_modified_info', $modified );
-
-		// update post meta
-		$this->update_meta( $post_id, 'wplmi_shortcode', $shortcode );
 
 		// update global site update time
 		update_option( 'wplmi_site_global_update_info', current_time( 'timestamp', 0 ) );

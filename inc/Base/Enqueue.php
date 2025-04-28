@@ -116,9 +116,9 @@ class Enqueue extends BaseController
 	 * Enqueue CSS & JS wrapper function.
 	 */
 	private function load( $type, $handle, $name, $version, $dep = [], $end = true ) {
-		if ( $type == 'css' ) {
+		if ( $type === 'css' ) {
 		    wp_enqueue_style( 'wplmi-' . $handle, $this->plugin_url . 'assets/css/' . $name, $dep, $version );
-		} elseif ( $type == 'js' ) {
+		} elseif ( $type === 'js' ) {
 		    wp_enqueue_script( 'wplmi-' . $handle, $this->plugin_url . 'assets/js/' . $name, $dep, $version, $end );
 		}
 	}

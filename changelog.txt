@@ -1,5 +1,107 @@
 == Changelog ==
 
+= 1.8.9 =
+Release Date: February 9, 2024
+
+* Added: Lock Modified Date Block Editor Support for Custom Post type which has `show_in_rest` set to `true`. This behavior can be changed by `wplmi/post_type_args` filter.
+* Updated: @wordpress/scripts to the latest version.
+* Updated: Background Process PHP Library.
+* Tweak: Replaced deprecated `__experimentalGetSettings()` with `getSettings()`.
+* Tweak: Use of `wp_kses_allowed_html` filter to allow custom HTML tag instead of using placeholders.
+* Added support for PHP v8.3.
+* Minimum required PHP Version is now 7.0.
+* Tested with WordPress v6.4.
+
+= 1.8.8 =
+Release Date: June 26, 2023
+
+* Added: Integration with AIOSEO Plugin last modified update checkbox.
+* Updated: @wordpress/scripts to the latest version.
+* Updated: Selectize JS Library.
+* Updated: Background Process PHP Library.
+* Tweak: Changed Toogle to Checkbox Control.
+* Fixed: Deprecated Button Component parameter.
+* Fixed: PHP Errors on Plugins page.
+* Fixed: Properly support the id attribute in the shortcode. Props to @yoren.
+* Tested with WordPress v6.2.
+
+= 1.8.7 =
+Release Date: January 25, 2023
+
+* Fixed: Modified date is not showing on some cases.
+* Fixed: Bulk Edit save delay.
+* Fixed: Some Dashboard CSS.
+* Added: Wiki Link to Dynamic Tags Section.
+
+= 1.8.6 =
+Release Date: January 24, 2023
+
+* Fixed: Modified date is not showing if "Post Date Time Change or Removal" is set to "Convert to Modified Date" after last update.
+
+= 1.8.5 =
+Release Date: January 5, 2023
+
+* Fixed: PHP Error if the the global post object is undefined.
+* Fixed: WooCommerce product modified date updated even if the option is disabled.
+* Fixed: Update Locked posts was showing all posts in post list page.
+* Fixed: Lock the Modified Date option was not working properly.
+* Fixed: Bulk Editing was not working.
+* Tweak: Allow Toogle Disable Update Option for all post types and posts with future date.
+* Imporved: Optimize codebase.
+* Imporved: Dashboard styling.
+* Tested with WordPress v6.1.
+
+= 1.8.4 =
+Release Date: July 29, 2022
+
+* Added: User Column Sorting.
+* Fixed: Quick Edit HTML issue.
+* Fixed: Default Post Type ordering was not working.
+* Fixed: JS issue if Syntax Highlighting is disabled from User Profile.
+* Fixed: PHP Warning: Undefined property.
+
+= 1.8.3 =
+Release Date: May 30, 2022
+
+* Fixed: Bulk Editing is not working.
+* Fixed: Dashbaord Widget Posts List Order was wrong on some cases.
+
+= 1.8.2 =
+Release Date: May 24, 2022
+
+* Fixed: Block Editor JS Errors on some cases.
+* Fixed: Dashboard Widget showing wrong timestamp.
+* Fixed: Widget Editor is not loading some cases if this plugin is active.
+* Fixed: Block Rendering issue if custom colors are specified in theme.json.
+* Added: Nonce checking on Dashbaord Widget.
+
+= 1.8.1 =
+Release Date: May 22, 2022
+
+* Fixed: Notice can't be dismissed and causing a error.
+
+= 1.8.0 =
+Release Date: May 21, 2022
+
+* NEW: New Plugin UI.
+* NEW: Block Editor Controls.
+* NEW: Added 3 New Blocks for WordPress 5.8 and beyond.
+* Improvement: Enhanced Escaping.
+* Improvement: Plugin Rating is now calcualted out of 5.
+* Improvement: Use of Vanilla JS instead of jQuery to Replace Post Date.
+* Improvement: Remove Plugin Update data on Deactivation.
+* Improvement: Uses Post ID instead on WP Post Object to reduce memory usage.
+* Fixed: Dashboard Widget Issue.
+* Fixed: Elementor Deprecated issue.
+* Fixed: The issue where plugin returns true even if there is no value in settings.
+* Fixed: Rest API Output error if `get_userdata()` function returns false.
+* Removed: Astra and GeneratePress Theme support.
+* Removed: jQuery Cookie Library.
+* Added filter `wplmi/plugin_links` for plugin links output.
+* Tested with WPML.
+* Development is now done in GitHub.
+* Compatibility with WordPress v6.0 and PHP v8.0.
+
 = 1.7.7 =
 Release Date: June 13, 2021
 

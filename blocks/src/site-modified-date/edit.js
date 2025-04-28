@@ -42,12 +42,16 @@ const EditSiteModified = ( { attributes, setAttributes } ) => {
             <InspectorControls key='settings'>
                 <PanelBody title={ __( 'Options', 'wp-last-modified-info' ) } initialOpen={ false }>
                     <TextControl
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                         label={ __( 'Format', 'wp-last-modified-info' ) }
                         help={ __( 'Date Time format. Leave blank for default.', 'wp-last-modified-info' ) }
                         value={ attributes.format }
                         onChange={ ( value ) => setAttributes( { format: value } ) }
                     />
                     <SelectControl
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                         label={ __( 'Display', 'wp-last-modified-info' ) }
                         value={ attributes.display }
                         options={ [
@@ -57,6 +61,8 @@ const EditSiteModified = ( { attributes, setAttributes } ) => {
                         onChange={ ( value ) => setAttributes( { display: value } ) }
                     />
                     <SelectControl
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                         label={ __( 'Text Align', 'wp-last-modified-info' ) }
                         value={ attributes.textAlign }
                         options={ [
@@ -69,12 +75,16 @@ const EditSiteModified = ( { attributes, setAttributes } ) => {
                 </PanelBody>
                 <PanelBody title={ __( 'Content', 'wp-last-modified-info' ) } initialOpen={ false }>
                     <TextControl
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                         label={ __( 'Text Before', 'wp-last-modified-info' ) }
                         help={ __( 'Text to show before the timestamp', 'wp-last-modified-info' ) }
                         value={ attributes.textBefore }
                         onChange={ ( value ) => setAttributes( { textBefore: value } ) }
                     />
                     <TextControl
+                        __next40pxDefaultSize
+                        __nextHasNoMarginBottom
                         label={ __( 'Text After', 'wp-last-modified-info' ) }
                         help={ __( 'Text to show after the timestamp', 'wp-last-modified-info' ) }
                         value={ attributes.textAfter }
@@ -83,13 +93,17 @@ const EditSiteModified = ( { attributes, setAttributes } ) => {
                 </PanelBody>
                 <PanelBody title={ __( 'Typography', 'wp-last-modified-info' ) }>
                     <FontSizePicker
+                        __next40pxDefaultSize
                         label={ __( 'Font Size', 'wp-last-modified-info' ) }
                         value={ attributes.varFontSize }
                         onChange={ ( value ) => setAttributes( { varFontSize: value } ) }
                         fallBackFontSize={ 16 }
                         fontSizes={ fontSizes }
+                        withSlider={ true }
                     />
                     <LineHeightControl
+                        __next40pxDefaultSize
+                        __unstableInputWidth="auto"
                         label={ __( 'Line Height', 'wp-last-modified-info' ) }
                         value={ attributes.varLineHeight }
                         onChange={ ( value ) => setAttributes( { varLineHeight: value } ) }

@@ -79,7 +79,7 @@ class PostStatusFilters
 	    		    admin_url( 'edit.php' )
 	    	    ),
 	    		$current,
-	    		esc_html__( 'Update Locked', 'wp-last-modified-info' ),
+	    		esc_html__( 'Lock Modified', 'wp-last-modified-info' ),
 	    		number_format_i18n( count( $get_posts ) )
 	    	);
 	    }

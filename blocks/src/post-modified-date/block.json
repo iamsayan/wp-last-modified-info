@@ -3,7 +3,7 @@
 	"apiVersion": 2,
     "name": "wplmi/post-modified-date",
     "title": "Modified Date",
-    "description": "Display post\"s last modified date.",
+    "description": "Displays post modified date.",
     "icon": "calendar-alt",
 	"keywords": [ "last-modified", "time", "date", "last-updated", "updated" ],
 	"category": "theme",

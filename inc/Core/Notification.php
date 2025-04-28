@@ -111,7 +111,8 @@ class Notification
 		$post_author = get_user_by( 'id', $post_before->post_author );
 
 		$recipients = [];
-		$recipients = explode( ',', $this->get_data( 'lmt_email_recipient', [] ) );
+		$recipients = explode( ',', $this->get_data( 'lmt_email_recipient', '' ) );
+
 		if ( $this->is_enabled( 'enable_author_noti_cb' ) ) {
 			if ( ! in_array( $post_author->data->user_email, $recipients ) ) {
 				$recipients[] = filter_var( $post_author->data->user_email, FILTER_SANITIZE_EMAIL );

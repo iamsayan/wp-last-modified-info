@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.2
+Release Date: April 28, 2025
+
+* Fixed compatibility issues with latest WordPress version.
+* Improved plugin performance and stability.
+* Updated composer dependencies to latest versions.
+* Code optimization and cleanup.
+* Tested with WordPress v6.8.
+
+## 1.9.1
+Release Date: August 9, 2024
+
+* Added changes according to WPCS.
+* Tested with WordPress v6.6.
+
 ## 1.9.0
 Release Date: March 17, 2024
 
