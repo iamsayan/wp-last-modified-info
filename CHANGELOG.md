@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 ## 1.9.2
 Release Date: April 28, 2025
 
+* Improved: Last Modified control on Gutenberg editor.
+* Improved: Matched Last Modified admin column date format with WordPress's date column.
+* Fixed: Gutenberg Console warnings on Edit page.
+* Fixed: _load_textdomain_just_in_time Error.
+* Fixed: Array to String conversion Error.
 * Fixed compatibility issues with latest WordPress version.
+* Compatibility with Rank Math plugin on lock modified date.
 * Improved plugin performance and stability.
 * Updated composer dependencies to latest versions.
 * Code optimization and cleanup.
