@@ -53,7 +53,7 @@ class AdminNotice extends BaseController
 			<div class="notice notice-success">
 				<p><strong><?php
 				/* translators: %s: 1. Plugin Name, 2. Version, 3. Link */
-				printf( esc_html__( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ), 'WP Last Modified Info', esc_html( $this->version ), esc_url( admin_url( 'options-general.php?page=wp-last-modified-info' ) ) ); ?></strong></p>
+				printf( wp_kses_post( __( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'wp-last-modified-info' ) ), 'WP Last Modified Info', esc_html( $this->version ), esc_url( admin_url( 'options-general.php?page=wp-last-modified-info' ) ) ); ?></strong></p>
 			</div> <?php
 			delete_transient( 'wplmi-show-notice-on-activation' );
 		}

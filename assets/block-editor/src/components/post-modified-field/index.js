@@ -185,7 +185,7 @@ const PostModifiedField = () => {
                                 onClick={ onToggle }
                                 aria-label={ sprintf(
                                     // translators: %s: Current post modified date.
-                                    __( 'Change modified date: %s' ),
+                                    __( 'Change modified date: %s', 'wp-last-modified-info' ),
                                     label
                                 ) }
                                 label={ fullLabel }
@@ -223,14 +223,16 @@ const PostModifiedField = () => {
                                         is12Hour={ is12HourTime }
                                         events={ events }
                                         isInvalidDate={ ( currentDate ) => {
+                                            const today = new Date();
                                             const current = new Date(currentDate);
                                             const publish = new Date(date);
                                             
                                             // Reset time components to midnight
+                                            today.setHours(0, 0, 0, 0);
                                             current.setHours(0, 0, 0, 0);
                                             publish.setHours(0, 0, 0, 0);
                                             
-                                            return current < publish;
+                                            return current < publish || current > today;
                                         }}
                                         dateOrder={
                                             /* translators: Order of day, month, and year. Available formats are 'dmy', 'mdy', and 'ymd'. */

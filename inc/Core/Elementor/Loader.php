@@ -27,13 +27,15 @@ class Loader
 	 * Register functions.
 	 */
 	public function register() {
-        if ( function_exists( '_is_elementor_installed' ) && defined( 'ELEMENTOR_PRO_VERSION' ) ) {
-            $this->filter( 'wp_kses_allowed_html', 'wp_kses_post_tags', 10, 2 );
-            $this->action( 'elementor/dynamic_tags/register', 'register_tags' );
-            $this->action( 'elementor/frontend/the_content', 'render' );
-            $this->action( 'elementor/widget/render_content', 'render' );
-            $this->action( 'elementor/query/wplmi_elementor_widget_query_filter', 'query' );
+        if ( ! function_exists( '_is_elementor_installed' ) || ! defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+            return;
         }
+
+        $this->filter( 'wp_kses_allowed_html', 'wp_kses_post_tags', 10, 2 );
+        $this->action( 'elementor/dynamic_tags/register', 'register_tags' );
+        $this->action( 'elementor/frontend/the_content', 'render' );
+        $this->action( 'elementor/widget/render_content', 'render' );
+        $this->action( 'elementor/query/wplmi_elementor_widget_query_filter', 'query' );
 	}
 
 	/**
