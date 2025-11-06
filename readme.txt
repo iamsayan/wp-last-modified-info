@@ -165,7 +165,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 = 1.9.3 =
-Release Date: June 12, 2025
+Release Date: November 11, 2025
 
 * Improved: WooCommerce integration now fully supports High-Performance Order Storage (HPOS) without deprecation notices.
 * Improved: Template tags (`get_the_last_modified_info`, `the_last_modified_info`) optimized for better performance and readability.
@@ -176,8 +176,6 @@ Release Date: June 12, 2025
 * Fixed: Potential undefined-array-key warnings when post-meta is accessed before initialization.
 * Fixed: Edge-case where timezone offset could be miscalculated for posts modified during DST transitions.
 * Fixed: Removed unused legacy JavaScript variables that caused console warnings in Site Editor.
-* Updated: `package.json` dependencies bumped to latest stable versions (Webpack 5.92, PostCSS 8.4.38, etc.).
-* Tested: Full compatibility with WordPress 6.8.1 and WooCommerce 9.4-beta1.
 
 = 1.9.2 =
 Release Date: April 28, 2025

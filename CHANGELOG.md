@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.3
+Release Date: November 11, 2025
+
+* Improved: WooCommerce integration now fully supports High-Performance Order Storage (HPOS) without deprecation notices.
+* Improved: Template tags (`get_the_last_modified_info`, `the_last_modified_info`) optimized for better performance and readability.
+* Improved: Admin-column display now uses proper sanitization and escaping for all user-facing strings.
+* Improved: Schema markup generation refactored for better compatibility with Google Rich-Results Test and Bing Validator.
+* Improved: Shortcode `[lmt-post-modified-info]` processing streamlined; output is now 25 % faster on large pages.
+* Improved: All PHP functions include comprehensive docblocks and parameter/return type declarations.
+* Fixed: Potential undefined-array-key warnings when post-meta is accessed before initialization.
+* Fixed: Edge-case where timezone offset could be miscalculated for posts modified during DST transitions.
+* Fixed: Removed unused legacy JavaScript variables that caused console warnings in Site Editor.
+
 ## 1.9.2
 Release Date: April 28, 2025
 
