@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 1.9.3
-Release Date: November 11, 2025
+Release Date: November 6, 2025
 
 * Improved: WooCommerce integration now fully supports High-Performance Order Storage (HPOS) without deprecation notices.
 * Improved: Template tags (`get_the_last_modified_info`, `the_last_modified_info`) optimized for better performance and readability.
