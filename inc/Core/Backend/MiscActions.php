@@ -41,7 +41,7 @@ class MiscActions
 	 */
 	public function actions() {
 		$this->filter( 'post_updated_messages', 'messages' );
-		$this->action( 'save_post', 'save_post' );
+		$this->action( 'save_post', 'save_post', 10, 2 );
 	}
 
 	/**
@@ -91,8 +91,22 @@ class MiscActions
 	 * Runs after post save.
 	 *
 	 * @param int      $post_id  Post ID
+	 * @param WP_Post  $post     Post object
 	 */
-	public function save_post( $post_id ) {
+	public function save_post( $post_id, $post ) {
+		// exclude post types from being updated
+		$exclude_post_types = $this->do_filter( 'exclude_post_types', [
+			'shop_order_placehold',
+			'shop_order',
+			'shop_order_refund',
+			'shop_subscription'
+		], $post_id, $post );
+
+		// check if post type is supported
+		if ( in_array( $post->post_type, $exclude_post_types, true ) ) {
+			return;
+		}
+
 		// get WordPress date time format
 		$get_df = get_option( 'date_format' );
 		$get_tf = get_option( 'time_format' );

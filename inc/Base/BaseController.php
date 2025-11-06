@@ -54,7 +54,13 @@ class BaseController
 	}
 
 	/**
-	 * PHP < 7.0.0 compatibility
+	 * Recursively get a directory name from a path.
+	 *
+	 * This is a compatibility function for PHP < 7.0.0.
+	 *
+	 * @param string $path  The path to get the directory name from.
+	 * @param int    $count The number of times to go up the directory tree.
+	 * @return string
 	 */
 	private function dirname_r( $path, $count = 1 ) {
 		if ( $count > 1 ) {

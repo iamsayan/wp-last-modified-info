@@ -21,10 +21,10 @@ defined( 'ABSPATH' ) || exit;
 class UserColumn
 {
 	use Hooker;
-    use SettingsData;
+	use SettingsData;
 
 	/**
-	 * Register functions.
+	 * Register hooks.
 	 */
 	public function register() {
 		$this->action( 'profile_update', 'update_user' );
@@ -36,94 +36,97 @@ class UserColumn
 	}
 
 	/**
-	 * Generate column data.
+	 * Store the last-modified timestamp for a user.
 	 *
-	 * @param string   $column   Column name
-	 * @param int      $post_id  Post ID
-	 *
-	 * @return string  $time
+	 * @param int $user_id User ID.
 	 */
 	public function update_user( $user_id ) {
-	    // update user meta
-	    update_user_meta( $user_id, 'profile_last_modified', current_time( 'timestamp', 0 ) );
+		if ( ! $user_id ) {
+			return;
+		}
+		update_user_meta( $user_id, 'profile_last_modified', current_time( 'timestamp', 0 ) );
 	}
 
 	/**
-	 * Make Column sortable.
+	 * Render the custom-column value.
 	 *
-	 * @param string   $column  Column name
-	 * @return string  $column  Filtered column
+	 * @param string $value     Existing column value.
+	 * @param string $column    Column name.
+	 * @param int    $user_id   User ID.
+	 * @return string
 	 */
 	public function column_data( $value, $column, $user_id ) {
-		// get author meta
-	    $timestamp = get_the_author_meta( 'profile_last_modified', $user_id, true );
-		$get_df = get_option( 'date_format' );
-		$get_tf = get_option( 'time_format' );
-
-	    switch ( $column ) {
-	    	case 'last-updated':
-	    	    if ( ! $timestamp ) {
-					return __( 'Never', 'wp-last-modified-info' );
-				}
-
-	    		return date_i18n( $this->do_filter( 'user_column_datetime_format', $get_df . '\<\b\r\>' . $get_tf ), $timestamp );
-	        	break;
+		if ( 'last-updated' !== $column ) {
+			return $value;
 		}
 
-	    return $value;
+		$timestamp = get_user_meta( $user_id, 'profile_last_modified', true );
+		if ( ! $timestamp ) {
+			return __( 'Never', 'wp-last-modified-info' );
+		}
+
+		$format = $this->do_filter(
+			'user_column_datetime_format',
+			get_option( 'date_format' ) . ' <br>' . get_option( 'time_format' )
+		);
+
+		return date_i18n( $format, (int) $timestamp );
 	}
 
 	/**
-	 * Register Column.
+	 * Add the custom column header.
 	 *
-	 * @param string   $columns  Column name
-	 * @return string  $columns  Filtered column
+	 * @param string[] $columns Associative array of column IDs and labels.
+	 * @return string[]
 	 */
 	public function load_columns( $columns ) {
 		$columns['last-updated'] = __( 'Last Updated', 'wp-last-modified-info' );
-
 		return $columns;
 	}
 
 	/**
-	 * Column title.
+	 * Make the column sortable.
 	 *
-	 * @param string   $column  Column name
-	 * @return string  $column  Filtered column
+	 * @param string[] $sortable_columns Associative array of sortable columns.
+	 * @return string[]
 	 */
 	public function sortable_columns( $sortable_columns ) {
 		$sortable_columns['last-updated'] = 'lastupdated';
-
 		return $sortable_columns;
 	}
 
 	/**
-	 * Sort Column.
+	 * Handle sorting by last-updated meta.
 	 *
-	 * @since 1.8.4
-	 * @param object   $user_search  User Query
+	 * @param \WP_User_Query $user_search User query object.
 	 */
 	public function user_column_orderby( $user_search ) {
-		global $wpdb, $current_screen;
-
-		if ( isset( $current_screen->id ) && 'users' !== $current_screen->id ) {
+		if ( ! function_exists( 'get_current_screen' ) ) {
 			return;
 		}
 
-		$vars = $user_search->query_vars;
-		if ( 'lastupdated' === $vars['orderby'] ) {
-			$user_search->query_from .= " INNER JOIN {$wpdb->usermeta} m1 ON {$wpdb->users}.ID=m1.user_id AND (m1.meta_key='profile_last_modified')";
-			$user_search->query_orderby = ' ORDER BY UPPER(m1.meta_value) '. $vars['order'];
+		$screen = get_current_screen();
+		if ( ! $screen || 'users' !== $screen->id ) {
+			return;
+		}
+
+		if ( 'lastupdated' === ( $user_search->query_vars['orderby'] ?? '' ) ) {
+			global $wpdb;
+
+			$order = esc_sql( strtoupper( $user_search->query_vars['order'] ?? 'ASC' ) );
+			if ( ! in_array( $order, [ 'ASC', 'DESC' ], true ) ) {
+				$order = 'ASC';
+			}
+
+			$user_search->query_from  .= " INNER JOIN {$wpdb->usermeta} AS lum ON ({$wpdb->users}.ID = lum.user_id AND lum.meta_key = 'profile_last_modified') ";
+			$user_search->query_orderby = " ORDER BY CAST(lum.meta_value AS UNSIGNED) {$order} ";
 		}
 	}
 
 	/**
-	 * Column title.
-	 *
-	 * @param string   $column  Column name
-	 * @return string  $column  Filtered column
+	 * Output inline CSS to fix column width.
 	 */
 	public function style() {
-		echo '<style type="text/css">.fixed th.column-last-updated { width:12%; }</style>'."\n";
+		echo '<style>.fixed th.column-last-updated{width:12%;}</style>' . PHP_EOL;
 	}
 }

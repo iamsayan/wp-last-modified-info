@@ -33,6 +33,8 @@ class Enqueue extends BaseController
 
 	/**
 	 * Load admin assets.
+     *
+     * @param string $hook The current admin page.
 	 */
 	public function assets( $hook ) {
 		global $wp_version;
@@ -114,6 +116,13 @@ class Enqueue extends BaseController
 
 	/**
 	 * Enqueue CSS & JS wrapper function.
+     *
+     * @param string         $type    The type of asset to load.
+     * @param string         $handle  The handle to use for the asset.
+     * @param string         $name    The name of the asset file.
+     * @param string         $version The version of the asset.
+     * @param array          $dep     The dependencies of the asset.
+     * @param bool           $end     Whether to enqueue the script in the footer.
 	 */
 	private function load( $type, $handle, $name, $version, $dep = [], $end = true ) {
 		if ( $type === 'css' ) {

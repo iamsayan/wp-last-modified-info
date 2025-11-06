@@ -16,12 +16,12 @@ use Wplmi\Helpers\HelperFunctions;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Metabox class.
+ * Meta box class.
  */
 class MetaBox
 {
 	use Hooker;
-    use HelperFunctions;
+	use HelperFunctions;
 
 	/**
 	 * Register functions.
@@ -33,50 +33,63 @@ class MetaBox
 	}
 
 	/**
-	 * Add Meta box.
+	 * Add meta box.
 	 *
-	 * @param string $post_type Post Type
-	 * @param object $post      WP Post
+	 * @param string  $post_type Post type.
+	 * @param WP_Post $post      Post object.
 	 */
 	public function meta_box( $post_type, $post ) {
+		// Early bail: feature disabled and user lacks capability.
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) && ! current_user_can( 'publish_posts' ) ) {
-		    return;
-		}
-
-		if ( in_array( $post->post_status, [ 'auto-draft', 'future' ] ) ) {
 			return;
 		}
 
+		// Early bail: unsupported post statuses.
+		if ( ! isset( $post->post_status ) || in_array( $post->post_status, [ 'auto-draft', 'future' ], true ) ) {
+			return;
+		}
+
+		// Early bail: invalid position setting.
 		$position = $this->get_data( 'lmt_show_last_modified_time_date_post', 'before_content' );
-		if ( ! in_array( $position, [ 'before_content', 'after_content', 'replace_original' ] ) ) {
+		if ( ! in_array( $position, [ 'before_content', 'after_content', 'replace_original' ], true ) ) {
 			return;
 		}
 
 		$post_types = $this->get_data( 'lmt_custom_post_types_list' );
+		// Ensure we have an array of strings.
+		if ( ! is_array( $post_types ) ) {
+			$post_types = array_filter( (array) $post_types );
+		}
+
 		if ( ! empty( $post_types ) ) {
-		    add_meta_box( 'wplmi_meta_box', __( 'Modified Info', 'wp-last-modified-info' ), [ $this, 'metabox' ], $post_types, 'side', 'default', [ '__back_compat_meta_box' => true ] );
+			add_meta_box(
+				'wplmi_meta_box',
+				__( 'Modified Info', 'wp-last-modified-info' ),
+				[ $this, 'metabox' ],
+				$post_types,
+				'side',
+				'default',
+				[ '__back_compat_meta_box' => true ]
+			);
 		}
 	}
 
 	/**
-	 * Generate column data.
+	 * Render the meta box content.
 	 *
-	 * @param string   $column   Column name
-	 * @param int      $post_id  Post ID
-	 *
-	 * @return string  $time
+	 * @param WP_Post $post The post object.
 	 */
 	public function metabox( $post ) {
-		// retrieve post meta
 		$disabled = $this->get_meta( $post->ID, '_lmt_disable' );
 
-		// buid nonce
-		$this->nonce( 'disabled' ); ?>
-
+		// Output nonce.
+		$this->nonce( 'disabled' );
+		?>
 		<div id="wplmi-status" class="meta-options">
-			<label for="wplmi_status" class="selectit" title="<?php esc_attr_e( 'You can disable auto insertation of last modified info on this post', 'wp-last-modified-info' ); ?>">
-				<input id="wplmi_status" type="checkbox" name="wplmi_disable_auto_insert" <?php if ( $disabled == 'yes' ) { echo 'checked'; } ?> /> <?php esc_html_e( 'Hide Modified Info on Frontend', 'wp-last-modified-info' ); ?>
-		    </label>
+			<label for="wplmi_status" class="selectit" title="<?php esc_attr_e( 'You can disable auto insertion of last modified info on this post', 'wp-last-modified-info' ); ?>">
+				<input id="wplmi_status" type="checkbox" name="wplmi_disable_auto_insert" value="1" <?php checked( $disabled, 'yes' ); ?> />
+				<?php esc_html_e( 'Hide Modified Info on Frontend', 'wp-last-modified-info' ); ?>
+			</label>
 		</div>
 		<?php
 	}
@@ -87,56 +100,65 @@ class MetaBox
 	 * @param int $post_id The post ID.
 	 */
 	public function save_metadata( $post_id ) {
-		// return if autosave
-	    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-	    	return;
+		// Autosave bail.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
 		}
 
-	    // Check the user's permissions.
-	    if ( ! current_user_can( 'edit_post', $post_id ) ) {
-	    	return;
-	    }
+		// Capability check.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
 
+		// Nonce verification.
 		if ( ! $this->verify( 'disabled' ) ) {
 			return;
 		}
 
-		// disableautoinsert string
-		if ( isset( $_POST['wplmi_disable_auto_insert'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$this->update_meta( $post_id, '_lmt_disable', 'yes' );
-		} else {
-			$this->update_meta( $post_id, '_lmt_disable', 'no' );
-		}
+		// Sanitize & save.
+		$hide = isset( $_POST['wplmi_disable_auto_insert'] ) ? 'yes' : 'no';
+		$this->update_meta( $post_id, '_lmt_disable', $hide );
 	}
 
 	/**
-	 * Auto check metabox checkbox on new post create.
+	 * Auto-check the meta box checkbox on new post creation.
 	 */
 	public function default_check() {
 		if ( $this->do_filter( 'default_checkbox_check', false ) ) {
-			echo "<script type='text/javascript'>jQuery(document).ready(function ($) { $('#wplmi_status').prop( 'checked', true ); });</script>"."\n";
+			printf(
+				"<script type='text/javascript'>
+					jQuery( function( $ ) {
+						$( '#wplmi_status' ).prop( 'checked', true );
+					} );
+				</script>%s",
+				PHP_EOL
+			);
 		}
 	}
 
 	/**
-	 * Store custom field meta box data.
+	 * Output a nonce field.
 	 *
-	 * @param int $post_id The post ID.
+	 * @param string $name    Nonce name.
+	 * @param bool   $referer Whether to include referer.
+	 * @param bool   $show    Whether to display or return.
 	 */
 	private function nonce( $name, $referer = true, $show = true ) {
-		\wp_nonce_field( 'wplmi_nonce_' . $name, 'wplmi_metabox_' . $name . '_nonce', $referer, $show );
+		wp_nonce_field( 'wplmi_nonce_' . $name, 'wplmi_metabox_' . $name . '_nonce', $referer, $show );
 	}
 
 	/**
-	 * Store custom field meta box data.
+	 * Verify a nonce.
 	 *
-	 * @param int $post_id The post ID.
+	 * @param string $name Nonce name.
+	 * @return bool
 	 */
 	private function verify( $name ) {
-		if ( ! isset( $_REQUEST[ 'wplmi_metabox_' . $name . '_nonce' ] ) || ! \wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ 'wplmi_metabox_'.  $name . '_nonce' ] ) ), 'wplmi_nonce_' . $name ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		$field = 'wplmi_metabox_' . $name . '_nonce';
+		if ( ! isset( $_REQUEST[ $field ] ) ) {
 			return false;
 		}
 
-		return true;
+		return (bool) wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ $field ] ) ), 'wplmi_nonce_' . $name );
 	}
 }

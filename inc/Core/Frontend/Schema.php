@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 class Schema extends BaseController
 {
 	use HelperFunctions;
-    use Hooker;
+	use Hooker;
 
 	/**
 	 * Register functions.
@@ -37,37 +37,55 @@ class Schema extends BaseController
 	 * Echo Json-ld Schema codes.
 	 */
 	public function schema_markup() {
-		global $post;
-
-		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
+		// Ensure we are on a singular post/page and have a valid post object.
+		if ( ! is_singular() ) {
 			return;
 		}
 
-		// get post infos
+		$post = get_post();
+		if ( ! $post instanceof \WP_Post ) {
+			return;
+		}
+
+		// Bail early if JSON-LD markup is not enabled.
+		if ( ! $this->is_equal( 'enable_jsonld_markup_cb', 'enable' ) ) {
+			return;
+		}
+
+		$post_types = (array) $this->get_data( 'lmt_enable_jsonld_markup_post_types', [ 'post' ] );
+		if ( empty( $post_types ) || ! in_array( get_post_type( $post->ID ), $post_types, true ) ) {
+			return;
+		}
+
+		// Prepare description.
 		$full_content = $post->post_content;
-		$excerpt = $post->post_excerpt;
+		$excerpt      = $post->post_excerpt;
 
-		// get post modfied author ID
-		$author_id = $this->get_meta( $post->ID, '_edit_last' );
-
-		// Strip shortcodes and tags
+		// Strip shortcodes and tags.
 		$full_content = preg_replace( '#\[[^\]]+\]#', '', $full_content );
 		$full_content = wp_strip_all_tags( $full_content );
 		$full_content = $this->do_filter( 'schema_content', $full_content, $post->ID );
 
-		$desc_word_count = $this->do_filter( 'schema_description_word_count', 60 );
-		$short_content = wp_trim_words( $full_content, $desc_word_count, '' );
-		$short_content = ( ! empty( $excerpt ) ) ? $excerpt : $short_content;
+		$desc_word_count = (int) $this->do_filter( 'schema_description_word_count', 60 );
+		$short_content   = wp_trim_words( $full_content, $desc_word_count, '' );
+		$short_content   = ( ! empty( $excerpt ) ) ? $excerpt : $short_content;
 
+		// Get modified author ID safely.
+		$author_id = (int) $this->get_meta( $post->ID, '_edit_last' );
+		if ( $author_id <= 0 ) {
+			$author_id = (int) $post->post_author;
+		}
+
+		// Build JSON-LD array.
 		$json = [
 			'@context'         => 'https://schema.org/',
 			'@type'            => 'CreativeWork',
-			'dateModified'     => esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false ) ),
+			'dateModified'     => esc_attr( get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post ) ),
 			'headline'         => esc_html( $post->post_title ),
 			'description'      => wptexturize( $this->do_filter( 'wplmi_schema_description', $short_content, $post->ID ) ),
 			'mainEntityOfPage' => [
 				'@type' => 'WebPage',
-				'@id'   => get_permalink( $post->ID ),
+				'@id'   => esc_url( get_permalink( $post ) ),
 			],
 			'author'           => [
 				'@type'       => 'Person',
@@ -77,36 +95,30 @@ class Schema extends BaseController
 			],
 		];
 
+		// Adjust schema for pages.
 		if ( is_page() ) {
-			// change schema type for pages
 			$json['@type'] = 'WebPage';
 			unset( $json['mainEntityOfPage'] );
 		}
 
+		// Allow filtering of final schema.
 		$json = $this->do_filter( 'schema_items', $json, $post->ID );
 
-		$output = '';
+		// Output if valid.
 		if ( ! empty( $json ) ) {
-			$output .= "\n\n";
-			$output .= '<!-- Last Modified Schema is inserted by the WP Last Modified Info plugin v' . $this->version . ' - https://wordpress.org/plugins/wp-last-modified-info/ -->';
-			$output .= "\n";
-			$output .= '<script type="application/ld+json">' . wp_json_encode( $json ) . '</script>';
-			$output .= "\n\n";
-		}
-
-		$post_types = $this->get_data( 'lmt_enable_jsonld_markup_post_types', [ 'post' ] );
-		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'enable' ) && ! empty( $post_types ) ) {
-			if ( in_array( get_post_type( $post->ID ), $post_types ) ) {
-				echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
+			echo "\n\n";
+			echo '<!-- Last Modified Schema is inserted by the WP Last Modified Info plugin v' . esc_html( $this->version ) . ' - https://wordpress.org/plugins/wp-last-modified-info/ -->';
+			echo "\n";
+			echo '<script type="application/ld+json">' . wp_json_encode( $json ) . '</script>';
+			echo "\n\n";
 		}
 	}
 
 	/**
 	 * Hooks the language attributes to add Extended schema compatibility.
 	 *
-	 * @param string  $input   Original Content
-	 * @return string $output  Filtered Content
+	 * @param string $input Original Content.
+	 * @return string Filtered Content.
 	 */
 	public function schema_attribute( $input ) {
 		if ( ! $this->is_enabled( 'enable_schema_support_cb' ) || ! $this->is_equal( 'enable_jsonld_markup_cb', 'inline' ) ) {
@@ -114,7 +126,7 @@ class Schema extends BaseController
 		}
 
 		$output = trim( $input );
-		$attrs = [
+		$attrs  = [
 			[
 				'attr'  => 'itemscope itemtype',
 				'value' => 'https://schema.org/WebPage',
@@ -123,7 +135,7 @@ class Schema extends BaseController
 
 		foreach ( $attrs as $info ) {
 			if ( strpos( $input, $info['attr'] ) === false ) {
-				$output .= ' ' . $info['attr'] . '="' . $info['value'] . '"';
+				$output .= ' ' . $info['attr'] . '="' . esc_attr( $info['value'] ) . '"';
 			}
 		}
 
@@ -131,7 +143,7 @@ class Schema extends BaseController
 	}
 
 	/**
-	 * Runs ob_srart().
+	 * Runs output buffering for replacement.
 	 */
 	public function run_replace() {
 		if ( ! is_admin() ) {
@@ -140,16 +152,19 @@ class Schema extends BaseController
 	}
 
 	/**
-	 * Replace the strings.
+	 * Replace the strings for compatibility.
 	 *
-	 * @param string  $html  Original Content
-	 *
-	 * @return string $html  Filtered Content
+	 * @param string $html Original Content.
+	 * @return string Filtered Content.
 	 */
 	public function replace( $html ) {
-		global $post;
+		// Ensure we are on a singular post/page and have a valid post object.
+		if ( ! is_singular() ) {
+			return $html;
+		}
 
-		if ( ! $post instanceof \WP_Post || ! is_singular() ) {
+		$post = get_post();
+		if ( ! $post instanceof \WP_Post ) {
 			return $html;
 		}
 
@@ -165,12 +180,31 @@ class Schema extends BaseController
 		}
 
 		if ( $this->is_equal( 'enable_jsonld_markup_cb', 'comp_mode' ) ) {
-		    // All in One SEO Pack Meta Compatibility
-		    $html = str_replace( date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_date_gmt ) ), date( 'Y-m-d\TH:i:s\Z', mysql2date( 'U', $post->post_modified_gmt ) ), $html );
-		    // Yoast SEO Compatibility
-		    $html = str_replace( get_post_time( 'Y-m-d\TH:i:sP', true, $post ), get_post_modified_time( 'Y-m-d\TH:i:sP', true, $post ), $html );
-		    // Rank Math, All in One SEO Pack SEO & Newspaper theme Compatibility
-		    $html = str_replace( $this->do_filter( 'schema_datetime_fotmat', [ get_post_time( 'Y-m-d\TH:i:sP', false, $post ), date( DATE_W3C, get_post_time( 'U' ) ), mysql2date( DATE_W3C, $post->post_modified_gmt, false ) ] ), get_post_modified_time( 'Y-m-d\TH:i:sP', false ), $html );
+			// All in One SEO Pack Meta Compatibility.
+			$published_gmt = mysql2date( 'U', $post->post_date_gmt, false );
+			$modified_gmt  = mysql2date( 'U', $post->post_modified_gmt, false );
+			if ( $published_gmt && $modified_gmt ) {
+				$html = str_replace( gmdate( 'Y-m-d\TH:i:s\Z', $published_gmt ), gmdate( 'Y-m-d\TH:i:s\Z', $modified_gmt ), $html );
+			}
+
+			// Yoast SEO Compatibility.
+			$published_time = get_post_time( 'Y-m-d\TH:i:sP', true, $post );
+			$modified_time  = get_post_modified_time( 'Y-m-d\TH:i:sP', true, $post );
+			if ( $published_time && $modified_time ) {
+				$html = str_replace( $published_time, $modified_time, $html );
+			}
+
+			// Rank Math, All in One SEO Pack SEO & Newspaper theme Compatibility.
+			$formats = (array) $this->do_filter( 'schema_datetime_fotmat', [
+				get_post_time( 'Y-m-d\TH:i:sP', false, $post ),
+				gmdate( DATE_W3C, get_post_time( 'U', false, $post ) ),
+				mysql2date( DATE_W3C, $post->post_modified_gmt, false ),
+			] );
+			foreach ( $formats as $format ) {
+				if ( $format ) {
+					$html = str_replace( $format, get_post_modified_time( 'Y-m-d\TH:i:sP', false, $post ), $html );
+				}
+			}
 		}
 
 		return $this->do_filter( 'html_ouput', $html );

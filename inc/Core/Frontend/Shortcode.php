@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 class Shortcode extends PostView
 {
 	/**
-	 * Register functions.
+	 * Register shortcodes.
 	 */
 	public function register() {
 		add_shortcode( 'lmt-post-modified-info', [ $this, 'render' ] );
@@ -30,28 +30,26 @@ class Shortcode extends PostView
 	}
 
 	/**
-     * Callback to register shortcodes.
+	 * Renders the shortcode output for post and page modified info.
      *
-     * @param array $atts Shortcode attributes.
-	 * 
-     * @return string     Shortcode output.
-     */
+	 * @param array $atts Shortcode attributes.
+	 * @return string Shortcode output.
+	 */
 	public function render( $atts ) {
-		global $post;
-
+		$post = get_post();
 		if ( ! $post instanceof \WP_Post ) {
-			return;
+			return '';
 		}
-		
+
 		if ( ! $this->is_enabled( 'enable_last_modified_cb' ) ) {
-			return;
+			return '';
 		}
 
 		$author_id = $this->get_meta( $post->ID, '_edit_last' );
 		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
-	
+
 		$atts = shortcode_atts( [
 			'id'           => $post->ID,
 			'template'     => $this->get_data( 'lmt_last_modified_info_template' ),
@@ -61,91 +59,82 @@ class Shortcode extends PostView
 			'author_id'    => (int) $author_id,
 			'hide_archive' => '',
 			'filter_ids'   => '',
-			'gap'          => $this->get_data( 'lmt_gap_on_post', 0 ),
+			'gap'          => (int) $this->get_data( 'lmt_gap_on_post', 0 ),
 		], $atts, 'lmt-post-modified-info' );
 
-		$get_post = get_post( absint( $atts['id'] ) );
-		if ( ! $get_post ) {
-			return;
+		$_post = get_post( absint( $atts['id'] ) );
+		if ( ! $_post ) {
+			return '';
 		}
 
-		if ( ! empty( $atts['hide_archive'] ) ) {
-			$archives = explode( ',', $atts['hide_archive'] );
-			if ( ! empty( $archives ) ) {
-				foreach ( $archives as $archive ) {
-					if ( is_callable( $archive ) ) {
-						if ( $archive() ) {
-							return;
-						}
-					}
+		if ( $atts['hide_archive'] !== '' ) {
+			foreach ( array_map( 'trim', explode( ',', $atts['hide_archive'] ) ) as $callback ) {
+				if ( is_callable( $callback ) && $callback() ) {
+					return '';
 				}
 			}
 		}
 
-		if ( ! empty( $atts['filter_ids'] ) ) {
-			if ( is_singular( explode( ',', $atts['filter_ids'] ) ) ) {
-				return;
-			}
-		}
-		
-		if ( empty( $atts['template'] ) ) {
-			return;
+		if ( $atts['filter_ids'] !== '' && is_singular( array_map( 'trim', explode( ',', $atts['filter_ids'] ) ) ) ) {
+			return '';
 		}
 
-		$published_timestamp = get_post_time( 'U', false, $get_post );
-		$modified_timestamp = get_post_modified_time( 'U', false, $get_post );
-		if ( ( $modified_timestamp - $published_timestamp ) < $atts['gap'] ) {
-			return;
+		$template = $atts['template'];
+		if ( $template === '' ) {
+			return '';
 		}
 
-		$date_type = $this->do_filter( 'post_datetime_type', $atts['date_type'], $get_post->ID );
-
-		$timestamp = human_time_diff( $modified_timestamp, current_time( 'U' ) );
-		if ( $date_type == 'default' ) {
-			$timestamp = $this->get_modified_date( $atts['date_format'], $get_post );
+		$published = (int) get_post_time( 'U', false, $_post );
+		$modified  = (int) get_post_modified_time( 'U', false, $_post );
+		if ( ( $modified - $published ) < $atts['gap'] ) {
+			return '';
 		}
-		$timestamp = $this->do_filter( 'post_datetime_format', $timestamp, $get_post->ID );
 
-		$template = $this->generate( $atts['template'], $get_post->ID, $timestamp, $atts['author_id'] );
+		$date_type = $this->do_filter( 'post_datetime_type', $atts['date_type'], $_post->ID );
 
-    	return $this->wrapper( $template, $get_post->ID, true, false, 'sc' );
+		$timestamp = ( $date_type === 'default' )
+			? $this->get_modified_date( $atts['date_format'], $_post )
+			: human_time_diff( $modified, current_time( 'U' ) );
+		$timestamp   = $this->do_filter( 'post_datetime_format', $timestamp, $_post->ID );
+
+		$output = $this->generate( $template, $_post->ID, $timestamp, $atts['author_id'] );
+
+		return $this->wrapper( $output, $_post->ID, true, false, 'sc' );
 	}
 
 	/**
-     * Callback to register template tags shortcodes.
-	 * 
+	 * Callback to register template tags shortcodes.
+	 *
 	 * @since v1.7.1
-     *
-     * @param array $atts Shortcode attributes.
-	 * 
-     * @return string     Shortcode output.
-     */
+	 * @param array $atts Shortcode attributes.
+	 * @return string Shortcode output.
+	 */
 	public function render_template_tags( $atts ) {
 		$atts = shortcode_atts( [
 			'escape'    => false,
 			'only_date' => false,
 		], $atts, 'lmt-template-tags' );
-		
-		return get_the_last_modified_info( $atts['escape'], $atts['only_date'] );
+
+		return (string) get_the_last_modified_info( $atts['escape'], $atts['only_date'] );
 	}
 
 	/**
-     * Callback to register shortcodes.
+	 * Renders the shortcode output for global site modified info.
      *
-     * @param array $atts Shortcode attributes.
-	 * 
-     * @return string     Shortcode output.
-     */
+	 * @param array $atts Shortcode attributes.
+	 * @return string Shortcode output.
+	 */
 	public function render_global( $atts ) {
 		$option = get_option( 'wplmi_site_global_update_info' );
-		if ( $option === false ) {
-			return;
+		if ( ! is_numeric( $option ) ) {
+			return '';
 		}
 
 		$atts = shortcode_atts( [
 			'format' => get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ),
 		], $atts, 'lmt-site-modified-info' );
-		
-		return date_i18n( $atts['format'], $option );
+
+		$format = sanitize_text_field( $atts['format'] );
+		return $format === '' ? '' : date_i18n( $format, (int) $option );
 	}
 }

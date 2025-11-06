@@ -68,6 +68,9 @@ class SettingsApi
 
 	/**
 	 * Register menu pages.
+     *
+     * @param array $pages The pages to register.
+     * @return self
 	 */
 	public function addPages( array $pages ) {
 		$this->admin_pages = $pages;
@@ -77,6 +80,9 @@ class SettingsApi
 
 	/**
 	 * Register sub menu pages.
+     *
+     * @param string|null $title The title of the sub menu page.
+     * @return self
 	 */
 	public function withSubPage( $title = null ) {
 		if ( empty( $this->admin_pages ) ) {
@@ -103,6 +109,9 @@ class SettingsApi
 
 	/**
 	 * Locate sub menu pages.
+     *
+     * @param array $pages The pages to register.
+     * @return self
 	 */
 	public function addSubPages( array $pages ) {
 		$this->admin_subpages = array_merge( $this->admin_subpages, $pages );
@@ -125,6 +134,9 @@ class SettingsApi
 
 	/**
 	 * Register settings.
+     *
+     * @param array $settings The settings to register.
+     * @return self
 	 */
 	public function setSettings( array $settings ) {
 		$this->settings = $settings;
@@ -134,6 +146,9 @@ class SettingsApi
 
 	/**
 	 * Register sections.
+     *
+     * @param array $sections The sections to register.
+     * @return self
 	 */
 	public function setSections( array $sections ) {
 		$this->sections = $sections;
@@ -143,6 +158,9 @@ class SettingsApi
 
 	/**
 	 * Register fields.
+     *
+     * @param array $fields The fields to register.
+     * @return self
 	 */
 	public function setFields( array $fields ) {
 		$this->fields = $fields;

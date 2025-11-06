@@ -16,11 +16,11 @@
 	"author": "Sayan Datta",
 	"license": "ISC",
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0",
+		"@wordpress/scripts": "^30.27.0",
 		"npm-run-all": "^4.1.5"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^10.22.0",
+		"@wordpress/icons": "^10.32.0",
 		"date-fns": "^4.1.0"
 	}
 }

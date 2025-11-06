@@ -44,8 +44,10 @@ class RestApi
 	}
 
 	/**
-	 * Rest Api outpur callback
+	 * Rest Api output callback
 	 *
+     * @since 1.7.0
+     *
 	 * @param object  $rest_object WP Post Object
 	 * @param string  $field_name  Field Name
 	 * @param string  $request     Request

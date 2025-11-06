@@ -54,9 +54,7 @@ class BlockEditor extends BaseController
 		}
 
 		if ( ! empty( $args['show_in_rest'] ) && ! post_type_supports( $post_type, 'custom-fields' ) ) {
-			if ( ! isset( $args['supports'] ) ) {
-				$args['supports'] = [];
-			}
+			$args['supports'] = (array) ( $args['supports'] ?? [] );
 			$args['supports'][] = 'custom-fields';
 		}
 
@@ -67,24 +65,10 @@ class BlockEditor extends BaseController
 	 * Register meta fields.
 	 */
 	public function register_meta() {
-		register_meta(
-			'post',
-			'_lmt_disableupdate',
-			[
-				'show_in_rest'      => true,
-				'type'              => 'string',
-				'single'            => true,
-				'sanitize_callback' => 'sanitize_text_field',
-				'auth_callback'     => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			]
-		);
+		$meta_keys = [ '_lmt_disableupdate', '_lmt_disable' ];
 
-		register_meta(
-			'post',
-			'_lmt_disable',
-			[
+		foreach ( $meta_keys as $key ) {
+			register_meta( 'post', $key, [
 				'show_in_rest'      => true,
 				'type'              => 'string',
 				'single'            => true,
@@ -92,16 +76,15 @@ class BlockEditor extends BaseController
 				'auth_callback'     => function () {
 					return current_user_can( 'edit_posts' );
 				},
-			]
-		);
+			] );
+		}
 	}
 
 	/**
 	 * Register rest api.
 	 */
 	public function init_rest_api() {
-		$post_types = get_post_types( [ 'show_in_rest' => true ] );
-		foreach ( $post_types as $post_type ) {
+		foreach ( get_post_types( [ 'show_in_rest' => true ] ) as $post_type ) {
 			$this->filter( "rest_pre_insert_$post_type", 'modified_params', 99, 2 );
 		}
 	}
@@ -141,7 +124,7 @@ class BlockEditor extends BaseController
 			return; // load assets only in post edit screen.
 		}
 
-		$asset_file = include( $this->plugin_path . 'assets/block-editor/build/index.asset.php' );
+		$asset_file = include $this->plugin_path . 'assets/block-editor/build/index.asset.php';
 
 		wp_enqueue_style( 'wplmi-block-editor', $this->plugin_url . 'assets/block-editor/build/style-index.css', [], $asset_file['version'] );
 		wp_enqueue_script( 'wplmi-block-editor', $this->plugin_url . 'assets/block-editor/build/index.js', $asset_file['dependencies'], $asset_file['version'], true );
@@ -166,6 +149,9 @@ class BlockEditor extends BaseController
 
 	/**
 	 * Conditional hooking for Rank Math Plugin integration.
+     *
+     * @param bool $enabled Whether Rank Math's modified date is enabled.
+     * @return bool
 	 */
 	public function filter_rank_math( $enabled ) {
 		return $this->do_filter( 'rank_math_lock_modified_date', false, $enabled );
@@ -173,11 +159,12 @@ class BlockEditor extends BaseController
 
 	/**
 	 * AIOSEO Plugin integration.
+     *
+     * @param object $post The post object.
+     * @return object
 	 */
 	public function filter_post( $post ) {
-		$stop_update = $this->get_meta( $post->post_id, '_lmt_disableupdate' );
-
-		$post->limit_modified_date = ( 'yes' === $stop_update  ) ? 1 : 0;
+		$post->limit_modified_date = ( 'yes' === $this->get_meta( $post->post_id, '_lmt_disableupdate' ) ) ? 1 : 0;
 
 		return $post;
 	}

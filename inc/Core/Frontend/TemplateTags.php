@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 class TemplateTags extends PostView
 {
 	/**
-	 * array $params
+	 * @var array<string,mixed>
 	 */
 	private $params;
 
@@ -29,59 +29,70 @@ class TemplateTags extends PostView
 	 *
 	 * @see get_the_last_modified_info()
 	 *
-	 * @param array<string,mixed>  $args  The arguments.
+	 * @param array<string,mixed> $args The arguments.
 	 */
 	public function __construct( array $args ) {
-		$this->params = $args;
+		$this->params = array_merge(
+			[
+				'escape'    => false,
+				'only_date' => false,
+			],
+			$args
+		);
 	}
 
 	/**
 	 * Template tag output.
 	 *
-	 * @return string $html
+	 * @return string
 	 */
 	public function output() {
-		global $post;
+		$post = get_post();
 
 		if ( ! $post instanceof \WP_Post ) {
-			return;
+			return '';
 		}
 
-		$template = $this->get_data( 'lmt_last_modified_info_template_tt' );
-		if ( empty( $template ) ) {
-			return;
+		$template = (string) $this->get_data( 'lmt_last_modified_info_template_tt' );
+		if ( $template === '' ) {
+			return '';
 		}
 
-		$author_id = $this->get_meta( $post->ID, '_edit_last' );
+		$author_id = (int) $this->get_meta( $post->ID, '_edit_last' );
 		if ( $this->is_equal( 'show_author_tt_cb', 'custom', 'default' ) ) {
-			$author_id = $this->get_data( 'lmt_show_author_list_tt' );
+			$custom_author = $this->get_data( 'lmt_show_author_list_tt' );
+			if ( is_numeric( $custom_author ) ) {
+				$author_id = (int) $custom_author;
+			}
 		}
 
-		// Get Format
-		$date_type = $this->get_data( 'lmt_last_modified_format_tt', 'default' );
+		// Determine date type and format.
+		$date_type = (string) $this->get_data( 'lmt_last_modified_format_tt', 'default' );
 		$date_type = $this->do_filter( 'template_tags_datetime_type', $date_type, $post->ID );
 
-		// Generate Timestamp
-		$timestamp = human_time_diff( get_post_modified_time( 'U' ), current_time( 'U' ) );
-		if ( $date_type == 'default' ) {
-			$format = $this->get_data( 'lmt_tt_set_format_box', get_option( 'date_format' ) );
+		// Build timestamp.
+		if ( $date_type === 'default' ) {
+			$format = (string) $this->get_data( 'lmt_tt_set_format_box', get_option( 'date_format' ) );
 			$format = $this->do_filter( 'template_tags_datetime_format', $format, $post->ID );
 			$timestamp = $this->get_modified_date( $format );
+		} else {
+			$timestamp = human_time_diff( get_post_modified_time( 'U', true, $post ), current_time( 'U' ) );
 		}
+
 		$final_timestamp = $timestamp;
-		$timestamp = $this->do_filter( 'template_tags_formatted_date', $timestamp, $post->ID );
+		$timestamp       = $this->do_filter( 'template_tags_formatted_date', $timestamp, $post->ID );
 
-		// Prepare template
-		$template = $this->generate( $template, $post->ID, $timestamp, $author_id );
+		// Generate output.
+		$output = $this->generate( $template, $post->ID, $timestamp, $author_id );
 
-		if ( $this->params['escape'] ) {
-			$template = wp_strip_all_tags( $template );
+		if ( ! empty( $this->params['escape'] ) ) {
+			$output = wp_strip_all_tags( $output );
 		}
 
-		if ( $this->params['only_date'] ) {
-			$template = $final_timestamp;
+		if ( ! empty( $this->params['only_date'] ) ) {
+			$output = $final_timestamp;
 		}
 
-		return $template;
+		return (string) $output;
 	}
 }

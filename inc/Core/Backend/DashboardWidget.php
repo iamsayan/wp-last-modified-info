@@ -149,7 +149,7 @@ class DashboardWidget
 	}
 
 	/**
-	 * Locad custom css for dashboard widget.
+	 * Load custom css for dashboard widget.
 	 */
 	public function widget_css() { ?>
 		<style type="text/css">

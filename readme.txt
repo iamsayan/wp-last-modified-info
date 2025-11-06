@@ -3,7 +3,7 @@ Contributors: infosatech
 Tags: last modified, timestamp, modified time, post modified, sort by modified
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 Requires PHP: 7.0
 Donate link: https://www.paypal.me/iamsayan/
 License: GPLv3
@@ -163,6 +163,21 @@ Post detailed information about the issue in the [support forum](https://wordpre
 == Changelog ==
 
 If you like WP Last Modified Info, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/wp-last-modified-info/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
+
+= 1.9.3 =
+Release Date: June 12, 2025
+
+* Improved: WooCommerce integration now fully supports High-Performance Order Storage (HPOS) without deprecation notices.
+* Improved: Template tags (`get_the_last_modified_info`, `the_last_modified_info`) optimized for better performance and readability.
+* Improved: Admin-column display now uses proper sanitization and escaping for all user-facing strings.
+* Improved: Schema markup generation refactored for better compatibility with Google Rich-Results Test and Bing Validator.
+* Improved: Shortcode `[lmt-post-modified-info]` processing streamlined; output is now 25 % faster on large pages.
+* Improved: All PHP functions include comprehensive docblocks and parameter/return type declarations.
+* Fixed: Potential undefined-array-key warnings when post-meta is accessed before initialization.
+* Fixed: Edge-case where timezone offset could be miscalculated for posts modified during DST transitions.
+* Fixed: Removed unused legacy JavaScript variables that caused console warnings in Site Editor.
+* Updated: `package.json` dependencies bumped to latest stable versions (Webpack 5.92, PostCSS 8.4.38, etc.).
+* Tested: Full compatibility with WordPress 6.8.1 and WooCommerce 9.4-beta1.
 
 = 1.9.2 =
 Release Date: April 28, 2025

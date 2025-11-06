@@ -117,52 +117,40 @@ class PluginsData extends WP_Background_Process
 	/**
 	 * API Response data
 	 *
-	 * @param array $data
+	 * @param object $data
 	 *
 	 * @return bool
 	 */
 	private function save_data( $data ) {
-		$saved_data = get_option( 'wplmi_plugin_api_data' );
-		$new_data = ( $saved_data && is_array( $saved_data ) ) ? $saved_data : [];
-
+		$saved_data = get_option( 'wplmi_plugin_api_data', [] );
 		if ( empty( $data->slug ) ) {
-		    return;
+		    return false;
 		}
 
-		$new_data[ $data->slug ] = [
+		$plugin = [
 			'slug'       => $data->slug,
 			'svn_exists' => $this->svn_exists( $data->slug ) ? 'yes' : 'no',
 		];
 
-		if ( ! empty( $data->version ) ) {
-		    $new_data[ $data->slug ]['version'] = $data->version;
+		$map = [
+			'version'        => 'version',
+			'requires'       => 'requires',
+			'tested'         => 'tested',
+			'last_updated'   => 'last_updated',
+			'rating'         => 'rating',
+			'num_ratings'    => 'num_ratings',
+			'active_installs'=> 'active_installs',
+		];
+
+		foreach ( $map as $key => $prop ) {
+			if ( ! empty( $data->$prop ) ) {
+				$plugin[ $key ] = $data->$prop;
+			}
 		}
 
-		if ( ! empty( $data->requires ) ) {
-		    $new_data[ $data->slug ]['requires'] = $data->requires;
-		}
+		$saved_data[ $data->slug ] = $plugin;
 
-		if ( ! empty( $data->tested ) ) {
-		    $new_data[ $data->slug ]['tested'] = $data->tested;
-		}
-
-		if ( ! empty( $data->last_updated ) ) {
-		    $new_data[ $data->slug ]['last_updated'] = $data->last_updated;
-		}
-
-		if ( ! empty( $data->rating ) ) {
-		    $new_data[ $data->slug ]['rating'] = $data->rating;
-		}
-
-		if ( ! empty( $data->num_ratings ) ) {
-		    $new_data[ $data->slug ]['num_ratings'] = $data->num_ratings;
-		}
-
-		if ( ! empty( $data->active_installs ) ) {
-		    $new_data[ $data->slug ]['active_installs'] = $data->active_installs;
-		}
-
-		return update_option( 'wplmi_plugin_api_data', array_filter( $new_data ), false );
+		return update_option( 'wplmi_plugin_api_data', array_filter( $saved_data ), false );
 	}
 
 	/**
@@ -178,56 +166,58 @@ class PluginsData extends WP_Background_Process
 		$data = get_option( 'wplmi_plugin_api_data' );
 		$new_file = $this->get_path( $file );
 
-        if ( ! $data || ! isset( $data[ $new_file ] ) ) {
+		if ( ! $data || ! isset( $data[ $new_file ] ) ) {
 			return $links;
 		}
 
-		if ( ! empty( $data[ $new_file ]['last_updated'] ) ) {
-			$date = get_date_from_gmt( $data[ $new_file ]['last_updated'], 'U' );
-			$current_date = current_time( 'timestamp', 0 );
-            $diff = strtotime( '-1 year', $current_date );
-			if ( $diff <= $date ) {
-				/* translators: %s: updated time */
-			    $links[] = sprintf( esc_html__( 'Updated: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">' . esc_html( date_i18n( get_option( 'date_format' ), $date ) ) . '</span>' );
-		    } else {
-				/* translators: %s: updated time */
-				$links[] = sprintf( esc_html__( 'Updated: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;color: #c30808;">' . esc_html( date_i18n( get_option( 'date_format' ), $date ) ) . '</span>' );
-		    }
-	    }
+		$plugin = $data[ $new_file ];
 
-		if ( ! empty( $data[ $new_file ]['rating'] ) ) {
-			/* translators: %s: rating */
-			$links[] = sprintf( esc_html__( 'Ratings: %s', 'wp-last-modified-info' ), esc_html( ( round( (int) $data[ $new_file ]['rating'], 0 ) / 20 ) . '/5' ) );
+		// Build links array once
+		$extra = [];
+
+		if ( ! empty( $plugin['last_updated'] ) ) {
+			$date = get_date_from_gmt( $plugin['last_updated'], 'U' );
+			$diff = strtotime( '-1 year', current_time( 'timestamp', 0 ) );
+			$fmt  = date_i18n( get_option( 'date_format' ), $date );
+			$span = $diff <= $date
+				? '<span style="font-weight: 600;">%s</span>'
+				: '<span style="font-weight: 600;color: #c30808;">%s</span>';
+			$extra[] = sprintf( esc_html__( 'Updated: %s', 'wp-last-modified-info' ), sprintf( $span, esc_html( $fmt ) ) );
 		}
 
-		if ( ! empty( $data[ $new_file ]['num_ratings'] ) ) {
-			/* translators: %s: no. of reviews */
-			$links[] = sprintf( esc_html__( 'Reviews: %s', 'wp-last-modified-info' ), esc_html( $data[ $new_file ]['num_ratings'] ) );
+		if ( ! empty( $plugin['rating'] ) ) {
+			$extra[] = sprintf( esc_html__( 'Ratings: %s', 'wp-last-modified-info' ), esc_html( ( round( (int) $plugin['rating'] ) / 20 ) . '/5' ) );
 		}
 
-		if ( ! empty( $data[ $new_file ]['requires'] ) ) {
-			/* translators: %s: vertion number */
-			$links[] = sprintf( esc_html__( 'Requires at least: v%s', 'wp-last-modified-info' ), esc_html( $data[ $new_file ]['requires'] ) );
+		if ( ! empty( $plugin['num_ratings'] ) ) {
+			$extra[] = sprintf( esc_html__( 'Reviews: %s', 'wp-last-modified-info' ), esc_html( $plugin['num_ratings'] ) );
 		}
 
-		if ( ! empty( $data[ $new_file ]['tested'] ) ) {
-			if ( version_compare( $wp_version, $data[ $new_file ]['tested'], '<=' ) ) {
-				/* translators: %s: tested upto version */
-			    $links[] = sprintf( esc_html__( 'Tested upto: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;">v' . esc_html( $data[ $new_file ]['tested'] ) . '</span>' );
-			} else {
-				/* translators: %s: tested upto version */
-				$links[] = sprintf( esc_html__( 'Tested upto: %s', 'wp-last-modified-info' ), '<span style="font-weight: 600;color: #c30808;">v' . esc_html( $data[ $new_file ]['tested'] ) . '</span>' );
-			}
+		if ( ! empty( $plugin['requires'] ) ) {
+			$extra[] = sprintf( esc_html__( 'Requires at least: v%s', 'wp-last-modified-info' ), esc_html( $plugin['requires'] ) );
 		}
 
-		if ( ! empty( $data[ $new_file ]['svn_exists'] ) ) {
-			if ( $data[ $new_file ]['svn_exists'] == 'yes' ) {
-				/* translators: %s: plugin info */
-			    $links[] = sprintf( '%1$s %2$s', __( 'Status:', 'wp-last-modified-info' ), '<a href="https://wordpress.org/plugins/' . esc_attr( $data[ $new_file ]['slug'] ) . '/" target="_blank">' . esc_html__( 'Available', 'wp-last-modified-info' ) . '</a>' );
-			}
+		if ( ! empty( $plugin['tested'] ) ) {
+			$color = version_compare( $wp_version, $plugin['tested'], '<=' ) ? '' : 'color: #c30808;';
+			$extra[] = sprintf(
+				esc_html__( 'Tested upto: %s', 'wp-last-modified-info' ),
+				sprintf( '<span style="font-weight: 600;%s">v%s</span>', esc_attr( $color ), esc_html( $plugin['tested'] ) )
+			);
 		}
 
-		return $this->do_filter( 'plugin_links', $links );
+		if ( ! empty( $plugin['svn_exists'] ) && $plugin['svn_exists'] === 'yes' ) {
+			$extra[] = sprintf(
+				'%1$s %2$s',
+				__( 'Status:', 'wp-last-modified-info' ),
+				sprintf(
+					'<a href="https://wordpress.org/plugins/%s/" target="_blank">%s</a>',
+					esc_attr( $plugin['slug'] ),
+					esc_html__( 'Available', 'wp-last-modified-info' )
+				)
+			);
+		}
+
+		return $this->do_filter( 'plugin_links', array_merge( $links, $extra ) );
 	}
 
 	/**

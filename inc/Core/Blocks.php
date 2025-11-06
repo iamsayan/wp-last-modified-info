@@ -64,134 +64,141 @@ class Blocks extends BaseController
 					'render_callback' => [ $this, $params['callback'] ],
 				] );
 			}
-        }
+		}
 	}
 
 	/**
-	 * Callback method for the 'post-modified-date' block as defined for this block.
+	 * Callback method for the 'post-modified-date' block.
 	 *
 	 * @param array    $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
 	 *
-	 * @return string  Returns the post modified date.
+	 * @return string|null  Returns the post modified date markup or null if postId missing.
 	 */
 	public function post_modified( $attributes, $content, $block ) {
 		if ( ! isset( $block->context['postId'] ) ) {
-			return;
+			return '';
 		}
 
-		$post_id = $block->context['postId'];
-		$attributes = $this->normalize_attributes( $attributes );
-		$attributes = $this->do_filter( 'post_modified_block_attributes', $attributes, $post_id );
+		$post_id      = absint( $block->context['postId'] );
+		$attributes   = $this->normalize_attributes( $attributes );
+		$attributes   = $this->do_filter( 'post_modified_block_attributes', $attributes, $post_id );
 
 		$classes = [ 'wp-block', 'wplmi-post-modified' ];
-		if ( isset( $attributes['className'] ) ) {
+		if ( ! empty( $attributes['className'] ) ) {
 			$classes[] = $attributes['className'];
 		}
 
-		$date_content = $this->get_modified_date( $attributes['format'], $post_id );
+		$date_content = $this->get_modified_date( $attributes['format'] ?? '', $post_id );
 
-		if ( isset( $attributes['textBefore'] ) ) {
+		if ( ! empty( $attributes['textBefore'] ) ) {
 			$date_content = '<span class="wplmi-site-modified-prefix">' . esc_html( $attributes['textBefore'] ) . '</span>' . $date_content;
 		}
 
-		if ( isset( $attributes['textAfter'] ) ) {
-			$date_content = $date_content . '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
+		if ( ! empty( $attributes['textAfter'] ) ) {
+			$date_content .= '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
 		}
 
-		$styles = $this->convert_styles( $attributes['styles'] );
+		$styles = $this->convert_styles( $attributes['styles'] ?? [] );
+
+		$tag = ( ! empty( $attributes['display'] ) && $attributes['display'] === 'block' ) ? 'div' : 'span';
 
 		return sprintf(
 			'<%1$s class="%2$s" style="%3$s">%4$s</%1$s>',
-			( $attributes['display'] == 'block' ) ? 'div' : 'span',
-			esc_attr( join( ' ', $classes ) ),
+			$tag,
+			esc_attr( implode( ' ', $classes ) ),
 			esc_attr( $styles ),
 			$date_content
 		);
 	}
 
 	/**
-	 * Callback method for the 'post-modified-date' block as defined for this block.
+	 * Callback method for the 'post-template-tag' block.
 	 *
 	 * @param array    $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
 	 *
-	 * @return string  Returns the post modified date.
+	 * @return string  Returns the last modified info.
 	 */
 	public function post_template_tag( $attributes, $content, $block ) {
-		return get_the_last_modified_info();
+		return (string) get_the_last_modified_info();
 	}
 
 	/**
-	 * Callback method for the 'site-modified-date' block as defined for this block.
+	 * Callback method for the 'site-modified-date' block.
 	 *
-	 * @param array $attributes
+	 * @param array $attributes Block attributes.
 	 *
-	 * @param array    $attributes Block attributes.
-	 *
-	 * @return string  Returns the site modified date.
+	 * @return string  Returns the site modified date markup.
 	 */
 	public function site_modified( $attributes ) {
 		$attributes = $this->normalize_attributes( $attributes );
 		$attributes = $this->do_filter( 'site_modified_block_attributes', $attributes );
 
 		$classes = [ 'wp-block', 'wplmi-site-modified' ];
-		if ( isset( $attributes['className'] ) ) {
+		if ( ! empty( $attributes['className'] ) ) {
 			$classes[] = $attributes['className'];
 		}
 
-		$shortcode = '[lmt-site-modified-info]';
-		if ( isset( $attributes['format'] ) ) {
-			$shortcode = '[lmt-site-modified-info format="' . $attributes['format'] . '"]';
-		}
+		$shortcode = sprintf(
+			'[lmt-site-modified-info%1$s]',
+			! empty( $attributes['format'] ) ? ' format="' . esc_attr( $attributes['format'] ) . '"' : ''
+		);
 		$content = do_shortcode( $shortcode );
 
-		if ( isset( $attributes['textBefore'] ) ) {
+		if ( ! empty( $attributes['textBefore'] ) ) {
 			$content = '<span class="wplmi-site-modified-prefix">' . esc_html( $attributes['textBefore'] ) . '</span>' . $content;
 		}
 
-		if ( isset( $attributes['textAfter'] ) ) {
-			$content = $content . '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
+		if ( ! empty( $attributes['textAfter'] ) ) {
+			$content .= '<span class="wplmi-site-modified-suffix">' . esc_html( $attributes['textAfter'] ) . '</span>';
 		}
 
-		$styles = $this->convert_styles( $attributes['styles'] );
+		$styles = $this->convert_styles( $attributes['styles'] ?? [] );
+
+		$tag = ( ! empty( $attributes['display'] ) && $attributes['display'] === 'block' ) ? 'div' : 'span';
 
 		return sprintf(
 			'<%1$s class="%2$s" style="%3$s">%4$s</%1$s>',
-			( $attributes['display'] == 'block' ) ? 'div' : 'span',
-			esc_attr( join( ' ', $classes ) ),
+			$tag,
+			esc_attr( implode( ' ', $classes ) ),
 			esc_attr( $styles ),
 			$content
 		);
 	}
 
 	/**
-	 * Convert array items to CSS.
+	 * Convert array items to CSS rules.
 	 *
 	 * @param array $args
 	 *
 	 * @return string
 	 */
 	private function convert_styles( $args ) {
-		$content = [];
-		foreach ( $args as $key => $value ) {
-			$content[] = $key . ': ' . $value;
+		if ( ! is_array( $args ) ) {
+			return '';
 		}
 
-		return join( ';', $content );
+		$rules = [];
+		foreach ( $args as $key => $value ) {
+			if ( is_string( $key ) && is_scalar( $value ) ) {
+				$rules[] = sanitize_key( $key ) . ': ' . esc_html( $value );
+			}
+		}
+
+		return implode( '; ', $rules );
 	}
 
 	/**
-	 * Block attributes names can be different than attributes for the shortcodes. This function
-	 * changes the attributes names to match the shortcodes functions.
+	 * Normalize block attributes to match shortcode expectations.
 	 *
-	 * Also, font size value is missing the 'px', it has only value when set in the block attribute.
+	 * Also appends 'px' to font-size when numeric.
 	 *
 	 * @param array $attributes
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private function normalize_attributes( $attributes ) {
 		$map = [
@@ -202,20 +209,19 @@ class Blocks extends BaseController
 			'textAlign'          => 'text-align',
 		];
 
+		$output = [];
 		foreach ( $attributes as $key => $value ) {
 			if ( isset( $map[ $key ] ) ) {
-				$new_key            = $map[ $key ];
-				$output[ $new_key ] = $value;
-				unset( $attributes[ $key ] );
+				$output[ $map[ $key ] ] = $value;
 			}
 		}
 
-		if ( ! empty( $output['font-size'] ) ) {
-			$output['font-size'] = $output['font-size'] . 'px';
+		if ( isset( $output['font-size'] ) && is_numeric( $output['font-size'] ) ) {
+			$output['font-size'] .= 'px';
 		}
 
-		$attributes['styles']  = $output;
-
-		return $attributes;
+		return [
+			'styles' => $output,
+		] + $attributes;
 	}
 }

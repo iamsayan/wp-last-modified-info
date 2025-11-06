@@ -151,6 +151,8 @@ class AdminNotice extends BaseController
 
 	/**
 	 * Calculate install time.
+     *
+     * @return int
 	 */
 	private function calculate_time() {
 		$installed_time = get_option( 'wplmi_plugin_installed_time' );

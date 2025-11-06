@@ -32,6 +32,9 @@ class MiscActions extends BaseController
 
 	/**
 	 * Register settings link.
+     *
+     * @param array $links The existing links.
+     * @return array
 	 */
 	public function settings_link( $links ) {
 		$wplmilinks = [
@@ -43,6 +46,10 @@ class MiscActions extends BaseController
 
 	/**
 	 * Register meta links.
+     *
+     * @param array  $links The existing links.
+     * @param string $file  The plugin file.
+     * @return array
 	 */
 	public function meta_links( $links, $file ) {
 		if ( $file === $this->plugin ) { // only for this plugin
