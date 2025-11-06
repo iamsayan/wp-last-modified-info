@@ -94,7 +94,7 @@ const PostModifiedField = () => {
 			d
 		);
 		return isRTL() ? `${ tz } ${ formatted }` : `${ formatted } ${ tz }`;
-	}, [ modifiedDate ] );
+	}, [ date, modifiedDate ] );
 
 	const shortLabel = useMemo( () => {
 		const d = getDate( modifiedDate );
@@ -117,8 +117,12 @@ const PostModifiedField = () => {
 			);
 		}
 
-		return fullLabel;
-	}, [ modifiedDate, fullLabel ] );
+		return dateI18n(
+            // translators: Use a non-breaking space between 'g:i' and 'a' if appropriate.
+            _x( 'F j, Y g:i\xa0a', 'post modified full date format', 'wp-last-modified-info' ),
+            date
+        );
+	}, [ date, modifiedDate, fullLabel ] );
 
 	// ------------------------------------------------------------------
 	// Month-preview logic
