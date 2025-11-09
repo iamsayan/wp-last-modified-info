@@ -3,7 +3,7 @@
  * Plugin Name: WP Last Modified Info
  * Plugin URI: https://wordpress.org/plugins/wp-last-modified-info/
  * Description: Ultimate Last Modified Plugin for WordPress with Gutenberg Block Integration. It is possible to use shortcodes to display last modified info anywhere on a WordPress site running 4.7 and beyond.
- * Version: 1.9.3
+ * Version: 1.9.4
  * Author: Sayan Datta
  * Author URI: https://www.sayandatta.co.in
  * License: GPLv3
@@ -46,7 +46,7 @@ final class WPLMI {
 	 *
 	 * @var string
 	 */
-	public $version = '1.9.3';
+	public $version = '1.9.4';
 
 	/**
 	 * Minimum version of WordPress required to run WPLMI.

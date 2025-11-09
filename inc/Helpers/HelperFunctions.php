@@ -214,4 +214,35 @@ trait HelperFunctions
 
 		return $post_type_object->public && $post_type_object->show_in_admin_bar;
 	}
+
+	/**
+	 * Allow only supported PHP date() tokens + safe separators.
+	 * Backslash-escaped literals are allowed (e.g. '\a\t').
+	 * 
+	 * @param string $format  Date format.
+	 * @param string $fallback  Fallback date format.
+	 * 
+	 * @return string
+	 */
+	protected function validate_date_format( string $format, string $fallback ): string {
+		// Remove any backslash-escaped character first (treat as literal).
+		$unescaped = preg_replace('/\\\\./', '', $format);
+
+		if ( $unescaped === null ) {
+			return $fallback;
+		}
+
+		$allowed_letters = 'dDjlNSwzWFmMnToYyaABgGhHisuvVeIOPTZcrLU'; 
+
+		// Allowed separators/literals
+		$allowed_seps    = ' \-_:.,/()@';
+
+		$pattern = '/^[' . preg_quote( $allowed_letters . $allowed_seps, '/' ) . ']+$/u';
+
+		if ( preg_match( $pattern, $unescaped ) ) {
+			return $format;
+		}
+
+		return $fallback;
+	}
 }

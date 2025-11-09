@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.4
+Release Date: November 9, 2025
+
+* Improved: Added validation in the datetime format for shortcodes.
+* Fixed: Error while publishing post.
+
 ## 1.9.3
 Release Date: November 6, 2025
 

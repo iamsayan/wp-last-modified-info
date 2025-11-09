@@ -50,22 +50,13 @@ const PostModifiedField = () => {
 		[]
 	);
 
-	const { editPost } = useDispatch( 'core/editor' );
-
-	// ------------------------------------------------------------------
-	// Early return
-	// ------------------------------------------------------------------
-	if ( [ 'auto-draft', 'future' ].includes( postStatus ) ) {
-		return null;
-	}
-
 	// ------------------------------------------------------------------
 	// Date helpers
 	// ------------------------------------------------------------------
-	const isTimezoneSameAsSiteTimezone = ( d ) => {
-		if ( ! ( d instanceof Date ) || isNaN( d ) ) return false;
+	const isTimezoneSameAsSiteTimezone = ( date ) => {
+		if ( ! ( date instanceof Date ) || isNaN( date ) ) return false;
 		const siteOffset = Number( timezone.offset ) || 0;
-		const dateOffset = -1 * ( d.getTimezoneOffset() / 60 );
+		const dateOffset = -1 * ( date.getTimezoneOffset() / 60 );
 		return siteOffset === dateOffset;
 	};
 
@@ -85,44 +76,52 @@ const PostModifiedField = () => {
 	// ------------------------------------------------------------------
 	// Labels
 	// ------------------------------------------------------------------
-	const fullLabel = useMemo( () => {
-		const d = getDate( modifiedDate );
-		if ( ! ( d instanceof Date ) || isNaN( d ) ) return '';
-		const tz = getTimezoneAbbreviation();
-		const formatted = dateI18n(
-			_x( 'F j, Y g:i\xa0a', 'post modified full date format', 'wp-last-modified-info' ),
-			d
-		);
-		return isRTL() ? `${ tz } ${ formatted }` : `${ formatted } ${ tz }`;
-	}, [ date, modifiedDate ] );
+	const getFullPostScheduleLabel = () => {
+        const date = getDate( modifiedDate );
 
-	const shortLabel = useMemo( () => {
-		const d = getDate( modifiedDate );
-		if ( ! ( d instanceof Date ) || isNaN( d ) ) return fullLabel;
-
-		const now = new Date();
-		if ( ! isTimezoneSameAsSiteTimezone( now ) ) return fullLabel;
-
-		if ( isSameDay( d, now ) ) {
-			return sprintf(
-				__( 'Today at %s', 'wp-last-modified-info' ),
-				dateI18n( _x( 'g:i\xa0a', 'post modified time format', 'wp-last-modified-info' ), d )
-			);
-		}
-
-		if ( d.getFullYear() === now.getFullYear() ) {
-			return dateI18n(
-				_x( 'F j g:i\xa0a', 'post modified date format without year', 'wp-last-modified-info' ),
-				d
-			);
-		}
-
-		return dateI18n(
+        const timezoneAbbreviation = getTimezoneAbbreviation();
+        const formattedDate = dateI18n(
             // translators: Use a non-breaking space between 'g:i' and 'a' if appropriate.
             _x( 'F j, Y g:i\xa0a', 'post modified full date format', 'wp-last-modified-info' ),
             date
         );
-	}, [ date, modifiedDate, fullLabel ] );
+        return isRTL()
+            ? `${ timezoneAbbreviation } ${ formattedDate }`
+            : `${ formattedDate } ${ timezoneAbbreviation }`;
+    }
+
+    const getPostScheduleLabel = () => {
+        const now = new Date();
+
+        if ( ! isTimezoneSameAsSiteTimezone( now ) ) {
+            return getFullPostScheduleLabel();
+        }
+
+        const date = getDate( modifiedDate );
+        
+        if ( isSameDay( date, now ) ) {
+            return sprintf(
+                // translators: %s: Time of day the post is modified.
+                __( 'Today at %s' ),
+                // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
+                dateI18n( _x( 'g:i\xa0a', 'post modified time format', 'wp-last-modified-info' ), date )
+            );
+        }       
+
+        if ( date.getFullYear() === now.getFullYear() ) {
+            return dateI18n(
+                // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
+                _x( 'F j g:i\xa0a', 'post modified date format without year', 'wp-last-modified-info' ),
+                date
+            );
+        }
+
+        return dateI18n(
+            // translators: Use a non-breaking space between 'g:i' and 'a' if appropriate.
+            _x( 'F j, Y g:i\xa0a', 'post modified full date format', 'wp-last-modified-info' ),
+            date
+        );
+    }
 
 	// ------------------------------------------------------------------
 	// Month-preview logic
@@ -168,6 +167,18 @@ const PostModifiedField = () => {
 	);
 
 	// ------------------------------------------------------------------
+	// Edit post
+	// ------------------------------------------------------------------
+	const { editPost } = useDispatch( 'core/editor' );
+	
+	// ------------------------------------------------------------------
+	// Early return
+	// ------------------------------------------------------------------
+	if ( [ 'auto-draft', 'future' ].includes( postStatus ) ) {
+		return null;
+	}
+
+	// ------------------------------------------------------------------
 	// UI flags
 	// ------------------------------------------------------------------
 	const frontHidden = postMeta?._lmt_disable === 'yes';
@@ -177,6 +188,9 @@ const PostModifiedField = () => {
 		Array.isArray( wplmiBlockEditor.postTypes ) &&
 		wplmiBlockEditor.postTypes.includes( postType ) &&
 		wplmiBlockEditor.isEnabled;
+
+	const shortLabel = getPostScheduleLabel();
+    const fullLabel = getFullPostScheduleLabel();
 
 	// ------------------------------------------------------------------
 	// Render

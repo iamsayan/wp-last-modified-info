@@ -49,11 +49,12 @@ class Shortcode extends PostView
 		if ( $this->is_equal( 'show_author_cb', 'custom', 'default' ) ) {
 			$author_id = $this->get_data( 'lmt_show_author_list' );
 		}
-
+		
+		$default_format = get_option( 'date_format' );
 		$atts = shortcode_atts( [
 			'id'           => $post->ID,
 			'template'     => $this->get_data( 'lmt_last_modified_info_template' ),
-			'date_format'  => $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ),
+			'date_format'  => $this->get_data( 'lmt_date_time_format', $default_format ),
 			'date_type'    => $this->get_data( 'lmt_last_modified_format_post', 'default' ),
 			'schema'       => $this->get_data( 'lmt_enable_jsonld_markup_cb', 'disable' ),
 			'author_id'    => (int) $author_id,
@@ -93,7 +94,7 @@ class Shortcode extends PostView
 		$date_type = $this->do_filter( 'post_datetime_type', $atts['date_type'], $_post->ID );
 
 		$timestamp = ( $date_type === 'default' )
-			? $this->get_modified_date( $atts['date_format'], $_post )
+			? $this->get_modified_date( $this->validate_date_format( $atts['date_format'], $default_format ), $_post )
 			: human_time_diff( $modified, current_time( 'U' ) );
 		$timestamp   = $this->do_filter( 'post_datetime_format', $timestamp, $_post->ID );
 
@@ -130,11 +131,13 @@ class Shortcode extends PostView
 			return '';
 		}
 
+		$default_format = get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' );
 		$atts = shortcode_atts( [
-			'format' => get_option( 'date_format' ) . ' @ ' . get_option( 'time_format' ),
+			'format' => $default_format,
 		], $atts, 'lmt-site-modified-info' );
 
-		$format = sanitize_text_field( $atts['format'] );
-		return $format === '' ? '' : date_i18n( $format, (int) $option );
+		$format = $this->validate_date_format( $atts['format'], $default_format );
+		
+		return date_i18n( $format, (int) $option );
 	}
 }
