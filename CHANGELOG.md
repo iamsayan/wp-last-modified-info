@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.5
+Release Date: November 11, 2025
+
+* Fixed: Arbitrary function input as callback in shortcode's hide_archive parameter. From now on, only WordPress's default functions are allowed.
+* Fixed: If the modified date is changed and “Lock modified date” is checked at the same time, the modified date was not being set properly and was reverting to the current date.
+
 ## 1.9.4
 Release Date: November 9, 2025
 

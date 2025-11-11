@@ -70,7 +70,7 @@ class Shortcode extends PostView
 
 		if ( $atts['hide_archive'] !== '' ) {
 			foreach ( array_map( 'trim', explode( ',', $atts['hide_archive'] ) ) as $callback ) {
-				if ( is_callable( $callback ) && $callback() ) {
+				if ( in_array( $callback, $this->functions, true ) && is_callable( $callback ) && $callback() ) {
 					return '';
 				}
 			}

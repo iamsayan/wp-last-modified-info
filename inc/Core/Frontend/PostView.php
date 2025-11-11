@@ -26,6 +26,24 @@ class PostView
 	use Hooker;
 
 	/**
+	 * List of conditional tags to check.
+	 *
+	 * @since 1.8.5
+	 * @var array
+	 */
+	protected $functions = [
+		'is_archive',
+		'is_tax',
+		'is_home',
+		'is_front_page',
+		'is_search',
+		'is_404',
+		'is_author',
+		'is_category',
+		'is_tag',
+	];
+
+	/**
 	 * Register hooks.
 	 */
 	public function register() {
@@ -74,7 +92,7 @@ class PostView
 		// Skip on archive-like pages when configured
 		$archives = (array) $this->get_data( 'lmt_archives' );
 		foreach ( $archives as $archive ) {
-			if ( is_callable( $archive ) && $archive() ) {
+			if ( in_array( $archive, $this->functions, true ) && is_callable( $archive ) && $archive() ) {
 				return $content;
 			}
 		}

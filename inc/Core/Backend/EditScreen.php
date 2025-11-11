@@ -303,108 +303,119 @@ class EditScreen
 	 * @return array  $data
 	 */
 	public function update_data( $data, $postarr ) {
-		// Early bail-outs
-		if ( empty( $postarr['ID'] ) || in_array( $postarr['post_status'], [ 'auto-draft', 'future' ], true ) ) {
+		if ( ! isset( $postarr['ID'] ) || in_array( $postarr['post_status'], [ 'auto-draft', 'future' ] ) ) {
 			return $data;
 		}
 
-		$post_id = (int) $postarr['ID'];
+		$current_post_id = (int) $postarr['ID'];
 
-		// Force-update last editor
 		if ( $this->do_filter( 'force_update_author_id', false ) ) {
-			$this->update_meta( $post_id, '_edit_last', get_current_user_id() );
+		    $this->update_meta( $current_post_id, '_edit_last', get_current_user_id() );
 		}
 
-		// 1. Bulk-edit always wins (one-shot flag)
-		$bulk_datetime = $this->get_meta( $post_id, 'wplmi_bulk_update_datetime' );
+		// Check bulk edit state
+		$bulk_datetime = $this->get_meta( $current_post_id, 'wplmi_bulk_update_datetime' );
 		if ( ! empty( $bulk_datetime ) ) {
 			$data['post_modified']     = $bulk_datetime;
 			$data['post_modified_gmt'] = get_gmt_from_date( $bulk_datetime );
-			$this->delete_meta( $post_id, 'wplmi_bulk_update_datetime' );
-			$this->update_meta( $post_id, '_wplmi_last_modified', $data['post_modified'] );
-			return $data;
+
+			$this->delete_meta( $current_post_id, 'wplmi_bulk_update_datetime' );
+
+		    return $data;
 		}
 
-		// 2. Determine disabled state (block editor can override)
-		$disabled = $this->get_meta( $post_id, '_lmt_disableupdate' );
-		if ( isset( $postarr['wplmi_lockmodifiedupdate'] ) ) {
-			$disabled = $postarr['wplmi_lockmodifiedupdate'] === 'yes' ? 'yes' : 'no';
-		}
+		// Get disable state.
+		$disabled = $this->get_meta( $current_post_id, '_lmt_disableupdate' );
 
-		// 3. Classic-editor flow
-		if ( isset( $postarr['wplmi_modified'], $postarr['wplmi_change'], $postarr['wplmi_disable'] ) ) {
-			$disabled = sanitize_text_field( $postarr['wplmi_disable'] ) ?: $disabled;
-			$this->update_meta( $post_id, '_lmt_disableupdate', $disabled );
+		/**
+		 * Handle post editor save
+		 */
+		if ( ! isset( $postarr['wplmi_modified'], $postarr['wplmi_change'], $postarr['wplmi_disable'] ) ) {
+			/**
+			 * Handle Block editor save
+			 */
+			if ( ! empty( $postarr['wplmi_lockmodifiedupdate'] ) ) {
+				$disabled = $postarr['wplmi_lockmodifiedupdate'];
+			}
 
-			if ( $disabled === 'yes' ) {
+			if ( 'yes' === $disabled ) {
 				$data['post_modified']     = $postarr['post_modified'];
 				$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
 			} else {
-				// Use custom datetime if change flag is set
-				if ( ( $postarr['wplmi_change'] ?? 'no' ) === 'yes' ) {
-					$newdate = $this->build_datetime( $postarr );
-					if ( $newdate && strtotime( $newdate ) >= get_post_time( 'U', false, $post_id ) ) {
-						$data['post_modified']     = $newdate;
-						$data['post_modified_gmt'] = get_gmt_from_date( $newdate );
-					} else {
-						$data['post_modified']     = current_time( 'mysql' );
-						$data['post_modified_gmt'] = current_time( 'mysql', 1 );
-					}
-				} else {
-					$data['post_modified']     = current_time( 'mysql' );
-					$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+				$data['post_modified']     = current_time( 'mysql' );
+				$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+			}
+
+			// Check the duplicate request.
+			$temp_date = $this->get_meta( $current_post_id, 'wplmi_temp_date' );
+			if ( ! empty( $postarr['wplmi_modified_rest'] ) ) {
+				$published_timestamp = get_post_time( 'U', false, $current_post_id );
+				$modified_timestamp  = strtotime( $postarr['wplmi_modified_rest'] );
+				$modified_date       = date( 'Y-m-d H:i:s', $modified_timestamp );
+
+				if ( $modified_timestamp >= $published_timestamp ) {
+					$data['post_modified']     = $modified_date;
+					$data['post_modified_gmt'] = get_gmt_from_date( $modified_date );
+
+					$this->update_meta( $current_post_id, 'wplmi_temp_date', $modified_date );
 				}
+			}
+			elseif ( ! empty( $temp_date ) ) {
+				$data['post_modified']     = $temp_date;
+				$data['post_modified_gmt'] = get_gmt_from_date( $temp_date );
+
+				$this->delete_meta( $current_post_id, 'wplmi_temp_date' );
 			}
 		} else {
-			// 4. Block-editor / REST flow
-			if ( $disabled === 'yes' ) {
-				$data['post_modified']     = $postarr['post_modified'];
-				$data['post_modified_gmt'] = $postarr['post_modified_gmt'];
+			/**
+			 * Handle Classic editor save
+			 */
+			$modified = ! empty( $postarr['wplmi_modified'] ) ? sanitize_text_field( $postarr['wplmi_modified'] ) : $postarr['post_modified'];
+			$change   = ! empty( $postarr['wplmi_change'] ) ? sanitize_text_field( $postarr['wplmi_change'] ) : 'no';
+			$disabled = ! empty( $postarr['wplmi_disable'] ) ? sanitize_text_field( $postarr['wplmi_disable'] ) : $disabled;
+
+			// Update meta
+			$this->update_meta( $current_post_id, '_lmt_disableupdate', $disabled );
+
+			// Check if disable is set to 'yes'
+			if ( 'yes' === $disabled ) {
+				$data['post_modified']     = $modified;
+				$data['post_modified_gmt'] = get_gmt_from_date( $modified );
 			} else {
-				// REST supplied date?
-				if ( ! empty( $postarr['wplmi_modified_rest'] ) ) {
-					$modified_timestamp = strtotime( $postarr['wplmi_modified_rest'] );
-					$published_timestamp = get_post_time( 'U', false, $post_id );
-					if ( $modified_timestamp >= $published_timestamp ) {
-						$modified_date = gmdate( 'Y-m-d H:i:s', $modified_timestamp );
-						$data['post_modified']     = $modified_date;
-						$data['post_modified_gmt'] = get_gmt_from_date( $modified_date );
-						$this->update_meta( $post_id, 'wplmi_temp_date', $modified_date );
-					} else {
-						$data['post_modified']     = current_time( 'mysql' );
-						$data['post_modified_gmt'] = current_time( 'mysql', 1 );
-					}
-				} elseif ( ( $temp_date = $this->get_meta( $post_id, 'wplmi_temp_date' ) ) !== '' ) {
-					// Use leftover temp date from previous REST save
-					$data['post_modified']     = $temp_date;
-					$data['post_modified_gmt'] = get_gmt_from_date( $temp_date );
-					$this->delete_meta( $post_id, 'wplmi_temp_date' );
-				} else {
-					// Default to now
-					$data['post_modified']     = current_time( 'mysql' );
-					$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+				$data['post_modified']     = current_time( 'mysql' );
+				$data['post_modified_gmt'] = current_time( 'mysql', 1 );
+			}
+
+			// check is current state is changed
+			if ( 'yes' === $change ) {
+				$newdate             = $this->build_datetime( $postarr );
+				$published_timestamp = get_post_time( 'U', false, $current_post_id );
+
+				if ( strtotime( $newdate ) >= $published_timestamp ) {
+					$data['post_modified']     = $newdate;
+					$data['post_modified_gmt'] = get_gmt_from_date( $newdate );
 				}
 			}
 		}
 
-		// Persist final modified value
-		$this->update_meta( $post_id, '_wplmi_last_modified', $data['post_modified'] );
+		// Update post meta for future reference
+		$this->update_meta( $current_post_id, '_wplmi_last_modified', $data['post_modified'] );
 
 		// WooCommerce compatibility: mirror the date to WC lookup tables
-		if ( function_exists( 'wc_get_order' ) && 'shop_order' === get_post_type( $post_id ) ) {
+		if ( function_exists( 'wc_get_order' ) && 'shop_order' === get_post_type( $current_post_id ) ) {
 			// Update the post_modified column in wc_orders (HPOS) if present
 			if ( class_exists( '\Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableDataStore' ) ) {
 				global $wpdb;
 				$wpdb->update(
 					$wpdb->prefix . 'wc_orders',
 					[ 'date_updated_gmt' => $data['post_modified_gmt'] ],
-					[ 'id' => $post_id ],
+					[ 'id' => $current_post_id ],
 					[ '%s' ],
 					[ '%d' ]
 				);
 			}
 			// Legacy post meta used by some WC extensions
-			update_post_meta( $post_id, '_date_updated', $data['post_modified'] );
+			update_post_meta( $current_post_id, '_date_updated', $data['post_modified'] );
 		}
 
 		return $data;
