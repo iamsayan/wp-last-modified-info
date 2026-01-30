@@ -90,7 +90,7 @@ class Notification
 			$diff[] = $this->diff_line( __( 'Excerpt', 'wp-last-modified-info' ), $post_before->post_excerpt, $post_after->post_excerpt );
 		}
 
-		if ( $post_before->post_author != $post_after->post_author ) {
+		if ( (int) $post_before->post_author !== (int) $post_after->post_author ) {
 			$diff[] = $this->diff_line( __( 'Author', 'wp-last-modified-info' ), $this->author_name( $post_before->post_author ), $this->author_name( $post_after->post_author ) );
 		}
 
@@ -137,17 +137,17 @@ class Notification
 	/**
 	 * Helper to produce a single diff line.
 	 *
-	 * @param string $label
-	 * @param string $old
-	 * @param string $new
+	 * @param string $label    Label for the diff line.
+	 * @param string $old_item Old value.
+	 * @param string $new_item New value.
 	 * @return string
 	 */
-	private function diff_line( $label, $old, $new ) {
+	private function diff_line( $label, $old_item, $new_item ) {
 		return sprintf(
 			'<strong>%1$s:</strong><br>%2$s<br>%3$s',
 			esc_html( $label ),
-			esc_html( __( 'Old:', 'wp-last-modified-info' ) ) . ' ' . esc_html( $old ),
-			esc_html( __( 'New:', 'wp-last-modified-info' ) ) . ' ' . esc_html( $new )
+			esc_html( __( 'Old:', 'wp-last-modified-info' ) ) . ' ' . esc_html( $old_item ),
+			esc_html( __( 'New:', 'wp-last-modified-info' ) ) . ' ' . esc_html( $new_item )
 		);
 	}
 
@@ -158,7 +158,7 @@ class Notification
 	 * @return string
 	 */
 	private function author_name( $user_id ) {
-		return get_the_author_meta( 'display_name', $user_id ) ?: __( 'Unknown', 'wp-last-modified-info' );
+		return get_the_author_meta( 'display_name', $user_id ) ?? __( 'Unknown', 'wp-last-modified-info' );
 	}
 
 	/**
@@ -188,10 +188,10 @@ class Notification
 			'%author_name%'          => $this->author_name( $post->post_author ),
 			'%modified_author_name%' => $this->author_name( $this->get_meta( $post_id, '_edit_last' ) ),
 			'%post_title%'           => $post->post_title,
-			'%post_type%'              => get_post_type( $post_id ),
-			'%current_time%'           => date_i18n( $this->do_filter( 'notification_datetime_format', 'j F, Y @ g:i a', $post_id ), current_time( 'timestamp', 0 ) ),
-			'%site_name%'              => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
-			'%site_url%'               => esc_url( home_url() ),
+			'%post_type%'            => get_post_type( $post_id ),
+			'%current_time%'         => date_i18n( $this->do_filter( 'notification_datetime_format', 'j F, Y @ g:i a', $post_id ), current_time( 'timestamp', 0 ) ),
+			'%site_name%'            => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+			'%site_url%'             => esc_url( home_url() ),
 		];
 
 		if ( 'body' === $type ) {

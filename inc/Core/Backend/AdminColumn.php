@@ -66,7 +66,7 @@ class AdminColumn
 			return;
 		}
 
-		$disabled = $this->get_meta( $post->ID, '_lmt_disableupdate' ) ?: 'no';
+		$disabled = $this->get_meta( $post->ID, '_lmt_disableupdate' ) ?? 'no';
 		$modified = $this->format_modified_date( $post );
 
 		$html  = $modified;
@@ -85,10 +85,10 @@ class AdminColumn
 			}
 
 			$hidden = [
-				'date-format' => date( 'M d, Y H:i:s', strtotime( $post->post_modified ) ),
+				'date-format'   => date( 'M d, Y H:i:s', strtotime( $post->post_modified ) ),
 				'post-modified' => $post->post_modified,
-				'disabled' => $disabled,
-				'post-type' => $post->post_type,
+				'disabled'      => $disabled,
+				'post-type'     => $post->post_type,
 			];
 
 			foreach ( $hidden as $key => $value ) {

@@ -133,13 +133,13 @@ class PluginsData extends WP_Background_Process
 		];
 
 		$map = [
-			'version'        => 'version',
-			'requires'       => 'requires',
-			'tested'         => 'tested',
-			'last_updated'   => 'last_updated',
-			'rating'         => 'rating',
-			'num_ratings'    => 'num_ratings',
-			'active_installs'=> 'active_installs',
+			'version'         => 'version',
+			'requires'        => 'requires',
+			'tested'          => 'tested',
+			'last_updated'    => 'last_updated',
+			'rating'          => 'rating',
+			'num_ratings'     => 'num_ratings',
+			'active_installs' => 'active_installs',
 		];
 
 		foreach ( $map as $key => $prop ) {

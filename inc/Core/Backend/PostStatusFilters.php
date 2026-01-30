@@ -71,11 +71,11 @@ class PostStatusFilters
 
 		// Fast count query: only IDs, no post objects.
 		$locked_ids = get_posts( [
-			'post_type'      => $typenow,
-			'post_status'    => [ 'publish', 'draft', 'private' ],
-			'fields'         => 'ids',
-			'posts_per_page' => -1,
-			'meta_query'     => [
+			'post_type'        => $typenow,
+			'post_status'      => [ 'publish', 'draft', 'private' ],
+			'fields'           => 'ids',
+			'posts_per_page'   => -1,
+			'meta_query'       => [
 				[
 					'key'     => '_lmt_disableupdate',
 					'value'   => 'yes',

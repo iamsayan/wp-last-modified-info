@@ -99,7 +99,7 @@ class MiscActions
 			'shop_order_placehold',
 			'shop_order',
 			'shop_order_refund',
-			'shop_subscription'
+			'shop_subscription',
 		], $post_id, $post );
 
 		// check if post type is supported

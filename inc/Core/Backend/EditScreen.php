@@ -255,16 +255,16 @@ class EditScreen
 
 		if ( $post_ids ) { // only proceed if we have posts to bulk-edit
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			$mm  = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_month'] ?? '' ) ), 1, 12, 1 ); // month 1-12
+			$mm = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_month'] ?? '' ) ), 1, 12, 1 ); // month 1-12
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			$jj  = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_day']   ?? '' ) ), 1, 31, 1 ); // day 1-31
+			$jj = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_day'] ?? '' ) ), 1, 31, 1 ); // day 1-31
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			$aa  = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_year']  ?? '' ) ), 0, 9999, 1970 ); // year 0-9999
+			$aa = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_year'] ?? '' ) ), 0, 9999, 1970 ); // year 0-9999
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			$hh  = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_hour']  ?? '' ) ), 0, 23, 12 ); // hour 0-23
+			$hh = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_hour'] ?? '' ) ), 0, 23, 12 ); // hour 0-23
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-			$mn  = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_minute'] ?? '' ) ), 0, 59, 0 ); // minute 0-59
-			$ss  = '00'; // seconds hard-coded for bulk
+			$mn = $this->clamp( sanitize_text_field( wp_unslash( $_POST['modified_minute'] ?? '' ) ), 0, 59, 0 ); // minute 0-59
+			$ss = '00'; // seconds hard-coded for bulk
 
 			$newdate   = sprintf( '%04d-%02d-%02d %02d:%02d:%02d', $aa, $mm, $jj, $hh, $mn, $ss ); // build MySQL datetime
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated
@@ -276,16 +276,24 @@ class EditScreen
 			$update_status = 'none' !== $disable; // disable selector != “No Change”
 
 			foreach ( $post_ids as $post_id ) {
+				// Skip drafts & scheduled posts
 				if ( in_array( get_post_status( $post_id ), [ 'auto-draft', 'future' ], true ) ) {
-					continue; // skip drafts & scheduled posts
+					continue;
 				}
 
-				if ( $update_date ) { // save new modified datetime
+				// Skip posts the user can't edit
+				if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					continue;
+				}
+
+				// Update modified datetime
+				if ( $update_date ) {
 					$this->update_meta( $post_id, '_wplmi_last_modified', $newdate );
 					$this->update_meta( $post_id, 'wplmi_bulk_update_datetime', $newdate ); // flag for update_data()
 				}
 
-				if ( $update_status ) { // save lock/unlock preference
+				// Update lock/unlock preference
+				if ( $update_status ) {
 					$this->update_meta( $post_id, '_lmt_disableupdate', $disable );
 				}
 			}

@@ -116,7 +116,7 @@ class MetaBox
 		}
 
 		// Sanitize & save.
-		$hide = isset( $_POST['wplmi_disable_auto_insert'] ) ? 'yes' : 'no';
+		$hide = isset( $_POST['wplmi_disable_auto_insert'] ) ? 'yes' : 'no'; // PHPCS:ignore WordPress.Security.NonceVerification.Missing
 		$this->update_meta( $post_id, '_lmt_disable', $hide );
 	}
 

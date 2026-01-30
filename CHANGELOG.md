@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.9.6
+Release Date: January 30, 2026
+
+* Fixed: Missing permission check on bulk edit.
+* Tested with WordPress v6.9.
+
 ## 1.9.5
 Release Date: November 11, 2025
 

@@ -198,7 +198,7 @@ class PostView
 			$format = $this->do_filter( 'post_datetime_format', $this->get_data( 'lmt_date_time_format', get_option( 'date_format' ) ), $post_id );
 			$date   = $this->get_modified_date( $format, $post_id );
 		} else {
-			$date = human_time_diff( $modified, current_time( 'U' ) ) . ' ' . __( 'ago' );
+			$date = human_time_diff( $modified, current_time( 'U' ) ) . ' ' . __( 'ago', 'wp-last-modified-info' );
 		}
 
 		return $this->do_filter( 'post_formatted_date', $date, $post_id );
@@ -263,7 +263,11 @@ class PostView
 		$html = str_replace( [ "\r", "\n" ], '', $html );
 
 		$allowed = wp_kses_allowed_html( 'post' );
-		$allowed['time'] = [ 'class' => true, 'itemprop' => true, 'datetime' => true ];
+		$allowed['time'] = [
+			'class'    => true,
+			'itemprop' => true,
+			'datetime' => true,
+		];
 
 		return wp_kses( $html, $allowed );
 	}
