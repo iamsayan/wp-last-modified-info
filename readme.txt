@@ -211,7 +211,7 @@ Release Date: April 28, 2025
 * Tested with WordPress v6.8.
 
 = 1.9.1 =
-Release Date: August 9, 2024
+Release Date: August 18, 2024
 
 * Added changes according to WPCS.
 * Tested with WordPress v6.6.
