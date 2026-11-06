@@ -182,7 +182,7 @@ class MiscActions
 		global $pagenow;
 		$order = $this->is_equal( 'admin_default_sort_order', 'published' ) ? 'asc' : 'desc';
 
-		if ( ! $this->is_equal( 'admin_default_sort_order', 'default' ) ) {
+		if ( $this->is_equal( 'admin_default_sort_order', 'modified' ) || $this->is_equal( 'admin_default_sort_order', 'published' ) ) {
 			if ( is_admin() && 'edit.php' === $pagenow && ! isset( $_GET['orderby'], $_GET['order'] ) ) {
 				$query->set( 'orderby', 'modified' );
 				$query->set( 'order', $order );
@@ -199,7 +199,7 @@ class MiscActions
 		global $pagenow;
 		$order = $this->is_equal( 'default_sort_order', 'published' ) ? 'asc' : 'desc';
 
-		if ( ! $this->is_equal( 'default_sort_order', 'default' ) ) {
+		if ( $this->is_equal( 'default_sort_order', 'modified' ) || $this->is_equal( 'default_sort_order', 'published' ) ) {
 			if ( ! is_admin() && $query->is_main_query() ) {
 			    if ( $query->is_home() || $query->is_category() || $query->is_tag() ) {
 			    	$query->set( 'orderby', 'modified' );
